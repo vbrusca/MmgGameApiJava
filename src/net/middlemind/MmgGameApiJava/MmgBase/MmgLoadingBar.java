@@ -1,0 +1,297 @@
+package net.middlemind.MmgGameApiJava.MmgBase;
+
+/**
+ * Class that creates a loading bar object.
+ * Created by Middlemind Games
+ * 
+ * @author Victor G. Brusca
+ */
+public class MmgLoadingBar extends MmgObj {
+
+    /**
+     * The bitmap image of the back of the loading bar.
+     */
+    private MmgBmp loadingBarBack;
+    
+    /**
+     * The bitmap image of the front of the loading bar.
+     */
+    private MmgBmp loadingBarFront;
+    
+    /**
+     * The X padding to use when drawing the loading bar front.
+     */
+    private int xPadding;
+    
+    /**
+     * The Y padding to use when drawing the loading bar front.
+     */
+    private int yPadding;
+    
+    /**
+     * The fill amount of the loading bar.
+     */
+    private float fillAmt;
+    
+    /**
+     * The fill height of the loading bar.
+     */
+    private int fillHeight;
+    
+    /**
+     * The fill width of the loading bar. 
+     */
+    private int fillWidth;
+
+    /**
+     * Constructor for this class.
+     */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgLoadingBar() {
+        super();
+        SetLoadingBarBack(null);
+        SetLoadingBarFront(null);
+        SetPaddingX(0);
+        SetPaddingY(0);
+        SetFillHeight(10);
+        SetFillWidth(100);
+    }
+
+    /**
+     * Constructor for this loading bar that sets all the class attributes based
+     * on the given argument.
+     * 
+     * @param mlb       The class to use to set all the attributes of this class.
+     */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgLoadingBar(MmgLoadingBar mlb) {
+        if (mlb.GetLoadingBarBack() != null) {
+            SetLoadingBarBack((MmgBmp) mlb.GetLoadingBarBack().Clone());
+        } else {
+            SetLoadingBarBack(mlb.GetLoadingBarBack());
+        }
+
+        if (mlb.GetLoadingBarFront() != null) {
+            SetLoadingBarFront((MmgBmp) mlb.GetLoadingBarFront().Clone());
+        } else {
+            SetLoadingBarFront(mlb.GetLoadingBarFront());
+        }
+
+        SetPaddingX(0);
+        SetPaddingY(0);
+
+        if (mlb.GetPosition() != null) {
+            SetPosition(mlb.GetPosition().Clone());
+        } else {
+            SetPosition(mlb.GetPosition());
+
+        }
+
+        if (loadingBarFront != null) {
+            SetWidth(loadingBarFront.GetWidth());
+            SetHeight(loadingBarFront.GetHeight());
+        } else {
+            SetWidth(100);
+            SetHeight(50);
+        }
+
+        SetFillHeight(GetHeight());
+        SetFillWidth(GetWidth());
+        SetIsVisible(true);
+        SetMmgColor(MmgColor.GetWhite());
+    }
+
+    /**
+     * Constructor that sets the front and back loading bar images.
+     * 
+     * @param LoadingBarBack        The back loading bar image.
+     * @param LoadingBarFront       The front loading bar image.
+     */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgLoadingBar(MmgBmp LoadingBarBack, MmgBmp LoadingBarFront) {
+        SetLoadingBarBack(LoadingBarBack);
+        SetLoadingBarFront(LoadingBarFront);
+        SetPaddingX(0);
+        SetPaddingY(0);
+        SetPosition(new MmgVector2(0, 0));
+
+        if (loadingBarFront != null) {
+            SetWidth(loadingBarFront.GetWidth());
+            SetHeight(loadingBarFront.GetHeight());
+        } else {
+            SetWidth(100);
+            SetHeight(50);
+        }
+
+        SetFillHeight(GetHeight());
+        SetFillWidth(GetWidth());
+        SetIsVisible(true);
+        SetMmgColor(MmgColor.GetWhite());
+    }
+
+    /**
+     * Sets the padding X value.
+     * 
+     * @param px    The padding X value. 
+     */
+    public void SetPaddingX(int px) {
+        xPadding = px;
+    }
+
+    /**
+     * Gets the padding X value.
+     * 
+     * @return      The padding X value. 
+     */
+    public int GetPaddingX() {
+        return xPadding;
+    }
+
+    /**
+     * Sets the padding Y value.
+     * 
+     * @param py    The padding Y value. 
+     */
+    public void SetPaddingY(int py) {
+        yPadding = py;
+    }
+
+    /**
+     * Gets the padding Y value.
+     * 
+     * @return      The padding Y value. 
+     */
+    public int GetPaddingY() {
+        return yPadding;
+    }
+
+    /**
+     * Gets the fill height of the loading bar.
+     * 
+     * @return      The fill height of the loading bar. 
+     */
+    public int GetFillHeight() {
+        return fillHeight;
+    }
+
+    /**
+     * Sets the fill height of the loading bar.
+     * 
+     * @param h     The fill height of the loading bar.
+     */
+    public void SetFillHeight(int h) {
+        fillHeight = h;
+    }
+
+    /**
+     * Gets the fill width of the loading bar.
+     * 
+     * @return      The fill width of the loading bar. 
+     */
+    public int GetFillWidth() {
+        return fillWidth;
+    }
+
+    /**
+     * Sets the fill width of the loading bar.
+     * 
+     * @param w     The fill width of the loading bar.
+     */
+    public void SetFillWidth(int w) {
+        fillWidth = w;
+    }
+
+    /**
+     * Clones this class.
+     * 
+     * @return      A clone of this class. 
+     */
+    @Override
+    public MmgObj Clone() {
+        MmgLoadingBar ret = new MmgLoadingBar(this);
+        return (MmgObj) ret;
+    }
+
+    /**
+     * Gets the loading bar back image.
+     * 
+     * @return      The loading bar back image.
+     */
+    public MmgBmp GetLoadingBarBack() {
+        return loadingBarBack;
+    }
+
+    /**
+     * Sets the loading bar back image.
+     * 
+     * @param b     The loading bar back image.
+     */
+    public void SetLoadingBarBack(MmgBmp b) {
+        loadingBarBack = b;
+        loadingBarBack.SetScaling(null);
+    }
+
+    /**
+     * Gets the loading bar front image.
+     * 
+     * @return      The loading bar front image.
+     */
+    public MmgBmp GetLoadingBarFront() {
+        return loadingBarFront;
+    }
+
+    /**
+     * Sets the loading bar front image.
+     * 
+     * @param f     The loading bar front image.
+     */
+    public void SetLoadingBarFront(MmgBmp f) {
+        loadingBarFront = f;
+    }
+
+    /**
+     * Sets the loading bar fill amount, 0.0 - 1.0.
+     * 
+     * @param f     The decimal fill amount.
+     */
+    public void SetFillAmt(float f) {
+        fillAmt = f;
+    }
+
+    /**
+     * Gets the loading bar fill amount.
+     * 
+     * @return      The decimal fill amount.
+     */
+    public float GetFillAmt() {
+        return fillAmt;
+    }
+
+    /**
+     * Draws the current object using the MmgPen object.
+     * 
+     * @param p     The MmgPen object that draws this object. 
+     */
+    @Override
+    public void MmgDraw(MmgPen p) {
+        if(GetIsVisible() == true) {
+            if(loadingBarBack != null) {
+                loadingBarBack.SetMmgColor(GetMmgColor());
+                loadingBarBack.SetSrcRect(new MmgRect(MmgVector2.GetOriginVec(), loadingBarBack.GetWidth(), loadingBarBack.GetHeight()));
+                loadingBarBack.SetDstRect(new MmgRect(new MmgVector2(GetPosition().GetX() + GetPaddingX(), GetPosition().GetY() + GetPaddingY()), (int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt), GetFillHeight() - GetPaddingY()));
+                
+                //MmgRect r = loadingBarBack.GetSrcRect();
+                //MmgApiUtils.wr("Src L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight());
+                
+                //r = loadingBarBack.GetDstRect();
+                //MmgApiUtils.wr("Dst L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight() + " C1:" + ((int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt)) + " C2:" + (GetFillHeight() - GetPaddingY()));
+                loadingBarBack.MmgDraw(p);
+            }
+
+            if(loadingBarFront != null) {
+                loadingBarFront.SetMmgColor(GetMmgColor());
+                loadingBarFront.MmgDraw(p);
+            }
+        }
+    }
+}
