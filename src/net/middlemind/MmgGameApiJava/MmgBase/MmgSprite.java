@@ -392,7 +392,7 @@ public class MmgSprite extends MmgObj {
      * @param updateTick    The integer update tick count
      */
     @Override
-    public void MmgUpdate(int updateTick) {
+    public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if (frameChange == true) {
             frameStartTime = System.currentTimeMillis();
             frameChange = false;

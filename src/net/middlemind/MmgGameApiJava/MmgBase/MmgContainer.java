@@ -320,13 +320,13 @@ public class MmgContainer extends MmgObj {
     }
     
     @Override
-    public void MmgUpdate(int updateTicks) {
+    public void MmgUpdate(int updateTicks, long currentTimeMs, long msSinceLastFrame) {
         if(GetIsVisible() == true) {
             a = container.toArray();
             for(i = 0; i < a.length; i++) {
                 mo = (MmgObj) a[i];
                 if(mo != null && mo.GetIsVisible() == true) {
-                    mo.MmgUpdate(updateTicks);
+                    mo.MmgUpdate(updateTicks, currentTimeMs, msSinceLastFrame);
                 }else {
                     //do nothing
                 }

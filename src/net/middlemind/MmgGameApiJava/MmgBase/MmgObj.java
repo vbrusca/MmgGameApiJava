@@ -245,7 +245,7 @@ public class MmgObj {
         }
     }
 
-    public void MmgUpdate(int updateTick) {
+    public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(isVisible == true) {
             
         }else {

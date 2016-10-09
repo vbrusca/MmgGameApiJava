@@ -609,22 +609,22 @@ public class MmgGameScreen extends MmgObj {
         }
     }
 
-    public void MmgUpdate(int updateTick) {
+    public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(IsPaused() == true) {
             //do nothing
         }else {
             if(GetIsVisible() == true) {
 
                 if(message != null) {
-                    message.MmgUpdate(updateTick);
+                    message.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
                 }
 
                 if(objects != null) {
-                    objects.MmgUpdate(updateTick);
+                    objects.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
                 }
 
                 if(foreground != null) {
-                    foreground.MmgUpdate(updateTick);
+                    foreground.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
                 }
             }else {
                 //do nothing
