@@ -318,4 +318,21 @@ public class MmgContainer extends MmgObj {
             //do nothing
         }
     }
+    
+    @Override
+    public void MmgUpdate(int updateTicks) {
+        if(GetIsVisible() == true) {
+            a = container.toArray();
+            for(i = 0; i < a.length; i++) {
+                mo = (MmgObj) a[i];
+                if(mo != null && mo.GetIsVisible() == true) {
+                    mo.MmgUpdate(updateTicks);
+                }else {
+                    //do nothing
+                }
+            }
+        }else {
+            //do nothing
+        }
+    }    
 }

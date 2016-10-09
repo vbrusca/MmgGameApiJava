@@ -186,6 +186,10 @@ public class MmgSprite extends MmgObj {
         return (MmgObj) ret;
     }
 
+    public MmgBmp GetCurrentFrame() {
+        return b[frameIdx];
+    }
+    
     /**
      * Gets the MmgBmp frames of this class.
      * 
@@ -375,12 +379,7 @@ public class MmgSprite extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (GetIsVisible() == true) {
             if (b[frameIdx] != null) {
-                if (frameChange == true) {
-                    frameStartTime = System.currentTimeMillis();
-                    frameChange = false;
-                }
                 p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), GetOrigin(), GetRotation());
-                UpdateFrame();
             }
         } else {
             //do nothing
@@ -389,8 +388,16 @@ public class MmgSprite extends MmgObj {
 
     /**
      * Update the current sprite animation frame index.
+     * 
+     * @param updateTick    The integer update tick count
      */
-    public void UpdateFrame() {
+    @Override
+    public void MmgUpdate(int updateTick) {
+        if (frameChange == true) {
+            frameStartTime = System.currentTimeMillis();
+            frameChange = false;
+        }        
+        
         frameStopTime = System.currentTimeMillis();
         if (frameStop - frameStart > 1) {
             if ((long) (frameStopTime - frameStartTime) > msPerFrame) {

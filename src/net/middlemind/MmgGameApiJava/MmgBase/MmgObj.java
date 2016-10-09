@@ -245,6 +245,14 @@ public class MmgObj {
         }
     }
 
+    public void MmgUpdate(int updateTick) {
+        if(isVisible == true) {
+            
+        }else {
+            //do nothing
+        }
+    }
+    
     /**
      * Gets the visibility of this class.
      * 

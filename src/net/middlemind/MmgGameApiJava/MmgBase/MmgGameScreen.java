@@ -9,6 +9,16 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 public class MmgGameScreen extends MmgObj {
 
     /**
+     * Pause this screen.
+     */    
+    protected boolean pause;
+    
+    /**
+     * Is this screen ready.
+     */    
+    protected boolean ready;    
+    
+    /**
      * The MmgContainer that holds all the child objects.
      */
     private MmgContainer objects;
@@ -86,6 +96,8 @@ public class MmgGameScreen extends MmgObj {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen() {
         super();
+        pause = false;
+        ready = false;        
         objects = new MmgContainer();
         menu = new MmgMenuContainer();
         background = null;
@@ -146,6 +158,53 @@ public class MmgGameScreen extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * Gets true if this game screen has loaded its resources and is ready to display itself.
+     * 
+     * @return True if this object is ready, false otherwise. 
+     */
+    public final boolean IsReady() {
+        return ready;
+    }
+
+    /**
+     * Sets if this game screen is ready to display itself.
+     * 
+     * @param b A boolean indicating if this object is ready for display.
+     */
+    public final void SetReady(boolean b) {
+        ready = b;
+    }
+    
+    /**
+     * Pauses this object. If paused no drawing occurs.
+     */
+    public final void Pause() {
+        pause = true;
+        SetIsVisible(false);
+    }
+    
+    /**
+     * Un-pause this object. If paused no drawing occurs.
+     */
+    public final void UnPause() {
+        pause = false;
+        SetIsVisible(true);
+    }
+    
+    /**
+     * Gets the pause state of this object.
+     * 
+     * @return True if this object was paused, false otherwise.
+     */
+    public final boolean IsPaused() {
+        if(pause == true) {
+            return true;
+        }else {
+            return false;
+        }
+    }    
+    
     /**
      * Gets if the menu is on.
      * 
@@ -513,39 +572,66 @@ public class MmgGameScreen extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if(GetIsVisible() == true) {
-            if(background != null) {
-                background.MmgDraw(p);
-            }
-
-            if(header != null) {
-                header.MmgDraw(p);
-            }
-
-            if(footer != null) {
-                footer.MmgDraw(p);
-            }
-
-            if(message != null) {
-                message.MmgDraw(p);
-            }
-
-            if(objects != null) {
-                objects.MmgDraw(p);
-            }
-
-            if(menuOn == true) {
-                DrawMenu(p);
-            }
-
-            if(foreground != null) {
-                foreground.MmgDraw(p);
-            }
-        }else {
+        if(IsPaused() == true) {
             //do nothing
+        }else {
+            if(GetIsVisible() == true) {
+                if(background != null) {
+                    background.MmgDraw(p);
+                }
+
+                if(header != null) {
+                    header.MmgDraw(p);
+                }
+
+                if(footer != null) {
+                    footer.MmgDraw(p);
+                }
+
+                if(message != null) {
+                    message.MmgDraw(p);
+                }
+
+                if(objects != null) {
+                    objects.MmgDraw(p);
+                }
+
+                if(menuOn == true) {
+                    DrawMenu(p);
+                }
+
+                if(foreground != null) {
+                    foreground.MmgDraw(p);
+                }
+            }else {
+                //do nothing
+            }
         }
     }
 
+    public void MmgUpdate(int updateTick) {
+        if(IsPaused() == true) {
+            //do nothing
+        }else {
+            if(GetIsVisible() == true) {
+
+                if(message != null) {
+                    message.MmgUpdate(updateTick);
+                }
+
+                if(objects != null) {
+                    objects.MmgUpdate(updateTick);
+                }
+
+                if(foreground != null) {
+                    foreground.MmgUpdate(updateTick);
+                }
+            }else {
+                //do nothing
+            }
+        }
+    }    
+    
     /**
      * Process a screen click.
      * 

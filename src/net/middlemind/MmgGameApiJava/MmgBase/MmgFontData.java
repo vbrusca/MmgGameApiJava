@@ -216,15 +216,15 @@ public class MmgFontData {
     }
     
     public static MmgFont CreateDefaultNormalMmgFontLg() {
-        return new MmgFont(MmgFontData.CreateDefaultNormalMmgFontLg());
+        return new MmgFont(MmgFontData.CreateDefaultNormalFontLg());
     }
     
     public static MmgFont CreateDefaultBoldMmgFontLg() {
-        return new MmgFont(MmgFontData.CreateDefaultBoldMmgFontLg());
+        return new MmgFont(MmgFontData.CreateDefaultBoldFontLg());
     }
     
     public static MmgFont CreateDefaultItalicMmgFontLg(){
-       return new MmgFont(MmgFontData.CreateDefaultItalicMmgFontLg());
+       return new MmgFont(MmgFontData.CreateDefaultItalicFontLg());
     }
     
     /**
