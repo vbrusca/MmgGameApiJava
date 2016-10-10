@@ -48,6 +48,7 @@ public class MmgSprite extends MmgObj {
      * The frame stop.
      */
     private int frameStop;
+    private long frameTime;
     
     /**
      * The frame index.
@@ -59,20 +60,24 @@ public class MmgSprite extends MmgObj {
      */
     private long msPerFrame;
 
+    public static int DEFAULT_MS_PER_FRAME = 100;
+    
     /**
      * The frame start time.
      */
-    private long frameStartTime;
+    //private long frameStartTime;
     
     /**
      * The frame stop time.
      */
-    private long frameStopTime;
+    //private long frameStopTime;
     
     /**
      * True if there was a frame change.
      */
-    private boolean frameChange;
+    //private boolean frameChange;
+    
+    private boolean simpleRendering;
 
     /**
      * Constructor that sets the MmgBmp array, the source rectangle, the destination rectangle,
@@ -95,10 +100,13 @@ public class MmgSprite extends MmgObj {
         SetBmpArray(t);
 
         SetPosition(null);
-        SetWidth(t[0].GetWidth());
-        SetHeight(t[0].GetHeight());
+        if(t != null && t.length >= 1) {
+            SetWidth(t[0].GetWidth());
+            SetHeight(t[0].GetHeight());
+        }
         SetIsVisible(true);
-        frameChange = true;
+        SetSimpleRendering(true);
+        SetMsPerFrame(DEFAULT_MS_PER_FRAME);
     }
 
     /**
@@ -121,12 +129,53 @@ public class MmgSprite extends MmgObj {
         SetBmpArray(t);
 
         SetPosition(Position);
-        SetWidth(t[0].GetWidth());
-        SetHeight(t[0].GetHeight());
+        if(t != null && t.length >= 1) {
+            SetWidth(t[0].GetWidth());
+            SetHeight(t[0].GetHeight());
+        }
         SetIsVisible(true);
-        frameChange = true;
+        SetSimpleRendering(true);
+        SetMsPerFrame(DEFAULT_MS_PER_FRAME);
     }
 
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgSprite(MmgBmp[] t, MmgVector2 Position) {
+        SetRotation(0);
+        SetOrigin(MmgVector2.GetOriginVec());
+        SetScaling(MmgVector2.GetUnitVec());
+        SetSrcRect(null);
+        SetDstRect(null);
+        SetBmpArray(t);
+
+        SetPosition(Position);
+        if(t != null && t.length >= 1) {
+            SetWidth(t[0].GetWidth());
+            SetHeight(t[0].GetHeight());
+        }
+        SetIsVisible(true);
+        SetSimpleRendering(true);
+        SetMsPerFrame(DEFAULT_MS_PER_FRAME);
+    }    
+    
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgSprite(MmgBmp[] t) {
+        SetRotation(0);
+        SetOrigin(MmgVector2.GetOriginVec());
+        SetScaling(MmgVector2.GetUnitVec());
+        SetSrcRect(null);
+        SetDstRect(null);
+        SetBmpArray(t);
+
+        SetPosition(MmgVector2.GetOriginVec());
+        if(t != null && t.length >= 1) {
+            SetWidth(t[0].GetWidth());
+            SetHeight(t[0].GetHeight());
+        }
+        SetIsVisible(true);
+        SetSimpleRendering(true);
+        SetMsPerFrame(DEFAULT_MS_PER_FRAME);
+    }    
+    
     /**
      * Constructor that sets the value of the class attributes based on the attributes
      * of the given argument.
@@ -169,10 +218,22 @@ public class MmgSprite extends MmgObj {
             SetPosition(spr.GetPosition().Clone());
         }
 
+        SetFrameIdx(spr.GetFrameIdx());
+        SetFrameStart(spr.GetFrameStart());
+        SetFrameStop(spr.GetFrameStop());        
         SetWidth(spr.GetWidth());
         SetHeight(spr.GetHeight());
         SetIsVisible(spr.GetIsVisible());
-        frameChange = true;
+        SetSimpleRendering(spr.GetSimpleRendering());
+        SetMsPerFrame(spr.GetMsPerFrame());
+    }
+
+    public boolean GetSimpleRendering() {
+        return simpleRendering;
+    }
+
+    public void SetSimpleRendering(boolean s) {
+        simpleRendering = s;
     }
 
     /**
@@ -206,6 +267,12 @@ public class MmgSprite extends MmgObj {
      */
     public void SetBmpArray(MmgBmp[] d) {
         b = d;
+        if(b != null && b.length >= 1) {
+            SetWidth(b[0].GetWidth());
+            SetHeight(b[0].GetHeight());
+            frameStart = 0;
+            frameStop = b.length - 1;
+        }        
     }
 
     /**
@@ -324,7 +391,7 @@ public class MmgSprite extends MmgObj {
     public int GetFrameStart() {
         return frameStart;
     }
-
+    
     /**
      * Sets the frame start index.
      * 
@@ -333,7 +400,7 @@ public class MmgSprite extends MmgObj {
     public void SetFrameStart(int f) {
         frameStart = f;
     }
-
+    
     /**
      * Gets the frame stop index.
      * 
@@ -351,7 +418,7 @@ public class MmgSprite extends MmgObj {
     public void SetFrameStop(int f) {
         frameStop = f;
     }
-
+    
     /**
      * Gets the milliseconds per frame.
      * 
@@ -379,34 +446,49 @@ public class MmgSprite extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (GetIsVisible() == true) {
             if (b[frameIdx] != null) {
-                p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), GetOrigin(), GetRotation());
+                if(GetSimpleRendering() == true) {
+                    p.DrawBmp(b[frameIdx], GetPosition());
+                }else {
+                    if(GetSrcRect() == null || GetDstRect() == null) {
+                        if(GetOrigin() == null) {
+                            if(GetRotation() == 0.0) {
+                                p.DrawBmp(b[frameIdx], GetPosition());
+                            }else {
+                                p.DrawBmp(b[frameIdx], GetPosition(), GetRotation());
+                            }
+                        }else {
+                            p.DrawBmp(b[frameIdx], GetPosition(), GetOrigin(), GetRotation());
+                        }
+                    }else{
+                        p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), GetOrigin(), GetRotation());
+                    }
+                }
             }
         } else {
             //do nothing
         }
     }
 
-    /**
+    /***
      * Update the current sprite animation frame index.
      * 
-     * @param updateTick    The integer update tick count
+     * @param updateTick
+     * @param currentTimeMs
+     * @param msSinceLastFrame 
      */
     @Override
     public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        if (frameChange == true) {
-            frameStartTime = System.currentTimeMillis();
-            frameChange = false;
-        }        
-        
-        frameStopTime = System.currentTimeMillis();
-        if (frameStop - frameStart > 1) {
-            if ((long) (frameStopTime - frameStartTime) > msPerFrame) {
+        if (GetIsVisible() == true) {
+            frameTime += msSinceLastFrame;
+            if(frameTime >= msPerFrame) {
                 frameIdx++;
                 if (frameIdx > frameStop) {
                     frameIdx = frameStart;
                 }
-                frameChange = true;
+                frameTime = 0;
             }
-        }
+        } else {
+            //do nothing
+        }            
     }
 }
