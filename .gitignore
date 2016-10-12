@@ -2,3 +2,4 @@ build/
 nbproject/
 .DS_STORE
 .class
+/dist/
