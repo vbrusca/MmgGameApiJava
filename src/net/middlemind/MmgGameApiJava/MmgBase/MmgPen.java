@@ -43,6 +43,9 @@ public class MmgPen {
      */
     public static boolean ADV_RENDER_HINTS = true;
 
+    private Font tmpF;
+    private Color tmpC;
+    
     /**
      * Constructor for this class.
      */
@@ -100,9 +103,15 @@ public class MmgPen {
      * @see MmgFont
      */
     public void DrawText(MmgFont f) {
+        tmpF = pen.getFont();
+        tmpC = pen.getColor();
+                
         pen.setColor(f.GetMmgColor().GetColor());
         pen.setFont(f.GetFont());
         pen.drawString(f.GetText(), f.GetPosition().GetX(), f.GetPosition().GetY());
+        
+        pen.setFont(tmpF);
+        pen.setColor(tmpC);
     }
 
     /**
