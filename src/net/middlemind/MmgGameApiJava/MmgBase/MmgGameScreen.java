@@ -555,7 +555,7 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * Fires an update event to th update handler.
+     * Fires an update event to the update handler.
      * 
      * @param data      The event data to process.
      */
@@ -609,6 +609,7 @@ public class MmgGameScreen extends MmgObj {
         }
     }
 
+    @Override
     public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(IsPaused() == true) {
             //do nothing

@@ -172,7 +172,7 @@ public class MmgBmp extends MmgObj {
         SetWidth(b.getWidth(null));
         SetHeight(b.getHeight(null));
         SetIsVisible(true);
-        SetMmgColor(MmgColor.GetWhite());
+        SetMmgColor(null);
         SetBmpId();
     }
 
@@ -199,7 +199,7 @@ public class MmgBmp extends MmgObj {
         SetWidth(b.getWidth(null));
         SetHeight(b.getHeight(null));
         SetIsVisible(true);
-        SetMmgColor(MmgColor.GetWhite());
+        SetMmgColor(null);
         SetBmpId();
     }
 
@@ -226,7 +226,7 @@ public class MmgBmp extends MmgObj {
         SetWidth(b.getWidth(null));
         SetHeight(b.getHeight(null));
         SetIsVisible(true);
-        SetMmgColor(MmgColor.GetWhite());
+        SetMmgColor(null);
         SetBmpId();
     }
 

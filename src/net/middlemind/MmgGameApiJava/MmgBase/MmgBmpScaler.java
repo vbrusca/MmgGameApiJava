@@ -5,6 +5,7 @@
  */
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -47,10 +48,9 @@ public class MmgBmpScaler {
         int w = subj.GetWidth();
         int h = subj.GetHeight();   
         Image img = subj.GetImage();
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(w, h, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-        Graphics2D g = (Graphics2D)bg.getGraphics();        
-        AffineTransform at = new AffineTransform();
-        at.rotate(Math.toRadians(angle), (w/2), (h/2));
+        
+        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(w, h, alpha ? Transparency.BITMASK : Transparency.OPAQUE);
+        Graphics2D g = (Graphics2D)bg.getGraphics();
         
         if(MmgPen.ADV_RENDER_HINTS == true)
         {
@@ -58,11 +58,17 @@ public class MmgBmpScaler {
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }        
-        
-        g.drawImage(img, 0, 0, null);
-        AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-        bg = op.filter(bg, null);
+
+        AffineTransform at = new AffineTransform();
+        at.rotate(Math.toRadians(angle), (w/2), (h/2));
+        g.drawImage(img, at, null);           
         g.dispose();
-        return new MmgBmp(bg);
+        
+        MmgBmp r = new MmgBmp(bg);
+        r.SetScaling(MmgVector2.GetUnitVec());
+        r.SetPosition(MmgVector2.GetOriginVec());
+        r.SetOrigin(MmgVector2.GetOriginVec());
+        r.SetMmgColor(null);
+        return r;
     }
 }
