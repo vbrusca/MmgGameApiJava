@@ -475,9 +475,12 @@ public class MmgSprite extends MmgObj {
      * @param updateTick
      * @param currentTimeMs
      * @param msSinceLastFrame 
+     * @return 
      */
     @Override
-    public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        boolean ret = false;
+        
         if (GetIsVisible() == true) {
             frameTime += msSinceLastFrame;
             if(frameTime >= msPerFrame) {
@@ -486,9 +489,12 @@ public class MmgSprite extends MmgObj {
                     frameIdx = frameStart;
                 }
                 frameTime = 0;
+                ret = true;
             }
         } else {
             //do nothing
-        }            
+        }
+        
+        return ret;
     }
 }

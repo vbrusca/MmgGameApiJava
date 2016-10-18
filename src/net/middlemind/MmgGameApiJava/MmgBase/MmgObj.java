@@ -245,12 +245,14 @@ public class MmgObj {
         }
     }
 
-    public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(isVisible == true) {
             
         }else {
             //do nothing
         }
+        
+        return false;
     }
     
     /**

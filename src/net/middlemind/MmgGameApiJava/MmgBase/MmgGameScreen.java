@@ -610,27 +610,37 @@ public class MmgGameScreen extends MmgObj {
     }
 
     @Override
-    public void MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        boolean ret = false;
+        
         if(IsPaused() == true) {
             //do nothing
+            
         }else {
             if(GetIsVisible() == true) {
-
                 if(message != null) {
-                    message.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+                    if(message.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                        ret = true;
+                    }
                 }
 
                 if(objects != null) {
-                    objects.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+                    if(objects.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                        ret = true;
+                    }
                 }
 
                 if(foreground != null) {
-                    foreground.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+                    if(foreground.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                        ret = true;
+                    }
                 }
             }else {
                 //do nothing
             }
         }
+        
+        return ret;
     }    
     
     /**
