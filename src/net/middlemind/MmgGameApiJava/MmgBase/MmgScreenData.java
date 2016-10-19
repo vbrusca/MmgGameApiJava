@@ -488,7 +488,7 @@ public class MmgScreenData {
                 //sX = true;
             //}
             
-            MmgApiUtils.wr("sX: " + sX + " sY: " + sY);
+            MmgApiUtils.wr("ScaleX: " + sX + " ScaleY: " + sY);
             if(sX == true && sY == false) {
                 //scale X
                 CalculateScaleX();
