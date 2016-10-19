@@ -179,6 +179,22 @@ public class MmgFontData {
         return new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, fontSize - 2);
     }
     
+    public static Font CreateDefaultFontExtraSm() {
+        return new Font(DEFAULT_FONT_FAMILY, DEFAULT_FONT_TYPE, fontSize - 4);
+    }
+    
+    public static Font CreateDefaultNormalFontExtraSm() {
+        return new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, fontSize - 4);
+    }
+    
+    public static Font CreateDefaultBoldFontExtraSm() {
+        return new Font(DEFAULT_FONT_FAMILY, Font.BOLD, fontSize - 4);
+    }
+    
+    public static Font CreateDefaultItalicFontExtraSm() {
+        return new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, fontSize - 4);
+    }    
+    
     public static MmgFont CreateDefaultMmgFontSm() {
         return new MmgFont(MmgFontData.CreateDefaultFontSm());
     }
