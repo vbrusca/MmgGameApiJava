@@ -78,6 +78,9 @@ public class MmgSprite extends MmgObj {
     //private boolean frameChange;
     
     private boolean simpleRendering;
+    private MmgEventHandler onFrameChange;
+    private boolean timerOnly;
+    private final MmgEvent frameChange = new MmgEvent(null, "frame_changed", 0, 0, null, null);
 
     /**
      * Constructor that sets the MmgBmp array, the source rectangle, the destination rectangle,
@@ -228,12 +231,28 @@ public class MmgSprite extends MmgObj {
         SetMsPerFrame(spr.GetMsPerFrame());
     }
 
+    public MmgEventHandler GetOnFrameChange() {
+        return onFrameChange;
+    }
+
+    public void SetOnFrameChange(MmgEventHandler e) {
+        onFrameChange = e;
+    }
+
     public boolean GetSimpleRendering() {
         return simpleRendering;
     }
 
     public void SetSimpleRendering(boolean s) {
         simpleRendering = s;
+    }
+
+    public boolean IsTimerOnly() {
+        return timerOnly;
+    }
+
+    public void SetTimerOnly(boolean b) {
+        timerOnly = b;
     }
 
     /**
@@ -484,11 +503,17 @@ public class MmgSprite extends MmgObj {
         if (GetIsVisible() == true) {
             frameTime += msSinceLastFrame;
             if(frameTime >= msPerFrame) {
-                frameIdx++;
-                if (frameIdx > frameStop) {
-                    frameIdx = frameStart;
+                if(onFrameChange != null) {
+                    onFrameChange.MmgHandleEvent(frameChange);
                 }
-                frameTime = 0;
+
+                if(timerOnly == false) {
+                    frameIdx++;
+                    if (frameIdx > frameStop) {
+                        frameIdx = frameStart;
+                    }
+                    frameTime = 0;
+                }
                 ret = true;
             }
         } else {
