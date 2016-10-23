@@ -642,6 +642,22 @@ public class MmgGameScreen extends MmgObj {
         
         return ret;
     }    
+
+    public boolean ProcessScreenPress(MmgVector2 v) {
+        return ProcessScreenPress(v.GetX(), v.GetY());
+    }    
+    
+    public boolean ProcessScreenPress(int x, int y) {
+        return true;
+    }
+    
+    public boolean ProcessScreenRelease(MmgVector2 v) {
+        return ProcessScreenPress(v.GetX(), v.GetY());
+    }    
+    
+    public boolean ProcessScreenRelease(int x, int y) {
+        return true;
+    }    
     
     /**
      * Process a screen click.

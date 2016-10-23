@@ -516,7 +516,12 @@ public class MmgSprite extends MmgObj {
                         frameIdx = frameStart;
                     }
                     frameTime = 0;
+                    
+                }else{
+                    frameTime = 0;
+                    
                 }
+                
                 ret = true;
             }
         } else {

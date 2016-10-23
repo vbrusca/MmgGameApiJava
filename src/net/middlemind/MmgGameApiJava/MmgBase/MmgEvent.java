@@ -22,12 +22,12 @@ public class MmgEvent {
     /**
      * The id of this event.
      */
-    private final int id;
+    private int id;
     
     /**
      * The type of this event.
      */
-    private final int type;
+    private int type;
     
     /**
      * The target MmgEventHandler of this event.
@@ -177,6 +177,10 @@ public class MmgEvent {
         return id;
     }
 
+    public void SetEventId(int s) {
+        id = s;
+    }
+    
     /**
      * Gets the event type.
      * 
@@ -186,6 +190,10 @@ public class MmgEvent {
         return type;
     }
 
+    public void SetEventType(int s) {
+        type = s;
+    }    
+    
     /**
      * Gets the payload object.
      * 
