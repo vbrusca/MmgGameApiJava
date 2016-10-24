@@ -294,6 +294,7 @@ public class MmgSprite extends MmgObj {
             SetHeight(b[0].GetHeight());
             frameStart = 0;
             frameStop = b.length - 1;
+            frameIdx = 0;
         }        
     }
 
@@ -467,6 +468,7 @@ public class MmgSprite extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (GetIsVisible() == true) {
+            //MmgDebug.wr("FrameIdx: " + frameIdx);
             if (b[frameIdx] != null) {
                 if(GetSimpleRendering() == true) {
                     p.DrawBmp(b[frameIdx], GetPosition());

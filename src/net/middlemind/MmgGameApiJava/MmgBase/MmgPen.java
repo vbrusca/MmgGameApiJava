@@ -475,6 +475,10 @@ public class MmgPen {
         DrawRect(obj.GetPosition().GetX(), obj.GetPosition().GetY(), obj.GetWidth(), obj.GetHeight());
     }
     
+    public void DrawRect(MmgObj obj, MmgVector2 pos) {
+        DrawRect(pos.GetX(), pos.GetY(), obj.GetWidth(), obj.GetHeight());
+    }    
+    
     /**
      * Drawing method for drawing rectangles.
      * 
@@ -540,4 +544,13 @@ public class MmgPen {
     public Color GetColor() {
         return color;
     }
+    
+    public void SetGraphicsColor(Color c) {
+        color = c;
+        pen.setColor(c);
+    }
+    
+    public Color GetGraphicsColor() {
+        return pen.getColor();
+    }    
 }
