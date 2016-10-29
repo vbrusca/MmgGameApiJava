@@ -55,6 +55,27 @@ public class MmgRect {
     }
 	
     /**
+     * Shift this rectangle by the given amounts.
+     * 
+     * @param shiftLeftRight
+     * @param shiftUpDown 
+     */
+    public void ShiftRect(int shiftLeftRight, int shiftUpDown) {
+        rect = new Rectangle(rect.x + shiftLeftRight, rect.y + shiftUpDown, rect.width, rect.height);
+    }
+    
+    /**
+     * Return a shifted rectangle by the given amounts.
+     * 
+     * @param shiftLeftRight
+     * @param shiftUpDown
+     * @return 
+     */
+    public MmgRect ToShiftedRect(int shiftLeftRight, int shiftUpDown) {
+        return new MmgRect(rect.x + shiftLeftRight, rect.y + shiftUpDown, rect.width, rect.height);
+    }
+    
+    /**
      * Clones this class.
      * 
      * @return      A clone of this class.
