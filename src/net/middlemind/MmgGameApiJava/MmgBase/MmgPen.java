@@ -301,6 +301,16 @@ public class MmgPen {
         }
     }
     
+    public void DrawBmp(MmgBmp b, int x, int y) {
+        if (color != null) {
+            pen.drawImage(b.GetTexture2D(), x, y, color, null);
+        }else if(b.GetMmgColor() != null) {
+            pen.drawImage(b.GetTexture2D(), x, y, b.GetMmgColor().GetColor(), null);
+        }else {
+            pen.drawImage(b.GetTexture2D(), x, y, null);
+        }
+    }    
+    
     /**
      * Drawing method for drawing bitmap images.
      * 
@@ -478,6 +488,10 @@ public class MmgPen {
     public void DrawRect(MmgObj obj, MmgVector2 pos) {
         DrawRect(pos.GetX(), pos.GetY(), obj.GetWidth(), obj.GetHeight());
     }    
+    
+    public void DrawRect(MmgRect r) {
+        DrawRect(r.GetLeft(), r.GetTop(), r.GetWidth(), r.GetHeight());
+    }
     
     /**
      * Drawing method for drawing rectangles.
