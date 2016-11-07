@@ -17,12 +17,16 @@ import org.junit.runners.Suite;
  * @author Victor G. Brusca
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-                        MmgObjUnitTest.class
-                        ,MmgColorUnitTest.class
-                        ,MmgVector2UnitTest.class
-                        ,MmgRectUnitTest.class
-})
+@Suite.SuiteClasses(
+    {
+        MmgObjUnitTest.class
+        ,MmgColorUnitTest.class
+        ,MmgVector2UnitTest.class
+        ,MmgRectUnitTest.class
+        ,MmgBmpUnitTest.class
+    }
+)
+
 public class MmgApiTestSuite {
 
     public static double DELTA_D = 0.00001;

@@ -577,4 +577,100 @@ public class MmgBmp extends MmgObj {
             //do nothing
         }
     }
+    
+    public boolean Equals(MmgBmp b) {
+        if(b != null) {
+            //ORIGIN
+            if(GetOrigin() == null && b.GetOrigin() != null) {
+                return false;
+            }
+
+            if(GetOrigin() != null && b.GetOrigin() == null) {
+                return false;
+            }            
+            
+            if(GetOrigin() != null && b.GetOrigin() != null && GetOrigin().Equals(b.GetOrigin()) == false) {
+                return false;
+            }
+            
+            //SCALING
+            if(GetScaling() == null && b.GetScaling() != null) {
+                return false;
+            }
+
+            if(GetScaling() != null && b.GetScaling() == null) {
+                return false;
+            } 
+            
+            if(GetScaling() != null && b.GetScaling() != null && GetScaling().Equals(b.GetScaling()) == false) {
+                return false;
+            }
+            
+            //SRC RECT
+            if(GetSrcRect() == null && b.GetSrcRect() != null) {
+                return false;
+            }
+
+            if(GetSrcRect() != null && b.GetSrcRect() == null) {
+                return false;
+            }            
+            
+            if(GetSrcRect() != null && b.GetSrcRect() != null && GetSrcRect().Equals(b.GetSrcRect()) == false) {
+                return false;
+            }
+            
+            //DST RECT
+            if(GetDstRect() == null && b.GetDstRect() != null) {
+                return false;
+            }
+
+            if(GetDstRect() != null && b.GetDstRect() == null) {
+                return false;
+            }            
+            
+            if(GetDstRect() != null && b.GetDstRect() != null && GetDstRect().Equals(b.GetDstRect()) == false) {
+                return false;
+            }
+            
+            //IMAGE
+            if(GetImage() == null && b.GetImage() != null) {
+                return false;
+            }
+
+            if(GetImage() != null && b.GetImage() == null) {
+                return false;
+            }            
+            
+            if(GetImage() != null && b.GetImage() != null && GetImage().equals(b.GetImage()) == false) {
+                return false;
+            }
+ 
+            //OTHER VARS
+            if(GetRotation() != b.GetRotation()) {
+                return false;
+            }
+            
+            if(GetBmpIdStr().equals(b.GetBmpIdStr()) == true) {
+                return false;
+            }            
+            
+            if(GetBmpId() == b.GetBmpId()) {
+                return false;
+            }
+            
+            if(DRAW_MODE != b.DRAW_MODE) {
+                return false;
+            }
+                
+            MmgObj o1 = (MmgObj)this;
+            MmgObj o2 = (MmgObj)b;
+            if(o1 != null && o2 != null && o1.Equals(o2) == false) {
+                return false;
+            }
+        }else {
+            return false;
+        }
+        
+        return true;
+    }
 }

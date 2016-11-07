@@ -5,7 +5,6 @@
  */
 package net.middlemind.MmgApiTests;
 
-import javafx.scene.paint.Color;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgContainer;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
