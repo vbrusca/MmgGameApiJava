@@ -51,7 +51,8 @@ public class MmgSprite extends MmgObj {
      * The frame stop.
      */
     private int frameStop;
-    private long frameTime;
+    private long frameTime = -1;
+    private long prevFrameTime = -1;
     
     /**
      * The frame index.
@@ -506,8 +507,9 @@ public class MmgSprite extends MmgObj {
         boolean ret = false;
         
         if (GetIsVisible() == true) {
+            prevFrameTime = frameTime;
             frameTime += msSinceLastFrame;
-            if(frameTime >= msPerFrame) {
+            if(frameTime >= msPerFrame || prevFrameTime == -1) {
                 if(onFrameChange != null) {
                     onFrameChange.MmgHandleEvent(frameChange);
                 }
