@@ -1,6 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.*; 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgDir;
 
 /**
  * A rectangle class that wraps the lower level rectangle class.
@@ -170,6 +171,134 @@ public class MmgRect {
         rect = r;
     }
 
+    public int GetDiffX(MmgRect inRect, int direction, boolean opposite, boolean left2right) 
+    {
+        if(MmgDir.DIR_LEFT == direction && opposite == false)
+        {
+            return (GetLeft() - inRect.GetLeft());
+        }
+        else if(MmgDir.DIR_LEFT == direction && opposite == true && left2right == true)
+        {
+            return (GetRight() - inRect.GetLeft());
+        }        
+        else if(MmgDir.DIR_LEFT == direction && opposite == true && left2right == false)
+        {
+            return (inRect.GetLeft() - GetRight());
+        }                
+        else if(MmgDir.DIR_RIGHT == direction && opposite == false)
+        {
+            return (GetRight() - inRect.GetRight());
+        }
+        else if(MmgDir.DIR_RIGHT == direction && opposite == true && left2right == true)
+        {
+            return (GetRight() - inRect.GetLeft());
+        }        
+        else if(MmgDir.DIR_RIGHT == direction && opposite == true && left2right == false)
+        {
+            return (inRect.GetLeft() - GetRight());
+        }        
+        else
+        {
+            return 0;
+        }
+    }
+    
+    public int GetDiffX(int x, int direction, boolean opposite, boolean left2right) 
+    {
+        if(MmgDir.DIR_LEFT == direction && opposite == false)
+        {
+            return (GetLeft() - x);
+        }
+        else if(MmgDir.DIR_LEFT == direction && opposite == true && left2right == true)
+        {
+            return (GetLeft() - x);
+        }        
+        else if(MmgDir.DIR_LEFT == direction && opposite == true && left2right == false)
+        {
+            return (x - GetLeft());
+        }                
+        else if(MmgDir.DIR_RIGHT == direction && opposite == false)
+        {
+            return (GetRight() - x);
+        }
+        else if(MmgDir.DIR_RIGHT == direction && opposite == true && left2right == true)
+        {
+            return (GetRight() - x);
+        }        
+        else if(MmgDir.DIR_RIGHT == direction && opposite == true && left2right == false)
+        {
+            return (x - GetRight());
+        }        
+        else
+        {
+            return 0;
+        }
+    }
+    
+    public int GetDiffY(MmgRect inRect, int direction, boolean opposite, boolean left2right) 
+    {
+        if(MmgDir.DIR_TOP == direction && opposite == false)
+        {
+            return (GetTop() - inRect.GetTop());
+        }
+        else if(MmgDir.DIR_TOP == direction && opposite == true && left2right == true)
+        {
+            return (GetBottom() - inRect.GetTop());
+        }        
+        else if(MmgDir.DIR_TOP == direction && opposite == true && left2right == false)
+        {
+            return (inRect.GetTop() - GetBottom());
+        }                
+        else if(MmgDir.DIR_BOTTOM == direction && opposite == false)
+        {
+            return (GetBottom() - inRect.GetBottom());
+        }
+        else if(MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == true)
+        {
+            return (GetBottom() - inRect.GetTop());
+        }        
+        else if(MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == false)
+        {
+            return (inRect.GetTop() - GetBottom());
+        }        
+        else
+        {
+            return 0;
+        }
+    }    
+    
+    public int GetDiffY(int y, int direction, boolean opposite, boolean left2right) 
+    {
+        if(MmgDir.DIR_TOP == direction && opposite == false)
+        {
+            return (GetLeft() - y);
+        }
+        else if(MmgDir.DIR_TOP == direction && opposite == true && left2right == true)
+        {
+            return (GetLeft() - y);
+        }        
+        else if(MmgDir.DIR_TOP == direction && opposite == true && left2right == false)
+        {
+            return (y - GetLeft());
+        }                
+        else if(MmgDir.DIR_BOTTOM == direction && opposite == false)
+        {
+            return (GetRight() - y);
+        }
+        else if(MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == true)
+        {
+            return (GetRight() - y);
+        }        
+        else if(MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == false)
+        {
+            return (y - GetRight());
+        }        
+        else
+        {
+            return 0;
+        }
+    }    
+    
     /**
      * Gets the position of the rectangle.
      * 
