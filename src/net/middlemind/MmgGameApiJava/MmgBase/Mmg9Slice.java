@@ -91,37 +91,37 @@ public final class Mmg9Slice extends MmgObj {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
         
-        int o = offset;
+        int fs = offset;
         
         //TOP
         //draw top left
-        g.drawImage(img, 0, 0, o, o, 0, 0, o, o, null);
+        g.drawImage(img, 0, 0, fs, fs, 0, 0, fs, fs, null);
         
         //draw scaled top center
-        g.drawImage(img, o, 0, GetWidth() - o, o, o, 0, b.GetWidth() - o, o, null);
+        g.drawImage(img, fs, 0, GetWidth() - fs, fs, fs, 0, b.GetWidth() - fs, fs, null);
         
         //draw top right
-        g.drawImage(img, GetWidth() - o, 0, GetWidth(), o, b.GetWidth() - o, 0, b.GetWidth(), o, null);
+        g.drawImage(img, GetWidth() - fs, 0, GetWidth(), fs, b.GetWidth() - fs, 0, b.GetWidth(), fs, null);
         
         //MIDDLE
         //draw middle left
-        g.drawImage(img, 0, o, o, GetHeight() - o, 0, o, o, b.GetHeight() - o, null);
+        g.drawImage(img, 0, fs, fs, GetHeight() - fs, 0, fs, fs, b.GetHeight() - fs, null);
         
         //draw middle center
-        g.drawImage(img, o, o, GetWidth() - o, GetHeight() - o, o, o, b.GetWidth() - o, b.GetHeight() - o, null);
+        g.drawImage(img, fs, fs, GetWidth() - fs, GetHeight() - fs, fs, fs, b.GetWidth() - fs, b.GetHeight() - fs, null);
         
         //draw middle right
-        g.drawImage(img, GetWidth() - o, o, GetWidth(), GetHeight() - o, b.GetWidth() - o, o, b.GetWidth(), b.GetHeight() - o, null);
+        g.drawImage(img, GetWidth() - fs, fs, GetWidth(), GetHeight() - fs, b.GetWidth() - fs, fs, b.GetWidth(), b.GetHeight() - fs, null);
         
         //BOTTOM
         //draw bottom left
-        g.drawImage(img, 0, GetHeight() - o, o, GetHeight(), 0, b.GetHeight() - o, o, b.GetHeight(), null);
+        g.drawImage(img, 0, GetHeight() - fs, fs, GetHeight(), 0, b.GetHeight() - fs, fs, b.GetHeight(), null);
         
         //draw scaled bottom center
-        g.drawImage(img, o, GetHeight() - o, GetWidth() - o, GetHeight(), o, b.GetHeight() - o, b.GetWidth() - o, b.GetHeight(), null);
+        g.drawImage(img, fs, GetHeight() - fs, GetWidth() - fs, GetHeight(), fs, b.GetHeight() - fs, b.GetWidth() - fs, b.GetHeight(), null);
         
         //draw bottom right
-        g.drawImage(img, GetWidth() - o, GetHeight() - o, GetWidth(), GetHeight(), b.GetWidth() - o, b.GetHeight() - o, b.GetWidth(), b.GetHeight(), null);
+        g.drawImage(img, GetWidth() - fs, GetHeight() - fs, GetWidth(), GetHeight(), b.GetWidth() - fs, b.GetHeight() - fs, b.GetWidth(), b.GetHeight(), null);
         
         dest = new MmgBmp(bg);
     }
