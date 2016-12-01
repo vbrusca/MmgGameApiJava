@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
  * @author Victor G. Brusca
  * 
  */
-public final class MmgFont extends MmgObj {
+public class MmgFont extends MmgObj {
 
     /**
      * Font of this class.
@@ -248,6 +248,14 @@ public final class MmgFont extends MmgObj {
             p.DrawText(this);
         } else {
             //do nothing
+        }
+    }
+    
+    public boolean Equals(MmgFont r) {
+        if(GetFont().equals(r.GetFont()) == true && GetText().equals(r.GetText()) == true) {
+            return true;
+        }else {
+            return false;
         }
     }
 }

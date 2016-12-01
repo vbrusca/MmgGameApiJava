@@ -95,7 +95,7 @@ public class MmgColor {
     */
     
     public boolean Equals(MmgColor c) {
-        if(c != null && c.GetColor().equals(GetColor())) {
+        if(c != null && c.GetColor().equals(GetColor()) == true) {
             return true;
         }else {
             return false;

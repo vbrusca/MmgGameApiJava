@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import static net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler.GRAPHICS_CONFIG;
 
 /**
  * Class that provides 9 slice bitmap scaling support.
@@ -16,7 +15,7 @@ import static net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler.GRAPHICS_CONFIG
  * 
  * @author Victor G. Brusca
  */
-public final class Mmg9Slice extends MmgObj {
+public class Mmg9Slice extends MmgObj {
     
     private int offset;
     private MmgBmp src;
@@ -53,31 +52,31 @@ public final class Mmg9Slice extends MmgObj {
         DrawDest();        
     }    
     
-    public final void SetOffset(int i) {
+    public void SetOffset(int i) {
         offset = i;
     }
     
-    public final int GetOffset() {
+    public int GetOffset() {
         return offset;
     }
     
-    public final void SetSrc(MmgBmp b) {
+    public void SetSrc(MmgBmp b) {
         src = b;
     }
     
-    public final MmgBmp GetSrc() {
+    public MmgBmp GetSrc() {
         return src;
     }
 
-    public final void SetDest(MmgBmp b) {
+    public void SetDest(MmgBmp b) {
         dest = b;
     }
     
-    public final MmgBmp GetDest() {
+    public MmgBmp GetDest() {
         return dest;
     }    
     
-    public final void DrawDest() {
+    public void DrawDest() {
         boolean alpha = true;
         MmgBmp b = GetSrc();
         Image img = b.GetImage();
@@ -149,5 +148,13 @@ public final class Mmg9Slice extends MmgObj {
         } else {
             //do nothing
         }
-    }    
+    } 
+    
+    public boolean Equals(Mmg9Slice r) {        
+        if(GetOffset() == r.GetOffset() && GetSrc().Equals(r.GetSrc()) == true && GetDest().Equals(r.GetDest()) == true) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

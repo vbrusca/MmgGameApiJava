@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.*; 
-import net.middlemind.MmgGameApiJava.MmgBase.MmgDir;
+//import net.middlemind.MmgGameApiJava.MmgBase.MmgDir;
 
 /**
  * A rectangle class that wraps the lower level rectangle class.

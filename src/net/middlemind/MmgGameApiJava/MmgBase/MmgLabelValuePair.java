@@ -1,8 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.Rectangle2D;
+//import java.awt.font.FontRenderContext;
+//import java.awt.geom.Rectangle2D;
 
 /**
  * Class that wraps the lower level font class.
@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
  * @author Victor G. Brusca
  * 
  */
-public final class MmgLabelValuePair extends MmgObj {
+public class MmgLabelValuePair extends MmgObj {
 
     private MmgFont lbl;
     private MmgFont val;
@@ -36,7 +36,8 @@ public final class MmgLabelValuePair extends MmgObj {
     /**
      * Constructor that sets the lower level font class.
      * 
-     * @param tf    Font to use for text drawing. 
+     * @param fontLbl
+     * @param fontVal
      */
     public MmgLabelValuePair(Font fontLbl, Font fontVal) {
         skipReset = true;
@@ -71,7 +72,7 @@ public final class MmgLabelValuePair extends MmgObj {
      * Constructor that sets attributes based on the 
      * given argument.
      * 
-     * @param fnt 
+     * @param lvp
      */
     public MmgLabelValuePair(MmgLabelValuePair lvp) {
         skipReset = true;
@@ -110,9 +111,11 @@ public final class MmgLabelValuePair extends MmgObj {
     /**
      * Constructor that sets the font, text, position, and color.
      * 
-     * @param sf        Low level font class.
-     * @param txt       Text to draw.
+     * @param fontLbl
+     * @param txtLbl
      * @param pos       Position to draw the text.
+     * @param txtVal
+     * @param fontVal
      * @param cl        Color to use to draw the text.
      */
     public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, MmgVector2 pos, MmgColor cl) {
@@ -132,8 +135,10 @@ public final class MmgLabelValuePair extends MmgObj {
     /**
      * Constructor that sets the font, text, position in X, Y, and color.
      * 
-     * @param sf        Low level font class.
-     * @param txt       Text to draw.
+     * @param fontLbl
+     * @param txtLbl
+     * @param fontVal
+     * @param txtVal
      * @param x         Position, on the X axis.
      * @param y         Position, on the Y axis.
      * @param cl        Color to use to draw the text.
@@ -311,6 +316,17 @@ public final class MmgLabelValuePair extends MmgObj {
             p.DrawText(val);
         } else {
             //do nothing
+        }
+    }
+    
+    public boolean Equals(MmgLabelValuePair r) {
+        if(GetLabel().Equals(r.GetLabel()) == true
+            && GetValue().Equals(r.GetValue()) == true
+            && GetPaddingX() == r.GetPaddingX()
+        ) {
+            return true;
+        }else {
+            return false;
         }
     }
 }
