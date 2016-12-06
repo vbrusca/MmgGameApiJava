@@ -22,7 +22,9 @@ public class MmgPositionTween extends MmgObj {
     private boolean moving;
     private long msStartMove;
     
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgPositionTween(MmgObj subj, MmgVector2 pixelDistToMove, int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+        super();
         SetSubj(subj);
         SetPixelDistToMove(pixelDistToMove);
         SetMsTimeToMove(msTimeToMove);
@@ -30,12 +32,29 @@ public class MmgPositionTween extends MmgObj {
         SetPixelsPerMsToMoveY((int)(pixelDistToMove.GetY() / msTimeToMove));
         SetStartPosition(startPos);
         SetFinishPosition(finishPos);
+        SetPosition(startPos);
         SetDirStartToFinish(true);
         SetAtStart(true);
         SetAtFinish(false);
         SetMoving(false);
     }
 
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgPositionTween(MmgVector2 pixelDistToMove, int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+        super();
+        SetPixelDistToMove(pixelDistToMove);
+        SetMsTimeToMove(msTimeToMove);
+        SetPixelsPerMsToMoveX((int)(pixelDistToMove.GetX() / msTimeToMove));
+        SetPixelsPerMsToMoveY((int)(pixelDistToMove.GetY() / msTimeToMove));
+        SetStartPosition(startPos);
+        SetFinishPosition(finishPos);
+        SetPosition(startPos);
+        SetDirStartToFinish(true);
+        SetAtStart(true);
+        SetAtFinish(false);
+        SetMoving(false);
+    }
+    
     public long GetMsStartMove() {
         return msStartMove;
     }
@@ -180,8 +199,19 @@ public class MmgPositionTween extends MmgObj {
             if(GetMoving() == true) {
                 if(GetDirStartToFinish() == true) {
                     //moving start to finish
+                    if((currentTimeMs - msStartMove) >= msTimeToMove) {
+                        SetPosition(finishPosition);
+                    }else{
+                        SetPosition(new MmgVector2(startPosition.GetX() + (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() + (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                    }
+                    
                 }else {
                     //moving finish to start
+                    if((currentTimeMs - msStartMove) >= msTimeToMove) {
+                        SetPosition(startPosition);
+                    }else{
+                        SetPosition(new MmgVector2(finishPosition.GetX() - (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() - (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                    }
                 }
             }
         } else {

@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
  * 
  * @author Victor G. Brusca
  */
+@SuppressWarnings("OverridableMethodCallInConstructor")
 public class Mmg9Slice extends MmgObj {
     
     private int offset;
@@ -23,6 +24,7 @@ public class Mmg9Slice extends MmgObj {
     public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
         
     public Mmg9Slice(int Offset, MmgBmp Src, int w, int h) {
+        super();
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
@@ -33,6 +35,7 @@ public class Mmg9Slice extends MmgObj {
     }
     
     public Mmg9Slice(int Offset, MmgBmp Src, int w, int h, MmgVector2 Pos) {
+        super();
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
@@ -43,6 +46,7 @@ public class Mmg9Slice extends MmgObj {
     }    
 
     public Mmg9Slice(Mmg9Slice m) {
+        super();
         SetOffset(m.GetOffset());
         SetSrc(m.GetSrc());
         SetWidth(m.GetWidth());
