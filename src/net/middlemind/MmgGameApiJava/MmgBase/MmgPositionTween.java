@@ -23,13 +23,13 @@ public class MmgPositionTween extends MmgObj {
     private long msStartMove;
     
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgPositionTween(MmgObj subj, MmgVector2 pixelDistToMove, int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+    public MmgPositionTween(MmgObj subj, int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
         super();
         SetSubj(subj);
-        SetPixelDistToMove(pixelDistToMove);
+        SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
         SetMsTimeToMove(msTimeToMove);
-        SetPixelsPerMsToMoveX((int)(pixelDistToMove.GetX() / msTimeToMove));
-        SetPixelsPerMsToMoveY((int)(pixelDistToMove.GetY() / msTimeToMove));
+        SetPixelsPerMsToMoveX((int)(GetPixelDistToMove().GetX() / msTimeToMove));
+        SetPixelsPerMsToMoveY((int)(GetPixelDistToMove().GetY() / msTimeToMove));
         SetStartPosition(startPos);
         SetFinishPosition(finishPos);
         SetPosition(startPos);
@@ -40,12 +40,13 @@ public class MmgPositionTween extends MmgObj {
     }
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgPositionTween(MmgVector2 pixelDistToMove, int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+    public MmgPositionTween(int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
         super();
-        SetPixelDistToMove(pixelDistToMove);
+        SetSubj(subj);
+        SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
         SetMsTimeToMove(msTimeToMove);
-        SetPixelsPerMsToMoveX((int)(pixelDistToMove.GetX() / msTimeToMove));
-        SetPixelsPerMsToMoveY((int)(pixelDistToMove.GetY() / msTimeToMove));
+        SetPixelsPerMsToMoveX((int)(GetPixelDistToMove().GetX() / msTimeToMove));
+        SetPixelsPerMsToMoveY((int)(GetPixelDistToMove().GetY() / msTimeToMove));
         SetStartPosition(startPos);
         SetFinishPosition(finishPos);
         SetPosition(startPos);
@@ -158,7 +159,7 @@ public class MmgPositionTween extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgPositionTween ret = new MmgPositionTween(GetSubj(), GetPixelDistToMove(), GetMsTimeToMove(), GetStartPosition(), GetFinishPosition());
+        MmgPositionTween ret = new MmgPositionTween(GetSubj(), GetMsTimeToMove(), GetStartPosition(), GetFinishPosition());
         ret.SetAtStart(GetAtStart());
         ret.SetAtFinish(GetAtFinish());
         ret.SetDirStartToFinish(GetDirStartToFinish());

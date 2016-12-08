@@ -1,10 +1,9 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * Class that represents a two dimensional vector.
- * Created on June 1, 2005, 10:57 PM by Middlemind Games
- * Created by Middlemind Games
- * 
+ * Class that represents a two dimensional vector. Created on June 1, 2005,
+ * 10:57 PM by Middlemind Games Created by Middlemind Games
+ *
  * @author Victor G. Brusca
  */
 public class MmgVector2 {
@@ -22,10 +21,10 @@ public class MmgVector2 {
     }
 
     /**
-     * Constructor for this class sets its values
-     * based on the attributes of the given argument.
-     * 
-     * @param v     The MmgVector to base this class off of. 
+     * Constructor for this class sets its values based on the attributes of the
+     * given argument.
+     *
+     * @param v The MmgVector to base this class off of.
      */
     public MmgVector2(MmgVector2 v) {
         vec = v.GetVector();
@@ -33,8 +32,8 @@ public class MmgVector2 {
 
     /**
      * Constructor that sets the X, Y value of the vector.
-     * 
-     * @param v     The X, Y value of the vector.
+     *
+     * @param v The X, Y value of the vector.
      */
     public MmgVector2(double[] v) {
         vec = v;
@@ -42,9 +41,9 @@ public class MmgVector2 {
 
     /**
      * Constructor that sets the X, Y value of the vector.
-     * 
-     * @param x     The X value of the vector.
-     * @param y     The Y value of the vector.
+     *
+     * @param x The X value of the vector.
+     * @param y The Y value of the vector.
      */
     public MmgVector2(double x, double y) {
         vec = new double[]{x, y};
@@ -52,9 +51,9 @@ public class MmgVector2 {
 
     /**
      * Constructor that sets the X, Y value of the vector.
-     * 
-     * @param x     The X value of the vector.
-     * @param y     The Y value of the vector.
+     *
+     * @param x The X value of the vector.
+     * @param y The Y value of the vector.
      */
     public MmgVector2(float x, float y) {
         vec = new double[]{(double) x, (double) y};
@@ -62,9 +61,9 @@ public class MmgVector2 {
 
     /**
      * Constructor that sets the X, Y value of the vector.
-     * 
-     * @param x     The X value of the vector.
-     * @param y     The Y value of the vector.
+     *
+     * @param x The X value of the vector.
+     * @param y The Y value of the vector.
      */
     public MmgVector2(int x, int y) {
         vec = new double[]{(double) x, (double) y};
@@ -72,8 +71,8 @@ public class MmgVector2 {
 
     /**
      * Clones this class.
-     * 
-     * @return      A clone of this class.
+     *
+     * @return A clone of this class.
      */
     public MmgVector2 Clone() {
         MmgVector2 v = new MmgVector2(vec[0], vec[1]);
@@ -82,8 +81,8 @@ public class MmgVector2 {
 
     /**
      * Sets the X value of the vector.
-     * 
-     * @param x         The X value of the vector.
+     *
+     * @param x The X value of the vector.
      */
     public void SetX(double x) {
         vec[0] = x;
@@ -91,8 +90,8 @@ public class MmgVector2 {
 
     /**
      * Sets the Y value of the vector.
-     * 
-     * @param y         The Y value of the vector.
+     *
+     * @param y The Y value of the vector.
      */
     public void SetY(double y) {
         vec[1] = y;
@@ -100,8 +99,8 @@ public class MmgVector2 {
 
     /**
      * Sets the X value of the vector.
-     * 
-     * @param x         The X value of the vector.
+     *
+     * @param x The X value of the vector.
      */
     public void SetX(float x) {
         vec[0] = (double) x;
@@ -109,8 +108,8 @@ public class MmgVector2 {
 
     /**
      * Sets the Y value of the vector.
-     * 
-     * @param y         The Y value of the vector.
+     *
+     * @param y The Y value of the vector.
      */
     public void SetY(float y) {
         vec[1] = (double) y;
@@ -118,8 +117,8 @@ public class MmgVector2 {
 
     /**
      * Sets the X value of the vector.
-     * 
-     * @param x         The X value of the vector.
+     *
+     * @param x The X value of the vector.
      */
     public void SetX(int x) {
         vec[0] = (double) x;
@@ -127,8 +126,8 @@ public class MmgVector2 {
 
     /**
      * Sets the Y value of the vector.
-     * 
-     * @param y         The Y value of the vector.
+     *
+     * @param y The Y value of the vector.
      */
     public void SetY(int y) {
         vec[1] = (double) y;
@@ -136,8 +135,8 @@ public class MmgVector2 {
 
     /**
      * Gets the X value of the vector.
-     * 
-     * @return      The X value of the vector.
+     *
+     * @return The X value of the vector.
      */
     public int GetX() {
         return (int) vec[0];
@@ -145,8 +144,8 @@ public class MmgVector2 {
 
     /**
      * Gets the Y value of the vector.
-     * 
-     * @return      The Y value of the vector.
+     *
+     * @return The Y value of the vector.
      */
     public int GetY() {
         return (int) vec[1];
@@ -154,8 +153,8 @@ public class MmgVector2 {
 
     /**
      * Gets the X value of the vector.
-     * 
-     * @return      The X value of the vector.
+     *
+     * @return The X value of the vector.
      */
     public double GetXDouble() {
         return vec[0];
@@ -163,8 +162,8 @@ public class MmgVector2 {
 
     /**
      * Gets the Y value of the vector.
-     * 
-     * @return      The Y value of the vector.
+     *
+     * @return The Y value of the vector.
      */
     public double GetYDouble() {
         return vec[1];
@@ -172,8 +171,8 @@ public class MmgVector2 {
 
     /**
      * Gets the X value of the vector.
-     * 
-     * @return      The X value of the vector.
+     *
+     * @return The X value of the vector.
      */
     public float GetXFloat() {
         return (float) vec[0];
@@ -181,8 +180,8 @@ public class MmgVector2 {
 
     /**
      * Gets the Y value of the vector.
-     * 
-     * @return      The Y value of the vector.
+     *
+     * @return The Y value of the vector.
      */
     public float GetYFloat() {
         return (float) vec[1];
@@ -190,8 +189,8 @@ public class MmgVector2 {
 
     /**
      * Gets the vector values.
-     * 
-     * @return      The vector values. 
+     *
+     * @return The vector values.
      */
     public double[] GetVector() {
         return vec;
@@ -199,8 +198,8 @@ public class MmgVector2 {
 
     /**
      * Sets the vector values.
-     * 
-     * @param v     The vector values.
+     *
+     * @param v The vector values.
      */
     public void SetVector(double[] v) {
         vec = v;
@@ -208,8 +207,8 @@ public class MmgVector2 {
 
     /**
      * Clones this object to a float based vector.
-     * 
-     * @return      A float based clone.
+     *
+     * @return A float based clone.
      */
     public MmgVector2 CloneFloat() {
         MmgVector2 v = new MmgVector2(GetXFloat(), GetYFloat());
@@ -218,8 +217,8 @@ public class MmgVector2 {
 
     /**
      * Clones this object to a double based vector.
-     * 
-     * @return      A double based clone.
+     *
+     * @return A double based clone.
      */
     public MmgVector2 CloneDouble() {
         MmgVector2 v = new MmgVector2(GetXDouble(), GetYDouble());
@@ -228,8 +227,8 @@ public class MmgVector2 {
 
     /**
      * Returns a new copy of the origin vector, (0, 0).
-     * 
-     * @return      The origin vector. 
+     *
+     * @return The origin vector.
      */
     public static MmgVector2 GetOriginVec() {
         return new MmgVector2(0, 0);
@@ -237,8 +236,8 @@ public class MmgVector2 {
 
     /**
      * Returns a new copy of the unit vector, (1, 1).
-     * 
-     * @return      The unit vector.
+     *
+     * @return The unit vector.
      */
     public static MmgVector2 GetUnitVec() {
         return new MmgVector2(1, 1);
@@ -246,17 +245,17 @@ public class MmgVector2 {
 
     /**
      * Returns a string representation of the vector.
-     * 
-     * @return      A string representation of the vector.
+     *
+     * @return A string representation of the vector.
      */
     public String ToString() {
         return "X: " + GetXDouble() + " Y:" + GetYDouble();
     }
-    
+
     public boolean Equals(MmgVector2 o) {
-        if(o != null && o.GetXDouble() == GetXDouble() && o.GetYDouble() == GetYDouble()) {
+        if (o != null && o.GetXDouble() == GetXDouble() && o.GetYDouble() == GetYDouble()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
