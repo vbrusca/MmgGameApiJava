@@ -9,22 +9,57 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgPositionTween extends MmgObj {
 
+    public static final int MMG_POSITION_TWEEN_REACH_FINISH = 0;
+    public static final int MMG_POSITION_TWEEN_REACH_START = 1;
+    public static final int MMG_POSITION_TWEEN_REACH_FINISH_TYPE = 0;
+    public static final int MMG_POSITION_TWEEN_REACH_START_TYPE = 1;
     private MmgObj subj;
     private boolean atStart;
     private boolean atFinish;
     private MmgVector2 pixelDistToMove;
-    private int msTimeToMove;
-    private int pixelsPerMsToMoveX;
-    private int pixelsPerMsToMoveY;
+    private float msTimeToMove;
+    private float pixelsPerMsToMoveX;
+    private float pixelsPerMsToMoveY;
     private MmgVector2 startPosition;
     private MmgVector2 finishPosition;
     private boolean dirStartToFinish;
     private boolean moving;
     private long msStartMove;
+    private MmgEventHandler onReachFinish;
+    private MmgEventHandler onReachStart;
+    private final MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH, MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH_TYPE, null, null);
+    private final MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgPositionTween.MMG_POSITION_TWEEN_REACH_START, MmgPositionTween.MMG_POSITION_TWEEN_REACH_START_TYPE, null, null);
+
     
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgPositionTween(MmgObj subj, int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+    public MmgPositionTween(MmgObj subj, float msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
         super();
+        
+        MmgDebug.wr("MmgPositionTween Found start pos: " + startPos.ToString() + ", " + msTimeToMove);
+        MmgDebug.wr("MmgPositionTween Found end pos: " + finishPos.ToString());
+        
+        SetSubj(subj);
+        SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
+        SetMsTimeToMove(msTimeToMove);
+        SetPixelsPerMsToMoveX((GetPixelDistToMove().GetX() / (float)msTimeToMove));
+        SetPixelsPerMsToMoveY((GetPixelDistToMove().GetY() / (float)msTimeToMove));
+        SetStartPosition(startPos);
+        SetFinishPosition(finishPos);
+        SetPosition(startPos);
+        SetDirStartToFinish(true);
+        SetAtStart(true);
+        SetAtFinish(false);
+        SetMoving(false);
+        MmgDebug.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
+    }
+
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public MmgPositionTween(float msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+        super();
+
+        MmgDebug.wr("MmgPositionTween Found start pos: " + startPos.ToString());
+        MmgDebug.wr("MmgPositionTween Found end pos: " + finishPos.ToString());
+        
         SetSubj(subj);
         SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
         SetMsTimeToMove(msTimeToMove);
@@ -39,22 +74,21 @@ public class MmgPositionTween extends MmgObj {
         SetMoving(false);
     }
 
-    @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgPositionTween(int msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
-        super();
-        SetSubj(subj);
-        SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
-        SetMsTimeToMove(msTimeToMove);
-        SetPixelsPerMsToMoveX((int)(GetPixelDistToMove().GetX() / msTimeToMove));
-        SetPixelsPerMsToMoveY((int)(GetPixelDistToMove().GetY() / msTimeToMove));
-        SetStartPosition(startPos);
-        SetFinishPosition(finishPos);
-        SetPosition(startPos);
-        SetDirStartToFinish(true);
-        SetAtStart(true);
-        SetAtFinish(false);
-        SetMoving(false);
+    public MmgEventHandler GetOnReachFinish() {
+        return onReachFinish;
     }
+
+    public void SetOnReachFinish(MmgEventHandler onReachFinish) {
+        this.onReachFinish = onReachFinish;
+    }
+
+    public MmgEventHandler GetOnReachStart() {
+        return onReachStart;
+    }
+
+    public void SetOnReachStart(MmgEventHandler onReachStart) {
+        this.onReachStart = onReachStart;
+    }   
     
     public long GetMsStartMove() {
         return msStartMove;
@@ -64,19 +98,19 @@ public class MmgPositionTween extends MmgObj {
         msStartMove = l;
     }
     
-    public int GetPixelsPerMsToMoveX() {
+    public float GetPixelsPerMsToMoveX() {
         return pixelsPerMsToMoveX;
     }
     
-    public void SetPixelsPerMsToMoveX(int i) {
+    public void SetPixelsPerMsToMoveX(float i) {
         pixelsPerMsToMoveX = i;
     }
     
-    public int GetPixelsPerMsToMoveY() {
+    public float GetPixelsPerMsToMoveY() {
         return pixelsPerMsToMoveY;
     }
     
-    public void SetPixelsPerMsToMoveY(int i) {
+    public void SetPixelsPerMsToMoveY(float i) {
         pixelsPerMsToMoveY = i;
     }
     
@@ -120,11 +154,11 @@ public class MmgPositionTween extends MmgObj {
         pixelDistToMove = v;
     }
 
-    public int GetMsTimeToMove() {
+    public float GetMsTimeToMove() {
         return msTimeToMove;
     }
 
-    public void SetMsTimeToMove(int i) {
+    public void SetMsTimeToMove(float i) {
         msTimeToMove = i;
     }
     
@@ -201,17 +235,30 @@ public class MmgPositionTween extends MmgObj {
                 if(GetDirStartToFinish() == true) {
                     //moving start to finish
                     if((currentTimeMs - msStartMove) >= msTimeToMove) {
+                        SetAtFinish(true);
+                        SetAtStart(false);
+                        SetMoving(false);
                         SetPosition(finishPosition);
+                        if(onReachFinish != null) {
+                            onReachFinish.MmgHandleEvent(reachFinish);
+                        }
                     }else{
                         SetPosition(new MmgVector2(startPosition.GetX() + (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() + (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
                     }
                     
                 }else {
                     //moving finish to start
+                    MmgDebug.wr("moving finish to start " + (currentTimeMs - msStartMove) + ", " + msTimeToMove);
                     if((currentTimeMs - msStartMove) >= msTimeToMove) {
+                        SetAtFinish(false);
+                        SetAtStart(true);
+                        SetMoving(false);
                         SetPosition(startPosition);
+                        if(onReachStart != null) {
+                            onReachStart.MmgHandleEvent(reachStart);
+                        }
                     }else{
-                        SetPosition(new MmgVector2(finishPosition.GetX() - (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() - (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                        SetPosition(new MmgVector2(finishPosition.GetX() - (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), finishPosition.GetY() - (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
                     }
                 }
             }
