@@ -407,6 +407,15 @@ public class MmgSprite extends MmgObj {
         frameIdx = f;
     }
 
+    public boolean IsFrameNull(int i) {
+        if(i >= 0 && i < b.length) {
+            if(b!= null && b[i] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     /**
      * Gets the frame start index.
      * 
