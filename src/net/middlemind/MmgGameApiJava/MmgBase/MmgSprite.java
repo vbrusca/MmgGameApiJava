@@ -235,6 +235,12 @@ public class MmgSprite extends MmgObj {
         SetMsPerFrame(spr.GetMsPerFrame());
     }
 
+    public void SetFrameChangeEventId(int i) {
+        if(frameChange != null) {
+            frameChange.SetEventId(i);
+        }
+    }
+    
     public MmgEventHandler GetOnFrameChange() {
         return onFrameChange;
     }

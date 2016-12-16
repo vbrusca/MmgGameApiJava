@@ -74,6 +74,18 @@ public class MmgPositionTween extends MmgObj {
         SetMoving(false);
     }
 
+    public void SetFinishEventId(int i) {
+        if(reachFinish != null) {
+            reachFinish.SetEventId(i);
+        }
+    }
+    
+    public void SetStartEventId(int i) {
+        if(reachStart != null) {
+            reachStart.SetEventId(i);
+        }
+    }
+    
     public MmgEventHandler GetOnReachFinish() {
         return onReachFinish;
     }
