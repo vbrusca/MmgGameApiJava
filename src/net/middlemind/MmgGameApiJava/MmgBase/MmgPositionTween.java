@@ -90,16 +90,16 @@ public class MmgPositionTween extends MmgObj {
         return onReachFinish;
     }
 
-    public void SetOnReachFinish(MmgEventHandler onReachFinish) {
-        this.onReachFinish = onReachFinish;
+    public void SetOnReachFinish(MmgEventHandler o) {
+        onReachFinish = o;
     }
 
     public MmgEventHandler GetOnReachStart() {
         return onReachStart;
     }
 
-    public void SetOnReachStart(MmgEventHandler onReachStart) {
-        this.onReachStart = onReachStart;
+    public void SetOnReachStart(MmgEventHandler o) {
+        onReachStart = o;
     }   
     
     public long GetMsStartMove() {
