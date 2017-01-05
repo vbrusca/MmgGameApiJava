@@ -24,6 +24,7 @@ public class MmgSizeTween extends MmgObj {
     private boolean dirStartToFinish;
     private boolean changing;
     private long msStartChange;
+    private MmgVector2 tmpV;
     private MmgEventHandler onReachFinish;
     private MmgEventHandler onReachStart;
     private final MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH, MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH_TYPE, null, null);
@@ -252,12 +253,15 @@ public class MmgSizeTween extends MmgObj {
                         SetAtFinish(true);
                         SetAtStart(false);
                         SetChanging(false);
-                        SetPosition(finishSize);
+                        SetWidth(finishSize.GetX());
+                        SetHeight(finishSize.GetY());                        
                         if (onReachFinish != null) {
                             onReachFinish.MmgHandleEvent(reachFinish);
                         }
                     } else {
-                        SetPosition(new MmgVector2(startSize.GetX() + (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), startSize.GetY() + (pixelsPerMsToChangeY * (currentTimeMs - msStartChange))));
+                        tmpV = new MmgVector2(startSize.GetX() + (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), startSize.GetY() + (pixelsPerMsToChangeY * (currentTimeMs - msStartChange)));
+                        SetWidth(tmpV.GetX());
+                        SetHeight(tmpV.GetY());
                     }
 
                 } else {
@@ -267,12 +271,15 @@ public class MmgSizeTween extends MmgObj {
                         SetAtFinish(false);
                         SetAtStart(true);
                         SetChanging(false);
-                        SetPosition(startSize);
+                        SetWidth(startSize.GetX());
+                        SetHeight(startSize.GetY());                        
                         if (onReachStart != null) {
                             onReachStart.MmgHandleEvent(reachStart);
                         }
                     } else {
-                        SetPosition(new MmgVector2(finishSize.GetX() - (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), finishSize.GetY() - (pixelsPerMsToChangeY * (currentTimeMs - msStartChange))));
+                        tmpV = new MmgVector2(finishSize.GetX() - (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), finishSize.GetY() - (pixelsPerMsToChangeY * (currentTimeMs - msStartChange)));
+                        SetWidth(tmpV.GetX());
+                        SetHeight(tmpV.GetY());                        
                     }
                 }
             }
@@ -313,6 +320,11 @@ public class MmgSizeTween extends MmgObj {
         subj.SetPosition(v);
     }
 
+    public void SetSize(MmgVector2 v) {
+        subj.SetWidth(v.GetX());
+        subj.SetHeight(v.GetY());
+    }
+    
     public boolean Equals(MmgSizeTween r) {
         if (GetSubj().Equals(r.GetSubj()) == true
                 && GetAtStart() == r.GetAtStart()
