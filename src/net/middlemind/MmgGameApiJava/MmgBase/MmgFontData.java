@@ -151,15 +151,15 @@ public class MmgFontData {
     }
 
     public static MmgFont CreateDefaultNormalMmgFont(int sz) {
-        return new MmgFont(MmgFontData.CreateDefaultNormalMmgFont(sz));
+        return new MmgFont(MmgFontData.CreateDefaultNormalFont(sz));
     }
 
     public static MmgFont CreateDefaultBoldMmgFont(int sz) {
-        return new MmgFont(MmgFontData.CreateDefaultBoldMmgFont(sz));
+        return new MmgFont(MmgFontData.CreateDefaultBoldFont(sz));
     }
 
     public static MmgFont CreateDefaultItalicMmgFont(int sz) {
-        return new MmgFont(MmgFontData.CreateDefaultItalicMmgFont(sz));
+        return new MmgFont(MmgFontData.CreateDefaultItalicFont(sz));
     }
 
     public static Font CreateDefaultFontSm() {
@@ -199,15 +199,15 @@ public class MmgFontData {
     }
 
     public static MmgFont CreateDefaultNormalMmgFontSm() {
-        return new MmgFont(MmgFontData.CreateDefaultNormalMmgFontSm());
+        return new MmgFont(MmgFontData.CreateDefaultNormalFontSm());
     }
 
     public static MmgFont CreateDefaultBoldMmgFontSm() {
-        return new MmgFont(MmgFontData.CreateDefaultBoldMmgFontSm());
+        return new MmgFont(MmgFontData.CreateDefaultBoldFontSm());
     }
 
     public static MmgFont CreateDefaultItalicMmgFontSm() {
-        return new MmgFont(MmgFontData.CreateDefaultItalicMmgFontSm());
+        return new MmgFont(MmgFontData.CreateDefaultItalicFontSm());
     }
 
     public static Font CreateDefaultFontLg() {
