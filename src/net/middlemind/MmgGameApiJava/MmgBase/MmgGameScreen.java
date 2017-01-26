@@ -77,6 +77,11 @@ public class MmgGameScreen extends MmgObj {
      */
     private int menuStop;
 
+    private int menuCursorLeftOffsetX;
+    private int menuCursorLeftOffsetY;
+    private int menuCursorRightOffsetX;
+    private int menuCursorRightOffsetY;
+    
     /**
      * Event handler for update events.
      */
@@ -155,6 +160,38 @@ public class MmgGameScreen extends MmgObj {
         return (MmgObj) ret;
     }
 
+    public int GetMenuCursorLeftOffsetX() {
+        return menuCursorLeftOffsetX;
+    }
+
+    public void SetMenuCursorLeftOffsetX(int i) {
+        menuCursorLeftOffsetX = i;
+    }
+
+    public int GetMenuCursorLeftOffsetY() {
+        return menuCursorLeftOffsetY;
+    }
+
+    public void SetMenuCursorLeftOffsetY(int i) {
+        menuCursorLeftOffsetY = i;
+    }
+
+    public int GetMenuCursorRightOffsetX() {
+        return menuCursorRightOffsetX;
+    }
+
+    public void SetMenuCursorRightOffsetX(int i) {
+        menuCursorRightOffsetX = i;
+    }
+
+    public int GetMenuCursorRightOffsetY() {
+        return menuCursorRightOffsetY;
+    }
+
+    public void SetMenuCursorRightOffsetY(int i) {
+        menuCursorRightOffsetY = i;
+    }
+    
     /**
      * Gets true if this game screen has loaded its resources and is ready to
      * display itself.
@@ -657,6 +694,30 @@ public class MmgGameScreen extends MmgObj {
         return true;
     }
 
+    public boolean ProcessAClick() {
+        return true;
+    }
+    
+    public boolean ProcessBClick() {
+        return true;
+    }
+    
+    public void ProcessDebugClick() {
+
+    }
+    
+    public boolean ProcessDpadPress(int dir) {
+        return true;
+    }
+    
+    public boolean ProcessDpadRelease(int dir) {
+        return true;
+    }
+    
+    public boolean ProcessDpadClick(int dir) {
+        return true;
+    }
+    
     /**
      * Process a screen click.
      *
@@ -766,14 +827,16 @@ public class MmgGameScreen extends MmgObj {
 
                         tmp.MmgDraw(p);
 
-                        if (leftCursor != null) {
-                            leftCursor.SetPosition(new MmgVector2(new double[]{(double) (tmp.GetX() - leftCursor.GetWidth() - padPosX), tmp.GetY()}));
-                            leftCursor.MmgDraw(p);
-                        }
+                        if (menuIdx == i) {
+                            if (leftCursor != null) {
+                                leftCursor.SetPosition(new MmgVector2((tmp.GetX() - leftCursor.GetWidth() - padPosX + menuCursorLeftOffsetX), tmp.GetY() + menuCursorLeftOffsetY));
+                                leftCursor.MmgDraw(p);
+                            }
 
-                        if (rightCursor != null) {
-                            rightCursor.SetPosition(new MmgVector2(new double[]{(double) (tmp.GetX() + tmp.GetWidth() + padPosX), tmp.GetY()}));
-                            rightCursor.MmgDraw(p);
+                            if (rightCursor != null) {
+                                rightCursor.SetPosition(new MmgVector2((tmp.GetX() + tmp.GetWidth() + padPosX + menuCursorRightOffsetY), tmp.GetY() + menuCursorRightOffsetY));
+                                rightCursor.MmgDraw(p);
+                            }
                         }
                     }
                 }
