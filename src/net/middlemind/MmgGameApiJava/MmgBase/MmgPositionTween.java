@@ -254,8 +254,10 @@ public class MmgPositionTween extends MmgObj {
                         if(onReachFinish != null) {
                             onReachFinish.MmgHandleEvent(reachFinish);
                         }
+                        ret = true;
                     }else{
                         SetPosition(new MmgVector2(startPosition.GetX() + (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() + (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                        ret = true;
                     }
                     
                 }else {
@@ -269,8 +271,10 @@ public class MmgPositionTween extends MmgObj {
                         if(onReachStart != null) {
                             onReachStart.MmgHandleEvent(reachStart);
                         }
+                        ret = true;
                     }else{
                         SetPosition(new MmgVector2(finishPosition.GetX() - (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), finishPosition.GetY() - (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                        ret = true;
                     }
                 }
             }
