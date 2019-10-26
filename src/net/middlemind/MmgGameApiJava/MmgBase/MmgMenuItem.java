@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.awt.Color;
+
 /**
  * A class that represents a menu item.
  * Created by Middlemind Games
@@ -53,6 +55,8 @@ public class MmgMenuItem extends MmgObj {
      */
     private int state;
 
+    public static boolean SHOW_MENU_ITEM_BOUNDING_BOX = false;
+    
     /**
      * Constructor for this class.
      */
@@ -291,6 +295,13 @@ public class MmgMenuItem extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (GetIsVisible() == true) {
+            if (MmgMenuItem.SHOW_MENU_ITEM_BOUNDING_BOX == true) {
+                Color c = p.GetGraphics().getColor();
+                p.GetGraphics().setColor(Color.red);
+                p.DrawRect(this);
+                p.GetGraphics().setColor(c);
+            }            
+            
             current.SetPosition(GetPosition());
             current.SetMmgColor(GetMmgColor());
             current.MmgDraw(p);

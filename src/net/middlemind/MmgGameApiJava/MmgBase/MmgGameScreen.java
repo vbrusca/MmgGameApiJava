@@ -679,18 +679,22 @@ public class MmgGameScreen extends MmgObj {
     }
 
     public boolean ProcessScreenPress(MmgVector2 v) {
+        System.out.println("MmgGameScreen: ProcessScreenPress");
         return ProcessScreenPress(v.GetX(), v.GetY());
     }
 
     public boolean ProcessScreenPress(int x, int y) {
+        System.out.println("MmgGameScreen: ProcessScreenPress");
         return true;
     }
 
     public boolean ProcessScreenRelease(MmgVector2 v) {
+        System.out.println("MmgGameScreen: ProcessScreenRelease");
         return ProcessScreenPress(v.GetX(), v.GetY());
     }
 
     public boolean ProcessScreenRelease(int x, int y) {
+        System.out.println("MmgGameScreen: ProcessScreenRelease");
         return true;
     }
 
