@@ -181,6 +181,15 @@ public class MmgScreenData {
     }
 
     /**
+     * Gets the game bottom position, Y axis.
+     *
+     * @return The game bottom position, Y axis.
+     */    
+    public static int GetGameBottom() {
+        return (MmgScreenData.gameTop + MmgScreenData.gameHeight);
+    }
+    
+    /**
      * Sets the game top position, Y axis.
      *
      * @param t The game top position, Y axis.
@@ -198,6 +207,15 @@ public class MmgScreenData {
         return MmgScreenData.gameLeft;
     }
 
+    /**
+     * Gets the game right position, X axis.
+     *
+     * @return The game right position, X axis.
+     */
+    public static int GetGameRight() {
+        return (MmgScreenData.gameLeft + MmgScreenData.gameWidth);
+    }    
+    
     /**
      * Sets the game left position, Y axis.
      *
