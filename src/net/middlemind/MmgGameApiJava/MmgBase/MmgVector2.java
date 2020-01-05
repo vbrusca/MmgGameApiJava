@@ -19,7 +19,7 @@ public class MmgVector2 {
     public MmgVector2() {
         vec = new double[]{0, 0};
     }
-
+    
     /**
      * Constructor for this class sets its values based on the attributes of the
      * given argument.
@@ -49,6 +49,10 @@ public class MmgVector2 {
         vec = new double[]{x, y};
     }
 
+    public MmgVector2(double x) {
+        vec = new double[]{(double) x, (double) x};
+    }    
+    
     /**
      * Constructor that sets the X, Y value of the vector.
      *
@@ -59,6 +63,10 @@ public class MmgVector2 {
         vec = new double[]{(double) x, (double) y};
     }
 
+    public MmgVector2(float x) {
+        vec = new double[]{(double) x, (double) x};
+    }    
+    
     /**
      * Constructor that sets the X, Y value of the vector.
      *
@@ -69,6 +77,10 @@ public class MmgVector2 {
         vec = new double[]{(double) x, (double) y};
     }
 
+    public MmgVector2(int x) {
+        vec = new double[]{(double) x, (double) x};
+    }
+    
     /**
      * Clones this class.
      *

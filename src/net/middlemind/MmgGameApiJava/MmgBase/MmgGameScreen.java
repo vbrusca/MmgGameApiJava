@@ -678,21 +678,47 @@ public class MmgGameScreen extends MmgObj {
         return ret;
     }
 
+    /**
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
+     * @param v
+     * @return 
+     */
     public boolean ProcessScreenPress(MmgVector2 v) {
         System.out.println("MmgGameScreen: ProcessScreenPress");
         return ProcessScreenPress(v.GetX(), v.GetY());
     }
 
+    /**
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's
+     * offset.
+     * @param x
+     * @param y
+     * @return 
+     */
     public boolean ProcessScreenPress(int x, int y) {
         System.out.println("MmgGameScreen: ProcessScreenPress");
         return true;
     }
 
+    /**
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
+     * @param v
+     * @return 
+     */
     public boolean ProcessScreenRelease(MmgVector2 v) {
         System.out.println("MmgGameScreen: ProcessScreenRelease");
         return ProcessScreenPress(v.GetX(), v.GetY());
     }
 
+    /**
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's
+     * offset.
+     * @param x
+     * @param y
+     * @return 
+     */
     public boolean ProcessScreenRelease(int x, int y) {
         System.out.println("MmgGameScreen: ProcessScreenRelease");
         return true;
@@ -723,7 +749,7 @@ public class MmgGameScreen extends MmgObj {
     }
     
     /**
-     * Process a screen click.
+     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
      *
      * @param v The coordinates of the click.
      * @return Boolean indicating if a menu item was the target of the click,
@@ -734,7 +760,7 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * Process a screen click.
+     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
      *
      * @param x The X axis coordinate of the screen click.
      * @param y The Y axis coordinate of the screen click.

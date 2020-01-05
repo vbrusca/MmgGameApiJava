@@ -3,3 +3,4 @@ nbproject/
 .DS_STORE
 .class
 /dist/
+*private.xml

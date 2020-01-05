@@ -487,24 +487,26 @@ public class MmgScreenData {
 
             /*
              if(MmgScreenData.screenHeight > MmgScreenData.gameHeight) {
-             MmgScreenData.scaleY = 1.0f;
-             MmgScreenData.CalculateTop();
-             MmgScreenData.CalculateLeft();
+                MmgScreenData.scaleY = 1.0f;
+                MmgScreenData.CalculateTop();
+                MmgScreenData.CalculateLeft();
              }else{
-             //calculate the scale Y
              */
+                //calculate the scale Y
                 //sY = true;
             //}
+            
             /*
              if(MmgScreenData.screenWidth > MmgScreenData.gameWidth) {
-             MmgScreenData.scaleX = 1.0f;
-             MmgScreenData.CalculateTop();
-             MmgScreenData.CalculateLeft();
+                MmgScreenData.scaleX = 1.0f;
+                MmgScreenData.CalculateTop();
+                MmgScreenData.CalculateLeft();
              }else{
              */
                 //calculate the scale X
-            //sX = true;
+                //sX = true;
             //}
+            
             MmgApiUtils.wr("ScaleX: " + sX + " ScaleY: " + sY);
             if (sX == true && sY == false) {
                 //scale X

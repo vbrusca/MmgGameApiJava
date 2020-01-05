@@ -159,4 +159,28 @@ public class Mmg9Slice extends MmgObj {
             return false;
         }
     }
+    
+    @Override
+    public void SetPosition(MmgVector2 pos) {
+        super.SetPosition(pos);
+        if(this.dest != null) {
+            this.dest.SetPosition(pos);
+        }
+    }
+    
+    @Override
+    public void SetWidth(int w) {
+        super.SetWidth(w);
+        if(this.dest != null) {
+            this.dest.SetWidth(w);
+        }
+    }
+    
+    @Override
+    public void SetHeight(int w) {
+        super.SetHeight(w);
+        if(this.dest != null) {
+            this.dest.SetHeight(w);
+        }
+    }    
 }
