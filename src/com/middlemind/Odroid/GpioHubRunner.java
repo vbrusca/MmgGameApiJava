@@ -1,6 +1,5 @@
 package com.middlemind.Odroid;
 
-import com.middlemind.Odroid.GamePadSimple.Direction;
 import java.io.IOException;
 
 /**
@@ -68,13 +67,13 @@ public final class GpioHubRunner implements Runnable {
                 
                 //down, up, left, right
                 if(gpioHub.GetDown()) {
-                    gamePad.ProcessDpadPress(Direction.DOWN);
+                    gamePad.ProcessDpadPress(GameSettings.DOWN);
                 } else if(gpioHub.GetUp()) {
-                    gamePad.ProcessDpadPress(Direction.UP);                    
+                    gamePad.ProcessDpadPress(GameSettings.UP);                    
                 } else if(gpioHub.GetLeft()) {
-                    gamePad.ProcessDpadPress(Direction.LEFT);                    
+                    gamePad.ProcessDpadPress(GameSettings.LEFT);                    
                 } else if(gpioHub.GetRight()) {
-                    gamePad.ProcessDpadPress(Direction.RIGHT);                    
+                    gamePad.ProcessDpadPress(GameSettings.RIGHT);                    
                 }
                 
                 //a, b
