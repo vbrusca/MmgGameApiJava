@@ -178,6 +178,17 @@ public final class GpioHub {
         }
     }    
     
+    public final void SetGpioPin(int pinIdx, boolean high) throws IOException {
+        if(buttons != null && (pinIdx >= 0 || pinIdx < buttons.length)) {
+            buttons[pinIdx].pinHigh = high;
+            if(buttons[pinIdx].pinHigh == true) {
+                runTime.exec("echo 1 >/sys/class/gpio" + buttons[pinIdx].pinNum + "/value");
+            } else {
+                runTime.exec("echo 0 >/sys/class/gpio" + buttons[pinIdx].pinNum + "/value");                        
+            }
+        }
+    }
+    
     public final void PrepPins() throws IOException {
         if(runTime != null && buttons != null) {
             for(GpioPin btn: buttons) {
