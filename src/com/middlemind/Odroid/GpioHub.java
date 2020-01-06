@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author Victor G. Brusca, Middlemind Games
  * 01/05/202
  */
-public class GpioHub {
+public final class GpioHub {
     public static int UP = 0;
     public static int DOWN = 1;
     public static int LEFT = 2;
@@ -25,58 +25,160 @@ public class GpioHub {
     
     public GpioHub() {
         buttons = new GpioPin[6];
-        buttons[0] = new GpioPin(1, true, true, GpioButton.BtnUp);
-        buttons[1] = new GpioPin(2, true, true, GpioButton.BtnDown);
-        buttons[2] = new GpioPin(3, true, true, GpioButton.BtnLeft);
-        buttons[3] = new GpioPin(4, true, true, GpioButton.BtnRight);
-        buttons[4] = new GpioPin(5, true, true, GpioButton.BtnA);
-        buttons[5] = new GpioPin(6, true, true, GpioButton.BtnB);
+        buttons[0] = new GpioPin(1, true, false, GpioButton.BtnUp, true, true, false);
+        buttons[1] = new GpioPin(2, true, false, GpioButton.BtnDown, true, true, false);
+        buttons[2] = new GpioPin(3, true, false, GpioButton.BtnLeft, true, true, false);
+        buttons[3] = new GpioPin(4, true, false, GpioButton.BtnRight, true, true, false);
+        buttons[4] = new GpioPin(5, true, false, GpioButton.BtnA, false, false, true);
+        buttons[5] = new GpioPin(6, true, false, GpioButton.BtnB, false, false, true);
         runTime = Runtime.getRuntime();        
     }
-    
-    public boolean GetUp() {
-        if(buttons != null && buttons[UP] != null) {
-            return buttons[UP].stateCurrent;
+        
+    public final boolean GetDownPressed() {
+        if(buttons[DOWN].checkPressed == true) {
+            return buttons[DOWN].pressed;
+        } else {
+            return false;
         }
-        return false;
     }
     
-    public boolean GetDown() {
-        if(buttons != null && buttons[DOWN] != null) {
-            return buttons[DOWN].stateCurrent;
+    public final boolean GetDownReleased() {
+        if(buttons[DOWN].checkReleased == true) {
+            return buttons[DOWN].released;
+        } else {
+            return false;
         }
-        return false;
     }    
     
-    public boolean GetLeft() {
-        if(buttons != null && buttons[LEFT] != null) {
-            return buttons[LEFT].stateCurrent;
+    public final boolean GetDownClicked() {
+        if(buttons[DOWN].checkClicked == true) {
+            return buttons[DOWN].clicked;
+        } else {
+            return false;
         }
-        return false;
-    }        
+    }
     
-    public boolean GetRight() {
-        if(buttons != null && buttons[RIGHT] != null) {
-            return buttons[RIGHT].stateCurrent;
+    public final boolean GetUpPressed() {
+        if(buttons[UP].checkPressed == true) {
+            return buttons[UP].pressed;
+        } else {
+            return false;
         }
-        return false;
-    }            
+    }
     
-    public boolean GetA() {
-        if(buttons != null && buttons[A] != null) {
-            return buttons[A].stateCurrent;
+    public final boolean GetUpReleased() {
+        if(buttons[UP].checkReleased == true) {
+            return buttons[UP].released;
+        } else {
+            return false;
         }
-        return false;
-    }                
+    }    
     
-    public boolean GetB() {
-        if(buttons != null && buttons[B] != null) {
-            return buttons[B].stateCurrent;
+    public final boolean GetUpClicked() {
+        if(buttons[UP].checkClicked == true) {
+            return buttons[UP].clicked;
+        } else {
+            return false;
         }
-        return false;
-    }                    
+    }    
     
-    public void PrepPins() throws IOException {
+    public final boolean GetLeftPressed() {
+        if(buttons[LEFT].checkPressed == true) {
+            return buttons[LEFT].pressed;
+        } else {
+            return false;
+        }
+    }
+    
+    public final boolean GetLeftReleased() {
+        if(buttons[LEFT].checkReleased == true) {
+            return buttons[LEFT].released;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetLeftClicked() {
+        if(buttons[LEFT].checkClicked == true) {
+            return buttons[LEFT].clicked;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetRightPressed() {
+        if(buttons[RIGHT].checkPressed == true) {
+            return buttons[RIGHT].pressed;
+        } else {
+            return false;
+        }
+    }
+    
+    public final boolean GetRightReleased() {
+        if(buttons[RIGHT].checkReleased == true) {
+            return buttons[RIGHT].released;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetRightClicked() {
+        if(buttons[RIGHT].checkClicked == true) {
+            return buttons[RIGHT].clicked;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetAPressed() {
+        if(buttons[A].checkPressed == true) {
+            return buttons[A].pressed;
+        } else {
+            return false;
+        }
+    }
+    
+    public final boolean GetAReleased() {
+        if(buttons[A].checkReleased == true) {
+            return buttons[A].released;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetAClicked() {
+        if(buttons[A].checkClicked == true) {
+            return buttons[A].clicked;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetBPressed() {
+        if(buttons[B].checkPressed == true) {
+            return buttons[B].pressed;
+        } else {
+            return false;
+        }
+    }
+    
+    public final boolean GetBReleased() {
+        if(buttons[B].checkReleased == true) {
+            return buttons[B].released;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final boolean GetBClicked() {
+        if(buttons[B].checkClicked == true) {
+            return buttons[B].clicked;
+        } else {
+            return false;
+        }
+    }    
+    
+    public final void PrepPins() throws IOException {
         if(runTime != null && buttons != null) {
             for(GpioPin btn: buttons) {
                 runTime.exec("echo " + btn.pinNum + ">/sys/class/gpio/unexport");
@@ -93,11 +195,23 @@ public class GpioHub {
         }
     }
         
-    public boolean IsPrepped() {
+    public final boolean IsPrepped() {
         return prepped;
     }
     
-    public void GetState() throws IOException {
+    public final void CleanUp() {
+        for(GpioPin btn: buttons) {
+            if(btn.pressed == true) {
+                btn.pressed = false;
+            }
+            
+            if(btn.clicked == true) {
+                btn.clicked = false;
+            }
+        }   
+    }
+    
+    public final void GetState() throws IOException {
         for(GpioPin btn: buttons) {
             tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn.pinNum + "/value").getErrorStream().read();
             if(tmp == char0toInt) {
@@ -105,7 +219,25 @@ public class GpioHub {
             } else {
                 btn.stateTmp = true;                
             }
-            btn.stateCurrent = btn.stateTmp;
+            
+            if(btn.stateTmp != btn.stateCurrent) {
+                btn.statePrev = btn.stateCurrent;
+                btn.stateCurrent = btn.stateTmp;
+            }
+                        
+            if(btn.stateCurrent == false && btn.statePrev == true) {
+                btn.released = true;
+                btn.clicked = true;
+            } else {
+                btn.released = false;
+                btn.clicked = false;                
+            }
+            
+            if(btn.stateCurrent == true && btn.statePrev == false) {
+                btn.pressed = true;
+            } else {
+                btn.pressed = false;
+            }
         }
     }
 }

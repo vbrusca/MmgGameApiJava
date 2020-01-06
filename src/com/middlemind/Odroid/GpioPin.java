@@ -21,11 +21,43 @@ public class GpioPin {
     public GpioButton button;
     public boolean stateTmp;
     public boolean stateCurrent;
+    public boolean statePrev;
+    public boolean pressed;
+    public boolean released;
+    public boolean clicked;
+    public boolean checkPressed;
+    public boolean checkReleased;
+    public boolean checkClicked;    
     
-    public GpioPin(int num, boolean high, boolean in, GpioButton button) {
-        pinNum = num;
+    public GpioPin(int pinNumber, boolean high, boolean in, GpioButton buttonType, boolean chkPress, boolean chkRelease, boolean chkClick) {
+        pinNum = pinNumber;
         pinHigh = high;
         pinIn = in;
-        button = button;
+        button = buttonType;
+        stateTmp = false;
+        statePrev = false;
+        stateCurrent = false;
+        pressed = false;
+        released = false;
+        clicked = false;
+        checkPressed = chkPress;
+        checkReleased = chkRelease;
+        checkClicked = chkClick;
     }
+    
+    public GpioPin(int pinNumber, GpioButton buttonType, boolean chkPress, boolean chkRelease, boolean chkClick) {
+        pinNum = pinNumber;
+        pinHigh = false;
+        pinIn = false;
+        button = buttonType;
+        stateTmp = false;
+        statePrev = false;
+        stateCurrent = false;
+        pressed = false;
+        released = false;
+        clicked = false;
+        checkPressed = chkPress;
+        checkReleased = chkRelease;
+        checkClicked = chkClick;
+    }    
 }

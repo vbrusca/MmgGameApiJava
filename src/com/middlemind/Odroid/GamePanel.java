@@ -343,10 +343,37 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         });
     }
 
+    @Override
+    public void ProcessDpadClick(int dir) {
+
+    }
+
+    @Override
+    public void ProcessAPress() {
+
+    }
+
+    @Override
+    public void ProcessARelease() {
+
+    }
+
+    @Override
+    public void ProcessBPress() {
+
+    }
+
+    @Override
+    public void ProcessBRelease() {
+
+    }
+    
+    @Override    
     public final void ProcessAClick() {
         currentScreen.ProcessAClick();
     }
 
+    @Override    
     public final void ProcessBClick() {
         currentScreen.ProcessBClick();
     }
@@ -354,11 +381,13 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public final void ProcessDebugClick() {
         currentScreen.ProcessDebugClick();
     }
-    
+
+    @Override    
     public final void ProcessDpadPress(int dir) {
         currentScreen.ProcessDpadPress(dir);
     }
 
+    @Override    
     public final void ProcessDpadRelease(int dir) {
         currentScreen.ProcessDpadRelease(dir);
     }

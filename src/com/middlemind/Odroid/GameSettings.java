@@ -21,4 +21,34 @@ public final class GameSettings {
     public static String VERSION = "0.0.0";
     public static String DEVELOPER_COMPANY = "Unknown";
     public static String TITLE = "Unknown";
+    
+    public static int GpioPinBtnUp = 1;
+    public static boolean BtnUpCheckPress = true;
+    public static boolean BtnUpCheckRelease = true;
+    public static boolean BtnUpCheckClick = false;
+
+    public static int GpioPinBtnDown = 2;
+    public static boolean BtnDownCheckPress = true;
+    public static boolean BtnDownCheckRelease = true;
+    public static boolean BtnDownCheckClick = false;    
+    
+    public static int GpioPinBtnLeft = 3;
+    public static boolean BtnLeftCheckPress = true;
+    public static boolean BtnLeftCheckRelease = true;
+    public static boolean BtnLeftCheckClick = false;        
+    
+    public static int GpioPinBtnRight = 4;
+    public static boolean BtnRightCheckPress = true;
+    public static boolean BtnRightCheckRelease = true;
+    public static boolean BtnRightCheckClick = false;            
+    
+    public static int GpioPinBtnA = 5;
+    public static boolean BtnACheckPress = false;
+    public static boolean BtnACheckRelease = false;
+    public static boolean BtnACheckClick = true;                
+    
+    public static int GpioPinBtnB = 6;
+    public static boolean BtnBCheckPress = false;
+    public static boolean BtnBCheckRelease = false;
+    public static boolean BtnBCheckClick = true;                    
 }
