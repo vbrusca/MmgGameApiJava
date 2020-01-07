@@ -25,12 +25,12 @@ public final class GpioHub {
     
     public GpioHub() {
         buttons = new GpioPin[6];
-        buttons[0] = new GpioPin(1, true, false, GpioButton.BtnUp, true, true, false);
-        buttons[1] = new GpioPin(2, true, false, GpioButton.BtnDown, true, true, false);
-        buttons[2] = new GpioPin(3, true, false, GpioButton.BtnLeft, true, true, false);
-        buttons[3] = new GpioPin(4, true, false, GpioButton.BtnRight, true, true, false);
-        buttons[4] = new GpioPin(5, true, false, GpioButton.BtnA, false, false, true);
-        buttons[5] = new GpioPin(6, true, false, GpioButton.BtnB, false, false, true);
+        buttons[0] = new GpioPin(GameSettings.GpioPinBtnUp, true, false, GpioButton.BtnUp, GameSettings.BtnUpCheckPress, GameSettings.BtnUpCheckRelease, GameSettings.BtnUpCheckClick);
+        buttons[1] = new GpioPin(GameSettings.GpioPinBtnDown, true, false, GpioButton.BtnDown, GameSettings.BtnDownCheckPress, GameSettings.BtnDownCheckRelease, GameSettings.BtnDownCheckClick);
+        buttons[2] = new GpioPin(GameSettings.GpioPinBtnLeft, true, false, GpioButton.BtnLeft, GameSettings.BtnLeftCheckPress, GameSettings.BtnLeftCheckRelease, GameSettings.BtnLeftCheckClick);
+        buttons[3] = new GpioPin(GameSettings.GpioPinBtnRight, true, false, GpioButton.BtnRight, GameSettings.BtnRightCheckPress, GameSettings.BtnRightCheckRelease, GameSettings.BtnRightCheckClick);
+        buttons[4] = new GpioPin(GameSettings.GpioPinBtnA, true, false, GpioButton.BtnA, GameSettings.BtnACheckPress, GameSettings.BtnACheckRelease, GameSettings.BtnACheckClick);
+        buttons[5] = new GpioPin(GameSettings.GpioPinBtnB, true, false, GpioButton.BtnB, GameSettings.BtnBCheckPress, GameSettings.BtnBCheckRelease, GameSettings.BtnBCheckClick);
         runTime = Runtime.getRuntime();        
     }
         
@@ -182,9 +182,9 @@ public final class GpioHub {
         if(buttons != null && (pinIdx >= 0 || pinIdx < buttons.length)) {
             buttons[pinIdx].pinHigh = high;
             if(buttons[pinIdx].pinHigh == true) {
-                runTime.exec("echo 1 >/sys/class/gpio" + buttons[pinIdx].pinNum + "/value");
+                runTime.exec("echo 1 > /sys/class/gpio/gpio" + buttons[pinIdx].pinNum + "/value");
             } else {
-                runTime.exec("echo 0 >/sys/class/gpio" + buttons[pinIdx].pinNum + "/value");                        
+                runTime.exec("echo 0 > /sys/class/gpio/gpio" + buttons[pinIdx].pinNum + "/value");                        
             }
         }
     }
@@ -192,14 +192,17 @@ public final class GpioHub {
     public final void PrepPins() throws IOException {
         if(runTime != null && buttons != null) {
             for(GpioPin btn: buttons) {
-                runTime.exec("echo " + btn.pinNum + ">/sys/class/gpio/unexport");
-                runTime.exec("echo " + btn.pinNum + ">/sys/class/gpio/export");
+                runTime.exec("echo " + btn.pinNum + " > /sys/class/gpio/unexport");
+                runTime.exec("echo " + btn.pinNum + " > /sys/class/gpio/export");
                 if(btn.pinIn == false) {
+                    runTime.exec("echo out > /sys/class/gpio/gpio" + btn.pinNum + "/direction");
                     if(btn.pinHigh == true) {
-                        runTime.exec("echo 1 >/sys/class/gpio" + btn.pinNum + "/value");
+                        runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn.pinNum + "/value");
                     } else {
-                        runTime.exec("echo 0 >/sys/class/gpio" + btn.pinNum + "/value");                        
+                        runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn.pinNum + "/value");                        
                     }
+                } else {
+                    runTime.exec("echo in > /sys/class/gpio/gpio" + btn.pinNum + "/direction");                    
                 }
             }
             prepped = true;
