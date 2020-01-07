@@ -414,7 +414,7 @@ public class MmgObj {
     }
     
     public String ToString() {
-        return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition();
+        return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString();
     }
     
     public boolean Equals(MmgObj o) {
