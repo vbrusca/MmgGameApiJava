@@ -67,6 +67,50 @@ public class MmgColor {
         return new MmgColor(Color.BLACK);
     }
 
+    public static MmgColor GetRed() {
+        return new MmgColor(Color.RED);
+    }
+    
+    public static MmgColor GetBlue() {
+        return new MmgColor(Color.BLUE);
+    }
+    
+    public static MmgColor GetGreen() {
+        return new MmgColor(Color.GREEN);
+    }    
+    
+    public static MmgColor GetCyan() {
+        return new MmgColor(Color.CYAN);
+    }
+    
+    public static MmgColor GetGray() {
+        return new MmgColor(Color.GRAY);
+    }    
+    
+    public static MmgColor GetDarkGrey() {
+        return new MmgColor(Color.DARK_GRAY);
+    }
+    
+    public static MmgColor GetLightGrey() {
+        return new MmgColor(Color.LIGHT_GRAY);
+    }    
+    
+    public static MmgColor GetMagenta() {
+        return new MmgColor(Color.MAGENTA);
+    }    
+    
+    public static MmgColor GetOrange() {
+        return new MmgColor(Color.ORANGE);
+    }    
+    
+    public static MmgColor GetPink() {
+        return new MmgColor(Color.PINK);
+    }    
+    
+    public static MmgColor GetYellow() {
+        return new MmgColor(Color.YELLOW);
+    }
+        
     /**
      * Returns the color of this MmgColor object.
      *
