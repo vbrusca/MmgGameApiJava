@@ -1,5 +1,12 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.PlayGround;
 
+import com.middlemind.Odroid.GamePadSimple;
+import com.middlemind.Odroid.GamePanel.GameStates;
+import com.middlemind.Odroid.GameSettings;
+import com.middlemind.Odroid.GenericEventHandler;
+import com.middlemind.Odroid.GenericEventMessage;
+import com.middlemind.Odroid.Helper;
+import com.middlemind.Odroid.MainFrame;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,7 +19,6 @@ import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
@@ -25,50 +31,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  */
 @SuppressWarnings("UseOfObsoleteCollectionType")
 public class GamePanel implements GenericEventHandler, GamePadSimple {
-
-    /**
-     * An enumeration that lists all of the current game states.
-     */
-    public enum GameStates {
-        LOADING,
-        BLANK,
-        SPLASH,
-        MAIN_MENU,
-        ABOUT,
-        HELP_MENU,
-        HELP_PROLOGUE,
-        HELP_ITEM_DESC,
-        HELP_ENEMY_DESC,
-        HELP_ITEM_DESC_ITEM_TEXT,
-        HELP_GAME_PLAY_OVERWORLD,
-        HELP_GAME_PLAY_BATTLE_MODE,
-        HELP_CHAR_DESC,
-        HELP_QUEST_DESC,
-        HELP_ROOM_DESC,
-        HELP_ROOM_DESC_ROOM_DETAILS,
-        MAIN_GAME,
-        SETTINGS,
-        GAME_SCREEN_1,
-        GAME_SCREEN_2,
-        GAME_SCREEN_3,
-        GAME_SCREEN_4,
-        GAME_SCREEN_5,
-        GAME_SCREEN_6,
-        GAME_SCREEN_7,
-        GAME_SCREEN_8,
-        GAME_SCREEN_9,
-        GAME_SCREEN_10,
-        GAME_SCREEN_11,
-        GAME_SCREEN_12,
-        GAME_SCREEN_13,
-        GAME_SCREEN_14,
-        GAME_SCREEN_15,
-        GAME_SCREEN_16,
-        GAME_SCREEN_17,
-        GAME_SCREEN_18,
-        GAME_SCREEN_19,
-        GAME_SCREEN_20,        
-    }
 
     /**
      * MainFrame that this panel is hosted in.

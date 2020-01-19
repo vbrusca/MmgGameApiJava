@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.PlayGround;
 
-import com.middlemind.Odroid.GamePanel;
 import com.middlemind.Odroid.GamePanel.GameStates;
+import net.middlemind.MmgGameApiJava.PlayGround.GamePanel;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
