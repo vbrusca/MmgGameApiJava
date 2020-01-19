@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.awt.Color;
+
 /**
  *
  * @author Victor G. Brusca, Middlemind Games
@@ -23,10 +25,13 @@ public class MmgScrollVert extends MmgObj {
     
     private int scrollBarWidth = MmgHelper.ScaleValue(10);
     private int scrollBarSliderHeight = MmgHelper.ScaleValue(10);
+    private int interval = 5;
+    private boolean isDirty = false;
+    private int offsetY = 0;
     
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
     
-    public MmgScrollVert(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarWidth, int ScrollBarSliderHeight) {
+    public MmgScrollVert(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarWidth, int ScrollBarSliderHeight, int Interval) {
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         
@@ -48,9 +53,10 @@ public class MmgScrollVert extends MmgObj {
         scrollBarColor = ScrollBarColor;
         scrollBarSliderColor = ScrollBarSliderColor;
         scrollBarSliderHeight = ScrollBarSliderHeight;
+        interval = Interval;
     }
 
-    public MmgScrollVert(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor) {
+    public MmgScrollVert(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int Interval) {
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         
@@ -70,6 +76,7 @@ public class MmgScrollVert extends MmgObj {
         
         scrollBarColor = ScrollBarColor;
         scrollBarSliderColor = ScrollBarSliderColor;
+        interval = Interval;        
     }    
     
     public MmgObj GetViewPort() {
@@ -159,6 +166,30 @@ public class MmgScrollVert extends MmgObj {
     public void SetScrollBarSliderHeight(int ScrollBarSliderHeight) {
         scrollBarSliderHeight = ScrollBarSliderHeight;
     }
+
+    public int GetInterval() {
+        return interval;
+    }
+
+    public void SetInterval(int Interval) {
+        interval = Interval;
+    }
+
+    public boolean IsIsDirty() {
+        return isDirty;
+    }
+
+    public void SetIsDirty(boolean IsDirty) {
+        isDirty = IsDirty;
+    }
+
+    public int GetOffsetY() {
+        return offsetY;
+    }
+
+    public void SetOffsetY(int OffsetY) {
+        offsetY = OffsetY;
+    }
     
     public void PrepScrollPane() {
         if(scrollPaneHeight - viewPortHeight > 0) {
@@ -171,4 +202,37 @@ public class MmgScrollVert extends MmgObj {
             scrollBarVertVisible = false;
         }
     }
+    
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        if(GetIsVisible() == true) {
+            if(isDirty) {
+                
+            }
+        }else {
+            //do nothing
+        }
+        
+        return false;
+    }    
+    
+    /**
+     * Draws this object using the given pen, MmgPen.
+     *
+     * @param p The pen to use to draw this object, MmgPen.
+     */
+    @Override
+    public void MmgDraw(MmgPen p) {
+        if (GetIsVisible() == true) {
+            if (MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX == true) {
+                Color c = p.GetGraphics().getColor();
+                p.GetGraphics().setColor(Color.red);
+                p.DrawRect(this);
+                p.GetGraphics().setColor(c);
+            }
+
+        } else {
+            //do nothing
+
+        }
+    }    
 }
