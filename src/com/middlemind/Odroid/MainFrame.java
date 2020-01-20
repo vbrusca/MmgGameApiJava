@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author Victor G. Brusca
  */
-public final class MainFrame extends JFrame {
+public class MainFrame extends JFrame {
 
     /**
      * A label used to display the current frame rate.
@@ -88,44 +88,44 @@ public final class MainFrame extends JFrame {
      * frame rate if no time lock is applied.
      * @param rfr A long representing the locked frame rate.
      */
-    public final void SetFrameRate(long fr, long rfr) {
+    public void SetFrameRate(long fr, long rfr) {
         if (pnlGame != null) {
             GamePanel.FPS = "Drawing FPS: " + fr + " Actual FPS: " + rfr;
         }
     }
 
-    public final GamePanel GetGamePanel() {
+    public GamePanel GetGamePanel() {
         return pnlGame;
     }
 
-    public final int GetWindowWidth() {
+    public int GetWindowWidth() {
         return winWidth;
     }
 
-    public final int GetWindowHeight() {
+    public int GetWindowHeight() {
         return winHeight;
     }
 
-    public final int GetOffsetX() {
+    public int GetOffsetX() {
         return myX;
     }
 
-    public final int GetOffsetY() {
+    public int GetOffsetY() {
         return myY;
     }
 
-    public final int GetGamePanelWidth() {
+    public int GetGamePanelWidth() {
         return panelWidth;
     }
 
-    public final int GetGamePanelHeight() {
+    public int GetGamePanelHeight() {
         return panelHeight;
     }
     
     /**
      * Initializes the components used by this JFrame.
      */
-    public final void InitComponents() {
+    public void InitComponents() {
         Helper.wr("MainFrame: Found Screen Dimen: " + winWidth + "x" + winHeight);
         Helper.wr("MainFrame: Found Position: " + myX + "x" + myY);
 
@@ -185,7 +185,7 @@ public final class MainFrame extends JFrame {
     /**
      * Forces the GamePanel to repaint itself.
      */
-    public final void Redraw() {
+    public void Redraw() {
         if (pnlGame != null) {
             pnlGame.RenderGame();
         }

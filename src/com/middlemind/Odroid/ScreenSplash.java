@@ -1,7 +1,6 @@
-package net.middlemind.MmgGameApiJava.PlayGround;
+package com.middlemind.Odroid;
 
 import com.middlemind.Odroid.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.PlayGround.GamePanel;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
@@ -19,7 +18,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
  *
  * @author Victor G. Brusca
  */
-public final class ScreenSimple extends MmgSplashScreen implements MmgUpdateHandler {
+public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
 
     /**
      * Event display time complete id.
@@ -51,13 +50,14 @@ public final class ScreenSimple extends MmgSplashScreen implements MmgUpdateHand
      * @param Owner The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenSimple(GameStates State, GamePanel Owner) {
+    public ScreenSplash(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         state = State;
         owner = Owner;
         SetUpdateHandler(this);
+        Helper.wr("ScreenSimple: Constructor");
     }
 
     /**
@@ -79,7 +79,7 @@ public final class ScreenSimple extends MmgSplashScreen implements MmgUpdateHand
     @Override
     public final void MmgHandleUpdate(Object obj) {
         if (handler != null) {
-            handler.HandleGenericEvent(new GenericEventMessage(ScreenSimple.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
+            handler.HandleGenericEvent(new GenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }
     }
 
@@ -105,6 +105,7 @@ public final class ScreenSimple extends MmgSplashScreen implements MmgUpdateHand
 
         ready = true;
         pause = false;
+        Helper.wr("ScreenSimple: LoadResources");
     }
 
     /**
