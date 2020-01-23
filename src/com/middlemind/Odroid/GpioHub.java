@@ -18,7 +18,7 @@ public final class GpioHub {
     public static int char0toInt = 48;
     public static int char1toInt = 49;
     
-    public GpioPin[] buttons = null;
+    private GpioPin[] buttons = null;
     private Runtime runTime = null;
     private int tmp;
     private boolean prepped = false;
@@ -32,6 +32,15 @@ public final class GpioHub {
         buttons[4] = new GpioPin(GameSettings.GpioPinBtnA, true, false, GpioButton.BtnA, GameSettings.BtnACheckPress, GameSettings.BtnACheckRelease, GameSettings.BtnACheckClick);
         buttons[5] = new GpioPin(GameSettings.GpioPinBtnB, true, false, GpioButton.BtnB, GameSettings.BtnBCheckPress, GameSettings.BtnBCheckRelease, GameSettings.BtnBCheckClick);
         runTime = Runtime.getRuntime();        
+    }
+
+    public GpioHub(GpioPin[] Buttons) {
+        buttons = Buttons;
+        runTime = Runtime.getRuntime(); 
+    }
+    
+    public final GpioPin[] GetButtons() {
+        return buttons;
     }
         
     public final boolean GetDownPressed() {
@@ -202,6 +211,11 @@ public final class GpioHub {
                         runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn.pinNum + "/value");                        
                     }
                 } else {
+                    if(btn.pinHigh == true) {
+                        runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn.pinNum + "/value");
+                    } else {
+                        runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn.pinNum + "/value");                        
+                    }                    
                     runTime.exec("echo in > /sys/class/gpio/gpio" + btn.pinNum + "/direction");                    
                 }
             }
@@ -227,7 +241,9 @@ public final class GpioHub {
     
     public final void GetState() throws IOException {
         for(GpioPin btn: buttons) {
-            tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn.pinNum + "/value").getErrorStream().read();
+            tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn.pinNum + "/value").getInputStream().read();
+            //System.out.println("PinStatus: " + tmp);
+            
             if(tmp == char0toInt) {
                 btn.stateTmp = false;
             } else {

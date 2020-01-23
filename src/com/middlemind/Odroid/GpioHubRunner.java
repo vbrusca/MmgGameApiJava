@@ -52,6 +52,7 @@ public final class GpioHubRunner implements Runnable {
         running = b;
     }
 
+    @SuppressWarnings("CallToPrintStackTrace")
     public final void PollGpio() {
         if(gpioHub != null && gpioHub.IsPrepped()) {
             try {
@@ -64,81 +65,117 @@ public final class GpioHubRunner implements Runnable {
             //down, up, left, right
             //check dpad pressed state
             if(gpioHub.GetDownPressed()) {
-                gamePad.ProcessDpadPress(GameSettings.DOWN);
+                if(gamePad != null) {
+                    gamePad.ProcessDpadPress(GameSettings.DOWN);
+                }
             }
             
             if(gpioHub.GetUpPressed()) {
-                gamePad.ProcessDpadPress(GameSettings.UP);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadPress(GameSettings.UP);                    
+                }
             }
             
             if(gpioHub.GetLeftPressed()) {
-                gamePad.ProcessDpadPress(GameSettings.LEFT);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadPress(GameSettings.LEFT);                    
+                }
             }
             
             if(gpioHub.GetRightPressed()) {
-                gamePad.ProcessDpadPress(GameSettings.RIGHT);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadPress(GameSettings.RIGHT);                    
+                }
             }
 
             //check dpad released state
             if(gpioHub.GetDownReleased()) {
-                gamePad.ProcessDpadPress(GameSettings.DOWN);
+                if(gamePad != null) {
+                    gamePad.ProcessDpadPress(GameSettings.DOWN);
+                }
             }
             
             if(gpioHub.GetUpReleased()) {
-                gamePad.ProcessDpadRelease(GameSettings.UP);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadRelease(GameSettings.UP);                    
+                }
             }
             
             if(gpioHub.GetLeftReleased()) {
-                gamePad.ProcessDpadRelease(GameSettings.LEFT);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadRelease(GameSettings.LEFT);                    
+                }
             }
             
             if(gpioHub.GetRightReleased()) {
-                gamePad.ProcessDpadRelease(GameSettings.RIGHT);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadRelease(GameSettings.RIGHT);                    
+                }
             }            
             
             //check dpad clicked state
             if(gpioHub.GetDownClicked()) {
-                gamePad.ProcessDpadPress(GameSettings.DOWN);
+                if(gamePad != null) {
+                    gamePad.ProcessDpadPress(GameSettings.DOWN);
+                }
             }
             
             if(gpioHub.GetUpClicked()) {
-                gamePad.ProcessDpadRelease(GameSettings.UP);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadRelease(GameSettings.UP);                    
+                }
             }
             
             if(gpioHub.GetLeftClicked()) {
-                gamePad.ProcessDpadRelease(GameSettings.LEFT);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadRelease(GameSettings.LEFT);                    
+                }
             }
             
             if(gpioHub.GetRightClicked()) {
-                gamePad.ProcessDpadRelease(GameSettings.RIGHT);                    
+                if(gamePad != null) {
+                    gamePad.ProcessDpadRelease(GameSettings.RIGHT);                    
+                }
             }            
             
             //a, b
             //check a,b pressed state
             if(gpioHub.GetAPressed()) {
-                gamePad.ProcessAPress();
+                if(gamePad != null) {
+                    gamePad.ProcessAPress();
+                }
             }
             
             if(gpioHub.GetBPressed()) {
-                gamePad.ProcessBPress();
+                if(gamePad != null) {
+                    gamePad.ProcessBPress();
+                }
             }
 
             //check a,b released state            
             if(gpioHub.GetAReleased()) {
-                gamePad.ProcessARelease();
+                if(gamePad != null) {
+                    gamePad.ProcessARelease();
+                }
             }
             
             if(gpioHub.GetBReleased()) {
-                gamePad.ProcessBRelease();
+                if(gamePad != null) {
+                    gamePad.ProcessBRelease();
+                }
             }            
             
             //check a,b clicked state            
             if(gpioHub.GetAClicked()) {
-                gamePad.ProcessAClick();
+                if(gamePad != null) {
+                    gamePad.ProcessAClick();
+                }
             }
             
             if(gpioHub.GetBClicked()) {
-                gamePad.ProcessBClick();
+                if(gamePad != null) {
+                    gamePad.ProcessBClick();
+                }
             }
             
             gpioHub.CleanUp();
@@ -146,6 +183,7 @@ public final class GpioHubRunner implements Runnable {
     }
     
     @Override
+    @SuppressWarnings({"CallToPrintStackTrace", "SleepWhileInLoop"})
     public final void run() {       
         while(running == true) {
             start = System.currentTimeMillis();
