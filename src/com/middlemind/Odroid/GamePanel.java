@@ -204,6 +204,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public long lastKeyPressEvent = -1;
     private Graphics2D bg;
     private Graphics2D g;
+    
+    public ScreenSplash screenSplash;
 
     /**
      * Constructor, sets the MainFrame, window dimensions, and position of this
@@ -253,6 +255,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
         p = new MmgPen();
         MmgPen.ADV_RENDER_HINTS = true;
+        
+        screenSplash = new ScreenSplash(GameStates.SPLASH, this);
         
         gameScreens = new Hashtable();
         gameState = GameStates.BLANK;
@@ -603,11 +607,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
         } else if (gameState == GameStates.SPLASH) {
             Helper.wr("Showing SPLASH screen.");
-            //splashScreen.LoadResources();
-            //splashScreen.UnPause();
-            //splashScreen.SetIsVisible(true);
-            //splashScreen.StartDisplay();
-            //currentScreen = splashScreen;
+            screenSplash.LoadResources();
+            screenSplash.UnPause();
+            screenSplash.SetIsVisible(true);
+            screenSplash.StartDisplay();
+            currentScreen = screenSplash;
 
         } else if (gameState == GameStates.MAIN_MENU) {
             Helper.wr("Showing MAIN_MENU screen.");
