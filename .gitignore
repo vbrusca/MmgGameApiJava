@@ -3,5 +3,6 @@ nbproject/
 *nbproject/
 .DS_STORE
 .class
-/dist/
+dist/
 *private.xml
+nbproject/private/private.properties
