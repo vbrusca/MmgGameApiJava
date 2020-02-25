@@ -7,6 +7,16 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgHelper {
 
+    public static boolean RectCollision(int x, int y, MmgRect r) {
+        if(x >= r.GetLeft() && x <= r.GetRight()) {
+            if(y >= r.GetTop() && y <= r.GetBottom()) {
+                return true;
+            }
+        }
+        
+        return false;
+    }    
+    
     /**
      * Tests for collision of two rectangles.
      *

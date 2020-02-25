@@ -203,7 +203,11 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
     @Override
     public boolean ProcessScreenClick(int x, int y) {
         Helper.wr("ScreenTest.ProcessScreenClick");
-        return true;
+        if(scrollVert.ProcessScreenClick(x, y)) {
+            return true;
+        }
+        
+        return false;
     }    
     
     /**
