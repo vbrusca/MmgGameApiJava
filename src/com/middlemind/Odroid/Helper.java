@@ -87,6 +87,18 @@ public class Helper {
         return lval;
     }
 
+    @SuppressWarnings("UnusedAssignment")
+    public static final MmgBmp GetBasicCachedBmp(String imgId) {
+        MmgBmp lval = null;
+        if (GameSettings.BMP_CACHE_ON == true) {
+            if (MmgMediaTracker.HasKey(imgId) == true) {
+                lval = new MmgBmp(MmgMediaTracker.GetValue(imgId));
+                lval.SetMmgColor(null);
+            }
+        }
+        return lval;
+    }    
+    
     public static final void ListCacheEntries() {
         if (GameSettings.BMP_CACHE_ON == true) {
             int len = MmgMediaTracker.GetCacheSize();

@@ -4,15 +4,13 @@ import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
-import java.awt.Color;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuItem;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
@@ -29,7 +27,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * The game state this screen has.
      */
-    protected final GameStates state;
+    protected final GameStates gameState;
 
     /**
      * Event handler for firing generic events. Events would fire when the
@@ -44,6 +42,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
     protected final GamePanel owner;
     
     protected MmgScrollVert scrollVert;
+    protected MmgScrollHor scrollHor;    
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -57,7 +56,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         super();
         pause = false;
         ready = false;
-        state = State;
+        gameState = State;
         owner = Owner;
         SetMmgUpdateHandler(this);
         Helper.wr("ScreenTest: Constructor");
@@ -113,22 +112,49 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         //    SetCenteredBackground(tB);
         //}
 
-        int sWidth = 100;
-        int sHeight = 100;
-        MmgObj vPort = new MmgObj(0, 0, 100, 100, true, MmgColor.GetRed());
-        MmgObj sPane = new MmgObj(0, 0, 100, 300, true, MmgColor.GetBlue());        
-        MmgColor sBarColor = MmgColor.GetLightGray();
-        MmgColor sBarSldrColor = MmgColor.GetGray();
-        int sBarWidth = MmgHelper.ScaleValue(15);
-        int sBarSldrHeight = MmgHelper.ScaleValue(30);
-        int interval = 10;        
-        scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval);
+        int sWidth = 0;
+        int sHeight = 0;
+        MmgObj vPort = null;
+        MmgObj sPane = null;
+        MmgColor sBarColor;
+        MmgColor sBarSldrColor;
+        int sBarWidth = 0;
+        int sBarSldrHeight = 0;     
+        int interval = 0;                
+        
+        sWidth = 100;
+        sHeight = 100;
+        vPort = new MmgObj(0, 0, 100, 100, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, 100, 300, true, MmgColor.GetBlue());        
+        sBarColor = MmgColor.GetLightGray();
+        sBarSldrColor = MmgColor.GetGray();
+        sBarWidth = MmgHelper.ScaleValue(15);
+        sBarSldrHeight = MmgHelper.ScaleValue(30);
+        interval = 10;
+        
+        scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval, gameState);
+        //scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
         scrollVert.SetIsVisible(true);
         scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
         scrollVert.SetHeight(sHeight);
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
-        MmgHelper.CenterHorAndVert(scrollVert);
+        //MmgHelper.CenterHorAndVert(scrollVert);
+        scrollVert.SetPosition(new MmgVector2(50, 50));
         AddObj(scrollVert);
+        
+        vPort = new MmgObj(0, 0, 100, 100, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, 300, 100, true, MmgColor.GetBlue());        
+        sBarColor = MmgColor.GetLightGray();
+        sBarSldrColor = MmgColor.GetGray();
+        
+        scrollHor = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval, gameState);
+        //scrollHor = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
+        scrollHor.SetIsVisible(true);
+        scrollHor.SetWidth(sWidth);
+        scrollHor.SetHeight(sHeight + scrollHor.GetScrollBarHeight());
+        MmgScrollHor.SHOW_CONTROL_BOUNDING_BOX = true;
+        MmgHelper.CenterHorAndVert(scrollHor);
+        AddObj(scrollHor);
         
         ready = true;
         pause = false;
@@ -184,8 +210,11 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
 
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTest.ProcessDpadRelease: " + dir);        
-        return true;
+        Helper.wr("ScreenTest.ProcessDpadRelease: " + dir);
+        if(scrollVert.ProcessDpadRelease(dir) || scrollHor.ProcessDpadRelease(dir)) {
+            return true;
+        }        
+        return false;
     }
     
     @Override
@@ -203,7 +232,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
     @Override
     public boolean ProcessScreenClick(int x, int y) {
         Helper.wr("ScreenTest.ProcessScreenClick");
-        if(scrollVert.ProcessScreenClick(x, y)) {
+        if(scrollVert.ProcessScreenClick(x, y) || scrollHor.ProcessScreenClick(x, y)) {
             return true;
         }
         
@@ -226,7 +255,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
      * @return The game state of this game screen.
      */
     public GameStates GetGameState() {
-        return state;
+        return gameState;
     }
 
     /**
