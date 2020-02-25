@@ -1,6 +1,7 @@
 package com.middlemind.Odroid;
 
 import java.io.File;
+import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
@@ -83,7 +84,17 @@ public class RunResourceLoad implements Runnable {
         
         try {
             File ald = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
-            File[] files = ald.listFiles();
+            File[] srcFiles = ald.listFiles();
+            ArrayList<File> clnFiles = new ArrayList();
+            
+            for(int j = 0; j < srcFiles.length; j++) {
+                if(srcFiles[j].getName().charAt(0) != '.') {
+                    clnFiles.add(srcFiles[j]);
+                }
+            }
+
+            File[] files = new File[clnFiles.size()];
+            files = clnFiles.toArray(files);
             
             if(files != null && files.length > 0) {
                 readLen = (files.length - 1) * loadMultiplier;

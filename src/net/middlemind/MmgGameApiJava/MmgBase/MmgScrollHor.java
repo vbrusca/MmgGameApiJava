@@ -87,12 +87,13 @@ public class MmgScrollHor extends MmgObj {
         viewPortRect = new MmgRect(left, top, bottom, right);
         viewPortWidth = viewPortRect.GetWidth();
         
-        sliderLeftButton = Helper.GetBasicCachedBmp("scroll_bar_down.png");
-        sliderRightButton = Helper.GetBasicCachedBmp("scroll_bar_up.png");
-        slider = Helper.GetBasicCachedBmp("scroll_bar_slider.png");        
+        sliderLeftButton = Helper.GetBasicCachedBmp("scroll_bar_left_sm.png");
+        sliderRightButton = Helper.GetBasicCachedBmp("scroll_bar_right_sm.png");
+        slider = Helper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
         if(sliderLeftButton != null && sliderRightButton != null && slider != null) {
             scrollBarSliderButtonWidth = sliderLeftButton.GetWidth();
             scrollBarHeight = sliderLeftButton.GetHeight();
+            scrollBarSliderWidth = slider.GetWidth();
         }
         
         left = 0;
@@ -119,7 +120,13 @@ public class MmgScrollHor extends MmgObj {
         bottom = viewPort.GetHeight() + scrollBarHeight;        
         right = viewPort.GetWidth();
         sliderRightButtonRect = new MmgRect(left, top, bottom, right);   
-                
+          
+        if(sliderLeftButton != null && sliderRightButton != null && slider != null) {
+            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
+            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
+            slider.SetPosition(sliderRect.GetPosition());
+        }
+        
         PrepScrollPane();        
         isDirty = true;
     }
@@ -161,6 +168,12 @@ public class MmgScrollHor extends MmgObj {
         sliderRect.SetPosition(new MmgVector2(inX + scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderRect.GetTop()));
         sliderLeftButtonRect.SetPosition(new MmgVector2(inX, sliderLeftButtonRect.GetTop()));
         sliderRightButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth() - scrollBarSliderButtonWidth, sliderRightButtonRect.GetTop()));        
+
+        if(sliderLeftButton != null && sliderRightButton != null && slider != null) {
+            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
+            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
+            slider.SetPosition(sliderRect.GetPosition());
+        }        
     }
     
     @Override
@@ -171,6 +184,12 @@ public class MmgScrollHor extends MmgObj {
         sliderRect.SetPosition(new MmgVector2(sliderRect.GetLeft(), inY + viewPort.GetHeight()));
         sliderLeftButtonRect.SetPosition(new MmgVector2(sliderLeftButtonRect.GetLeft(), inY + viewPortRect.GetHeight()));
         sliderRightButtonRect.SetPosition(new MmgVector2(sliderRightButtonRect.GetLeft(), inY + viewPortRect.GetHeight()));
+
+        if(sliderLeftButton != null && sliderRightButton != null && slider != null) {
+            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
+            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
+            slider.SetPosition(sliderRect.GetPosition());
+        }
     }
     
     @Override
@@ -181,6 +200,12 @@ public class MmgScrollHor extends MmgObj {
         sliderRect.SetPosition(new MmgVector2(inPos.GetX() + scrollBarSliderButtonWidth + offsetXScrollBarSlider, inPos.GetY() + viewPort.GetHeight()));
         sliderLeftButtonRect.SetPosition(new MmgVector2(inPos.GetX(), inPos.GetY() + viewPort.GetHeight()));
         sliderRightButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth() - scrollBarSliderButtonWidth, inPos.GetY() + viewPortRect.GetHeight()));        
+
+        if(sliderLeftButton != null && sliderRightButton != null && slider != null) {
+            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
+            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
+            slider.SetPosition(sliderRect.GetPosition());
+        }
     }
          
     public boolean ProcessDpadRelease(int dir) {
@@ -397,6 +422,10 @@ public class MmgScrollHor extends MmgObj {
             if(isDirty) {
                 sliderRect.SetPosition(new MmgVector2(GetX() + this.scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderRect.GetTop()));
                 scrollPaneRect.SetPosition(new MmgVector2(GetX() - offsetXScrollPane, scrollPaneRect.GetTop()));
+            
+                if(slider != null) {
+                    slider.SetPosition(sliderRect.GetPosition());                    
+                }
             }
             
             isDirty = false;
@@ -448,6 +477,20 @@ public class MmgScrollHor extends MmgObj {
                 p.GetGraphics().setColor(c);
             }
 
+            if(scrollBarHorVisible) {            
+                if(sliderLeftButton != null) {
+                    p.DrawBmp(sliderLeftButton);
+                }
+                
+                if(sliderRightButton != null) {
+                    p.DrawBmp(sliderRightButton);
+                }
+                
+                if(slider != null) {
+                    p.DrawBmp(slider);
+                }                       
+            }
+                
         } else {
             //do nothing
 

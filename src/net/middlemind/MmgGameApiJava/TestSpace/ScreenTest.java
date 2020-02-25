@@ -122,10 +122,10 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         int sBarSldrHeight = 0;     
         int interval = 0;                
         
-        sWidth = 100;
-        sHeight = 100;
-        vPort = new MmgObj(0, 0, 100, 100, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, 100, 300, true, MmgColor.GetBlue());        
+        sWidth = 200;
+        sHeight = 200;
+        vPort = new MmgObj(0, 0, 200, 200, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, 200, 400, true, MmgColor.GetBlue());        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         sBarWidth = MmgHelper.ScaleValue(15);
@@ -138,12 +138,12 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
         scrollVert.SetHeight(sHeight);
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
-        //MmgHelper.CenterHorAndVert(scrollVert);
-        scrollVert.SetPosition(new MmgVector2(50, 50));
-        AddObj(scrollVert);
+        MmgHelper.CenterHorAndVert(scrollVert);
+        //scrollVert.SetPosition(new MmgVector2(50, 50));
+        //AddObj(scrollVert);
         
-        vPort = new MmgObj(0, 0, 100, 100, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, 300, 100, true, MmgColor.GetBlue());        
+        vPort = new MmgObj(0, 0, 200, 200, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, 400, 200, true, MmgColor.GetBlue());        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         
