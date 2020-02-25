@@ -9,36 +9,41 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
  *
  * @author Victor G. Brusca
  */
-public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
+public class RunResourceLoad implements Runnable {
 
     /**
      * A boolean result of the loading process.
      */
-    private boolean readResult;
+    protected boolean readResult;
 
     /**
      * A boolean result of the last read operation.
      */
-    private boolean readComplete;
+    protected boolean readComplete;
 
     /**
      * Helper variables for the read process.
      */
-    private int readPos;
+    protected int readPos;
 
     /**
      * Helper variables for the read process.
      */
-    private int readLen;
-    private int len;    
-    private int extraLoadMultiplier = 1000;
-    private int extraLoadLen = ((42 + 15 + 284) * extraLoadMultiplier); //direct file load steps + console image steps + regular image steps
+    protected int readLen;
+    //protected int len;    
+    protected int loadMultiplier = 1000;
+    //protected int extraLoadLen = ((42 + 15 + 284) * extraLoadMultiplier); //direct file load steps + console image steps + regular image steps
 
     /**
      * An event handler for receiving update messages from the DAT loader.
      */
-    private LoadDatUpdateHandler update;
+    protected LoadResourceUpdateHandler update;
 
+    protected int tlen;
+    protected int i;
+    protected long slowDown;
+    protected boolean exitLoad;
+    
     /**
      * A constructor that sets the thin load option, don't load binary image or
      * sound data yet, and sets the source byte array to parse.
@@ -48,10 +53,13 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      * @param Data A binary array representing the Tyre DAT file.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public RunDatLoad() {
+    public RunResourceLoad() {
         readPos = 0;
         readLen = 0;
         readResult = false;
+        readComplete = false;
+        exitLoad = false;
+        slowDown = 0;
     }
 
     /**
@@ -59,7 +67,7 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      *
      * @param Update The handler subscribing to events.
      */
-    public final void SetUpdateHandler(LoadDatUpdateHandler Update) {
+    public void SetUpdateHandler(LoadResourceUpdateHandler Update) {
         update = Update;
     }    
     
@@ -67,68 +75,68 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      * The run method for this worker thread.
      */
     @Override
-    public final void run() {
-
+    public void run() {
+        readLen = 1;
+        readPos = 1;
+        readResult = false;
+        readComplete = false;
+        
         try {
             File ald = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
             File[] files = ald.listFiles();
+            
             if(files != null && files.length > 0) {
-                int tlen = files.length;
-                for(int i = 0; i < tlen; i++) {
+                readLen = (files.length - 1) * loadMultiplier;
+                readPos = 0;
+                tlen = files.length;
+                
+                for(i = 0; i < tlen; i++) {
                     Helper.wr("Found auto_load file: " + files[i].getName() + " Path: " + files[i].getPath());
                     Helper.GetBasicCachedBmp(files[i].getPath(), files[i].getName());
-                }
+                    readPos = i * loadMultiplier;
+                    
+                    if (update != null) {                        
+                        update.HandleUpdate(new LoadResourceUpdateMessage(readPos, readLen));
+                    }
+                    
+                    try {
+                        Thread.sleep(slowDown);
+                    } catch (Exception e) {
+                        
+                    }
+                    
+                    if(exitLoad) {
+                        break;
+                    }
+                }                
             }
+            readResult = true;
             
         }catch(Exception e) {
             e.printStackTrace();
         }
-        
-        if (update != null) {
-            //update.HandleUpdate(new LoadDatUpdateMessage(tmp, readLen));
-        }
-        
+                
         readComplete = true;
 
         if (update != null) {
-            //update.HandleUpdate(new LoadDatUpdateMessage(tmp, readLen));
+            update.HandleUpdate(new LoadResourceUpdateMessage(readPos, readLen));
         }
     }
 
-    /**
-     * Handles a LoadDatUpdateMessage from the DAT loading worker thread.
-     *
-     * @param obj The message to process.
-     */
-    @Override
-    public final void HandleUpdate(LoadDatUpdateMessage obj) {
-        if (obj != null) {
-            obj.SetLen(obj.GetLen() + extraLoadLen);
-
-            readPos = obj.GetPos();
-            readLen = obj.GetLen();
-
-            if (update != null) {
-                update.HandleUpdate(obj);
-
-                /*
-                if (GetReadComplete() == true) {
-                    LoadDat.chapter = null;
-                    LoadDat.pos = 0;
-                    LoadDat.foundEOF = false;
-                    LoadDat.stop = false;
-                    lDat = null;
-                }
-                */
-            }
-        }
+    public long GetSlowDown() {
+        return slowDown;
     }
-    
+
+    public void SetSlowDown(long l) {
+        slowDown = l;
+    }
+        
     /**
      * Stops the current DAT load.
      */
-    public final void StopDatLoad() {
-        //LoadDat.stop = true;
+    public void StopLoad() {
+        i = tlen;
+        exitLoad = true;
     }
 
     /**
@@ -136,7 +144,7 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      *
      * @return Integer representing the read length.
      */
-    public final int GetLen() {
+    public int GetLen() {
         return readLen;
     }
 
@@ -145,7 +153,7 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      *
      * @return The current read position.
      */
-    public final int GetPos() {
+    public int GetPos() {
         return readPos;
     }
 
@@ -154,7 +162,7 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      *
      * @return The result of the last read operation.
      */
-    public final boolean GetReadResult() {
+    public boolean GetReadResult() {
         return readResult;
     }
 
@@ -163,7 +171,7 @@ public final class RunDatLoad implements Runnable, LoadDatUpdateHandler {
      *
      * @return
      */
-    public final boolean GetReadComplete() {
+    public boolean GetReadComplete() {
         return readComplete;
     }    
 }

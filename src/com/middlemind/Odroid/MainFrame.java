@@ -17,42 +17,42 @@ public class MainFrame extends JFrame {
     /**
      * A label used to display the current frame rate.
      */
-    //private JLabel lblFrameRate;
+    //protected JLabel lblFrameRate;
     /**
      * The GamePanel, extends JPanel, class that handles drawing the different
      * game states.
      */
-    private GamePanel pnlGame;
+    protected GamePanel pnlGame;
 
     /**
      * The window width.
      */
-    private final int winWidth;
+    protected final int winWidth;
 
     /**
      * The window height.
      */
-    private final int winHeight;
+    protected final int winHeight;
 
     /**
      * The X offset of this frame.
      */
-    private final int myX;
+    protected final int myX;
 
     /**
      * The Y offset of this frame.
      */
-    private final int myY;
+    protected final int myY;
 
     /**
     * The game panel width.
     */
-    private final int panelWidth;
+    protected final int panelWidth;
     
     /**
     * The game panel height.
     */
-    private final int panelHeight;
+    protected final int panelHeight;
 
     /**
      * Constructor that sets the window width and height, and defaults the X, Y
@@ -68,7 +68,6 @@ public class MainFrame extends JFrame {
         panelHeight = winHeight;
         myX = 0;
         myY = 0;
-        InitComponents();
     }
 
     public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight) {
@@ -78,7 +77,6 @@ public class MainFrame extends JFrame {
         panelHeight = PanHeight;
         myX = (winWidth - panelWidth) / 2;
         myY = (winHeight - panelHeight) / 2;
-        InitComponents();
     }
 
     /**
@@ -94,6 +92,10 @@ public class MainFrame extends JFrame {
         }
     }
 
+    public void SetGamePanel(GamePanel gp) {
+        pnlGame = gp;
+    }
+    
     public GamePanel GetGamePanel() {
         return pnlGame;
     }
@@ -129,7 +131,7 @@ public class MainFrame extends JFrame {
         Helper.wr("MainFrame: Found Screen Dimen: " + winWidth + "x" + winHeight);
         Helper.wr("MainFrame: Found Position: " + myX + "x" + myY);
 
-        pnlGame = new GamePanel(this, panelWidth, panelHeight, (winWidth - panelWidth) / 2, (winHeight - panelHeight) / 2);
+        //pnlGame = new GamePanel(this, panelWidth, panelHeight, (winWidth - panelWidth) / 2, (winHeight - panelHeight) / 2);
         add(pnlGame.GetCanvas());
                 
         pnlGame.GetCanvas().setFocusable(true);

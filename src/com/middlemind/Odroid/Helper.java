@@ -20,7 +20,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
  *
  * @author Victor G. Brusca
  */
-public final class Helper {
+public class Helper {
 
     /**
      * Controls if logging is turned on or off.

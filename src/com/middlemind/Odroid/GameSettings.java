@@ -5,7 +5,7 @@ package com.middlemind.Odroid;
  *
  * @author Victor G. Brusca
  */
-public final class GameSettings {
+public class GameSettings {
     public static int DOWN = 0;
     public static int UP = 1;
     public static int LEFT = 2;
@@ -14,7 +14,7 @@ public final class GameSettings {
     public static boolean BMP_CACHE_ON = true;
     public static String BMP_PREFIX = "images_";
     public static String BMP_PREFIX_CONSOLE = "console_images_";
-    public static String AUTO_IMAGE_LOAD_DIR = "./cfg/drawable/auto_load/";
+    public static String AUTO_IMAGE_LOAD_DIR = "../cfg/drawable/auto_load/";
     public static String NAME = "Unknown";
     
     public static boolean DEVELOPMENT_MODE_ON = true;

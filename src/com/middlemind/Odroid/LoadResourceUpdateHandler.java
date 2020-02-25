@@ -6,13 +6,13 @@ package com.middlemind.Odroid;
  * 
  * @author Victor G. Brusca
  */
-public interface LoadDatUpdateHandler {
+public interface LoadResourceUpdateHandler {
     
     /**
      * The message handling method to override.
      * 
      * @param obj       A LoadDatUpdateMessage.
      */
-    public void HandleUpdate(LoadDatUpdateMessage obj);
+    public void HandleUpdate(LoadResourceUpdateMessage obj);
     
 }

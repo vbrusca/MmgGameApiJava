@@ -1,6 +1,7 @@
 package com.middlemind.Odroid;
 
 import com.middlemind.Odroid.GamePanel.GameStates;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
@@ -18,7 +19,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  *
  * @author Victor G. Brusca
  */
-public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpdateHandler {
+public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdateHandler {
 
     /**
      * Event load complete id.
@@ -28,30 +29,32 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
     /**
      * Wrapper class for running a worker thread.
      */
-    private RunDatLoad datLoad;
+    protected RunResourceLoad datLoad;
 
     /**
      * Helper class for displaying a loading bar.
      */
-    private MmgLoadingBar loadingBar;
+    protected MmgLoadingBar loadingBar;
 
     /**
      * The game state this screen has.
      */
-    private final GameStates state;
+    protected final GameStates state;
 
     /**
      * Event handler for firing generic events. Events would fire when the
      * screen has non UI actions to broadcast.
      */
-    private GenericEventHandler handler;
+    protected GenericEventHandler handler;
 
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
      * holds a reference to this game screen object.
      */
-    private final GamePanel owner;
+    protected final GamePanel owner;
 
+    protected long slowDown;
+    
     /**
      * Constructor, sets the loading bar, the loading bar offset, the game state
      * of this game screen, and the GamePanel that owns this game screen.
@@ -68,6 +71,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
         ready = false;
         state = State;
         owner = Owner;
+        slowDown = 0;
     }
 
     /**
@@ -82,23 +86,52 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
         ready = false;
         state = State;
         owner = Owner;
+        slowDown = 0;
     }
 
+    public long GetSlowDown() {
+        return slowDown;
+    }
+
+    public void SetSlowDown(long l) {
+        slowDown = l;
+    }
+   
     /**
      * Sets a generic event handler that will receive generic events from this
      * object.
      *
      * @param Handler A class that implements the GenericEventHandler interface.
      */
-    public final void SetGenericEventHandler(GenericEventHandler Handler) {
+    public void SetGenericEventHandler(GenericEventHandler Handler) {
         handler = Handler;
     }
 
+    public GenericEventHandler GetGenericEventHandler() {
+        return handler;
+    }
+
+    public RunResourceLoad GetLoader() {
+        return datLoad;
+    }
+
+    public void SetLoader(RunResourceLoad DatLoad) {
+        datLoad = DatLoad;
+    }
+
+    public MmgLoadingBar GetLoadingBar() {
+        return loadingBar;
+    }
+
+    public void SetLoadingBar(MmgLoadingBar LoadingBar) {
+        loadingBar = LoadingBar;
+    }
+    
     /**
      * Loads all the resources needed to display this game screen.
      */
     @SuppressWarnings("UnusedAssignment")
-    public final void LoadResources() {
+    public void LoadResources() {
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -112,7 +145,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
         p = new MmgPen();
         p.SetCacheOn(false);
 
-        tB = Helper.GetBasicBmp("../cfg/drawable/loading_background.jpg");
+        tB = Helper.GetBasicBmp("../cfg/drawable/odroid_logo2.png");
         if (tB != null) {
             SetCenteredBackground(tB);
         }
@@ -144,7 +177,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
     /**
      * Unloads resources needed to display this game screen.
      */
-    public final void UnloadResources() {
+    public void UnloadResources() {
         pause = true;
         SetLoadingBar(null, 0);
         SetBackground(null);
@@ -160,7 +193,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
      *
      * @return The game state of this game screen.
      */
-    public final GameStates GetGameState() {
+    public GameStates GetGameState() {
         return state;
     }
 
@@ -170,7 +203,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
      * @param p An MmgPen object to use for drawing this game screen.
      */
     @Override
-    public final void MmgDraw(MmgPen p) {
+    public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {
             super.MmgDraw(p);
         } else {
@@ -183,26 +216,30 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
      *
      * @return A byte array representation of the DAT file.
      */
-    private byte[] GetDatFileData() {
-        byte[] ret = null;
-
+    protected boolean GetResourceFileData() {
         try {
-            //ret = Files.readAllBytes(Paths.get(TyreDatGame.DAT_FILE));
+            Helper.wr("GetResourceFileData: " + GameSettings.AUTO_IMAGE_LOAD_DIR);
+            File ald = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
+            File[] files = ald.listFiles();
+            
+            if(files != null && files.length > 0) {
+                return true;
+            }
+            
         } catch (Exception e) {
             Helper.wrErr(e);
         }
 
-        return ret;
+        return false;
     }
 
     /**
      * Starts the DAT loading worker thread.
      */
-    public final void StartDatLoad() {
-        boolean thin = false;
-        byte[] data = GetDatFileData();
-        if (data != null) {
-            datLoad = new RunDatLoad();
+    public void StartDatLoad() {
+        if (GetResourceFileData()) {
+            datLoad = new RunResourceLoad();
+            datLoad.SetSlowDown(slowDown);
             datLoad.SetUpdateHandler(this);
 
             Runnable r = datLoad;
@@ -216,9 +253,9 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
     /**
      * Stops the DAT load process.
      */
-    public final void StopDatLoad() {
+    public void StopDatLoad() {
         if (datLoad != null) {
-            datLoad.StopDatLoad();
+            datLoad.StopLoad();
         }
     }
 
@@ -229,7 +266,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
      * @param obj The load DAT update message sent.
      */
     @Override
-    public final void HandleUpdate(LoadDatUpdateMessage obj) {
+    public void HandleUpdate(LoadResourceUpdateMessage obj) {
         if (obj != null) {
             float prct = (float) obj.GetPos() / (float) obj.GetLen();
 
@@ -252,7 +289,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
      *
      * @return True if the read was successful, false otherwise.
      */
-    public final boolean GetLoadResult() {
+    public boolean GetLoadResult() {
         if (datLoad != null) {
             return datLoad.GetReadResult();
         } else {
@@ -266,7 +303,7 @@ public final class ScreenLoading extends MmgLoadingScreen implements LoadDatUpda
      *
      * @return True if the load was successful, false otherwise.
      */
-    public final boolean GetLoadComplete() {
+    public boolean GetLoadComplete() {
         if (datLoad != null) {
             return datLoad.GetReadComplete();
         } else {

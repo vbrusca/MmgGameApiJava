@@ -9,22 +9,22 @@ import com.middlemind.Odroid.GamePanel.GameStates;
  *
  * @author Victor G. Brusca
  */
-public final class GenericEventMessage {
+public class GenericEventMessage {
 
     /**
      * The identifier of this generic event message.
      */
-    private final int id;
+    protected final int id;
 
     /**
      * The information payload of this generic event message.
      */
-    private final Object payload;
+    protected final Object payload;
 
     /**
      * The game state of this generic event message.
      */
-    private final GameStates gameState;
+    protected final GameStates gameState;
 
     /**
      * Constructor for the generic event message object, sets the message id,
@@ -45,7 +45,7 @@ public final class GenericEventMessage {
      *
      * @return The id of the message.
      */
-    public final int GetId() {
+    public int GetId() {
         return id;
     }
 
@@ -54,7 +54,7 @@ public final class GenericEventMessage {
      *
      * @return The payload of the message.
      */
-    public final Object GetPayload() {
+    public Object GetPayload() {
         return payload;
     }
 
@@ -63,7 +63,7 @@ public final class GenericEventMessage {
      *
      * @return The game state of the message.
      */
-    public final GameStates GetGameState() {
+    public GameStates GetGameState() {
         return gameState;
     }
 }

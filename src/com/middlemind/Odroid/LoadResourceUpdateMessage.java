@@ -6,17 +6,17 @@ package com.middlemind.Odroid;
  * 
  * @author Victor G. Brusca
  */
-public class LoadDatUpdateMessage {
+public class LoadResourceUpdateMessage {
     
     /**
      * The current position of the DAT load process.
      */
-    private int pos;
+    protected int pos;
     
     /**
      * The length of the DAT binary array.
      */
-    private int len;
+    protected int len;
    
     /**
      * Class constructor sets the current position and the current length of the data.
@@ -24,7 +24,7 @@ public class LoadDatUpdateMessage {
      * @param Pos       The current position of the DAT load process.
      * @param Len       The length of the DAT binary array.
      */
-    public LoadDatUpdateMessage(int Pos, int Len) {
+    public LoadResourceUpdateMessage(int Pos, int Len) {
         pos = Pos;
         len = Len;
     }

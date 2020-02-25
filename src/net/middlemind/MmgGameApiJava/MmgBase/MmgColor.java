@@ -87,11 +87,11 @@ public class MmgColor {
         return new MmgColor(Color.GRAY);
     }    
     
-    public static MmgColor GetDarkGrey() {
+    public static MmgColor GetDarkGray() {
         return new MmgColor(Color.DARK_GRAY);
     }
     
-    public static MmgColor GetLightGrey() {
+    public static MmgColor GetLightGray() {
         return new MmgColor(Color.LIGHT_GRAY);
     }    
     

@@ -7,14 +7,14 @@ import java.io.IOException;
  * @author Victor G. Brusca, Middlemind Games
  * 01/05/2020
  */
-public final class GpioHubRunner implements Runnable {
-    private GpioHub gpioHub;
-    private long pollingIntervalMs = 10;
-    private long start;
-    private long stop;
-    private long diff;
-    private boolean running = false;
-    private GamePadSimple gamePad;
+public class GpioHubRunner implements Runnable {
+    protected GpioHub gpioHub;
+    protected long pollingIntervalMs = 10;
+    protected long start;
+    protected long stop;
+    protected long diff;
+    protected boolean running = false;
+    protected GamePadSimple gamePad;
     
     public GpioHubRunner(GpioHub hub, long intervalMs, GamePadSimple gamePadSimple) {
         gpioHub = hub;
@@ -36,25 +36,25 @@ public final class GpioHubRunner implements Runnable {
         }
     }
 
-    public final long GetPollingIntervalMs() {
+    public long GetPollingIntervalMs() {
         return pollingIntervalMs;
     }
 
-    public final void SetPollingIntervalMs(long intervalMs) {
+    public void SetPollingIntervalMs(long intervalMs) {
         pollingIntervalMs = intervalMs;
     }
 
-    public final boolean IsRunning() {
+    public boolean IsRunning() {
         return running;
     }
 
-    public final void SetRunning(boolean b) {
+    public void SetRunning(boolean b) {
         running = b;
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public final void PollGpio() {
-        if(gpioHub != null && gpioHub.IsPrepped()) {
+    public void PollGpio() {
+        if(gpioHub != null && gpioHub.IsPrepped() && gpioHub.IsGpioEnabled()) {
             try {
                 gpioHub.GetState();
             } catch (IOException e) {
@@ -184,7 +184,7 @@ public final class GpioHubRunner implements Runnable {
     
     @Override
     @SuppressWarnings({"CallToPrintStackTrace", "SleepWhileInLoop"})
-    public final void run() {       
+    public void run() {       
         while(running == true) {
             start = System.currentTimeMillis();
             PollGpio();

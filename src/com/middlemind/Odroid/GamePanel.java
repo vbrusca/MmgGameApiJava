@@ -83,47 +83,47 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * MainFrame that this panel is hosted in.
      */
-    private final MainFrame mf;
+    protected final MainFrame mf;
 
     /**
      * Window width.
      */
-    private final int winWidth;
+    protected final int winWidth;
 
     /**
      * Window height.
      */
-    private final int winHeight;
+    protected final int winHeight;
 
     /**
      * The X coordinate of this panel.
      */
-    private final int myX;
+    protected final int myX;
 
     /**
      * The Y coordinate of this panel.
      */
-    private final int myY;
+    protected final int myY;
 
     /**
      * Window width.
      */
-    private final int sWinWidth;
+    protected final int sWinWidth;
 
     /**
      * Window height.
      */
-    private final int sWinHeight;
+    protected final int sWinHeight;
 
     /**
      * The X coordinate of this panel.
      */
-    private final int sMyX;
+    protected final int sMyX;
 
     /**
      * The Y coordinate of this panel.
      */
-    private final int sMyY;
+    protected final int sMyY;
 
     /**
      * Default target game width.
@@ -148,32 +148,32 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * Paint helper class, used in the paint drawing routine.
      */
-    private Graphics2D g2d;
+    protected Graphics2D g2d;
 
     /**
      * Holds a reference to all game screens.
      */
-    private Hashtable<GameStates, MmgGameScreen> gameScreens;
+    protected Hashtable<GameStates, MmgGameScreen> gameScreens;
 
     /**
      * The current game screen being displayed.
      */
-    private MmgGameScreen currentScreen;
+    protected MmgGameScreen currentScreen;
 
     /**
      * Paint helper class, used to draw Mmg API objects.
      */
-    private final MmgPen p;
+    protected final MmgPen p;
 
     /**
      * Game state helper class, the previous game state.
      */
-    private GameStates prevGameState;
+    protected GameStates prevGameState;
 
     /**
      * Game state helper class, the current game state.
      */
-    private GameStates gameState;
+    protected GameStates gameState;
 
     public static Hashtable<String, Object> VARS = new Hashtable();
 
@@ -181,17 +181,17 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public static String VAR1 = "** EMPTY **";
     public static String VAR2 = "** EMPTY **";
 
-    private Canvas canvas;
-    private BufferStrategy strategy;
-    private BufferedImage background;
-    private Graphics2D backgroundGraphics;
-    private Graphics2D graphics;
-    private final double scale = 1.0;
-    private int updateTick = 0;
-    private long now;
-    private long prev;
-    private final Font debugFont;
-    private Font tmpF;
+    protected Canvas canvas;
+    protected BufferStrategy strategy;
+    protected BufferedImage background;
+    protected Graphics2D backgroundGraphics;
+    protected Graphics2D graphics;
+    protected final double scale = 1.0;
+    protected int updateTick = 0;
+    protected long now;
+    protected long prev;
+    protected final Font debugFont;
+    protected Font tmpF;
     public static GameType GAME_TYPE = GameType.NEW_GAME;
 
     public enum GameType {
@@ -202,10 +202,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public int lastX;
     public int lastY;
     public long lastKeyPressEvent = -1;
-    private Graphics2D bg;
-    private Graphics2D g;
+    protected Graphics2D bg;
+    protected Graphics2D g;
     
     public ScreenSplash screenSplash;
+    public ScreenLoading screenLoading;
 
     /**
      * Constructor, sets the MainFrame, window dimensions, and position of this
@@ -257,6 +258,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         MmgPen.ADV_RENDER_HINTS = true;
         
         screenSplash = new ScreenSplash(GameStates.SPLASH, this);
+        screenLoading = new ScreenLoading(GameStates.LOADING, this);
         
         gameScreens = new Hashtable();
         gameState = GameStates.BLANK;
@@ -379,7 +381,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
     @Override
     public void ProcessDpadClick(int dir) {
-
+        currentScreen.ProcessDpadClick(dir);
     }
 
     @Override
@@ -403,30 +405,30 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
     
     @Override    
-    public final void ProcessAClick() {
+    public void ProcessAClick() {
         currentScreen.ProcessAClick();
     }
 
     @Override    
-    public final void ProcessBClick() {
+    public void ProcessBClick() {
         currentScreen.ProcessBClick();
     }
 
-    public final void ProcessDebugClick() {
+    public void ProcessDebugClick() {
         currentScreen.ProcessDebugClick();
     }
 
     @Override    
-    public final void ProcessDpadPress(int dir) {
+    public void ProcessDpadPress(int dir) {
         currentScreen.ProcessDpadPress(dir);
     }
 
     @Override    
-    public final void ProcessDpadRelease(int dir) {
+    public void ProcessDpadRelease(int dir) {
         currentScreen.ProcessDpadRelease(dir);
     }
-
-    public final void ProcessPress(int x, int y) {
+    
+    public void ProcessPress(int x, int y) {
         //int nx = x;
         //int ny = y;
         int anx = x - MmgScreenData.GetGameLeft() - myX;
@@ -437,7 +439,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         currentScreen.ProcessScreenPress(anx, any);
     }
 
-    public final void ProcessRelease(int x, int y) {
+    public void ProcessRelease(int x, int y) {
         //int nx = x;
         //int ny = y;
         int anx = x - MmgScreenData.GetGameLeft() - myX;
@@ -448,7 +450,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         currentScreen.ProcessScreenRelease(anx, any);
     }
 
-    public final void ProcessClick(int x, int y) {
+    public void ProcessClick(int x, int y) {
         int nx = x;
         int ny = y;
         int anx = x - MmgScreenData.GetGameLeft() - myX;
@@ -466,7 +468,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         currentScreen.ProcessScreenClick(nx, ny);
     }
 
-    public final void PrepBuffers() {
+    public void PrepBuffers() {
         // Background & Buffer
         background = create(winWidth, winHeight, false);
         canvas.createBufferStrategy(2);
@@ -479,7 +481,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     // create a hardware accelerated image
-    public final BufferedImage create(final int width, final int height, final boolean alpha) {
+    public BufferedImage create(final int width, final int height, final boolean alpha) {
         return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
     }
 
@@ -488,7 +490,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      *
      * @return A Hashtable of game screens, MmgGameScreen.
      */
-    public final Hashtable<GameStates, MmgGameScreen> GetGameScreens() {
+    public Hashtable<GameStates, MmgGameScreen> GetGameScreens() {
         return gameScreens;
     }
 
@@ -497,11 +499,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      *
      * @param GameScreens A Hashtable of game screens, MmgGameScreen.
      */
-    public final void SetGameScreens(Hashtable<GameStates, MmgGameScreen> GameScreens) {
+    public void SetGameScreens(Hashtable<GameStates, MmgGameScreen> GameScreens) {
         gameScreens = GameScreens;
     }
 
-    public final Canvas GetCanvas() {
+    public Canvas GetCanvas() {
         return canvas;
     }
     
@@ -510,7 +512,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      *
      * @return A game screen object, MmgGameScreen.
      */
-    public final MmgGameScreen GetCurrentScreen() {
+    public MmgGameScreen GetCurrentScreen() {
         return currentScreen;
     }
 
@@ -519,7 +521,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      *
      * @param CurrentScreen A game screen object.
      */
-    public final void SetCurrentScreen(MmgGameScreen CurrentScreen) {
+    public void SetCurrentScreen(MmgGameScreen CurrentScreen) {
         currentScreen = CurrentScreen;
     }
 
@@ -530,7 +532,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      *
      * @param g The game state to switch to.
      */
-    public final void SwitchGameState(GameStates g) {
+    public void SwitchGameState(GameStates g) {
         Helper.wr("Switching Game State To: " + g);
 
         if (gameState != prevGameState) {
@@ -658,7 +660,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param obj
      */
     @Override
-    public final void HandleGenericEvent(GenericEventMessage obj) {
+    public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {
             Helper.wr("HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {
@@ -681,7 +683,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
-    private Graphics2D GetBuffer() {
+    protected Graphics2D GetBuffer() {
         if (graphics == null) {
             try {
                 graphics = (Graphics2D) strategy.getDrawGraphics();
@@ -692,23 +694,23 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         return graphics;
     }
 
-    public final int GetWinWidth() {
+    public int GetWinWidth() {
         return winWidth;
     }
 
-    public final int GetWinHeight() {
+    public int GetWinHeight() {
         return winHeight;
     }
 
-    public final int GetX() {
+    public int GetX() {
         return myX;
     }
 
-    public final int GetY() {
+    public int GetY() {
         return myY;
     }
 
-    private boolean UpdateScreen() {
+    protected boolean UpdateScreen() {
         graphics.dispose();
         graphics = null;
         try {
@@ -721,7 +723,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
-    public final void UpdateGame() {
+    public void UpdateGame() {
         updateTick++;
 
         prev = now;
@@ -733,7 +735,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
-    public final void RenderGame() {
+    public void RenderGame() {
         if (PAUSE == true || EXIT == true) {
             //do nothing
         } else {

@@ -18,10 +18,10 @@ import org.xml.sax.SAXException;
  */
 public class GameSettingsImporter {
 
-    private Hashtable<String, DatConstantsEntry> values;
-    private String version;
+    protected Hashtable<String, DatConstantsEntry> values;
+    protected String version;
 
-    private void RunImportGameSettings(String xmlFile) throws ParserConfigurationException, SAXException, IOException, Exception {
+    protected void RunImportGameSettings(String xmlFile) throws ParserConfigurationException, SAXException, IOException, Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 

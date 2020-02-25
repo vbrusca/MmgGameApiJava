@@ -7,51 +7,51 @@ package com.middlemind.Odroid;
  *
  * @author Victor G. Brusca
  */
-public final class RunFrameRate implements Runnable {
+public class RunFrameRate implements Runnable {
 
     /**
      * The MainFrame that houses the game, connection between JFrame, JPanel and
      * the game.
      */
-    private final MainFrame mf;
+    protected final MainFrame mf;
 
     /**
      * Target frames per second.
      */
-    private final long tFps;
+    protected final long tFps;
 
     /**
      * Target frame time.
      */
-    private final long tFrameTime;
+    protected final long tFrameTime;
 
     /**
      * Actual frames per second.
      */
-    private long aFps;
-    private long rFps;
+    protected long aFps;
+    protected long rFps;
 
     /**
      * Last frame stop time.
      */
-    private long frameStart;
+    protected long frameStart;
 
     /**
      * Last frame start time.
      */
-    private long frameStop;
+    protected long frameStop;
 
     /**
      * Frame time.
      */
-    private long frameTime;
+    protected long frameTime;
 
     /**
      * Frame time difference from actual time to target time. Used to sleep the
      * few milliseconds between the target time and the actual time if the
      * actual time is less than the target time.
      */
-    private long frameTimeDiff;
+    protected long frameTimeDiff;
 
     /**
      * Pauses the current render loop.
@@ -81,7 +81,7 @@ public final class RunFrameRate implements Runnable {
     /**
      * Pauses the main loop.
      */
-    public final static void Pause() {
+    public static void Pause() {
         PAUSE = true;
     }
 
@@ -90,21 +90,21 @@ public final class RunFrameRate implements Runnable {
      *
      * @return The pause status of the main loop.
      */
-    public final static boolean IsPaused() {
+    public static boolean IsPaused() {
         return PAUSE;
     }
 
     /**
      * UnPauses the main loop.
      */
-    public final static void UnPause() {
+    public static void UnPause() {
         PAUSE = false;
     }
 
     /**
      * Stops the main loop from running.
      */
-    public final static void StopRunning() {
+    public static void StopRunning() {
         RUNNING = false;
     }
 
@@ -113,7 +113,7 @@ public final class RunFrameRate implements Runnable {
      *
      * @return True if running, false otherwise.
      */
-    public final static boolean IsRunning() {
+    public static boolean IsRunning() {
         return RUNNING;
     }
 
@@ -121,7 +121,7 @@ public final class RunFrameRate implements Runnable {
      * Starts running the main loop but only if run is called again. Once the
      * main loop exits the run method returns.
      */
-    public final static void StartRunning() {
+    public static void StartRunning() {
         RUNNING = true;
     }
 
@@ -130,7 +130,7 @@ public final class RunFrameRate implements Runnable {
      *
      * @return The game's frame rate.
      */
-    public final long GetActualFrameRate() {
+    public long GetActualFrameRate() {
         return aFps;
     }
 
@@ -139,7 +139,7 @@ public final class RunFrameRate implements Runnable {
      *
      * @return The game's target frame rate.
      */
-    public final long GetTargetFrameRate() {
+    public long GetTargetFrameRate() {
         return tFps;
     }
 
@@ -148,7 +148,7 @@ public final class RunFrameRate implements Runnable {
      */
     @Override
     @SuppressWarnings("SleepWhileInLoop")
-    public final void run() {
+    public void run() {
         while (RunFrameRate.RUNNING == true) {
             frameStart = System.currentTimeMillis();
 

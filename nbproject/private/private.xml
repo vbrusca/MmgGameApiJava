@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/DatConstantsEntry.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/ScreenLoading.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/ScreenSplash.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/MainFrame.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/OdroidGame.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/GamePadSimple.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/RunDatLoad.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/TestSpace/ScreenTest.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/TestSpace/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgBase/MmgScrollVert.java</file>
         </group>
     </open-files>
 </project-private>

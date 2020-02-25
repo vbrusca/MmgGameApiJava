@@ -18,7 +18,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
  *
  * @author Victor G. Brusca
  */
-public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
+public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
 
     /**
      * Event display time complete id.
@@ -28,19 +28,19 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
     /**
      * The game state this screen has.
      */
-    private final GameStates state;
+    protected final GameStates state;
 
     /**
      * Event handler for firing generic events. Events would fire when the
      * screen has non UI actions to broadcast.
      */
-    private GenericEventHandler handler;
+    protected GenericEventHandler handler;
 
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
      * holds a reference to this game screen object.
      */
-    private final GamePanel owner;
+    protected final GamePanel owner;
 
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -57,7 +57,7 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
         state = State;
         owner = Owner;
         SetUpdateHandler(this);
-        Helper.wr("ScreenSimple: Constructor");
+        Helper.wr("ScreenSplash: Constructor");
     }
 
     /**
@@ -66,10 +66,15 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
      *
      * @param Handler A class that implements the GenericEventHandler interface.
      */
-    public final void SetGenericEventHandler(GenericEventHandler Handler) {
+    public void SetGenericEventHandler(GenericEventHandler Handler) {
+        Helper.wr("Odroid.ScreenSplash.SetGenericEventHandler");
         handler = Handler;
     }
 
+    public GenericEventHandler GetGenericEventHandler() {
+        return handler;
+    }
+        
     /**
      * Public method that fires the local generic event, the listener will
      * receive a display complete event.
@@ -77,7 +82,8 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
      * @param obj The information payload to send along with this message.
      */
     @Override
-    public final void MmgHandleUpdate(Object obj) {
+    public void MmgHandleUpdate(Object obj) {
+        Helper.wr("Odroid.ScreenSplash.MmgHandleUpdate");
         if (handler != null) {
             handler.HandleGenericEvent(new GenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }
@@ -87,7 +93,7 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
      * Loads all the resources needed to display this game screen.
      */
     @SuppressWarnings("UnusedAssignment")
-    public final void LoadResources() {
+    public void LoadResources() {
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -105,13 +111,13 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
 
         ready = true;
         pause = false;
-        Helper.wr("ScreenSimple: LoadResources");
+        Helper.wr("ScreenTest: LoadResources");
     }
 
     /**
      * Unloads resources needed to display this game screen.
      */
-    public final void UnloadResources() {
+    public void UnloadResources() {
         pause = true;
         SetBackground(null);
         ClearObjs();
@@ -123,7 +129,7 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
      *
      * @return The game state of this game screen.
      */
-    public final GameStates GetGameState() {
+    public GameStates GetGameState() {
         return state;
     }
 
@@ -133,7 +139,7 @@ public final class ScreenSplash extends MmgSplashScreen implements MmgUpdateHand
      * @param p An MmgPen object to use for drawing this game screen.
      */
     @Override
-    public final void MmgDraw(MmgPen p) {
+    public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {
             super.MmgDraw(p);
         } else {

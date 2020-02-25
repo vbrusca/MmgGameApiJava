@@ -1,6 +1,7 @@
 package com.middlemind.Odroid;
 
 import com.middlemind.Odroid.GpioPin.GpioButton;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -8,7 +9,7 @@ import java.io.IOException;
  * @author Victor G. Brusca, Middlemind Games
  * 01/05/202
  */
-public final class GpioHub {
+public class GpioHub {
     public static int UP = 0;
     public static int DOWN = 1;
     public static int LEFT = 2;
@@ -18,12 +19,27 @@ public final class GpioHub {
     public static int char0toInt = 48;
     public static int char1toInt = 49;
     
-    private GpioPin[] buttons = null;
-    private Runtime runTime = null;
-    private int tmp;
-    private boolean prepped = false;
+    protected GpioPin[] buttons = null;
+    protected Runtime runTime = null;
+    protected int tmp;
+    protected boolean prepped = false;
+    protected boolean gpioEnabled = false;
     
     public GpioHub() {
+        try {
+            File f = new File("/sys/class/gpio");
+            if(!f.isDirectory() || !f.exists()) {
+                System.out.println("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
+                gpioEnabled = false;
+            } else {
+                System.out.println("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
+                gpioEnabled = true;
+            }
+            
+        }catch(Exception e) {
+            Helper.wrErr(e);
+        }
+               
         buttons = new GpioPin[6];
         buttons[0] = new GpioPin(GameSettings.GpioPinBtnUp, true, false, GpioButton.BtnUp, GameSettings.BtnUpCheckPress, GameSettings.BtnUpCheckRelease, GameSettings.BtnUpCheckClick);
         buttons[1] = new GpioPin(GameSettings.GpioPinBtnDown, true, false, GpioButton.BtnDown, GameSettings.BtnDownCheckPress, GameSettings.BtnDownCheckRelease, GameSettings.BtnDownCheckClick);
@@ -35,79 +51,109 @@ public final class GpioHub {
     }
 
     public GpioHub(GpioPin[] Buttons) {
+       try {
+            File f = new File("/sys/class/gpio");
+            if(!f.isDirectory() || !f.exists()) {
+                System.out.println("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
+                gpioEnabled = false;
+            } else {
+                System.out.println("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
+                gpioEnabled = true;
+            }
+            
+        }catch(Exception e) {
+            Helper.wrErr(e);
+        }        
+        
         buttons = Buttons;
         runTime = Runtime.getRuntime(); 
     }
+
+    public boolean IsGpioEnabled() {
+        return gpioEnabled;
+    }
+
+    public void SetGpioEnabled(boolean b) {
+        this.gpioEnabled = b;
+    }
     
-    public final GpioPin[] GetButtons() {
+    public GpioPin[] GetButtons() {
         return buttons;
     }
-        
-    public final boolean GetDownPressed() {
-        if(buttons[DOWN].checkPressed == true) {
+    
+    public boolean ButtonEnabled(int i) {
+        if(buttons != null && i >= 0 && i < buttons.length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean GetDownPressed() {
+        if(ButtonEnabled(DOWN) && buttons[DOWN].checkPressed == true) {
             return buttons[DOWN].pressed;
         } else {
             return false;
         }
     }
     
-    public final boolean GetDownReleased() {
-        if(buttons[DOWN].checkReleased == true) {
+    public boolean GetDownReleased() {
+        if(ButtonEnabled(DOWN) && buttons[DOWN].checkReleased == true) {
             return buttons[DOWN].released;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetDownClicked() {
-        if(buttons[DOWN].checkClicked == true) {
+    public boolean GetDownClicked() {
+        if(ButtonEnabled(DOWN) && buttons[DOWN].checkClicked == true) {
             return buttons[DOWN].clicked;
         } else {
             return false;
         }
     }
     
-    public final boolean GetUpPressed() {
-        if(buttons[UP].checkPressed == true) {
+    public boolean GetUpPressed() {
+        if(ButtonEnabled(UP) && buttons[UP].checkPressed == true) {
             return buttons[UP].pressed;
         } else {
             return false;
         }
     }
     
-    public final boolean GetUpReleased() {
-        if(buttons[UP].checkReleased == true) {
+    public boolean GetUpReleased() {
+        if(ButtonEnabled(UP) && buttons[UP].checkReleased == true) {
             return buttons[UP].released;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetUpClicked() {
-        if(buttons[UP].checkClicked == true) {
+    public boolean GetUpClicked() {
+        if(ButtonEnabled(UP) && buttons[UP].checkClicked == true) {
             return buttons[UP].clicked;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetLeftPressed() {
-        if(buttons[LEFT].checkPressed == true) {
+    public boolean GetLeftPressed() {
+        if(ButtonEnabled(LEFT) && buttons[LEFT].checkPressed == true) {
             return buttons[LEFT].pressed;
         } else {
             return false;
         }
     }
     
-    public final boolean GetLeftReleased() {
-        if(buttons[LEFT].checkReleased == true) {
+    public boolean GetLeftReleased() {
+        if(ButtonEnabled(LEFT) && buttons[LEFT].checkReleased == true) {
             return buttons[LEFT].released;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetLeftClicked() {
+    public boolean GetLeftClicked() {
         if(buttons[LEFT].checkClicked == true) {
             return buttons[LEFT].clicked;
         } else {
@@ -115,79 +161,79 @@ public final class GpioHub {
         }
     }    
     
-    public final boolean GetRightPressed() {
-        if(buttons[RIGHT].checkPressed == true) {
+    public boolean GetRightPressed() {
+        if(ButtonEnabled(RIGHT) && buttons[RIGHT].checkPressed == true) {
             return buttons[RIGHT].pressed;
         } else {
             return false;
         }
     }
     
-    public final boolean GetRightReleased() {
-        if(buttons[RIGHT].checkReleased == true) {
+    public boolean GetRightReleased() {
+        if(ButtonEnabled(RIGHT) && buttons[RIGHT].checkReleased == true) {
             return buttons[RIGHT].released;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetRightClicked() {
-        if(buttons[RIGHT].checkClicked == true) {
+    public boolean GetRightClicked() {
+        if(ButtonEnabled(RIGHT) && buttons[RIGHT].checkClicked == true) {
             return buttons[RIGHT].clicked;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetAPressed() {
-        if(buttons[A].checkPressed == true) {
+    public boolean GetAPressed() {
+        if(ButtonEnabled(A) && buttons[A].checkPressed == true) {
             return buttons[A].pressed;
         } else {
             return false;
         }
     }
     
-    public final boolean GetAReleased() {
-        if(buttons[A].checkReleased == true) {
+    public boolean GetAReleased() {
+        if(ButtonEnabled(A) && buttons[A].checkReleased == true) {
             return buttons[A].released;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetAClicked() {
-        if(buttons[A].checkClicked == true) {
+    public boolean GetAClicked() {
+        if(ButtonEnabled(A) && buttons[A].checkClicked == true) {
             return buttons[A].clicked;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetBPressed() {
-        if(buttons[B].checkPressed == true) {
+    public boolean GetBPressed() {
+        if(ButtonEnabled(B) && buttons[B].checkPressed == true) {
             return buttons[B].pressed;
         } else {
             return false;
         }
     }
     
-    public final boolean GetBReleased() {
-        if(buttons[B].checkReleased == true) {
+    public boolean GetBReleased() {
+        if(ButtonEnabled(B) && buttons[B].checkReleased == true) {
             return buttons[B].released;
         } else {
             return false;
         }
     }    
     
-    public final boolean GetBClicked() {
-        if(buttons[B].checkClicked == true) {
+    public boolean GetBClicked() {
+        if(ButtonEnabled(B) && buttons[B].checkClicked == true) {
             return buttons[B].clicked;
         } else {
             return false;
         }
     }    
     
-    public final void SetGpioPin(int pinIdx, boolean high) throws IOException {
+    public void SetGpioPin(int pinIdx, boolean high) throws IOException {
         if(buttons != null && (pinIdx >= 0 || pinIdx < buttons.length)) {
             buttons[pinIdx].pinHigh = high;
             if(buttons[pinIdx].pinHigh == true) {
@@ -198,7 +244,7 @@ public final class GpioHub {
         }
     }
     
-    public final void PrepPins() throws IOException {
+    public void PrepPins() throws IOException {
         if(runTime != null && buttons != null) {
             for(GpioPin btn: buttons) {
                 runTime.exec("echo " + btn.pinNum + " > /sys/class/gpio/unexport");
@@ -223,11 +269,11 @@ public final class GpioHub {
         }
     }
         
-    public final boolean IsPrepped() {
+    public boolean IsPrepped() {
         return prepped;
     }
     
-    public final void CleanUp() {
+    public void CleanUp() {
         for(GpioPin btn: buttons) {
             if(btn.pressed == true) {
                 btn.pressed = false;
@@ -239,7 +285,7 @@ public final class GpioHub {
         }   
     }
     
-    public final void GetState() throws IOException {
+    public void GetState() throws IOException {
         for(GpioPin btn: buttons) {
             tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn.pinNum + "/value").getInputStream().read();
             //System.out.println("PinStatus: " + tmp);

@@ -1,5 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import com.middlemind.Odroid.Helper;
 import java.awt.Color;
 
 /**
@@ -24,7 +25,8 @@ public class MmgScrollVert extends MmgObj {
     private MmgColor scrollBarSliderColor = MmgColor.GetRed();    
     
     private int scrollBarWidth = MmgHelper.ScaleValue(10);
-    private int scrollBarSliderHeight = MmgHelper.ScaleValue(10);
+    private int scrollBarSliderHeight = MmgHelper.ScaleValue(30);
+    private int scrollBarSliderButtonHeight = MmgHelper.ScaleValue(5);    
     private int interval = 5;
     private boolean isDirty = false;
     private int offsetY = 0;
@@ -79,6 +81,27 @@ public class MmgScrollVert extends MmgObj {
         interval = Interval;        
     }    
     
+    @Override
+    public void SetX(int inX) {
+        super.SetX(inX);
+        viewPortRect.SetPosition(new MmgVector2(inX, viewPortRect.GetTop()));
+        scrollPaneRect.SetPosition(new MmgVector2(inX, viewPortRect.GetTop()));
+    }
+    
+    @Override
+    public void SetY(int inY) {
+        super.SetX(inY);
+        viewPortRect.SetPosition(new MmgVector2(viewPortRect.GetLeft(), inY));
+        scrollPaneRect.SetPosition(new MmgVector2(viewPortRect.GetLeft(), inY));
+    }    
+    
+    @Override
+    public void SetPosition(MmgVector2 inPos) {
+        super.SetPosition(inPos);
+        viewPortRect.SetPosition(inPos);
+        scrollPaneRect.SetPosition(inPos);
+    }
+            
     public MmgObj GetViewPort() {
         return viewPort;
     }
@@ -159,6 +182,14 @@ public class MmgScrollVert extends MmgObj {
         scrollBarWidth = ScrollBarWidth;
     }
 
+    public int GetScrollBarSliderButtonHeight() {
+        return scrollBarSliderButtonHeight;
+    }
+
+    public void SetScrollBarSliderButtonHeight(int ScrollBarSliderButtonHeight) {
+        scrollBarSliderButtonHeight = ScrollBarSliderButtonHeight;
+    }
+    
     public int GetScrollBarSliderHeight() {
         return scrollBarSliderHeight;
     }
@@ -225,8 +256,29 @@ public class MmgScrollVert extends MmgObj {
         if (GetIsVisible() == true) {
             if (MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX == true) {
                 Color c = p.GetGraphics().getColor();
-                p.GetGraphics().setColor(Color.red);
+
+                p.GetGraphics().setColor(Color.RED);
                 p.DrawRect(this);
+                p.DrawRect(GetX() + GetWidth() - this.scrollBarWidth, GetY(), this.scrollBarWidth, h);
+                
+                p.GetGraphics().setColor(Color.BLUE);
+                p.DrawRect(viewPortRect);
+                
+                p.GetGraphics().setColor(Color.GREEN);
+                p.DrawRect(scrollPaneRect);
+                
+                //slider
+                p.GetGraphics().setColor(Color.ORANGE);
+                p.DrawRect(GetX() + GetWidth() - this.scrollBarWidth, GetY() + this.offsetY, this.scrollBarWidth, this.scrollBarSliderHeight);   
+                
+                //slider button bottom
+                p.GetGraphics().setColor(Color.CYAN);
+                p.DrawRect(GetX() + GetWidth() - this.scrollBarWidth, GetY() + h - this.scrollBarSliderButtonHeight, this.scrollBarWidth, this.scrollBarSliderButtonHeight);                   
+                
+                //slider button top
+                p.GetGraphics().setColor(Color.PINK);
+                p.DrawRect(GetX() + GetWidth() - this.scrollBarWidth, GetY(), this.scrollBarWidth, this.scrollBarSliderButtonHeight);                                   
+                
                 p.GetGraphics().setColor(c);
             }
 

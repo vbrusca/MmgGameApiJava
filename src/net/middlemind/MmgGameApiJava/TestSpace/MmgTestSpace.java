@@ -1,7 +1,13 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.TestSpace;
 
+import com.middlemind.Odroid.DatConstantsEntry;
+import com.middlemind.Odroid.GameSettings;
+import com.middlemind.Odroid.GameSettingsImporter;
 import java.lang.reflect.Field;
 import javax.swing.JFrame;
+import com.middlemind.Odroid.Helper;
+import com.middlemind.Odroid.OdroidGame;
+import com.middlemind.Odroid.RunFrameRate;
 
 /**
  * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT Created on
@@ -9,7 +15,7 @@ import javax.swing.JFrame;
  *
  * @author Victor G. Brusca
  */
-public class OdroidGame {
+public final class MmgTestSpace {
 
     /**
      * The main JPanel that houses the different game screens.
@@ -51,12 +57,15 @@ public class OdroidGame {
      */
     public static long FPS = 16l;
 
+    public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
+    public static String DAT_FILE = "../cfg/data/chapter2.dat";
+
     /**
      * Base engine config files.
      */
     public static String ENGINE_CONFIG_FILE = "../cfg/engine_config.xml";
 
-    public static GamePanel pnlGame;    
+    public static GamePanel pnlGame;
     
     /**
      * Method that searches an array for a string match.
@@ -165,9 +174,9 @@ public class OdroidGame {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (OdroidGame.ENGINE_CONFIG_FILE != null && OdroidGame.ENGINE_CONFIG_FILE.equals("") == false) {
+            if (MmgTestSpace.ENGINE_CONFIG_FILE != null && MmgTestSpace.ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(OdroidGame.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(MmgTestSpace.ENGINE_CONFIG_FILE);
                 System.out.println("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
@@ -187,7 +196,6 @@ public class OdroidGame {
                                 System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
                             }
-
                         }
                     } catch (Exception e) {
                         System.out.println("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
@@ -204,22 +212,15 @@ public class OdroidGame {
         Helper.wr("TyreDatGame Panel Width: " + PANEL_WIDTH);
         Helper.wr("TyreDatGame Panel Height: " + PANEL_HEIGHT);
 
-        mf = new MainFrame(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT);
+        mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT);
         pnlGame = new GamePanel(mf, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, (OdroidGame.WIN_WIDTH - OdroidGame.PANEL_WIDTH) / 2, (OdroidGame.WIN_HEIGHT - OdroidGame.PANEL_HEIGHT) / 2);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT);
+        mf.setSize(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
-        mf.setName(GameSettings.NAME);
-
-        if (GameSettings.DEVELOPMENT_MODE_ON == false) {
-            mf.setTitle(GameSettings.TITLE);
-        } else {
-            mf.setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
-        }
 
         mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mf.GetGamePanel().PrepBuffers();
