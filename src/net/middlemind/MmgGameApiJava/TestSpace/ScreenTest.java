@@ -4,7 +4,12 @@ import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
+import java.awt.Color;
+import java.awt.Graphics;
+import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
@@ -12,7 +17,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
 /**
@@ -22,7 +26,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
  * @author Victor G. Brusca
  * 02/25/2020
  */
-public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
+public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
 
     /**
      * The game state this screen has.
@@ -44,6 +48,9 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
     protected MmgScrollVert scrollVert;
     protected MmgScrollHor scrollHor;    
     
+    private MmgBmp bground;
+    private Mmg9Slice menuBground;    
+    
     /**
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
@@ -58,7 +65,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         ready = false;
         gameState = State;
         owner = Owner;
-        SetMmgUpdateHandler(this);
+        //SetMmgUpdateHandler(this);
         Helper.wr("ScreenTest: Constructor");
     }
 
@@ -83,6 +90,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
      *
      * @param obj The information payload to send along with this message.
      */
+    /*
     @Override
     public void MmgHandleUpdate(Object obj) {
         Helper.wr("Odroid.ScreenTest.MmgHandleUpdate");
@@ -90,7 +98,8 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
             handler.HandleGenericEvent(new GenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }
     }
-
+    */
+    
     /**
      * Loads all the resources needed to display this game screen.
      */
@@ -107,11 +116,17 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         p = new MmgPen();
         p.SetCacheOn(false);
 
-        //tB = Helper.GetBasicBmp("../cfg/drawable/logo_large.jpg");
-        //if (tB != null) {
-        //    SetCenteredBackground(tB);
-        //}
-
+        int totalWidth = 210;
+        int totalHeight = 210;
+        
+        bground = Helper.GetBasicCachedBmp("popup_window_base.png");
+        menuBground = new Mmg9Slice(16, bground, totalWidth, totalHeight);
+        menuBground.SetPosition(MmgVector2.GetOriginVec());
+        menuBground.SetWidth(totalWidth);
+        menuBground.SetHeight(totalHeight);
+        MmgHelper.CenterHorAndVert(menuBground);
+        AddObj(menuBground);
+        
         int sWidth = 0;
         int sHeight = 0;
         MmgObj vPort = null;
@@ -137,6 +152,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         scrollVert.SetIsVisible(true);
         scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
         scrollVert.SetHeight(sHeight);
+        scrollVert.SetHandler(this);        
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollVert);
         //scrollVert.SetPosition(new MmgVector2(50, 50));
@@ -152,6 +168,7 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
         scrollHor.SetIsVisible(true);
         scrollHor.SetWidth(sWidth);
         scrollHor.SetHeight(sHeight + scrollHor.GetScrollBarHeight());
+        scrollHor.SetHandler(this);
         MmgScrollHor.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollHor);
         AddObj(scrollHor);
@@ -267,9 +284,21 @@ public class ScreenTest extends MmgGameScreen implements MmgUpdateHandler {
     public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {            
             super.MmgDraw(p);
+            
+            Graphics g = p.GetGraphics();
+            Color ct = g.getColor();
+            g.setColor(Color.WHITE);
+            g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
+            g.setColor(ct);
+            
             super.GetObjects().MmgDraw(p);
         } else {
             //do nothing
         }
+    }
+
+    @Override
+    public void HandleGenericEvent(GenericEventMessage obj) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
