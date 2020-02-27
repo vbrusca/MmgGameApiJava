@@ -16,6 +16,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHorVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
@@ -46,7 +47,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     protected final GamePanel owner;
     
     protected MmgScrollVert scrollVert;
-    protected MmgScrollHor scrollHor;    
+    protected MmgScrollHor scrollHor;
+    protected MmgScrollHorVert scrollBoth;
     
     private MmgBmp bground;
     private Mmg9Slice menuBground;    
@@ -116,16 +118,15 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         p = new MmgPen();
         p.SetCacheOn(false);
 
-        int totalWidth = 210;
-        int totalHeight = 210;
-        
+        int totalWidth = MmgHelper.ScaleValue(210);
+        int totalHeight = MmgHelper.ScaleValue(235);
         bground = Helper.GetBasicCachedBmp("popup_window_base.png");
         menuBground = new Mmg9Slice(16, bground, totalWidth, totalHeight);
         menuBground.SetPosition(MmgVector2.GetOriginVec());
         menuBground.SetWidth(totalWidth);
         menuBground.SetHeight(totalHeight);
         MmgHelper.CenterHorAndVert(menuBground);
-        AddObj(menuBground);
+        //AddObj(menuBground);
         
         int sWidth = 0;
         int sHeight = 0;
@@ -136,11 +137,13 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         int sBarWidth = 0;
         int sBarSldrHeight = 0;     
         int interval = 0;                
+        int hund2 = MmgHelper.ScaleValue(200);
+        int hund4 = MmgHelper.ScaleValue(400);
         
-        sWidth = 200;
-        sHeight = 200;
-        vPort = new MmgObj(0, 0, 200, 200, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, 200, 400, true, MmgColor.GetBlue());        
+        sWidth = MmgHelper.ScaleValue(200);
+        sHeight = MmgHelper.ScaleValue(200);        
+        vPort = new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, hund2, hund4, true, MmgColor.GetBlue());        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         sBarWidth = MmgHelper.ScaleValue(15);
@@ -152,14 +155,14 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollVert.SetIsVisible(true);
         scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
         scrollVert.SetHeight(sHeight);
-        scrollVert.SetHandler(this);        
+        scrollVert.SetHandler(this);    
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollVert);
         //scrollVert.SetPosition(new MmgVector2(50, 50));
         //AddObj(scrollVert);
         
-        vPort = new MmgObj(0, 0, 200, 200, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, 400, 200, true, MmgColor.GetBlue());        
+        vPort = new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, hund4, hund2, true, MmgColor.GetBlue());        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         
@@ -171,7 +174,22 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollHor.SetHandler(this);
         MmgScrollHor.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollHor);
-        AddObj(scrollHor);
+        //AddObj(scrollHor);
+        
+        vPort = new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed());
+        sPane = new MmgObj(0, 0, hund4, hund4, true, MmgColor.GetBlue());        
+        sBarColor = MmgColor.GetLightGray();
+        sBarSldrColor = MmgColor.GetGray();        
+        
+        scrollBoth = new MmgScrollHorVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarWidth, sBarSldrHeight, sBarSldrHeight, interval, interval, gameState);
+        //scrollBoth = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
+        scrollBoth.SetIsVisible(true);
+        scrollBoth.SetWidth(sWidth + scrollBoth.GetScrollBarWidth());
+        scrollBoth.SetHeight(sHeight + scrollBoth.GetScrollBarHeight());
+        scrollBoth.SetHandler(this);
+        MmgScrollHorVert.SHOW_CONTROL_BOUNDING_BOX = true;
+        MmgHelper.CenterHorAndVert(scrollBoth);
+        AddObj(scrollBoth);
         
         ready = true;
         pause = false;
@@ -228,9 +246,10 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     @Override
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTest.ProcessDpadRelease: " + dir);
-        if(scrollVert.ProcessDpadRelease(dir) || scrollHor.ProcessDpadRelease(dir)) {
-            return true;
-        }        
+        scrollVert.ProcessDpadRelease(dir);
+        scrollHor.ProcessDpadRelease(dir);
+        scrollBoth.ProcessDpadRelease(dir);
+
         return false;
     }
     
@@ -249,9 +268,9 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     @Override
     public boolean ProcessScreenClick(int x, int y) {
         Helper.wr("ScreenTest.ProcessScreenClick");
-        if(scrollVert.ProcessScreenClick(x, y) || scrollHor.ProcessScreenClick(x, y)) {
-            return true;
-        }
+        scrollVert.ProcessScreenClick(x, y);
+        scrollHor.ProcessScreenClick(x, y);
+        scrollBoth.ProcessScreenClick(x, y);
         
         return false;
     }    
@@ -285,11 +304,14 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         if (pause == false && GetIsVisible() == true) {            
             super.MmgDraw(p);
             
+            /*
             Graphics g = p.GetGraphics();
             Color ct = g.getColor();
             g.setColor(Color.WHITE);
-            g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
+            //g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
+            g.fillRect(GetX(), GetY(), w, h);
             g.setColor(ct);
+            */
             
             super.GetObjects().MmgDraw(p);
         } else {
@@ -299,6 +321,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
 
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Helper.wr("ScreenTest.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgVector2 v2 = (MmgVector2)obj.payload;
+        Helper.wr("ScreenTest.HandleGenericEvent: " + v2.ToString());
     }
 }

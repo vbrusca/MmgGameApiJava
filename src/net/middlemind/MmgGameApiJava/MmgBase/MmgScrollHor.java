@@ -6,6 +6,7 @@ import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
 import java.awt.Color;
+import java.awt.Graphics;
 
 /**
  *
@@ -243,10 +244,10 @@ public class MmgScrollHor extends MmgObj {
     public boolean ProcessScreenClick(int x, int y) {
         boolean ret = false;
         
-        if(MmgHelper.RectCollision(x, y, 3, 3, viewPortRect)) {
-            MmgDebug.wr("viewPort click");
+        if(MmgHelper.RectCollision(x, y, viewPortRect)) {
+            MmgDebug.wr("viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane, y), gameState));
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y - GetY()), gameState));
             }
             ret = true;
             
@@ -254,7 +255,7 @@ public class MmgScrollHor extends MmgObj {
             //MmgDebug.wr("scrollPane click");
             //ret = true;
                         
-        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x, y, 3, 3, sliderLeftButtonRect)) {
+        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x, y, sliderLeftButtonRect)) {
             MmgDebug.wr("ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
@@ -267,7 +268,7 @@ public class MmgScrollHor extends MmgObj {
             isDirty = true;
             ret = true;
             
-        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x, y, 3, 3, sliderRightButtonRect)) {            
+        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x, y, sliderRightButtonRect)) {            
             MmgDebug.wr("ProcessScreenClick.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderWidth) {
                 offsetXScrollBarSlider += intervalX;
@@ -372,21 +373,21 @@ public class MmgScrollHor extends MmgObj {
         PrepDimensions();        
     }
 
-    public int GetScrollBarSliderButtonHeight() {
+    public int GetScrollBarSliderButtonWidth() {
         return scrollBarSliderButtonWidth;
     }
 
-    public void SetScrollBarSliderButtonHeight(int ScrollBarSliderButtonHeight) {
-        scrollBarSliderButtonWidth = ScrollBarSliderButtonHeight;
+    public void SetScrollBarSliderButtonWidth(int ScrollBarSliderButtonWidth) {
+        scrollBarSliderButtonWidth = ScrollBarSliderButtonWidth;
         PrepDimensions();        
     }
     
-    public int GetScrollBarSliderHeight() {
+    public int GetScrollBarSliderWidth() {
         return scrollBarSliderWidth;
     }
 
-    public void SetScrollBarSliderHeight(int ScrollBarSliderHeight) {
-        scrollBarSliderWidth = ScrollBarSliderHeight;
+    public void SetScrollBarSliderWidth(int ScrollBarSliderWidth) {
+        scrollBarSliderWidth = ScrollBarSliderWidth;
         PrepDimensions();
     }
 
@@ -420,7 +421,7 @@ public class MmgScrollHor extends MmgObj {
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(GetIsVisible() == true) {
             if(isDirty) {
-                sliderRect.SetPosition(new MmgVector2(GetX() + this.scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderRect.GetTop()));
+                sliderRect.SetPosition(new MmgVector2(GetX() + scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderRect.GetTop()));
                 scrollPaneRect.SetPosition(new MmgVector2(GetX() - offsetXScrollPane, scrollPaneRect.GetTop()));
             
                 if(slider != null) {
@@ -477,6 +478,19 @@ public class MmgScrollHor extends MmgObj {
                 p.GetGraphics().setColor(c);
             }
 
+            Graphics g = p.GetGraphics();
+            Color ct = g.getColor();
+            g.setColor(Color.WHITE);
+            g.fillRect(GetX(), GetY(), w, h - scrollBarHeight);
+                       
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(GetX(), GetY(), 100, 100);            
+            
+            g.setColor(Color.cyan);
+            g.fillRect(GetX(), GetY(), 50, 50);
+            
+            g.setColor(ct);
+            
             if(scrollBarHorVisible) {            
                 if(sliderLeftButton != null) {
                     p.DrawBmp(sliderLeftButton);

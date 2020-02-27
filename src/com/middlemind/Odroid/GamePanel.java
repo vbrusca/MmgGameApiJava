@@ -207,7 +207,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     
     public ScreenSplash screenSplash;
     public ScreenLoading screenLoading;
-
+    public int mouseOffsetX = 12;
+    public int mouseOffsetY = -10;    
+        
     /**
      * Constructor, sets the MainFrame, window dimensions, and position of this
      * JPanel.
@@ -429,32 +431,32 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
     
     public void ProcessPress(int x, int y) {
-        //int nx = x;
-        //int ny = y;
-        int anx = x - MmgScreenData.GetGameLeft() - myX;
-        int any = y - MmgScreenData.GetGameTop() - myY;
+        int nx = x - mouseOffsetX - myX;
+        int ny = y - mouseOffsetY - myY;
+        //int anx = x - MmgScreenData.GetGameLeft() - myX;
+        //int any = y - MmgScreenData.GetGameTop() - myY;
 
-        Helper.wr("GamePanel: ProcessPress Original: " + x + ", " + y);
-        Helper.wr("GamePanel: ProcessPress Adjusted: " + anx + ", " + any);
-        currentScreen.ProcessScreenPress(anx, any);
+        //Helper.wr("GamePanel: ProcessPress Original: " + nx + ", " + ny);
+        //Helper.wr("GamePanel: ProcessPress Adjusted: " + anx + ", " + any);
+        currentScreen.ProcessScreenPress(nx, ny);
     }
 
     public void ProcessRelease(int x, int y) {
-        //int nx = x;
-        //int ny = y;
-        int anx = x - MmgScreenData.GetGameLeft() - myX;
-        int any = y - MmgScreenData.GetGameTop() - myY;
+        int nx = x - mouseOffsetX - myX;
+        int ny = y - mouseOffsetY - myY;
+        //int anx = x - MmgScreenData.GetGameLeft() - myX;
+        //int any = y - MmgScreenData.GetGameTop() - myY;
 
-        Helper.wr("GamePanel: ProcessRelease Original: " + x + ", " + y);
-        Helper.wr("GamePanel: ProcessRelease Adjusted: " + anx + ", " + any);        
-        currentScreen.ProcessScreenRelease(anx, any);
+        //Helper.wr("GamePanel: ProcessRelease Original: " + nx + ", " + ny);
+        //Helper.wr("GamePanel: ProcessRelease Adjusted: " + anx + ", " + any);        
+        currentScreen.ProcessScreenRelease(nx, ny);
     }
 
     public void ProcessClick(int x, int y) {
-        int nx = x;
-        int ny = y;
-        int anx = x - MmgScreenData.GetGameLeft() - myX;
-        int any = y - MmgScreenData.GetGameTop() - myY;
+        int nx = x - mouseOffsetX - myX;
+        int ny = y - mouseOffsetY - myY;
+        //int anx = x - MmgScreenData.GetGameLeft() - myX;
+        //int any = y - MmgScreenData.GetGameTop() - myY;
 
         //Helper.wr("Mouse Clicked Orig: X: " + x + " Y: " + y);
         //Helper.wr("Mouse Clicked Adjusted: X: " + nx + " Y: " + ny);
@@ -463,8 +465,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         //Helper.wr("GamePanel Offset X: " + myX);
         //Helper.wr("GamePanel Offset Y: " + myY);
         
-        Helper.wr("GamePanel: ProcessClick Original: " + x + ", " + y);
-        Helper.wr("GamePanel: ProcessClick Adjusted: " + anx + ", " + any);        
+        //Helper.wr("GamePanel: ProcessClick Original: " + x + ", " + y);
+        //Helper.wr("GamePanel: ProcessClick Adjusted: " + anx + ", " + any);        
         currentScreen.ProcessScreenClick(nx, ny);
     }
 
