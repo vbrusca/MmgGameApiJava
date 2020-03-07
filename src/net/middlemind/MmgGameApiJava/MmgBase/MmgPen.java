@@ -115,6 +115,45 @@ public class MmgPen {
     }
 
     /**
+     * Drawing method to use for drawing text to the screen at the specified position.
+     * 
+     * @param f     The MmgFont object to draw.
+     * @param x     The x position to draw the object.
+     * @param y     The y position to draw the object.
+     * @see MmgFont
+     */
+    public void DrawText(MmgFont f, int x, int y) {
+        tmpF = pen.getFont();
+        tmpC = pen.getColor();
+                
+        pen.setColor(f.GetMmgColor().GetColor());
+        pen.setFont(f.GetFont());
+        pen.drawString(f.GetText(), x, y);
+        
+        pen.setFont(tmpF);
+        pen.setColor(tmpC);
+    }    
+    
+    /**
+     * Drawing method to use for drawing text to the screen at the specified position.
+     * 
+     * @param f     The MmgFont object to draw.
+     * @param pos   The position to draw the object.
+     * @see MmgFont
+     */
+    public void DrawText(MmgFont f, MmgVector2 pos) {
+        tmpF = pen.getFont();
+        tmpC = pen.getColor();
+                
+        pen.setColor(f.GetMmgColor().GetColor());
+        pen.setFont(f.GetFont());
+        pen.drawString(f.GetText(), pos.GetX(), pos.GetY());
+        
+        pen.setFont(tmpF);
+        pen.setColor(tmpC);
+    }    
+    
+    /**
      * Rotate the given image by the given degrees.
      * 
      * @param width     The width of the image.
