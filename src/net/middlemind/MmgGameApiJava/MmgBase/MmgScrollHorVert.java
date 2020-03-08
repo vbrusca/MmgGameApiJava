@@ -4,7 +4,6 @@ import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GameSettings;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
-import com.middlemind.Odroid.Helper;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -14,12 +13,12 @@ import java.awt.Graphics;
  * 02/26/2020
  */
 public class MmgScrollHorVert extends MmgObj {
-    private MmgObj viewPort = null;
+    private MmgBmp viewPort = null;
     private MmgRect viewPortRect = null;  
     private int viewPortWidth = 0;
     private int viewPortHeight = 0;
     
-    private MmgObj scrollPane = null;
+    private MmgBmp scrollPane = null;
     private MmgRect scrollPaneRect = null;
     private int scrollPaneWidth = 0;
     private int scrollPaneHeight = 0;
@@ -78,7 +77,7 @@ public class MmgScrollHorVert extends MmgObj {
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
     public static int SCROLL_BOTH_CLICK_EVENT_ID = 2;
     
-    public MmgScrollHorVert(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY, GameStates GameState) {
+    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY, GameStates GameState) {
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHorHeight = ScrollBarHeight;
@@ -101,7 +100,7 @@ public class MmgScrollHorVert extends MmgObj {
         }
     }
 
-    public MmgScrollHorVert(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY, GameStates GameState) {
+    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY, GameStates GameState) {
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarColor = ScrollBarColor;
@@ -128,19 +127,19 @@ public class MmgScrollHorVert extends MmgObj {
         viewPortWidth = viewPortRect.GetWidth();
         viewPortHeight = viewPortRect.GetHeight();
         
-        sliderLeftButton = Helper.GetBasicCachedBmp("scroll_bar_left_sm.png");
-        sliderRightButton = Helper.GetBasicCachedBmp("scroll_bar_right_sm.png");
-        sliderBottomButton = Helper.GetBasicCachedBmp("scroll_bar_down_sm.png");
-        sliderTopButton = Helper.GetBasicCachedBmp("scroll_bar_up_sm.png");
+        sliderLeftButton = MmgHelper.GetBasicCachedBmp("scroll_bar_left_sm.png");
+        sliderRightButton = MmgHelper.GetBasicCachedBmp("scroll_bar_right_sm.png");
+        sliderBottomButton = MmgHelper.GetBasicCachedBmp("scroll_bar_down_sm.png");
+        sliderTopButton = MmgHelper.GetBasicCachedBmp("scroll_bar_up_sm.png");
         
-        sliderHor = Helper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
+        sliderHor = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
         if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
             scrollBarSliderButtonWidth = sliderLeftButton.GetWidth();
             scrollBarHorHeight = sliderLeftButton.GetHeight();
             scrollBarHorSliderWidth = sliderHor.GetWidth();            
         }
         
-        sliderVert = Helper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
+        sliderVert = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
         if(sliderTopButton != null && sliderBottomButton != null && sliderVert != null) {
             scrollBarSliderButtonHeight = sliderTopButton.GetHeight();
             scrollBarVertWidth = sliderTopButton.GetWidth();
@@ -469,20 +468,20 @@ public class MmgScrollHorVert extends MmgObj {
         return ret;
     }
     
-    public MmgObj GetViewPort() {
+    public MmgBmp GetViewPort() {
         return viewPort;
     }
 
-    public void SetViewPort(MmgObj ViewPort) {
+    public void SetViewPort(MmgBmp ViewPort) {
         viewPort = ViewPort;
         PrepDimensions();
     }
 
-    public MmgObj GetScrollPane() {
+    public MmgBmp GetScrollPane() {
         return scrollPane;
     }
 
-    public void SetScrollPane(MmgObj ScrollPane) {
+    public void SetScrollPane(MmgBmp ScrollPane) {
         scrollPane = ScrollPane;
         PrepDimensions();        
     }

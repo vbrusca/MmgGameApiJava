@@ -130,8 +130,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         
         int sWidth = 0;
         int sHeight = 0;
-        MmgObj vPort = null;
-        MmgObj sPane = null;
+        MmgBmp vPort = null;
+        MmgBmp sPane = null;
         MmgColor sBarColor;
         MmgColor sBarSldrColor;
         int sBarWidth = 0;
@@ -142,8 +142,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         
         sWidth = MmgHelper.ScaleValue(200);
         sHeight = MmgHelper.ScaleValue(200);        
-        vPort = new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, hund2, hund4, true, MmgColor.GetBlue());        
+        vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
+        sPane = new MmgBmp(new MmgObj(0, 0, hund2, hund4, true, MmgColor.GetBlue()));        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         sBarWidth = MmgHelper.ScaleValue(15);
@@ -161,8 +161,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         //scrollVert.SetPosition(new MmgVector2(50, 50));
         //AddObj(scrollVert);
         
-        vPort = new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, hund4, hund2, true, MmgColor.GetBlue());        
+        vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
+        sPane = new MmgBmp(new MmgObj(0, 0, hund4, hund2, true, MmgColor.GetBlue()));        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         
@@ -176,8 +176,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         MmgHelper.CenterHorAndVert(scrollHor);
         //AddObj(scrollHor);
         
-        vPort = new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed());
-        sPane = new MmgObj(0, 0, hund4, hund4, true, MmgColor.GetBlue());        
+        vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
+        sPane = new MmgBmp(new MmgObj(0, 0, hund4, hund4, true, MmgColor.GetBlue()));        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();        
         

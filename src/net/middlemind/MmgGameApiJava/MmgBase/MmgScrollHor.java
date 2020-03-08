@@ -4,7 +4,6 @@ import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GameSettings;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
-import com.middlemind.Odroid.Helper;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -14,11 +13,11 @@ import java.awt.Graphics;
  * 01/16/2020
  */
 public class MmgScrollHor extends MmgObj {
-    private MmgObj viewPort = null;
+    private MmgBmp viewPort = null;
     private MmgRect viewPortRect = null;  
     private int viewPortWidth = 0;
     
-    private MmgObj scrollPane = null;
+    private MmgBmp scrollPane = null;
     private MmgRect scrollPaneRect = null;
     private int scrollPaneWidth = 0;
     
@@ -52,7 +51,7 @@ public class MmgScrollHor extends MmgObj {
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
     public static int SCROLL_HOR_CLICK_EVENT_ID = 0;
     
-    public MmgScrollHor(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarSliderWidth, int Interval, GameStates GameState) {
+    public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarSliderWidth, int Interval, GameStates GameState) {
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHeight = ScrollBarHeight;
@@ -67,7 +66,7 @@ public class MmgScrollHor extends MmgObj {
         }        
     }
 
-    public MmgScrollHor(MmgObj ViewPort, MmgObj ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int Interval, GameStates GameState) {
+    public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int Interval, GameStates GameState) {
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarColor = ScrollBarColor;
@@ -88,9 +87,9 @@ public class MmgScrollHor extends MmgObj {
         viewPortRect = new MmgRect(left, top, bottom, right);
         viewPortWidth = viewPortRect.GetWidth();
         
-        sliderLeftButton = Helper.GetBasicCachedBmp("scroll_bar_left_sm.png");
-        sliderRightButton = Helper.GetBasicCachedBmp("scroll_bar_right_sm.png");
-        slider = Helper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
+        sliderLeftButton = MmgHelper.GetBasicCachedBmp("scroll_bar_left_sm.png");
+        sliderRightButton = MmgHelper.GetBasicCachedBmp("scroll_bar_right_sm.png");
+        slider = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
         if(sliderLeftButton != null && sliderRightButton != null && slider != null) {
             scrollBarSliderButtonWidth = sliderLeftButton.GetWidth();
             scrollBarHeight = sliderLeftButton.GetHeight();
@@ -290,20 +289,20 @@ public class MmgScrollHor extends MmgObj {
         return ret;
     }
     
-    public MmgObj GetViewPort() {
+    public MmgBmp GetViewPort() {
         return viewPort;
     }
 
-    public void SetViewPort(MmgObj ViewPort) {
+    public void SetViewPort(MmgBmp ViewPort) {
         viewPort = ViewPort;
         PrepDimensions();
     }
 
-    public MmgObj GetScrollPane() {
+    public MmgBmp GetScrollPane() {
         return scrollPane;
     }
 
-    public void SetScrollPane(MmgObj ScrollPane) {
+    public void SetScrollPane(MmgBmp ScrollPane) {
         scrollPane = ScrollPane;
         PrepDimensions();        
     }
