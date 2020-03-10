@@ -1,6 +1,9 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.Random;
@@ -12,13 +15,24 @@ import javax.imageio.ImageIO;
  * @author Victor G. Brusca
  */
 public class MmgHelper {
-
+   
     /**
      * Controls if logging is turned on or off.
      */
     public static boolean LOGGING = true;
     public static boolean BMP_CACHE_ON = true;
     private static Random rando = new Random(System.currentTimeMillis());    
+
+    public static MmgDrawableBmpSet CreateScaledDrawableBmpSet(int width, int height, boolean alpha) {
+        MmgDrawableBmpSet dBmpSet = new MmgDrawableBmpSet();
+        dBmpSet.buffImg = MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        dBmpSet.graphics = (Graphics2D)dBmpSet.buffImg.getGraphics();
+        dBmpSet.p = new MmgPen();
+        dBmpSet.p.SetGraphics(dBmpSet.graphics);
+        dBmpSet.p.SetAdvRenderHints();
+        dBmpSet.img = new MmgBmp(dBmpSet.buffImg);
+        return dBmpSet;
+    }
     
     public static boolean RectCollision(int x, int y, MmgRect r) {
         if(x >= r.GetLeft() && x <= r.GetRight()) {

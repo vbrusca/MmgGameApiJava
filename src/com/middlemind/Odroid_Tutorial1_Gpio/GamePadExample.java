@@ -1,4 +1,4 @@
-package com.middlemind.OdroidGpio;
+package com.middlemind.Odroid_Tutorial1_Gpio;
 
 import com.middlemind.Odroid.GamePadSimple;
 
