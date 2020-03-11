@@ -1,5 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Transparency;
@@ -33,6 +34,15 @@ public class MmgHelper {
         dBmpSet.img = new MmgBmp(dBmpSet.buffImg);
         return dBmpSet;
     }
+    
+    public static MmgDrawableBmpSet CreateScaledDrawableBmpSet(int width, int height, boolean alpha, MmgColor color) {
+        MmgDrawableBmpSet dBmpSet = CreateScaledDrawableBmpSet(width, height, alpha);
+        Color c = dBmpSet.graphics.getColor();
+        dBmpSet.graphics.setColor(color.GetColor());
+        dBmpSet.graphics.fillRect(0, 0, width, height);
+        dBmpSet.graphics.setColor(c);
+        return dBmpSet;
+    }    
     
     public static boolean RectCollision(int x, int y, MmgRect r) {
         if(x >= r.GetLeft() && x <= r.GetRight()) {

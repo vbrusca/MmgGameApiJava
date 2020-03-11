@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp.MmgBmpDrawMode;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgLoadingBar;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgLoadingScreen;
@@ -146,6 +147,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         p.SetCacheOn(false);
 
         tB = Helper.GetBasicBmp("../cfg/drawable/odroid_logo2.png");
+        tB = MmgBmpScaler.ScaleMmgBmp(tB, 0.5, true);        
         if (tB != null) {
             SetCenteredBackground(tB);
         }

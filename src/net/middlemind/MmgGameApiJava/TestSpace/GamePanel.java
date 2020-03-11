@@ -18,12 +18,12 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
         
     protected ScreenTest screenTest;
     
-    public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y) {
-        super(Mf, WinWidth, WinHeight, X, Y);
+    public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
+        super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         Helper.wr("TestSpace.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
-        screenLoading.SetSlowDown(0);
+        screenLoading.SetSlowDown(500);
         
         screenTest = new ScreenTest(GameStates.GAME_SCREEN_01, this);
         screenTest.Pause();

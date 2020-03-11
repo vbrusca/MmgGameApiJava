@@ -53,6 +53,16 @@ public final class MmgTestSpace {
     public static int PANEL_HEIGHT = 596; //416;
 
     /**
+     * The game width.
+     */
+    public static int GAME_WIDTH = 854;
+
+    /**
+     * The game height.
+     */
+    public static int GAME_HEIGHT = 416;    
+    
+    /**
      * The frame rate for the game, frames per second.
      */
     public static long FPS = 16l;
@@ -170,6 +180,16 @@ public final class MmgTestSpace {
             if (res != null) {
                 ENGINE_CONFIG_FILE = res.split("=")[1];
             }
+            
+            res = ArrayHasEntryLike("ODROID=true", args);
+            if(res == null) {
+                WIN_WIDTH = 480;
+                WIN_HEIGHT = 320;
+                PANEL_WIDTH = 478;
+                PANEL_HEIGHT = 318;
+                GAME_WIDTH = 478;
+                GAME_HEIGHT = 318;
+            }            
         }
 
         //LOAD ENGINE CONFIG FILE
@@ -211,9 +231,11 @@ public final class MmgTestSpace {
         Helper.wr("TyreDatGame Window Height: " + WIN_HEIGHT);
         Helper.wr("TyreDatGame Panel Width: " + PANEL_WIDTH);
         Helper.wr("TyreDatGame Panel Height: " + PANEL_HEIGHT);
+        Helper.wr("TyreDatGame Game Width: " + GAME_WIDTH);
+        Helper.wr("TyreDatGame Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT);
-        pnlGame = new GamePanel(mf, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, (OdroidGame.WIN_WIDTH - OdroidGame.PANEL_WIDTH) / 2, (OdroidGame.WIN_HEIGHT - OdroidGame.PANEL_HEIGHT) / 2);
+        mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, (MmgTestSpace.WIN_WIDTH - MmgTestSpace.PANEL_WIDTH) / 2, (MmgTestSpace.WIN_HEIGHT - MmgTestSpace.PANEL_HEIGHT) / 2, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);

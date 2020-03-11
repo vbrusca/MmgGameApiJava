@@ -5,6 +5,7 @@ import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSplashScreen;
@@ -104,7 +105,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         p = new MmgPen();
         p.SetCacheOn(false);
 
-        tB = Helper.GetBasicBmp("../cfg/drawable/logo_large.jpg");
+        tB = Helper.GetBasicBmp("../cfg/drawable/logo_large.jpg");        
         if (tB != null) {
             SetCenteredBackground(tB);
         }

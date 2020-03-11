@@ -128,12 +128,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * Default target game width.
      */
-    public static final int GAME_WIDTH = 854;
+    public static int GAME_WIDTH = 854;
 
     /**
      * Default target game height.
      */
-    public static final int GAME_HEIGHT = 416;
+    public static int GAME_HEIGHT = 416;
 
     /**
      * Pause the game.
@@ -186,11 +186,13 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     protected BufferedImage background;
     protected Graphics2D backgroundGraphics;
     protected Graphics2D graphics;
+    
     protected final double scale = 1.0;
     protected int updateTick = 0;
     protected long now;
     protected long prev;
-    protected final Font debugFont;
+    protected Font debugFont;
+    private Color debugColor = Color.WHITE;    
     protected Font tmpF;
     public static GameType GAME_TYPE = GameType.NEW_GAME;
 
@@ -207,8 +209,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     
     public ScreenSplash screenSplash;
     public ScreenLoading screenLoading;
-    public int mouseOffsetX = 12;
-    public int mouseOffsetY = -10;    
+    public int mouseOffsetX = 0;
+    public int mouseOffsetY = 0;    
         
     /**
      * Constructor, sets the MainFrame, window dimensions, and position of this
@@ -221,13 +223,20 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param Y The Y coordinate of this JPanel.
      */
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
-    public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y) {
+    public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         mf = Mf;
         winWidth = WinWidth;
         winHeight = WinHeight;
+        GamePanel.GAME_WIDTH = GameWidth;
+        GamePanel.GAME_HEIGHT = GameHeight;                        
         sWinWidth = (int) (winWidth * scale);
         sWinHeight = (int) (winHeight * scale);
 
+        Helper.wr("GamePanel: WinWidth: " + WinWidth);
+        Helper.wr("GamePanel: WinHeight: " + WinHeight);
+        Helper.wr("GamePanel: GameWidth: " + GameWidth);
+        Helper.wr("GamePanel: GameHeight: " + GameHeight);        
+        
         myX = X;
         myY = Y;
         sMyX = myX + (winWidth - sWinWidth);
@@ -771,6 +780,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 if (Helper.LOGGING == true) {
                     tmpF = g.getFont();
                     g.setFont(debugFont);
+                    g.setColor(debugColor);
                     g.drawString(GamePanel.FPS, 15, 15);
                     g.drawString("Var1: " + GamePanel.VAR1, 15, 35);
                     g.drawString("Var2: " + GamePanel.VAR2, 15, 55);

@@ -6,6 +6,7 @@ import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -76,6 +77,7 @@ public class MmgScrollHorVert extends MmgObj {
     private GameStates gameState = GameStates.BLANK;
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
     public static int SCROLL_BOTH_CLICK_EVENT_ID = 2;
+    private MmgPen p = null;    
     
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY, GameStates GameState) {
         viewPort = ViewPort;
@@ -233,7 +235,10 @@ public class MmgScrollHorVert extends MmgObj {
             heightDiffPrct = 0.0;
             scrollBarVertVisible = false;
         }
-        MmgDebug.wr("scrollBarVertVisible: " + scrollBarVertVisible);        
+        MmgDebug.wr("scrollBarVertVisible: " + scrollBarVertVisible);
+        
+        p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
+        p.SetAdvRenderHints();        
     }    
 
     public GenericEventHandler GetHandler() {
@@ -353,7 +358,7 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollBarSlider += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
             } else {
-                offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
+                offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
                 offsetXScrollPane = widthDiff;  
             }
             
@@ -379,7 +384,7 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollBarSlider += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
+                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
                 offsetYScrollPane = heightDiff;  
             }
             
@@ -405,7 +410,7 @@ public class MmgScrollHorVert extends MmgObj {
             //MmgDebug.wr("scrollPane click");
             //ret = true;
                         
-        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x, y, 3, 3, sliderLeftButtonRect)) {
+        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderLeftButtonRect)) {
             MmgDebug.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 MmgDebug.wr("AAA");
@@ -419,21 +424,21 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             ret = true;
             
-        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x, y, 3, 3, sliderRightButtonRect)) {            
+        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderRightButtonRect)) {            
             MmgDebug.wr("Both: ProcessScreenClick.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
                 MmgDebug.wr("AAA");
                 offsetXScrollBarSlider += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
             } else {
-                offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
+                offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
                 offsetXScrollPane = widthDiff;  
             }
             
             isDirty = true;            
             ret = true;
             
-        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x, y, 3, 3, sliderTopButtonRect)) {
+        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderTopButtonRect)) {
             MmgDebug.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
                 offsetYScrollBarSlider -= intervalY;
@@ -446,13 +451,13 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             ret = true;
             
-        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x, y, 3, 3, sliderBottomButtonRect)) {            
+        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderBottomButtonRect)) {            
             MmgDebug.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
             if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
                 offsetYScrollBarSlider += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
+                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
                 offsetYScrollPane = heightDiff;  
             }
             
@@ -683,7 +688,11 @@ public class MmgScrollHorVert extends MmgObj {
                 sliderVertRect.SetPosition(new MmgVector2(sliderVertRect.GetLeft(), GetY() + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
                 if(sliderVert != null) {
                     sliderVert.SetPosition(sliderVertRect.GetPosition());                    
-                }                
+                }
+                
+                MmgRect srcRect = new MmgRect(offsetXScrollBarSlider, offsetYScrollBarSlider, offsetYScrollBarSlider + viewPortRect.GetHeight(), offsetXScrollBarSlider + viewPortRect.GetWidth());
+                MmgRect destRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
+                p.DrawBmp(scrollPane, srcRect, destRect);                
             }
             
             isDirty = false;
@@ -704,46 +713,56 @@ public class MmgScrollHorVert extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (GetIsVisible() == true) {
             if (MmgScrollHorVert.SHOW_CONTROL_BOUNDING_BOX == true) {
-                Color c = p.GetGraphics().getColor();
+                //Color c = p.GetGraphics().getColor();
+                Color c = p.GetGraphicsColor();
 
                 //draw obj rect
-                p.GetGraphics().setColor(Color.RED);
+                //p.GetGraphics().setColor(Color.RED);
+                p.SetGraphicsColor(Color.RED);
                 p.DrawRect(this);
                 p.DrawRect(GetX(), GetY() + GetHeight() - scrollBarHorHeight, w, scrollBarHorHeight);
 
                 //draw view port rect
-                p.GetGraphics().setColor(Color.BLUE);
+                //p.GetGraphics().setColor(Color.BLUE);
+                p.SetGraphicsColor(Color.BLUE);
                 p.DrawRect(viewPortRect);
                 
                 //draw scroll pane rect
-                p.GetGraphics().setColor(Color.GREEN);
+                //p.GetGraphics().setColor(Color.GREEN);
+                p.SetGraphicsColor(Color.GREEN);
                 p.DrawRect(scrollPaneRect);
                 
                 if(scrollBarHorVisible) {
                     //slider
-                    p.GetGraphics().setColor(Color.ORANGE);
+                    //p.GetGraphics().setColor(Color.ORANGE);
+                    p.SetGraphicsColor(Color.ORANGE);
                     p.DrawRect(sliderHorRect);
 
                     //slider button bottom
-                    p.GetGraphics().setColor(Color.CYAN);
+                    //p.GetGraphics().setColor(Color.CYAN);
+                    p.SetGraphicsColor(Color.CYAN);
                     p.DrawRect(sliderRightButtonRect);
 
                     //slider button top
-                    p.GetGraphics().setColor(Color.PINK);
+                    //p.GetGraphics().setColor(Color.PINK);
+                    p.SetGraphicsColor(Color.PINK);
                     p.DrawRect(sliderLeftButtonRect);
                 }
                 
                 if(scrollBarVertVisible) {
                     //slider
-                    p.GetGraphics().setColor(Color.ORANGE);
+                    //p.GetGraphics().setColor(Color.ORANGE);
+                    p.SetGraphicsColor(Color.ORANGE);
                     p.DrawRect(sliderVertRect);
 
                     //slider button bottom
-                    p.GetGraphics().setColor(Color.CYAN);
+                    //p.GetGraphics().setColor(Color.CYAN);
+                    p.SetGraphicsColor(Color.CYAN);
                     p.DrawRect(sliderBottomButtonRect);
 
                     //slider button top
-                    p.GetGraphics().setColor(Color.PINK);
+                    //p.GetGraphics().setColor(Color.PINK);
+                    p.SetGraphicsColor(Color.PINK);
                     p.DrawRect(sliderTopButtonRect);
                 }                
                 
@@ -763,6 +782,7 @@ public class MmgScrollHorVert extends MmgObj {
             g.fillRect(GetX(), GetY(), 50, 50);
             
             g.setColor(ct);
+            */
             
             if(scrollBarHorVisible) {            
                 if(sliderLeftButton != null) {
@@ -790,8 +810,9 @@ public class MmgScrollHorVert extends MmgObj {
                 if(sliderVert != null) {
                     p.DrawBmp(sliderVert);
                 }                       
-            }                 
-            */
+            }
+
+          p.DrawBmp(viewPort, GetPosition());
             
         } else {
             //do nothing

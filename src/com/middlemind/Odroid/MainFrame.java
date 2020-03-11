@@ -53,6 +53,16 @@ public class MainFrame extends JFrame {
     * The game panel height.
     */
     protected final int panelHeight;
+    
+    /**
+    * The game panel width.
+    */
+    protected final int gameWidth;
+    
+    /**
+    * The game panel height.
+    */
+    protected final int gameHeight;    
 
     /**
      * Constructor that sets the window width and height, and defaults the X, Y
@@ -66,15 +76,25 @@ public class MainFrame extends JFrame {
         winHeight = WinHeight;
         panelWidth = winWidth;
         panelHeight = winHeight;
+        gameWidth = winWidth;
+        gameHeight = winHeight;
         myX = 0;
         myY = 0;
     }
 
-    public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight) {
+    public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight, int GameWidth, int GameHeight) {
+        Helper.wr("MainFrame: WinWidth: " + WinWidth);
+        Helper.wr("MainFrame: WinHeight: " + WinHeight);
+        Helper.wr("MainFrame: PanelWidth: " + PanWidth);
+        Helper.wr("MainFrame: PanelHeight: " + PanHeight);
+        Helper.wr("MainFrame: GameWidth: " + GameWidth);
+        Helper.wr("MainFrame: GameHeight: " + GameHeight);        
         winWidth = WinWidth;
         winHeight = WinHeight;
         panelWidth = PanWidth;
         panelHeight = PanHeight;
+        gameWidth = GameWidth;
+        gameHeight = GameHeight;
         myX = (winWidth - panelWidth) / 2;
         myY = (winHeight - panelHeight) / 2;
     }
@@ -122,6 +142,14 @@ public class MainFrame extends JFrame {
 
     public int GetGamePanelHeight() {
         return panelHeight;
+    }
+    
+    public int GetGameWidth() {
+        return gameWidth;
+    }
+    
+    public int GetGameHeight() {
+        return gameHeight;
     }
     
     /**

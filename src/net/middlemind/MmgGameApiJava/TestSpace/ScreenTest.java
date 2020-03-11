@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
@@ -85,23 +86,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
     }
-        
-    /**
-     * Public method that fires the local generic event, the listener will
-     * receive a display complete event.
-     *
-     * @param obj The information payload to send along with this message.
-     */
-    /*
-    @Override
-    public void MmgHandleUpdate(Object obj) {
-        Helper.wr("Odroid.ScreenTest.MmgHandleUpdate");
-        if (handler != null) {
-            handler.HandleGenericEvent(new GenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
-        }
-    }
-    */
-    
+       
     /**
      * Loads all the resources needed to display this game screen.
      */
@@ -132,6 +117,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         int sHeight = 0;
         MmgBmp vPort = null;
         MmgBmp sPane = null;
+        MmgDrawableBmpSet dBmpSetScrollPane = null;
+        MmgDrawableBmpSet dBmpSetViewPort = null;
         MmgColor sBarColor;
         MmgColor sBarSldrColor;
         int sBarWidth = 0;
@@ -139,11 +126,27 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         int interval = 0;                
         int hund2 = MmgHelper.ScaleValue(200);
         int hund4 = MmgHelper.ScaleValue(400);
-        
+                
         sWidth = MmgHelper.ScaleValue(200);
-        sHeight = MmgHelper.ScaleValue(200);        
-        vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
-        sPane = new MmgBmp(new MmgObj(0, 0, hund2, hund4, true, MmgColor.GetBlue()));        
+        sHeight = MmgHelper.ScaleValue(200);
+        
+        dBmpSetScrollPane = MmgHelper.CreateScaledDrawableBmpSet(hund2, hund4, false, MmgColor.GetBlack());
+        dBmpSetScrollPane.graphics.setColor(Color.RED);
+        dBmpSetScrollPane.graphics.fillRect(0, 0, hund2, hund4 / 4);
+        dBmpSetScrollPane.graphics.setColor(Color.BLUE);
+        dBmpSetScrollPane.graphics.fillRect(0, hund4 / 4, hund2, hund4 / 4);
+        dBmpSetScrollPane.graphics.setColor(Color.GREEN);
+        dBmpSetScrollPane.graphics.fillRect(0, hund4 / 2, hund2, hund4 / 4);
+        
+        dBmpSetViewPort = MmgHelper.CreateScaledDrawableBmpSet(hund2, hund2, false, MmgColor.GetBlack());
+        dBmpSetViewPort.graphics.setColor(Color.LIGHT_GRAY);
+        dBmpSetViewPort.graphics.fillRect(0, 0, hund2, hund2);
+        
+        //vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));        
+        //sPane = new MmgBmp(new MmgObj(0, 0, hund2, hund4, true, MmgColor.GetBlue()));        
+        vPort = dBmpSetViewPort.img;
+        sPane = dBmpSetScrollPane.img;
+        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
         sBarWidth = MmgHelper.ScaleValue(15);
@@ -158,13 +161,30 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollVert.SetHandler(this);    
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollVert);
-        //scrollVert.SetPosition(new MmgVector2(50, 50));
         //AddObj(scrollVert);
         
-        vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
-        sPane = new MmgBmp(new MmgObj(0, 0, hund4, hund2, true, MmgColor.GetBlue()));        
+        dBmpSetScrollPane = MmgHelper.CreateScaledDrawableBmpSet(hund4, hund2, false, MmgColor.GetBlack());
+        dBmpSetScrollPane.graphics.setColor(Color.RED);
+        dBmpSetScrollPane.graphics.fillRect(0, 0, hund4 / 4, hund2);
+        dBmpSetScrollPane.graphics.setColor(Color.BLUE);
+        dBmpSetScrollPane.graphics.fillRect(hund4 / 4, 0, hund4 / 4, hund2);
+        dBmpSetScrollPane.graphics.setColor(Color.GREEN);
+        dBmpSetScrollPane.graphics.fillRect(hund4 / 2, 0, hund4 / 4, hund2);
+        
+        dBmpSetViewPort = MmgHelper.CreateScaledDrawableBmpSet(hund2, hund2, false, MmgColor.GetBlack());
+        dBmpSetViewPort.graphics.setColor(Color.LIGHT_GRAY);
+        dBmpSetViewPort.graphics.fillRect(0, 0, hund2, hund2);
+                        
+        //vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
+        //sPane = new MmgBmp(new MmgObj(0, 0, hund4, hund2, true, MmgColor.GetBlue()));        
+        vPort = dBmpSetViewPort.img;
+        sPane = dBmpSetScrollPane.img;
+        
         sBarColor = MmgColor.GetLightGray();
         sBarSldrColor = MmgColor.GetGray();
+        sBarWidth = MmgHelper.ScaleValue(15);
+        sBarSldrHeight = MmgHelper.ScaleValue(30);
+        interval = 10;        
         
         scrollHor = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval, gameState);
         //scrollHor = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
@@ -175,12 +195,30 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         MmgScrollHor.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollHor);
         //AddObj(scrollHor);
+
+        dBmpSetScrollPane = MmgHelper.CreateScaledDrawableBmpSet(hund4, hund4, false, MmgColor.GetBlack());
+        dBmpSetScrollPane.graphics.setColor(Color.RED);
+        dBmpSetScrollPane.graphics.fillRect(0, 0, hund4 / 4, hund4 / 4);
+        dBmpSetScrollPane.graphics.setColor(Color.BLUE);
+        dBmpSetScrollPane.graphics.fillRect(hund4 / 4, hund4 / 4, hund4 / 4, hund4 / 4);
+        dBmpSetScrollPane.graphics.setColor(Color.GREEN);
+        dBmpSetScrollPane.graphics.fillRect(hund4 / 2, hund4 / 2, hund4 / 4, hund4 / 4);
         
+        dBmpSetViewPort = MmgHelper.CreateScaledDrawableBmpSet(hund2, hund2, false, MmgColor.GetBlack());
+        dBmpSetViewPort.graphics.setColor(Color.LIGHT_GRAY);
+        dBmpSetViewPort.graphics.fillRect(0, 0, hund2, hund2);
+                        
         vPort = new MmgBmp(new MmgObj(0, 0, hund2, hund2, true, MmgColor.GetRed()));
-        sPane = new MmgBmp(new MmgObj(0, 0, hund4, hund4, true, MmgColor.GetBlue()));        
-        sBarColor = MmgColor.GetLightGray();
-        sBarSldrColor = MmgColor.GetGray();        
+        sPane = new MmgBmp(new MmgObj(0, 0, hund4, hund4, true, MmgColor.GetBlue()));
+        vPort = dBmpSetViewPort.img;
+        sPane = dBmpSetScrollPane.img;
         
+        sBarColor = MmgColor.GetLightGray();
+        sBarSldrColor = MmgColor.GetGray();       
+        sBarWidth = MmgHelper.ScaleValue(15);
+        sBarSldrHeight = MmgHelper.ScaleValue(30);
+        interval = 10;         
+       
         scrollBoth = new MmgScrollHorVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarWidth, sBarSldrHeight, sBarSldrHeight, interval, interval, gameState);
         //scrollBoth = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
         scrollBoth.SetIsVisible(true);

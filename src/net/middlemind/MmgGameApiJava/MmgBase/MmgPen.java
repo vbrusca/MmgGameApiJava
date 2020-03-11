@@ -395,6 +395,34 @@ public class MmgPen {
     }
 
     /**
+     * Draw a bitmap image onto another bitmap image using source and destination rectangles.
+     * 
+     * @param b
+     * @param srcRect
+     * @param dstRect 
+     */
+    public void DrawBmp(MmgBmp b, MmgRect srcRect, MmgRect dstRect) {
+        tmpIdStr = b.GetBmpIdStr();
+        
+        if(cacheOn == true && MmgMediaTracker.HasKey(tmpIdStr) == true) {
+            tmpImg = MmgMediaTracker.GetValue(tmpIdStr);       
+        }else {
+            tmpImg = b.GetTexture2D();
+        }
+        
+        if(srcRect != null && dstRect != null) {
+            MmgHelper.wr("AAAA");
+            pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+        }else if(srcRect == null) {
+            pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);            
+        }else if(dstRect == null) {
+            pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+        }else {
+            pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), 0, 0, b.GetWidth(), b.GetHeight(), null);                        
+        }
+    }    
+    
+    /**
      * Drawing method for drawing bitmap images.
      * 
      * @param b             The MmgBmp object to draw.

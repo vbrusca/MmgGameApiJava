@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
  * 03/10/2020
  */
 public class MmgDrawableBmpSet {
-    BufferedImage buffImg;
-    Graphics2D graphics;
-    MmgPen p;
-    MmgBmp img;
+    public BufferedImage buffImg;
+    public Graphics2D graphics;
+    public MmgPen p;
+    public MmgBmp img;
 }
