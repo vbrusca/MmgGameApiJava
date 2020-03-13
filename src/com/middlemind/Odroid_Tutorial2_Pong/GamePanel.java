@@ -1,4 +1,4 @@
-package net.middlemind.MmgGameApiJava.TestSpace;
+package com.middlemind.Odroid_Tutorial2_Pong;
 
 import com.middlemind.Odroid.DatExternalStrings;
 import com.middlemind.Odroid.GenericEventMessage;
@@ -6,7 +6,6 @@ import com.middlemind.Odroid.Helper;
 import com.middlemind.Odroid.MainFrame;
 import com.middlemind.Odroid.ScreenLoading;
 import com.middlemind.Odroid.ScreenSplash;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
  *
@@ -14,19 +13,13 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  * 02/19/2020
  */
 public class GamePanel extends com.middlemind.Odroid.GamePanel {
-        
-    protected ScreenTest screenTest;
-    
+            
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         Helper.wr("TestSpace.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
-        screenLoading.SetSlowDown(500);
-        
-        screenTest = new ScreenTest(GameStates.GAME_SCREEN_01, this);
-        screenTest.Pause();
-        screenTest.SetIsVisible(false);
+        screenLoading.SetSlowDown(500);        
     }
         
     @Override
@@ -62,15 +55,15 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
 
         } else if (prevGameState == GameStates.GAME_SCREEN_01) {
             Helper.wr("Hiding GAME_SCREEN_01 screen.");
-            screenTest.Pause();
-            screenTest.SetIsVisible(false);
-            screenTest.UnloadResources();
+            //screenTest.Pause();
+            //screenTest.SetIsVisible(false);
+            //screenTest.UnloadResources();
                         
         } else if (prevGameState == GameStates.MAIN_MENU) {
             Helper.wr("Hiding MAIN_MENU screen.");
-            //mainMenuScreen.Pause();
-            //mainMenuScreen.SetIsVisible(false);
-            //mainMenuScreen.UnloadResources();
+            screenMainMenu.Pause();
+            screenMainMenu.SetIsVisible(false);
+            screenMainMenu.UnloadResources();
 
         } else if (prevGameState == GameStates.ABOUT) {
             Helper.wr("Hiding ABOUT screen.");
@@ -121,17 +114,17 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
 
         } else if (gameState == GameStates.GAME_SCREEN_01) {
             Helper.wr("Showing GAME_SCREEN_01 screen.");
-            screenTest.LoadResources();
-            screenTest.UnPause();
-            screenTest.SetIsVisible(true);
-            currentScreen = screenTest;
+            //screenTest.LoadResources();
+            //screenTest.UnPause();
+            //screenTest.SetIsVisible(true);
+            //currentScreen = screenTest;
                         
         } else if (gameState == GameStates.MAIN_MENU) {
             Helper.wr("Showing MAIN_MENU screen.");
-            //mainMenuScreen.LoadResources();
-            //mainMenuScreen.UnPause();
-            //mainMenuScreen.SetIsVisible(true);
-            //currentScreen = mainMenuScreen;
+            screenMainMenu.LoadResources();
+            screenMainMenu.UnPause();
+            screenMainMenu.SetIsVisible(true);
+            currentScreen = screenMainMenu;
 
         } else if (gameState == GameStates.ABOUT) {
             Helper.wr("Showing ABOUT screen.");
@@ -172,7 +165,7 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps
                     DatExternalStrings.LOAD_EXT_STRINGS();                    
-                    SwitchGameState(GameStates.GAME_SCREEN_01);
+                    SwitchGameState(GameStates.MAIN_MENU);
                 }
                 
             } else if (obj.GetGameState() == GameStates.SPLASH) {

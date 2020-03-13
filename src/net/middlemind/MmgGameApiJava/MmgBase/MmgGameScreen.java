@@ -858,13 +858,19 @@ public class MmgGameScreen extends MmgObj {
                         tmp.MmgDraw(p);
 
                         if (menuIdx == i) {
+                            if(tmp.GetHeight() > leftCursor.GetHeight()) {
+                                padPosY = (tmp.GetHeight() - leftCursor.GetHeight()) / 2;
+                            }else {
+                                padPosY = (leftCursor.GetHeight() - tmp.GetHeight()) / 2;                                
+                            }
+                                                        
                             if (leftCursor != null) {
-                                leftCursor.SetPosition(new MmgVector2((tmp.GetX() - leftCursor.GetWidth() - padPosX + menuCursorLeftOffsetX), tmp.GetY() + menuCursorLeftOffsetY));
+                                leftCursor.SetPosition(new MmgVector2((tmp.GetX() - leftCursor.GetWidth() - padPosX + menuCursorLeftOffsetX), tmp.GetY() + padPosY + menuCursorLeftOffsetY));
                                 leftCursor.MmgDraw(p);
                             }
 
                             if (rightCursor != null) {
-                                rightCursor.SetPosition(new MmgVector2((tmp.GetX() + tmp.GetWidth() + padPosX + menuCursorRightOffsetY), tmp.GetY() + menuCursorRightOffsetY));
+                                rightCursor.SetPosition(new MmgVector2((tmp.GetX() + tmp.GetWidth() + padPosX + menuCursorRightOffsetY), tmp.GetY() + padPosY + menuCursorRightOffsetY));
                                 rightCursor.MmgDraw(p);
                             }
                         }

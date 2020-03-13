@@ -14,17 +14,17 @@ public class GenericEventMessage {
     /**
      * The identifier of this generic event message.
      */
-    protected final int id;
+    public int id;
 
     /**
      * The information payload of this generic event message.
      */
-    protected final Object payload;
+    public Object payload;
 
     /**
      * The game state of this generic event message.
      */
-    protected final GameStates gameState;
+    public GameStates gameState;
 
     /**
      * Constructor for the generic event message object, sets the message id,

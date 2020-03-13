@@ -2,7 +2,6 @@ package com.middlemind.Odroid;
 
 import java.io.File;
 import java.util.ArrayList;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
  * A worker thread that handles loading the Tyre game DAT file. Created on

@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Transparency;
-import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileReader;
+import java.util.Hashtable;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
@@ -24,7 +26,39 @@ public class MmgHelper {
     public static boolean BMP_CACHE_ON = true;
     private static Random rando = new Random(System.currentTimeMillis());    
 
-    public static MmgDrawableBmpSet CreateScaledDrawableBmpSet(int width, int height, boolean alpha) {
+    public static Hashtable<String, Double> LoadClassConfigFile(String file) {
+        Hashtable<String, Double> ret = new Hashtable();;
+        
+        try {
+            File f = new File(file);
+            if(f.exists()) {                
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String line = br.readLine();
+                String[] data = null;
+                
+                while(line != null) {
+                    if(line.charAt(0) != '#') {
+                        data = line.split("=");
+                        if(data.length == 2) {
+                            ret.put(data[0], new Double(data[1]));
+                        }
+                    }
+                    line = br.readLine();                    
+                }
+            }
+        }catch(Exception e) {
+            wrErr(e);
+        }
+        
+        return ret;
+    }    
+    
+    public static MmgBmp CreateFilledBmp(int width, int height, MmgColor color) {
+        return CreateDrawableBmpSet(width, height, false, color).img;
+    }
+    
+    public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, boolean alpha) {
         MmgDrawableBmpSet dBmpSet = new MmgDrawableBmpSet();
         dBmpSet.buffImg = MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         dBmpSet.graphics = (Graphics2D)dBmpSet.buffImg.getGraphics();
@@ -35,8 +69,8 @@ public class MmgHelper {
         return dBmpSet;
     }
     
-    public static MmgDrawableBmpSet CreateScaledDrawableBmpSet(int width, int height, boolean alpha, MmgColor color) {
-        MmgDrawableBmpSet dBmpSet = CreateScaledDrawableBmpSet(width, height, alpha);
+    public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, boolean alpha, MmgColor color) {
+        MmgDrawableBmpSet dBmpSet = MmgHelper.CreateDrawableBmpSet(width, height, alpha);
         Color c = dBmpSet.graphics.getColor();
         dBmpSet.graphics.setColor(color.GetColor());
         dBmpSet.graphics.fillRect(0, 0, width, height);

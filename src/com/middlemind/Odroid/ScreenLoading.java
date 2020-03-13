@@ -2,8 +2,7 @@ package com.middlemind.Odroid;
 
 import com.middlemind.Odroid.GamePanel.GameStates;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp.MmgBmpDrawMode;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
@@ -55,6 +54,8 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     protected final GamePanel owner;
 
     protected long slowDown;
+    
+    private Hashtable<String, Double> classConfig;   
     
     /**
      * Constructor, sets the loading bar, the loading bar offset, the game state
@@ -138,17 +139,31 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
+        classConfig = MmgHelper.LoadClassConfigFile("../cfg/class_configs/screen_loading.txt");        
+        
         MmgBmp tB = null;
         MmgBmp tB1 = null;
         MmgPen p;
+        
         MmgLoadingBar lb = null;
         int lbOffSet = 5;
+        String key = "";
+        double scale = 1.0;
+        
         p = new MmgPen();
         p.SetCacheOn(false);
 
         tB = Helper.GetBasicBmp("../cfg/drawable/odroid_logo2.png");
         tB = MmgBmpScaler.ScaleMmgBmp(tB, 0.5, true);        
         if (tB != null) {
+            key = "loadingLogoScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).doubleValue();
+                if(scale != 1.0) {
+                    tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
+                }
+
+            }            
             SetCenteredBackground(tB);
         }
 
@@ -170,6 +185,11 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             lb.SetFillWidth(tB.GetWidth() - MmgHelper.ScaleValue(12));
             loadingBar = lb;
             super.SetLoadingBar(lb, lbOffSet);
+            
+            key = "loadingBarOffsetY";
+            if(classConfig.containsKey(key)) {
+                loadingBar.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+            }            
         }
 
         ready = true;

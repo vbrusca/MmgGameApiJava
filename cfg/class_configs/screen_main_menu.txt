@@ -1,0 +1,8 @@
+menuTitleOffsetY=30
+menuTitleScale=1.0
+menuStartGameOffsetY=-10
+menuStartGameScale=1.0
+menuExitGameOffsetY=-10
+menuExitGameScale=1.0
+menuFooterUrlOffsetY=10
+menuFooterUrlScale=1.0

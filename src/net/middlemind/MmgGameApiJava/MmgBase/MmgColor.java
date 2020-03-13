@@ -110,7 +110,11 @@ public class MmgColor {
     public static MmgColor GetYellow() {
         return new MmgColor(Color.YELLOW);
     }
-        
+     
+    public static MmgColor GetTransparent() {
+        return new MmgColor(new Color(0f, 0f, 0f, 1f));
+    }    
+    
     /**
      * Returns the color of this MmgColor object.
      *

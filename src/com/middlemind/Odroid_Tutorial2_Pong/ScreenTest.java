@@ -1,16 +1,14 @@
-package net.middlemind.MmgGameApiJava.TestSpace;
+package com.middlemind.Odroid_Tutorial2_Pong;
 
 import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
 import java.awt.Color;
-import java.awt.Graphics;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;

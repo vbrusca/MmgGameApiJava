@@ -76,7 +76,11 @@ public class MmgScrollHorVert extends MmgObj {
     private GenericEventHandler handler = null;
     private GameStates gameState = GameStates.BLANK;
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
-    public static int SCROLL_BOTH_CLICK_EVENT_ID = 2;
+    public static int SCROLL_BOTH_CLICK_EVENT_ID = 6;
+    public static int SCROLL_BOTH_SCROLL_UP_EVENT_ID = 7;
+    public static int SCROLL_BOTH_SCROLL_DOWN_EVENT_ID = 8;
+    public static int SCROLL_BOTH_SCROLL_LEFT_EVENT_ID = 9;
+    public static int SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID = 10;        
     private MmgPen p = null;    
     
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY, GameStates GameState) {
@@ -349,6 +353,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }                                    
+            
             isDirty = true;
             return true;
             
@@ -361,6 +369,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
                 offsetXScrollPane = widthDiff;  
             }
+            
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }                        
             
             isDirty = true;            
             return true;
@@ -375,6 +387,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollPane = 0; 
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            }
+            
             isDirty = true;
             return true;
             
@@ -387,6 +403,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
                 offsetYScrollPane = heightDiff;  
             }
+            
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            }            
             
             isDirty = true;            
             return true;
@@ -421,6 +441,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }            
+            
             isDirty = true;
             ret = true;
             
@@ -435,6 +459,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = widthDiff;  
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }                        
+            
             isDirty = true;            
             ret = true;
             
@@ -448,6 +476,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollPane = 0; 
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            }                        
+            
             isDirty = true;
             ret = true;
             
@@ -460,6 +492,10 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
                 offsetYScrollPane = heightDiff;  
             }
+            
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            }                                    
             
             isDirty = true;
             ret = true;

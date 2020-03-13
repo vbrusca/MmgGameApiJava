@@ -12,7 +12,6 @@ import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
@@ -209,6 +208,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     
     public ScreenSplash screenSplash;
     public ScreenLoading screenLoading;
+    public ScreenMainMenu screenMainMenu;
     public int mouseOffsetX = 0;
     public int mouseOffsetY = 0;    
         
@@ -270,6 +270,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         
         screenSplash = new ScreenSplash(GameStates.SPLASH, this);
         screenLoading = new ScreenLoading(GameStates.LOADING, this);
+        screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);        
         
         gameScreens = new Hashtable();
         gameState = GameStates.BLANK;

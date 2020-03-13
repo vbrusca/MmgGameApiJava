@@ -22,13 +22,13 @@ public class MmgBmpScaler {
 
     public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
-    public static final MmgBmp ScaleMmgBmp(MmgBmp subj, boolean useScaleX, boolean alpha) {
+    public static final MmgBmp ScaleMmgBmp(MmgBmp subj, boolean useScreenDataScaleX, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();
         int nw = 0;
         int nh = 0;
         
-        if(useScaleX) {
+        if(useScreenDataScaleX) {
             nw = (int) (w * MmgScreenData.GetScaleX());
             nh = (int) (h * MmgScreenData.GetScaleX());
         }else {

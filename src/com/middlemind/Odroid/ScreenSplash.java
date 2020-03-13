@@ -4,8 +4,10 @@ import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
+import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSplashScreen;
@@ -43,6 +45,8 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      */
     protected final GamePanel owner;
 
+    private Hashtable<String, Double> classConfig;
+    
     /**
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
@@ -100,13 +104,26 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
+        classConfig = MmgHelper.LoadClassConfigFile("../cfg/class_configs/screen_splash.txt");
+        
         MmgBmp tB = null;
         MmgPen p;
+        String key = "";
+        double scale = 1.0;
+        
         p = new MmgPen();
         p.SetCacheOn(false);
 
         tB = Helper.GetBasicBmp("../cfg/drawable/logo_large.jpg");        
         if (tB != null) {
+            key = "splashLogoScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).doubleValue();
+                if(scale != 1.0) {
+                    tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
+                }
+            }
+            
             SetCenteredBackground(tB);
         }
 

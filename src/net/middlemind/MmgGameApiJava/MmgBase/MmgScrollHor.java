@@ -50,7 +50,9 @@ public class MmgScrollHor extends MmgObj {
     private GenericEventHandler handler = null;
     private GameStates gameState = GameStates.BLANK;
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
-    public static int SCROLL_HOR_CLICK_EVENT_ID = 0;
+    public static int SCROLL_HOR_CLICK_EVENT_ID = 3;
+    public static int SCROLL_HOR_SCROLL_LEFT_EVENT_ID = 4;
+    public static int SCROLL_HOR_SCROLL_RIGHT_EVENT_ID = 5;    
     private MmgPen p = null;
     
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarSliderWidth, int Interval, GameStates GameState) {
@@ -225,6 +227,10 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }            
+            
             isDirty = true;
             return true;
             
@@ -237,6 +243,10 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderWidth);
                 offsetXScrollPane = widthDiff;  
             }
+            
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }                        
             
             isDirty = true;            
             return true;
@@ -270,6 +280,10 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }                        
+            
             isDirty = true;
             ret = true;
             
@@ -282,6 +296,10 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderWidth);
                 offsetXScrollPane = widthDiff;  
             }
+            
+            if(handler != null) {
+                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            }            
             
             isDirty = true;            
             ret = true;
