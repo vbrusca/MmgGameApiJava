@@ -144,6 +144,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
                 menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(50));
             }
             
+            key = "menuTitleOffsetX";
+            if(classConfig.containsKey(key)) {
+                menuTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }
+            
             AddObj(menuTitle);
         }
 
@@ -167,6 +172,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
                 menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(50));
             }
             
+            key = "menuSubTitleOffsetX";
+            if(classConfig.containsKey(key)) {
+                menuSubTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }            
+            
             AddObj(menuSubTitle);
         }        
         
@@ -189,6 +199,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
             } else {
                 menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));
             }
+            
+            key = "menuStartGameOffsetX";
+            if(classConfig.containsKey(key)) {
+                menuStartGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }                        
         }
         
         imgId = "exit_game.png";
@@ -210,6 +225,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
             } else {
                 menuExitGame.GetPosition().SetY(menuStartGame.GetY() + menuStartGame.GetHeight() + MmgHelper.ScaleValue(10));
             }
+            
+            key = "menuExitGameOffsetX";
+            if(classConfig.containsKey(key)) {
+                menuExitGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            } 
         }        
         
         imgId = "footer_url.png";
@@ -231,6 +251,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
             } else {
                 menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));
             }
+            
+            key = "menuFooterUrlOffsetX";
+            if(classConfig.containsKey(key)) {
+                menuFooterUrl.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }            
             
             AddObj(menuFooterUrl);
         }          

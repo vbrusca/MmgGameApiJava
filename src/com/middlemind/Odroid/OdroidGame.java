@@ -260,12 +260,12 @@ public class OdroidGame {
             Helper.wrErr(e);
         }
 
-        Helper.wr("TyreDatGame Window Width: " + WIN_WIDTH);
-        Helper.wr("TyreDatGame Window Height: " + WIN_HEIGHT);
-        Helper.wr("TyreDatGame Panel Width: " + PANEL_WIDTH);
-        Helper.wr("TyreDatGame Panel Height: " + PANEL_HEIGHT);
-        Helper.wr("TyreDatGame Game Width: " + GAME_WIDTH);
-        Helper.wr("TyreDatGame Game Height: " + GAME_HEIGHT);
+        Helper.wr("Window Width: " + WIN_WIDTH);
+        Helper.wr("Window Height: " + WIN_HEIGHT);
+        Helper.wr("Panel Width: " + PANEL_WIDTH);
+        Helper.wr("Panel Height: " + PANEL_HEIGHT);
+        Helper.wr("Game Width: " + GAME_WIDTH);
+        Helper.wr("Game Height: " + GAME_HEIGHT);
 
         mf = new MainFrame(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, OdroidGame.GAME_WIDTH, OdroidGame.GAME_HEIGHT);
         pnlGame = new GamePanel(mf, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, (OdroidGame.WIN_WIDTH - OdroidGame.PANEL_WIDTH) / 2, (OdroidGame.WIN_HEIGHT - OdroidGame.PANEL_HEIGHT) / 2, OdroidGame.GAME_WIDTH, OdroidGame.GAME_HEIGHT);

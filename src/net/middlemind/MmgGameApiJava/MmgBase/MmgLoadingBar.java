@@ -192,6 +192,27 @@ public class MmgLoadingBar extends MmgObj {
         return fillWidth;
     }
 
+    @Override
+    public void SetPosition(MmgVector2 pos) {
+        super.SetPosition(pos);
+        loadingBarFront.SetPosition(pos);
+        loadingBarBack.SetPosition(pos);
+    }
+    
+    @Override
+    public void SetX(int inX) {
+        super.SetX(inX);
+        loadingBarFront.SetX(inX);
+        loadingBarBack.SetX(inX);
+    }
+    
+    @Override
+    public void SetY(int inY) {
+        super.SetY(inY);
+        loadingBarFront.SetY(inY);
+        loadingBarBack.SetY(inY);
+    }        
+    
     /**
      * Sets the fill width of the loading bar.
      * 

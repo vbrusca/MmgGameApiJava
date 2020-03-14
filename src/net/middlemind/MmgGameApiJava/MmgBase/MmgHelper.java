@@ -38,13 +38,14 @@ public class MmgHelper {
                 String[] data = null;
                 
                 while(line != null) {
-                    if(line.charAt(0) != '#') {
+                    line = line.trim();
+                    if(line.charAt(0) != '#' && line.equals("") == false) {
                         data = line.split("=");
                         if(data.length == 2) {
                             ret.put(data[0], new Double(data[1]));
                         }
                     }
-                    line = br.readLine();                    
+                    line = br.readLine();
                 }
             }
         }catch(Exception e) {

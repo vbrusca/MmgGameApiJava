@@ -110,6 +110,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         MmgPen p;
         String key = "";
         double scale = 1.0;
+        int tmp = 0;
         
         p = new MmgPen();
         p.SetCacheOn(false);
@@ -125,6 +126,18 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
             }
             
             SetCenteredBackground(tB);
+            
+            key = "splashLogoOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).intValue();
+                tB.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "splashLogoOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).intValue();
+                tB.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
+            }
         }
 
         ready = true;

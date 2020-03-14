@@ -1,1 +1,3 @@
 splashLogoScale=2.00
+#splashLogoOffsetX=0
+#splashLogoOffsetY=0

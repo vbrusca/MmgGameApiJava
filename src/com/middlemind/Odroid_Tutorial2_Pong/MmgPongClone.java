@@ -66,8 +66,8 @@ public final class MmgPongClone {
      */
     public static long FPS = 16l;
 
-    public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
-    public static String DAT_FILE = "../cfg/data/chapter2.dat";
+    //public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
+    //public static String DAT_FILE = "../cfg/data/chapter2.dat";
 
     /**
      * Base engine config files.
@@ -269,12 +269,12 @@ public final class MmgPongClone {
             Helper.wrErr(e);
         }
 
-        Helper.wr("TyreDatGame Window Width: " + WIN_WIDTH);
-        Helper.wr("TyreDatGame Window Height: " + WIN_HEIGHT);
-        Helper.wr("TyreDatGame Panel Width: " + PANEL_WIDTH);
-        Helper.wr("TyreDatGame Panel Height: " + PANEL_HEIGHT);
-        Helper.wr("TyreDatGame Game Width: " + GAME_WIDTH);
-        Helper.wr("TyreDatGame Game Height: " + GAME_HEIGHT);
+        Helper.wr("Window Width: " + WIN_WIDTH);
+        Helper.wr("Window Height: " + WIN_HEIGHT);
+        Helper.wr("Panel Width: " + PANEL_WIDTH);
+        Helper.wr("Panel Height: " + PANEL_HEIGHT);
+        Helper.wr("Game Width: " + GAME_WIDTH);
+        Helper.wr("Game Height: " + GAME_HEIGHT);
 
         mf = new MainFrame(MmgPongClone.WIN_WIDTH, MmgPongClone.WIN_HEIGHT, MmgPongClone.PANEL_WIDTH, MmgPongClone.PANEL_HEIGHT, MmgPongClone.GAME_WIDTH, MmgPongClone.GAME_HEIGHT);
         pnlGame = new GamePanel(mf, MmgPongClone.PANEL_WIDTH, MmgPongClone.PANEL_HEIGHT, (MmgPongClone.WIN_WIDTH - MmgPongClone.PANEL_WIDTH) / 2, (MmgPongClone.WIN_HEIGHT - MmgPongClone.PANEL_HEIGHT) / 2, MmgPongClone.GAME_WIDTH, MmgPongClone.GAME_HEIGHT);

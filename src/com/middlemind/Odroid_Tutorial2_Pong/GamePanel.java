@@ -16,7 +16,7 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
             
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
-        Helper.wr("TestSpace.GamePanel.Constructor");
+        Helper.wr("Odroid_Tutorial2_Pong.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
         screenLoading.SetSlowDown(500);        
@@ -24,7 +24,7 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
         
     @Override
     public void SwitchGameState(GameStates g) {
-        Helper.wr("TestSpace.Switching Game State To: " + g);
+        Helper.wr("Odroid_Tutorial2_Pong.Switching Game State To: " + g);
 
         if (gameState != prevGameState) {
             prevGameState = gameState;
@@ -160,7 +160,7 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {
-            Helper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
+            Helper.wr("Odroid_Tutorial2_Pong.HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps

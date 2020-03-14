@@ -1,10 +1,14 @@
 menuTitleOffsetY=30
 menuTitleScale=1.0
 menuSubTitleOffsetY=-10
+#menuSubTitleOffsetX=0
 menuSubTitleScale=1.0
 menuStartGameOffsetY=-10
+#menuStartGameOffsetX=0
 menuStartGameScale=1.0
 menuExitGameOffsetY=-10
+#menuExitGameOffsetX=0
 menuExitGameScale=1.0
-menuFooterUrlOffsetY=10
+menuFooterUrlOffsetY=25
+#menuFooterUrlOffsetX=0
 menuFooterUrlScale=1.0

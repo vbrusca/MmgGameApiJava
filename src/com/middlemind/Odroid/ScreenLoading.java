@@ -149,6 +149,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         int lbOffSet = 5;
         String key = "";
         double scale = 1.0;
+        int tmp = 0;
         
         p = new MmgPen();
         p.SetCacheOn(false);
@@ -162,9 +163,21 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
                 if(scale != 1.0) {
                     tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
                 }
-
-            }            
+            }
+            
             SetCenteredBackground(tB);
+            
+            key = "loadingLogoOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).intValue();
+                tB.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "loadingLogoOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).intValue();
+                tB.GetPosition().SetX(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));                
+            }            
         }
 
         tB = Helper.GetBasicBmp("../cfg/drawable/loading_bar.png");
@@ -186,9 +199,16 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             loadingBar = lb;
             super.SetLoadingBar(lb, lbOffSet);
             
+            MmgHelper.CenterHorAndVert(lb);
+            
             key = "loadingBarOffsetY";
             if(classConfig.containsKey(key)) {
                 loadingBar.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+            }
+            
+            key = "loadingBarOffsetX";
+            if(classConfig.containsKey(key)) {
+                loadingBar.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
             }            
         }
 
