@@ -44,6 +44,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
     /**
      * Helper class for screen UI.
      */
+    private MmgBmp menuSubTitle;    
+    
+    /**
+     * Helper class for screen UI.
+     */
     private MmgBmp menuFooterUrl;
 
     private MmgBmp menuCursor;
@@ -99,7 +104,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
         Helper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
         Helper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
 
-        classConfig = MmgHelper.LoadClassConfigFile("../cfg/class_configs/screen_main_menu.txt");
+        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_main_menu.txt");
         
         MmgBmp tB = null;
         MmgPen p;
@@ -142,6 +147,29 @@ public final class ScreenMainMenu extends MmgGameScreen {
             AddObj(menuTitle);
         }
 
+        imgId = "game_sub_title.png";
+        lval = MmgHelper.GetBasicCachedBmp(imgId);
+        menuSubTitle = lval;
+        if (menuSubTitle != null) {
+            key = "menuSubTitleScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).doubleValue();
+                if(scale != 1.0) {
+                    menuSubTitle = MmgBmpScaler.ScaleMmgBmp(menuTitle, scale, false);
+                }
+            }
+            
+            MmgHelper.CenterHor(menuSubTitle);
+            key = "menuSubTitleOffsetY";
+            if(classConfig.containsKey(key)) {
+                menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            } else {
+                menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(50));
+            }
+            
+            AddObj(menuSubTitle);
+        }        
+        
         imgId = "start_game.png";
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuStartGame = lval;
@@ -157,9 +185,9 @@ public final class ScreenMainMenu extends MmgGameScreen {
             MmgHelper.CenterHor(menuStartGame);
             key = "menuStartGameOffsetY";
             if(classConfig.containsKey(key)) {
-                menuStartGame.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+                menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
             } else {
-                menuStartGame.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(10));
+                menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));
             }
         }
         
@@ -183,6 +211,29 @@ public final class ScreenMainMenu extends MmgGameScreen {
                 menuExitGame.GetPosition().SetY(menuStartGame.GetY() + menuStartGame.GetHeight() + MmgHelper.ScaleValue(10));
             }
         }        
+        
+        imgId = "footer_url.png";
+        lval = MmgHelper.GetBasicCachedBmp(imgId);
+        menuFooterUrl = lval;
+        if (menuFooterUrl != null) {
+            key = "menuFooterUrlScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).doubleValue();
+                if(scale != 1.0) {
+                    menuFooterUrl = MmgBmpScaler.ScaleMmgBmp(menuFooterUrl, scale, false);
+                }
+            }
+            
+            MmgHelper.CenterHor(menuFooterUrl);
+            key = "menuFooterUrlOffsetY";
+            if(classConfig.containsKey(key)) {        
+                menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+            } else {
+                menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));
+            }
+            
+            AddObj(menuFooterUrl);
+        }          
         
         imgId = "cursor_hand_sm_right.png";
         lval = MmgHelper.GetBasicCachedBmp(imgId);

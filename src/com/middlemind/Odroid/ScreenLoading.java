@@ -139,7 +139,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        classConfig = MmgHelper.LoadClassConfigFile("../cfg/class_configs/screen_loading.txt");        
+        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_loading.txt");        
         
         MmgBmp tB = null;
         MmgBmp tB1 = null;

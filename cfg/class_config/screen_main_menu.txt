@@ -1,5 +1,7 @@
 menuTitleOffsetY=30
 menuTitleScale=1.0
+menuSubTitleOffsetY=-10
+menuSubTitleScale=1.0
 menuStartGameOffsetY=-10
 menuStartGameScale=1.0
 menuExitGameOffsetY=-10

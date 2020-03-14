@@ -1,2 +1,2 @@
 loadingLogoScale=0.5
-loadingBarOffsetY=100
+loadingBarOffsetY=200

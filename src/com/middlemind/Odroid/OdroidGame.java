@@ -1,5 +1,6 @@
 package com.middlemind.Odroid;
 
+import static com.middlemind.Odroid_Tutorial2_Pong.MmgPongClone.LoadNativeLibraries;
 import java.lang.reflect.Field;
 import javax.swing.JFrame;
 
@@ -92,6 +93,45 @@ public class OdroidGame {
         return null;
     }
 
+    public static void LoadNativeLibraries() {
+        String OS = System.getProperty("os.name").toLowerCase();
+        Helper.wr("Found platform: " + OS);
+		
+        if (isWindows(OS)) {
+            Helper.wr("This is Windows");
+            
+        } else if (isMac(OS)) {
+            Helper.wr("This is Mac");
+            System.loadLibrary("libjinput-osx.jnilib");
+            
+        } else if (isUnix(OS)) {
+            Helper.wr("This is Unix or Linux");
+            
+        } else if (isSolaris(OS)) {
+            Helper.wr("This is Solaris");
+            
+        } else {
+            Helper.wr("Your OS is not support!!");
+            
+        }
+    }
+    
+    public static boolean isWindows(String OS) {
+        return (OS.indexOf("win") >= 0);
+    }
+
+    public static boolean isMac(String OS) {
+        return (OS.indexOf("mac") >= 0);
+    }
+
+    public static boolean isUnix(String OS) {
+        return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
+    }
+
+    public static boolean isSolaris(String OS) {
+        return (OS.indexOf("sunos") >= 0);
+    }    
+    
     /**
      * Sets the value of the field specified by the field reflection object.
      *
@@ -132,7 +172,8 @@ public class OdroidGame {
      * @param args The command line arguments
      */
     public static final void main(String[] args) {
-
+        LoadNativeLibraries();
+        
         if (args != null && args.length > 0) {
             Helper.wr("Found command line arguments!");
             String res = null;

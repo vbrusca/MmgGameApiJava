@@ -15,6 +15,7 @@ public class GameSettings {
     public static String BMP_PREFIX = "images_";
     public static String BMP_PREFIX_CONSOLE = "console_images_";
     public static String AUTO_IMAGE_LOAD_DIR = "../cfg/drawable/auto_load/";
+    public static String CLASS_CONFIG_DIR = "../cfg/class_config/";    
     public static String NAME = "Unknown";
     
     public static boolean DEVELOPMENT_MODE_ON = true;

@@ -104,7 +104,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        classConfig = MmgHelper.LoadClassConfigFile("../cfg/class_configs/screen_splash.txt");
+        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
         
         MmgBmp tB = null;
         MmgPen p;
