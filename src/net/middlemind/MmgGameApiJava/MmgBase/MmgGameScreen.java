@@ -847,7 +847,6 @@ public class MmgGameScreen extends MmgObj {
                     if (tmp != null && tmp.GetIsVisible() == true) {
                         if (i == menuIdx) {
                             if (tmp.GetState() != MmgMenuItem.STATE_INACTIVE) {
-                                MmgHelper.wr("=======================SetSelected");
                                 tmp.SetState(MmgMenuItem.STATE_SELECTED);
                             }
                         } else {

@@ -105,18 +105,24 @@ public class MmgMenuItem extends MmgObj {
         SetState(m.GetState());
 
         if(m.GetPosition() != null) {
-        	SetPosition(m.GetPosition().Clone());
+            SetPosition(m.GetPosition().Clone());
         }else{
-        	SetPosition(m.GetPosition());
+            SetPosition(m.GetPosition());
         }
         SetWidth(m.GetWidth());
         SetHeight(m.GetHeight());
         SetIsVisible(m.GetIsVisible());
         
         if(m.GetMmgColor() != null) {
-        	SetMmgColor(m.GetMmgColor().Clone());
+            SetMmgColor(m.GetMmgColor().Clone());
         }else{
-        	SetMmgColor(m.GetMmgColor());
+            SetMmgColor(m.GetMmgColor());
+        }
+        
+        if(m.GetSound() != null) {
+            SetSound(m.GetSound().Clone());
+        }else {
+            SetSound(m.GetSound());
         }
     }
 

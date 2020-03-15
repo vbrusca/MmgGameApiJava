@@ -21,7 +21,7 @@ public class MmgFont extends MmgObj {
      * The text this font class is going to display.
      */
     private String text;
-
+    
     /**
      * A render context for calculating font dimensions.
      */
@@ -88,7 +88,7 @@ public class MmgFont extends MmgObj {
             SetMmgColor(fnt.GetMmgColor());
         } else {
             SetMmgColor(fnt.GetMmgColor().Clone());
-        }
+        }       
     }
 
     /**
@@ -136,7 +136,7 @@ public class MmgFont extends MmgObj {
         MmgFont ret = new MmgFont(this);
         return ret;
     }
-
+    
     /**
      * Gets the text for this object.
      *
@@ -241,6 +241,7 @@ public class MmgFont extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (GetIsVisible() == true) {
+            
             p.DrawText(this);
         } else {
             //do nothing

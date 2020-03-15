@@ -11,6 +11,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
@@ -42,6 +44,11 @@ public class ScreenGame extends Screen {
     protected final GamePanel owner;
         
     private MmgBmp bground;
+    private MmgBmp padelLeft;
+    private MmgBmp padelRight;
+    private MmgFont scoreLeft;
+    private MmgFont scoreRight;
+    private MmgFont exit;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -78,6 +85,32 @@ public class ScreenGame extends Screen {
         bground = MmgBmpScaler.ScaleMmgBmpToGameScreen(bground, false);
         MmgHelper.CenterHorAndVert(bground);
         AddObj(bground);
+        
+        padelLeft = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
+        padelLeft.SetPosition(MmgHelper.ScaleValue(20), GetY() + (h - padelLeft.GetHeight())/2);
+        AddObj(padelLeft);
+        
+        padelRight = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
+        padelRight.SetPosition((w - padelRight.GetWidth() - MmgHelper.ScaleValue(20)), GetY() + (h - padelLeft.GetHeight())/2);        
+        AddObj(padelRight);
+        
+        scoreLeft = MmgFontData.CreateDefaultBoldMmgFontLg();
+        scoreLeft.SetText("00");
+        scoreLeft.SetMmgColor(MmgColor.GetWhite());
+        scoreLeft.SetPosition(MmgHelper.ScaleValue(10), GetY() + scoreLeft.GetHeight() + MmgHelper.ScaleValue(5));
+        AddObj(scoreLeft);
+        
+        scoreRight = MmgFontData.CreateDefaultBoldMmgFontLg();
+        scoreRight.SetText("00");
+        scoreRight.SetMmgColor(MmgColor.GetWhite());
+        scoreRight.SetPosition(w - scoreRight.GetWidth() - MmgHelper.ScaleValue(10), GetY() + scoreRight.GetHeight() + MmgHelper.ScaleValue(5));
+        AddObj(scoreRight);        
+        
+        exit = MmgFontData.CreateDefaultBoldMmgFontLg();
+        exit.SetText("Press B to Exit");
+        exit.SetMmgColor(MmgColor.GetWhite());
+        exit.SetPosition((w - exit.GetWidth())/2, GetY() + exit.GetHeight() + MmgHelper.ScaleValue(5));
+        AddObj(exit);        
         
         ready = true;
         pause = false;
