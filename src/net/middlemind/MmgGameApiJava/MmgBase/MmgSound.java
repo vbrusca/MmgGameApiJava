@@ -126,6 +126,11 @@ public class MmgSound {
      * Starts playing this sound.
      */
     public void Play() {
+        if(sound.isRunning()) {
+            sound.stop();
+        }
+        
+        sound.setFramePosition(0);        
         sound.start();
     }
 
@@ -136,7 +141,13 @@ public class MmgSound {
      * @param rate The rate variable used when playing this sound.
      */
     public void Play(int loop, float rate) {
-        sound.start();
+        if(sound.isRunning()) {
+            sound.stop();
+        }
+        
+        sound.setFramePosition(0); 
+        sound.loop(loop);
+        sound.start();        
     }
 
     /**

@@ -9,7 +9,9 @@ import java.awt.Color;
  * @author Victor G. Brusca
  */
 public class MmgMenuItem extends MmgObj {
-	
+
+    public static int STATE_NONE = -1;
+    
     /**
      * Used to represent a normal menu item state.
      */
@@ -50,6 +52,8 @@ public class MmgMenuItem extends MmgObj {
      */
     private MmgObj current;
     
+    private MmgSound sound;
+    
     /**
      * A class helper variable for tracking the current state.
      */
@@ -67,7 +71,7 @@ public class MmgMenuItem extends MmgObj {
         selected = null;
         inactive = null;
         current = null;
-        state = STATE_NORMAL;
+        state = STATE_NONE;
     }
 
     /**
@@ -83,7 +87,7 @@ public class MmgMenuItem extends MmgObj {
         selected = null;
         inactive = null;
         current = null;
-        state = STATE_NORMAL;
+        state = STATE_NONE;
     }
 
     /**
@@ -146,6 +150,14 @@ public class MmgMenuItem extends MmgObj {
         return (MmgObj) ret;
     }
 
+    public MmgSound GetSound() {
+        return sound;
+    }
+
+    public void SetSound(MmgSound Sound) {
+        sound = Sound;
+    }    
+    
     /**
      * Gets the press event for this menu item.
      * 
@@ -224,14 +236,24 @@ public class MmgMenuItem extends MmgObj {
      * @param i     The current state of the menu item. 
      */
     public void SetState(int i) {
-        if (i == STATE_NORMAL) {
-            current = normal;
-        }else if (i == STATE_SELECTED) {
-            current = selected;
-        }else if (i == STATE_INACTIVE) {
-            current = inactive;
+        if(state != i) {
+            if (i == STATE_NORMAL) {
+                current = normal;
+        
+            }else if (i == STATE_SELECTED) {
+                current = selected;
+                
+                if(sound != null) {
+                    sound.Play();
+                }
+
+            }else if (i == STATE_INACTIVE) {
+                current = inactive;
+                
+            }
+
+            state = i;            
         }
-        state = i;
     }
 
     /**

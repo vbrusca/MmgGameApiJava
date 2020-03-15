@@ -2,6 +2,7 @@ package com.middlemind.Odroid;
 
 import java.io.File;
 import java.util.ArrayList;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
  * A worker thread that handles loading the Tyre game DAT file. Created on
@@ -81,28 +82,94 @@ public class RunResourceLoad implements Runnable {
         readResult = false;
         readComplete = false;
         
+        File asld = null;
+        File adld = null;
+        File[] srcFiles = null;
+        ArrayList<File> clnFiles = null;
+        File[] asFiles = null;
+        File[] adFiles = null;
+        int j = 0;
+        
         try {
-            File ald = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
-            File[] srcFiles = ald.listFiles();
-            ArrayList<File> clnFiles = new ArrayList();
+            asld = new File(GameSettings.AUTO_SOUND_LOAD_DIR);
+            srcFiles = asld.listFiles();
+            clnFiles = new ArrayList();
             
-            for(int j = 0; j < srcFiles.length; j++) {
-                if(srcFiles[j].getName().charAt(0) != '.') {
+            for(j = 0; j < srcFiles.length; j++) {
+                if(srcFiles[j].getName().charAt(0) != '.' && srcFiles[j].getName().toLowerCase().indexOf(".wav") != -1) {
                     clnFiles.add(srcFiles[j]);
                 }
             }
 
-            File[] files = new File[clnFiles.size()];
-            files = clnFiles.toArray(files);
+            asFiles = new File[clnFiles.size()];
+            asFiles = clnFiles.toArray(asFiles);
             
-            if(files != null && files.length > 0) {
-                readLen = (files.length - 1) * loadMultiplier;
-                readPos = 0;
-                tlen = files.length;
+            if(asFiles != null && asFiles.length > 0) {
+                readLen = (asFiles.length - 1) * loadMultiplier;
+            }
+            
+            adld = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
+            srcFiles = adld.listFiles();
+            clnFiles = new ArrayList();
+            
+            for(j = 0; j < srcFiles.length; j++) {
+                if(srcFiles[j].getName().charAt(0) != '.' && (srcFiles[j].getName().toLowerCase().indexOf(".png") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".jpg") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".bmp") != -1)) {
+                    clnFiles.add(srcFiles[j]);
+                }
+            }
+
+            adFiles = new File[clnFiles.size()];
+            adFiles = clnFiles.toArray(adFiles);            
+            
+            if(adFiles != null && adFiles.length > 0) {
+                readLen += (adFiles.length - 1) * loadMultiplier;
+            }            
+                       
+            readPos = 0;
+        } catch(Exception e) {
+            MmgHelper.wrErr(e);
+        }
+        
+        try {
+            //auto load audio files
+            if(asFiles != null && asFiles.length > 0) {
+                tlen = asFiles.length;
                 
                 for(i = 0; i < tlen; i++) {
-                    Helper.wr("Found auto_load file: " + files[i].getName() + " Path: " + files[i].getPath());
-                    Helper.GetBasicCachedBmp(files[i].getPath(), files[i].getName());
+                    Helper.wr("Found auto_load file: " + asFiles[i].getName() + " Path: " + asFiles[i].getPath());
+                    Helper.GetBasicCachedSound(asFiles[i].getPath(), asFiles[i].getName());
+                    readPos = i * loadMultiplier;
+                    
+                    if (update != null) {                        
+                        update.HandleUpdate(new LoadResourceUpdateMessage(readPos, readLen));
+                    }
+                    
+                    try {
+                        Thread.sleep(slowDown);
+                    } catch (Exception e) {
+                        
+                    }
+                    
+                    if(exitLoad) {
+                        break;
+                    }
+                }                
+            }
+            readResult = true;
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }        
+        
+        try {            
+            if(adFiles != null && adFiles.length > 0) {
+                readLen = (adFiles.length - 1) * loadMultiplier;
+                readPos = 0;
+                tlen = adFiles.length;
+                
+                for(i = 0; i < tlen; i++) {
+                    Helper.wr("Found auto_load file: " + adFiles[i].getName() + " Path: " + adFiles[i].getPath());
+                    Helper.GetBasicCachedBmp(adFiles[i].getPath(), adFiles[i].getName());
                     readPos = i * loadMultiplier;
                     
                     if (update != null) {                        

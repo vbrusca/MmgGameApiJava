@@ -102,7 +102,9 @@ public class OdroidGame {
             
         } else if (isMac(OS)) {
             Helper.wr("This is Mac");
-            System.loadLibrary("libjinput-osx.jnilib");
+            Helper.wr("LibPath: " + System.getProperty("java.library.path"));
+            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
+            System.loadLibrary("jinput-osx");
             
         } else if (isUnix(OS)) {
             Helper.wr("This is Unix or Linux");

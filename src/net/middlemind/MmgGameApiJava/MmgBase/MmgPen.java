@@ -287,7 +287,7 @@ public class MmgPen {
      * @param position      The position to draw the image.
      */
     public void DrawBmpBasic(String idStr, MmgVector2 position) {
-        tmpImg = MmgMediaTracker.GetValue(idStr);
+        tmpImg = MmgMediaTracker.GetBmpValue(idStr);
         if(tmpImg != null) {
             DrawBmp(tmpImg, position.GetX(), position.GetY());
         }
@@ -373,8 +373,8 @@ public class MmgPen {
         tmpIdStr = b.GetIdStr(rotation);
         
         if(rotation != 0) {
-            if(cacheOn == true && MmgMediaTracker.HasKey(tmpIdStr) == true) {
-                tmpImg = MmgMediaTracker.GetValue(tmpIdStr);
+            if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
+                tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
             }else {
                 tmpImg = RotateImage(b.GetWidth(), b.GetHeight(), b.GetTexture2D(), (int)rotation, origin.GetX(), origin.GetY());
                 if(cacheOn == true) {
@@ -404,8 +404,8 @@ public class MmgPen {
     public void DrawBmp(MmgBmp b, MmgRect srcRect, MmgRect dstRect) {
         tmpIdStr = b.GetBmpIdStr();
         
-        if(cacheOn == true && MmgMediaTracker.HasKey(tmpIdStr) == true) {
-            tmpImg = MmgMediaTracker.GetValue(tmpIdStr);       
+        if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
+            tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);       
         }else {
             tmpImg = b.GetTexture2D();
         }
@@ -444,11 +444,11 @@ public class MmgPen {
             tmpIdStr = b.GetBmpIdStr();
         }
         
-        if(cacheOn == true && MmgMediaTracker.HasKey(tmpIdStr) == true) {
-            tmpImg = MmgMediaTracker.GetValue(tmpIdStr);
+        if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
+            tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
         }else if(rotation != 0 && scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
-            if(cacheOn == true && MmgMediaTracker.HasKey(b.GetIdStr(rotation)) == true) {
-                tmpImg = MmgMediaTracker.GetValue(b.GetIdStr(rotation));
+            if(cacheOn == true && MmgMediaTracker.HasBmpKey(b.GetIdStr(rotation)) == true) {
+                tmpImg = MmgMediaTracker.GetBmpValue(b.GetIdStr(rotation));
             }else {
                 tmpImg = RotateImage(b.GetWidth(), b.GetHeight(), b.GetTexture2D(), (int)rotation, origin.GetX(), origin.GetY());
                 if(cacheOn == true) {
@@ -461,8 +461,8 @@ public class MmgPen {
                 MmgMediaTracker.CacheImage(tmpIdStr, tmpImg);
             }
         }else if(rotation != 0) {
-            if(cacheOn == true && MmgMediaTracker.HasKey(tmpIdStr) == true) {
-                tmpImg = MmgMediaTracker.GetValue(tmpIdStr);
+            if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
+                tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
             }else {
                 tmpImg = RotateImage(b.GetWidth(), b.GetHeight(), b.GetTexture2D(), (int)rotation, origin.GetX(), origin.GetY());
                 if(cacheOn == true) {
@@ -470,8 +470,8 @@ public class MmgPen {
                 }
             }
         }else if(scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
-           if(cacheOn == true && MmgMediaTracker.HasKey(tmpIdStr) == true) {
-               tmpImg = MmgMediaTracker.GetValue(tmpIdStr);
+           if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
+               tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
            }else {
                 tmpImg = ScaleImage(tmpImg, scaling.GetXDouble(), scaling.GetYDouble());
                 if(cacheOn == true) {

@@ -22,11 +22,11 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
 /**
- * A game screen object, ScreenTest, that extends the MmgGameScreen base
+ * A game screen object, ScreenGame, that extends the MmgGameScreen base
  * class. This class is for testing new UI widgets, etc.
  *
  * @author Victor G. Brusca
- * 02/25/2020
+ * 03/15/2020
  */
 public class ScreenGame extends Screen {
 
@@ -36,21 +36,11 @@ public class ScreenGame extends Screen {
     protected final GameStates gameState;
 
     /**
-     * Event handler for firing generic events. Events would fire when the
-     * screen has non UI actions to broadcast.
-     */
-    protected GenericEventHandler handler;
-
-    /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
      * holds a reference to this game screen object.
      */
     protected final GamePanel owner;
-    
-    protected MmgScrollVert scrollVert;
-    protected MmgScrollHor scrollHor;
-    protected MmgScrollHorVert scrollBoth;
-    
+        
     private MmgBmp bground;
     
     /**
@@ -70,21 +60,6 @@ public class ScreenGame extends Screen {
         Helper.wr("Odroid.ScreenGame: Constructor");
     }
 
-    /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
-     *
-     * @param Handler A class that implements the GenericEventHandler interface.
-     */
-    public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("Odroid.ScreenGame.SetGenericEventHandler");
-        handler = Handler;
-    }
-
-    public GenericEventHandler GetGenericEventHandler() {
-        return handler;
-    }
-       
     /**
      * Loads all the resources needed to display this game screen.
      */

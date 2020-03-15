@@ -3,21 +3,19 @@ package com.middlemind.Odroid;
 import com.middlemind.Odroid.GamePanel.GameStates;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuContainer;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuItem;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
- * A game screen object, ScreenMainMenu, that extends the MmgGameScreen base
+ * A game screen object, Screen, that extends the MmgGameScreen base
  * class. This game screen is for displaying a main menu screen. Created on
  * August 1, 2015, 10:57 PM by Middlemind Games. Created by Middlemind Games.
  *
  * @author Victor G. Brusca
+ * 03/15/2020
  */
 public class Screen extends MmgGameScreen implements GenericEventHandler {
 
@@ -67,19 +65,9 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
-
-        Helper.wr("ScreenMainMenu: LoadResources: Position: " + GetPosition().ToString());
-        Helper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
-        Helper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
-
-        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_main_menu.txt");
         
         MmgBmp tB = null;
         MmgPen p;
-        String key = "";
-        double scale = 1.0;
-        String imgId = "";
-        MmgBmp lval = null;
         
         p = new MmgPen();
         p.SetCacheOn(false);

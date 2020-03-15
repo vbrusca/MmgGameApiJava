@@ -5,6 +5,9 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.Random;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
@@ -12,6 +15,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgMediaTracker;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuItem;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
 /**
@@ -71,11 +75,39 @@ public class Helper {
     }
 
     @SuppressWarnings("UnusedAssignment")
+    public static MmgSound GetBasicCachedSound(String path, String imgId) {
+        MmgSound lval = null;
+        if (GameSettings.SND_CACHE_ON == true) {
+            if (MmgMediaTracker.HasSoundKey(imgId) == true) {
+                lval = new MmgSound(MmgMediaTracker.GetSoundValue(imgId));
+            } else {
+                lval = Helper.GetBasicSound(path);
+                MmgMediaTracker.CacheSound(imgId, lval.GetSound());
+            }
+        } else {
+            lval = Helper.GetBasicSound(path);
+        }
+        return lval;
+    }
+    
+    @SuppressWarnings("UnusedAssignment")
+    public static MmgSound GetBasicCachedSound(String sndId) {
+        MmgSound lval = null;
+        if (GameSettings.SND_CACHE_ON == true) {
+            if (MmgMediaTracker.HasSoundKey(sndId) == true) {
+                lval = new MmgSound(MmgMediaTracker.GetSoundValue(sndId));
+            }
+        }
+        return lval;
+    }    
+        
+    
+    @SuppressWarnings("UnusedAssignment")
     public static MmgBmp GetBasicCachedBmp(String path, String imgId) {
         MmgBmp lval = null;
         if (GameSettings.BMP_CACHE_ON == true) {
-            if (MmgMediaTracker.HasKey(imgId) == true) {
-                lval = new MmgBmp(MmgMediaTracker.GetValue(imgId));
+            if (MmgMediaTracker.HasBmpKey(imgId) == true) {
+                lval = new MmgBmp(MmgMediaTracker.GetBmpValue(imgId));
                 lval.SetMmgColor(null);
             } else {
                 lval = Helper.GetBasicBmp(path);
@@ -91,8 +123,8 @@ public class Helper {
     public static MmgBmp GetBasicCachedBmp(String imgId) {
         MmgBmp lval = null;
         if (GameSettings.BMP_CACHE_ON == true) {
-            if (MmgMediaTracker.HasKey(imgId) == true) {
-                lval = new MmgBmp(MmgMediaTracker.GetValue(imgId));
+            if (MmgMediaTracker.HasBmpKey(imgId) == true) {
+                lval = new MmgBmp(MmgMediaTracker.GetBmpValue(imgId));
                 lval.SetMmgColor(null);
             }
         }
@@ -101,8 +133,8 @@ public class Helper {
     
     public static void ListCacheEntries() {
         if (GameSettings.BMP_CACHE_ON == true) {
-            int len = MmgMediaTracker.GetCacheSize();
-            Object[] keys = MmgMediaTracker.ms.keySet().toArray();
+            int len = MmgMediaTracker.GetBmpCacheSize();
+            Object[] keys = MmgMediaTracker.cacheBmp.keySet().toArray();
             for (int i = 0; i < len; i++) {
                 String key = keys[i] + "";
                 wr(i + " key: " + key);
@@ -137,6 +169,31 @@ public class Helper {
 
         return r;
     }
+    
+    /**
+     * Gets a basic sound from the file system.
+     *
+     * @param src A path to a valid sound resource.
+     * @return A sound loaded from the file path.
+     */
+    public static MmgSound GetBasicSound(String src) {
+        Clip in = null;
+        MmgSound snd = null;
+        
+        try
+        {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(src));
+            in = AudioSystem.getClip();
+            in.open(audioIn);
+            snd = new MmgSound(in);
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace();
+        }
+
+        return snd;
+    }  
 
     public static MmgBmp GetBinaryBmp(byte[] d) {
         Image b = null;

@@ -11,6 +11,9 @@ import java.io.FileReader;
 import java.util.Hashtable;
 import java.util.Random;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  * Class that provides high level helper methods. Created by Middlemind Games
@@ -24,6 +27,7 @@ public class MmgHelper {
      */
     public static boolean LOGGING = true;
     public static boolean BMP_CACHE_ON = true;
+    public static boolean SND_CACHE_ON = true;    
     private static Random rando = new Random(System.currentTimeMillis());    
 
     public static Hashtable<String, Double> LoadClassConfigFile(String file) {
@@ -415,11 +419,38 @@ public class MmgHelper {
     }
 
     @SuppressWarnings("UnusedAssignment")
+    public static MmgSound GetBasicCachedSound(String path, String sndId) {
+        MmgSound lval = null;
+        if (SND_CACHE_ON == true) {
+            if (MmgMediaTracker.HasSoundKey(sndId) == true) {
+                lval = new MmgSound(MmgMediaTracker.GetSoundValue(sndId));
+            } else {
+                lval = MmgHelper.GetBasicSound(path);
+                MmgMediaTracker.CacheSound(sndId, lval.GetSound());
+            }
+        } else {
+            lval = MmgHelper.GetBasicSound(path);
+        }
+        return lval;
+    }
+    
+    @SuppressWarnings("UnusedAssignment")
+    public static MmgSound GetBasicCachedSound(String sndId) {
+        MmgSound lval = null;
+        if (SND_CACHE_ON == true) {
+            if (MmgMediaTracker.HasSoundKey(sndId) == true) {
+                lval = new MmgSound(MmgMediaTracker.GetSoundValue(sndId));
+            }
+        }
+        return lval;
+    }     
+    
+    @SuppressWarnings("UnusedAssignment")
     public static MmgBmp GetBasicCachedBmp(String path, String imgId) {
         MmgBmp lval = null;
         if (BMP_CACHE_ON == true) {
-            if (MmgMediaTracker.HasKey(imgId) == true) {
-                lval = new MmgBmp(MmgMediaTracker.GetValue(imgId));
+            if (MmgMediaTracker.HasBmpKey(imgId) == true) {
+                lval = new MmgBmp(MmgMediaTracker.GetBmpValue(imgId));
                 lval.SetMmgColor(null);
             } else {
                 lval = MmgHelper.GetBasicBmp(path);
@@ -435,8 +466,8 @@ public class MmgHelper {
     public static MmgBmp GetBasicCachedBmp(String imgId) {
         MmgBmp lval = null;
         if (BMP_CACHE_ON == true) {
-            if (MmgMediaTracker.HasKey(imgId) == true) {
-                lval = new MmgBmp(MmgMediaTracker.GetValue(imgId));
+            if (MmgMediaTracker.HasBmpKey(imgId) == true) {
+                lval = new MmgBmp(MmgMediaTracker.GetBmpValue(imgId));
                 lval.SetMmgColor(null);
             }
         }
@@ -445,8 +476,8 @@ public class MmgHelper {
     
     public static void ListCacheEntries() {
         if (BMP_CACHE_ON == true) {
-            int len = MmgMediaTracker.GetCacheSize();
-            Object[] keys = MmgMediaTracker.ms.keySet().toArray();
+            int len = MmgMediaTracker.GetBmpCacheSize();
+            Object[] keys = MmgMediaTracker.cacheBmp.keySet().toArray();
             for (int i = 0; i < len; i++) {
                 String key = keys[i] + "";
                 wr(i + " key: " + key);
@@ -454,6 +485,31 @@ public class MmgHelper {
         }
     }
 
+    /**
+     * Gets a basic sound from the file system.
+     *
+     * @param src A path to a valid sound resource.
+     * @return A sound loaded from the file path.
+     */
+    public static MmgSound GetBasicSound(String src) {
+        Clip in = null;
+        MmgSound snd = null;
+        
+        try
+        {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(src));
+            in = AudioSystem.getClip();
+            in.open(audioIn);
+            snd = new MmgSound(in);
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace();
+        }
+
+        return snd;
+    }    
+    
     /**
      * Gets a basic bitmap from the file system.
      *

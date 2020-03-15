@@ -11,6 +11,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuContainer;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuItem;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 
 /**
  * A game screen object, ScreenMainMenu, that extends the MmgGameScreen base
@@ -58,6 +59,8 @@ public class ScreenMainMenu extends MmgGameScreen {
      */
     private MmgMenuContainer menu;
 
+    private MmgSound menuSound;
+    
     /**
      * Helper class for handling game screen events.
      */
@@ -111,11 +114,18 @@ public class ScreenMainMenu extends MmgGameScreen {
         String key = "";
         double scale = 1.0;
         String imgId = "";
+        String sndId = "";        
         MmgBmp lval = null;
+        MmgSound sval = null;
         
         p = new MmgPen();
         p.SetCacheOn(false);
         handleMenuEvent = new HandleMainMenuEvent(this, owner);
+        
+        sndId = "jump1.wav";
+        sval = MmgHelper.GetBasicCachedSound(sndId);
+        sval.Play();
+        menuSound = sval;
         
         tB =  MmgHelper.CreateFilledBmp(w, h, MmgColor.GetBlack());
         if (tB != null) {
@@ -361,14 +371,20 @@ public class ScreenMainMenu extends MmgGameScreen {
         menu.SetMmgColor(null);
         dirty = false;
 
+        MmgMenuItem mItm = null;
+        
         if (menuStartGame != null) {
-            menu.Add(Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame));
+            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame);
+            mItm.SetSound(menuSound);
+            menu.Add(mItm);
         }
 
         if (menuExitGame != null) {
-            menu.Add(Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame));
+            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame);
+            mItm.SetSound(menuSound);
+            menu.Add(mItm);
         }
-
+        
         SetMenuStart(0);
         SetMenuStop(menu.GetCount() - 1);
         
@@ -393,7 +409,8 @@ public class ScreenMainMenu extends MmgGameScreen {
         menuTitle = null;
         menuFooterUrl = null;
         menuCursor = null;
-
+        menuSound = null;
+        
         handleMenuEvent = null;
         menu = null;
         ready = false;
