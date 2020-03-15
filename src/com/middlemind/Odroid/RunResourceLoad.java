@@ -14,35 +14,35 @@ public class RunResourceLoad implements Runnable {
     /**
      * A boolean result of the loading process.
      */
-    protected boolean readResult;
+    public boolean readResult;
 
     /**
      * A boolean result of the last read operation.
      */
-    protected boolean readComplete;
+    public boolean readComplete;
 
     /**
      * Helper variables for the read process.
      */
-    protected int readPos;
+    public int readPos;
 
     /**
      * Helper variables for the read process.
      */
-    protected int readLen;
-    //protected int len;    
-    protected int loadMultiplier = 1000;
-    //protected int extraLoadLen = ((42 + 15 + 284) * extraLoadMultiplier); //direct file load steps + console image steps + regular image steps
+    public int readLen;
+    //public int len;    
+    public int loadMultiplier = 1000;
+    //public int extraLoadLen = ((42 + 15 + 284) * extraLoadMultiplier); //direct file load steps + console image steps + regular image steps
 
     /**
      * An event handler for receiving update messages from the DAT loader.
      */
-    protected LoadResourceUpdateHandler update;
+    public LoadResourceUpdateHandler update;
 
-    protected int tlen;
-    protected int i;
-    protected long slowDown;
-    protected boolean exitLoad;
+    public int tlen;
+    public int i;
+    public long slowDown;
+    public boolean exitLoad;
     
     /**
      * A constructor that sets the thin load option, don't load binary image or

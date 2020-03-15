@@ -31,19 +31,19 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     /**
      * The game state this screen has.
      */
-    protected final GameStates state;
+    public GameStates state;
 
     /**
      * Event handler for firing generic events. Events would fire when the
      * screen has non UI actions to broadcast.
      */
-    protected GenericEventHandler handler;
+    public GenericEventHandler handler;
 
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
      * holds a reference to this game screen object.
      */
-    protected final GamePanel owner;
+    public GamePanel owner;
 
     private Hashtable<String, Double> classConfig;
     
@@ -105,17 +105,22 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         SetPosition(MmgScreenData.GetPosition());
 
         classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
-        
+                
         MmgBmp tB = null;
         MmgPen p;
         String key = "";
         double scale = 1.0;
         int tmp = 0;
         
+        key = "splashScreenDisplayTimeMs";
+        if(classConfig.containsKey(key)) {        
+            super.SetDisplayTime(classConfig.get(key).intValue());        
+        }
+            
         p = new MmgPen();
         p.SetCacheOn(false);
 
-        tB = Helper.GetBasicBmp("../cfg/drawable/logo_large.jpg");        
+        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "logo_large.jpg");        
         if (tB != null) {
             key = "splashLogoScale";
             if(classConfig.containsKey(key)) {
@@ -127,22 +132,33 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
             
             SetCenteredBackground(tB);
             
-            key = "splashLogoOffsetY";
+            key = "splashLogoPosY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).intValue();
                 tB.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
             }
             
-            key = "splashLogoOffsetX";
+            key = "splashLogoPosX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).intValue();
                 tB.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
             }
+            
+            key = "splashLogoOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).intValue();
+                tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "splashLogoOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).intValue();
+                tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
+            }            
         }
 
         ready = true;
         pause = false;
-        Helper.wr("ScreenTest: LoadResources");
     }
 
     /**

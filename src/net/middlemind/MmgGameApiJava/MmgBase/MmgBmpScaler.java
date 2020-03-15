@@ -20,9 +20,9 @@ import java.awt.image.BufferedImage;
  */
 public class MmgBmpScaler {
 
-    public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+    public static GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
-    public static final MmgBmp ScaleMmgBmpToGameScreen(MmgBmp subj, boolean alpha) {
+    public static MmgBmp ScaleMmgBmpToGameScreen(MmgBmp subj, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();        
         int nw = MmgScreenData.GetGameWidth();
@@ -42,7 +42,7 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }         
     
-    public static final MmgBmp ScaleMmgBmp(MmgBmp subj, MmgVector2 newSize, boolean alpha) {
+    public static MmgBmp ScaleMmgBmp(MmgBmp subj, MmgVector2 newSize, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();        
         int nw = newSize.GetX();
@@ -62,7 +62,7 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }
     
-    public static final MmgBmp ScaleMmgBmp(MmgBmp subj, boolean useScreenDataScaleX, boolean alpha) {
+    public static MmgBmp ScaleMmgBmp(MmgBmp subj, boolean useScreenDataScaleX, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();
         int nw = 0;
@@ -91,7 +91,7 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }    
     
-    public static final MmgBmp ScaleMmgBmp(MmgBmp subj, double scale, boolean alpha) {
+    public static MmgBmp ScaleMmgBmp(MmgBmp subj, double scale, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();
         int nw = (int) (w * scale);
@@ -111,7 +111,7 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }
 
-    public static final MmgBmp RotateMmgBmp(MmgBmp subj, int angle, boolean alpha) {
+    public static MmgBmp RotateMmgBmp(MmgBmp subj, int angle, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();
         Image img = subj.GetImage();

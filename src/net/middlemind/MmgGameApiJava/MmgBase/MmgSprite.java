@@ -9,8 +9,8 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgSprite extends MmgObj {
 
-    public static final int MMG_SPRITE_FRAME_CHANGE_TYPE = 0;
-    public static final int MMG_SPRITE_FRAME_CHANGE = 0;
+    public static int MMG_SPRITE_FRAME_CHANGE_TYPE = 0;
+    public static int MMG_SPRITE_FRAME_CHANGE = 0;
     
     /**
      * The origin of the sprite image.
@@ -84,7 +84,7 @@ public class MmgSprite extends MmgObj {
     private boolean simpleRendering;
     private MmgEventHandler onFrameChange;
     private boolean timerOnly;
-    private final MmgEvent frameChange = new MmgEvent(null, "frame_changed", MmgSprite.MMG_SPRITE_FRAME_CHANGE, MmgSprite.MMG_SPRITE_FRAME_CHANGE_TYPE, null, null);
+    private MmgEvent frameChange = new MmgEvent(null, "frame_changed", MmgSprite.MMG_SPRITE_FRAME_CHANGE, MmgSprite.MMG_SPRITE_FRAME_CHANGE_TYPE, null, null);
 
     /**
      * Constructor that sets the MmgBmp array, the source rectangle, the destination rectangle,

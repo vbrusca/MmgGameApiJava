@@ -437,7 +437,7 @@ public class MmgBmp extends MmgObj {
      *
      * @param r The rotation of the bitmap.
      */
-    public final void SetRotation(float r) {
+    public void SetRotation(float r) {
         rotation = r;
     }
 

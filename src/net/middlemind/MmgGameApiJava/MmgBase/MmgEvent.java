@@ -16,7 +16,7 @@ public class MmgEvent {
     /**
      * The message of this event.
      */
-    private final String message;
+    private String message;
 
     /**
      * The id of this event.
@@ -36,7 +36,7 @@ public class MmgEvent {
     /**
      * An extra object to pass along with the event.
      */
-    private final Object extra;
+    private Object extra;
 
     /**
      * The previous event that fired before this event, if applicable.

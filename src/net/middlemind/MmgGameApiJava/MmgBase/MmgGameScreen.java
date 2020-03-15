@@ -198,7 +198,7 @@ public class MmgGameScreen extends MmgObj {
      *
      * @return True if this object is ready, false otherwise.
      */
-    public final boolean IsReady() {
+    public boolean IsReady() {
         return ready;
     }
 
@@ -207,14 +207,14 @@ public class MmgGameScreen extends MmgObj {
      *
      * @param b A boolean indicating if this object is ready for display.
      */
-    public final void SetReady(boolean b) {
+    public void SetReady(boolean b) {
         ready = b;
     }
 
     /**
      * Pauses this object. If paused no drawing occurs.
      */
-    public final void Pause() {
+    public void Pause() {
         pause = true;
         SetIsVisible(false);
     }
@@ -222,7 +222,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Un-pause this object. If paused no drawing occurs.
      */
-    public final void UnPause() {
+    public void UnPause() {
         pause = false;
         SetIsVisible(true);
     }
@@ -232,7 +232,7 @@ public class MmgGameScreen extends MmgObj {
      *
      * @return True if this object was paused, false otherwise.
      */
-    public final boolean IsPaused() {
+    public boolean IsPaused() {
         if (pause == true) {
             return true;
         } else {

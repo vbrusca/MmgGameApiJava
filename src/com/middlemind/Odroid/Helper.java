@@ -28,7 +28,7 @@ public class Helper {
     public static boolean LOGGING = true;
     private static Random rando = new Random(System.currentTimeMillis());
 
-    public static final int GetRandomInt(int exclusiveUpperBound) {
+    public static int GetRandomInt(int exclusiveUpperBound) {
         return rando.nextInt(exclusiveUpperBound);
     }
 
@@ -37,7 +37,7 @@ public class Helper {
      *
      * @param s The string to be logged.
      */
-    public static final void wr(String s) {
+    public static void wr(String s) {
         if (Helper.LOGGING = true) {
             System.out.println(s);
         }
@@ -48,7 +48,7 @@ public class Helper {
      *
      * @param e The exception to be logged.
      */
-    public static final void wrErr(Exception e) {
+    public static void wrErr(Exception e) {
         if (Helper.LOGGING = true) {
             System.err.println(e.getMessage());
             StackTraceElement[] els = e.getStackTrace();
@@ -64,14 +64,14 @@ public class Helper {
      *
      * @param s The string to be logged.
      */
-    public static final void wrErr(String s) {
+    public static void wrErr(String s) {
         if (Helper.LOGGING = true) {
             System.err.println(s);
         }
     }
 
     @SuppressWarnings("UnusedAssignment")
-    public static final MmgBmp GetBasicCachedBmp(String path, String imgId) {
+    public static MmgBmp GetBasicCachedBmp(String path, String imgId) {
         MmgBmp lval = null;
         if (GameSettings.BMP_CACHE_ON == true) {
             if (MmgMediaTracker.HasKey(imgId) == true) {
@@ -88,7 +88,7 @@ public class Helper {
     }
 
     @SuppressWarnings("UnusedAssignment")
-    public static final MmgBmp GetBasicCachedBmp(String imgId) {
+    public static MmgBmp GetBasicCachedBmp(String imgId) {
         MmgBmp lval = null;
         if (GameSettings.BMP_CACHE_ON == true) {
             if (MmgMediaTracker.HasKey(imgId) == true) {
@@ -99,7 +99,7 @@ public class Helper {
         return lval;
     }    
     
-    public static final void ListCacheEntries() {
+    public static void ListCacheEntries() {
         if (GameSettings.BMP_CACHE_ON == true) {
             int len = MmgMediaTracker.GetCacheSize();
             Object[] keys = MmgMediaTracker.ms.keySet().toArray();
@@ -116,7 +116,7 @@ public class Helper {
      * @param src A path to a valid bitmap resource.
      * @return A bitmap loaded from the file path.
      */
-    public static final MmgBmp GetBasicBmp(String src) {
+    public static MmgBmp GetBasicBmp(String src) {
         Image b = null;
         MmgBmp r = null;
 
@@ -138,7 +138,7 @@ public class Helper {
         return r;
     }
 
-    public static final MmgBmp GetBinaryBmp(byte[] d) {
+    public static MmgBmp GetBinaryBmp(byte[] d) {
         Image b = null;
         MmgBmp r = null;
 
@@ -160,7 +160,7 @@ public class Helper {
         return r;
     }
 
-    public static final MmgBmp GetImageBmp(Image b) {
+    public static MmgBmp GetImageBmp(Image b) {
         MmgBmp r = null;
 
         if (b != null) {
@@ -175,7 +175,7 @@ public class Helper {
         return r;
     }
 
-    public static final MmgBmp GetImageCacheBmp(Image b) {
+    public static MmgBmp GetImageCacheBmp(Image b) {
         MmgBmp r = null;
 
         if (b != null) {
@@ -199,7 +199,7 @@ public class Helper {
      * @param img The image used to display the menu item.
      * @return
      */
-    public static final MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, String name, int eventId, int eventType, MmgBmp img) {
+    public static MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, String name, int eventId, int eventType, MmgBmp img) {
         MmgMenuItem itm;
         itm = new MmgMenuItem();
         itm.SetNormal(img);

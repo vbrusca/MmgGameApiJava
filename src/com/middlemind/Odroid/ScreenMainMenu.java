@@ -19,12 +19,12 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  *
  * @author Victor G. Brusca
  */
-public final class ScreenMainMenu extends MmgGameScreen {
+public class ScreenMainMenu extends MmgGameScreen {
 
     /**
      * The game state this screen has.
      */
-    private final GameStates state;
+    private GameStates state;
 
     /**
      * Helper class for screen UI.
@@ -67,7 +67,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
      * The GamePanel that owns this game screen. Usually a JPanel instance that
      * holds a reference to this game screen object.
      */
-    private final GamePanel owner;
+    private GamePanel owner;
     private boolean dirty;
     private boolean lret;
     
@@ -94,7 +94,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
      * Loads all the resources needed to display this game screen.
      */
     @SuppressWarnings("UnusedAssignment")
-    public final void LoadResources() {
+    public void LoadResources() {
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -137,17 +137,27 @@ public final class ScreenMainMenu extends MmgGameScreen {
             }
             
             MmgHelper.CenterHor(menuTitle);
-            key = "menuTitleOffsetY";
+            menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(50));
+                
+            key = "menuTitlePosY";
             if(classConfig.containsKey(key)) {
                 menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
-            } else {
-                menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(50));
+            }
+            
+            key = "menuTitlePosX";
+            if(classConfig.containsKey(key)) {
+                menuTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }
+            
+            key = "menuTitleOffsetY";
+            if(classConfig.containsKey(key)) {
+                menuTitle.GetPosition().SetY(menuTitle.GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
             }
             
             key = "menuTitleOffsetX";
             if(classConfig.containsKey(key)) {
-                menuTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
-            }
+                menuTitle.GetPosition().SetX(menuTitle.GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }            
             
             AddObj(menuTitle);
         }
@@ -165,16 +175,26 @@ public final class ScreenMainMenu extends MmgGameScreen {
             }
             
             MmgHelper.CenterHor(menuSubTitle);
+            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(50));            
+            
+            key = "menuSubTitlePosY";
+            if(classConfig.containsKey(key)) {
+                menuSubTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }
+            
+            key = "menuSubTitlePosX";
+            if(classConfig.containsKey(key)) {
+                menuSubTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }            
+            
             key = "menuSubTitleOffsetY";
             if(classConfig.containsKey(key)) {
-                menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
-            } else {
-                menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(50));
+                menuSubTitle.GetPosition().SetY(menuSubTitle.GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
             }
             
             key = "menuSubTitleOffsetX";
             if(classConfig.containsKey(key)) {
-                menuSubTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+                menuSubTitle.GetPosition().SetX(menuSubTitle.GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
             }            
             
             AddObj(menuSubTitle);
@@ -193,17 +213,27 @@ public final class ScreenMainMenu extends MmgGameScreen {
             }
             
             MmgHelper.CenterHor(menuStartGame);
+            menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));            
+            
+            key = "menuStartGamePosY";
+            if(classConfig.containsKey(key)) {
+                menuStartGame.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }
+            
+            key = "menuStartGamePosX";
+            if(classConfig.containsKey(key)) {
+                menuStartGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }  
+            
             key = "menuStartGameOffsetY";
             if(classConfig.containsKey(key)) {
-                menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
-            } else {
-                menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));
+                menuStartGame.GetPosition().SetY(menuStartGame.GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
             }
             
             key = "menuStartGameOffsetX";
             if(classConfig.containsKey(key)) {
-                menuStartGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
-            }                        
+                menuStartGame.GetPosition().SetX(menuStartGame.GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }         
         }
         
         imgId = "exit_game.png";
@@ -219,17 +249,27 @@ public final class ScreenMainMenu extends MmgGameScreen {
             }
             
             MmgHelper.CenterHor(menuExitGame);
+            menuExitGame.GetPosition().SetY(menuStartGame.GetY() + menuStartGame.GetHeight() + MmgHelper.ScaleValue(10));
+                
+            key = "menuExitGamePosY";
+            if(classConfig.containsKey(key)) {        
+                menuExitGame.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+            }
+            
+            key = "menuExitGamePosX";
+            if(classConfig.containsKey(key)) {
+                menuExitGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }
+            
             key = "menuExitGameOffsetY";
             if(classConfig.containsKey(key)) {        
-                menuExitGame.GetPosition().SetY(menuStartGame.GetY() + menuStartGame.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
-            } else {
-                menuExitGame.GetPosition().SetY(menuStartGame.GetY() + menuStartGame.GetHeight() + MmgHelper.ScaleValue(10));
+                menuExitGame.GetPosition().SetY(menuExitGame.GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
             }
             
             key = "menuExitGameOffsetX";
             if(classConfig.containsKey(key)) {
-                menuExitGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
-            } 
+                menuExitGame.GetPosition().SetX(menuExitGame.GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }            
         }        
         
         imgId = "footer_url.png";
@@ -245,16 +285,26 @@ public final class ScreenMainMenu extends MmgGameScreen {
             }
             
             MmgHelper.CenterHor(menuFooterUrl);
+            menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));
+                
+            key = "menuFooterUrlPosY";
+            if(classConfig.containsKey(key)) {        
+                menuFooterUrl.GetPosition().SetY(GetPosition().GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+            }
+            
+            key = "menuFooterUrlPosX";
+            if(classConfig.containsKey(key)) {
+                menuFooterUrl.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+            }            
+            
             key = "menuFooterUrlOffsetY";
             if(classConfig.containsKey(key)) {        
-                menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
-            } else {
-                menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));
+                menuFooterUrl.GetPosition().SetY(menuFooterUrl.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
             }
             
             key = "menuFooterUrlOffsetX";
             if(classConfig.containsKey(key)) {
-                menuFooterUrl.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
+                menuFooterUrl.GetPosition().SetX(menuFooterUrl.GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));
             }            
             
             AddObj(menuFooterUrl);
@@ -271,7 +321,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
     }
 
     @Override
-    public final boolean ProcessAClick() {
+    public boolean ProcessAClick() {
         int idx = GetMenuIdx();
         MmgMenuItem mmi;
         mmi = (MmgMenuItem) menu.GetContainer().get(idx);
@@ -281,11 +331,11 @@ public final class ScreenMainMenu extends MmgGameScreen {
             return true;
         }
         
-        return false;
+        return true;
     }
     
     @Override
-    public final boolean ProcessDpadRelease(int dir) {
+    public boolean ProcessDpadRelease(int dir) {
         if (dir == GameSettings.LEFT || dir == GameSettings.RIGHT) {
             return false;
         }
@@ -296,7 +346,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
             MoveMenuSelDown();
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -304,7 +354,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
      * handles displaying different game screen text. Calling draw screen
      * prepares the screen for display.
      */
-    public final void DrawScreen() {
+    public void DrawScreen() {
         //int mainY;
         pause = true;
         menu = new MmgMenuContainer();
@@ -330,7 +380,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
     /**
      * Unloads resources needed to display this game screen.
      */
-    public final void UnloadResources() {
+    public void UnloadResources() {
         dirty = false;
         pause = true;
         SetIsVisible(false);
@@ -354,19 +404,19 @@ public final class ScreenMainMenu extends MmgGameScreen {
      *
      * @return The game state of this game screen.
      */
-    public final GameStates GetGameState() {
+    public GameStates GetGameState() {
         return state;
     }
 
-    public final boolean IsDirty() {
+    public boolean IsDirty() {
         return dirty;
     }
 
-    public final void SetDirty(boolean b) {
+    public void SetDirty(boolean b) {
         dirty = b;
     }
 
-    public final void MakeDirty() {
+    public void MakeDirty() {
         dirty = true;
     }
 
@@ -376,7 +426,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
      * @param p An MmgPen object to use for drawing this game screen.
      */
     @Override
-    public final void MmgDraw(MmgPen p) {
+    public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {
             super.MmgDraw(p);
         } else {
@@ -385,7 +435,7 @@ public final class ScreenMainMenu extends MmgGameScreen {
     }
 
     @Override
-    public final boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;
 
         if (pause == false && GetIsVisible() == true) {

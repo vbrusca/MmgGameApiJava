@@ -11,52 +11,52 @@ public class MmgObj {
     /**
      * The screen position to draw this object.
      */
-    protected MmgVector2 pos;
+    public MmgVector2 pos;
     
     /**
      * The width of this object.
      */
-    protected int w;
+    public int w;
     
     /**
      * The height of this object.
      */
-    protected int h;
+    public int h;
     
     /**
      * The visibility of this object.
      */
-    protected boolean isVisible;
+    public boolean isVisible;
     
     /**
      * The color of this object.
      */
-    protected MmgColor color;
+    public MmgColor color;
     
     /**
      * The version of this MmgApi.
      */
-    private final String version = "1.0.1"; //"1.0.0";
+    private String version = "1.0.1"; //"1.0.0";
 
     /**
      * Flag indicating if this MmgObj has a parent container.
      */
-    protected boolean hasParent;
+    public boolean hasParent;
     
     /**
      * Parent object if available.
      */
-    protected MmgObj parent;
+    public MmgObj parent;
     
     /**
      * The name of this MmgObj.
      */
-    protected String name;
+    public String name;
     
     /**
      * The id of this MmgObj.
      */
-    protected String mmgUid;
+    public String mmgUid;
     
     
     /**
@@ -318,6 +318,10 @@ public class MmgObj {
         pos = v;
     }
 
+    public void SetPosition(int x, int y) {
+        pos = new MmgVector2(x, y);
+    }    
+    
     /**
      * Gets the position of this object.
      * 

@@ -9,10 +9,10 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgPositionTween extends MmgObj {
 
-    public static final int MMG_POSITION_TWEEN_REACH_FINISH = 0;
-    public static final int MMG_POSITION_TWEEN_REACH_START = 1;
-    public static final int MMG_POSITION_TWEEN_REACH_FINISH_TYPE = 0;
-    public static final int MMG_POSITION_TWEEN_REACH_START_TYPE = 1;
+    public static int MMG_POSITION_TWEEN_REACH_FINISH = 0;
+    public static int MMG_POSITION_TWEEN_REACH_START = 1;
+    public static int MMG_POSITION_TWEEN_REACH_FINISH_TYPE = 0;
+    public static int MMG_POSITION_TWEEN_REACH_START_TYPE = 1;
     private MmgObj subj;
     private boolean atStart;
     private boolean atFinish;
@@ -27,8 +27,8 @@ public class MmgPositionTween extends MmgObj {
     private long msStartMove;
     private MmgEventHandler onReachFinish;
     private MmgEventHandler onReachStart;
-    private final MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH, MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH_TYPE, null, null);
-    private final MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgPositionTween.MMG_POSITION_TWEEN_REACH_START, MmgPositionTween.MMG_POSITION_TWEEN_REACH_START_TYPE, null, null);
+    private MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH, MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH_TYPE, null, null);
+    private MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgPositionTween.MMG_POSITION_TWEEN_REACH_START, MmgPositionTween.MMG_POSITION_TWEEN_REACH_START_TYPE, null, null);
 
     
     @SuppressWarnings("OverridableMethodCallInConstructor")

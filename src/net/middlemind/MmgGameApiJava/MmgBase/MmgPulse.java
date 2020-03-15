@@ -36,7 +36,7 @@ public class MmgPulse {
     /**
      * Total change that must occur per millisecond.
      */
-    private final double changePerMs;
+    private double changePerMs;
 
     /**
      * Time difference.
@@ -46,12 +46,12 @@ public class MmgPulse {
     /**
      * Scaling baseline values.
      */
-    private final MmgVector2 baseLineScaling;
+    private MmgVector2 baseLineScaling;
 
     /**
      * Adjusted scaling values.
      */
-    private final MmgVector2 adjScaling;
+    private MmgVector2 adjScaling;
 
     /**
      * A class helper variable.

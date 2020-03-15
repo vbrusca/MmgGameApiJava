@@ -8,13 +8,13 @@ import java.io.IOException;
  * 01/05/2020
  */
 public class GpioHubRunner implements Runnable {
-    protected GpioHub gpioHub;
-    protected long pollingIntervalMs = 10;
-    protected long start;
-    protected long stop;
-    protected long diff;
-    protected boolean running = false;
-    protected GamePadSimple gamePad;
+    public GpioHub gpioHub;
+    public long pollingIntervalMs = 10;
+    public long start;
+    public long stop;
+    public long diff;
+    public boolean running = false;
+    public GamePadSimple gamePad;
     
     public GpioHubRunner(GpioHub hub, long intervalMs, GamePadSimple gamePadSimple) {
         gpioHub = hub;

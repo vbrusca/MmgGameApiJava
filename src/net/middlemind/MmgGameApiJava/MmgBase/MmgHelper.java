@@ -39,7 +39,7 @@ public class MmgHelper {
                 
                 while(line != null) {
                     line = line.trim();
-                    if(line.charAt(0) != '#' && line.equals("") == false) {
+                    if(line.equals("") == false && line.charAt(0) != '#') {
                         data = line.split("=");
                         if(data.length == 2) {
                             ret.put(data[0], new Double(data[1]));
@@ -372,7 +372,7 @@ public class MmgHelper {
         return (double) ((double) val * MmgScreenData.GetScaleX());
     }
     
-    public static final int GetRandomInt(int exclusiveUpperBound) {
+    public static int GetRandomInt(int exclusiveUpperBound) {
         return rando.nextInt(exclusiveUpperBound);
     }
 
@@ -381,7 +381,7 @@ public class MmgHelper {
      *
      * @param s The string to be logged.
      */
-    public static final void wr(String s) {
+    public static void wr(String s) {
         if (LOGGING = true) {
             System.out.println(s);
         }
@@ -392,7 +392,7 @@ public class MmgHelper {
      *
      * @param e The exception to be logged.
      */
-    public static final void wrErr(Exception e) {
+    public static void wrErr(Exception e) {
         if (LOGGING = true) {
             System.err.println(e.getMessage());
             StackTraceElement[] els = e.getStackTrace();
@@ -408,14 +408,14 @@ public class MmgHelper {
      *
      * @param s The string to be logged.
      */
-    public static final void wrErr(String s) {
+    public static void wrErr(String s) {
         if (LOGGING = true) {
             System.err.println(s);
         }
     }
 
     @SuppressWarnings("UnusedAssignment")
-    public static final MmgBmp GetBasicCachedBmp(String path, String imgId) {
+    public static MmgBmp GetBasicCachedBmp(String path, String imgId) {
         MmgBmp lval = null;
         if (BMP_CACHE_ON == true) {
             if (MmgMediaTracker.HasKey(imgId) == true) {
@@ -432,7 +432,7 @@ public class MmgHelper {
     }
 
     @SuppressWarnings("UnusedAssignment")
-    public static final MmgBmp GetBasicCachedBmp(String imgId) {
+    public static MmgBmp GetBasicCachedBmp(String imgId) {
         MmgBmp lval = null;
         if (BMP_CACHE_ON == true) {
             if (MmgMediaTracker.HasKey(imgId) == true) {
@@ -443,7 +443,7 @@ public class MmgHelper {
         return lval;
     }    
     
-    public static final void ListCacheEntries() {
+    public static void ListCacheEntries() {
         if (BMP_CACHE_ON == true) {
             int len = MmgMediaTracker.GetCacheSize();
             Object[] keys = MmgMediaTracker.ms.keySet().toArray();
@@ -460,7 +460,7 @@ public class MmgHelper {
      * @param src A path to a valid bitmap resource.
      * @return A bitmap loaded from the file path.
      */
-    public static final MmgBmp GetBasicBmp(String src) {
+    public static MmgBmp GetBasicBmp(String src) {
         Image b = null;
         MmgBmp r = null;
 
@@ -482,7 +482,7 @@ public class MmgHelper {
         return r;
     }
 
-    public static final MmgBmp GetBinaryBmp(byte[] d) {
+    public static MmgBmp GetBinaryBmp(byte[] d) {
         Image b = null;
         MmgBmp r = null;
 
@@ -504,7 +504,7 @@ public class MmgHelper {
         return r;
     }
 
-    public static final MmgBmp GetImageBmp(Image b) {
+    public static MmgBmp GetImageBmp(Image b) {
         MmgBmp r = null;
 
         if (b != null) {
@@ -519,7 +519,7 @@ public class MmgHelper {
         return r;
     }
 
-    public static final MmgBmp GetImageCacheBmp(Image b) {
+    public static MmgBmp GetImageCacheBmp(Image b) {
         MmgBmp r = null;
 
         if (b != null) {
@@ -543,7 +543,7 @@ public class MmgHelper {
      * @param img The image used to display the menu item.
      * @return
      */
-    public static final MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, String name, int eventId, int eventType, MmgBmp img) {
+    public static MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, String name, int eventId, int eventType, MmgBmp img) {
         MmgMenuItem itm;
         itm = new MmgMenuItem();
         itm.SetNormal(img);

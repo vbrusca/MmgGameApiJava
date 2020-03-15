@@ -33,7 +33,7 @@ public class MmgSound {
     /**
      * The lower level sound object.
      */
-    private final Clip sound;
+    private Clip sound;
 
     /**
      * Constructor that sets the sound Clip value.

@@ -1,3 +1,7 @@
+splashScreenDisplayTimeMs=2000
+
 splashLogoScale=2.00
 #splashLogoOffsetX=0
 #splashLogoOffsetY=0
+#splashLogoPosX=0
+#splashLogoPosY=0

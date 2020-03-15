@@ -19,7 +19,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
         /**
          * The display time to show the given splash screen.
          */
-        private final long displayTime;
+        private long displayTime;
 
         /**
          * The update handler to handle update event messages.
@@ -76,7 +76,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * The default display time.
      */
-    public final int DEFAULT_DISPLAY_TIME_MS = 3000;
+    public int DEFAULT_DISPLAY_TIME_MS = 3000;
 
     /**
      * Constructor that sets the splash screen display time.

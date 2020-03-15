@@ -9,8 +9,8 @@ import java.awt.Font;
  */
 public class MmgFontData {
 
-    public static final String DEFAULT_FONT_FAMILY = Font.SERIF;
-    public static final int DEFAULT_FONT_TYPE = Font.PLAIN;
+    public static String DEFAULT_FONT_FAMILY = Font.SERIF;
+    public static int DEFAULT_FONT_TYPE = Font.PLAIN;
 
     /**
      * Current font size.

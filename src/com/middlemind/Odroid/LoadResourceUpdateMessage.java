@@ -11,12 +11,12 @@ public class LoadResourceUpdateMessage {
     /**
      * The current position of the DAT load process.
      */
-    protected int pos;
+    public int pos;
     
     /**
      * The length of the DAT binary array.
      */
-    protected int len;
+    public int len;
    
     /**
      * Class constructor sets the current position and the current length of the data.

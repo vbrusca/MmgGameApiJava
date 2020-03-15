@@ -16,7 +16,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
     /**
      * A loading bar vertical offset value.
      */
-    private final float loadingBarOffsetBottom = 0.10f;
+    private float loadingBarOffsetBottom = 0.10f;
 
     /**
      * Constructor for this class that sets the loading bar and the loading bar's

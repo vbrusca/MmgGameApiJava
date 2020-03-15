@@ -14,5 +14,4 @@ public interface MmgEventHandler {
      * @param e The event to handle.
      */
     public void MmgHandleEvent(MmgEvent e);
-
 }

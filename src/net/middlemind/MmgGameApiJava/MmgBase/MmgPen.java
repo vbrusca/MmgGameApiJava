@@ -164,7 +164,7 @@ public class MmgPen {
      * @param originY   The origin Y to use in rotation.
      * @return          A newly rotated image.
      */
-    public final Image RotateImage(int width, int height, Image img, int angle, int originX, int originY) {
+    public Image RotateImage(int width, int height, Image img, int angle, int originX, int originY) {
         return MmgPen.RotateImageStatic(width, height, img, angle, originX, originY);
     }
 
@@ -214,7 +214,7 @@ public class MmgPen {
      * @param scaleY        The scale factor in the Y axis direction.
      * @return              A scaled image.
      */
-    public final Image ScaleImage(Image img, double scaleX, double scaleY) {
+    public Image ScaleImage(Image img, double scaleX, double scaleY) {
         return MmgPen.ScaleImageStatic(img, scaleX, scaleY);
     }
     

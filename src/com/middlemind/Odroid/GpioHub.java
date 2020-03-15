@@ -19,11 +19,11 @@ public class GpioHub {
     public static int char0toInt = 48;
     public static int char1toInt = 49;
     
-    protected GpioPin[] buttons = null;
-    protected Runtime runTime = null;
-    protected int tmp;
-    protected boolean prepped = false;
-    protected boolean gpioEnabled = false;
+    public GpioPin[] buttons = null;
+    public Runtime runTime = null;
+    public int tmp;
+    public boolean prepped = false;
+    public boolean gpioEnabled = false;
     
     public GpioHub() {
         try {

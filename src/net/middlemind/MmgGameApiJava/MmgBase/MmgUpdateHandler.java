@@ -14,5 +14,4 @@ public interface MmgUpdateHandler {
      * @param obj The update event object.
      */
     public void MmgHandleUpdate(Object obj);
-
 }

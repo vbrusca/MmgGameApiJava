@@ -13,45 +13,45 @@ public class RunFrameRate implements Runnable {
      * The MainFrame that houses the game, connection between JFrame, JPanel and
      * the game.
      */
-    protected final MainFrame mf;
+    public final MainFrame mf;
 
     /**
      * Target frames per second.
      */
-    protected final long tFps;
+    public final long tFps;
 
     /**
      * Target frame time.
      */
-    protected final long tFrameTime;
+    public final long tFrameTime;
 
     /**
      * Actual frames per second.
      */
-    protected long aFps;
-    protected long rFps;
+    public long aFps;
+    public long rFps;
 
     /**
      * Last frame stop time.
      */
-    protected long frameStart;
+    public long frameStart;
 
     /**
      * Last frame start time.
      */
-    protected long frameStop;
+    public long frameStop;
 
     /**
      * Frame time.
      */
-    protected long frameTime;
+    public long frameTime;
 
     /**
      * Frame time difference from actual time to target time. Used to sleep the
      * few milliseconds between the target time and the actual time if the
      * actual time is less than the target time.
      */
-    protected long frameTimeDiff;
+    public long frameTimeDiff;
 
     /**
      * Pauses the current render loop.

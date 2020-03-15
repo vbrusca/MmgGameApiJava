@@ -17,52 +17,52 @@ public class MainFrame extends JFrame {
     /**
      * A label used to display the current frame rate.
      */
-    //protected JLabel lblFrameRate;
+    //public JLabel lblFrameRate;
     /**
      * The GamePanel, extends JPanel, class that handles drawing the different
      * game states.
      */
-    protected GamePanel pnlGame;
+    public GamePanel pnlGame;
 
     /**
      * The window width.
      */
-    protected final int winWidth;
+    public final int winWidth;
 
     /**
      * The window height.
      */
-    protected final int winHeight;
+    public final int winHeight;
 
     /**
      * The X offset of this frame.
      */
-    protected final int myX;
+    public final int myX;
 
     /**
      * The Y offset of this frame.
      */
-    protected final int myY;
+    public final int myY;
 
     /**
     * The game panel width.
     */
-    protected final int panelWidth;
+    public final int panelWidth;
     
     /**
     * The game panel height.
     */
-    protected final int panelHeight;
+    public final int panelHeight;
     
     /**
     * The game panel width.
     */
-    protected final int gameWidth;
+    public final int gameWidth;
     
     /**
     * The game panel height.
     */
-    protected final int gameHeight;    
+    public final int gameHeight;    
 
     /**
      * Constructor that sets the window width and height, and defaults the X, Y

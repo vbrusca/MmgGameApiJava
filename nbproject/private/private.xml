@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/class_configs/screen_main_menu.txt</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid_Tutorial2_Pong/MmgPongClone.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/class_config/screen_splash.txt</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/ScreenLoading.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/ScreenSplash.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/class_config/screen_loading.txt</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/GameSettings.java</file>
             <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/com/middlemind/Odroid/ScreenMainMenu.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/class_config/screen_main_menu.txt</file>
         </group>
     </open-files>
 </project-private>

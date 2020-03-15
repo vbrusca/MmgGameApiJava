@@ -4,9 +4,11 @@ import com.middlemind.Odroid.GamePanel.GameStates;
 import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
+import com.middlemind.Odroid.Screen;
 import java.awt.Color;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
@@ -26,7 +28,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
  * @author Victor G. Brusca
  * 02/25/2020
  */
-public class ScreenGame extends MmgGameScreen implements GenericEventHandler {
+public class ScreenGame extends Screen {
 
     /**
      * The game state this screen has.
@@ -60,7 +62,7 @@ public class ScreenGame extends MmgGameScreen implements GenericEventHandler {
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenGame(GameStates State, GamePanel Owner) {
-        super();
+        super(State, Owner);
         pause = false;
         ready = false;
         gameState = State;
@@ -86,6 +88,7 @@ public class ScreenGame extends MmgGameScreen implements GenericEventHandler {
     /**
      * Loads all the resources needed to display this game screen.
      */
+    @Override
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
         pause = true;
@@ -93,7 +96,13 @@ public class ScreenGame extends MmgGameScreen implements GenericEventHandler {
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-
+        String imgId = "";
+        
+        imgId = "game_board.png";
+        bground = MmgHelper.GetBasicCachedBmp(imgId);
+        bground = MmgBmpScaler.ScaleMmgBmpToGameScreen(bground, false);
+        MmgHelper.CenterHorAndVert(bground);
+        AddObj(bground);
         
         ready = true;
         pause = false;
@@ -186,17 +195,7 @@ public class ScreenGame extends MmgGameScreen implements GenericEventHandler {
     @Override
     public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {            
-            super.MmgDraw(p);
-            
-            /*
-            Graphics g = p.GetGraphics();
-            Color ct = g.getColor();
-            g.setColor(Color.WHITE);
-            //g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
-            g.fillRect(GetX(), GetY(), w, h);
-            g.setColor(ct);
-            */
-            
+            //super.MmgDraw(p);                        
             super.GetObjects().MmgDraw(p);
         } else {
             //do nothing

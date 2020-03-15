@@ -67,12 +67,12 @@ public class MmgTextBlock extends MmgObj {
     /**
      * The starting size of the line array.
      */
-    private final int STARTING_LINE_COUNT = 20;
+    private int STARTING_LINE_COUNT = 20;
 
     /**
      * The starting size of the text array.
      */
-    private final int STARTING_TXT_COUNT = 100;
+    private int STARTING_TXT_COUNT = 100;
 
     /**
      * A text object, MmgFont, representation of each display line on the

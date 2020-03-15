@@ -8,10 +8,10 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgSizeTween extends MmgObj {
 
-    public static final int MMG_SIZE_TWEEN_REACH_FINISH = 0;
-    public static final int MMG_SIZE_TWEEN_REACH_START = 1;
-    public static final int MMG_SIZE_TWEEN_REACH_FINISH_TYPE = 0;
-    public static final int MMG_SIZE_TWEEN_REACH_START_TYPE = 1;
+    public static int MMG_SIZE_TWEEN_REACH_FINISH = 0;
+    public static int MMG_SIZE_TWEEN_REACH_START = 1;
+    public static int MMG_SIZE_TWEEN_REACH_FINISH_TYPE = 0;
+    public static int MMG_SIZE_TWEEN_REACH_START_TYPE = 1;
     private MmgObj subj;
     private boolean atStart;
     private boolean atFinish;
@@ -27,8 +27,8 @@ public class MmgSizeTween extends MmgObj {
     private MmgVector2 tmpV;
     private MmgEventHandler onReachFinish;
     private MmgEventHandler onReachStart;
-    private final MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH, MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH_TYPE, null, null);
-    private final MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgSizeTween.MMG_SIZE_TWEEN_REACH_START, MmgSizeTween.MMG_SIZE_TWEEN_REACH_START_TYPE, null, null);
+    private MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH, MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH_TYPE, null, null);
+    private MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgSizeTween.MMG_SIZE_TWEEN_REACH_START, MmgSizeTween.MMG_SIZE_TWEEN_REACH_START_TYPE, null, null);
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {

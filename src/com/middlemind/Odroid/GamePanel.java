@@ -82,47 +82,47 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * MainFrame that this panel is hosted in.
      */
-    protected final MainFrame mf;
+    public MainFrame mf;
 
     /**
      * Window width.
      */
-    protected final int winWidth;
+    public int winWidth;
 
     /**
      * Window height.
      */
-    protected final int winHeight;
+    public int winHeight;
 
     /**
      * The X coordinate of this panel.
      */
-    protected final int myX;
+    public int myX;
 
     /**
      * The Y coordinate of this panel.
      */
-    protected final int myY;
+    public int myY;
 
     /**
      * Window width.
      */
-    protected final int sWinWidth;
+    public int sWinWidth;
 
     /**
      * Window height.
      */
-    protected final int sWinHeight;
+    public int sWinHeight;
 
     /**
      * The X coordinate of this panel.
      */
-    protected final int sMyX;
+    public int sMyX;
 
     /**
      * The Y coordinate of this panel.
      */
-    protected final int sMyY;
+    public int sMyY;
 
     /**
      * Default target game width.
@@ -147,32 +147,32 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * Paint helper class, used in the paint drawing routine.
      */
-    protected Graphics2D g2d;
+    public Graphics2D g2d;
 
     /**
      * Holds a reference to all game screens.
      */
-    protected Hashtable<GameStates, MmgGameScreen> gameScreens;
+    public Hashtable<GameStates, MmgGameScreen> gameScreens;
 
     /**
      * The current game screen being displayed.
      */
-    protected MmgGameScreen currentScreen;
+    public MmgGameScreen currentScreen;
 
     /**
      * Paint helper class, used to draw Mmg API objects.
      */
-    protected final MmgPen p;
+    public MmgPen p;
 
     /**
      * Game state helper class, the previous game state.
      */
-    protected GameStates prevGameState;
+    public GameStates prevGameState;
 
     /**
      * Game state helper class, the current game state.
      */
-    protected GameStates gameState;
+    public GameStates gameState;
 
     public static Hashtable<String, Object> VARS = new Hashtable();
 
@@ -180,19 +180,19 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public static String VAR1 = "** EMPTY **";
     public static String VAR2 = "** EMPTY **";
 
-    protected Canvas canvas;
-    protected BufferStrategy strategy;
-    protected BufferedImage background;
-    protected Graphics2D backgroundGraphics;
-    protected Graphics2D graphics;
+    public Canvas canvas;
+    public BufferStrategy strategy;
+    public BufferedImage background;
+    public Graphics2D backgroundGraphics;
+    public Graphics2D graphics;
     
-    protected final double scale = 1.0;
-    protected int updateTick = 0;
-    protected long now;
-    protected long prev;
-    protected Font debugFont;
+    public double scale = 1.0;
+    public int updateTick = 0;
+    public long now;
+    public long prev;
+    public Font debugFont;
     private Color debugColor = Color.WHITE;    
-    protected Font tmpF;
+    public Font tmpF;
     public static GameType GAME_TYPE = GameType.NEW_GAME;
 
     public enum GameType {
@@ -203,8 +203,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public int lastX;
     public int lastY;
     public long lastKeyPressEvent = -1;
-    protected Graphics2D bg;
-    protected Graphics2D g;
+    public Graphics2D bg;
+    public Graphics2D g;
     
     public ScreenSplash screenSplash;
     public ScreenLoading screenLoading;
@@ -493,7 +493,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     // create a hardware accelerated image
-    public BufferedImage create(final int width, final int height, final boolean alpha) {
+    public BufferedImage create(int width, int height, boolean alpha) {
         return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
     }
 
@@ -695,7 +695,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
-    protected Graphics2D GetBuffer() {
+    public Graphics2D GetBuffer() {
         if (graphics == null) {
             try {
                 graphics = (Graphics2D) strategy.getDrawGraphics();
@@ -722,7 +722,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         return myY;
     }
 
-    protected boolean UpdateScreen() {
+    public boolean UpdateScreen() {
         graphics.dispose();
         graphics = null;
         try {
@@ -789,7 +789,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 }
             }
 
-            //draws a scaled version of the final state of the background buffer to the screen buffer if scaling is
+            //draws a scaled version of the state of the background buffer to the screen buffer if scaling is
             //enabled.
             if (scale != 1.0) {
                 bg.drawImage(background, sMyX, sMyY, sWinWidth, sWinHeight, 0, 0, winWidth, winHeight, null);

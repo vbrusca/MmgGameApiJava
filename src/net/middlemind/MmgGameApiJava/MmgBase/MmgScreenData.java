@@ -12,12 +12,12 @@ public class MmgScreenData {
     /**
      * Default screen width.
      */
-    public final int DEFAULT_WIDTH = 1024;
+    public int DEFAULT_WIDTH = 1024;
 
     /**
      * Default screen height.
      */
-    public final int DEFAULT_HEIGHT = 768;
+    public int DEFAULT_HEIGHT = 768;
 
     /**
      * Game screen width.

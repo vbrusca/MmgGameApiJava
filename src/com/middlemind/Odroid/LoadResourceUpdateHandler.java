@@ -13,6 +13,5 @@ public interface LoadResourceUpdateHandler {
      * 
      * @param obj       A LoadDatUpdateMessage.
      */
-    public void HandleUpdate(LoadResourceUpdateMessage obj);
-    
+    public void HandleUpdate(LoadResourceUpdateMessage obj);   
 }

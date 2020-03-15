@@ -11,48 +11,48 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
  *
  * @author Victor G. Brusca
  */
-public final class HandleMainMenuEvent implements MmgEventHandler {
+public class HandleMainMenuEvent implements MmgEventHandler {
 
     /**
      * The about screen object, ScreenAbout, this event handler belongs to.
      */
-    private final ScreenMainMenu cApp;
+    private ScreenMainMenu cApp;
 
     /**
      * The game panel object, GamePanel, that owns the about screen object,
      * ScreenAbout.
      */
-    private final GamePanel owner;
+    private GamePanel owner;
 
     /**
      * Supported event type.
      */
-    public static final int MAIN_MENU_EVENT_TYPE = 0;
+    public static int MAIN_MENU_EVENT_TYPE = 0;
 
     /**
      * Supported event id.
      */
-    public static final int MAIN_MENU_EVENT_START_GAME = 0;
+    public static int MAIN_MENU_EVENT_START_GAME = 0;
 
     /**
      * Supported event id.
      */
-    public static final int MAIN_MENU_EVENT_SETTINGS = 1;
+    public static int MAIN_MENU_EVENT_SETTINGS = 1;
 
     /**
      * Supported event id.
      */
-    public static final int MAIN_MENU_EVENT_ABOUT = 2;
+    public static int MAIN_MENU_EVENT_ABOUT = 2;
 
     /**
      * Supported event id.
      */
-    public static final int MAIN_MENU_EVENT_HELP = 3;
+    public static int MAIN_MENU_EVENT_HELP = 3;
 
     /**
      * Supported event id.
      */
-    public static final int MAIN_MENU_EVENT_EXIT_GAME = 4;    
+    public static int MAIN_MENU_EVENT_EXIT_GAME = 4;    
     
     /**
      * Constructor that sets the about screen object, ScreenAbout, owner and the
@@ -77,7 +77,7 @@ public final class HandleMainMenuEvent implements MmgEventHandler {
      * @param e An MmgEvent object.
      */
     @Override
-    public final void MmgHandleEvent(MmgEvent e) {
+    public void MmgHandleEvent(MmgEvent e) {
         MmgApiUtils.wr("MmgHandleMainMenuEvent Found Event Id: " + e.GetEventId());
         if (owner != null) {
             if (e.GetEventId() == HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME) {

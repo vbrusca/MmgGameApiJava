@@ -13,17 +13,17 @@ public class MmgMenuItem extends MmgObj {
     /**
      * Used to represent a normal menu item state.
      */
-    public static final int STATE_NORMAL = 0;
+    public static int STATE_NORMAL = 0;
     
     /**
      * Used to represent a selected menu item state.
      */
-    public static final int STATE_SELECTED = 1;
+    public static int STATE_SELECTED = 1;
     
     /**
      * Used to represent an inactive menu item state.
      */
-    public static final int STATE_INACTIVE = 2;
+    public static int STATE_INACTIVE = 2;
 
     /**
      * The event to fir if the menu item has been pressed.

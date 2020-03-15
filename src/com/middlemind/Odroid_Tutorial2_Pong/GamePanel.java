@@ -14,12 +14,15 @@ import com.middlemind.Odroid.ScreenSplash;
  */
 public class GamePanel extends com.middlemind.Odroid.GamePanel {
             
+    public ScreenGame screenGame;
+    
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         Helper.wr("Odroid_Tutorial2_Pong.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
-        screenLoading.SetSlowDown(500);        
+        screenLoading.SetSlowDown(500);
+        screenGame = new ScreenGame(GameStates.MAIN_GAME, this);
     }
         
     @Override
@@ -79,9 +82,9 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
 
         } else if (prevGameState == GameStates.MAIN_GAME) {
             Helper.wr("Hiding MAIN GAME screen.");
-            //mainGameScreen.Pause();
-            //mainGameScreen.SetIsVisible(false);
-            //mainGameScreen.UnloadResources();
+            screenGame.Pause();
+            screenGame.SetIsVisible(false);
+            screenGame.UnloadResources();
 
         } else if (prevGameState == GameStates.SETTINGS) {
             Helper.wr("Hiding SETTINGS screen.");
@@ -142,10 +145,10 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
 
         } else if (gameState == GameStates.MAIN_GAME) {
             Helper.wr("Showing MAIN GAME screen.");
-            //mainGameScreen.LoadResources();
-            //mainGameScreen.UnPause();
-            //mainGameScreen.SetIsVisible(true);
-            //currentScreen = mainGameScreen;
+            screenGame.LoadResources();
+            screenGame.UnPause();
+            screenGame.SetIsVisible(true);
+            currentScreen = screenGame;
 
         } else if (gameState == GameStates.SETTINGS) {
             Helper.wr("Showing SETTINGS screen.");
