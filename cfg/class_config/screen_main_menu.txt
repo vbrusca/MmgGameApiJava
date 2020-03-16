@@ -1,3 +1,10 @@
+bmpGameTitle->game_title.png
+bmpGameSubTitle->game_sub_title.png
+bmpMenuItemStartGame->start_game.png
+bmpMenuItemExitGame->exit_game.png
+bmpFooterUrl->footer_url.png
+version->version:1.0.0
+
 menuTitleScale=1.0
 menuTitleOffsetY=-20
 menuTitleOffsetX=0

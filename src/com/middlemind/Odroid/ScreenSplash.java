@@ -5,6 +5,7 @@ import com.middlemind.Odroid.GenericEventHandler;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
 import java.util.Hashtable;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
@@ -45,7 +46,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      */
     public GamePanel owner;
 
-    private Hashtable<String, Double> classConfig;
+    private Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -105,26 +106,34 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         SetPosition(MmgScreenData.GetPosition());
 
         classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
-                
+        
         MmgBmp tB = null;
         MmgPen p;
         String key = "";
         double scale = 1.0;
         int tmp = 0;
+        String file =  "";
         
         key = "splashScreenDisplayTimeMs";
         if(classConfig.containsKey(key)) {        
-            super.SetDisplayTime(classConfig.get(key).intValue());        
+            super.SetDisplayTime(classConfig.get(key).number.intValue());        
         }
-            
+        
         p = new MmgPen();
         p.SetCacheOn(false);
 
-        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "logo_large.jpg");        
+        key = "bmpLogo";
+        if(classConfig.containsKey(key)) {
+            file = classConfig.get(key).string;
+        } else {
+            file = "logo_large.jpg";
+        }
+            
+        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);        
         if (tB != null) {
             key = "splashLogoScale";
             if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).doubleValue();
+                scale = classConfig.get(key).number.doubleValue();
                 if(scale != 1.0) {
                     tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
                 }
@@ -134,25 +143,25 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
             
             key = "splashLogoPosY";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
             }
             
             key = "splashLogoPosX";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "splashLogoOffsetY";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
             }
             
             key = "splashLogoOffsetX";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
             }            
         }

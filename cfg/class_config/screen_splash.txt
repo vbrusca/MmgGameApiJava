@@ -1,4 +1,6 @@
-splashScreenDisplayTimeMs=2000
+bmpLogo->logo_large.jpg
+
+splashScreenDisplayTimeMs=2000.0
 
 splashLogoScale=2.00
 #splashLogoOffsetX=0

@@ -30,11 +30,18 @@ public class MmgHelper {
     public static boolean SND_CACHE_ON = true;    
     private static Random rando = new Random(System.currentTimeMillis());    
 
-    public static Hashtable<String, Double> LoadClassConfigFile(String file) {
-        Hashtable<String, Double> ret = new Hashtable();;
+    public static Hashtable<String, MmgCfgFileEntry> LoadClassConfigFile(String file) {
+        Hashtable<String, MmgCfgFileEntry> ret = new Hashtable();
         
         try {
-            File f = new File(file);
+            MmgCfgFileEntry cfe = null;
+            File f = null;
+            String nFile = file.replace(".txt", MmgScreenData.GetScreenWidth() + "x" + MmgScreenData.GetScreenHeight() + ".txt");
+            f = new File(nFile);            
+            if(!f.exists()) {
+                f = new File(file);
+            }
+            
             if(f.exists()) {                
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
@@ -42,11 +49,21 @@ public class MmgHelper {
                 String[] data = null;
                 
                 while(line != null) {
+                    cfe = new MmgCfgFileEntry();
                     line = line.trim();
                     if(line.equals("") == false && line.charAt(0) != '#') {
-                        data = line.split("=");
-                        if(data.length == 2) {
-                            ret.put(data[0], new Double(data[1]));
+                        if(line.indexOf("=") != -1) {
+                            data = line.split("=");
+                            if(data.length == 2) {
+                                cfe.number = new Double(data[1]);
+                                ret.put(data[0], cfe);
+                            }
+                        } else if(line.indexOf("->") != -1) {
+                            data = line.split("->");
+                            if(data.length == 2) {
+                                cfe.string = data[1];
+                                ret.put(data[0], cfe);
+                            }                            
                         }
                     }
                     line = br.readLine();

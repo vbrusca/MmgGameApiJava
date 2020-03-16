@@ -1,3 +1,5 @@
+bmpLogo->odroid_logo2.png
+
 loadingLogoSlowDown=100
 
 loadingLogoScale=0.75

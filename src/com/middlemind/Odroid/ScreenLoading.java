@@ -3,6 +3,7 @@ package com.middlemind.Odroid;
 import com.middlemind.Odroid.GamePanel.GameStates;
 import java.io.File;
 import java.util.Hashtable;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp.MmgBmpDrawMode;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
@@ -55,7 +56,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
 
     public long slowDown;
     
-    private Hashtable<String, Double> classConfig;   
+    private Hashtable<String, MmgCfgFileEntry> classConfig;   
     
     /**
      * Constructor, sets the loading bar, the loading bar offset, the game state
@@ -150,21 +151,29 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         String key = "";
         double scale = 1.0;
         int tmp = 0;
+        String file = "";
         
         p = new MmgPen();
         p.SetCacheOn(false);
 
         key = "loadingLogoSlowDown";
         if(classConfig.containsKey(key)) {
-            slowDown = classConfig.get(key).intValue();
+            slowDown = classConfig.get(key).number.intValue();
         }
         
-        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "odroid_logo2.png");
+        key = "bmpLogo";
+        if(classConfig.containsKey(key)) {
+            file = classConfig.get(key).string;
+        } else {
+            file = "odroid_logo2.png";
+        }        
+        
+        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
         tB = MmgBmpScaler.ScaleMmgBmp(tB, 0.5, true);        
         if (tB != null) {
             key = "loadingLogoScale";
             if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).doubleValue();
+                scale = classConfig.get(key).number.doubleValue();
                 if(scale != 1.0) {
                     tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
                 }
@@ -174,31 +183,46 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             
             key = "loadingLogoOffsetY";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
             }
             
             key = "loadingLogoOffsetX";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
             }
 
             key = "loadingLogoPosY";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
             }
             
             key = "loadingLogoPosX";
             if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).intValue();
+                tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
             }            
         }
 
-        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "loading_bar.png");
-        tB1 = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "blue_square.png");
+        key = "imgLoadingBar";
+        if(classConfig.containsKey(key)) {
+            file = classConfig.get(key).string;
+        } else {
+            file = "loading_bar.png";
+        }        
+        
+        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
+        
+        key = "imgLoadingBarFill";
+        if(classConfig.containsKey(key)) {
+            file = classConfig.get(key).string;
+        } else {
+            file = "blue_square.png";
+        }                
+        
+        tB1 = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
         if (tB1 != null) {
             tB1.DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_FULL;
         }
@@ -220,22 +244,26 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             
             key = "loadingBarPosY";
             if(classConfig.containsKey(key)) {
-                loadingBar.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+                tmp = classConfig.get(key).number.intValue();
+                loadingBar.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "loadingBarPosX";
             if(classConfig.containsKey(key)) {
-                loadingBar.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+                tmp = classConfig.get(key).number.intValue();                
+                loadingBar.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "loadingBarOffsetY";
             if(classConfig.containsKey(key)) {
-                loadingBar.GetPosition().SetY(loadingBar.GetY() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+                tmp = classConfig.get(key).number.intValue();                
+                loadingBar.GetPosition().SetY(loadingBar.GetY() + MmgHelper.ScaleValue(tmp));                
             }
             
-            key = "loadingBarOffsetX";
+            key = "loadingBarOffsetX";            
             if(classConfig.containsKey(key)) {
-                loadingBar.GetPosition().SetX(loadingBar.GetX() + MmgHelper.ScaleValue(classConfig.get(key).intValue()));                
+                tmp = classConfig.get(key).number.intValue();                
+                loadingBar.GetPosition().SetX(loadingBar.GetX() + MmgHelper.ScaleValue(tmp));                
             }                 
         }
 
