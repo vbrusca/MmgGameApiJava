@@ -29,7 +29,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      * holds a reference to this game screen object.
      */
     private GamePanel owner;
-    private boolean dirty;
+    protected boolean dirty;
     private boolean lret;
     
     private Hashtable<String, Double> classConfig;

@@ -1,26 +1,18 @@
 package com.middlemind.Odroid_Tutorial2_Pong;
 
 import com.middlemind.Odroid.GamePanel.GameStates;
-import com.middlemind.Odroid.GenericEventHandler;
+import com.middlemind.Odroid.GameSettings;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
 import com.middlemind.Odroid.Screen;
-import java.awt.Color;
-import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHor;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHorVert;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
 /**
@@ -49,6 +41,17 @@ public class ScreenGame extends Screen {
     private MmgFont scoreLeft;
     private MmgFont scoreRight;
     private MmgFont exit;
+    
+    private float padleMinAccel = 0.0f;
+    private float padleMaxAccel = 0.6f;
+    private float padleCurrentAccel = 0.0f;
+    private float padleAccelChange = 0.1f;
+    private int padleMinSpeed = 10;
+    private int padleMaxSpeed = 20;
+    private int padleCurrentSpeed = padleMinSpeed;
+    private int padleMovePerFrame = (int)(padleCurrentSpeed * (MmgPongClone.FPS/60.0f)); 
+    private boolean padle1MoveUp = false;
+    private boolean padle1MoveDown = false;    
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -153,12 +156,50 @@ public class ScreenGame extends Screen {
 
     @Override
     public boolean ProcessDpadPress(int dir) {
-        return true;
+        if(dir == GameSettings.DOWN) {
+            padleCurrentAccel += padleAccelChange;
+            if(padleCurrentAccel > padleMaxAccel) {
+                padleCurrentAccel = padleMaxAccel;
+            }
+            padleCurrentSpeed = (int)(padleMovePerFrame * padleCurrentAccel);
+            padle1MoveDown = true;
+            dirty = true;
+            return true;
+            
+        } else if(dir == GameSettings.UP) {
+            padleCurrentAccel += padleAccelChange;
+            if(padleCurrentAccel > padleMaxAccel) {
+                padleCurrentAccel = padleMaxAccel;
+            }
+            padleCurrentSpeed = (int)(padleMovePerFrame * padleCurrentAccel);            
+            padle1MoveUp = true;
+            dirty = true;            
+            return true;
+            
+        }
+        
+        return false;
     }
 
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        return true;
+        if(dir == GameSettings.DOWN) {
+            padleCurrentAccel = padleMinAccel;
+            padleCurrentSpeed = 0;
+            padle1MoveDown = false;
+            dirty = true;            
+            return true;
+            
+        } else if(dir == GameSettings.UP) {
+            padleCurrentAccel = padleMinAccel;
+            padleCurrentSpeed = 0;
+            padle1MoveUp = false;
+            dirty = true;            
+            return true;
+            
+        }
+        
+        return false;
     }
     
     @Override
@@ -175,6 +216,16 @@ public class ScreenGame extends Screen {
     public boolean ProcessScreenClick(int x, int y) {        
         return false;
     }    
+
+    @Override
+    public void DrawScreen() {
+        //run each game frame
+        pause = true;
+        dirty = false;
+
+        
+        pause = false;
+    }
     
     /**
      * Unloads resources needed to display this game screen.
