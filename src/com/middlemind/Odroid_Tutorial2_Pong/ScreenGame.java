@@ -404,10 +404,16 @@ public class ScreenGame extends Screen {
                     dir = 1;
                 } else {
                     dir = -1;
-                }
-                
+                }                
                 SetBallMovePerFrameX((ballSpeedMin + rand.nextInt(ballSpeedMin)) * dir);
+                
+                if(rand.nextInt(11) % 2 == 0) {
+                    dir = 1;
+                } else {
+                    dir = -1;
+                }                                                
                 SetBallMovePerFrameY((ballSpeedMin + rand.nextInt(ballSpeedMin)) * dir);
+                
                 SetPaddle1MovePerFrame(paddle1CurrentSpeed);
                 SetPaddle2MovePerFrame(paddle2CurrentSpeed);                
                 dirty = true;
