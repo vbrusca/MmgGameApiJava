@@ -36,22 +36,27 @@ public class ScreenGame extends Screen {
     protected final GamePanel owner;
         
     private MmgBmp bground;
-    private MmgBmp padelLeft;
-    private MmgBmp padelRight;
+    private MmgBmp paddleLeft;
+    private MmgBmp paddleRight;
     private MmgFont scoreLeft;
     private MmgFont scoreRight;
     private MmgFont exit;
     
-    private float padleMinAccel = 0.0f;
-    private float padleMaxAccel = 0.6f;
-    private float padleCurrentAccel = 0.0f;
-    private float padleAccelChange = 0.1f;
-    private int padleMinSpeed = 10;
-    private int padleMaxSpeed = 20;
-    private int padleCurrentSpeed = padleMinSpeed;
-    private int padleMovePerFrame = (int)(padleCurrentSpeed * (MmgPongClone.FPS/60.0f)); 
-    private boolean padle1MoveUp = false;
-    private boolean padle1MoveDown = false;    
+    private float paddleMinAccel = 16.0f;
+    private float paddleMaxAccel = 40.0f;
+    private float paddle1CurrentAccel = paddleMinAccel;
+    private float paddle2CurrentAccel = paddleMinAccel;    
+    private float paddleAccelChange = 8.0f;
+    
+    private int paddleMinSpeed = 30;
+    private int paddleMaxSpeed = 60;
+    private int paddle1CurrentSpeed = paddleMinSpeed;
+    private int paddle2CurrentSpeed = paddleMinSpeed;    
+    
+    private int paddle1MovePerFrame = (int)(paddle1CurrentSpeed * (MmgPongClone.FPS/60.0f));
+    private int paddle2MovePerFrame = (int)(paddle2CurrentSpeed * (MmgPongClone.FPS/60.0f));
+    private boolean paddle1MoveUp = false;
+    private boolean paddle1MoveDown = false;    
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -89,24 +94,24 @@ public class ScreenGame extends Screen {
         MmgHelper.CenterHorAndVert(bground);
         AddObj(bground);
         
-        padelLeft = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
-        padelLeft.SetPosition(MmgHelper.ScaleValue(20), GetY() + (h - padelLeft.GetHeight())/2);
-        AddObj(padelLeft);
+        paddleLeft = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
+        paddleLeft.SetPosition(MmgHelper.ScaleValue(20), GetY() + (h - paddleLeft.GetHeight())/2);
+        AddObj(paddleLeft);
         
-        padelRight = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
-        padelRight.SetPosition((w - padelRight.GetWidth() - MmgHelper.ScaleValue(20)), GetY() + (h - padelLeft.GetHeight())/2);        
-        AddObj(padelRight);
+        paddleRight = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
+        paddleRight.SetPosition((w - paddleRight.GetWidth() - MmgHelper.ScaleValue(20)), GetY() + (h - paddleLeft.GetHeight())/2);        
+        AddObj(paddleRight);
         
         scoreLeft = MmgFontData.CreateDefaultBoldMmgFontLg();
         scoreLeft.SetText("00");
         scoreLeft.SetMmgColor(MmgColor.GetWhite());
-        scoreLeft.SetPosition(MmgHelper.ScaleValue(10), GetY() + scoreLeft.GetHeight() + MmgHelper.ScaleValue(5));
+        scoreLeft.SetPosition(MmgHelper.ScaleValue(10) + paddleLeft.GetX() + paddleLeft.GetWidth(), GetY() + scoreLeft.GetHeight() + MmgHelper.ScaleValue(5));
         AddObj(scoreLeft);
         
         scoreRight = MmgFontData.CreateDefaultBoldMmgFontLg();
         scoreRight.SetText("00");
         scoreRight.SetMmgColor(MmgColor.GetWhite());
-        scoreRight.SetPosition(w - scoreRight.GetWidth() - MmgHelper.ScaleValue(10), GetY() + scoreRight.GetHeight() + MmgHelper.ScaleValue(5));
+        scoreRight.SetPosition(w - scoreRight.GetWidth() - MmgHelper.ScaleValue(10) - paddleLeft.GetX() - paddleRight.GetWidth(), GetY() + scoreRight.GetHeight() + MmgHelper.ScaleValue(5));
         AddObj(scoreRight);        
         
         exit = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -156,23 +161,34 @@ public class ScreenGame extends Screen {
 
     @Override
     public boolean ProcessDpadPress(int dir) {
+        //Helper.wr("ProcessDpadPress: " + dir);
         if(dir == GameSettings.DOWN) {
-            padleCurrentAccel += padleAccelChange;
-            if(padleCurrentAccel > padleMaxAccel) {
-                padleCurrentAccel = padleMaxAccel;
+            paddle1CurrentAccel += paddleAccelChange;
+            if(paddle1CurrentAccel > paddleMaxAccel) {
+                paddle1CurrentAccel = paddleMaxAccel;
             }
-            padleCurrentSpeed = (int)(padleMovePerFrame * padleCurrentAccel);
-            padle1MoveDown = true;
+            
+            paddle1CurrentSpeed = paddle1MovePerFrame + (int)(paddle1CurrentAccel);
+            if(paddle1CurrentSpeed > paddleMaxSpeed) {
+                paddle1CurrentSpeed = paddleMaxSpeed;
+            }
+            
+            paddle1MoveDown = true;
             dirty = true;
             return true;
             
         } else if(dir == GameSettings.UP) {
-            padleCurrentAccel += padleAccelChange;
-            if(padleCurrentAccel > padleMaxAccel) {
-                padleCurrentAccel = padleMaxAccel;
+            paddle1CurrentAccel += paddleAccelChange;
+            if(paddle1CurrentAccel > paddleMaxAccel) {
+                paddle1CurrentAccel = paddleMaxAccel;
             }
-            padleCurrentSpeed = (int)(padleMovePerFrame * padleCurrentAccel);            
-            padle1MoveUp = true;
+            
+            paddle1CurrentSpeed = paddle1MovePerFrame + (int)(paddle1CurrentAccel);              
+            if(paddle1CurrentSpeed > paddleMaxSpeed) {
+                paddle1CurrentSpeed = paddleMaxSpeed;
+            }            
+            
+            paddle1MoveUp = true;
             dirty = true;            
             return true;
             
@@ -183,17 +199,18 @@ public class ScreenGame extends Screen {
 
     @Override
     public boolean ProcessDpadRelease(int dir) {
+        Helper.wr("ProcessDpadRelease: " + dir);        
         if(dir == GameSettings.DOWN) {
-            padleCurrentAccel = padleMinAccel;
-            padleCurrentSpeed = 0;
-            padle1MoveDown = false;
+            paddle1CurrentAccel = paddleMinAccel;
+            paddle1CurrentSpeed = 0;
+            paddle1MoveDown = false;
             dirty = true;            
             return true;
             
         } else if(dir == GameSettings.UP) {
-            padleCurrentAccel = padleMinAccel;
-            padleCurrentSpeed = 0;
-            padle1MoveUp = false;
+            paddle1CurrentAccel = paddleMinAccel;
+            paddle1CurrentSpeed = 0;
+            paddle1MoveUp = false;
             dirty = true;            
             return true;
             
@@ -220,9 +237,24 @@ public class ScreenGame extends Screen {
     @Override
     public void DrawScreen() {
         //run each game frame
+        Helper.wr("DrawScreen: " + paddle1CurrentSpeed);
         pause = true;
-        dirty = false;
+        //dirty = false;
 
+        if(paddle1MoveUp) {
+            if(paddleLeft.GetY() - paddle1CurrentSpeed < GetY()) {
+                paddleLeft.SetY(GetY());                
+            } else {
+                paddleLeft.SetY(paddleLeft.GetY() - paddle1CurrentSpeed);
+            }
+        } else if(paddle1MoveDown) {
+            if(paddleLeft.GetY() + paddleLeft.GetHeight() + paddle1CurrentSpeed > GetY() + GetHeight()) {
+                paddleLeft.SetY(GetY() + GetHeight() - paddleLeft.GetHeight());
+            } else {
+               paddleLeft.SetY(paddleLeft.GetY() + paddle1CurrentSpeed);                            
+            }         
+        }
+        
         
         pause = false;
     }
