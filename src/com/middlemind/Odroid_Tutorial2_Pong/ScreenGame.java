@@ -125,19 +125,19 @@ public class ScreenGame extends Screen {
         exit.SetPosition((w - exit.GetWidth())/2, GetY() + exit.GetHeight() + MmgHelper.ScaleValue(5));
         AddObj(exit);        
         
-        imgId = "number_1_lrg.png";
+        imgId = "num_1_lrg.png";
         number1 = MmgHelper.GetBasicCachedBmp(imgId);
         MmgHelper.CenterHorAndVert(number1);
         number1.SetIsVisible(false);
         AddObj(number1);
         
-        imgId = "number_2_lrg.png";
+        imgId = "num_2_lrg.png";
         number2 = MmgHelper.GetBasicCachedBmp(imgId);
         MmgHelper.CenterHorAndVert(number2);
         number2.SetIsVisible(false);
         AddObj(number2);
 
-        imgId = "number_3_lrg.png";
+        imgId = "num_3_lrg.png";
         number3 = MmgHelper.GetBasicCachedBmp(imgId);
         MmgHelper.CenterHorAndVert(number3);
         number3.SetIsVisible(false);
