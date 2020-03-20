@@ -38,6 +38,11 @@ public class ScreenGame extends Screen {
     private MmgBmp bground;
     private MmgBmp paddleLeft;
     private MmgBmp paddleRight;
+    
+    private MmgBmp number1;
+    private MmgBmp number2;
+    private MmgBmp number3;    
+    
     private MmgFont scoreLeft;
     private MmgFont scoreRight;
     private MmgFont exit;
@@ -97,28 +102,46 @@ public class ScreenGame extends Screen {
         paddleLeft = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
         paddleLeft.SetPosition(MmgHelper.ScaleValue(20), GetY() + (h - paddleLeft.GetHeight())/2);
         AddObj(paddleLeft);
-        
+                
         paddleRight = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(20), h/5, MmgColor.GetWhite());
         paddleRight.SetPosition((w - paddleRight.GetWidth() - MmgHelper.ScaleValue(20)), GetY() + (h - paddleLeft.GetHeight())/2);        
         AddObj(paddleRight);
         
         scoreLeft = MmgFontData.CreateDefaultBoldMmgFontLg();
         scoreLeft.SetText("00");
-        scoreLeft.SetMmgColor(MmgColor.GetWhite());
+        scoreLeft.SetMmgColor(MmgColor.GetRed());
         scoreLeft.SetPosition(MmgHelper.ScaleValue(10) + paddleLeft.GetX() + paddleLeft.GetWidth(), GetY() + scoreLeft.GetHeight() + MmgHelper.ScaleValue(5));
         AddObj(scoreLeft);
         
         scoreRight = MmgFontData.CreateDefaultBoldMmgFontLg();
         scoreRight.SetText("00");
-        scoreRight.SetMmgColor(MmgColor.GetWhite());
+        scoreRight.SetMmgColor(MmgColor.GetRed());
         scoreRight.SetPosition(w - scoreRight.GetWidth() - MmgHelper.ScaleValue(10) - paddleLeft.GetX() - paddleRight.GetWidth(), GetY() + scoreRight.GetHeight() + MmgHelper.ScaleValue(5));
         AddObj(scoreRight);        
         
         exit = MmgFontData.CreateDefaultBoldMmgFontLg();
         exit.SetText("Press B to Exit");
-        exit.SetMmgColor(MmgColor.GetWhite());
+        exit.SetMmgColor(MmgColor.GetRed());
         exit.SetPosition((w - exit.GetWidth())/2, GetY() + exit.GetHeight() + MmgHelper.ScaleValue(5));
         AddObj(exit);        
+        
+        imgId = "number_1_lrg.png";
+        number1 = MmgHelper.GetBasicCachedBmp(imgId);
+        MmgHelper.CenterHorAndVert(number1);
+        number1.SetIsVisible(false);
+        AddObj(number1);
+        
+        imgId = "number_2_lrg.png";
+        number2 = MmgHelper.GetBasicCachedBmp(imgId);
+        MmgHelper.CenterHorAndVert(number2);
+        number2.SetIsVisible(false);
+        AddObj(number2);
+
+        imgId = "number_3_lrg.png";
+        number3 = MmgHelper.GetBasicCachedBmp(imgId);
+        MmgHelper.CenterHorAndVert(number3);
+        number3.SetIsVisible(false);
+        AddObj(number3);       
         
         ready = true;
         pause = false;
