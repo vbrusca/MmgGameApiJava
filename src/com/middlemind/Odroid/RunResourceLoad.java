@@ -86,45 +86,86 @@ public class RunResourceLoad implements Runnable {
         File adld = null;
         File[] srcFiles = null;
         ArrayList<File> clnFiles = null;
-        File[] asFiles = null;
-        File[] adFiles = null;
+        ArrayList<File> asFiles = null;
+        ArrayList<File> adFiles = null;
         int j = 0;
         
         try {
+            asFiles = new ArrayList();
+            adFiles = new ArrayList();            
+            
+            //load core auto loading audio files
             asld = new File(GameSettings.AUTO_SOUND_LOAD_DIR);
-            srcFiles = asld.listFiles();
-            clnFiles = new ArrayList();
-            
-            for(j = 0; j < srcFiles.length; j++) {
-                if(srcFiles[j].getName().charAt(0) != '.' && srcFiles[j].getName().toLowerCase().indexOf(".wav") != -1) {
-                    clnFiles.add(srcFiles[j]);
+            if(asld.exists()) {
+                srcFiles = asld.listFiles();
+                clnFiles = new ArrayList();
+
+                for(j = 0; j < srcFiles.length; j++) {
+                    if(srcFiles[j].getName().charAt(0) != '.' && srcFiles[j].getName().toLowerCase().indexOf(".wav") != -1) {
+                        clnFiles.add(srcFiles[j]);
+                    }
+                }
+
+                asFiles.addAll(clnFiles);
+                if(asFiles != null && asFiles.size() > 0) {
+                    readLen = (asFiles.size() - 1) * loadMultiplier;
                 }
             }
-
-            asFiles = new File[clnFiles.size()];
-            asFiles = clnFiles.toArray(asFiles);
             
-            if(asFiles != null && asFiles.length > 0) {
-                readLen = (asFiles.length - 1) * loadMultiplier;
-            }
-            
+            //load core auto loading image files            
             adld = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
-            srcFiles = adld.listFiles();
-            clnFiles = new ArrayList();
-            
-            for(j = 0; j < srcFiles.length; j++) {
-                if(srcFiles[j].getName().charAt(0) != '.' && (srcFiles[j].getName().toLowerCase().indexOf(".png") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".jpg") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".bmp") != -1)) {
-                    clnFiles.add(srcFiles[j]);
+            if(adld.exists()) {
+                srcFiles = adld.listFiles();
+                clnFiles = new ArrayList();
+
+                for(j = 0; j < srcFiles.length; j++) {
+                    if(srcFiles[j].getName().charAt(0) != '.' && (srcFiles[j].getName().toLowerCase().indexOf(".png") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".jpg") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".bmp") != -1)) {
+                        clnFiles.add(srcFiles[j]);
+                    }
+                }
+
+                adFiles.addAll(clnFiles);
+                if(adFiles != null && adFiles.size() > 0) {
+                    readLen = (adFiles.size() - 1) * loadMultiplier;
                 }
             }
+             
+            //load core auto loading audio files            
+            asld = new File(GameSettings.PROGRAM_SOUND_LOAD_DIR);
+            if(asld.exists()) {
+                srcFiles = asld.listFiles();
+                clnFiles = new ArrayList();
 
-            adFiles = new File[clnFiles.size()];
-            adFiles = clnFiles.toArray(adFiles);            
+                for(j = 0; j < srcFiles.length; j++) {
+                    if(srcFiles[j].getName().charAt(0) != '.' && srcFiles[j].getName().toLowerCase().indexOf(".wav") != -1) {
+                        clnFiles.add(srcFiles[j]);
+                    }
+                }
+
+                asFiles.addAll(clnFiles);                
+                if(asFiles != null && asFiles.size() > 0) {
+                    readLen = (asFiles.size() - 1) * loadMultiplier;
+                }
+            }
             
-            if(adFiles != null && adFiles.length > 0) {
-                readLen += (adFiles.length - 1) * loadMultiplier;
-            }            
-                       
+            //load core auto loading image files            
+            adld = new File(GameSettings.PROGRAM_IMAGE_LOAD_DIR);
+            if(adld.exists()) {
+                srcFiles = adld.listFiles();
+                clnFiles = new ArrayList();
+
+                for(j = 0; j < srcFiles.length; j++) {
+                    if(srcFiles[j].getName().charAt(0) != '.' && (srcFiles[j].getName().toLowerCase().indexOf(".png") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".jpg") != -1 || srcFiles[j].getName().toLowerCase().indexOf(".bmp") != -1)) {
+                        clnFiles.add(srcFiles[j]);
+                    }
+                }
+
+                adFiles.addAll(clnFiles);
+                if(adFiles != null && adFiles.size() > 0) {
+                    readLen = (adFiles.size() - 1) * loadMultiplier;
+                }
+            }
+            
             readPos = 0;
         } catch(Exception e) {
             MmgHelper.wrErr(e);
@@ -132,12 +173,12 @@ public class RunResourceLoad implements Runnable {
         
         try {
             //auto load audio files
-            if(asFiles != null && asFiles.length > 0) {
-                tlen = asFiles.length;
+            if(asFiles != null && asFiles.size() > 0) {
+                tlen = asFiles.size();
                 
                 for(i = 0; i < tlen; i++) {
-                    Helper.wr("Found auto_load file: " + asFiles[i].getName() + " Path: " + asFiles[i].getPath());
-                    Helper.GetBasicCachedSound(asFiles[i].getPath(), asFiles[i].getName());
+                    Helper.wr("Found auto_load file: " + asFiles.get(i).getName() + " Path: " + asFiles.get(i).getPath());
+                    Helper.GetBasicCachedSound(asFiles.get(i).getPath(), asFiles.get(i).getName());
                     readPos = i * loadMultiplier;
                     
                     if (update != null) {                        
@@ -162,14 +203,14 @@ public class RunResourceLoad implements Runnable {
         }        
         
         try {            
-            if(adFiles != null && adFiles.length > 0) {
-                readLen = (adFiles.length - 1) * loadMultiplier;
+            if(adFiles != null && adFiles.size() > 0) {
+                readLen = (adFiles.size() - 1) * loadMultiplier;
                 readPos = 0;
-                tlen = adFiles.length;
+                tlen = adFiles.size();
                 
                 for(i = 0; i < tlen; i++) {
-                    Helper.wr("Found auto_load file: " + adFiles[i].getName() + " Path: " + adFiles[i].getPath());
-                    Helper.GetBasicCachedBmp(adFiles[i].getPath(), adFiles[i].getName());
+                    Helper.wr("Found auto_load file: " + adFiles.get(i).getName() + " Path: " + adFiles.get(i).getPath());
+                    Helper.GetBasicCachedBmp(adFiles.get(i).getPath(), adFiles.get(i).getName());
                     readPos = i * loadMultiplier;
                     
                     if (update != null) {                        

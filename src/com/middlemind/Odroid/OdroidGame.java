@@ -69,6 +69,10 @@ public class OdroidGame {
 
     public static GamePanel pnlGame;    
     
+    public static String[] ARGS = null;    
+    
+    public static String NAME = "OdroidGame";
+    
     /**
      * Method that searches an array for a string match.
      *
@@ -85,7 +89,7 @@ public class OdroidGame {
         int len = s.length;
         for (int i = 0; i < len; i++) {
             if(s[i] != null) {
-                if (s[i].toLowerCase().contains(v) == true) {
+                if (s[i].toLowerCase().contains(tmp) == true || s[i].toLowerCase().equals(tmp) == true) {
                     return s[i];
                 }
             }
@@ -176,6 +180,13 @@ public class OdroidGame {
     public static final void main(String[] args) {
         LoadNativeLibraries();
         
+        //Store program arguments for future reference
+        ARGS = args;
+        
+        //Set program specific resource loading directories
+        GameSettings.PROGRAM_IMAGE_LOAD_DIR += NAME;
+        GameSettings.PROGRAM_SOUND_LOAD_DIR += NAME;
+
         if (args != null && args.length > 0) {
             Helper.wr("Found command line arguments!");
             String res = null;
@@ -216,7 +227,7 @@ public class OdroidGame {
             }
             
             res = ArrayHasEntryLike("ODROID=true", args);
-            if(res == null) {
+            if(res != null) {
                 WIN_WIDTH = 480;
                 WIN_HEIGHT = 320;
                 PANEL_WIDTH = 478;

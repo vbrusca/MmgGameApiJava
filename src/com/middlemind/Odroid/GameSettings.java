@@ -20,6 +20,9 @@ public class GameSettings {
     
     //Image dirs must end with a file path separator
     public static String IMAGE_LOAD_DIR = "../cfg/drawable/";
+    public static String SOUND_LOAD_DIR = "../cfg/playable/";
+    public static String PROGRAM_IMAGE_LOAD_DIR = "../cfg/drawable/";
+    public static String PROGRAM_SOUND_LOAD_DIR = "../cfg/playable/";    
     public static String AUTO_IMAGE_LOAD_DIR = "../cfg/drawable/auto_load/";
     public static String AUTO_SOUND_LOAD_DIR = "../cfg/playable/auto_load/";    
     public static String CLASS_CONFIG_DIR = "../cfg/class_config/";

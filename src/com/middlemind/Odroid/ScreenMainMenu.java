@@ -138,7 +138,6 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         sndId = file;
         sval = MmgHelper.GetBasicCachedSound(sndId);
-        sval.Play();
         menuSound = sval;
         
         tB =  MmgHelper.CreateFilledBmp(w, h, MmgColor.GetBlack());
