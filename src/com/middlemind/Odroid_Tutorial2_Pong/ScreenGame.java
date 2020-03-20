@@ -39,6 +39,28 @@ public class ScreenGame extends Screen {
     private MmgBmp paddleLeft;
     private MmgBmp paddleRight;
     
+    
+    private enum NumberState {
+        NONE,
+        NUMBER_1,
+        NUMBER_2,
+        NUMBER_3
+    };
+    
+    private enum GameState {
+        NONE,
+        SHOW_GAME,
+        SHOW_COUNT_DOWN,
+        SHOW_GAME_OVER,
+        SHOW_GAME_EXIT
+    };
+    
+    private MmgBmp ball;
+    private int ballSpeedX;
+    private int ballSpeedY;
+    private int ballSpeedMin = 30;
+    private int ballSpeedMax = 120;
+    
     private MmgBmp number1;
     private MmgBmp number2;
     private MmgBmp number3;    
