@@ -147,7 +147,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * Paint helper class, used in the paint drawing routine.
      */
-    public Graphics2D g2d;
+    //public Graphics2D g2d;
 
     /**
      * Holds a reference to all game screens.
@@ -285,8 +285,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
             @Override
             public void mouseMoved(MouseEvent e) {
+                //System.out.println("mouseMoved");
                 lastX = e.getX();
                 lastY = e.getY();
+                ProcessMouseMove(lastX, lastY);
             }
         });
 
@@ -319,7 +321,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 } else if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
                     ProcessDebugClick();
                     
-                }                    
+                } else {
+                    ProcessKeyClick(e.getKeyChar());
+                }                  
             }
 
             @Override
@@ -339,6 +343,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     } else if (e.getKeyCode() == 39) {
                         ProcessDpadPress(GameSettings.RIGHT);
                         
+                    } else {
+                        ProcessKeyPress(e.getKeyChar());
                     }
                 }
             }
@@ -359,7 +365,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     } else if (e.getKeyCode() == 39) {
                         ProcessDpadRelease(GameSettings.RIGHT);
                         
-                    }
+                    } else {
+                        ProcessKeyRelease(e.getKeyChar());
+                    }                    
                 }
             }
         });
@@ -430,6 +438,18 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         currentScreen.ProcessDebugClick();
     }
 
+    public void ProcessKeyPress(char c) {
+        currentScreen.ProcessKeyPress(c);
+    }
+    
+    public void ProcessKeyRelease(char c) {
+        currentScreen.ProcessKeyRelease(c);
+    }    
+    
+    public void ProcessKeyClick(char c) {
+        currentScreen.ProcessKeyClick(c);
+    }    
+    
     @Override    
     public void ProcessDpadPress(int dir) {
         currentScreen.ProcessDpadPress(dir);
@@ -438,6 +458,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override    
     public void ProcessDpadRelease(int dir) {
         currentScreen.ProcessDpadRelease(dir);
+    }
+    
+    public void ProcessMouseMove(int x, int y) {
+        currentScreen.ProcessMouseMove(x, y);
     }
     
     public void ProcessPress(int x, int y) {
@@ -754,50 +778,47 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             UpdateGame();
         }
 
-        // Update Graphics
-        do {
-            bg = GetBuffer();
-            g = backgroundGraphics;
-            g2d = (Graphics2D) g;
+        //update graphics
+        bg = GetBuffer();
+        g = backgroundGraphics;
 
-            if (currentScreen == null || currentScreen.IsPaused() == true || currentScreen.IsReady() == false) {
-                //do nothing
-            } else {
-                //clear background
-                g.setColor(Color.DARK_GRAY);
-                g.fillRect(0, 0, winWidth, winHeight);
+        if (currentScreen == null || currentScreen.IsPaused() == true || currentScreen.IsReady() == false) {
+            //do nothing
+        } else {
+            //clear background
+            g.setColor(Color.DARK_GRAY);
+            g.fillRect(0, 0, winWidth, winHeight);
 
-                //draw border
-                g.setColor(Color.WHITE);
-                g.drawRect(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 1, MmgScreenData.GetGameHeight() + 1);
+            //draw border
+            g.setColor(Color.WHITE);
+            g.drawRect(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 1, MmgScreenData.GetGameHeight() + 1);
 
-                g.setColor(Color.BLACK);
-                g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
+            g.setColor(Color.BLACK);
+            g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
 
-                p.SetGraphics(g2d);
-                p.SetAdvRenderHints();
-                currentScreen.MmgDraw(p);
+            p.SetGraphics(g);
+            p.SetAdvRenderHints();
+            currentScreen.MmgDraw(p);
 
-                if (Helper.LOGGING == true) {
-                    tmpF = g.getFont();
-                    g.setFont(debugFont);
-                    g.setColor(debugColor);
-                    g.drawString(GamePanel.FPS, 15, 15);
-                    g.drawString("Var1: " + GamePanel.VAR1, 15, 35);
-                    g.drawString("Var2: " + GamePanel.VAR2, 15, 55);
-                    g.setFont(tmpF);
-                }
+            if (Helper.LOGGING == true) {
+                tmpF = g.getFont();
+                g.setFont(debugFont);
+                g.setColor(debugColor);
+                g.drawString(GamePanel.FPS, 15, 15);
+                g.drawString("Var1: " + GamePanel.VAR1, 15, 35);
+                g.drawString("Var2: " + GamePanel.VAR2, 15, 55);
+                g.setFont(tmpF);
             }
+        }
 
-            //draws a scaled version of the state of the background buffer to the screen buffer if scaling is
-            //enabled.
-            if (scale != 1.0) {
-                bg.drawImage(background, sMyX, sMyY, sWinWidth, sWinHeight, 0, 0, winWidth, winHeight, null);
-            } else {
-                bg.drawImage(background, myX, myY, null);
-            }
-            bg.dispose();
-            
-        } while (!UpdateScreen());
+        //draws a scaled version of the state of the background buffer to the screen buffer if scaling is enabled
+        if (scale != 1.0) {
+            bg.drawImage(background, sMyX, sMyY, sWinWidth, sWinHeight, 0, 0, winWidth, winHeight, null);
+        } else {
+            bg.drawImage(background, myX, myY, null);
+        }
+
+        bg.dispose();
+        UpdateScreen();
     }
 }

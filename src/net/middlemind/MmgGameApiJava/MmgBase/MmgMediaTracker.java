@@ -165,7 +165,7 @@ public class MmgMediaTracker {
     /**
      * Returns true if the sound cache has the given value.
      * 
-     * @param img       The sound to check existence for.
+     * @param snd       The sound to check existence for.
      * @return          True if the sound argument exists as a value in the image cache.
      */
     public static boolean HasSoundValue(Clip snd) {
@@ -226,7 +226,7 @@ public class MmgMediaTracker {
      * Removes an entry by key and value.
      * 
      * @param key       The key to use to remove an entry for.
-     * @param img       The value to use to remove an entry for.
+     * @param snd       The value to use to remove an entry for.
      * @return          Returns true if a key value pair was found and removed.
      */
     public static boolean RemoveSoundByKeyValue(String key, Clip snd) {

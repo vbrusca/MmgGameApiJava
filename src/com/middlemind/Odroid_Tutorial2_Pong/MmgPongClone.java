@@ -64,7 +64,7 @@ public final class MmgPongClone {
     /**
      * The frame rate for the game, frames per second.
      */
-    public static long FPS = 16l;
+    public static long FPS = 20l;
 
     //public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
     //public static String DAT_FILE = "../cfg/data/chapter2.dat";

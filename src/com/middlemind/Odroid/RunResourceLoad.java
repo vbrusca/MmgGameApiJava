@@ -48,10 +48,6 @@ public class RunResourceLoad implements Runnable {
     /**
      * A constructor that sets the thin load option, don't load binary image or
      * sound data yet, and sets the source byte array to parse.
-     *
-     * @param Thin A boolean indicating if image and sound data should be parsed
-     * or just copied.
-     * @param Data A binary array representing the Tyre DAT file.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public RunResourceLoad() {

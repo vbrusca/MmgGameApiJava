@@ -137,7 +137,15 @@ public class MmgHelper {
     public static boolean RectCollision(MmgRect src, MmgRect dest) {
         return RectCollision(src.GetLeft(), src.GetTop(), src.GetWidth(), src.GetHeight(), dest);
     }
+    
+    public static boolean RectCollision(MmgObj src, MmgObj dest) {
+        return RectCollision(src.GetX(), src.GetY(), src.GetWidth(), src.GetHeight(), dest.GetX(), dest.GetY(), dest.GetWidth(), dest.GetHeight());
+    }    
 
+    public static boolean RectCollision(MmgVector2 src, int sW, int sH, MmgVector2 dest, int dW, int dH) {
+        return RectCollision(src.GetX(), src.GetY(), sW, sH, dest.GetX(), dest.GetY(), dW, dH);
+    }    
+    
     /**
      * Tests for collisions of two rectangles.
      *

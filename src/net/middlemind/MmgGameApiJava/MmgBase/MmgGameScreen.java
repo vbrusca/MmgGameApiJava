@@ -92,6 +92,8 @@ public class MmgGameScreen extends MmgObj {
      */
     private boolean menuOn;
 
+    private boolean lret;
+    
     /**
      * Constructor for this class.
      */
@@ -646,7 +648,7 @@ public class MmgGameScreen extends MmgObj {
 
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        boolean ret = false;
+        lret = false;
 
         if (IsPaused() == true) {
             //do nothing
@@ -655,19 +657,19 @@ public class MmgGameScreen extends MmgObj {
             if (GetIsVisible() == true) {
                 if (message != null) {
                     if (message.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                        ret = true;
+                        lret = true;
                     }
                 }
 
                 if (objects != null) {
                     if (objects.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                        ret = true;
+                        lret = true;
                     }
                 }
 
                 if (foreground != null) {
                     if (foreground.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                        ret = true;
+                        lret = true;
                     }
                 }
             } else {
@@ -675,9 +677,13 @@ public class MmgGameScreen extends MmgObj {
             }
         }
 
-        return ret;
+        return lret;
     }
 
+    public boolean ProcessMouseMove(int x, int y) {
+        return true;
+    }    
+    
     /**
      * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
      * offset.
@@ -685,7 +691,6 @@ public class MmgGameScreen extends MmgObj {
      * @return 
      */
     public boolean ProcessScreenPress(MmgVector2 v) {
-        System.out.println("MmgGameScreen: ProcessScreenPress");
         return ProcessScreenPress(v.GetX(), v.GetY());
     }
 
@@ -697,7 +702,6 @@ public class MmgGameScreen extends MmgObj {
      * @return 
      */
     public boolean ProcessScreenPress(int x, int y) {
-        System.out.println("MmgGameScreen: ProcessScreenPress");
         return true;
     }
 
@@ -708,7 +712,6 @@ public class MmgGameScreen extends MmgObj {
      * @return 
      */
     public boolean ProcessScreenRelease(MmgVector2 v) {
-        System.out.println("MmgGameScreen: ProcessScreenRelease");
         return ProcessScreenPress(v.GetX(), v.GetY());
     }
 
@@ -720,7 +723,6 @@ public class MmgGameScreen extends MmgObj {
      * @return 
      */
     public boolean ProcessScreenRelease(int x, int y) {
-        System.out.println("MmgGameScreen: ProcessScreenRelease");
         return true;
     }
 
@@ -735,6 +737,18 @@ public class MmgGameScreen extends MmgObj {
     public void ProcessDebugClick() {
 
     }
+    
+    public boolean ProcessKeyPress(char c) {
+        return true;
+    }
+    
+    public boolean ProcessKeyRelease(char c) {
+        return true;
+    }
+    
+    public boolean ProcessKeyClick(char c) {
+        return true;
+    }    
     
     public boolean ProcessDpadPress(int dir) {
         return true;
@@ -770,22 +784,13 @@ public class MmgGameScreen extends MmgObj {
     @SuppressWarnings("UnusedAssignment")
     public boolean ProcessScreenClick(int x, int y) {
         if (menuOn == true && menu != null) {
-            //MmgDebug.wr("ProcessScreenClick:AAA");
             Object[] objs = menu.GetArray();
             MmgMenuItem item = null;
             if (objs != null) {
-
-                //MmgDebug.wr("ProcessScreenClick:BBB");
                 for (int i = 0; i < objs.length; i++) {
-                    //MmgDebug.wr("ProcessScreenClick:CCC:" + i);
                     item = (MmgMenuItem) objs[i];
-                    //MmgDebug.wr("ProcessScreenClick:CCC2: [" + x + "] [" + item.GetX() + "," + (item.GetX() + item.GetWidth()) + "]");
                     if (x >= item.GetX() && x <= (item.GetX() + item.GetWidth())) {
-
-                        //MmgDebug.wr("ProcessScreenClick:CCC3: [" + y + "] [" + item.GetY() + "," + (item.GetY() + item.GetHeight()) + "]");
                         if (y >= item.GetY() && y <= (item.GetY() + item.GetHeight())) {
-
-                            //MmgDebug.wr("ProcessScreenClick:DDD:" + i);
                             menuIdx = i;
                             ProcessMenuItemSel(item);
                             return true;
