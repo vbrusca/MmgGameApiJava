@@ -79,12 +79,18 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
             //helpScreen.SetIsVisible(false);
             //helpScreen.UnloadResources();
 
-        } else if (prevGameState == GameStates.MAIN_GAME) {
-            Helper.wr("Hiding MAIN GAME screen.");
+        } else if (prevGameState == GameStates.MAIN_GAME_1P || gameState == GameStates.MAIN_GAME) {
+            Helper.wr("Hiding MAIN GAME 1P screen.");
             screenGame.Pause();
             screenGame.SetIsVisible(false);
             screenGame.UnloadResources();
 
+        } else if (prevGameState == GameStates.MAIN_GAME_2P) {
+            Helper.wr("Hiding MAIN GAME 2P screen.");
+            screenGame.Pause();
+            screenGame.SetIsVisible(false);
+            screenGame.UnloadResources();            
+            
         } else if (prevGameState == GameStates.SETTINGS) {
             Helper.wr("Hiding SETTINGS screen.");
             //settingsScreen.Pause();
@@ -142,13 +148,22 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
             //helpScreen.SetIsVisible(true);
             //currentScreen = helpScreen;
 
-        } else if (gameState == GameStates.MAIN_GAME) {
-            Helper.wr("Showing MAIN GAME screen.");
+        } else if (gameState == GameStates.MAIN_GAME_1P || gameState == GameStates.MAIN_GAME) {
+            Helper.wr("Showing MAIN GAME 1P screen.");
+            screenGame.SetGameType(GameType.GAME_ONE_PLAYER);
             screenGame.LoadResources();
             screenGame.UnPause();
             screenGame.SetIsVisible(true);
             currentScreen = screenGame;
 
+        } else if (gameState == GameStates.MAIN_GAME_2P) {
+            Helper.wr("Showing MAIN GAME 2P screen.");
+            screenGame.SetGameType(GameType.GAME_TWO_PLAYER);
+            screenGame.LoadResources();
+            screenGame.UnPause();
+            screenGame.SetIsVisible(true);
+            currentScreen = screenGame;            
+            
         } else if (gameState == GameStates.SETTINGS) {
             //settingsScreen.LoadResources();
             //settingsScreen.UnPause();

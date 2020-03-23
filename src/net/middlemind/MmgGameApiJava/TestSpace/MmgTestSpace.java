@@ -75,18 +75,23 @@ public final class MmgTestSpace {
      */
     public static String ENGINE_CONFIG_FILE = "../cfg/engine_config.xml";
 
+    /**
+     * The GamePanel used to render the game in a MainFrame instance.
+     */     
     public static GamePanel pnlGame;
     
+    /**
+     * A copy of the command line arguments passed to the Java application.
+     */       
     public static String[] ARGS = null;    
-    
-    public static String NAME = "MmgTestSpace";
-    
+        
     /**
      * Method that searches an array for a string match.
      *
-     * @param v The string to find a match for.
-     * @param s The array of string to search through.
-     * @return
+     * @param v     The string to find a match for.
+     * @param s     The array of string to search through.
+     * 
+     * @return      The command line argument that matched the test string, v.
      */
     public static String ArrayHasEntryLike(String v, String[] s) {
         if(v == null || s == null) {
@@ -110,6 +115,7 @@ public final class MmgTestSpace {
      *
      * @param ent Entry object that wraps the XML entry.
      * @param f Class member that needs to be updated.
+     * 
      * @throws Exception
      */
     public static void SetField(DatConstantsEntry ent, Field f) throws Exception {
@@ -146,12 +152,7 @@ public final class MmgTestSpace {
      */
     public static final void main(String[] args) {
         //Store program arguments for future reference
-        ARGS = args;
-        
-        //Set program specific resource loading directories
-        GameSettings.PROGRAM_IMAGE_LOAD_DIR += NAME;
-        GameSettings.PROGRAM_SOUND_LOAD_DIR += NAME;
-        
+        ARGS = args;        
         if (args != null && args.length > 0) {
             Helper.wr("Found command line arguments!");
             String res = null;
@@ -237,12 +238,16 @@ public final class MmgTestSpace {
             Helper.wrErr(e);
         }
 
-        Helper.wr("TyreDatGame Window Width: " + WIN_WIDTH);
-        Helper.wr("TyreDatGame Window Height: " + WIN_HEIGHT);
-        Helper.wr("TyreDatGame Panel Width: " + PANEL_WIDTH);
-        Helper.wr("TyreDatGame Panel Height: " + PANEL_HEIGHT);
-        Helper.wr("TyreDatGame Game Width: " + GAME_WIDTH);
-        Helper.wr("TyreDatGame Game Height: " + GAME_HEIGHT);
+        //Set program specific resource loading directories
+        GameSettings.PROGRAM_IMAGE_LOAD_DIR += GameSettings.NAME;
+        GameSettings.PROGRAM_SOUND_LOAD_DIR += GameSettings.NAME;        
+        
+        Helper.wr("Window Width: " + WIN_WIDTH);
+        Helper.wr("Window Height: " + WIN_HEIGHT);
+        Helper.wr("Panel Width: " + PANEL_WIDTH);
+        Helper.wr("Panel Height: " + PANEL_HEIGHT);
+        Helper.wr("Game Width: " + GAME_WIDTH);
+        Helper.wr("Game Height: " + GAME_HEIGHT);
 
         mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
         pnlGame = new GamePanel(mf, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, (MmgTestSpace.WIN_WIDTH - MmgTestSpace.PANEL_WIDTH) / 2, (MmgTestSpace.WIN_HEIGHT - MmgTestSpace.PANEL_HEIGHT) / 2, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);

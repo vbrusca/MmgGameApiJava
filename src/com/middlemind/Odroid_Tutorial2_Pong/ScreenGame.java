@@ -1,6 +1,7 @@
 package com.middlemind.Odroid_Tutorial2_Pong;
 
 import com.middlemind.Odroid.GamePanel.GameStates;
+import com.middlemind.Odroid.GamePanel.GameType;
 import com.middlemind.Odroid.GameSettings;
 import com.middlemind.Odroid.GenericEventMessage;
 import com.middlemind.Odroid.Helper;
@@ -42,7 +43,8 @@ public class ScreenGame extends Screen {
         SHOW_GAME_OVER,
         SHOW_GAME_EXIT
     };
-    
+        
+    private GameType gameType = GameType.GAME_ONE_PLAYER;
     private State statePrev = State.NONE;
     private State state = State.NONE;
     
@@ -227,6 +229,14 @@ public class ScreenGame extends Screen {
         pause = false;
     }
 
+    public void SetGameType(GameType gt) {
+        gameType = gt;
+    }
+    
+    public GameType GetGameType() {
+        return gameType;
+    }
+    
     private static int GetSpeedPerFrame(int speed) {
         return (int)(speed/(MmgPongClone.FPS - 4));        
     }

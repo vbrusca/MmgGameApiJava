@@ -26,9 +26,13 @@ public class RunFrameRate implements Runnable {
     public final long tFrameTime;
 
     /**
-     * Actual frames per second.
+     * Actual frames per second. The actual frames the game might run at if it wasn't controlled.
      */
     public long aFps;
+    
+    /**
+     * Real frames per second. The controlled frames per second.
+     */
     public long rFps;
 
     /**

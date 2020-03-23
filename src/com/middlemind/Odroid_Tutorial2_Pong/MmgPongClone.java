@@ -66,24 +66,28 @@ public final class MmgPongClone {
      */
     public static long FPS = 20l;
 
-    //public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
-    //public static String DAT_FILE = "../cfg/data/chapter2.dat";
-
     /**
      * Base engine config files.
      */
     public static String ENGINE_CONFIG_FILE = "../cfg/engine_config_mmg_pong_clone.xml";
 
+    /**
+     * The GamePanel used to render the game in a MainFrame instance.
+     */    
     public static GamePanel pnlGame;
     
+    /**
+     * A copy of the command line arguments passed to the Java application.
+     */    
     public static String[] ARGS = null;
         
     /**
      * Method that searches an array for a string match.
      *
-     * @param v The string to find a match for.
-     * @param s The array of string to search through.
-     * @return
+     * @param v     The string to find a match for.
+     * @param s     The array of string to search through.
+     * 
+     * @return      The command line argument that matched the test string, v.
      */
     public static String ArrayHasEntryLike(String v, String[] s) {
         if(v == null || s == null) {
@@ -102,6 +106,9 @@ public final class MmgPongClone {
         return null;
     }
 
+    /**
+     * A static method that loads native libraries that allow access to gamepads and controllers.
+     */    
     public static void LoadNativeLibraries() {
         String OS = System.getProperty("os.name").toLowerCase();
         Helper.wr("Found platform: " + OS);
@@ -112,6 +119,7 @@ public final class MmgPongClone {
         } else if (isMac(OS)) {
             Helper.wr("This is Mac");
             Helper.wr("LibPath: " + System.getProperty("java.library.path"));
+            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
             System.loadLibrary("jinput-osx");
             
         } else if (isUnix(OS)) {
@@ -121,23 +129,51 @@ public final class MmgPongClone {
             Helper.wr("This is Solaris");
             
         } else {
-            Helper.wr("Your OS is not support!!");
+            Helper.wr("Your OS is not supported!!");
             
         }
     }
     
+    /**
+     * A static class method for checking if this Java application is running on Windows.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on Windows.
+     */
     public static boolean isWindows(String OS) {
         return (OS.indexOf("win") >= 0);
     }
 
+    /**
+     * A static class method for checking if this Java application is running on a Mac.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on a Mac.
+     */
     public static boolean isMac(String OS) {
         return (OS.indexOf("mac") >= 0);
     }
 
+    /**
+     * A static class method for checking if this Java application is running on Linux.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on Linux.
+     */
     public static boolean isUnix(String OS) {
         return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
     }
 
+    /**
+     * A static class method for checking if this Java application is running on Sun OS.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on Sun OS.
+     */
     public static boolean isSolaris(String OS) {
         return (OS.indexOf("sunos") >= 0);
     } 
@@ -145,8 +181,9 @@ public final class MmgPongClone {
     /**
      * Sets the value of the field specified by the field reflection object.
      *
-     * @param ent Entry object that wraps the XML entry.
-     * @param f Class member that needs to be updated.
+     * @param ent       Entry object that wraps the XML entry.
+     * @param f         Class member that needs to be updated.
+     * 
      * @throws Exception
      */
     public static void SetField(DatConstantsEntry ent, Field f) throws Exception {
@@ -177,9 +214,9 @@ public final class MmgPongClone {
     }
 
     /**
-     * Static access method.
+     * Static main method.
      *
-     * @param args The command line arguments
+     * @param args      The command line arguments
      */
     public static final void main(String[] args) {
         LoadNativeLibraries();

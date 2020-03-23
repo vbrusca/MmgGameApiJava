@@ -31,17 +31,29 @@ public class RunResourceLoad implements Runnable {
      * Helper variables for the read process.
      */
     public int readLen;
-    //public int len;    
+
+    /**
+     * A value used to increase the size of the steps to process. In case
+     * there are only a few load operations to perform this number will change that
+     * value to 1000's so that the progress bar math stays away from small number division.
+     */
     public int loadMultiplier = 1000;
-    //public int extraLoadLen = ((42 + 15 + 284) * extraLoadMultiplier); //direct file load steps + console image steps + regular image steps
+
 
     /**
      * An event handler for receiving update messages from the DAT loader.
      */
     public LoadResourceUpdateHandler update;
 
-    public int tlen;
-    public int i;
+    /**
+     * A private class field used to track the total number of files to process in a processing loop.
+     */
+    private int tlen;
+    
+    /**
+     * A private class field used to track each loop iteration when processing resource files.
+     */
+    private int i;
     public long slowDown;
     public boolean exitLoad;
     

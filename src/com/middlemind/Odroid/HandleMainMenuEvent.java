@@ -92,6 +92,12 @@ public class HandleMainMenuEvent implements MmgEventHandler {
             if (e.GetEventId() == HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME) {
                 owner.SwitchGameState(GamePanel.GameStates.MAIN_GAME);
 
+            } else if (e.GetEventId() == HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_1P) {
+                owner.SwitchGameState(GamePanel.GameStates.MAIN_GAME_1P);
+                
+            } else if (e.GetEventId() == HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_2P) {
+                owner.SwitchGameState(GamePanel.GameStates.MAIN_GAME_2P);
+                                                
             } else if (e.GetEventId() == HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME) {
                 System.exit(0);
                 

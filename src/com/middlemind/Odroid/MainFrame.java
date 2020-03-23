@@ -64,10 +64,10 @@ public class MainFrame extends JFrame {
 
     /**
      * Constructor that sets the window width and height, and defaults the X, Y
-     * offsets to 0.
+     * offsets to 0. It also sets the JFrame and game width and height to that of the window width and height.
      *
-     * @param WinWidth      The window width.
-     * @param WinHeight     The window height.
+     * @param WinWidth      The desired window width.
+     * @param WinHeight     The desired window height.
      */
     public MainFrame(int WinWidth, int WinHeight) {
         winWidth = WinWidth;
@@ -80,6 +80,16 @@ public class MainFrame extends JFrame {
         myY = 0;
     }
 
+    /**
+     * Constructor that sets the window width and height, the JFrame width and height, and the game width and height.
+     * 
+     * @param WinWidth      The desired window width.
+     * @param WinHeight     The desired window height.
+     * @param PanWidth      The desired JFrame width.
+     * @param PanHeight     The desired JFrame height.
+     * @param GameWidth     The desired game width.
+     * @param GameHeight    The desired game height.
+     */
     public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight, int GameWidth, int GameHeight) {
         Helper.wr("MainFrame: WinWidth: " + WinWidth);
         Helper.wr("MainFrame: WinHeight: " + WinHeight);
@@ -111,42 +121,92 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Sets the GamePanel for this class to use as the game being displayed.
+     * 
+     * @param gp        The GamePanel to display.
+     */
     public void SetGamePanel(GamePanel gp) {
         pnlGame = gp;
     }
     
+    /**
+     * Gets the current GamePanel this classing is using to display a game.
+     * 
+     * @return      The current GamePanel being displayed. 
+     */
     public GamePanel GetGamePanel() {
         return pnlGame;
     }
 
+    /**
+     * Gets the current window width of the application.
+     * 
+     * @return      The current window width.
+     */
     public int GetWindowWidth() {
         return winWidth;
     }
 
+    /**
+     * Gets the current window height of the application.
+     * 
+     * @return The current window height. 
+     */
     public int GetWindowHeight() {
         return winHeight;
     }
 
+    /**
+     * Gets the X offset of the GamePanel in this JFrame.
+     * 
+     * @return      The X offset of the GamePanel's rendering location in the JFrame.
+     */
     public int GetOffsetX() {
         return myX;
     }
 
+    /**
+     * Gets the Y offset of the GamePanel in this JFrame.
+     * 
+     * @return      The Y offset of the GamePanel's rendering location in the JFrame.
+     */
     public int GetOffsetY() {
         return myY;
     }
 
+    /**
+     * Gets the width of the GamePanel in this JFrame.
+     * 
+     * @return      The width of the GamePanel in this JFrame.
+     */
     public int GetGamePanelWidth() {
         return panelWidth;
     }
-
+    
+    /**
+     * Gets the height of the GamePanel in this JFrame.
+     * 
+     * @return      The height of the GamePanel in this JFrame.
+     */    
     public int GetGamePanelHeight() {
         return panelHeight;
     }
     
+    /**
+     * Gets the width of the game that's rendered by the GamePanel in this JFrame.
+     * 
+     * @return      The width of the game that's rendered by the GamePanel in this JFrame.
+     */
     public int GetGameWidth() {
         return gameWidth;
     }
     
+    /**
+     * Gets the height of the game that's rendered by the GamePanel in this JFrame.
+     * 
+     * @return      The height of the game that's rendered by the GamePanel in this JFrame.
+     */
     public int GetGameHeight() {
         return gameHeight;
     }

@@ -48,6 +48,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         HELP_ROOM_DESC,
         HELP_ROOM_DESC_ROOM_DETAILS,
         MAIN_GAME,
+        MAIN_GAME_1P,
+        MAIN_GAME_2P,        
         SETTINGS,
         GAME_SCREEN_01,
         GAME_SCREEN_02,
@@ -265,7 +267,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public enum GameType {
         NEW_GAME,
-        CONTINUED_GAME
+        CONTINUED_GAME,
+        GAME_ONE_PLAYER,
+        GAME_TWO_PLAYER,
+        GAME_TWO_PLAYER_NETWORK        
     }
 
     /**

@@ -112,7 +112,7 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
             }
             
             MmgHelper.CenterHor(menuTitle);
-            menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(50));
+            menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(40));
                 
             key = "menuTitlePosY";
             if(classConfig.containsKey(key)) {
@@ -162,7 +162,7 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
             }
             
             MmgHelper.CenterHor(menuSubTitle);
-            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(50));            
+            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(10));            
             
             key = "menuSubTitlePosY";
             if(classConfig.containsKey(key)) {
@@ -201,42 +201,92 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
         
         imgId = file;
         lval = MmgHelper.GetBasicCachedBmp(imgId);
-        menuStartGame = lval;
-        if (menuStartGame != null) {
+        menuStartGame1P = lval;
+        if (menuStartGame1P != null) {
             key = "menuStartGame1pScale";
             if(classConfig.containsKey(key)) {
                 scale = classConfig.get(key).number.doubleValue();
                 if(scale != 1.0) {
-                    menuStartGame = MmgBmpScaler.ScaleMmgBmp(menuStartGame, scale, false);
+                    menuStartGame1P = MmgBmpScaler.ScaleMmgBmp(menuStartGame1P, scale, false);
                 }
             }
             
-            MmgHelper.CenterHor(menuStartGame);
-            menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));            
+            MmgHelper.CenterHor(menuStartGame1P);
+            menuStartGame1P.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));            
             
             key = "menuStartGame1pPosY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
-                menuStartGame.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+                menuStartGame1P.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
             }
             
             key = "menuStartGame1pPosX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
-                menuStartGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+                menuStartGame1P.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
             }  
             
             key = "menuStartGame1pOffsetY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
-                menuStartGame.GetPosition().SetY(menuStartGame.GetY() + MmgHelper.ScaleValue(tmp));
+                menuStartGame1P.GetPosition().SetY(menuStartGame1P.GetY() + MmgHelper.ScaleValue(tmp));
             }
             
             key = "menuStartGame1pOffsetX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
-                menuStartGame.GetPosition().SetX(menuStartGame.GetX() + MmgHelper.ScaleValue(tmp));
+                menuStartGame1P.GetPosition().SetX(menuStartGame1P.GetX() + MmgHelper.ScaleValue(tmp));
             }         
+        }
+        
+        
+        
+        
+        key = "bmpMenuItemStartGame2p";
+        if(classConfig.containsKey(key)) {
+            file = classConfig.get(key).string;
+        } else {
+            file = "start_game_2p.png";
+        }        
+        
+        imgId = file;
+        lval = MmgHelper.GetBasicCachedBmp(imgId);
+        menuStartGame2P = lval;
+        if (menuStartGame2P != null) {
+            key = "menuStartGame2pScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuStartGame2P = MmgBmpScaler.ScaleMmgBmp(menuStartGame2P, scale, false);
+                }
+            }
+            
+            MmgHelper.CenterHor(menuStartGame2P);
+            menuStartGame2P.GetPosition().SetY(menuStartGame1P.GetY() + menuStartGame1P.GetHeight() + MmgHelper.ScaleValue(10));            
+            
+            key = "menuStartGame2pPosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuStartGame2pPosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }  
+            
+            key = "menuStartGame2pOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetY(menuStartGame2P.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuStartGame2pOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetX(menuStartGame2P.GetX() + MmgHelper.ScaleValue(tmp));
+            }
         }
         
         
@@ -255,12 +305,12 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
             if(classConfig.containsKey(key)) {
                 scale = classConfig.get(key).number.doubleValue();
                 if(scale != 1.0) {
-                    menuStartGame = MmgBmpScaler.ScaleMmgBmp(menuExitGame, scale, false);
+                    menuExitGame = MmgBmpScaler.ScaleMmgBmp(menuExitGame, scale, false);
                 }
             }
             
             MmgHelper.CenterHor(menuExitGame);
-            menuExitGame.GetPosition().SetY(menuStartGame.GetY() + menuStartGame.GetHeight() + MmgHelper.ScaleValue(10));
+            menuExitGame.GetPosition().SetY(menuStartGame2P.GetY() + menuStartGame2P.GetHeight() + MmgHelper.ScaleValue(10));
                 
             key = "menuExitGamePosY";
             if(classConfig.containsKey(key)) {
@@ -325,7 +375,7 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
             key = "menuFooterUrlOffsetY";
             if(classConfig.containsKey(key)) {        
                 tmp = classConfig.get(key).number.intValue(); 
-                menuFooterUrl.GetPosition().SetY(menuFooterUrl.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(tmp));                
+                menuFooterUrl.GetPosition().SetY(menuFooterUrl.GetY() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "menuFooterUrlOffsetX";
@@ -412,11 +462,17 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
         MmgMenuItem mItm = null;
         
         if (menuStartGame1P != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 1P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame);
+            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 1P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_1P, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame1P);
             mItm.SetSound(menuSound);
             menu.Add(mItm);
         }
 
+        if (menuStartGame2P != null) {
+            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 2P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_2P, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame2P);
+            mItm.SetSound(menuSound);
+            menu.Add(mItm);
+        }        
+        
         if (menuExitGame != null) {
             mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame);
             mItm.SetSound(menuSound);
@@ -443,6 +499,8 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
         ClearObjs();
 
         menuStartGame = null;
+        menuStartGame1P = null;
+        menuStartGame2P = null;        
         menuExitGame = null;
         menuTitle = null;
         menuFooterUrl = null;
