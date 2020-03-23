@@ -1,8 +1,8 @@
 package com.middlemind.Odroid;
 
-import net.middlemind.MmgGameApiJava.MmgBase.MmgApiUtils;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 
 /**
  * Handles events that originate from the main menu screen. Implements the
@@ -14,13 +14,13 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 public class HandleMainMenuEvent implements MmgEventHandler {
 
     /**
-     * The about screen object, ScreenAbout, this event handler belongs to.
+     * The main menu screen object, ScreenMainMenu, this event handler belongs to.
      */
-    private ScreenMainMenu cApp;
+    private MmgGameScreen cApp;
 
     /**
-     * The game panel object, GamePanel, that owns the about screen object,
-     * ScreenAbout.
+     * The game panel object, GamePanel, that owns the main menu screen object,
+     * ScreenMainMenu.
      */
     private GamePanel owner;
 
@@ -30,40 +30,50 @@ public class HandleMainMenuEvent implements MmgEventHandler {
     public static int MAIN_MENU_EVENT_TYPE = 0;
 
     /**
-     * Supported event id.
+     * Supported event id for a game start event.
      */
     public static int MAIN_MENU_EVENT_START_GAME = 0;
-
+    
     /**
-     * Supported event id.
+     * Supported event id for a game settings event.
      */
     public static int MAIN_MENU_EVENT_SETTINGS = 1;
 
     /**
-     * Supported event id.
+     * Supported event id for a about event.
      */
     public static int MAIN_MENU_EVENT_ABOUT = 2;
 
     /**
-     * Supported event id.
+     * Supported event id for a help event.
      */
     public static int MAIN_MENU_EVENT_HELP = 3;
 
     /**
-     * Supported event id.
+     * Supported event id for an exit game event.
      */
     public static int MAIN_MENU_EVENT_EXIT_GAME = 4;    
     
     /**
-     * Constructor that sets the about screen object, ScreenAbout, owner and the
+     * Supported event id for a start one player game event.
+     */
+    public static int MAIN_MENU_EVENT_START_GAME_1P = 5;
+    
+    /**
+     * Supported event id for a start two player game event..
+     */
+    public static int MAIN_MENU_EVENT_START_GAME_2P = 6;    
+    
+    /**
+     * Constructor that sets the main menu screen object, ScreenMainMenu, owner and the
      * GamePanel that owns the about screen.
      *
-     * @param CApp The about screen object, ScreenABout, that this event handler
+     * @param CApp      The main menu screen object, ScreenMainMenu, that this event handler
      * belongs too.
-     * @param Owner The game panel, GamePanel, that the about screen belongs
+     * @param Owner     The game panel, GamePanel, that the main menu screen belongs
      * too.
      */
-    public HandleMainMenuEvent(ScreenMainMenu CApp, GamePanel Owner) {
+    public HandleMainMenuEvent(MmgGameScreen CApp, GamePanel Owner) {
         cApp = CApp;
         owner = Owner;
     }
@@ -72,13 +82,12 @@ public class HandleMainMenuEvent implements MmgEventHandler {
      * Event handler call back, when a UI action event occurs on the owner this
      * event handler can react to that event and either call methods in the
      * screen object that this class belongs to or it can call methods in the
-     * JPanel that owns the screen, i.e. switch the current game state.
+     * GamePanel that owns the screen, i.e. switch the current game state.
      *
-     * @param e An MmgEvent object.
+     * @param e     An MmgEvent object.
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        MmgApiUtils.wr("MmgHandleMainMenuEvent Found Event Id: " + e.GetEventId());
         if (owner != null) {
             if (e.GetEventId() == HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME) {
                 owner.SwitchGameState(GamePanel.GameStates.MAIN_GAME);

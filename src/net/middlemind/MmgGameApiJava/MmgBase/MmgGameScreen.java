@@ -690,8 +690,8 @@ public class MmgGameScreen extends MmgObj {
      * @param v
      * @return 
      */
-    public boolean ProcessScreenPress(MmgVector2 v) {
-        return ProcessScreenPress(v.GetX(), v.GetY());
+    public boolean ProcessMousePress(MmgVector2 v) {
+        return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     /**
@@ -701,7 +701,7 @@ public class MmgGameScreen extends MmgObj {
      * @param y
      * @return 
      */
-    public boolean ProcessScreenPress(int x, int y) {
+    public boolean ProcessMousePress(int x, int y) {
         return true;
     }
 
@@ -711,8 +711,8 @@ public class MmgGameScreen extends MmgObj {
      * @param v
      * @return 
      */
-    public boolean ProcessScreenRelease(MmgVector2 v) {
-        return ProcessScreenPress(v.GetX(), v.GetY());
+    public boolean ProcessMouseRelease(MmgVector2 v) {
+        return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     /**
@@ -722,13 +722,69 @@ public class MmgGameScreen extends MmgObj {
      * @param y
      * @return 
      */
-    public boolean ProcessScreenRelease(int x, int y) {
+    public boolean ProcessMouseRelease(int x, int y) {
         return true;
     }
 
+    /**
+     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
+     *
+     * @param v The coordinates of the click.
+     * @return Boolean indicating if a menu item was the target of the click,
+     * menu item event is fired automatically by this class.
+     */
+    public boolean ProcessMouseClick(MmgVector2 v) {
+        return ProcessMouseClick(v.GetX(), v.GetY());
+    }
+
+    /**
+     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
+     *
+     * @param x The X axis coordinate of the screen click.
+     * @param y The Y axis coordinate of the screen click.
+     * @return Boolean indicating if a menu item was the target of the click,
+     * menu item event is fired automatically by this class.
+     */
+    @SuppressWarnings("UnusedAssignment")
+    public boolean ProcessMouseClick(int x, int y) {
+        if (menuOn == true && menu != null) {
+            Object[] objs = menu.GetArray();
+            MmgMenuItem item = null;
+            if (objs != null) {
+                for (int i = 0; i < objs.length; i++) {
+                    item = (MmgMenuItem) objs[i];
+                    if (x >= item.GetX() && x <= (item.GetX() + item.GetWidth())) {
+                        if (y >= item.GetY() && y <= (item.GetY() + item.GetHeight())) {
+                            menuIdx = i;
+                            ProcessMenuItemSel(item);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }    
+    
+    public boolean ProcessAPress() {
+        return true;
+    }    
+    
+    public boolean ProcessARelease() {
+        return true;
+    }    
+    
     public boolean ProcessAClick() {
         return true;
     }
+    
+    public boolean ProcessBPress() {
+        return true;
+    }    
+    
+    public boolean ProcessBRelease() {
+        return true;
+    }    
     
     public boolean ProcessBClick() {
         return true;
@@ -762,46 +818,6 @@ public class MmgGameScreen extends MmgObj {
         return true;
     }
     
-    /**
-     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
-     *
-     * @param v The coordinates of the click.
-     * @return Boolean indicating if a menu item was the target of the click,
-     * menu item event is fired automatically by this class.
-     */
-    public boolean ProcessScreenClick(MmgVector2 v) {
-        return ProcessScreenClick(v.GetX(), v.GetY());
-    }
-
-    /**
-     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
-     *
-     * @param x The X axis coordinate of the screen click.
-     * @param y The Y axis coordinate of the screen click.
-     * @return Boolean indicating if a menu item was the target of the click,
-     * menu item event is fired automatically by this class.
-     */
-    @SuppressWarnings("UnusedAssignment")
-    public boolean ProcessScreenClick(int x, int y) {
-        if (menuOn == true && menu != null) {
-            Object[] objs = menu.GetArray();
-            MmgMenuItem item = null;
-            if (objs != null) {
-                for (int i = 0; i < objs.length; i++) {
-                    item = (MmgMenuItem) objs[i];
-                    if (x >= item.GetX() && x <= (item.GetX() + item.GetWidth())) {
-                        if (y >= item.GetY() && y <= (item.GetY() + item.GetHeight())) {
-                            menuIdx = i;
-                            ProcessMenuItemSel(item);
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     /**
      * Fire the click event registered in the target menu item object.
      *

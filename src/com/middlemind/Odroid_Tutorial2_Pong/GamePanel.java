@@ -15,20 +15,19 @@ import com.middlemind.Odroid.ScreenSplash;
 public class GamePanel extends com.middlemind.Odroid.GamePanel {
             
     public ScreenGame screenGame;
+    public ScreenMainMenu screenMainMenu;
     
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
-        Helper.wr("Odroid_Tutorial2_Pong.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
         screenLoading.SetSlowDown(500);
         screenGame = new ScreenGame(GameStates.MAIN_GAME, this);
+        screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
     }
         
     @Override
     public void SwitchGameState(GameStates g) {
-        Helper.wr("Odroid_Tutorial2_Pong.Switching Game State To: " + g);
-
         if (gameState != prevGameState) {
             prevGameState = gameState;
         }
@@ -151,7 +150,6 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
             currentScreen = screenGame;
 
         } else if (gameState == GameStates.SETTINGS) {
-            Helper.wr("Showing SETTINGS screen.");
             //settingsScreen.LoadResources();
             //settingsScreen.UnPause();
             //settingsScreen.SetIsVisible(true);
@@ -163,7 +161,6 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {
-            Helper.wr("Odroid_Tutorial2_Pong.HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps

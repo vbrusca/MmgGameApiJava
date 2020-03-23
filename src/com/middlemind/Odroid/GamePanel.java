@@ -16,7 +16,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
- * The JPanel used to render the game to. This is the connection point between
+ * The Canvas used to render the game to. This is the connection point between
  * native UI rendering and the game rendering. Created on August 1, 2015, 10:57
  * PM by Middlemind Games
  *
@@ -26,7 +26,9 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 public class GamePanel implements GenericEventHandler, GamePadSimple {
 
     /**
-     * An enumeration that lists all of the current game states.
+     * An enumeration that lists all of the game states.
+     * Add new states here or use the general states, GAME_SCREEN_XX to control
+     * what the game displays.
      */
     public enum GameStates {
         LOADING,
@@ -80,17 +82,17 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * MainFrame that this panel is hosted in.
+     * The MainFrame that this panel is displayed in.
      */
     public MainFrame mf;
 
     /**
-     * Window width.
+     * The width of the window this panel is displayed in.
      */
     public int winWidth;
 
     /**
-     * Window height.
+     * The height of the window this panel is displayed in.
      */
     public int winHeight;
 
@@ -105,52 +107,47 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public int myY;
 
     /**
-     * Window width.
+     * The scaled width of the window this panel is displayed in.
      */
     public int sWinWidth;
 
     /**
-     * Window height.
+     * The scaled height of the window this panel is displayed in.
      */
     public int sWinHeight;
 
     /**
-     * The X coordinate of this panel.
+     * The scaled X coordinate of this panel.
      */
     public int sMyX;
 
     /**
-     * The Y coordinate of this panel.
+     * The scaled Y coordinate of this panel.
      */
     public int sMyY;
 
     /**
-     * Default target game width.
+     * The target game width.
      */
     public static int GAME_WIDTH = 854;
 
     /**
-     * Default target game height.
+     * The target game height.
      */
     public static int GAME_HEIGHT = 416;
 
     /**
-     * Pause the game.
+     * Boolean that pauses the game.
      */
     public static boolean PAUSE = false;
 
     /**
-     * Exit the game.
+     * Boolean that exits the game.
      */
     public static boolean EXIT = false;
 
     /**
-     * Paint helper class, used in the paint drawing routine.
-     */
-    //public Graphics2D g2d;
-
-    /**
-     * Holds a reference to all game screens.
+     * The gameScreens field is a Hashtable that can be used to hold a reference to all game screens.
      */
     public Hashtable<GameStates, MmgGameScreen> gameScreens;
 
@@ -160,67 +157,186 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public MmgGameScreen currentScreen;
 
     /**
-     * Paint helper class, used to draw Mmg API objects.
+     * An MmgPen class, used to draw Mmg API objects.
      */
     public MmgPen p;
 
     /**
-     * Game state helper class, the previous game state.
+     * An instance of the GameStates enumeration that holds the previous game state.
      */
     public GameStates prevGameState;
 
     /**
-     * Game state helper class, the current game state.
+     * An instance of the GameStates enumeration that holds the current game state.
      */
     public GameStates gameState;
 
+    /**
+     * A static Hashtable instance that can be used to store objects for quick, easy access.
+     */
     public static Hashtable<String, Object> VARS = new Hashtable();
 
+    /**
+     * A string used to store the current frame rate information in the debug header.
+     */
     public static String FPS = "Drawing FPS: 0000 Actual FPS: 00";
+    
+    /**
+     * A string used to write data to the debug header.
+     */
     public static String VAR1 = "** EMPTY **";
+    
+    /**
+     * A second string used to write data to the debug header.
+     */
     public static String VAR2 = "** EMPTY **";
 
+    /**
+     * A canvas object used to draw to the JFrame.
+     */
     public Canvas canvas;
+    
+    /**
+     * A Java rendering API drawing strategy class.
+     */
     public BufferStrategy strategy;
+    
+    /**
+     * A BufferedImage used to render the game screen to. The background image is then rendered to the 
+     * panel once it is done drawing.
+     */
     public BufferedImage background;
+    
+    /**
+     * A Java rendering API for drawing graphics to a BufferedImage.
+     */
     public Graphics2D backgroundGraphics;
+    
+    /**
+     * A Java rendering API for drawing graphics to the JFrame.
+     */
     public Graphics2D graphics;
     
+    /**
+     * An optional scale value that will scale the background image before drawing it to the JFrame.
+     */
     public double scale = 1.0;
+    
+    /**
+     * An integer that records how many frames have been drawn. The updateTick class field is updated on each 
+     * UpdateGame method call.
+     */
     public int updateTick = 0;
+    
+    /**
+     * A class field used to store the current time in ms for passing time information to the update method.
+     */
     public long now;
+    
+    /**
+     * A class field used to store the previous time in ms for passing time information to the update method.
+     */
     public long prev;
+    
+    /**
+     * A Java rendering API font class used to draw debugging information like the FPS, VAR1, and VAR2 class fields.
+     */
     public Font debugFont;
-    private Color debugColor = Color.WHITE;    
+    
+    /**
+     * The Java rendering API color that is used to draw the game debugging information.
+     */
+    public Color debugColor = Color.WHITE;
+    
+    /**
+     * A place holder class field for storing the current font of the Java rendering API Pen class. Used to hold the
+     * Pen's current font, then sets the Pen's font for drawing debug information, then restoring the Pen's previous font. 
+     */
     public Font tmpF;
+    
+    /**
+     * An instance of the GameType enumeration that can be used to track if the game is a new game or a continuation
+     * of an existing game.
+     */
     public static GameType GAME_TYPE = GameType.NEW_GAME;
 
+    /**
+     * An enumeration used to help track the type of game that was started.
+     */
     public enum GameType {
         NEW_GAME,
         CONTINUED_GAME
     }
 
+    /**
+     * A class field that tracks the last X position of the mouse during movement or dragging.
+     */
     public int lastX;
+    
+    /**
+     * A class field that tracks the last Y position of the mouse during movement or dragging.
+     */    
     public int lastY;
+    
+    /**
+     * A class field that tracks the last time in ms that a key was pressed. 
+     */
     public long lastKeyPressEvent = -1;
+    
+    /**
+     * A Java rendering API instance that is used to draw to the JFrame.
+     */
     public Graphics2D bg;
+    
+    /**
+     * A Java rendering API instance that is used to draw the game screen to a buffered image.
+     */
     public Graphics2D g;
     
+    /**
+     * An instance of the ScreenSplash class that is used to draw the game's splash screen.
+     */
     public ScreenSplash screenSplash;
+    
+    /**
+     * An instance of the ScreenLoading class that is used to draw the game's loading screen.
+     */
     public ScreenLoading screenLoading;
+    
+    /**
+     * An instance of the ScreenMainMenu class that is used to draw the game's main menu screen.
+     */
     public ScreenMainMenu screenMainMenu;
+    
+    /**
+     * A class field that is used to add an offset into the mouse input X coordinate.
+     */
     public int mouseOffsetX = 0;
+    
+    /**
+     * A class field that is used to add an offset into the mouse input Y coordinate.
+     */
     public int mouseOffsetY = 0;    
         
     /**
+     * A class field that initializes a static class that holds screen size and position data.
+     */
+    public MmgScreenData screenData;
+    
+    /**
+     * A class field that initializes a static class the holds font creation and size data. 
+     */
+    public MmgFontData fontData;
+    
+    /**
      * Constructor, sets the MainFrame, window dimensions, and position of this
-     * JPanel.
+     * Canvas.
      *
      * @param Mf The MainFrame class this panel belongs to.
      * @param WinWidth The target window width.
      * @param WinHeight The target window height.
-     * @param X The X coordinate of this JPanel.
-     * @param Y The Y coordinate of this JPanel.
+     * @param X The X coordinate of this Canvas.
+     * @param Y The Y coordinate of this Canvas.
      */
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
@@ -254,12 +370,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         Helper.wr("GamePanel Offset X: " + myX);
         Helper.wr("GamePanel Offset Y: " + myY);
 
-        MmgScreenData screenData = new MmgScreenData(winWidth, winHeight, GamePanel.GAME_WIDTH, GamePanel.GAME_HEIGHT);
+        screenData = new MmgScreenData(winWidth, winHeight, GamePanel.GAME_WIDTH, GamePanel.GAME_HEIGHT);
         Helper.wr("");
         Helper.wr("--- MmgScreenData ---");
         Helper.wr(MmgScreenData.ToString());
 
-        MmgFontData fontData = new MmgFontData();
+        fontData = new MmgFontData();
         Helper.wr("");
         Helper.wr("--- MmgFontData ---");
         Helper.wr(MmgFontData.ToString());
@@ -285,7 +401,6 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                //System.out.println("mouseMoved");
                 lastX = e.getX();
                 lastY = e.getY();
                 ProcessMouseMove(lastX, lastY);
@@ -375,17 +490,17 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ProcessClick(e.getX(), e.getY());
+                ProcessMouseClick(e.getX(), e.getY());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                ProcessPress(e.getX(), e.getY());
+                ProcessMousePress(e.getX(), e.getY());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                ProcessRelease(e.getX(), e.getY());
+                ProcessMouseRelease(e.getX(), e.getY());
             }
 
             @Override
@@ -399,111 +514,184 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         });
     }
 
-    @Override
-    public void ProcessDpadClick(int dir) {
-        currentScreen.ProcessDpadClick(dir);
-    }
-
-    @Override
-    public void ProcessAPress() {
-
-    }
-
-    @Override
-    public void ProcessARelease() {
-
-    }
-
-    @Override
-    public void ProcessBPress() {
-
-    }
-
-    @Override
-    public void ProcessBRelease() {
-
-    }
-    
-    @Override    
-    public void ProcessAClick() {
-        currentScreen.ProcessAClick();
-    }
-
-    @Override    
-    public void ProcessBClick() {
-        currentScreen.ProcessBClick();
-    }
-
-    public void ProcessDebugClick() {
-        currentScreen.ProcessDebugClick();
-    }
-
-    public void ProcessKeyPress(char c) {
-        currentScreen.ProcessKeyPress(c);
-    }
-    
-    public void ProcessKeyRelease(char c) {
-        currentScreen.ProcessKeyRelease(c);
-    }    
-    
-    public void ProcessKeyClick(char c) {
-        currentScreen.ProcessKeyClick(c);
-    }    
-    
+    /**
+     * The ProcessDpadPress method is used to pass dpad press information from the GamePanel class down
+     * to the MmgGameScreen class implementation, currentScreen. The dir code can come from different sources, keyboard, GPIO gamepad,
+     * or a USB game controller.
+     * 
+     * @param dir       The dir argument is a code that represents which dpad direction was processed.
+     */
     @Override    
     public void ProcessDpadPress(int dir) {
         currentScreen.ProcessDpadPress(dir);
     }
 
+    /**
+     * The ProcessDpadRelease method is used to pass dpad release information from the GamePanel class down 
+     * to the MmgGameScreen class implementation, currentScreen. The dir code can come from different sources, keyboard, GPIO gamepad,
+     * or a USB game controller.
+     * 
+     * @param dir        The dir argument is a code that represents which dpad direction was processed.
+     */
     @Override    
     public void ProcessDpadRelease(int dir) {
         currentScreen.ProcessDpadRelease(dir);
+    }    
+    
+    /**
+     * The ProcessDpadClick method is used to pass dpad click information from the GamePanel class down
+     * to the MmgGameScreen class implementation, currentScreen. The dir code can come from different sources, keyboard, GPIO gamepad,
+     * or a USB game controller.
+     * 
+     * @param dir       The dir argument is a code that represents which dpad direction was processed.
+     */
+    @Override
+    public void ProcessDpadClick(int dir) {
+        currentScreen.ProcessDpadClick(dir);
+    }
+
+    /**
+     * The ProcessAPress method is used to pass A button press events from the GamePanel class down to the MmgGameScreen class
+     * implementation, currentScreen.
+     */
+    @Override
+    public void ProcessAPress() {
+        currentScreen.ProcessAPress();
+    }
+
+    /**
+     * The ProcessARelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class
+     * implementation, currentScreen.
+     */    
+    @Override
+    public void ProcessARelease() {
+        currentScreen.ProcessARelease();
+    }
+
+    /**
+     * The ProcessAClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class
+     * implementation, currentScreen.
+     */    
+    @Override    
+    public void ProcessAClick() {
+        currentScreen.ProcessAClick();
+    }    
+    
+    /**
+     * The ProcessBPress method is used to pass B button press events from the GamePanel class down to the MmgGameScreen class
+     * implementation, currentScreen.
+     */    
+    @Override
+    public void ProcessBPress() {
+        currentScreen.ProcessBPress();
+    }
+
+    /**
+     * The ProcessBRelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class
+     * implementation, currentScreen.
+     */        
+    @Override
+    public void ProcessBRelease() {
+        currentScreen.ProcessBRelease();
     }
     
+    /**
+     * The ProcessBClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class
+     * implementation, currentScreen.
+     */    
+    @Override    
+    public void ProcessBClick() {
+        currentScreen.ProcessBClick();
+    }
+
+    /**
+     * The ProcessDebugClick method is used to send debug click events to the MmgGameScreen class implementation, currentScreen.
+     * The event can be used to print screen specific information in response to the event.
+     */
+    public void ProcessDebugClick() {
+        currentScreen.ProcessDebugClick();
+    }
+
+    /**
+     * The ProcessKeyPress method is used to send key press events to the MmgGameScreen class implementation, currentScreen.
+     * 
+     * @param c     The c argument is the character of the keyboard press event.
+     */
+    public void ProcessKeyPress(char c) {
+        currentScreen.ProcessKeyPress(c);
+    }
+    
+    /**
+     * The ProcessKeyRelease method is used to send key release events to the MmgGameScreen class implementation, currentScreen.
+     * 
+     * @param c     The c argument is the character of the keyboard release event.
+     */    
+    public void ProcessKeyRelease(char c) {
+        currentScreen.ProcessKeyRelease(c);
+    }    
+    
+    /**
+     * The ProcessKeyClick method is used to send key click events to the MmgGameScreen class implementation, currentScreen.
+     * 
+     * @param c     The c argument is the character of the keyboard click event.
+     */    
+    public void ProcessKeyClick(char c) {
+        currentScreen.ProcessKeyClick(c);
+    }    
+    
+    /**
+     * The ProcessMouseMove method is used to send mouse move information to the MmgGameScreen class implementation, currentScreen.
+     * The coordinates are automatically adjusted to the offset of the game screen within the game panel. An optional mouseOffset is applied
+     * to the mouse X, Y coordinates.
+     * 
+     * @param x     The x argument is the X position of the mouse as received from the mouse listener.
+     * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
+     */
     public void ProcessMouseMove(int x, int y) {
-        currentScreen.ProcessMouseMove(x, y);
+        currentScreen.ProcessMouseMove((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
     }
     
-    public void ProcessPress(int x, int y) {
-        int nx = x - mouseOffsetX - myX;
-        int ny = y - mouseOffsetY - myY;
-        //int anx = x - MmgScreenData.GetGameLeft() - myX;
-        //int any = y - MmgScreenData.GetGameTop() - myY;
-
-        //Helper.wr("GamePanel: ProcessPress Original: " + nx + ", " + ny);
-        //Helper.wr("GamePanel: ProcessPress Adjusted: " + anx + ", " + any);
-        currentScreen.ProcessScreenPress(nx, ny);
+    /**
+     * The ProcessMousePress method is used to send mouse press information to the MmgGameScreen class implementation, currentScreen.
+     * The coordinates are automatically adjusted to the offset of the game screen within the game panel. An optional mouseOffset is applied
+     * to the mouse X, Y coordinates.
+     * 
+     * @param x     The x argument is the X position of the mouse as received from the mouse listener.
+     * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
+     */    
+    public void ProcessMousePress(int x, int y) {
+        currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
     }
 
-    public void ProcessRelease(int x, int y) {
-        int nx = x - mouseOffsetX - myX;
-        int ny = y - mouseOffsetY - myY;
-        //int anx = x - MmgScreenData.GetGameLeft() - myX;
-        //int any = y - MmgScreenData.GetGameTop() - myY;
-
-        //Helper.wr("GamePanel: ProcessRelease Original: " + nx + ", " + ny);
-        //Helper.wr("GamePanel: ProcessRelease Adjusted: " + anx + ", " + any);        
-        currentScreen.ProcessScreenRelease(nx, ny);
+    /**
+     * The ProcessMouseRelease method is used to send mouse release information to the MmgGameScreen class implementation, currentScreen.
+     * The coordinates are automatically adjusted to the offset of the game screen within the game panel. An optional mouseOffset is applied
+     * to the mouse X, Y coordinates.
+     * 
+     * @param x     The x argument is the X position of the mouse as received from the mouse listener.
+     * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
+     */    
+    public void ProcessMouseRelease(int x, int y) {
+        currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
     }
 
-    public void ProcessClick(int x, int y) {
-        int nx = x - mouseOffsetX - myX;
-        int ny = y - mouseOffsetY - myY;
-        //int anx = x - MmgScreenData.GetGameLeft() - myX;
-        //int any = y - MmgScreenData.GetGameTop() - myY;
-
-        //Helper.wr("Mouse Clicked Orig: X: " + x + " Y: " + y);
-        //Helper.wr("Mouse Clicked Adjusted: X: " + nx + " Y: " + ny);
-        //Helper.wr("GamePanel Window Width: " + winWidth);
-        //Helper.wr("GamePanel Window Height: " + winHeight);
-        //Helper.wr("GamePanel Offset X: " + myX);
-        //Helper.wr("GamePanel Offset Y: " + myY);
-        
-        //Helper.wr("GamePanel: ProcessClick Original: " + x + ", " + y);
-        //Helper.wr("GamePanel: ProcessClick Adjusted: " + anx + ", " + any);        
-        currentScreen.ProcessScreenClick(nx, ny);
+    /**
+     * The ProcessMouseClick method is used to send mouse click information to the MmgGameScreen class implementation, currentScreen.
+     * The coordinates are automatically adjusted to the offset of the game screen within the game panel. An optional mouseOffset is applied
+     * to the mouse X, Y coordinates.
+     * 
+     * @param x     The x argument is the X position of the mouse as received from the mouse listener.
+     * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
+     */     
+    public void ProcessMouseClick(int x, int y) {
+        currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
     }
 
+    /**
+     * The PrepBuffers method is used to create a new buffered image, background. It also sets the canvas
+     * buffer strategy to use double buffering. The drawing strategy is stored in the strategy class field.
+     * Lastly the backgroundGraphics class field is set from the background buffered image.
+     */
     public void PrepBuffers() {
         // Background & Buffer
         background = create(winWidth, winHeight, false);
@@ -516,29 +704,42 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         backgroundGraphics = (Graphics2D) background.getGraphics();
     }
 
-    // create a hardware accelerated image
+    /**
+     * Create a BufferedImage using the default screen device and configuration.
+     * 
+     * @param width     The desired width of the BufferedImage.
+     * @param height    The desired height of the BufferedImage.
+     * @param alpha     The desired transparency flag of the BufferedImage.
+     * 
+     * @return          Returns a BufferedImage with the desired coordinates and transparency. 
+     */
     public BufferedImage create(int width, int height, boolean alpha) {
         return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
     }
 
     /**
-     * Gets the set of game screens this class has references too.
+     * Gets the game screen Hashtable.
      *
-     * @return A Hashtable of game screens, MmgGameScreen.
+     * @return          A Hashtable of game screens, MmgGameScreen.
      */
     public Hashtable<GameStates, MmgGameScreen> GetGameScreens() {
         return gameScreens;
     }
 
     /**
-     * Sets the set of game screens this class has references too.
+     * Sets the game screen Hashtable.
      *
-     * @param GameScreens A Hashtable of game screens, MmgGameScreen.
+     * @param GameScreens       A Hashtable of game screens, MmgGameScreen.
      */
     public void SetGameScreens(Hashtable<GameStates, MmgGameScreen> GameScreens) {
         gameScreens = GameScreens;
     }
 
+    /**
+     * Gets the Canvas instance for drawing on the JFrame.
+     * 
+     * @return      The Canvas class instance for drawing on the JFrame.
+     */
     public Canvas GetCanvas() {
         return canvas;
     }
@@ -546,7 +747,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * Gets the current game screen.
      *
-     * @return A game screen object, MmgGameScreen.
+     * @return      A game screen object, MmgGameScreen.
      */
     public MmgGameScreen GetCurrentScreen() {
         return currentScreen;
@@ -555,7 +756,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * Sets the current game screen.
      *
-     * @param CurrentScreen A game screen object.
+     * @param CurrentScreen         A game screen object.
      */
     public void SetCurrentScreen(MmgGameScreen CurrentScreen) {
         currentScreen = CurrentScreen;
@@ -566,7 +767,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * up the next state. Currently does not use the gameScreens hash table.
      * Uses direct references instead, for now.
      *
-     * @param g The game state to switch to.
+     * @param g         The game state to switch to.
      */
     public void SwitchGameState(GameStates g) {
         Helper.wr("Switching Game State To: " + g);
@@ -693,12 +894,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * A generic event, GenericEventHandler, callback method. Used to handle
      * generic events from certain game screens, MmgGameScreen.
      *
-     * @param obj
+     * @param obj       A GenericEventMessage instance that has information about the generic event that was fired.
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {
-            Helper.wr("HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {
                 /*
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
@@ -719,6 +919,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
+    /**
+     * Returns a Graphics2D instance that is based on the default screen configuration used for drawing on
+     * the JFrame.
+     * 
+     * @return      A Graphics2D instance that is used to draw on the JFrame.
+     */
     public Graphics2D GetBuffer() {
         if (graphics == null) {
             try {
@@ -730,22 +936,49 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         return graphics;
     }
 
+    /**
+     * Returns the application window width;
+     * 
+     * @return      The application window width.
+     */
     public int GetWinWidth() {
         return winWidth;
     }
 
+    /**
+     * Returns the application window height;
+     * 
+     * @return      The application window height.
+     */    
     public int GetWinHeight() {
         return winHeight;
     }
 
+    /**
+     * Returns the X offset of the GamePanel in the JFrame window.
+     * 
+     * @return      The X offset of the GamePanel in the JFrame window.
+     */
     public int GetX() {
         return myX;
     }
 
+    /**
+     * Returns the Y offset of the GamePanel in the JFrame window.
+     * 
+     * @return      The Y offset of the GamePanel in the JFrame window.
+     */    
     public int GetY() {
         return myY;
     }
 
+    /**
+     * Updates the Java rendering API Graphics2D instances with the current Canvas buffer.
+     * Resetting the graphics class field and syncing the Canvas drawing strategy is necessary with
+     * a double buffered implementation.
+     * 
+     * @return      A boolean indicating if the method call was successful. Returns true in the case of a sync exception.
+     */
     public boolean UpdateScreen() {
         graphics.dispose();
         graphics = null;
@@ -759,6 +992,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
+    /**
+     * The UpdateGame method is used to call the lower level MmgUpdate method of the MmgGameScreen class, currentScreen.
+     * Send the update call count, the current time, and the time difference between this frame and the last frame.
+     * 
+     */
     public void UpdateGame() {
         updateTick++;
 
@@ -771,6 +1009,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
     }
 
+    /**
+     * The RenderGame method is used to draw the entire JFrame Canvas, the debug frame rate, the debug variables,
+     * and the game screen.
+     */
     public void RenderGame() {
         if (PAUSE == true || EXIT == true) {
             //do nothing

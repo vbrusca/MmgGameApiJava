@@ -22,17 +22,17 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     /**
      * The game state this screen has.
      */
-    private GameStates state;
+    public GameStates state;
     
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
      * holds a reference to this game screen object.
      */
-    private GamePanel owner;
-    protected boolean dirty;
-    private boolean lret;
+    public GamePanel owner;
+    public boolean dirty;
+    public boolean lret;
     
-    private Hashtable<String, Double> classConfig;
+    public Hashtable<String, Double> classConfig;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets

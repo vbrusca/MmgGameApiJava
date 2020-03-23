@@ -1,5 +1,6 @@
-package com.middlemind.Odroid;
+package com.middlemind.Odroid_Tutorial2_Pong;
 
+import com.middlemind.Odroid.*;
 import com.middlemind.Odroid.GamePanel.GameStates;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
@@ -8,7 +9,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuContainer;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuItem;
@@ -17,70 +17,18 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 
 /**
- * A game screen object, ScreenMainMenu, that extends the MmgGameScreen base
- * class. This game screen is for displaying a main menu screen. Created on
- * August 1, 2015, 10:57 PM by Middlemind Games. Created by Middlemind Games.
- *
  * @author Victor G. Brusca
+ * 03/22/2020
  */
-public class ScreenMainMenu extends MmgGameScreen {
-
-    /**
-     * The game state this screen has.
-     */
-    public GameStates state;
+public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
 
     /**
      * Helper class for screen UI.
      */
-    public MmgBmp menuStartGame;
+    private MmgBmp menuStartGame1P;
 
-    /**
-     * Helper class for screen UI.
-     */
-    public MmgBmp menuExitGame;    
-    
-    /**
-     * Helper class for screen UI.
-     */
-    public MmgBmp menuTitle;
-
-    /**
-     * Helper class for screen UI.
-     */
-    public MmgBmp menuSubTitle;    
-    
-    /**
-     * Helper class for screen UI.
-     */
-    public MmgBmp menuFooterUrl;
-
-    public MmgBmp menuCursor;
-
-    /**
-     * Helper class for storing game screen menu options.
-     */
-    public MmgMenuContainer menu;
-
-    public MmgSound menuSound;
-    
-    public MmgFont version;
-    
-    /**
-     * Helper class for handling game screen events.
-     */
-    public HandleMainMenuEvent handleMenuEvent = null;
-
-    /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
-     */
-    public GamePanel owner;
-    public boolean dirty;
-    public boolean lret;
-    
-    public Hashtable<String, MmgCfgFileEntry> classConfig;
-    
+    private MmgBmp menuStartGame2P;    
+        
     /**
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
@@ -90,7 +38,7 @@ public class ScreenMainMenu extends MmgGameScreen {
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenMainMenu(GameStates State, GamePanel Owner) {
-        super();
+        super(State, Owner);
         dirty = false;
         pause = false;
         ready = false;
@@ -108,11 +56,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        Helper.wr("ScreenMainMenu: LoadResources: Position: " + GetPosition().ToString());
-        Helper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
-        Helper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
-
-        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_main_menu.txt");
+        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_main_menu.txt");
         
         MmgBmp tB = null;
         MmgPen p;
@@ -144,6 +88,8 @@ public class ScreenMainMenu extends MmgGameScreen {
         if (tB != null) {
             SetCenteredBackground(tB);
         }
+
+        Helper.wr("Background Image Position: " + GetBackground().GetPosition().ToString());
 
         
         key = "bmpGameTitle";
@@ -246,18 +192,18 @@ public class ScreenMainMenu extends MmgGameScreen {
         }        
         
         
-        key = "bmpMenuItemStartGame";
+        key = "bmpMenuItemStartGame1p";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).string;
         } else {
-            file = "start_game.png";
+            file = "start_game_1p.png";
         }        
         
         imgId = file;
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuStartGame = lval;
         if (menuStartGame != null) {
-            key = "menuStartGameScale";
+            key = "menuStartGame1pScale";
             if(classConfig.containsKey(key)) {
                 scale = classConfig.get(key).number.doubleValue();
                 if(scale != 1.0) {
@@ -268,25 +214,25 @@ public class ScreenMainMenu extends MmgGameScreen {
             MmgHelper.CenterHor(menuStartGame);
             menuStartGame.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));            
             
-            key = "menuStartGamePosY";
+            key = "menuStartGame1pPosY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 menuStartGame.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
             }
             
-            key = "menuStartGamePosX";
+            key = "menuStartGame1pPosX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 menuStartGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
             }  
             
-            key = "menuStartGameOffsetY";
+            key = "menuStartGame1pOffsetY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 menuStartGame.GetPosition().SetY(menuStartGame.GetY() + MmgHelper.ScaleValue(tmp));
             }
             
-            key = "menuStartGameOffsetX";
+            key = "menuStartGame1pOffsetX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 menuStartGame.GetPosition().SetX(menuStartGame.GetX() + MmgHelper.ScaleValue(tmp));
@@ -465,8 +411,8 @@ public class ScreenMainMenu extends MmgGameScreen {
 
         MmgMenuItem mItm = null;
         
-        if (menuStartGame != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame);
+        if (menuStartGame1P != null) {
+            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 1P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame);
             mItm.SetSound(menuSound);
             menu.Add(mItm);
         }

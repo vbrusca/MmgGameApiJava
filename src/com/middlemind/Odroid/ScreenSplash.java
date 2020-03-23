@@ -46,7 +46,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      */
     public GamePanel owner;
 
-    private Hashtable<String, MmgCfgFileEntry> classConfig;
+    public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -63,7 +63,6 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         state = State;
         owner = Owner;
         SetUpdateHandler(this);
-        Helper.wr("ScreenSplash: Constructor");
     }
 
     /**
@@ -73,7 +72,6 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      * @param Handler A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("Odroid.ScreenSplash.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -89,7 +87,6 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      */
     @Override
     public void MmgHandleUpdate(Object obj) {
-        Helper.wr("Odroid.ScreenSplash.MmgHandleUpdate");
         if (handler != null) {
             handler.HandleGenericEvent(new GenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }

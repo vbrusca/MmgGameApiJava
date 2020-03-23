@@ -72,14 +72,12 @@ public final class MmgPongClone {
     /**
      * Base engine config files.
      */
-    public static String ENGINE_CONFIG_FILE = "../cfg/engine_config.xml";
+    public static String ENGINE_CONFIG_FILE = "../cfg/engine_config_mmg_pong_clone.xml";
 
     public static GamePanel pnlGame;
     
     public static String[] ARGS = null;
-    
-    public static String NAME = "MmgPongClone";
-    
+        
     /**
      * Method that searches an array for a string match.
      *
@@ -105,7 +103,6 @@ public final class MmgPongClone {
     }
 
     public static void LoadNativeLibraries() {
-        //-Djava.library.path=/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/
         String OS = System.getProperty("os.name").toLowerCase();
         Helper.wr("Found platform: " + OS);
 		
@@ -115,7 +112,6 @@ public final class MmgPongClone {
         } else if (isMac(OS)) {
             Helper.wr("This is Mac");
             Helper.wr("LibPath: " + System.getProperty("java.library.path"));
-            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
             System.loadLibrary("jinput-osx");
             
         } else if (isUnix(OS)) {
@@ -189,12 +185,7 @@ public final class MmgPongClone {
         LoadNativeLibraries();
 
         //Store program arguments for future reference
-        ARGS = args;
-        
-        //Set program specific resource loading directories
-        GameSettings.PROGRAM_IMAGE_LOAD_DIR += NAME;
-        GameSettings.PROGRAM_SOUND_LOAD_DIR += NAME;
-        
+        ARGS = args;        
         if (args != null && args.length > 0) {
             Helper.wr("Found command line arguments!");
             String res = null;
@@ -280,6 +271,10 @@ public final class MmgPongClone {
             Helper.wrErr(e);
         }
 
+        //Set program specific resource loading directories
+        GameSettings.PROGRAM_IMAGE_LOAD_DIR += GameSettings.NAME;
+        GameSettings.PROGRAM_SOUND_LOAD_DIR += GameSettings.NAME;                
+        
         Helper.wr("Window Width: " + WIN_WIDTH);
         Helper.wr("Window Height: " + WIN_HEIGHT);
         Helper.wr("Panel Width: " + PANEL_WIDTH);

@@ -26,17 +26,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
  * 03/15/2020
  */
 public class ScreenGame extends Screen {
-
-    /**
-     * The game state this screen has.
-     */
-    protected final GameStates gameState;
-
-    /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
-     */
-    protected final GamePanel owner;
             
     private enum NumberState {
         NONE,
@@ -128,9 +117,7 @@ public class ScreenGame extends Screen {
         super(State, Owner);
         pause = false;
         ready = false;
-        gameState = State;
         owner = Owner;
-        Helper.wr("Odroid.ScreenGame: Constructor");
     }
 
     /**
@@ -245,22 +232,22 @@ public class ScreenGame extends Screen {
     }
        
     @Override
-    public boolean ProcessScreenPress(MmgVector2 v) {
-        return ProcessScreenPress(v.GetX(), v.GetY());
+    public boolean ProcessMousePress(MmgVector2 v) {
+        return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     @Override
-    public boolean ProcessScreenPress(int x, int y) {
+    public boolean ProcessMousePress(int x, int y) {
         return true;
     }
 
     @Override
-    public boolean ProcessScreenRelease(MmgVector2 v) {
-        return ProcessScreenPress(v.GetX(), v.GetY());
+    public boolean ProcessMouseRelease(MmgVector2 v) {
+        return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     @Override
-    public boolean ProcessScreenRelease(int x, int y) {
+    public boolean ProcessMouseRelease(int x, int y) {
         return true;
     }
     
@@ -355,12 +342,12 @@ public class ScreenGame extends Screen {
     }
     
     @Override
-    public boolean ProcessScreenClick(MmgVector2 v) {
-        return ProcessScreenClick(v.GetX(), v.GetY());
+    public boolean ProcessMouseClick(MmgVector2 v) {
+        return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
     @Override
-    public boolean ProcessScreenClick(int x, int y) {        
+    public boolean ProcessMouseClick(int x, int y) {        
         return true;
     }    
     
@@ -815,15 +802,6 @@ public class ScreenGame extends Screen {
         
         ClearObjs();
         ready = false;
-    }
-
-    /**
-     * Returns the game state of this game screen.
-     *
-     * @return The game state of this game screen.
-     */
-    public GameStates GetGameState() {
-        return gameState;
     }
 
     /**

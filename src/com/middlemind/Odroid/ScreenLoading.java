@@ -315,7 +315,6 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      */
     public boolean GetResourceFileData() {
         try {
-            Helper.wr("GetResourceFileData: " + GameSettings.AUTO_IMAGE_LOAD_DIR);
             File ald = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
             File[] files = ald.listFiles();
             

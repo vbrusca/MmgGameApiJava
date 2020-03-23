@@ -235,25 +235,25 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     }
 
     @Override
-    public boolean ProcessScreenPress(MmgVector2 v) {
+    public boolean ProcessMousePress(MmgVector2 v) {
         Helper.wr("ScreenTest.ProcessScreenPress");
-        return ProcessScreenPress(v.GetX(), v.GetY());
+        return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     @Override
-    public boolean ProcessScreenPress(int x, int y) {
+    public boolean ProcessMousePress(int x, int y) {
         Helper.wr("ScreenTest.ProcessScreenPress");
         return true;
     }
 
     @Override
-    public boolean ProcessScreenRelease(MmgVector2 v) {
+    public boolean ProcessMouseRelease(MmgVector2 v) {
         Helper.wr("ScreenTest.ProcessScreenRelease");
-        return ProcessScreenPress(v.GetX(), v.GetY());
+        return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     @Override
-    public boolean ProcessScreenRelease(int x, int y) {
+    public boolean ProcessMouseRelease(int x, int y) {
         Helper.wr("ScreenTest.ProcessScreenRelease");
         return true;
     }
@@ -298,13 +298,13 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     }
     
     @Override
-    public boolean ProcessScreenClick(MmgVector2 v) {
+    public boolean ProcessMouseClick(MmgVector2 v) {
         Helper.wr("ScreenTest.ProcessScreenClick");        
-        return ProcessScreenClick(v.GetX(), v.GetY());
+        return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
     @Override
-    public boolean ProcessScreenClick(int x, int y) {
+    public boolean ProcessMouseClick(int x, int y) {
         Helper.wr("ScreenTest.ProcessScreenClick");
         scrollVert.ProcessScreenClick(x, y);
         scrollHor.ProcessScreenClick(x, y);

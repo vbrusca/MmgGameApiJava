@@ -500,14 +500,28 @@ public class MmgHelper {
     }    
     
     public static void ListCacheEntries() {
+        int len;
+        Object[] keys;
+        String key;
+        int i;
+        
         if (BMP_CACHE_ON == true) {
-            int len = MmgMediaTracker.GetBmpCacheSize();
-            Object[] keys = MmgMediaTracker.cacheBmp.keySet().toArray();
-            for (int i = 0; i < len; i++) {
-                String key = keys[i] + "";
-                wr(i + " key: " + key);
+            len = MmgMediaTracker.GetBmpCacheSize();
+            keys = MmgMediaTracker.cacheBmp.keySet().toArray();
+            for (i = 0; i < len; i++) {
+                key = keys[i] + "";
+                wr("BMP: " + i + " key: " + key);
             }
         }
+        
+        if (SND_CACHE_ON == true) {
+            len = MmgMediaTracker.GetSoundCacheSize();
+            keys = MmgMediaTracker.cacheSound.keySet().toArray();
+            for (i = 0; i < len; i++) {
+                key = keys[i] + "";
+                wr("SND: " + i + " key: " + key);
+            }
+        }        
     }
 
     /**
