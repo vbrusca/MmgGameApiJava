@@ -240,8 +240,7 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
         }
         
         
-        
-        
+                
         key = "bmpMenuItemStartGame2p";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).string;

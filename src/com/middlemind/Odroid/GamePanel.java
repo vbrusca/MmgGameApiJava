@@ -260,17 +260,21 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * An instance of the GameType enumeration that can be used to track if the game is a new game or a continuation
      * of an existing game.
      */
-    public static GameType GAME_TYPE = GameType.NEW_GAME;
+    public static GameType GAME_TYPE = GameType.GAME_NEW;
 
     /**
      * An enumeration used to help track the type of game that was started.
      */
     public enum GameType {
-        NEW_GAME,
-        CONTINUED_GAME,
+        GAME_NEW,
+        GAME_CONTINUE,
         GAME_ONE_PLAYER,
         GAME_TWO_PLAYER,
-        GAME_TWO_PLAYER_NETWORK        
+        GAME_NETWORK_TWO_PLAYER,
+        GAME_NETWORK_TWO_PLAYER_P1,
+        GAME_NETWORK_TWO_PLAYER_P2,
+        GAME_NETWORK_TWO_PLAYER_LEFT,
+        GAME_NETWORK_TWO_PLAYER_RIGHT        
     }
 
     /**

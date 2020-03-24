@@ -86,6 +86,7 @@ public class ScreenGame extends Screen {
     private boolean paddle1MoveUp = false;
     private boolean paddle1MoveDown = false;
     
+    private int aiMaxSpeed = 410;
     private int paddle2MovePerFrame = GetSpeedPerFrame(400);
     private boolean paddle2MoveUp = false;
     private boolean paddle2MoveDown = false;        
@@ -104,6 +105,9 @@ public class ScreenGame extends Screen {
     private Mmg9Slice bgroundPopup;
     private MmgFont txtOk;
     private MmgFont txtCancel;
+    private MmgFont txtGoal;    
+    private MmgFont txtDirecP1;
+    private MmgFont txtDirecP2;    
     
     private int padding = MmgHelper.ScaleValue(4);
     
@@ -131,6 +135,10 @@ public class ScreenGame extends Screen {
         pause = true;
         
         rand = new Random((int)System.currentTimeMillis());
+        
+        if(gameType == GameType.GAME_TWO_PLAYER) {
+            paddle2MovePerFrame = GetSpeedPerFrame(aiMaxSpeed);            
+        }
         
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -171,7 +179,7 @@ public class ScreenGame extends Screen {
         paddle2.SetPosition((w - paddle2.GetWidth() - MmgHelper.ScaleValue(20)), screenPos.GetY() + (h - paddle1.GetHeight())/2);        
         paddle2Pos = paddle2.GetPosition();
         AddObj(paddle2);
-                
+                     
         scoreLeft = MmgFontData.CreateDefaultBoldMmgFontLg();
         scoreLeft.SetText("00");
         scoreLeft.SetMmgColor(MmgColor.GetRed());
@@ -212,6 +220,30 @@ public class ScreenGame extends Screen {
         number3.SetIsVisible(false);
         AddObj(number3);       
         
+        txtGoal = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtGoal.SetText("Goal: First player to 7 points wins.");
+        txtGoal.SetMmgColor(MmgColor.GetWhite());  
+        MmgHelper.CenterHorAndVert(txtGoal);
+        txtGoal.SetY(number1.GetY() - txtGoal.GetHeight() + MmgHelper.ScaleValue(5));
+        txtGoal.SetIsVisible(false);
+        AddObj(txtGoal);        
+        
+        txtDirecP1 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtDirecP1.SetText("Player 1: Right paddle, use UP, DOWN keys to move paddle.");
+        txtDirecP1.SetMmgColor(MmgColor.GetWhite());  
+        MmgHelper.CenterHorAndVert(txtDirecP1);
+        txtDirecP1.SetY(number1.GetY() + number1.GetHeight() + txtDirecP1.GetHeight() + MmgHelper.ScaleValue(10));
+        txtDirecP1.SetIsVisible(false);
+        AddObj(txtDirecP1);
+        
+        txtDirecP2 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtDirecP2.SetText("Player 2: Left paddle, use MOUSE to move paddle.");
+        txtDirecP2.SetMmgColor(MmgColor.GetWhite());
+        MmgHelper.CenterHorAndVert(txtDirecP2);
+        txtDirecP2.SetY(txtDirecP1.GetY() + txtDirecP1.GetHeight() + MmgHelper.ScaleValue(10));
+        txtDirecP2.SetIsVisible(false);        
+        AddObj(txtDirecP2);        
+        
         int totalWidth = 300;
         int totalHeight = 120;        
         bgroundPopupSrc = MmgHelper.GetBasicCachedBmp("popup_window_base.png");
@@ -223,6 +255,22 @@ public class ScreenGame extends Screen {
         MmgHelper.CenterHorAndVert(bgroundPopup);
         AddObj(bgroundPopup);
         bgroundPopup.SetIsVisible(false);
+        
+        txtOk = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtOk.SetText("Exit Game (A)");
+        txtOk.SetMmgColor(MmgColor.GetWhite()); 
+        MmgHelper.CenterHorAndVert(txtOk);
+        txtOk.SetY(bgroundPopup.GetY() + txtOk.GetHeight() + MmgHelper.ScaleValue(20));
+        txtOk.SetIsVisible(false);
+        AddObj(txtOk);
+        
+        txtCancel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtCancel.SetText("Cancel Exit (B)");
+        txtCancel.SetMmgColor(MmgColor.GetWhite()); 
+        MmgHelper.CenterHorAndVert(txtCancel);
+        txtCancel.SetY(txtOk.GetY() + txtOk.GetHeight() + MmgHelper.ScaleValue(20));
+        txtCancel.SetIsVisible(false);
+        AddObj(txtCancel);        
         
         SetState(State.SHOW_COUNT_DOWN);        
         ready = true;
@@ -263,12 +311,21 @@ public class ScreenGame extends Screen {
     
     @Override
     public boolean ProcessAClick() {
-        return true;
+        if(state == State.SHOW_GAME_EXIT) {
+            owner.SwitchGameState(GameStates.MAIN_MENU);
+            return true;
+        }
+        
+        return false;
     }
     
     @Override
     public boolean ProcessBClick() {
-        owner.SwitchGameState(GameStates.MAIN_MENU);
+        if(state != State.SHOW_GAME_EXIT) {        
+            SetState(State.SHOW_GAME_EXIT);
+        } else {
+            SetState(statePrev);
+        }
         return true;
     }
     
@@ -279,16 +336,20 @@ public class ScreenGame extends Screen {
 
     @Override
     public boolean ProcessKeyPress(char c) {
-        if(c == 'x' || c == 'X') {            
-            paddle1MoveUp = false;
-            paddle1MoveDown = true;
-            return true;
-            
-        } else if(c == 's' || c == 'S') {            
-            paddle1MoveUp = true;
-            paddle1MoveDown = false;            
-            return true;
-            
+        if(state == State.SHOW_GAME && pause == false) {
+            if(gameType == GameType.GAME_TWO_PLAYER) {
+                if(c == 'x' || c == 'X') {            
+                    paddle1MoveUp = false;
+                    paddle1MoveDown = true;
+                    return true;
+
+                } else if(c == 's' || c == 'S') {            
+                    paddle1MoveUp = true;
+                    paddle1MoveDown = false;            
+                    return true;
+
+                }
+            }
         }
         
         return false;        
@@ -296,14 +357,18 @@ public class ScreenGame extends Screen {
     
     @Override
     public boolean ProcessKeyRelease(char c) {
-        if(c == 'x' || c == 'X') {
-            paddle1MoveDown = false;
-            return true;
-            
-        } else if(c == 's' || c == 'S') {
-            paddle1MoveUp = false;
-            return true;
-            
+        if(state == State.SHOW_GAME && pause == false) {        
+            if(gameType == GameType.GAME_TWO_PLAYER) {        
+                if(c == 'x' || c == 'X') {
+                    paddle1MoveDown = false;
+                    return true;
+
+                } else if(c == 's' || c == 'S') {
+                    paddle1MoveUp = false;
+                    return true;
+
+                }
+            }
         }
         
         return false;       
@@ -316,16 +381,18 @@ public class ScreenGame extends Screen {
     
     @Override
     public boolean ProcessDpadPress(int dir) {
-        if(dir == GameSettings.DOWN) {            
-            paddle2MoveUp = false;
-            paddle2MoveDown = true;
-            return true;
-            
-        } else if(dir == GameSettings.UP) {            
-            paddle2MoveUp = true;
-            paddle2MoveDown = false;            
-            return true;
-                        
+        if(state == State.SHOW_GAME && pause == false) {        
+            if(dir == GameSettings.DOWN) {
+                paddle2MoveUp = false;
+                paddle2MoveDown = true;
+                return true;
+
+            } else if(dir == GameSettings.UP) {            
+                paddle2MoveUp = true;
+                paddle2MoveDown = false;            
+                return true;
+
+            }
         }
         
         return false;
@@ -333,14 +400,16 @@ public class ScreenGame extends Screen {
 
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        if(dir == GameSettings.DOWN) {
-            paddle2MoveDown = false;
-            return true;
-            
-        } else if(dir == GameSettings.UP) {
-            paddle2MoveUp = false;
-            return true;
-            
+        if(state == State.SHOW_GAME && pause == false) {        
+            if(dir == GameSettings.DOWN) {
+                paddle2MoveDown = false;
+                return true;
+
+            } else if(dir == GameSettings.UP) {
+                paddle2MoveUp = false;
+                return true;
+
+            }
         }
         
         return false;
@@ -361,13 +430,17 @@ public class ScreenGame extends Screen {
         return true;
     }    
     
-    public boolean ProcessMouseMove(int x, int y) {        
-        if(y >= screenPos.GetY() && y <= (screenPos.GetY() + GetHeight() - paddle1.GetHeight())) {
-            lastX = x;
-            lastY = y;
-            mousePos = true;
+    public boolean ProcessMouseMove(int x, int y) {
+        if(state == State.SHOW_GAME && pause == false) {        
+            if(gameType == GameType.GAME_TWO_PLAYER) {
+                if(y >= screenPos.GetY() && y <= (screenPos.GetY() + GetHeight() - paddle1.GetHeight())) {
+                    lastX = x;
+                    lastY = y;
+                    mousePos = true;
+                }
+            }
         }
-
+        
         return true;
     }    
     
@@ -431,9 +504,16 @@ public class ScreenGame extends Screen {
                 number1.SetIsVisible(false);
                 number2.SetIsVisible(false);
                 number3.SetIsVisible(false);
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);                
                 scoreLeft.SetIsVisible(false);
                 scoreRight.SetIsVisible(false);
-                                                
+                exit.SetIsVisible(false);                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);
+                
                 score1 = 0;
                 score2 = 0;
                 
@@ -442,7 +522,10 @@ public class ScreenGame extends Screen {
                 break;
                 
             case SHOW_GAME:
-                ResetGame();
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    timeNumberMs = System.currentTimeMillis();
+                    ResetGame();
+                }
                 
                 ball.SetIsVisible(true);                
                 paddle1.SetIsVisible(true);
@@ -451,39 +534,65 @@ public class ScreenGame extends Screen {
                 number1.SetIsVisible(false);
                 number2.SetIsVisible(false);
                 number3.SetIsVisible(false);
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);                
                 scoreLeft.SetIsVisible(true);
                 scoreRight.SetIsVisible(true);
-                
-                if(rand.nextInt(11) % 2 == 0) {
-                    ballDirX = 1;
-                } else {
-                    ballDirX = -1;
+                exit.SetIsVisible(true);                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);                
+
+                if(statePrev != State.SHOW_GAME_EXIT) {                
+                    if(rand.nextInt(11) % 2 == 0) {
+                        ballDirX = 1;
+                    } else {
+                        ballDirX = -1;
+                    }
+                    ballMovePerFrameX = ballMovePerFrameMin;
+
+                    if(rand.nextInt(11) % 2 == 0) {
+                        ballDirY = 1;
+                    } else {
+                        ballDirY = -1;
+                    }         
+                    ballMovePerFrameY = ballMovePerFrameMin;                 
                 }
-                ballMovePerFrameX = ballMovePerFrameMin;
                 
-                if(rand.nextInt(11) % 2 == 0) {
-                    ballDirY = 1;
-                } else {
-                    ballDirY = -1;
-                }         
-                ballMovePerFrameY = ballMovePerFrameMin;
-                                
                 pause = false;
                 dirty = true;
                 break;
                 
-            case SHOW_COUNT_DOWN_IN_GAME:
+            case SHOW_COUNT_DOWN_IN_GAME:                
                 ball.SetIsVisible(true);               
                 paddle1.SetIsVisible(true);
                 paddle2.SetIsVisible(true);
                 bground.SetIsVisible(true);
-                number1.SetIsVisible(false);
-                number2.SetIsVisible(false);
-                number3.SetIsVisible(false);                
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    number1.SetIsVisible(false);
+                    number2.SetIsVisible(false);
+                    number3.SetIsVisible(false);
+                }
+                
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);                
                 scoreLeft.SetIsVisible(true);
                 scoreRight.SetIsVisible(true);
+                exit.SetIsVisible(true);                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);                
                 
-                numberState = NumberState.NONE;
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    numberState = NumberState.NONE;
+                } else {
+                    //reset this number count down
+                    timeNumberMs = System.currentTimeMillis();
+                }
+                
                 pause = false;
                 dirty = true;                
                 break;
@@ -493,13 +602,30 @@ public class ScreenGame extends Screen {
                 paddle1.SetIsVisible(false);
                 paddle2.SetIsVisible(false);
                 bground.SetIsVisible(false);
-                number1.SetIsVisible(false);
-                number2.SetIsVisible(false);
-                number3.SetIsVisible(false);                
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {                
+                    number1.SetIsVisible(false);
+                    number2.SetIsVisible(false);
+                    number3.SetIsVisible(false);
+                    txtGoal.SetIsVisible(false);                
+                    txtDirecP1.SetIsVisible(false);
+                    txtDirecP2.SetIsVisible(false);
+                }
+                
                 scoreLeft.SetIsVisible(true);
                 scoreRight.SetIsVisible(true);
+                exit.SetIsVisible(true);
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);
+
+                if(statePrev != State.SHOW_GAME_EXIT) {                
+                    numberState = NumberState.NONE;
+                } else {
+                    //reset this number count down
+                    timeNumberMs = System.currentTimeMillis();
+                }
                 
-                numberState = NumberState.NONE;
                 pause = false;
                 dirty = true;
                 break;
@@ -509,10 +635,24 @@ public class ScreenGame extends Screen {
                 break;
                 
             case SHOW_GAME_EXIT:
+                bgroundPopup.SetIsVisible(true);
+                txtOk.SetIsVisible(true);
+                txtCancel.SetIsVisible(true);
                 dirty = true;                
                 break;                
         }        
     }
+    
+    /*
+    private void HideGameExit() {
+        timeNumberMs = System.currentTimeMillis();
+        bgroundPopup.SetIsVisible(false);
+        txtOk.SetIsVisible(false);
+        txtCancel.SetIsVisible(false);
+        state = statePrev;
+        statePrev = State.SHOW_GAME_EXIT;
+    }
+    */
     
     private void SetScore1Text(int score) {
         String tmp = score + "";
@@ -539,6 +679,10 @@ public class ScreenGame extends Screen {
             case NONE:
                 break;
                 
+            case SHOW_GAME_EXIT:
+
+                break;
+                
             case SHOW_COUNT_DOWN_IN_GAME:
             case SHOW_COUNT_DOWN:
                 switch(numberState) {
@@ -547,7 +691,20 @@ public class ScreenGame extends Screen {
                         numberState = NumberState.NUMBER_3;
                         number1.SetIsVisible(false);
                         number2.SetIsVisible(false);
-                        number3.SetIsVisible(true);                        
+                        number3.SetIsVisible(true);
+                        if(state == State.SHOW_COUNT_DOWN) {
+                            txtGoal.SetIsVisible(true);                            
+                            txtDirecP1.SetIsVisible(true);
+                            if(gameType == GameType.GAME_TWO_PLAYER) {
+                                txtDirecP2.SetIsVisible(true);
+                            } else {
+                                txtDirecP2.SetIsVisible(false);
+                            }
+                        } else {
+                            txtGoal.SetIsVisible(false);
+                            txtDirecP1.SetIsVisible(false);
+                            txtDirecP2.SetIsVisible(false);
+                        }
                         break;
                         
                     case NUMBER_1:
@@ -558,6 +715,8 @@ public class ScreenGame extends Screen {
                             number1.SetIsVisible(false);
                             number2.SetIsVisible(false);
                             number3.SetIsVisible(false);
+                            txtDirecP1.SetIsVisible(false);
+                            txtDirecP2.SetIsVisible(false);
                             SetState(State.SHOW_GAME);
                             bounceNorm.Play();                            
                         }
@@ -571,6 +730,19 @@ public class ScreenGame extends Screen {
                             number1.SetIsVisible(true);
                             number2.SetIsVisible(false);
                             number3.SetIsVisible(false);
+                            txtDirecP1.SetIsVisible(true);
+                            if(state == State.SHOW_COUNT_DOWN) {
+                                txtGoal.SetIsVisible(true);
+                                if(gameType == GameType.GAME_TWO_PLAYER) {
+                                    txtDirecP2.SetIsVisible(true);
+                                } else {
+                                    txtDirecP2.SetIsVisible(false);
+                                }
+                            } else {
+                                txtGoal.SetIsVisible(false);
+                                txtDirecP1.SetIsVisible(false);
+                                txtDirecP2.SetIsVisible(false);
+                            }
                             bounceNorm.Play();                            
                         }
                         break;
@@ -583,6 +755,18 @@ public class ScreenGame extends Screen {
                             number1.SetIsVisible(false);
                             number2.SetIsVisible(true);
                             number3.SetIsVisible(false);
+                            if(state == State.SHOW_COUNT_DOWN) {
+                                txtGoal.SetIsVisible(true);
+                                if(gameType == GameType.GAME_TWO_PLAYER) {
+                                    txtDirecP2.SetIsVisible(true);
+                                } else {
+                                    txtDirecP2.SetIsVisible(false);
+                                }
+                            } else {
+                                txtGoal.SetIsVisible(false);
+                                txtDirecP1.SetIsVisible(false);
+                                txtDirecP2.SetIsVisible(false);
+                            }                                
                             bounceNorm.Play();
                         }
                         break;
@@ -591,22 +775,43 @@ public class ScreenGame extends Screen {
                 break;
                 
             case SHOW_GAME:
-                if(mousePos) {
-                    paddle1Pos.SetY(lastY);
-                }
-                
-                if(paddle1MoveUp) {
-                    if(paddle1Pos.GetY() - paddle1MovePerFrame < screenPos.GetY()) {
-                        paddle1Pos.SetY(screenPos.GetY());                
-                    } else {
-                        paddle1Pos.SetY(paddle1Pos.GetY() - paddle1MovePerFrame);
+                if(gameType == GameType.GAME_TWO_PLAYER) {
+                    if(mousePos) {
+                        paddle1Pos.SetY(lastY);
+                    }
+
+                    if(paddle1MoveUp) {
+                        if(paddle1Pos.GetY() - paddle1MovePerFrame < screenPos.GetY()) {
+                            paddle1Pos.SetY(screenPos.GetY());                
+                        } else {
+                            paddle1Pos.SetY(paddle1Pos.GetY() - paddle1MovePerFrame);
+                        }
+
+                    } else if(paddle1MoveDown) {
+                        if(paddle1Pos.GetY() + paddle1.GetHeight() + paddle1MovePerFrame > screenPos.GetY() + GetHeight()) {
+                            paddle1Pos.SetY(screenPos.GetY() + GetHeight() - paddle1.GetHeight());
+                        } else {
+                           paddle1Pos.SetY(paddle1Pos.GetY() + paddle1MovePerFrame);                            
+                        }
+
                     }
                     
-                } else if(paddle1MoveDown) {
-                    if(paddle1Pos.GetY() + paddle1.GetHeight() + paddle1MovePerFrame > screenPos.GetY() + GetHeight()) {
-                        paddle1Pos.SetY(screenPos.GetY() + GetHeight() - paddle1.GetHeight());
-                    } else {
-                       paddle1Pos.SetY(paddle1Pos.GetY() + paddle1MovePerFrame);                            
+                } else {                    
+                    //AI
+                    if(ballPos.GetY() + ball.GetHeight()/2 < paddle1.GetY()) {
+                        if(paddle1Pos.GetY() - paddle1MovePerFrame < screenPos.GetY()) {
+                            paddle1Pos.SetY(screenPos.GetY());                
+                        } else {
+                            paddle1Pos.SetY(paddle1Pos.GetY() - paddle1MovePerFrame);
+                        }
+                        
+                    }else if(ballPos.GetY() + ball.GetHeight()/2 > paddle1.GetY() + paddle1.GetHeight()) {
+                        if(paddle1Pos.GetY() + paddle1.GetHeight() + paddle1MovePerFrame > screenPos.GetY() + GetHeight()) {
+                            paddle1Pos.SetY(screenPos.GetY() + GetHeight() - paddle1.GetHeight());
+                        } else {
+                           paddle1Pos.SetY(paddle1Pos.GetY() + paddle1MovePerFrame);                            
+                        }
+                        
                     }
                     
                 }
@@ -617,15 +822,15 @@ public class ScreenGame extends Screen {
                     } else {
                         paddle2Pos.SetY(paddle2Pos.GetY() - paddle2MovePerFrame);
                     }
-                    
+
                 } else if(paddle2MoveDown) {
                     if(paddle2Pos.GetY() + paddle2.GetHeight() + paddle2MovePerFrame > screenPos.GetY() + GetHeight()) {
                         paddle2Pos.SetY(screenPos.GetY() + GetHeight() - paddle2.GetHeight());
                     } else {
                        paddle2Pos.SetY(paddle2Pos.GetY() + paddle2MovePerFrame);                            
                     }
-                    
-                }                
+
+                }
                 
                 //calculate where the ball will be
                 ballNewX = ballPos.GetX() + (ballMovePerFrameX * ballDirX);
@@ -667,7 +872,7 @@ public class ScreenGame extends Screen {
                 bounced = false;
                 //paddle1 collision
                 if(ballNewX <= paddle1Pos.GetX() + paddle1.GetWidth() && ballDirX == -1) {
-                    if(ballPos.GetY() + ball.GetHeight()/2 >= paddle1Pos.GetY() + paddle1.GetHeight()/3 && ballPos.GetY() + ball.GetHeight()/2 <= paddle1Pos.GetY() + (paddle1.GetHeight()/3 * 2)) {
+                    if(ballNewY + ball.GetHeight()/2 >= paddle1Pos.GetY() + paddle1.GetHeight()/3 && ballNewY + ball.GetHeight()/2 <= paddle1Pos.GetY() + ((paddle1.GetHeight()/3) * 2)) {
                         //middle
                         ballMovePerFrameX *= 1.5;
                         ballMovePerFrameY = rand.nextInt(ballMovePerFrameMin);
@@ -680,7 +885,7 @@ public class ScreenGame extends Screen {
                         bounced = true;
                         ballNewX = (paddle1Pos.GetX() + paddle1.GetWidth());
 
-                    } else if(ballPos.GetY() + ball.GetHeight()/2 > paddle1Pos.GetY() && ballPos.GetY() + ball.GetHeight()/2 < paddle1Pos.GetY() + paddle1.GetHeight()/3) {
+                    } else if(ballNewY + ball.GetHeight() >= paddle1Pos.GetY() && ballNewY + ball.GetHeight() <= paddle1Pos.GetY() + paddle1.GetHeight()/2) {
                         //top
                         ballMovePerFrameX *= 1.5;
                         ballDirX = 1;
@@ -694,7 +899,7 @@ public class ScreenGame extends Screen {
                         bounced = true;
                         ballNewX = (paddle1Pos.GetX() + paddle1.GetWidth());
 
-                    } else if(ballPos.GetY() + ball.GetHeight()/2 > paddle1Pos.GetY() + (paddle1.GetHeight()/3 * 2) && ballPos.GetY() + ball.GetHeight()/2 < paddle1Pos.GetY() + paddle1.GetHeight()) {
+                    } else if(ballNewY >= paddle1Pos.GetY() + paddle1.GetHeight()/2 && ballNewY <= paddle1Pos.GetY() + paddle1.GetHeight()) {
                         //bottom
                         ballMovePerFrameX *= 1.5;
                         ballDirX = 1;                        
@@ -713,7 +918,7 @@ public class ScreenGame extends Screen {
 
                 //paddle2 collision
                 if(ballNewX + ball.GetWidth() >= paddle2Pos.GetX() && ballDirX == 1) {
-                    if(ballPos.GetY() + ball.GetHeight()/2 >= paddle2Pos.GetY() + paddle2.GetHeight()/3 && ballPos.GetY() + ball.GetHeight()/2 <= paddle2Pos.GetY() + (paddle2.GetHeight()/3 * 2)) {
+                    if(ballNewY + ball.GetHeight()/2 >= paddle2Pos.GetY() + paddle2.GetHeight()/3 && ballNewY + ball.GetHeight()/2 <= paddle2Pos.GetY() + ((paddle2.GetHeight()/3) * 2)) {
                         //middle
                         ballMovePerFrameX *= 1.5;
                         ballMovePerFrameY =  rand.nextInt(ballMovePerFrameMin);
@@ -726,7 +931,7 @@ public class ScreenGame extends Screen {
                         bounced = true;
                         ballNewX = (paddle2Pos.GetX() - ball.GetWidth());
 
-                    } else if(ballPos.GetY() + ball.GetHeight()/2 > paddle2Pos.GetY() && ballPos.GetY() + ball.GetHeight()/2 < paddle2Pos.GetY() + paddle2.GetHeight()/3) {
+                    } else if(ballNewY + ball.GetHeight() >= paddle2Pos.GetY() && ballNewY + ball.GetHeight() <= paddle2Pos.GetY() + paddle2.GetHeight()/2) {
                         //top
                         ballMovePerFrameX *= 1.5;
                         ballDirX = -1;
@@ -740,7 +945,7 @@ public class ScreenGame extends Screen {
                         bounced = true;
                         ballNewX = (paddle2Pos.GetX() - ball.GetWidth());
 
-                    } else if(ballPos.GetY() + ball.GetHeight()/2 > paddle2Pos.GetY() + (paddle2.GetHeight()/3 * 2) && ballPos.GetY() + ball.GetHeight()/2 < paddle2Pos.GetY() + paddle2.GetHeight()) {
+                    } else if(ballNewY >= paddle2Pos.GetY() + paddle2.GetHeight()/2 && ballNewY <= paddle2Pos.GetY() + paddle2.GetHeight()) {
                         //bottom
                         ballMovePerFrameX *= 1.5;
                         ballDirX = -1;
@@ -809,6 +1014,12 @@ public class ScreenGame extends Screen {
         
         txtCancel = null;
         txtOk = null;
+        txtDirecP1 = null;
+        txtDirecP2 = null;
+        txtGoal = null;
+        
+        state = State.NONE;
+        statePrev = State.NONE;
         
         ClearObjs();
         ready = false;
