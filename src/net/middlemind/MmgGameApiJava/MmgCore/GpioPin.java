@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * The GpioPin class is used to map the state of Linux GPIO pins for use as a source of input.

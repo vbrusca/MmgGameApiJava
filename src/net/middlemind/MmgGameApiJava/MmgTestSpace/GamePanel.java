@@ -1,11 +1,11 @@
-package net.middlemind.MmgGameApiJava.TestSpace;
+package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import com.middlemind.Odroid.DatExternalStrings;
-import com.middlemind.Odroid.GenericEventMessage;
-import com.middlemind.Odroid.Helper;
-import com.middlemind.Odroid.MainFrame;
-import com.middlemind.Odroid.ScreenLoading;
-import com.middlemind.Odroid.ScreenSplash;
+import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.MainFrame;
+import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
+import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
@@ -13,7 +13,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  * @author Victor G. Brusca, Middlemind Games
  * 02/19/2020
  */
-public class GamePanel extends com.middlemind.Odroid.GamePanel {
+public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
     protected ScreenTest screenTest;
     

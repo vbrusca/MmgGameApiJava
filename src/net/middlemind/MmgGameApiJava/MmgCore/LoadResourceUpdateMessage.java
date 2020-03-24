@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * A class that wraps the LoadDat update information.

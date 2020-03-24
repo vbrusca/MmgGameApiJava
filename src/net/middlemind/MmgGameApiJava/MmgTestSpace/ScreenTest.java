@@ -1,9 +1,9 @@
-package net.middlemind.MmgGameApiJava.TestSpace;
+package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import com.middlemind.Odroid.GamePanel.GameStates;
-import com.middlemind.Odroid.GenericEventHandler;
-import com.middlemind.Odroid.GenericEventMessage;
-import com.middlemind.Odroid.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import java.awt.Color;
 import java.awt.Graphics;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
@@ -360,7 +360,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         Helper.wr("ScreenTest.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
-        MmgVector2 v2 = (MmgVector2)obj.payload;
-        Helper.wr("ScreenTest.HandleGenericEvent: " + v2.ToString());
+        //MmgVector2 v2 = (MmgVector2)obj.payload;
+        //Helper.wr("ScreenTest.HandleGenericEvent: " + v2.ToString());
     }
 }

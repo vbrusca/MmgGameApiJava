@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 import java.awt.Image;
 import java.io.ByteArrayInputStream;

@@ -1,22 +1,49 @@
 package com.middlemind.Odroid_Tutorial2_Pong;
 
-import com.middlemind.Odroid.DatExternalStrings;
-import com.middlemind.Odroid.GenericEventMessage;
-import com.middlemind.Odroid.Helper;
-import com.middlemind.Odroid.MainFrame;
-import com.middlemind.Odroid.ScreenLoading;
-import com.middlemind.Odroid.ScreenSplash;
+import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.MainFrame;
+import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
+import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
 
 /**
- *
+ * A class used to render different MmgGameScreen class instances in the MainFrame, JFrame, class instance.
+ * The class is designed to have different states each represented by an MmgGameScreen instance that then
+ * becomes the currentScreen, and renders to the MainFrame.
+ * 
  * @author Victor G. Brusca, Middlemind Games
  * 02/19/2020
  */
-public class GamePanel extends com.middlemind.Odroid.GamePanel {
-            
+public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
+    
+    /**
+     * The Screen responsible for drawing the game.
+     */
     public ScreenGame screenGame;
+    
+    /**
+     * The Screen responsible for drawing the main menu.
+     */
     public ScreenMainMenu screenMainMenu;
     
+    /**
+     * The default constructor for the GamePanel class.
+     * 
+     * @param Mf            The MainFrame class instance that this GamePanel will render to.
+     * 
+     * @param WinWidth      The total window width.
+     * 
+     * @param WinHeight     The total window height.
+     * 
+     * @param X             The X coordinate of the GamePanel.
+     * 
+     * @param Y             The Y coordinate of the GamePanel.
+     * 
+     * @param GameWidth     The total width of the game.
+     * 
+     * @param GameHeight    The total height of the game.
+     */
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         screenSplash.SetGenericEventHandler(this);
@@ -26,6 +53,12 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
         screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
     }
         
+    /**
+     * A method that handles cleaning up the current game state and switching to the given game state.
+     * The method will then set the currentScreen class field to the new game Screen.
+     * 
+     * @param g     The target GameState to switch to.
+     */
     @Override
     public void SwitchGameState(GameStates g) {
         if (gameState != prevGameState) {
@@ -173,6 +206,11 @@ public class GamePanel extends com.middlemind.Odroid.GamePanel {
         }
     }    
     
+    /**
+     * A method to handle generic events sent to the GamePanel class instance.
+     * 
+     * @param obj       A GenericEventMessage with information about what event occurred.
+     */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {

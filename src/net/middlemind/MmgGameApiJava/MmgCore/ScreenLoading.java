@@ -1,6 +1,6 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
-import com.middlemind.Odroid.GamePanel.GameStates;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import java.io.File;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;

@@ -1,13 +1,12 @@
 package com.middlemind.Odroid_Tutorial2_Pong;
 
-import com.middlemind.Odroid.*;
-import com.middlemind.Odroid.GamePanel.GameStates;
-import java.util.Hashtable;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
+import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgMenuContainer;
@@ -20,13 +19,16 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
  * @author Victor G. Brusca
  * 03/22/2020
  */
-public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
+public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.ScreenMainMenu {
 
     /**
-     * Helper class for screen UI.
+     * An MmgBmp instance that provides custom menu items for one player games.
      */
     private MmgBmp menuStartGame1P;
 
+    /**
+     * An MmgBmp instance that proveds custom menu items for two player games.
+     */
     private MmgBmp menuStartGame2P;    
         
     /**
@@ -417,6 +419,11 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
         pause = false;
     }
 
+    /**
+     * A method to handle A click events from the MainFrame.
+     * 
+     * @return      A boolean indicating if the click event was handled by this Screen.
+     */
     @Override
     public boolean ProcessAClick() {
         int idx = GetMenuIdx();
@@ -428,9 +435,16 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
             return true;
         }
         
-        return true;
+        return false;
     }
     
+    /**
+     * A method to handle dpad release events from the MainFrame.
+     * 
+     * @param dir       A dpad code indicating if the UP, DOWN, LEFT, RIGHT direction was released.
+     * 
+     * @return          A boolean indicating if the Screen handled the dpad release event.
+     */
     @Override
     public boolean ProcessDpadRelease(int dir) {
         if (dir == GameSettings.LEFT || dir == GameSettings.RIGHT) {
@@ -443,12 +457,12 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
             MoveMenuSelDown();
         }
 
-        return true;
+        return false;
     }
 
     /**
-     * Forces this screen to prepare itself for display. This is the method that
-     * handles displaying different game screen text. Calling draw screen
+     * Forces this screen to prepare itself for display. 
+     * This is the method that handles displaying different game screen text. Calling draw screen
      * prepares the screen for display.
      */
     public void DrawScreen() {
@@ -514,20 +528,34 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
     /**
      * Returns the game state of this game screen.
      *
-     * @return The game state of this game screen.
+     * @return      The game state of this game screen.
      */
     public GameStates GetGameState() {
         return state;
     }
 
+    /**
+     * Returns the dirty state of the Screen.
+     * If a Screen is dirty it will be redrawn via the DrawScreen method on the next update call.
+     * 
+     * @return      A boolean indicating the state of the class' dirty flag.
+     */
     public boolean IsDirty() {
         return dirty;
     }
 
+    /**
+     * Sets the state of the Screen's dirty flag.
+     * 
+     * @param b     A boolean used to set the Screen class' dirty flag.
+     */
     public void SetDirty(boolean b) {
         dirty = b;
     }
 
+    /**
+     * A method that sets the Screen's dirty flag to true forcing a redraw on the next update call.
+     */
     public void MakeDirty() {
         dirty = true;
     }
@@ -546,6 +574,17 @@ public class ScreenMainMenu extends com.middlemind.Odroid.ScreenMainMenu {
         }
     }
 
+    /**
+     * The main update routine responsible for calling DrawnScreen when game updates are processed.
+     * 
+     * @param updateTick            A value indicating the number of the update call.
+     * 
+     * @param currentTimeMs         The current time in ms of the update call.
+     * 
+     * @param msSinceLastFrame      The number of ms between this update call and the previous update call.
+     * 
+     * @return      A boolean indicating if the update was processed.
+     */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;

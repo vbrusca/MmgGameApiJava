@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * The DatConstantsEntry class is used to hold data from an engine_config.xml file entry.

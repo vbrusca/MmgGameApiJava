@@ -1,19 +1,22 @@
 package com.middlemind.Odroid_Tutorial1_Gpio;
 
-import com.middlemind.Odroid.GpioHub;
-import com.middlemind.Odroid.GpioHubRunner;
-import com.middlemind.Odroid.GpioPin;
-import com.middlemind.Odroid.GpioPin.GpioButton;
+import net.middlemind.MmgGameApiJava.MmgCore.GpioHub;
+import net.middlemind.MmgGameApiJava.MmgCore.GpioHubRunner;
+import net.middlemind.MmgGameApiJava.MmgCore.GpioPin;
+import net.middlemind.MmgGameApiJava.MmgCore.GpioPin.GpioButton;
 
 /**
- *
+ * A static main class that is used for a demonstration of GPIO driven input on ODROID-N2 devices.
+ * 
  * @author Victor G. Brusca, Middlemind Games
  * 01/22/2020
  */
 public class OdroidGpio {
     
     /**
-     * @param args the command line arguments
+     * A static main execution entry point.
+     * 
+     * @param args      A string array of the command line arguments passed to this class.
      */
     public static void main(String[] args) {
         try {

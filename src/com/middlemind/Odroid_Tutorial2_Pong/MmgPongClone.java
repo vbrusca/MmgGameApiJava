@@ -1,23 +1,23 @@
 package com.middlemind.Odroid_Tutorial2_Pong;
 
-import com.middlemind.Odroid.DatConstantsEntry;
-import com.middlemind.Odroid.GameSettings;
-import com.middlemind.Odroid.GameSettingsImporter;
+import net.middlemind.MmgGameApiJava.MmgCore.DatConstantsEntry;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettingsImporter;
 import java.lang.reflect.Field;
 import javax.swing.JFrame;
-import com.middlemind.Odroid.Helper;
-import com.middlemind.Odroid.RunFrameRate;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
- * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT Created on
- * August 1, 2015, 10:57 PM by Middlemind Games Created by Middlemind Games
+ * Java swing game that on the MmgApi. 
+ * MAIN ENTRY POINT Created on August 1, 2015, 10:57 PM by Middlemind Games Created by Middlemind Games
  *
  * @author Victor G. Brusca
  */
 public final class MmgPongClone {
 
     /**
-     * The main JPanel that houses the different game screens.
+     * The main JFrame that houses the different game screens.
      */
     public static MainFrame mf;
 

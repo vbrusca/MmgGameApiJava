@@ -1,10 +1,10 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import com.middlemind.Odroid.GamePanel;
-import com.middlemind.Odroid.GamePanel.GameStates;
-import com.middlemind.Odroid.GameSettings;
-import com.middlemind.Odroid.GenericEventHandler;
-import com.middlemind.Odroid.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

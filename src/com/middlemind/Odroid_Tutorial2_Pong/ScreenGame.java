@@ -1,11 +1,11 @@
 package com.middlemind.Odroid_Tutorial2_Pong;
 
-import com.middlemind.Odroid.GamePanel.GameStates;
-import com.middlemind.Odroid.GamePanel.GameType;
-import com.middlemind.Odroid.GameSettings;
-import com.middlemind.Odroid.GenericEventMessage;
-import com.middlemind.Odroid.Helper;
-import com.middlemind.Odroid.Screen;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameType;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.Screen;
 import java.util.Random;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
@@ -28,6 +28,9 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
  */
 public class ScreenGame extends Screen {
             
+    /**
+     * An enumeration that tracks which number is visible during game start countdown and in-game countdown.
+     */
     private enum NumberState {
         NONE,
         NUMBER_1,
@@ -35,6 +38,10 @@ public class ScreenGame extends Screen {
         NUMBER_3
     };
     
+    /**
+     * An enumeration that tracks which state this Screen is currently rendering.
+     * Allows the Screen to support different views like in-game, countdown, game over, game start, etc.
+     */
     private enum State {
         NONE,
         SHOW_GAME,
@@ -75,6 +82,7 @@ public class ScreenGame extends Screen {
     private MmgBmp number2;
     private MmgBmp number3;    
     
+    private int scoreGameWin = 7;
     private MmgFont scoreLeft;
     private int score1 = 0;
     private MmgFont scoreRight;
@@ -86,7 +94,7 @@ public class ScreenGame extends Screen {
     private boolean paddle1MoveUp = false;
     private boolean paddle1MoveDown = false;
     
-    private int aiMaxSpeed = 410;
+    private int aiMaxSpeed = 440;
     private int paddle2MovePerFrame = GetSpeedPerFrame(400);
     private boolean paddle2MoveUp = false;
     private boolean paddle2MoveDown = false;        
@@ -105,11 +113,19 @@ public class ScreenGame extends Screen {
     private Mmg9Slice bgroundPopup;
     private MmgFont txtOk;
     private MmgFont txtCancel;
-    private MmgFont txtGoal;    
+    
+    private MmgFont txtGoal;
     private MmgFont txtDirecP1;
     private MmgFont txtDirecP2;    
+ 
+    private MmgFont txtGameOver1;
+    private MmgFont txtGameOver2;
     
     private int padding = MmgHelper.ScaleValue(4);
+    private int popupTotalWidth = 300;
+    private int popupTotalHeight = 120; 
+    
+    private boolean infiniteBounce = false;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -127,7 +143,7 @@ public class ScreenGame extends Screen {
     }
 
     /**
-     * Loads all the resources needed to display this game screen.
+     * Loads all the resources needed to display this game screen and support all Screen states.
      */
     @Override
     @SuppressWarnings("UnusedAssignment")
@@ -244,14 +260,26 @@ public class ScreenGame extends Screen {
         txtDirecP2.SetIsVisible(false);        
         AddObj(txtDirecP2);        
         
-        int totalWidth = 300;
-        int totalHeight = 120;        
+        txtGameOver1 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtGameOver1.SetText("Player 1 has won the game. Press A or B to exit.");
+        txtGameOver1.SetMmgColor(MmgColor.GetWhite());  
+        MmgHelper.CenterHorAndVert(txtGameOver1);
+        txtGameOver1.SetIsVisible(false);
+        AddObj(txtGameOver1);
+        
+        txtGameOver2 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        txtGameOver2.SetText("Player 2 has won the game. Press A or B to exit.");
+        txtGameOver2.SetMmgColor(MmgColor.GetWhite());  
+        MmgHelper.CenterHorAndVert(txtGameOver2);
+        txtGameOver2.SetIsVisible(false);
+        AddObj(txtGameOver2);        
+        
         bgroundPopupSrc = MmgHelper.GetBasicCachedBmp("popup_window_base.png");
         
-        bgroundPopup = new Mmg9Slice(16, bgroundPopupSrc, totalWidth, totalHeight);
+        bgroundPopup = new Mmg9Slice(16, bgroundPopupSrc, popupTotalWidth, popupTotalHeight);
         bgroundPopup.SetPosition(MmgVector2.GetOriginVec());
-        bgroundPopup.SetWidth(totalWidth);
-        bgroundPopup.SetHeight(totalHeight);
+        bgroundPopup.SetWidth(popupTotalWidth);
+        bgroundPopup.SetHeight(popupTotalHeight);
         MmgHelper.CenterHorAndVert(bgroundPopup);
         AddObj(bgroundPopup);
         bgroundPopup.SetIsVisible(false);
@@ -272,6 +300,11 @@ public class ScreenGame extends Screen {
         txtCancel.SetIsVisible(false);
         AddObj(txtCancel);        
         
+        score1 = 0;
+        score2 = 0;        
+        SetScore1Text(score1);        
+        SetScore2Text(score2);
+        
         SetState(State.SHOW_COUNT_DOWN);        
         ready = true;
         pause = false;
@@ -285,55 +318,137 @@ public class ScreenGame extends Screen {
         return gameType;
     }
     
+    /**
+     * Converts the given speed to a uniform speed per frame so that the game movement will
+     * be the same even if the game runs at different frame rates.
+     * 
+     * @param speed     The target speed to convert to a speed per frame.
+     * 
+     * @return          A converted speed that represents the speed per frame of the given input speed. 
+     */
     private static int GetSpeedPerFrame(int speed) {
         return (int)(speed/(MmgPongClone.FPS - 4));        
     }
-       
+    
+    /**
+     * A method to handle mouse press events from the MainFrame class.
+     * 
+     * @param v     The 2D coordinates of the mouse press event.
+     * 
+     * @return      A boolean indicating if this Screen has handled the mouse press event. 
+     */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
+    /**
+     * A method to handle mouse press events from the MainFrame class.
+     * 
+     * @param x     The X coordinate of the mouse press event.
+     * @param y     The Y coordinate of the mouse press event.
+     * 
+     * @return      A boolean indicating if this Screen has handled the mouse press event. 
+     */
     @Override
     public boolean ProcessMousePress(int x, int y) {
         return true;
     }
 
+    /**
+     * A method to handle mouse release events from the MainFrame class.
+     * 
+     * @param v     The 2D coordinates of the mouse release event.
+     * 
+     * @return      A boolean indicating if this Screen has handled the mouse release event. 
+     */    
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
+    /**
+     * A method to handle mouse press events from the MainFrame class.
+     * 
+     * @param x     The X coordinate of the mouse press event.
+     * @param y     The Y coordinate of the mouse press event.
+     * 
+     * @return      A boolean indicating if this Screen has handled the mouse press event. 
+     */    
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
         return true;
     }
-    
+
+    /**
+     * A method to handle A button click events from the MainFrame class.
+     * 
+     * @return      A boolean indicating if this Screen has handled the A click event.
+     */
     @Override
     public boolean ProcessAClick() {
         if(state == State.SHOW_GAME_EXIT) {
             owner.SwitchGameState(GameStates.MAIN_MENU);
             return true;
+            
+        } else if(state == State.SHOW_GAME_OVER) {
+            owner.SwitchGameState(GameStates.MAIN_MENU);
+            return true;
+            
         }
         
         return false;
     }
     
+    /**
+     * A method to handle B button click events from the MainFrame class.
+     * 
+     * @return      A boolean indicating if this Screen has handled the B click event.
+     */    
     @Override
     public boolean ProcessBClick() {
-        if(state != State.SHOW_GAME_EXIT) {        
-            SetState(State.SHOW_GAME_EXIT);
+        if(state == State.SHOW_GAME_OVER) {
+            owner.SwitchGameState(GameStates.MAIN_MENU);
+            return true;
+            
         } else {
-            SetState(statePrev);
+            if(state != State.SHOW_GAME_EXIT) {        
+                SetState(State.SHOW_GAME_EXIT);
+                return true;
+            
+            } else {
+                SetState(statePrev);
+                return true;
+            }
         }
-        return true;
     }
     
+    /**
+     * A method to handle debug click events from the MainFrame class, the D key on the keyboard.
+     * You can use this method to turn on different debugging helpers.
+     */
     @Override
     public void ProcessDebugClick() {
-
+        if(scoreGameWin > 1) {
+            Helper.wr("Setting game win score to 1.");
+            scoreGameWin = 1;
+        } else if(scoreGameWin == 1 && infiniteBounce == false) {
+            Helper.wr("Setting infinite bounce to true.");
+            infiniteBounce = true;
+        } else if(scoreGameWin == 1 && infiniteBounce == true) {
+            Helper.wr("Setting game win score to 7 and infinite bounce to false.");
+            scoreGameWin = 7;
+            infiniteBounce = false;
+        }
     }
 
+    /**
+     * A method to handle key press events from the MainFrame class.
+     * 
+     * @param c     The character of the key that was pressed on the keyboard.
+     * 
+     * @return      A boolean indicating if the key press event was handled by this Screen.
+     */
     @Override
     public boolean ProcessKeyPress(char c) {
         if(state == State.SHOW_GAME && pause == false) {
@@ -355,6 +470,13 @@ public class ScreenGame extends Screen {
         return false;        
     }
     
+    /**
+     * A method to handle key release events from the MainFrame class.
+     * 
+     * @param c     The character of the key that was released on the keyboard.
+     * 
+     * @return      A boolean indicating if the key release event was handled by this Screen.
+     */    
     @Override
     public boolean ProcessKeyRelease(char c) {
         if(state == State.SHOW_GAME && pause == false) {        
@@ -374,11 +496,25 @@ public class ScreenGame extends Screen {
         return false;       
     }
     
+    /**
+     * A method to handle key click events from the MainFrame class.
+     * 
+     * @param c     The character of the key that was clicked on the keyboard.
+     * 
+     * @return      A boolean indicating if the key click event was handled by this Screen.
+     */    
     @Override
     public boolean ProcessKeyClick(char c) {
         return false;
     }    
     
+    /**
+     * A method to handle dpad press events from the MainFrame class.
+     * 
+     * @param dir   The dpad code, UP, DOWN, LEFT, RIGHT of the direction that was pressed on the keyboard.
+     * 
+     * @return      A boolean indicating if the dpad press was handled by this Screen.
+     */
     @Override
     public boolean ProcessDpadPress(int dir) {
         if(state == State.SHOW_GAME && pause == false) {        
@@ -398,6 +534,13 @@ public class ScreenGame extends Screen {
         return false;
     }
 
+    /**
+     * A method to handle dpad release events from the MainFrame class.
+     * 
+     * @param dir   The dpad code, UP, DOWN, LEFT, RIGHT of the direction that was released on the keyboard.
+     * 
+     * @return      A boolean indicating if the dpad release was handled by this Screen.
+     */    
     @Override
     public boolean ProcessDpadRelease(int dir) {
         if(state == State.SHOW_GAME && pause == false) {        
@@ -415,21 +558,53 @@ public class ScreenGame extends Screen {
         return false;
     }
     
+    /**
+     * A method to handle dpad click events from the MainFrame class.
+     * 
+     * @param dir       The dpad code, UP, DOWN, LEFT, RIGHT of the direction that was clicked on the keyboard.
+     * 
+     * @return          A boolean indicating if the dpad click was handled by this Screen.
+     */
     @Override
     public boolean ProcessDpadClick(int dir) {
         return true;
     }
     
+    /**
+     * A method to handle mouse click events from the MainFrame class.
+     * 
+     * @param v         The 2D mouse coordinates of the click event.
+     * 
+     * @return          A boolean indicating if the mouse click event was handled by this Screen.
+     */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
+    /**
+     * A method to handle the mouse click events from the MainFrame class.
+     * 
+     * @param x         The X coordinate of the mouse click event.
+     * 
+     * @param y         The Y coordinate of the mouse click event.
+     * 
+     * @return          A boolean indicating if the mouse click event was handled by this Screen.
+     */
     @Override
     public boolean ProcessMouseClick(int x, int y) {        
         return true;
     }    
     
+    /**
+     * Processes mouse movement for player 2's input, the left hand paddle.
+     * 
+     * @param x     The X position of the mouse with the Screen's offset taken into account.
+     * @param y     The Y position of the mouse with the Screen's offset taken into account.
+     * 
+     * @return      Returns a boolean indicating if the event was consumed by this game Screen. 
+     */
+    @Override
     public boolean ProcessMouseMove(int x, int y) {
         if(state == State.SHOW_GAME && pause == false) {        
             if(gameType == GameType.GAME_TWO_PLAYER) {
@@ -437,13 +612,19 @@ public class ScreenGame extends Screen {
                     lastX = x;
                     lastY = y;
                     mousePos = true;
+                    return true;
                 }
-            }
+            }            
         }
         
-        return true;
+        mousePos = false;
+        return false;
     }    
     
+    /**
+     * Resets certain aspects of the UI that are related to the actual game.
+     * Some aspects of the UI are left visible during the in-game count down.
+     */
     private void ResetGame() {
         ball.SetIsVisible(true);                
         MmgHelper.CenterHorAndVert(ball);
@@ -464,10 +645,15 @@ public class ScreenGame extends Screen {
         paddle2MoveUp = false;                
 
         lastX = 0;
-        lastY = 0;
+        lastY = 0;      
         mousePos = false;        
     }
     
+    /**
+     * Sets the Screen's current state. The state is used to prepare what MmgObj's are visible for the given state.
+     * 
+     * @param in        The desired State to set the Screen to.
+     */
     private void SetState(State in) {        
         //clean up prev state
         switch(statePrev) {
@@ -515,10 +701,45 @@ public class ScreenGame extends Screen {
                 txtCancel.SetIsVisible(false);
                 
                 score1 = 0;
-                score2 = 0;
+                score2 = 0;        
+                SetScore1Text(score1);        
+                SetScore2Text(score2);  
                 
                 pause = false;                
                 dirty = false;                
+                break;
+                
+            case SHOW_GAME_OVER:
+                ball.SetIsVisible(true);               
+                paddle1.SetIsVisible(true);
+                paddle2.SetIsVisible(true);
+                bground.SetIsVisible(false);
+                number1.SetIsVisible(false);
+                number2.SetIsVisible(false);
+                number3.SetIsVisible(false);                
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);                
+                scoreLeft.SetIsVisible(true);
+                scoreRight.SetIsVisible(true);
+                exit.SetIsVisible(true);                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);                
+                
+                if(score1 == scoreGameWin) {
+                    txtGameOver1.SetIsVisible(true);
+                    txtGameOver2.SetIsVisible(false);
+                    
+                } else if(score2 == scoreGameWin) {
+                    txtGameOver1.SetIsVisible(false);
+                    txtGameOver2.SetIsVisible(true);
+                    
+                }
+                numberState = NumberState.NONE;
+                
+                pause = false;
+                dirty = true;                
                 break;
                 
             case SHOW_GAME:
@@ -542,8 +763,10 @@ public class ScreenGame extends Screen {
                 exit.SetIsVisible(true);                
                 bgroundPopup.SetIsVisible(false);
                 txtOk.SetIsVisible(false);
-                txtCancel.SetIsVisible(false);                
-
+                txtCancel.SetIsVisible(false);
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                
                 if(statePrev != State.SHOW_GAME_EXIT) {                
                     if(rand.nextInt(11) % 2 == 0) {
                         ballDirX = 1;
@@ -584,7 +807,9 @@ public class ScreenGame extends Screen {
                 exit.SetIsVisible(true);                
                 bgroundPopup.SetIsVisible(false);
                 txtOk.SetIsVisible(false);
-                txtCancel.SetIsVisible(false);                
+                txtCancel.SetIsVisible(false);
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);                
                 
                 if(statePrev != State.SHOW_GAME_EXIT) {
                     numberState = NumberState.NONE;
@@ -618,7 +843,9 @@ public class ScreenGame extends Screen {
                 bgroundPopup.SetIsVisible(false);
                 txtOk.SetIsVisible(false);
                 txtCancel.SetIsVisible(false);
-
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                
                 if(statePrev != State.SHOW_GAME_EXIT) {                
                     numberState = NumberState.NONE;
                 } else {
@@ -629,11 +856,7 @@ public class ScreenGame extends Screen {
                 pause = false;
                 dirty = true;
                 break;
-                
-            case SHOW_GAME_OVER:
-                dirty = true;                
-                break;
-                
+                                
             case SHOW_GAME_EXIT:
                 bgroundPopup.SetIsVisible(true);
                 txtOk.SetIsVisible(true);
@@ -643,18 +866,12 @@ public class ScreenGame extends Screen {
         }        
     }
     
-    /*
-    private void HideGameExit() {
-        timeNumberMs = System.currentTimeMillis();
-        bgroundPopup.SetIsVisible(false);
-        txtOk.SetIsVisible(false);
-        txtCancel.SetIsVisible(false);
-        state = statePrev;
-        statePrev = State.SHOW_GAME_EXIT;
-    }
-    */
-    
-    private void SetScore1Text(int score) {
+    /**
+     * Updates player2's score, right hand paddle.
+     * 
+     * @param score     The score to set for player two.
+     */    
+    private void SetScore2Text(int score) {
         String tmp = score + "";
         if(tmp.length() != 2) {
             tmp = "0" + tmp;
@@ -662,7 +879,12 @@ public class ScreenGame extends Screen {
         scoreLeft.SetText(tmp);
     }
     
-    private void SetScore2Text(int score) {
+    /**
+     * Updates player1's score, right hand paddle.
+     * 
+     * @param score     The score to set for player one.
+     */
+    private void SetScore1Text(int score) {
         String tmp = score + "";
         if(tmp.length() != 2) {
             tmp = "0" + tmp;
@@ -670,6 +892,9 @@ public class ScreenGame extends Screen {
         scoreRight.SetText(tmp);
     }    
     
+    /**
+     * The DrawScreen method gets called by the MmgUpdate method if the Screen is not paused and is responsible for drawing the current screen state.
+     */
     @Override
     public void DrawScreen() {
         //run each game frame
@@ -854,18 +1079,32 @@ public class ScreenGame extends Screen {
                     ballDirX = 1;
                     ballNewX = ((screenPos.GetX()));
                     ballNewY = (ballPos.GetY() + (ballMovePerFrameY * ballDirY));
-                    score2 += 1;
-                    SetScore2Text(score2);
-                    SetState(State.SHOW_COUNT_DOWN_IN_GAME);
+                    score1 += 1;
+                    SetScore1Text(score1);
+                    
+                    if(infiniteBounce == false) {
+                        if(score1 == scoreGameWin) {
+                            SetState(State.SHOW_GAME_OVER);                        
+                        } else {
+                            SetState(State.SHOW_COUNT_DOWN_IN_GAME);
+                        }
+                    }
                     
                 } else if(ballNewX + ball.GetWidth() > screenPos.GetX() + GetWidth()) {
                     //right
                     ballDirX = -1;
                     ballNewX = ((screenPos.GetX() + GetWidth() - ball.GetWidth()));
                     ballNewY = (ballPos.GetY() + (ballMovePerFrameY * ballDirY));                                                                            
-                    score1 += 1;
-                    SetScore1Text(score1);                    
-                    SetState(State.SHOW_COUNT_DOWN_IN_GAME);
+                    score2 += 1;
+                    SetScore2Text(score2);
+                    
+                    if(infiniteBounce == false) {
+                        if(score2 == scoreGameWin) {
+                            SetState(State.SHOW_GAME_OVER);                        
+                        } else {
+                            SetState(State.SHOW_COUNT_DOWN_IN_GAME);
+                        }
+                    }
                     
                 }
                 
@@ -994,33 +1233,43 @@ public class ScreenGame extends Screen {
         pause = true;
         SetBackground(null);
         
-        paddle1 = null;
-        paddle1Pos = null;
-        paddle2 = null;
-        paddle2Pos = null;
-        
-        scoreLeft = null;
-        scoreRight = null;
-        
-        ball = null;
-        ballPos = null;
+        ResetGame();
+        state = State.NONE;
+        statePrev = State.NONE;        
         
         bounceNorm = null;
         bounceSuper = null;
+        bground = null;
         
+        paddle1 = null;
+        paddle2 = null;
+        paddle1Pos = null;
+        paddle2Pos = null;
+        
+        ball = null;
+        ballPos = null;
+        number1 = null;
+        number2 = null;
+        number3 = null;
+        
+        scoreLeft = null;
+        scoreRight = null;
         exit = null;
-        bgroundPopup = null;
-        bgroundPopupSrc = null;
+        exitBground = null;
         
-        txtCancel = null;
+        rand = null;
+        screenPos = null;
+        bgroundPopupSrc = null;
+        bgroundPopup = null;
+        
         txtOk = null;
+        txtCancel = null;
+        txtGoal = null;
         txtDirecP1 = null;
         txtDirecP2 = null;
-        txtGoal = null;
-        
-        state = State.NONE;
-        statePrev = State.NONE;
-        
+        txtGameOver1 = null;
+        txtGameOver2 = null;
+                        
         ClearObjs();
         ready = false;
     }
@@ -1039,6 +1288,11 @@ public class ScreenGame extends Screen {
         }
     }
 
+    /**
+     * Handles generic events sent to this class.
+     * 
+     * @param obj       A GenericEventMessage class instance.
+     */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         //handle generic event

@@ -1,6 +1,6 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
-import com.middlemind.Odroid.GpioPin.GpioButton;
+import net.middlemind.MmgGameApiJava.MmgCore.GpioPin.GpioButton;
 import java.io.File;
 import java.io.IOException;
 

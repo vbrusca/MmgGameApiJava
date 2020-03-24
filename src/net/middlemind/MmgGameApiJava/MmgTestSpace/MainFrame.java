@@ -1,13 +1,13 @@
-package net.middlemind.MmgGameApiJava.TestSpace;
+package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import com.middlemind.Odroid.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 
 /**
  *
  * @author Victor G. Brusca, Middlemind Games
  * 02/19/2020
  */
-public class MainFrame extends com.middlemind.Odroid.MainFrame {
+public class MainFrame extends net.middlemind.MmgGameApiJava.MmgCore.MainFrame {
     
     public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight, int GameWidth, int GameHeight) {
         super(WinWidth, WinHeight, PanWidth, PanHeight, GameWidth, GameHeight);

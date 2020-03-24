@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * The frame rate worker thread, runs the main loop while tracking frame rate

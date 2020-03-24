@@ -1,4 +1,4 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * Class that holds global game settings. Can be set using the engine config XML files. All path variables should end in

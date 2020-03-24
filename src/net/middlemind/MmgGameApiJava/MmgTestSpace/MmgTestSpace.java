@@ -1,7 +1,13 @@
-package com.middlemind.Odroid;
+package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
+import net.middlemind.MmgGameApiJava.MmgCore.DatConstantsEntry;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettingsImporter;
 import java.lang.reflect.Field;
 import javax.swing.JFrame;
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgCore.OdroidGame;
+import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
  * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT Created on
@@ -9,7 +15,7 @@ import javax.swing.JFrame;
  *
  * @author Victor G. Brusca
  */
-public class OdroidGame {
+public final class MmgTestSpace {
 
     /**
      * The main JPanel that houses the different game screens.
@@ -61,6 +67,9 @@ public class OdroidGame {
      */
     public static long FPS = 16l;
 
+    public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
+    public static String DAT_FILE = "../cfg/data/chapter2.dat";
+
     /**
      * Base engine config files.
      */
@@ -68,12 +77,12 @@ public class OdroidGame {
 
     /**
      * The GamePanel used to render the game in a MainFrame instance.
-     */
-    public static GamePanel pnlGame;    
+     */     
+    public static GamePanel pnlGame;
     
     /**
      * A copy of the command line arguments passed to the Java application.
-     */
+     */       
     public static String[] ARGS = null;    
         
     /**
@@ -102,82 +111,10 @@ public class OdroidGame {
     }
 
     /**
-     * A static method that loads native libraries that allow access to gamepads and controllers.
-     */
-    public static void LoadNativeLibraries() {
-        String OS = System.getProperty("os.name").toLowerCase();
-        Helper.wr("Found platform: " + OS);
-		
-        if (isWindows(OS)) {
-            Helper.wr("This is Windows");
-            
-        } else if (isMac(OS)) {
-            Helper.wr("This is Mac");
-            Helper.wr("LibPath: " + System.getProperty("java.library.path"));
-            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
-            System.loadLibrary("jinput-osx");
-            
-        } else if (isUnix(OS)) {
-            Helper.wr("This is Unix or Linux");
-            
-        } else if (isSolaris(OS)) {
-            Helper.wr("This is Solaris");
-            
-        } else {
-            Helper.wr("Your OS is not supported!!");
-            
-        }
-    }
-    
-    /**
-     * A static class method for checking if this Java application is running on Windows.
-     * 
-     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
-     * @return          A boolean value indicating if the Java application is running on Windows.
-     */
-    public static boolean isWindows(String OS) {
-        return (OS.indexOf("win") >= 0);
-    }
-
-    /**
-     * A static class method for checking if this Java application is running on a Mac.
-     * 
-     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
-     * @return          A boolean value indicating if the Java application is running on a Mac.
-     */
-    public static boolean isMac(String OS) {
-        return (OS.indexOf("mac") >= 0);
-    }
-
-    /**
-     * A static class method for checking if this Java application is running on Linux.
-     * 
-     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
-     * @return          A boolean value indicating if the Java application is running on Linux.
-     */
-    public static boolean isUnix(String OS) {
-        return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
-    }
-
-    /**
-     * A static class method for checking if this Java application is running on Sun OS.
-     * 
-     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
-     * @return          A boolean value indicating if the Java application is running on Sun OS.
-     */
-    public static boolean isSolaris(String OS) {
-        return (OS.indexOf("sunos") >= 0);
-    }    
-    
-    /**
      * Sets the value of the field specified by the field reflection object.
      *
-     * @param ent       Entry object that wraps the XML entry.
-     * @param f         Class member that needs to be updated.
+     * @param ent Entry object that wraps the XML entry.
+     * @param f Class member that needs to be updated.
      * 
      * @throws Exception
      */
@@ -209,13 +146,11 @@ public class OdroidGame {
     }
 
     /**
-     * Static main method.
+     * Static access method.
      *
-     * @param args      The command line arguments
+     * @param args The command line arguments
      */
     public static final void main(String[] args) {
-        LoadNativeLibraries();
-        
         //Store program arguments for future reference
         ARGS = args;        
         if (args != null && args.length > 0) {
@@ -270,9 +205,9 @@ public class OdroidGame {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (OdroidGame.ENGINE_CONFIG_FILE != null && OdroidGame.ENGINE_CONFIG_FILE.equals("") == false) {
+            if (MmgTestSpace.ENGINE_CONFIG_FILE != null && MmgTestSpace.ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(OdroidGame.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(MmgTestSpace.ENGINE_CONFIG_FILE);
                 System.out.println("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
@@ -292,7 +227,6 @@ public class OdroidGame {
                                 System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
                             }
-
                         }
                     } catch (Exception e) {
                         System.out.println("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
@@ -306,8 +240,8 @@ public class OdroidGame {
 
         //Set program specific resource loading directories
         GameSettings.PROGRAM_IMAGE_LOAD_DIR += GameSettings.NAME;
-        GameSettings.PROGRAM_SOUND_LOAD_DIR += GameSettings.NAME;
-                
+        GameSettings.PROGRAM_SOUND_LOAD_DIR += GameSettings.NAME;        
+        
         Helper.wr("Window Width: " + WIN_WIDTH);
         Helper.wr("Window Height: " + WIN_HEIGHT);
         Helper.wr("Panel Width: " + PANEL_WIDTH);
@@ -315,22 +249,15 @@ public class OdroidGame {
         Helper.wr("Game Width: " + GAME_WIDTH);
         Helper.wr("Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, OdroidGame.GAME_WIDTH, OdroidGame.GAME_HEIGHT);
-        pnlGame = new GamePanel(mf, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, (OdroidGame.WIN_WIDTH - OdroidGame.PANEL_WIDTH) / 2, (OdroidGame.WIN_HEIGHT - OdroidGame.PANEL_HEIGHT) / 2, OdroidGame.GAME_WIDTH, OdroidGame.GAME_HEIGHT);
+        mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, (MmgTestSpace.WIN_WIDTH - MmgTestSpace.PANEL_WIDTH) / 2, (MmgTestSpace.WIN_HEIGHT - MmgTestSpace.PANEL_HEIGHT) / 2, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT);
+        mf.setSize(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
-        mf.setName(GameSettings.NAME);
-
-        if (GameSettings.DEVELOPMENT_MODE_ON == false) {
-            mf.setTitle(GameSettings.TITLE);
-        } else {
-            mf.setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
-        }
 
         mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mf.GetGamePanel().PrepBuffers();
