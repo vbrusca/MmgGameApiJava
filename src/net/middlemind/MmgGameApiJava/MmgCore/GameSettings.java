@@ -20,11 +20,17 @@ public class GameSettings {
     public static int LEFT_GPIO = 6;
     public static int RIGHT_GPIO = 7;
     
-    public static int SRC_GAMEPAD = 1;    
-    public static int DOWN_GAMEPAD = 8;
-    public static int UP_GAMEPAD = 9;
-    public static int LEFT_GAMEPAD = 10;
-    public static int RIGHT_GAMEPAD = 11;    
+    public static int SRC_GAMEPAD_1 = 1;    
+    public static int DOWN_GAMEPAD_1 = 8;
+    public static int UP_GAMEPAD_1 = 9;
+    public static int LEFT_GAMEPAD_1 = 10;
+    public static int RIGHT_GAMEPAD_1 = 11;
+    
+    public static int SRC_GAMEPAD_2 = 2;
+    public static int DOWN_GAMEPAD_2 = 12;
+    public static int UP_GAMEPAD_2 = 13;
+    public static int LEFT_GAMEPAD_2 = 14;
+    public static int RIGHT_GAMEPAD_2 = 15;    
     
     public static boolean SND_CACHE_ON = true;
     public static String SND_PREFIX = "sounds_";    
@@ -82,49 +88,95 @@ public class GameSettings {
     public static boolean BTN_B_CHECK_RELEASE = true;
     public static boolean BTN_B_CHECK_CLICK = true;
     
-    //USB gamepad input settings
-    public static boolean USB_GAMEPAD_ON = true;
-    public static int USB_GAMEPAD_INDEX = 0;    
+    //GamePad 1 input settings
+    public static boolean GAMEPAD_1_ON = true;
+    public static int GAMEPAD_1_INDEX = 0;    
     
-    public static int COMPONENT_UP_INDEX = 15;
-    public static float COMPONENT_UP_VALUE_ON = 0.25f;
-    public static float COMPONENT_UP_VALUE_OFF = 0.00f;
-    public static boolean COMPONENT_UP_CHECK_PRESS = true;
-    public static boolean COMPONENT_UP_CHECK_RELEASE = true;
-    public static boolean COMPONENT_UP_CHECK_CLICK = true;
+    public static int GAMEPAD_1_UP_INDEX = 15;
+    public static float GAMEPAD_1_UP_VALUE_ON = 0.25f;
+    public static float GAMEPAD_1_UP_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_1_UP_CHECK_PRESS = true;
+    public static boolean GAMEPAD_1_UP_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_1_UP_CHECK_CLICK = true;
 
-    public static int COMPONENT_DOWN_INDEX = 15;
-    public static float COMPONENT_DOWN_VALUE_ON = 0.75f;
-    public static float COMPONENT_DOWN_VALUE_OFF = 0.00f;
-    public static boolean COMPONENT_DOWN_CHECK_PRESS = true;
-    public static boolean COMPONENT_DOWN_CHECK_RELEASE = true;
-    public static boolean COMPONENT_DOWN_CHECK_CLICK = true;
+    public static int GAMEPAD_1_DOWN_INDEX = 15;
+    public static float GAMEPAD_1_DOWN_VALUE_ON = 0.75f;
+    public static float GAMEPAD_1_DOWN_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_1_DOWN_CHECK_PRESS = true;
+    public static boolean GAMEPAD_1_DOWN_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_1_DOWN_CHECK_CLICK = true;
     
-    public static int COMPONENT_LEFT_INDEX = 15;
-    public static float COMPONENT_LEFT_VALUE_ON = 1.00f;
-    public static float COMPONENT_LEFT_VALUE_OFF = 0.00f;
-    public static boolean COMPONENT_LEFT_CHECK_PRESS = true;
-    public static boolean COMPONENT_LEFT_CHECK_RELEASE = true;
-    public static boolean COMPONENT_LEFT_CHECK_CLICK = true;
+    public static int GAMEPAD_1_LEFT_INDEX = 15;
+    public static float GAMEPAD_1_LEFT_VALUE_ON = 1.00f;
+    public static float GAMEPAD_1_LEFT_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_1_LEFT_CHECK_PRESS = true;
+    public static boolean GAMEPAD_1_LEFT_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_1_LEFT_CHECK_CLICK = true;
     
-    public static int COMPONENT_RIGHT_INDEX = 15;
-    public static float COMPONENT_RIGHT_VALUE_ON = 0.50f;
-    public static float COMPONENT_RIGHT_VALUE_OFF = 0.00f;
-    public static boolean COMPONENT_RIGHT_CHECK_PRESS = true;
-    public static boolean COMPONENT_RIGHT_CHECK_RELEASE = true;
-    public static boolean COMPONENT_RIGHT_CHECK_CLICK = true;
+    public static int GAMEPAD_1_RIGHT_INDEX = 15;
+    public static float GAMEPAD_1_RIGHT_VALUE_ON = 0.50f;
+    public static float GAMEPAD_1_RIGHT_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_1_RIGHT_CHECK_PRESS = true;
+    public static boolean GAMEPAD_1_RIGHT_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_1_RIGHT_CHECK_CLICK = true;
     
-    public static int COMPONENT_A_INDEX = 0;
-    public static float COMPONENT_A_VALUE_ON = 1.00f;
-    public static float COMPONENT_A_VALUE_OFF = 0.00f;    
-    public static boolean COMPONENT_A_CHECK_PRESS = true;
-    public static boolean COMPONENT_A_CHECK_RELEASE = true;
-    public static boolean COMPONENT_A_CHECK_CLICK = true;
+    public static int GAMEPAD_1_A_INDEX = 0;
+    public static float GAMEPAD_1_A_VALUE_ON = 1.00f;
+    public static float GAMEPAD_1_A_VALUE_OFF = 0.00f;    
+    public static boolean GAMEPAD_1_A_CHECK_PRESS = true;
+    public static boolean GAMEPAD_1_A_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_1_A_CHECK_CLICK = true;
     
-    public static int COMPONENT_B_INDEX = 1;
-    public static float COMPONENT_B_VALUE_ON = 1.00f;
-    public static float COMPONENT_B_VALUE_OFF = 0.00f;
-    public static boolean COMPONENT_B_CHECK_PRESS = true;
-    public static boolean COMPONENT_B_CHECK_RELEASE = true;
-    public static boolean COMPONENT_B_CHECK_CLICK = true;
+    public static int GAMEPAD_1_B_INDEX = 1;
+    public static float GAMEPAD_1_B_VALUE_ON = 1.00f;
+    public static float GAMEPAD_1_B_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_1_B_CHECK_PRESS = true;
+    public static boolean GAMEPAD_1_B_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_1_B_CHECK_CLICK = true;
+    
+    //GamePad 2 input settings
+    public static boolean GAMEPAD_2_ON = true;
+    public static int GAMEPAD_2_INDEX = 0;    
+    
+    public static int GAMEPAD_2_UP_INDEX = 15;
+    public static float GAMEPAD_2_UP_VALUE_ON = 0.25f;
+    public static float GAMEPAD_2_UP_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_2_UP_CHECK_PRESS = true;
+    public static boolean GAMEPAD_2_UP_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_2_UP_CHECK_CLICK = true;
+
+    public static int GAMEPAD_2_DOWN_INDEX = 15;
+    public static float GAMEPAD_2_DOWN_VALUE_ON = 0.75f;
+    public static float GAMEPAD_2_DOWN_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_2_DOWN_CHECK_PRESS = true;
+    public static boolean GAMEPAD_2_DOWN_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_2_DOWN_CHECK_CLICK = true;
+    
+    public static int GAMEPAD_2_LEFT_INDEX = 15;
+    public static float GAMEPAD_2_LEFT_VALUE_ON = 1.00f;
+    public static float GAMEPAD_2_LEFT_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_2_LEFT_CHECK_PRESS = true;
+    public static boolean GAMEPAD_2_LEFT_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_2_LEFT_CHECK_CLICK = true;
+    
+    public static int GAMEPAD_2_RIGHT_INDEX = 15;
+    public static float GAMEPAD_2_RIGHT_VALUE_ON = 0.50f;
+    public static float GAMEPAD_2_RIGHT_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_2_RIGHT_CHECK_PRESS = true;
+    public static boolean GAMEPAD_2_RIGHT_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_2_RIGHT_CHECK_CLICK = true;
+    
+    public static int GAMEPAD_2_A_INDEX = 0;
+    public static float GAMEPAD_2_A_VALUE_ON = 1.00f;
+    public static float GAMEPAD_2_A_VALUE_OFF = 0.00f;    
+    public static boolean GAMEPAD_2_A_CHECK_PRESS = true;
+    public static boolean GAMEPAD_2_A_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_2_A_CHECK_CLICK = true;
+    
+    public static int GAMEPAD_2_B_INDEX = 1;
+    public static float GAMEPAD_2_B_VALUE_ON = 1.00f;
+    public static float GAMEPAD_2_B_VALUE_OFF = 0.00f;
+    public static boolean GAMEPAD_2_B_CHECK_PRESS = true;
+    public static boolean GAMEPAD_2_B_CHECK_RELEASE = true;
+    public static boolean GAMEPAD_2_B_CHECK_CLICK = true;    
 }

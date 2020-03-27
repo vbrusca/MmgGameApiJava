@@ -70,6 +70,12 @@ public class GamePadHub {
      */
     public Component[] components = null;
     
+    public int gamePadSrc = GameSettings.SRC_GAMEPAD_1;
+    public int gamePadUp = GameSettings.UP_GAMEPAD_1;
+    public int gamePadDown = GameSettings.DOWN_GAMEPAD_1;
+    public int gamePadLeft = GameSettings.LEFT_GAMEPAD_1;
+    public int gamePadRight = GameSettings.RIGHT_GAMEPAD_1;    
+    
     private int i;
     private int j;    
     private int k;    
@@ -84,16 +90,58 @@ public class GamePadHub {
      */
     public GamePadHub(Controller GamePad) {               
         gamepad = GamePad;
+        gamePadSrc = GameSettings.SRC_GAMEPAD_1;
+        gamePadUp = GameSettings.UP_GAMEPAD_1;
+        gamePadDown = GameSettings.DOWN_GAMEPAD_1;
+        gamePadLeft = GameSettings.LEFT_GAMEPAD_1;
+        gamePadRight = GameSettings.RIGHT_GAMEPAD_1;   
+        
         buttons = new GamePadInput[6];
-        buttons[0] = new GamePadInput(GameSettings.COMPONENT_UP_INDEX, GameSettings.COMPONENT_UP_VALUE_ON, GameSettings.COMPONENT_UP_VALUE_OFF,             GamePadButton.BtnUp, GameSettings.COMPONENT_UP_CHECK_PRESS, GameSettings.COMPONENT_UP_CHECK_RELEASE, GameSettings.COMPONENT_UP_CHECK_CLICK);
-        buttons[1] = new GamePadInput(GameSettings.COMPONENT_DOWN_INDEX, GameSettings.COMPONENT_DOWN_VALUE_ON, GameSettings.COMPONENT_DOWN_VALUE_OFF,       GamePadButton.BtnDown, GameSettings.COMPONENT_DOWN_CHECK_PRESS, GameSettings.COMPONENT_DOWN_CHECK_RELEASE, GameSettings.COMPONENT_DOWN_CHECK_CLICK);
-        buttons[2] = new GamePadInput(GameSettings.COMPONENT_LEFT_INDEX, GameSettings.COMPONENT_LEFT_VALUE_ON, GameSettings.COMPONENT_LEFT_VALUE_OFF,       GamePadButton.BtnLeft, GameSettings.COMPONENT_LEFT_CHECK_PRESS, GameSettings.COMPONENT_LEFT_CHECK_RELEASE, GameSettings.COMPONENT_LEFT_CHECK_CLICK);
-        buttons[3] = new GamePadInput(GameSettings.COMPONENT_RIGHT_INDEX, GameSettings.COMPONENT_RIGHT_VALUE_ON, GameSettings.COMPONENT_RIGHT_VALUE_OFF,    GamePadButton.BtnRight, GameSettings.COMPONENT_RIGHT_CHECK_PRESS, GameSettings.COMPONENT_RIGHT_CHECK_RELEASE, GameSettings.COMPONENT_RIGHT_CHECK_CLICK);
-        buttons[4] = new GamePadInput(GameSettings.COMPONENT_A_INDEX, GameSettings.COMPONENT_A_VALUE_ON, GameSettings.COMPONENT_A_VALUE_OFF,                GamePadButton.BtnA, GameSettings.COMPONENT_A_CHECK_PRESS, GameSettings.COMPONENT_A_CHECK_RELEASE, GameSettings.COMPONENT_A_CHECK_CLICK);
-        buttons[5] = new GamePadInput(GameSettings.COMPONENT_B_INDEX, GameSettings.COMPONENT_B_VALUE_ON, GameSettings.COMPONENT_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.COMPONENT_B_CHECK_PRESS, GameSettings.COMPONENT_B_CHECK_RELEASE, GameSettings.COMPONENT_B_CHECK_CLICK);
+        buttons[0] = new GamePadInput(GameSettings.GAMEPAD_1_UP_INDEX, GameSettings.GAMEPAD_1_UP_VALUE_ON, GameSettings.GAMEPAD_1_UP_VALUE_OFF,             GamePadButton.BtnUp, GameSettings.GAMEPAD_1_UP_CHECK_PRESS, GameSettings.GAMEPAD_1_UP_CHECK_RELEASE, GameSettings.GAMEPAD_1_UP_CHECK_CLICK);
+        buttons[1] = new GamePadInput(GameSettings.GAMEPAD_1_DOWN_INDEX, GameSettings.GAMEPAD_1_DOWN_VALUE_ON, GameSettings.GAMEPAD_1_DOWN_VALUE_OFF,       GamePadButton.BtnDown, GameSettings.GAMEPAD_1_DOWN_CHECK_PRESS, GameSettings.GAMEPAD_1_DOWN_CHECK_RELEASE, GameSettings.GAMEPAD_1_DOWN_CHECK_CLICK);
+        buttons[2] = new GamePadInput(GameSettings.GAMEPAD_1_LEFT_INDEX, GameSettings.GAMEPAD_1_LEFT_VALUE_ON, GameSettings.GAMEPAD_1_LEFT_VALUE_OFF,       GamePadButton.BtnLeft, GameSettings.GAMEPAD_1_LEFT_CHECK_PRESS, GameSettings.GAMEPAD_1_LEFT_CHECK_RELEASE, GameSettings.GAMEPAD_1_LEFT_CHECK_CLICK);
+        buttons[3] = new GamePadInput(GameSettings.GAMEPAD_1_RIGHT_INDEX, GameSettings.GAMEPAD_1_RIGHT_VALUE_ON, GameSettings.GAMEPAD_1_RIGHT_VALUE_OFF,    GamePadButton.BtnRight, GameSettings.GAMEPAD_1_RIGHT_CHECK_PRESS, GameSettings.GAMEPAD_1_RIGHT_CHECK_RELEASE, GameSettings.GAMEPAD_1_RIGHT_CHECK_CLICK);
+        buttons[4] = new GamePadInput(GameSettings.GAMEPAD_1_A_INDEX, GameSettings.GAMEPAD_1_A_VALUE_ON, GameSettings.GAMEPAD_1_A_VALUE_OFF,                GamePadButton.BtnA, GameSettings.GAMEPAD_1_A_CHECK_PRESS, GameSettings.GAMEPAD_1_A_CHECK_RELEASE, GameSettings.GAMEPAD_1_A_CHECK_CLICK);
+        buttons[5] = new GamePadInput(GameSettings.GAMEPAD_1_B_INDEX, GameSettings.GAMEPAD_1_B_VALUE_ON, GameSettings.GAMEPAD_1_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.GAMEPAD_1_B_CHECK_PRESS, GameSettings.GAMEPAD_1_B_CHECK_RELEASE, GameSettings.GAMEPAD_1_B_CHECK_CLICK);
         Prep();
     }
 
+    public GamePadHub(Controller GamePad, boolean player1) {               
+        gamepad = GamePad;
+        buttons = new GamePadInput[6];
+        
+        if(player1) {
+            gamePadSrc = GameSettings.SRC_GAMEPAD_1;
+            gamePadUp = GameSettings.UP_GAMEPAD_1;
+            gamePadDown = GameSettings.DOWN_GAMEPAD_1;
+            gamePadLeft = GameSettings.LEFT_GAMEPAD_1;
+            gamePadRight = GameSettings.RIGHT_GAMEPAD_1;
+            
+            buttons[0] = new GamePadInput(GameSettings.GAMEPAD_1_UP_INDEX, GameSettings.GAMEPAD_1_UP_VALUE_ON, GameSettings.GAMEPAD_1_UP_VALUE_OFF,             GamePadButton.BtnUp, GameSettings.GAMEPAD_1_UP_CHECK_PRESS, GameSettings.GAMEPAD_1_UP_CHECK_RELEASE, GameSettings.GAMEPAD_1_UP_CHECK_CLICK);
+            buttons[1] = new GamePadInput(GameSettings.GAMEPAD_1_DOWN_INDEX, GameSettings.GAMEPAD_1_DOWN_VALUE_ON, GameSettings.GAMEPAD_1_DOWN_VALUE_OFF,       GamePadButton.BtnDown, GameSettings.GAMEPAD_1_DOWN_CHECK_PRESS, GameSettings.GAMEPAD_1_DOWN_CHECK_RELEASE, GameSettings.GAMEPAD_1_DOWN_CHECK_CLICK);
+            buttons[2] = new GamePadInput(GameSettings.GAMEPAD_1_LEFT_INDEX, GameSettings.GAMEPAD_1_LEFT_VALUE_ON, GameSettings.GAMEPAD_1_LEFT_VALUE_OFF,       GamePadButton.BtnLeft, GameSettings.GAMEPAD_1_LEFT_CHECK_PRESS, GameSettings.GAMEPAD_1_LEFT_CHECK_RELEASE, GameSettings.GAMEPAD_1_LEFT_CHECK_CLICK);
+            buttons[3] = new GamePadInput(GameSettings.GAMEPAD_1_RIGHT_INDEX, GameSettings.GAMEPAD_1_RIGHT_VALUE_ON, GameSettings.GAMEPAD_1_RIGHT_VALUE_OFF,    GamePadButton.BtnRight, GameSettings.GAMEPAD_1_RIGHT_CHECK_PRESS, GameSettings.GAMEPAD_1_RIGHT_CHECK_RELEASE, GameSettings.GAMEPAD_1_RIGHT_CHECK_CLICK);
+            buttons[4] = new GamePadInput(GameSettings.GAMEPAD_1_A_INDEX, GameSettings.GAMEPAD_1_A_VALUE_ON, GameSettings.GAMEPAD_1_A_VALUE_OFF,                GamePadButton.BtnA, GameSettings.GAMEPAD_1_A_CHECK_PRESS, GameSettings.GAMEPAD_1_A_CHECK_RELEASE, GameSettings.GAMEPAD_1_A_CHECK_CLICK);
+            buttons[5] = new GamePadInput(GameSettings.GAMEPAD_1_B_INDEX, GameSettings.GAMEPAD_1_B_VALUE_ON, GameSettings.GAMEPAD_1_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.GAMEPAD_1_B_CHECK_PRESS, GameSettings.GAMEPAD_1_B_CHECK_RELEASE, GameSettings.GAMEPAD_1_B_CHECK_CLICK);
+            
+        } else {
+            gamePadSrc = GameSettings.SRC_GAMEPAD_2;
+            gamePadUp = GameSettings.UP_GAMEPAD_2;
+            gamePadDown = GameSettings.DOWN_GAMEPAD_2;
+            gamePadLeft = GameSettings.LEFT_GAMEPAD_2;
+            gamePadRight = GameSettings.RIGHT_GAMEPAD_2;
+        
+            buttons[0] = new GamePadInput(GameSettings.GAMEPAD_2_UP_INDEX, GameSettings.GAMEPAD_2_UP_VALUE_ON, GameSettings.GAMEPAD_2_UP_VALUE_OFF,             GamePadButton.BtnUp, GameSettings.GAMEPAD_2_UP_CHECK_PRESS, GameSettings.GAMEPAD_2_UP_CHECK_RELEASE, GameSettings.GAMEPAD_2_UP_CHECK_CLICK);
+            buttons[1] = new GamePadInput(GameSettings.GAMEPAD_2_DOWN_INDEX, GameSettings.GAMEPAD_2_DOWN_VALUE_ON, GameSettings.GAMEPAD_2_DOWN_VALUE_OFF,       GamePadButton.BtnDown, GameSettings.GAMEPAD_2_DOWN_CHECK_PRESS, GameSettings.GAMEPAD_2_DOWN_CHECK_RELEASE, GameSettings.GAMEPAD_2_DOWN_CHECK_CLICK);
+            buttons[2] = new GamePadInput(GameSettings.GAMEPAD_2_LEFT_INDEX, GameSettings.GAMEPAD_2_LEFT_VALUE_ON, GameSettings.GAMEPAD_2_LEFT_VALUE_OFF,       GamePadButton.BtnLeft, GameSettings.GAMEPAD_2_LEFT_CHECK_PRESS, GameSettings.GAMEPAD_2_LEFT_CHECK_RELEASE, GameSettings.GAMEPAD_2_LEFT_CHECK_CLICK);
+            buttons[3] = new GamePadInput(GameSettings.GAMEPAD_2_RIGHT_INDEX, GameSettings.GAMEPAD_2_RIGHT_VALUE_ON, GameSettings.GAMEPAD_2_RIGHT_VALUE_OFF,    GamePadButton.BtnRight, GameSettings.GAMEPAD_2_RIGHT_CHECK_PRESS, GameSettings.GAMEPAD_2_RIGHT_CHECK_RELEASE, GameSettings.GAMEPAD_2_RIGHT_CHECK_CLICK);
+            buttons[4] = new GamePadInput(GameSettings.GAMEPAD_2_A_INDEX, GameSettings.GAMEPAD_2_A_VALUE_ON, GameSettings.GAMEPAD_2_A_VALUE_OFF,                GamePadButton.BtnA, GameSettings.GAMEPAD_2_A_CHECK_PRESS, GameSettings.GAMEPAD_2_A_CHECK_RELEASE, GameSettings.GAMEPAD_2_A_CHECK_CLICK);
+            buttons[5] = new GamePadInput(GameSettings.GAMEPAD_2_B_INDEX, GameSettings.GAMEPAD_2_B_VALUE_ON, GameSettings.GAMEPAD_2_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.GAMEPAD_2_B_CHECK_PRESS, GameSettings.GAMEPAD_2_B_CHECK_RELEASE, GameSettings.GAMEPAD_2_B_CHECK_CLICK);
+            
+        }
+        Prep();
+    }
+    
     /**
      * A constructor for the GpioHub that takes an array of GpioPin instances which is used to set the buttons class field.
      * 

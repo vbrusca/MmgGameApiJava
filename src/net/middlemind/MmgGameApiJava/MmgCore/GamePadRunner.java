@@ -128,75 +128,75 @@ public class GamePadRunner implements Runnable {
             //check dpad pressed state
             if(gamePadHub.GetDownPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GAMEPAD);
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadDown);
                 }
             }
             
             if(gamePadHub.GetUpPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.UP_GAMEPAD);                    
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadUp);                    
                 }
             }
             
             if(gamePadHub.GetLeftPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.LEFT_GAMEPAD);                    
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadLeft);                    
                 }
             }
             
             if(gamePadHub.GetRightPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.RIGHT_GAMEPAD);                    
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadRight);                    
                 }
             }
 
             //check dpad released state
             if(gamePadHub.GetDownReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GAMEPAD);
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadDown);
                 }
             }
             
             if(gamePadHub.GetUpReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.UP_GAMEPAD);                    
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadUp);                    
                 }
             }
             
             if(gamePadHub.GetLeftReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GAMEPAD);                    
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadLeft);                    
                 }
             }
             
             if(gamePadHub.GetRightReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GAMEPAD);                    
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadRight);                    
                 }
             }            
             
             //check dpad clicked state
             if(gamePadHub.GetDownClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GAMEPAD);
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadDown);
                 }
             }
             
             if(gamePadHub.GetUpClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.UP_GAMEPAD);                    
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadUp);                    
                 }
             }
             
             if(gamePadHub.GetLeftClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GAMEPAD);                    
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadLeft);                    
                 }
             }
             
             if(gamePadHub.GetRightClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GAMEPAD);                    
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadRight);                    
                 }
             }            
             
@@ -204,39 +204,39 @@ public class GamePadRunner implements Runnable {
             //check a,b pressed state
             if(gamePadHub.GetAPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessAPress(GameSettings.SRC_GAMEPAD);
+                    gamePad.ProcessAPress(gamePadHub.gamePadSrc);
                 }
             }
             
             if(gamePadHub.GetBPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessBPress(GameSettings.SRC_GAMEPAD);
+                    gamePad.ProcessBPress(gamePadHub.gamePadSrc);
                 }
             }
 
             //check a,b released state            
             if(gamePadHub.GetAReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessARelease(GameSettings.SRC_GAMEPAD);
+                    gamePad.ProcessARelease(gamePadHub.gamePadSrc);
                 }
             }
             
             if(gamePadHub.GetBReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessBRelease(GameSettings.SRC_GAMEPAD);
+                    gamePad.ProcessBRelease(gamePadHub.gamePadSrc);
                 }
             }            
             
             //check a,b clicked state            
             if(gamePadHub.GetAClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessAClick(GameSettings.SRC_GAMEPAD);
+                    gamePad.ProcessAClick(gamePadHub.gamePadSrc);
                 }
             }
             
             if(gamePadHub.GetBClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessBClick(GameSettings.SRC_GAMEPAD);
+                    gamePad.ProcessBClick(gamePadHub.gamePadSrc);
                 }
             }
             
