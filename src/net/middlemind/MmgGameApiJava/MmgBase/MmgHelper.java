@@ -5,15 +5,19 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Hashtable;
 import java.util.Random;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry.CfgEntryType;
 
 /**
  * Class that provides high level helper methods. Created by Middlemind Games
@@ -30,7 +34,85 @@ public class MmgHelper {
     public static boolean SND_CACHE_ON = true;    
     private static Random rando = new Random(System.currentTimeMillis());    
 
-    public static Hashtable<String, MmgCfgFileEntry> LoadClassConfigFile(String file) {
+    public static boolean WriteClassConfigFile(String file, MmgCfgFileEntry[] data) {
+        boolean ret = false;
+        
+        try {
+            if(data != null && data.length > 0) {
+                MmgCfgFileEntry cfe = null;
+                File f = new File(file);                        
+                FileWriter fw = new FileWriter(file, false);
+                BufferedWriter bw = new BufferedWriter(fw);
+                int len = data.length;
+                
+                for(int i = 0; i < len; i++) {
+                    cfe = data[i];
+                    bw.write(cfe.ToString());
+                    bw.newLine();
+                }
+
+                try {
+                    bw.close();
+                }catch(Exception ex) {
+                    
+                }                
+                
+                ret = true;
+                
+            } else {
+                ret = false;
+                
+            }
+            
+        }catch(Exception e) {
+            ret = false;
+            wrErr(e);
+            
+        }
+        
+        return ret;
+    }    
+    
+    public static boolean WriteClassConfigFile(String file, Hashtable<String, MmgCfgFileEntry> data) {
+        boolean ret = false;
+        
+        try {
+            if(data != null && data.size() > 0) {
+                MmgCfgFileEntry cfe = null;
+                File f = new File(file);                        
+                FileWriter fw = new FileWriter(file, false);
+                BufferedWriter bw = new BufferedWriter(fw);
+                Set<String> keys = data.keySet();
+                
+                for(String key : keys) {
+                    cfe = data.get(key);
+                    bw.write(cfe.ToString());
+                    bw.newLine();
+                }
+
+                try {
+                    bw.close();
+                }catch(Exception ex) {
+                    
+                }                
+                
+                ret = true;
+                
+            } else {
+                ret = false;
+                
+            }
+            
+        }catch(Exception e) {
+            ret = false;
+            wrErr(e);
+            
+        }
+        
+        return ret;
+    }    
+    
+    public static Hashtable<String, MmgCfgFileEntry> ReadClassConfigFile(String file) {
         Hashtable<String, MmgCfgFileEntry> ret = new Hashtable();
         
         try {
@@ -55,18 +137,28 @@ public class MmgHelper {
                         if(line.indexOf("=") != -1) {
                             data = line.split("=");
                             if(data.length == 2) {
+                                cfe.cfgType = CfgEntryType.TYPE_DOUBLE;
                                 cfe.number = new Double(data[1]);
+                                cfe.name = data[0];
                                 ret.put(data[0], cfe);
                             }
                         } else if(line.indexOf("->") != -1) {
                             data = line.split("->");
                             if(data.length == 2) {
+                                cfe.cfgType = CfgEntryType.TYPE_STRING;                                
                                 cfe.string = data[1];
+                                cfe.name = data[0];                                
                                 ret.put(data[0], cfe);
                             }                            
                         }
                     }
                     line = br.readLine();
+                }
+                
+                try {
+                    br.close();
+                }catch(Exception ex) {
+                    
                 }
             }
         }catch(Exception e) {

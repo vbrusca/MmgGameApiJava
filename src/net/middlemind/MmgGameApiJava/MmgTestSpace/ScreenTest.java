@@ -259,13 +259,13 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     }
     
     @Override
-    public boolean ProcessAClick() {
+    public boolean ProcessAClick(int src) {
         Helper.wr("ScreenTest.ProcessAClick");
         return true;
     }
     
     @Override
-    public boolean ProcessBClick() {
+    public boolean ProcessBClick(int src) {
         Helper.wr("ScreenTest.ProcessBClick");        
         return true;
     }

@@ -766,27 +766,27 @@ public class MmgGameScreen extends MmgObj {
         return false;
     }    
     
-    public boolean ProcessAPress() {
+    public boolean ProcessAPress(int src) {
         return true;
     }    
     
-    public boolean ProcessARelease() {
+    public boolean ProcessARelease(int src) {
         return true;
     }    
     
-    public boolean ProcessAClick() {
+    public boolean ProcessAClick(int src) {
         return true;
     }
     
-    public boolean ProcessBPress() {
+    public boolean ProcessBPress(int src) {
         return true;
     }    
     
-    public boolean ProcessBRelease() {
+    public boolean ProcessBRelease(int src) {
         return true;
     }    
     
-    public boolean ProcessBClick() {
+    public boolean ProcessBClick(int src) {
         return true;
     }
     

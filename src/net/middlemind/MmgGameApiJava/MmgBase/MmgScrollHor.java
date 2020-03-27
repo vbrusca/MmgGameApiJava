@@ -217,7 +217,7 @@ public class MmgScrollHor extends MmgObj {
     }
          
     public boolean ProcessDpadRelease(int dir) {
-        if(scrollBarHorVisible && dir == GameSettings.LEFT) {
+        if(scrollBarHorVisible && dir == GameSettings.LEFT_KEYBOARD) {
             MmgDebug.wr("ProcessDpadRelease.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
@@ -234,7 +234,7 @@ public class MmgScrollHor extends MmgObj {
             isDirty = true;
             return true;
             
-        } else if(scrollBarHorVisible && dir == GameSettings.RIGHT) {
+        } else if(scrollBarHorVisible && dir == GameSettings.RIGHT_KEYBOARD) {
             MmgDebug.wr("ProcessDpadRelease.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderWidth) {
                 offsetXScrollBarSlider += intervalX;

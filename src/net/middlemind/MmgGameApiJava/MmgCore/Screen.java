@@ -83,7 +83,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
 
     @Override
-    public boolean ProcessAClick() {
+    public boolean ProcessAClick(int src) {
         return true;
     }
     

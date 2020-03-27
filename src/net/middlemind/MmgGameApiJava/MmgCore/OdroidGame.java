@@ -105,28 +105,33 @@ public class OdroidGame {
      * A static method that loads native libraries that allow access to gamepads and controllers.
      */
     public static void LoadNativeLibraries() {
-        String OS = System.getProperty("os.name").toLowerCase();
-        Helper.wr("Found platform: " + OS);
-		
-        if (isWindows(OS)) {
-            Helper.wr("This is Windows");
+        try {
+            String OS = System.getProperty("os.name").toLowerCase();
+            Helper.wr("Found platform: " + OS);
+
+            if (isWindows(OS)) {
+                Helper.wr("This is Windows");
+
+            } else if (isMac(OS)) {
+                Helper.wr("This is Mac");
+                Helper.wr("LibPath: " + System.getProperty("java.library.path"));
+                //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
+                System.loadLibrary("jinput-osx");
+
+            } else if (isUnix(OS)) {
+                Helper.wr("This is Unix or Linux");
+
+            } else if (isSolaris(OS)) {
+                Helper.wr("This is Solaris");
+
+            } else {
+                Helper.wr("Your OS is not supported!!");
+
+            }
             
-        } else if (isMac(OS)) {
-            Helper.wr("This is Mac");
-            Helper.wr("LibPath: " + System.getProperty("java.library.path"));
-            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
-            System.loadLibrary("jinput-osx");
-            
-        } else if (isUnix(OS)) {
-            Helper.wr("This is Unix or Linux");
-            
-        } else if (isSolaris(OS)) {
-            Helper.wr("This is Solaris");
-            
-        } else {
-            Helper.wr("Your OS is not supported!!");
-            
-        }
+        }catch(Exception e) {
+            Helper.wrErr(e);
+        }            
     }
     
     /**

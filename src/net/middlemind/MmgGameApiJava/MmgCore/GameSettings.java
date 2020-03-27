@@ -8,10 +8,23 @@ package net.middlemind.MmgGameApiJava.MmgCore;
  * @author Victor G. Brusca
  */
 public class GameSettings {
-    public static int DOWN = 0;
-    public static int UP = 1;
-    public static int LEFT = 2;
-    public static int RIGHT = 3;
+    public static int SRC_KEYBOARD = 0;
+    public static int DOWN_KEYBOARD = 0;
+    public static int UP_KEYBOARD = 1;
+    public static int LEFT_KEYBOARD = 2;
+    public static int RIGHT_KEYBOARD = 3;
+    
+    public static int SRC_GPIO = 1;
+    public static int DOWN_GPIO = 4;
+    public static int UP_GPIO = 5;
+    public static int LEFT_GPIO = 6;
+    public static int RIGHT_GPIO = 7;
+    
+    public static int SRC_GAMEPAD = 1;    
+    public static int DOWN_GAMEPAD = 8;
+    public static int UP_GAMEPAD = 9;
+    public static int LEFT_GAMEPAD = 10;
+    public static int RIGHT_GAMEPAD = 11;    
     
     public static boolean SND_CACHE_ON = true;
     public static String SND_PREFIX = "sounds_";    
@@ -35,33 +48,83 @@ public class GameSettings {
     public static String DEVELOPER_COMPANY = "Unknown";
     public static String TITLE = "Unknown";
     
-    public static int GpioPinBtnUp = 1;
-    public static boolean BtnUpCheckPress = true;
-    public static boolean BtnUpCheckRelease = true;
-    public static boolean BtnUpCheckClick = false;
+    //GPIO gamepad input settings
+    //On/Off values are always 0 and 1 so no mapping is needed for these values.
+    public static boolean GPIO_GAMEPAD_ON = false;
+    
+    public static int GPIO_PIN_BTN_UP = 1;
+    public static boolean BTN_UP_CHECK_PRESS = true;
+    public static boolean BTN_UP_CHECK_RELEASE = true;
+    public static boolean BTN_UP_CHECK_CLICK = true;
 
-    public static int GpioPinBtnDown = 2;
-    public static boolean BtnDownCheckPress = true;
-    public static boolean BtnDownCheckRelease = true;
-    public static boolean BtnDownCheckClick = false;    
+    public static int GPIO_PIN_BTN_DOWN = 2;
+    public static boolean BTN_DOWN_CHECK_PRESS = true;
+    public static boolean BTN_DOWN_CHECK_RELEASE = true;
+    public static boolean BTN_DOWN_CHECK_CLICK = true;    
     
-    public static int GpioPinBtnLeft = 3;
-    public static boolean BtnLeftCheckPress = true;
-    public static boolean BtnLeftCheckRelease = true;
-    public static boolean BtnLeftCheckClick = false;        
+    public static int GPIO_PIN_BTN_LEFT = 3;
+    public static boolean BTN_LEFT_CHECK_PRESS = true;
+    public static boolean BTN_LEFT_CHECK_RELEASE = true;
+    public static boolean BTN_LEFT_CHECK_CLICK = true;        
     
-    public static int GpioPinBtnRight = 4;
-    public static boolean BtnRightCheckPress = true;
-    public static boolean BtnRightCheckRelease = true;
-    public static boolean BtnRightCheckClick = false;            
+    public static int GPIO_PIN_BTN_RIGHT = 4;
+    public static boolean BTN_RIGHT_CHECK_PRESS = true;
+    public static boolean BTN_RIGHT_CHECK_RELEASE = true;
+    public static boolean BTN_RIGHT_CHECK_CLICK = true;            
     
-    public static int GpioPinBtnA = 5;
-    public static boolean BtnACheckPress = false;
-    public static boolean BtnACheckRelease = false;
-    public static boolean BtnACheckClick = true;                
+    public static int GPIO_PIN_BTN_A = 5;
+    public static boolean BTN_A_CHECK_PRESS = true;
+    public static boolean BTN_A_CHECK_RELEASE = true;
+    public static boolean BTN_A_CHECK_CLICK = true;
     
-    public static int GpioPinBtnB = 6;
-    public static boolean BtnBCheckPress = false;
-    public static boolean BtnBCheckRelease = false;
-    public static boolean BtnBCheckClick = true;                    
+    public static int GPIO_PIN_BTN_B = 6;
+    public static boolean BTN_B_CHECK_PRESS = true;
+    public static boolean BTN_B_CHECK_RELEASE = true;
+    public static boolean BTN_B_CHECK_CLICK = true;
+    
+    //USB gamepad input settings
+    public static boolean USB_GAMEPAD_ON = true;
+    public static int USB_GAMEPAD_INDEX = 0;    
+    
+    public static int COMPONENT_UP_INDEX = 15;
+    public static float COMPONENT_UP_VALUE_ON = 0.25f;
+    public static float COMPONENT_UP_VALUE_OFF = 0.00f;
+    public static boolean COMPONENT_UP_CHECK_PRESS = true;
+    public static boolean COMPONENT_UP_CHECK_RELEASE = true;
+    public static boolean COMPONENT_UP_CHECK_CLICK = true;
+
+    public static int COMPONENT_DOWN_INDEX = 15;
+    public static float COMPONENT_DOWN_VALUE_ON = 0.75f;
+    public static float COMPONENT_DOWN_VALUE_OFF = 0.00f;
+    public static boolean COMPONENT_DOWN_CHECK_PRESS = true;
+    public static boolean COMPONENT_DOWN_CHECK_RELEASE = true;
+    public static boolean COMPONENT_DOWN_CHECK_CLICK = true;
+    
+    public static int COMPONENT_LEFT_INDEX = 15;
+    public static float COMPONENT_LEFT_VALUE_ON = 1.00f;
+    public static float COMPONENT_LEFT_VALUE_OFF = 0.00f;
+    public static boolean COMPONENT_LEFT_CHECK_PRESS = true;
+    public static boolean COMPONENT_LEFT_CHECK_RELEASE = true;
+    public static boolean COMPONENT_LEFT_CHECK_CLICK = true;
+    
+    public static int COMPONENT_RIGHT_INDEX = 15;
+    public static float COMPONENT_RIGHT_VALUE_ON = 0.50f;
+    public static float COMPONENT_RIGHT_VALUE_OFF = 0.00f;
+    public static boolean COMPONENT_RIGHT_CHECK_PRESS = true;
+    public static boolean COMPONENT_RIGHT_CHECK_RELEASE = true;
+    public static boolean COMPONENT_RIGHT_CHECK_CLICK = true;
+    
+    public static int COMPONENT_A_INDEX = 0;
+    public static float COMPONENT_A_VALUE_ON = 1.00f;
+    public static float COMPONENT_A_VALUE_OFF = 0.00f;    
+    public static boolean COMPONENT_A_CHECK_PRESS = true;
+    public static boolean COMPONENT_A_CHECK_RELEASE = true;
+    public static boolean COMPONENT_A_CHECK_CLICK = true;
+    
+    public static int COMPONENT_B_INDEX = 1;
+    public static float COMPONENT_B_VALUE_ON = 1.00f;
+    public static float COMPONENT_B_VALUE_OFF = 0.00f;
+    public static boolean COMPONENT_B_CHECK_PRESS = true;
+    public static boolean COMPONENT_B_CHECK_RELEASE = true;
+    public static boolean COMPONENT_B_CHECK_CLICK = true;
 }

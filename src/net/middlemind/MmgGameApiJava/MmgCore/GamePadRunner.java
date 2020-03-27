@@ -3,17 +3,17 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import java.io.IOException;
 
 /**
- * The GpioHubRunner class is a threaded class that is used to run a GpioHub and determine the state of each
- * of the GPIO pins at interval.
+ * The GamePadRunner class is a threaded class that is used to connect to a USB GamePad via JInput and determine the state of each
+ * of the target buttons at interval.
  * 
  * @author Victor G. Brusca, Middlemind Games
  * 01/05/2020
  */
-public class GpioHubRunner implements Runnable {
+public class GamePadRunner implements Runnable {
     /**
      * A reference to the GpioHub to the GpioHubRunner will monitor.
      */
-    public GpioHub gpioHub;
+    public GamePadHub gamePadHub;
     
     /**
      * The interval in ms that the GpioHubRunner will update the state of the GPIO pins.
@@ -54,23 +54,23 @@ public class GpioHubRunner implements Runnable {
      * @param intervalMs        A time interval in ms to update the state of the GpioHub's GPIO pins.
      * @param gamePadSimple     A class that implements the GamePadSimple interface used for calling button event callback methods.
      */
-    public GpioHubRunner(GpioHub hub, long intervalMs, GamePadSimple gamePadSimple) {
-        gpioHub = hub;
+    public GamePadRunner(GamePadHub hub, long intervalMs, GamePadSimple gamePadSimple) {
+        gamePadHub = hub;
         pollingIntervalMs = intervalMs;
         gamePad = gamePadSimple;
         
-        if(gpioHub == null) {
-            System.err.println("GpioHub is null! Turning off GpioHubRunner.");
+        if(gamePadHub == null) {
+            System.err.println("GamePadHub is null! Turning off GamePadHubRunner.");
             running = false;            
         }
         
-        if(gpioHub != null && gpioHub.IsPrepped() == false) {
-            System.err.println("GpioHub has not had its pins prepped! Turning off GpioHubRunner.");
+        if(gamePadHub != null && gamePadHub.IsPrepped() == false) {
+            System.err.println("GamePadHub has not had its pins prepped! Turning off GamePadHubRunner.");
             running = false;
         }
         
         if(gamePad == null) {
-            System.err.println("GamePad is null! Turning off GpioHubRunner.");
+            System.err.println("GamePad is null! Turning off GamePadHubRunner.");
         }
     }
 
@@ -115,10 +115,10 @@ public class GpioHubRunner implements Runnable {
      * interface. The last step in the process is to call the CleanUp method of the GpioHub class.
      */
     @SuppressWarnings("CallToPrintStackTrace")
-    public void PollGpio() {
-        if(gpioHub != null && gpioHub.IsPrepped() && gpioHub.IsEnabled()) {
+    public void PollGamePad() {
+        if(gamePadHub != null && gamePadHub.IsPrepped() && gamePadHub.IsEnabled()) {
             try {
-                gpioHub.GetState();
+                gamePadHub.GetState();
             } catch (IOException e) {
                 e.printStackTrace();
                 running = false;
@@ -126,121 +126,121 @@ public class GpioHubRunner implements Runnable {
 
             //down, up, left, right
             //check dpad pressed state
-            if(gpioHub.GetDownPressed()) {
+            if(gamePadHub.GetDownPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GPIO);
+                    gamePad.ProcessDpadPress(GameSettings.DOWN_GAMEPAD);
                 }
             }
             
-            if(gpioHub.GetUpPressed()) {
+            if(gamePadHub.GetUpPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.UP_GPIO);                    
+                    gamePad.ProcessDpadPress(GameSettings.UP_GAMEPAD);                    
                 }
             }
             
-            if(gpioHub.GetLeftPressed()) {
+            if(gamePadHub.GetLeftPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.LEFT_GPIO);                    
+                    gamePad.ProcessDpadPress(GameSettings.LEFT_GAMEPAD);                    
                 }
             }
             
-            if(gpioHub.GetRightPressed()) {
+            if(gamePadHub.GetRightPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.RIGHT_GPIO);                    
+                    gamePad.ProcessDpadPress(GameSettings.RIGHT_GAMEPAD);                    
                 }
             }
 
             //check dpad released state
-            if(gpioHub.GetDownReleased()) {
+            if(gamePadHub.GetDownReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GPIO);
+                    gamePad.ProcessDpadPress(GameSettings.DOWN_GAMEPAD);
                 }
             }
             
-            if(gpioHub.GetUpReleased()) {
+            if(gamePadHub.GetUpReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.UP_GPIO);                    
+                    gamePad.ProcessDpadRelease(GameSettings.UP_GAMEPAD);                    
                 }
             }
             
-            if(gpioHub.GetLeftReleased()) {
+            if(gamePadHub.GetLeftReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GPIO);                    
+                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GAMEPAD);                    
                 }
             }
             
-            if(gpioHub.GetRightReleased()) {
+            if(gamePadHub.GetRightReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GPIO);                    
+                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GAMEPAD);                    
                 }
             }            
             
             //check dpad clicked state
-            if(gpioHub.GetDownClicked()) {
+            if(gamePadHub.GetDownClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GPIO);
+                    gamePad.ProcessDpadPress(GameSettings.DOWN_GAMEPAD);
                 }
             }
             
-            if(gpioHub.GetUpClicked()) {
+            if(gamePadHub.GetUpClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.UP_GPIO);                    
+                    gamePad.ProcessDpadRelease(GameSettings.UP_GAMEPAD);                    
                 }
             }
             
-            if(gpioHub.GetLeftClicked()) {
+            if(gamePadHub.GetLeftClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GPIO);                    
+                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GAMEPAD);                    
                 }
             }
             
-            if(gpioHub.GetRightClicked()) {
+            if(gamePadHub.GetRightClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GPIO);                    
+                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GAMEPAD);                    
                 }
             }            
             
             //a, b
             //check a,b pressed state
-            if(gpioHub.GetAPressed()) {
+            if(gamePadHub.GetAPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessAPress(GameSettings.SRC_GPIO);
+                    gamePad.ProcessAPress(GameSettings.SRC_GAMEPAD);
                 }
             }
             
-            if(gpioHub.GetBPressed()) {
+            if(gamePadHub.GetBPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessBPress(GameSettings.SRC_GPIO);
+                    gamePad.ProcessBPress(GameSettings.SRC_GAMEPAD);
                 }
             }
 
             //check a,b released state            
-            if(gpioHub.GetAReleased()) {
+            if(gamePadHub.GetAReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessARelease(GameSettings.SRC_GPIO);
+                    gamePad.ProcessARelease(GameSettings.SRC_GAMEPAD);
                 }
             }
             
-            if(gpioHub.GetBReleased()) {
+            if(gamePadHub.GetBReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessBRelease(GameSettings.SRC_GPIO);
+                    gamePad.ProcessBRelease(GameSettings.SRC_GAMEPAD);
                 }
             }            
             
             //check a,b clicked state            
-            if(gpioHub.GetAClicked()) {
+            if(gamePadHub.GetAClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessAClick(GameSettings.SRC_GPIO);
+                    gamePad.ProcessAClick(GameSettings.SRC_GAMEPAD);
                 }
             }
             
-            if(gpioHub.GetBClicked()) {
+            if(gamePadHub.GetBClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessBClick(GameSettings.SRC_GPIO);
+                    gamePad.ProcessBClick(GameSettings.SRC_GAMEPAD);
                 }
             }
             
-            gpioHub.CleanUp();
+            gamePadHub.CleanUp();
         }        
     }
     
@@ -252,7 +252,7 @@ public class GpioHubRunner implements Runnable {
     public void run() {       
         while(running == true) {
             start = System.currentTimeMillis();
-            PollGpio();
+            PollGamePad();
             stop = System.currentTimeMillis();
             
             diff = stop - start;                    //Total time in ms to get gpio data

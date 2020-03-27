@@ -343,7 +343,7 @@ public class MmgScrollHorVert extends MmgObj {
     }
          
     public boolean ProcessDpadRelease(int dir) {
-        if(scrollBarHorVisible && dir == GameSettings.LEFT) {
+        if(scrollBarHorVisible && dir == GameSettings.LEFT_KEYBOARD) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
@@ -360,7 +360,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             return true;
             
-        } else if(scrollBarHorVisible && dir == GameSettings.RIGHT) {
+        } else if(scrollBarHorVisible && dir == GameSettings.RIGHT_KEYBOARD) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
                 offsetXScrollBarSlider += intervalX;
@@ -377,7 +377,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;            
             return true;
             
-        } else if(scrollBarVertVisible && dir == GameSettings.UP) {
+        } else if(scrollBarVertVisible && dir == GameSettings.UP_KEYBOARD) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
                 offsetYScrollBarSlider -= intervalY;
@@ -394,7 +394,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             return true;
             
-        } else if(scrollBarVertVisible && dir == GameSettings.DOWN) {
+        } else if(scrollBarVertVisible && dir == GameSettings.DOWN_KEYBOARD) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
             if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
                 offsetYScrollBarSlider += intervalY;

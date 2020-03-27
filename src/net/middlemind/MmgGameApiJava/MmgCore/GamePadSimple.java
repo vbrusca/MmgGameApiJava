@@ -36,30 +36,30 @@ public interface GamePadSimple {
     /**
      * The ProcessAPress method is designed to handle A button press events.
      */
-    public void ProcessAPress();
+    public void ProcessAPress(int src);
     
     /**
      * The ProcessARelease method is designed to handle A button release events.
      */
-    public void ProcessARelease();
+    public void ProcessARelease(int src);
     
     /**
      * The ProcessAClick method is designed to handle A button click events.
      */
-    public void ProcessAClick();
+    public void ProcessAClick(int src);
     
     /**
      * The ProcessBPress method is designed to handle B button press events.
      */
-    public void ProcessBPress();
+    public void ProcessBPress(int src);
     
     /**
      * The ProcessBRelease method is designed to handle B button release events.
      */
-    public void ProcessBRelease();
+    public void ProcessBRelease(int src);
     
     /**
      * The ProcessBClick method is designed to handle B button click events.
      */
-    public void ProcessBClick();
+    public void ProcessBClick(int src);
 }

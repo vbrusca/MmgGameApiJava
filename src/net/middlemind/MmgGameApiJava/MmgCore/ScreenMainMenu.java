@@ -112,7 +112,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         Helper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
         Helper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
 
-        classConfig = MmgHelper.LoadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_main_menu.txt");
+        classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_main_menu.txt");
         
         MmgBmp tB = null;
         MmgPen p;
@@ -423,7 +423,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     }
 
     @Override
-    public boolean ProcessAClick() {
+    public boolean ProcessAClick(int src) {
         int idx = GetMenuIdx();
         MmgMenuItem mmi;
         mmi = (MmgMenuItem) menu.GetContainer().get(idx);
@@ -438,13 +438,13 @@ public class ScreenMainMenu extends MmgGameScreen {
     
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        if (dir == GameSettings.LEFT || dir == GameSettings.RIGHT) {
+        if (dir == GameSettings.LEFT_KEYBOARD || dir == GameSettings.RIGHT_KEYBOARD) {
             return false;
         }
 
-        if (dir == GameSettings.UP) {            
+        if (dir == GameSettings.UP_KEYBOARD) {            
             MoveMenuSelUp();
-        } else if (dir == GameSettings.DOWN) {
+        } else if (dir == GameSettings.DOWN_KEYBOARD) {
             MoveMenuSelDown();
         }
 

@@ -420,7 +420,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == ' ' || e.getKeyChar() == '\n') {
-                    ProcessAClick();
+                    ProcessAClick(GameSettings.SRC_KEYBOARD);
                     
                 } else if (e.getKeyChar() == '+') {
                     //increase speed
@@ -437,10 +437,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     //clear game flags
                     
                 } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
-                    ProcessAClick();
+                    ProcessAClick(GameSettings.SRC_KEYBOARD);
                     
                 } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
-                    ProcessBClick();
+                    ProcessBClick(GameSettings.SRC_KEYBOARD);
                     
                 } else if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
                     ProcessDebugClick();
@@ -456,16 +456,16 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
                     lastKeyPressEvent = System.currentTimeMillis();
                     if (e.getKeyCode() == 40) {
-                        ProcessDpadPress(GameSettings.DOWN);
+                        ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 38) {
-                        ProcessDpadPress(GameSettings.UP);
+                        ProcessDpadPress(GameSettings.UP_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 37) {
-                        ProcessDpadPress(GameSettings.LEFT);
+                        ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 39) {
-                        ProcessDpadPress(GameSettings.RIGHT);
+                        ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
                         
                     } else {
                         ProcessKeyPress(e.getKeyChar());
@@ -478,16 +478,16 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 //Ignore Enter and Space bar releases, handle them as A and B button clicks.                
                 if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
                     if (e.getKeyCode() == 40) {
-                        ProcessDpadRelease(GameSettings.DOWN);
+                        ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 38) {
-                        ProcessDpadRelease(GameSettings.UP);
+                        ProcessDpadRelease(GameSettings.UP_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 37) {
-                        ProcessDpadRelease(GameSettings.LEFT);
+                        ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 39) {
-                        ProcessDpadRelease(GameSettings.RIGHT);
+                        ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
                         
                     } else {
                         ProcessKeyRelease(e.getKeyChar());
@@ -564,8 +564,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * implementation, currentScreen.
      */
     @Override
-    public void ProcessAPress() {
-        currentScreen.ProcessAPress();
+    public void ProcessAPress(int src) {
+        currentScreen.ProcessAPress(src);
     }
 
     /**
@@ -573,8 +573,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * implementation, currentScreen.
      */    
     @Override
-    public void ProcessARelease() {
-        currentScreen.ProcessARelease();
+    public void ProcessARelease(int src) {
+        currentScreen.ProcessARelease(src);
     }
 
     /**
@@ -582,8 +582,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * implementation, currentScreen.
      */    
     @Override    
-    public void ProcessAClick() {
-        currentScreen.ProcessAClick();
+    public void ProcessAClick(int src) {
+        currentScreen.ProcessAClick(src);
     }    
     
     /**
@@ -591,8 +591,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * implementation, currentScreen.
      */    
     @Override
-    public void ProcessBPress() {
-        currentScreen.ProcessBPress();
+    public void ProcessBPress(int src) {
+        currentScreen.ProcessBPress(src);
     }
 
     /**
@@ -600,8 +600,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * implementation, currentScreen.
      */        
     @Override
-    public void ProcessBRelease() {
-        currentScreen.ProcessBRelease();
+    public void ProcessBRelease(int src) {
+        currentScreen.ProcessBRelease(src);
     }
     
     /**
@@ -609,8 +609,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * implementation, currentScreen.
      */    
     @Override    
-    public void ProcessBClick() {
-        currentScreen.ProcessBClick();
+    public void ProcessBClick(int src) {
+        currentScreen.ProcessBClick(src);
     }
 
     /**

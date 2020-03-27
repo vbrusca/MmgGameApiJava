@@ -1,76 +1,55 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
-import net.middlemind.MmgGameApiJava.MmgCore.GpioPin.GpioButton;
-import java.io.File;
 import java.io.IOException;
+import net.java.games.input.Component;
+import net.java.games.input.Controller;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePadInput.GamePadButton;
 
 /**
- * The GpioHub class is used to provide access to up to 6 GPIO pins, most likely on a Linux system.
- * The class tracks the state of the pins to provide press, release, click information on the GPIO pins.
+ * The GamePadHub class is used to provide access to up to 6 buttons from a USB game pad.
  * 
  * @author Victor G. Brusca, Middlemind Games
  * 01/05/202
  */
-public class GpioHub {
+public class GamePadHub {
     
-    public static int LEN = 6;    
+    public static int LEN = 6;
     
     /**
-     * A static integer for tracking the UP button GPIO pin in the array of pins.
+     * A static integer for tracking the UP button on the game pad.
      */
     public static int UP = 0;
     
     /**
-     * A static integer for tracking the DOWN button GPIO pin in the array of pins.
+     * A static integer for tracking the DOWN button on the game pad.
      */
     public static int DOWN = 1;
     
     /**
-     * A static integer for tracking the LEFT button GPIO pin in the array of pins.
+     * A static integer for tracking the LEFT button on the game pad.
      */
     public static int LEFT = 2;
     
     /**
-     * A static integer for tracking the RIGHT button GPIO pin in the array of pins.
+     * A static integer for tracking the RIGHT button on the game pad.
      */
     public static int RIGHT = 3;
     
     /**
-     * A static integer for tracking the A button GPIO pin in the array of pins.
+     * A static integer for tracking the A button on the game pad.
      */
     public static int A = 4;
     
     /**
-     * A static integer for tracking the B button GPIO pin in the array of pins.
+     * A static integer for tracking the B button on the game pad.
      */
     public static int B = 5;
-    
+        
     /**
-     * A quick lookup of the integer value of ASCII character 0. When checking sys/class/gpio value files.
+     * An array of GamePadInput instances used to indicate dpad, A button, and B button input.
      */
-    public static int char0toInt = 48;
-    
-    /**
-     * A quick lookup of the integer value of ASCII character 1. When checking sys/class/gpio value files.
-     */    
-    public static int char1toInt = 49;
-    
-    /**
-     * An array of GpioPin instances used to indicate dpad, A button, and B button input.
-     */
-    public GpioPin[] buttons = null;
-    
-    /**
-     * An instance of the Runtime Java class that provides access to the environment the Java application is running on.
-     * In the GpioHub class this class field allows access to system calls to monitor GPIO pins.
-     */
-    public Runtime runTime = null;
-    
-    /**
-     * A temporary integer value used to store the results from a sys/class/gpio  value file read.
-     */
-    public int tmp;
-    
+    public GamePadInput[] buttons = null;
+            
     /**
      * A boolean that indicates if the GpioHub has been properly prepared.
      */
@@ -79,43 +58,40 @@ public class GpioHub {
     /**
      * A boolean that indicates if GPIO input is enabled.
      */
-    public boolean gpioEnabled = false;
-
+    public boolean gamepadEnabled = false;
+          
+    /**
+     * A JInput controller to read game pad data from.
+     */
+    public Controller gamepad = null;
+    
+    /**
+     * An array of components supported by this game pad.
+     */
+    public Component[] components = null;
+    
     private int i;
     private int j;    
     private int k;    
-    private GpioPin btn1;
-    private GpioPin btn2;    
-    private GpioPin btn3;    
+    private GamePadInput btn1;
+    private GamePadInput btn2;    
+    private GamePadInput btn3;
     
     /**
      * A default constructor for the GpioHub class that checks to see if GPIO is supported on the system.
      * Creates a default array of 6 GpioPin instances using values from the GameSettings class to set the GPIO pin numbers
      * and the events that should be tracked.
      */
-    public GpioHub() {
-        try {
-            File f = new File("/sys/class/gpio");
-            if(!f.isDirectory() || !f.exists()) {
-                System.out.println("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
-                gpioEnabled = false;
-            } else {
-                System.out.println("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
-                gpioEnabled = true;
-            }
-            
-        }catch(Exception e) {
-            Helper.wrErr(e);
-        }
-               
-        buttons = new GpioPin[6];
-        buttons[0] = new GpioPin(GameSettings.GPIO_PIN_BTN_UP, true, false, GpioButton.BtnUp, GameSettings.BTN_UP_CHECK_PRESS, GameSettings.BTN_UP_CHECK_RELEASE, GameSettings.BTN_UP_CHECK_CLICK);
-        buttons[1] = new GpioPin(GameSettings.GPIO_PIN_BTN_DOWN, true, false, GpioButton.BtnDown, GameSettings.BTN_DOWN_CHECK_PRESS, GameSettings.BTN_DOWN_CHECK_RELEASE, GameSettings.BTN_DOWN_CHECK_CLICK);
-        buttons[2] = new GpioPin(GameSettings.GPIO_PIN_BTN_LEFT, true, false, GpioButton.BtnLeft, GameSettings.BTN_LEFT_CHECK_PRESS, GameSettings.BTN_LEFT_CHECK_RELEASE, GameSettings.BTN_LEFT_CHECK_CLICK);
-        buttons[3] = new GpioPin(GameSettings.GPIO_PIN_BTN_RIGHT, true, false, GpioButton.BtnRight, GameSettings.BTN_RIGHT_CHECK_PRESS, GameSettings.BTN_RIGHT_CHECK_RELEASE, GameSettings.BTN_RIGHT_CHECK_CLICK);
-        buttons[4] = new GpioPin(GameSettings.GPIO_PIN_BTN_A, true, false, GpioButton.BtnA, GameSettings.BTN_A_CHECK_PRESS, GameSettings.BTN_A_CHECK_RELEASE, GameSettings.BTN_A_CHECK_CLICK);
-        buttons[5] = new GpioPin(GameSettings.GPIO_PIN_BTN_B, true, false, GpioButton.BtnB, GameSettings.BTN_B_CHECK_PRESS, GameSettings.BTN_B_CHECK_RELEASE, GameSettings.BTN_B_CHECK_CLICK);
-        runTime = Runtime.getRuntime();        
+    public GamePadHub(Controller GamePad) {               
+        gamepad = GamePad;
+        buttons = new GamePadInput[6];
+        buttons[0] = new GamePadInput(GameSettings.COMPONENT_UP_INDEX, GameSettings.COMPONENT_UP_VALUE_ON, GameSettings.COMPONENT_UP_VALUE_OFF,             GamePadButton.BtnUp, GameSettings.COMPONENT_UP_CHECK_PRESS, GameSettings.COMPONENT_UP_CHECK_RELEASE, GameSettings.COMPONENT_UP_CHECK_CLICK);
+        buttons[1] = new GamePadInput(GameSettings.COMPONENT_DOWN_INDEX, GameSettings.COMPONENT_DOWN_VALUE_ON, GameSettings.COMPONENT_DOWN_VALUE_OFF,       GamePadButton.BtnDown, GameSettings.COMPONENT_DOWN_CHECK_PRESS, GameSettings.COMPONENT_DOWN_CHECK_RELEASE, GameSettings.COMPONENT_DOWN_CHECK_CLICK);
+        buttons[2] = new GamePadInput(GameSettings.COMPONENT_LEFT_INDEX, GameSettings.COMPONENT_LEFT_VALUE_ON, GameSettings.COMPONENT_LEFT_VALUE_OFF,       GamePadButton.BtnLeft, GameSettings.COMPONENT_LEFT_CHECK_PRESS, GameSettings.COMPONENT_LEFT_CHECK_RELEASE, GameSettings.COMPONENT_LEFT_CHECK_CLICK);
+        buttons[3] = new GamePadInput(GameSettings.COMPONENT_RIGHT_INDEX, GameSettings.COMPONENT_RIGHT_VALUE_ON, GameSettings.COMPONENT_RIGHT_VALUE_OFF,    GamePadButton.BtnRight, GameSettings.COMPONENT_RIGHT_CHECK_PRESS, GameSettings.COMPONENT_RIGHT_CHECK_RELEASE, GameSettings.COMPONENT_RIGHT_CHECK_CLICK);
+        buttons[4] = new GamePadInput(GameSettings.COMPONENT_A_INDEX, GameSettings.COMPONENT_A_VALUE_ON, GameSettings.COMPONENT_A_VALUE_OFF,                GamePadButton.BtnA, GameSettings.COMPONENT_A_CHECK_PRESS, GameSettings.COMPONENT_A_CHECK_RELEASE, GameSettings.COMPONENT_A_CHECK_CLICK);
+        buttons[5] = new GamePadInput(GameSettings.COMPONENT_B_INDEX, GameSettings.COMPONENT_B_VALUE_ON, GameSettings.COMPONENT_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.COMPONENT_B_CHECK_PRESS, GameSettings.COMPONENT_B_CHECK_RELEASE, GameSettings.COMPONENT_B_CHECK_CLICK);
+        Prep();
     }
 
     /**
@@ -123,32 +99,52 @@ public class GpioHub {
      * 
      * @param Buttons       An array of 6 GpioPin instances used to set the buttons class field.
      */
-    public GpioHub(GpioPin[] Buttons) {
-       try {
-            File f = new File("/sys/class/gpio");
-            if(!f.isDirectory() || !f.exists()) {
-                System.out.println("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
-                gpioEnabled = false;
+    public GamePadHub(GamePadInput[] Buttons, Controller GamePad) {
+        gamepad = GamePad;
+        buttons = Buttons;        
+        Prep();
+    }
+
+    private void Prep() {
+        try {
+            if(gamepad == null) {
+                System.out.println("Gamepad is null, setting gamepadEnabled to false.");
+                gamepadEnabled = false;
+                
             } else {
-                System.out.println("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
-                gpioEnabled = true;
+                components = gamepad.getComponents();
+                if(components == null) {
+                    System.out.println("Gamepad components is null, setting gamepadEnabled to false.");
+                    gamepadEnabled = false;
+             
+                } else {
+                    for(i = 0; i < LEN; i++) {
+                        btn1 = buttons[i];
+                        if(btn1.btnIdx < 0 || btn1.btnIdx >= components.length) {
+                            System.out.println("Gamepad button is out of the component range, " + btn1.btnIdx + ", setting gamepadEnabled to false.");                            
+                            gamepadEnabled = false;
+                        } else {
+                            btn1.component = components[i];
+                        }
+                    }
+                }
             }
+            
+            gamepadEnabled = true;
+            prepped = true;
             
         }catch(Exception e) {
             Helper.wrErr(e);
         }        
-        
-        buttons = Buttons;
-        runTime = Runtime.getRuntime(); 
     }
-
+    
     /**
      * A method used to determine if GPIO is enabled on the current environment.
      * 
      * @return      A boolean flag indicating if GPIO is enabled on the current environment.
      */
     public boolean IsEnabled() {
-        return gpioEnabled;
+        return gamepadEnabled;
     }
 
     /**
@@ -157,7 +153,7 @@ public class GpioHub {
      * @param b     A boolean argument used to set if GPIO is enabled on the current environment.
      */
     public void SetEnabled(boolean b) {
-        gpioEnabled = b;
+        gamepadEnabled = b;
     }
     
     /**
@@ -165,7 +161,7 @@ public class GpioHub {
      * 
      * @return      An array of GpioPin instances used by the GpioHub for state monitoring.
      */
-    public GpioPin[] GetButtons() {
+    public GamePadInput[] GetButtons() {
         return buttons;
     }
     
@@ -435,59 +431,7 @@ public class GpioHub {
             return false;
         }
     }    
-    
-    /**
-     * A method to set the pin state of a GPIO pin.
-     * 
-     * @param pinIdx        An argument indicating which GPIO pin to set.
-     * @param high          An argument indicating what state to set the GPIO pin, high or low.
-     * 
-     * @throws IOException 
-     */
-    public void SetGpioPin(int pinIdx, boolean high) throws IOException {
-        if(buttons != null && (pinIdx >= 0 || pinIdx < buttons.length)) {
-            buttons[pinIdx].pinHigh = high;
-            if(buttons[pinIdx].pinHigh == true) {
-                runTime.exec("echo 1 > /sys/class/gpio/gpio" + buttons[pinIdx].pinNum + "/value");
-            } else {
-                runTime.exec("echo 0 > /sys/class/gpio/gpio" + buttons[pinIdx].pinNum + "/value");                        
-            }
-        }
-    }
-    
-    /**
-     * An initialization method to prepare the GPIO pins by setting them to unexport, then setting them to export
-     * followed by setting the pin's current state.
-     * 
-     * @throws IOException 
-     */
-    public void PrepPins() throws IOException {
-        if(runTime != null && buttons != null) {
-            for(i = 0; i < LEN; i++) {
-            //for(GpioPin btn1: buttons) {
-                btn1 = buttons[i];
-                runTime.exec("echo " + btn1.pinNum + " > /sys/class/gpio/unexport");
-                runTime.exec("echo " + btn1.pinNum + " > /sys/class/gpio/export");
-                if(btn1.pinIn == false) {
-                    runTime.exec("echo out > /sys/class/gpio/gpio" + btn1.pinNum + "/direction");
-                    if(btn1.pinHigh == true) {
-                        runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");
-                    } else {
-                        runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");                        
-                    }
-                } else {
-                    if(btn1.pinHigh == true) {
-                        runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");
-                    } else {
-                        runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");                        
-                    }                    
-                    runTime.exec("echo in > /sys/class/gpio/gpio" + btn1.pinNum + "/direction");                    
-                }
-            }
-            prepped = true;
-        }
-    }
-        
+            
     /**
      * A method that returns the prepped state of the GPIO pins, buttons array.
      * 
@@ -502,10 +446,9 @@ public class GpioHub {
      * has happened for a given GPIO pin.
      */
     public void CleanUp() {
-        for(j = 0; j < LEN; j++) {        
-        //for(GpioPin btn2: buttons) {
+        for(j = 0; j < LEN; j++) {
             btn2 = buttons[j];
-        
+            
             if(btn2.pressed == true) {
                 btn2.pressed = false;
             }
@@ -523,16 +466,15 @@ public class GpioHub {
      * @throws IOException 
      */
     public void GetState() throws IOException {
+        gamepad.poll();
+        
         for(k = 0; k < LEN; k++) {
-        //for(GpioPin btn3: buttons) {
             btn3 = buttons[k];
-            tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn3.pinNum + "/value").getInputStream().read();
-            //System.out.println("PinStatus: " + tmp);
             
-            if(tmp == char0toInt) {
-                btn3.stateTmp = false;
+            if(btn3.component.getPollData() == btn3.btnOn) {
+                btn3.stateTmp = true;
             } else {
-                btn3.stateTmp = true;                
+                btn3.stateTmp = false;                
             }
             
             if(btn3.stateTmp != btn3.stateCurrent) {
