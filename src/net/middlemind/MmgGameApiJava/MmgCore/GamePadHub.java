@@ -3,6 +3,9 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import java.io.IOException;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
+import net.java.games.input.ControllerEvent;
+import net.java.games.input.ControllerListener;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePadInput.GamePadButton;
 
 /**
@@ -58,18 +61,19 @@ public class GamePadHub {
     /**
      * A boolean that indicates if GPIO input is enabled.
      */
-    public boolean gamepadEnabled = false;
+    public boolean gamePadEnabled = false;
           
     /**
      * A JInput controller to read game pad data from.
      */
-    public Controller gamepad = null;
+    public Controller gamePad = null;
     
     /**
      * An array of components supported by this game pad.
      */
     public Component[] components = null;
     
+    public int gamePadIdx = 0;
     public int gamePadSrc = GameSettings.SRC_GAMEPAD_1;
     public int gamePadUp = GameSettings.UP_GAMEPAD_1;
     public int gamePadDown = GameSettings.DOWN_GAMEPAD_1;
@@ -81,15 +85,25 @@ public class GamePadHub {
     private int k;    
     private GamePadInput btn1;
     private GamePadInput btn2;    
-    private GamePadInput btn3;
+    private GamePadInput btn3;    
+    private Controller[] ca;
+    private boolean btmp;
     
     /**
      * A default constructor for the GpioHub class that checks to see if GPIO is supported on the system.
      * Creates a default array of 6 GpioPin instances using values from the GameSettings class to set the GPIO pin numbers
      * and the events that should be tracked.
      */
-    public GamePadHub(Controller GamePad) {               
-        gamepad = GamePad;
+    public GamePadHub(int GamePadIndex) {        
+        gamePadIdx = GamePadIndex;
+
+        ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
+        if(ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length) {        
+            gamePad = ca[gamePadIdx];
+        } else {
+            gamePad = null;
+        }
+        
         gamePadSrc = GameSettings.SRC_GAMEPAD_1;
         gamePadUp = GameSettings.UP_GAMEPAD_1;
         gamePadDown = GameSettings.DOWN_GAMEPAD_1;
@@ -103,11 +117,21 @@ public class GamePadHub {
         buttons[3] = new GamePadInput(GameSettings.GAMEPAD_1_RIGHT_INDEX, GameSettings.GAMEPAD_1_RIGHT_VALUE_ON, GameSettings.GAMEPAD_1_RIGHT_VALUE_OFF,    GamePadButton.BtnRight, GameSettings.GAMEPAD_1_RIGHT_CHECK_PRESS, GameSettings.GAMEPAD_1_RIGHT_CHECK_RELEASE, GameSettings.GAMEPAD_1_RIGHT_CHECK_CLICK);
         buttons[4] = new GamePadInput(GameSettings.GAMEPAD_1_A_INDEX, GameSettings.GAMEPAD_1_A_VALUE_ON, GameSettings.GAMEPAD_1_A_VALUE_OFF,                GamePadButton.BtnA, GameSettings.GAMEPAD_1_A_CHECK_PRESS, GameSettings.GAMEPAD_1_A_CHECK_RELEASE, GameSettings.GAMEPAD_1_A_CHECK_CLICK);
         buttons[5] = new GamePadInput(GameSettings.GAMEPAD_1_B_INDEX, GameSettings.GAMEPAD_1_B_VALUE_ON, GameSettings.GAMEPAD_1_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.GAMEPAD_1_B_CHECK_PRESS, GameSettings.GAMEPAD_1_B_CHECK_RELEASE, GameSettings.GAMEPAD_1_B_CHECK_CLICK);
+        
+        AddListener();        
         Prep();
     }
 
-    public GamePadHub(Controller GamePad, boolean player1) {               
-        gamepad = GamePad;
+    public GamePadHub(boolean player1, int GamePadIndex) {               
+        gamePadIdx = GamePadIndex;
+
+        ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
+        if(ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length) {        
+            gamePad = ca[gamePadIdx];
+        } else {
+            gamePad = null;
+        }        
+                
         buttons = new GamePadInput[6];
         
         if(player1) {
@@ -139,6 +163,8 @@ public class GamePadHub {
             buttons[5] = new GamePadInput(GameSettings.GAMEPAD_2_B_INDEX, GameSettings.GAMEPAD_2_B_VALUE_ON, GameSettings.GAMEPAD_2_B_VALUE_OFF,                GamePadButton.BtnB, GameSettings.GAMEPAD_2_B_CHECK_PRESS, GameSettings.GAMEPAD_2_B_CHECK_RELEASE, GameSettings.GAMEPAD_2_B_CHECK_CLICK);
             
         }
+        
+        AddListener();
         Prep();
     }
     
@@ -148,41 +174,90 @@ public class GamePadHub {
      * @param Buttons       An array of 6 GpioPin instances used to set the buttons class field.
      */
     public GamePadHub(GamePadInput[] Buttons, Controller GamePad) {
-        gamepad = GamePad;
-        buttons = Buttons;        
+        gamePad = GamePad;
+        buttons = Buttons;
+
+        AddListener();
         Prep();
     }
 
+    private void AddListener() {
+        ControllerEnvironment.getDefaultEnvironment().addControllerListener(new ControllerListener() {
+            @Override
+            public void controllerRemoved(ControllerEvent ev) {
+                System.out.println("Gamepad removed, running scan to see if input is still valid.");
+                ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
+                if(ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length) {
+                    if(ca[gamePadIdx] != null && ca[gamePadIdx].equals(gamePad) == false) {
+                        gamePad = ca[gamePadIdx];
+                        gamePadEnabled = false;
+                        Prep();
+                        
+                    } else {
+                        gamePadEnabled = true;                        
+                    }
+                    
+                } else {
+                    gamePadEnabled = false;
+                    
+                }
+            }
+
+            @Override
+            public void controllerAdded(ControllerEvent ev) {
+                System.out.println("Gamepad added, running scan to see if input is still valid.");                
+                ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
+                if(ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length) {
+                    if(ca[gamePadIdx] != null && ca[gamePadIdx].equals(gamePad) == false) {
+                        gamePad = ca[gamePadIdx];
+                        gamePadEnabled = false;                        
+                        Prep();
+                        
+                    } else {
+                        gamePadEnabled = true;                        
+                    }
+                    
+                } else {
+                    gamePadEnabled = false;
+                    
+                }
+            }
+        });
+    }
+    
     private void Prep() {
         try {
-            if(gamepad == null) {
-                System.out.println("Gamepad is null, setting gamepadEnabled to false.");
-                gamepadEnabled = false;
-                
-            } else {
-                components = gamepad.getComponents();
+            prepped = false;
+            if(gamePad == null) {
+                System.out.println("Gamepad is null, disabling gamepad.");
+                gamePadEnabled = false;
+
+            } else {                
+                components = gamePad.getComponents();
                 if(components == null) {
-                    System.out.println("Gamepad components is null, setting gamepadEnabled to false.");
-                    gamepadEnabled = false;
+                    System.out.println("Gamepad components is null, disabling gamepad.");
+                    gamePadEnabled = false;
              
                 } else {
                     for(i = 0; i < LEN; i++) {
                         btn1 = buttons[i];
                         if(btn1.btnIdx < 0 || btn1.btnIdx >= components.length) {
-                            System.out.println("Gamepad button is out of the component range, " + btn1.btnIdx + ", setting gamepadEnabled to false.");                            
-                            gamepadEnabled = false;
-                        } else {
-                            btn1.component = components[i];
-                        }
+                            System.out.println("Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");                            
+                            gamePadEnabled = false;
+                        } 
                     }
+                    gamePadEnabled = true;
+                    
                 }
             }
             
-            gamepadEnabled = true;
             prepped = true;
-            
-        }catch(Exception e) {
+            System.out.println("Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
+
+        } catch(Exception e) {
+            prepped = true;
             Helper.wrErr(e);
+            
         }        
     }
     
@@ -192,7 +267,7 @@ public class GamePadHub {
      * @return      A boolean flag indicating if GPIO is enabled on the current environment.
      */
     public boolean IsEnabled() {
-        return gamepadEnabled;
+        return gamePadEnabled;
     }
 
     /**
@@ -201,7 +276,7 @@ public class GamePadHub {
      * @param b     A boolean argument used to set if GPIO is enabled on the current environment.
      */
     public void SetEnabled(boolean b) {
-        gamepadEnabled = b;
+        gamePadEnabled = b;
     }
     
     /**
@@ -347,7 +422,7 @@ public class GamePadHub {
      * @return      A boolean indicating if the LEFT GpioPin has been clicked or not.
      */    
     public boolean GetLeftClicked() {
-        if(buttons[LEFT].checkClicked == true) {
+        if(ButtonEnabled(LEFT) && buttons[LEFT].checkClicked == true) {
             return buttons[LEFT].clicked;
         } else {
             return false;
@@ -496,14 +571,9 @@ public class GamePadHub {
     public void CleanUp() {
         for(j = 0; j < LEN; j++) {
             btn2 = buttons[j];
-            
-            if(btn2.pressed == true) {
-                btn2.pressed = false;
-            }
-            
-            if(btn2.clicked == true) {
-                btn2.clicked = false;
-            }
+            btn2.pressed = false;
+            btn2.clicked = false;
+            btn2.released = false;
         }   
     }
     
@@ -513,35 +583,43 @@ public class GamePadHub {
      * 
      * @throws IOException 
      */
-    public void GetState() throws IOException {
-        gamepad.poll();
-        
-        for(k = 0; k < LEN; k++) {
-            btn3 = buttons[k];
-            
-            if(btn3.component.getPollData() == btn3.btnOn) {
-                btn3.stateTmp = true;
+    public void GetState() throws Exception { 
+        if(gamePadEnabled == true) {
+            btmp = gamePad.poll();
+            if(btmp == true) {
+                components = gamePad.getComponents();
+
+                for(k = 0; k < LEN; k++) {
+                    btn3 = buttons[k];
+
+                    if(components[btn3.btnIdx].getPollData() == btn3.btnOn) {
+                        btn3.stateTmp = true;
+
+                    } else {
+                        btn3.stateTmp = false;                
+
+                    }
+
+                    btn3.statePrev = btn3.stateCurrent;
+                    btn3.stateCurrent = btn3.stateTmp;
+
+                    if(btn3.stateCurrent == false && btn3.statePrev == true) {
+                        btn3.released = true;
+                        btn3.clicked = true;
+                        btn3.pressed = false;
+
+                    } else if(btn3.stateCurrent == true && btn3.statePrev == false) {
+                        btn3.released = false;
+                        btn3.clicked = false;
+                        btn3.pressed = true;
+
+                    }
+                }
+                
             } else {
-                btn3.stateTmp = false;                
-            }
+                gamePadEnabled = false;
+                throw new Exception("Gamepad poll failed!");
             
-            if(btn3.stateTmp != btn3.stateCurrent) {
-                btn3.statePrev = btn3.stateCurrent;
-                btn3.stateCurrent = btn3.stateTmp;
-            }
-                        
-            if(btn3.stateCurrent == false && btn3.statePrev == true) {
-                btn3.released = true;
-                btn3.clicked = true;
-            } else {
-                btn3.released = false;
-                btn3.clicked = false;                
-            }
-            
-            if(btn3.stateCurrent == true && btn3.statePrev == false) {
-                btn3.pressed = true;
-            } else {
-                btn3.pressed = false;
             }
         }
     }

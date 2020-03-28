@@ -108,28 +108,31 @@ public class OdroidGame {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
             Helper.wr("Found platform: " + OS);
-
+            Helper.wr("LibPath: " + System.getProperty("java.library.path"));
+            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
+            
             if (isWindows(OS)) {
                 Helper.wr("This is Windows");
-
+                System.loadLibrary("jinput-dx8_64");
+                
             } else if (isMac(OS)) {
                 Helper.wr("This is Mac");
-                Helper.wr("LibPath: " + System.getProperty("java.library.path"));
-                //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
                 System.loadLibrary("jinput-osx");
 
             } else if (isUnix(OS)) {
                 Helper.wr("This is Unix or Linux");
-
+                System.loadLibrary("jinput-linux64");
+                
             } else if (isSolaris(OS)) {
                 Helper.wr("This is Solaris");
-
+                System.loadLibrary("jinput-linux");
+                
             } else {
                 Helper.wr("Your OS is not supported!!");
 
             }
             
-        }catch(Exception e) {
+        } catch(Exception e) {
             Helper.wrErr(e);
         }            
     }

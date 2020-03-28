@@ -57,40 +57,44 @@ public class GameSettings {
     //GPIO gamepad input settings
     //On/Off values are always 0 and 1 so no mapping is needed for these values.
     public static boolean GPIO_GAMEPAD_ON = false;
+    public static boolean GPIO_GAMEPAD_THREADED_POLLING = false;
+    public static long GPIO_GAMEPAD_POLLING_INTERVAL_MS = 20;    
     
-    public static int GPIO_PIN_BTN_UP = 1;
+    public static int GPIO_PIN_BTN_UP = 488;
     public static boolean BTN_UP_CHECK_PRESS = true;
     public static boolean BTN_UP_CHECK_RELEASE = true;
     public static boolean BTN_UP_CHECK_CLICK = true;
 
-    public static int GPIO_PIN_BTN_DOWN = 2;
+    public static int GPIO_PIN_BTN_DOWN = 489;
     public static boolean BTN_DOWN_CHECK_PRESS = true;
     public static boolean BTN_DOWN_CHECK_RELEASE = true;
     public static boolean BTN_DOWN_CHECK_CLICK = true;    
     
-    public static int GPIO_PIN_BTN_LEFT = 3;
+    public static int GPIO_PIN_BTN_LEFT = 476;
     public static boolean BTN_LEFT_CHECK_PRESS = true;
     public static boolean BTN_LEFT_CHECK_RELEASE = true;
     public static boolean BTN_LEFT_CHECK_CLICK = true;        
     
-    public static int GPIO_PIN_BTN_RIGHT = 4;
+    public static int GPIO_PIN_BTN_RIGHT = 477;
     public static boolean BTN_RIGHT_CHECK_PRESS = true;
     public static boolean BTN_RIGHT_CHECK_RELEASE = true;
     public static boolean BTN_RIGHT_CHECK_CLICK = true;            
     
-    public static int GPIO_PIN_BTN_A = 5;
+    public static int GPIO_PIN_BTN_A = 486;
     public static boolean BTN_A_CHECK_PRESS = true;
     public static boolean BTN_A_CHECK_RELEASE = true;
     public static boolean BTN_A_CHECK_CLICK = true;
     
-    public static int GPIO_PIN_BTN_B = 6;
+    public static int GPIO_PIN_BTN_B = 487;
     public static boolean BTN_B_CHECK_PRESS = true;
     public static boolean BTN_B_CHECK_RELEASE = true;
     public static boolean BTN_B_CHECK_CLICK = true;
     
     //GamePad 1 input settings
     public static boolean GAMEPAD_1_ON = true;
-    public static int GAMEPAD_1_INDEX = 0;    
+    public static int GAMEPAD_1_INDEX = 2;
+    public static boolean GAMEPAD_1_THREADED_POLLING = true;
+    public static long GAMEPAD_1_POLLING_INTERVAL_MS = 20;    
     
     public static int GAMEPAD_1_UP_INDEX = 15;
     public static float GAMEPAD_1_UP_VALUE_ON = 0.25f;
@@ -136,7 +140,9 @@ public class GameSettings {
     
     //GamePad 2 input settings
     public static boolean GAMEPAD_2_ON = true;
-    public static int GAMEPAD_2_INDEX = 0;    
+    public static int GAMEPAD_2_INDEX = 0;
+    public static boolean GAMEPAD_2_THREADED_POLLING = false;
+    public static long GAMEPAD_2_POLLING_INTERVAL_MS = 20;
     
     public static int GAMEPAD_2_UP_INDEX = 15;
     public static float GAMEPAD_2_UP_VALUE_ON = 0.25f;

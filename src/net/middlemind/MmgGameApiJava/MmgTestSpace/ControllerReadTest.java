@@ -313,7 +313,7 @@ public class ControllerReadTest extends JFrame {
 
                                 /* Get this controllers components (buttons and axis) */
                                 Component[] components = ca[i].getComponents();
-                                System.out.println("Component Count: " + components.length);
+                                System.out.println("GamePad Index: " + i + " Component Count: " + components.length);
                                 for(int j = 0; j < components.length; j++) {
                                     if(currentData.containsKey(components[j].getName()) == false) {
                                         currentData.put(components[j].getName(), new Float(components[j].getPollData()));

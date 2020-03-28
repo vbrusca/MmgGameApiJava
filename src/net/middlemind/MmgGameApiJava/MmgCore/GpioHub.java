@@ -115,7 +115,9 @@ public class GpioHub {
         buttons[3] = new GpioPin(GameSettings.GPIO_PIN_BTN_RIGHT, true, false, GpioButton.BtnRight, GameSettings.BTN_RIGHT_CHECK_PRESS, GameSettings.BTN_RIGHT_CHECK_RELEASE, GameSettings.BTN_RIGHT_CHECK_CLICK);
         buttons[4] = new GpioPin(GameSettings.GPIO_PIN_BTN_A, true, false, GpioButton.BtnA, GameSettings.BTN_A_CHECK_PRESS, GameSettings.BTN_A_CHECK_RELEASE, GameSettings.BTN_A_CHECK_CLICK);
         buttons[5] = new GpioPin(GameSettings.GPIO_PIN_BTN_B, true, false, GpioButton.BtnB, GameSettings.BTN_B_CHECK_PRESS, GameSettings.BTN_B_CHECK_RELEASE, GameSettings.BTN_B_CHECK_CLICK);
-        runTime = Runtime.getRuntime();        
+        runTime = Runtime.getRuntime();
+        
+        Prep();        
     }
 
     /**
@@ -140,6 +142,8 @@ public class GpioHub {
         
         buttons = Buttons;
         runTime = Runtime.getRuntime(); 
+        
+        Prep();
     }
 
     /**
@@ -303,7 +307,7 @@ public class GpioHub {
      * @return      A boolean indicating if the LEFT GpioPin has been clicked or not.
      */    
     public boolean GetLeftClicked() {
-        if(buttons[LEFT].checkClicked == true) {
+        if(ButtonEnabled(LEFT) && buttons[LEFT].checkClicked == true) {
             return buttons[LEFT].clicked;
         } else {
             return false;
@@ -458,36 +462,41 @@ public class GpioHub {
     /**
      * An initialization method to prepare the GPIO pins by setting them to unexport, then setting them to export
      * followed by setting the pin's current state.
-     * 
-     * @throws IOException 
      */
-    public void PrepPins() throws IOException {
-        if(runTime != null && buttons != null) {
-            for(i = 0; i < LEN; i++) {
-            //for(GpioPin btn1: buttons) {
-                btn1 = buttons[i];
-                runTime.exec("echo " + btn1.pinNum + " > /sys/class/gpio/unexport");
-                runTime.exec("echo " + btn1.pinNum + " > /sys/class/gpio/export");
-                if(btn1.pinIn == false) {
-                    runTime.exec("echo out > /sys/class/gpio/gpio" + btn1.pinNum + "/direction");
-                    if(btn1.pinHigh == true) {
-                        runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");
+    private void Prep() {
+        try {
+            prepped = false;
+            if(runTime != null && buttons != null) {
+                for(i = 0; i < LEN; i++) {
+                    btn1 = buttons[i];
+                    runTime.exec("echo " + btn1.pinNum + " > /sys/class/gpio/unexport");
+                    runTime.exec("echo " + btn1.pinNum + " > /sys/class/gpio/export");
+                    if(btn1.pinIn == false) {
+                        runTime.exec("echo out > /sys/class/gpio/gpio" + btn1.pinNum + "/direction");
+                        if(btn1.pinHigh == true) {
+                            runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");
+                        } else {
+                            runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");                        
+                        }
                     } else {
-                        runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");                        
+                        if(btn1.pinHigh == true) {
+                            runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");
+                        } else {
+                            runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");                        
+                        }                    
+                        runTime.exec("echo in > /sys/class/gpio/gpio" + btn1.pinNum + "/direction");                    
                     }
-                } else {
-                    if(btn1.pinHigh == true) {
-                        runTime.exec("echo 1 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");
-                    } else {
-                        runTime.exec("echo 0 > /sys/class/gpio/gpio" + btn1.pinNum + "/value");                        
-                    }                    
-                    runTime.exec("echo in > /sys/class/gpio/gpio" + btn1.pinNum + "/direction");                    
                 }
+                prepped = true;
+                
             }
-            prepped = true;
+        }catch(Exception e) {
+            prepped = false;
+            Helper.wrErr(e);
+            
         }
     }
-        
+
     /**
      * A method that returns the prepped state of the GPIO pins, buttons array.
      * 
@@ -502,17 +511,11 @@ public class GpioHub {
      * has happened for a given GPIO pin.
      */
     public void CleanUp() {
-        for(j = 0; j < LEN; j++) {        
-        //for(GpioPin btn2: buttons) {
+        for(j = 0; j < LEN; j++) {
             btn2 = buttons[j];
-        
-            if(btn2.pressed == true) {
-                btn2.pressed = false;
-            }
-            
-            if(btn2.clicked == true) {
-                btn2.clicked = false;
-            }
+            btn2.pressed = false;
+            btn2.clicked = false;
+            btn2.released = false;
         }   
     }
     
@@ -522,36 +525,39 @@ public class GpioHub {
      * 
      * @throws IOException 
      */
-    public void GetState() throws IOException {
-        for(k = 0; k < LEN; k++) {
-        //for(GpioPin btn3: buttons) {
-            btn3 = buttons[k];
-            tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn3.pinNum + "/value").getInputStream().read();
-            //System.out.println("PinStatus: " + tmp);
-            
-            if(tmp == char0toInt) {
-                btn3.stateTmp = false;
-            } else {
-                btn3.stateTmp = true;                
-            }
-            
-            if(btn3.stateTmp != btn3.stateCurrent) {
-                btn3.statePrev = btn3.stateCurrent;
-                btn3.stateCurrent = btn3.stateTmp;
-            }
-                        
-            if(btn3.stateCurrent == false && btn3.statePrev == true) {
-                btn3.released = true;
-                btn3.clicked = true;
-            } else {
-                btn3.released = false;
-                btn3.clicked = false;                
-            }
-            
-            if(btn3.stateCurrent == true && btn3.statePrev == false) {
-                btn3.pressed = true;
-            } else {
-                btn3.pressed = false;
+    public void GetState() throws Exception {
+        if(gpioEnabled == true) {
+            try {
+                for(k = 0; k < LEN; k++) {
+                    btn3 = buttons[k];
+                    tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn3.pinNum + "/value").getInputStream().read();
+
+                    if(tmp == char0toInt) {
+                        btn3.stateTmp = false;
+                    } else {
+                        btn3.stateTmp = true;                
+                    }
+
+                    btn3.statePrev = btn3.stateCurrent;
+                    btn3.stateCurrent = btn3.stateTmp;
+
+                    if(btn3.stateCurrent == false && btn3.statePrev == true) {
+                        btn3.released = true;
+                        btn3.clicked = true;
+                        btn3.pressed = false;
+
+                    } else if(btn3.stateCurrent == true && btn3.statePrev == false) {
+                        btn3.released = false;
+                        btn3.clicked = false;
+                        btn3.pressed = true;
+
+                    }
+                }
+                
+            } catch(Exception e) {
+                gpioEnabled = false;
+                throw(e);
+                
             }
         }
     }

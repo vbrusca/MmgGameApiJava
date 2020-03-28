@@ -58,6 +58,7 @@ public class GamePadRunner implements Runnable {
         gamePadHub = hub;
         pollingIntervalMs = intervalMs;
         gamePad = gamePadSimple;
+        running = true;
         
         if(gamePadHub == null) {
             System.err.println("GamePadHub is null! Turning off GamePadHubRunner.");
@@ -119,11 +120,11 @@ public class GamePadRunner implements Runnable {
         if(gamePadHub != null && gamePadHub.IsPrepped() && gamePadHub.IsEnabled()) {
             try {
                 gamePadHub.GetState();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 running = false;
             }
-
+            
             //down, up, left, right
             //check dpad pressed state
             if(gamePadHub.GetDownPressed()) {
@@ -153,7 +154,7 @@ public class GamePadRunner implements Runnable {
             //check dpad released state
             if(gamePadHub.GetDownReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(gamePadHub.gamePadDown);
+                    gamePad.ProcessDpadRelease(gamePadHub.gamePadDown);
                 }
             }
             
@@ -178,25 +179,25 @@ public class GamePadRunner implements Runnable {
             //check dpad clicked state
             if(gamePadHub.GetDownClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(gamePadHub.gamePadDown);
+                    gamePad.ProcessDpadClick(gamePadHub.gamePadDown);
                 }
             }
             
             if(gamePadHub.GetUpClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(gamePadHub.gamePadUp);                    
+                    gamePad.ProcessDpadClick(gamePadHub.gamePadUp);                    
                 }
             }
             
             if(gamePadHub.GetLeftClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(gamePadHub.gamePadLeft);                    
+                    gamePad.ProcessDpadClick(gamePadHub.gamePadLeft);                    
                 }
             }
             
             if(gamePadHub.GetRightClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(gamePadHub.gamePadRight);                    
+                    gamePad.ProcessDpadClick(gamePadHub.gamePadRight);                    
                 }
             }            
             
@@ -249,7 +250,13 @@ public class GamePadRunner implements Runnable {
      */
     @Override
     @SuppressWarnings({"CallToPrintStackTrace", "SleepWhileInLoop"})
-    public void run() {       
+    public void run() {
+        try {
+            Thread.sleep(1000);
+        } catch(Exception e) {
+            
+        }
+        
         while(running == true) {
             start = System.currentTimeMillis();
             PollGamePad();
@@ -258,7 +265,7 @@ public class GamePadRunner implements Runnable {
             diff = stop - start;                    //Total time in ms to get gpio data
             diff = pollingIntervalMs - diff;        //Difference in actual time and polling time
             
-            if(pollingIntervalMs - diff > 0) {
+            if(diff > 0) {
                 try {
                     Thread.sleep(diff);
                 } catch (InterruptedException ex) {

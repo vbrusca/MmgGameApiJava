@@ -58,6 +58,7 @@ public class GpioHubRunner implements Runnable {
         gpioHub = hub;
         pollingIntervalMs = intervalMs;
         gamePad = gamePadSimple;
+        running = true;
         
         if(gpioHub == null) {
             System.err.println("GpioHub is null! Turning off GpioHubRunner.");
@@ -119,7 +120,7 @@ public class GpioHubRunner implements Runnable {
         if(gpioHub != null && gpioHub.IsPrepped() && gpioHub.IsEnabled()) {
             try {
                 gpioHub.GetState();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 running = false;
             }
@@ -249,7 +250,13 @@ public class GpioHubRunner implements Runnable {
      */
     @Override
     @SuppressWarnings({"CallToPrintStackTrace", "SleepWhileInLoop"})
-    public void run() {       
+    public void run() {
+        try {
+            Thread.sleep(1000);
+        } catch(Exception e) {
+            
+        }
+        
         while(running == true) {
             start = System.currentTimeMillis();
             PollGpio();

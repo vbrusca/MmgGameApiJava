@@ -438,13 +438,9 @@ public class ScreenMainMenu extends MmgGameScreen {
     
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        if (dir == GameSettings.LEFT_KEYBOARD || dir == GameSettings.RIGHT_KEYBOARD) {
-            return false;
-        }
-
-        if (dir == GameSettings.UP_KEYBOARD) {            
+        if (dir == GameSettings.UP_KEYBOARD || dir == GameSettings.UP_GAMEPAD_1) {            
             MoveMenuSelUp();
-        } else if (dir == GameSettings.DOWN_KEYBOARD) {
+        } else if (dir == GameSettings.DOWN_KEYBOARD || dir == GameSettings.DOWN_GAMEPAD_1) {
             MoveMenuSelDown();
         }
 

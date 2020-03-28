@@ -6,7 +6,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettingsImporter;
 import java.lang.reflect.Field;
 import javax.swing.JFrame;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
-import net.middlemind.MmgGameApiJava.MmgCore.OdroidGame;
 import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
@@ -111,6 +110,86 @@ public final class MmgTestSpace {
     }
 
     /**
+     * A static method that loads native libraries that allow access to gamepads and controllers.
+     */
+    public static void LoadNativeLibraries() {
+        try {
+            String OS = System.getProperty("os.name").toLowerCase();
+            Helper.wr("Found platform: " + OS);
+            Helper.wr("LibPath: " + System.getProperty("java.library.path"));
+            //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
+            
+            if (isWindows(OS)) {
+                Helper.wr("This is Windows");
+                System.loadLibrary("jinput-dx8_64");
+                
+            } else if (isMac(OS)) {
+                Helper.wr("This is Mac");
+                System.loadLibrary("jinput-osx");
+
+            } else if (isUnix(OS)) {
+                Helper.wr("This is Unix or Linux");
+                System.loadLibrary("jinput-linux64");
+                
+            } else if (isSolaris(OS)) {
+                Helper.wr("This is Solaris");
+                System.loadLibrary("jinput-linux");
+                
+            } else {
+                Helper.wr("Your OS is not supported!!");
+
+            }
+            
+        } catch(Exception e) {
+            Helper.wrErr(e);
+        }            
+    }
+    
+    /**
+     * A static class method for checking if this Java application is running on Windows.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on Windows.
+     */
+    public static boolean isWindows(String OS) {
+        return (OS.indexOf("win") >= 0);
+    }
+
+    /**
+     * A static class method for checking if this Java application is running on a Mac.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on a Mac.
+     */
+    public static boolean isMac(String OS) {
+        return (OS.indexOf("mac") >= 0);
+    }
+
+    /**
+     * A static class method for checking if this Java application is running on Linux.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on Linux.
+     */
+    public static boolean isUnix(String OS) {
+        return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
+    }
+
+    /**
+     * A static class method for checking if this Java application is running on Sun OS.
+     * 
+     * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
+     * 
+     * @return          A boolean value indicating if the Java application is running on Sun OS.
+     */
+    public static boolean isSolaris(String OS) {
+        return (OS.indexOf("sunos") >= 0);
+    }      
+    
+    /**
      * Sets the value of the field specified by the field reflection object.
      *
      * @param ent Entry object that wraps the XML entry.
@@ -151,6 +230,8 @@ public final class MmgTestSpace {
      * @param args The command line arguments
      */
     public static final void main(String[] args) {
+        LoadNativeLibraries();        
+
         //Store program arguments for future reference
         ARGS = args;        
         if (args != null && args.length > 0) {
@@ -258,7 +339,14 @@ public final class MmgTestSpace {
         mf.setSize(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
+        mf.setName(GameSettings.NAME);
 
+        if (GameSettings.DEVELOPMENT_MODE_ON == false) {
+            mf.setTitle(GameSettings.TITLE);
+        } else {
+            mf.setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
+        }
+        
         mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mf.GetGamePanel().PrepBuffers();
         t = new Thread(fr);

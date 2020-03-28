@@ -86,7 +86,7 @@ public class GamePadInput {
      */    
     public boolean checkClicked;    
     
-    public Component component;
+    //public Component component;
     
     /**
      * The main GpioPin constructor that sets all class field values.

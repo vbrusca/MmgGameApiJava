@@ -3,6 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
@@ -32,7 +33,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     public boolean dirty;
     public boolean lret;
     
-    public Hashtable<String, Double> classConfig;
+    public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
