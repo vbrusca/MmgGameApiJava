@@ -44,7 +44,6 @@ public class MmgSound {
     public MmgSound(Clip se) {
         sound = se;
         SetId();
-
     }
 
     /**

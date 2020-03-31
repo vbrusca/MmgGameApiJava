@@ -338,8 +338,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public MmgFontData fontData;
     
     public GamePadHub gamePadHub;
-    public GamePadRunner gamePadRunner;
-    public Thread tr;
+    public GamePadHubRunner gamePadRunner;
+    public Thread gpadTr;
+    
+    public GpioHub gpioHub;
+    public GpioHubRunner gpioRunner;
+    public Thread gpioTr;    
     
     /**
      * Constructor, sets the MainFrame, window dimensions, and position of this
@@ -531,12 +535,21 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     
         if(GameSettings.GAMEPAD_1_ON) {
             gamePadHub = new GamePadHub(GameSettings.GAMEPAD_1_INDEX);
-            gamePadRunner = new GamePadRunner(gamePadHub, GameSettings.GAMEPAD_1_POLLING_INTERVAL_MS, this);
+            gamePadRunner = new GamePadHubRunner(gamePadHub, GameSettings.GAMEPAD_1_POLLING_INTERVAL_MS, this);
             if(GameSettings.GAMEPAD_1_THREADED_POLLING) {
-                tr = new Thread(gamePadRunner);
-                tr.start();
+                gpadTr = new Thread(gamePadRunner);
+                gpadTr.start();
             }
         }
+        
+        if(GameSettings.GPIO_GAMEPAD_ON) {
+            gpioHub = new GpioHub();
+            gpioRunner = new GpioHubRunner(gpioHub, GameSettings.GPIO_GAMEPAD_POLLING_INTERVAL_MS, this);
+            if(GameSettings.GPIO_GAMEPAD_THREADED_POLLING) {
+                gpioTr = new Thread(gpioRunner);
+                gpioTr.start();
+            }
+        }        
         
         SwitchGameState(GameStates.SPLASH);
     }
@@ -1030,6 +1043,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         if(GameSettings.GAMEPAD_1_ON && GameSettings.GAMEPAD_1_THREADED_POLLING == false) {
             gamePadRunner.PollGamePad();
         }
+        
+        if(GameSettings.GPIO_GAMEPAD_ON && GameSettings.GPIO_GAMEPAD_THREADED_POLLING == false) {
+            gpioRunner.PollGpio();
+        }        
         
         // update game logic here
         if (currentScreen != null) {

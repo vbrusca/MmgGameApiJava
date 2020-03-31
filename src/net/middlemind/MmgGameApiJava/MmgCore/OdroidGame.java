@@ -222,7 +222,9 @@ public class OdroidGame {
      * @param args      The command line arguments
      */
     public static final void main(String[] args) {
-        LoadNativeLibraries();
+        if(GameSettings.LOAD_NATIVE_LIBRARIES) {
+            LoadNativeLibraries();
+        }
         
         //Store program arguments for future reference
         ARGS = args;        

@@ -9,7 +9,7 @@ import java.io.IOException;
  * @author Victor G. Brusca, Middlemind Games
  * 01/05/2020
  */
-public class GamePadRunner implements Runnable {
+public class GamePadHubRunner implements Runnable {
     /**
      * A reference to the GpioHub to the GpioHubRunner will monitor.
      */
@@ -54,7 +54,7 @@ public class GamePadRunner implements Runnable {
      * @param intervalMs        A time interval in ms to update the state of the GpioHub's GPIO pins.
      * @param gamePadSimple     A class that implements the GamePadSimple interface used for calling button event callback methods.
      */
-    public GamePadRunner(GamePadHub hub, long intervalMs, GamePadSimple gamePadSimple) {
+    public GamePadHubRunner(GamePadHub hub, long intervalMs, GamePadSimple gamePadSimple) {
         gamePadHub = hub;
         pollingIntervalMs = intervalMs;
         gamePad = gamePadSimple;

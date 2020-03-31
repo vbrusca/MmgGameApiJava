@@ -39,6 +39,10 @@ public class GameSettings {
     public static String BMP_PREFIX = "images_";
     public static String BMP_PREFIX_CONSOLE = "console_images_";
     
+    //Enables the load native libraries call on the static main class so you can load
+    //native OS libraries used by your game
+    public static boolean LOAD_NATIVE_LIBRARIES = true;
+    
     //Image dirs must end with a file path separator
     public static String IMAGE_LOAD_DIR = "../cfg/drawable/";
     public static String SOUND_LOAD_DIR = "../cfg/playable/";

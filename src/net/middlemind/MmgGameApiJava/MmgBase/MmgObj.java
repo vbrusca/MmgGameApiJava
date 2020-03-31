@@ -36,7 +36,7 @@ public class MmgObj {
     /**
      * The version of this MmgApi.
      */
-    private String version = "1.0.1"; //"1.0.0";
+    private String version = "1.0.4"; //"1.0.0";
 
     /**
      * Flag indicating if this MmgObj has a parent container.
