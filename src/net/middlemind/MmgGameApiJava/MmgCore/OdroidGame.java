@@ -302,8 +302,19 @@ public class OdroidGame {
                                 System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
                             }
-
-                        }
+                        } else if(ent.from != null && ent.from.equals("Helper") == true) {
+                            f = GameSettings.class.getField(ent.key);
+                            if (f != null) {
+                                System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                SetField(ent, f);
+                            }
+                        } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
+                            f = OdroidGame.class.getField(ent.key);
+                            if (f != null) {
+                                System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                SetField(ent, f);
+                            }             
+                        }                        
                     } catch (Exception e) {
                         System.out.println("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
                         Helper.wrErr(e);
