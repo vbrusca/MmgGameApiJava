@@ -118,6 +118,7 @@ public class GamePadHubRunner implements Runnable {
     @SuppressWarnings("CallToPrintStackTrace")
     public void PollGamePad() {
         if(gamePadHub != null && gamePadHub.IsPrepped() && gamePadHub.IsEnabled()) {
+
             try {
                 gamePadHub.GetState();
             } catch (Exception e) {
