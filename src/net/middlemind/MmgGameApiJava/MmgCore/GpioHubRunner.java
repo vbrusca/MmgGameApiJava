@@ -265,7 +265,7 @@ public class GpioHubRunner implements Runnable {
             diff = stop - start;                    //Total time in ms to get gpio data
             diff = pollingIntervalMs - diff;        //Difference in actual time and polling time
             
-            if(pollingIntervalMs - diff > 0) {
+            if(diff > 0) {
                 try {
                     Thread.sleep(diff);
                 } catch (InterruptedException ex) {

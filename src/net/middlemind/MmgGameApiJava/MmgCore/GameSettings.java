@@ -41,7 +41,8 @@ public class GameSettings {
     
     //Enables the load native libraries call on the static main class so you can load
     //native OS libraries used by your game
-    public static boolean LOAD_NATIVE_LIBRARIES = true;
+    public static boolean LOAD_NATIVE_LIBRARIES = false;
+    public static boolean RUN_OS_SPECIFIC_CODE = true;    
     
     //Image dirs must end with a file path separator
     public static String IMAGE_LOAD_DIR = "../cfg/drawable/";
