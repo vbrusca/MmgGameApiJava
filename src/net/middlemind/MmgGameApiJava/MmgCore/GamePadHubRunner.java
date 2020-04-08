@@ -148,7 +148,7 @@ public class GamePadHubRunner implements Runnable {
             
             if(gamePadHub.GetRightPressed()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(gamePadHub.gamePadRight);                    
+                    gamePad.ProcessDpadPress(gamePadHub.gamePadRight);                    
                 }
             }
 
