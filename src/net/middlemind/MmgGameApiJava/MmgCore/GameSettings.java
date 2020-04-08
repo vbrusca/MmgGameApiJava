@@ -14,7 +14,7 @@ public class GameSettings {
     public static int LEFT_KEYBOARD = 2;
     public static int RIGHT_KEYBOARD = 3;
     
-    public static int SRC_GPIO = 1;
+    public static int SRC_GPIO = 3;
     public static int DOWN_GPIO = 4;
     public static int UP_GPIO = 5;
     public static int LEFT_GPIO = 6;

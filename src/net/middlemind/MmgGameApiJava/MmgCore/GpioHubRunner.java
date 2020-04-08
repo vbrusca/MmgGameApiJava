@@ -154,7 +154,7 @@ public class GpioHubRunner implements Runnable {
             //check dpad released state
             if(gpioHub.GetDownReleased()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GPIO);
+                    gamePad.ProcessDpadRelease(GameSettings.DOWN_GPIO);
                 }
             }
             
@@ -179,25 +179,25 @@ public class GpioHubRunner implements Runnable {
             //check dpad clicked state
             if(gpioHub.GetDownClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadPress(GameSettings.DOWN_GPIO);
+                    gamePad.ProcessDpadClick(GameSettings.DOWN_GPIO);
                 }
             }
             
             if(gpioHub.GetUpClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.UP_GPIO);                    
+                    gamePad.ProcessDpadClick(GameSettings.UP_GPIO);                    
                 }
             }
             
             if(gpioHub.GetLeftClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.LEFT_GPIO);                    
+                    gamePad.ProcessDpadClick(GameSettings.LEFT_GPIO);                    
                 }
             }
             
             if(gpioHub.GetRightClicked()) {
                 if(gamePad != null) {
-                    gamePad.ProcessDpadRelease(GameSettings.RIGHT_GPIO);                    
+                    gamePad.ProcessDpadClick(GameSettings.RIGHT_GPIO);                    
                 }
             }            
             
