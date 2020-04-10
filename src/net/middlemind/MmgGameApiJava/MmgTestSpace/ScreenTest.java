@@ -360,7 +360,9 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         Helper.wr("ScreenTest.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
-        //MmgVector2 v2 = (MmgVector2)obj.payload;
-        //Helper.wr("ScreenTest.HandleGenericEvent: " + v2.ToString());
+        if(obj.id == MmgScrollVert.SCROLL_VERT_CLICK_EVENT_ID || obj.id == MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID || obj.id == MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID) {
+            MmgVector2 v2 = (MmgVector2)obj.payload;
+            Helper.wr("ScreenTest.HandleGenericEvent: " + v2.ToString());
+        }
     }
 }

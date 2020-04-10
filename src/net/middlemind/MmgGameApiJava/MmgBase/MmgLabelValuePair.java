@@ -40,6 +40,7 @@ public class MmgLabelValuePair extends MmgObj {
      * @param fontVal
      */
     public MmgLabelValuePair(Font fontLbl, Font fontVal) {
+        super();
         skipReset = true;
         SetLabel(new MmgFont(fontLbl));
         SetValue(new MmgFont(fontVal));
@@ -79,13 +80,13 @@ public class MmgLabelValuePair extends MmgObj {
         if(lvp.GetLabel() == null) {
             SetLabel(lvp.GetLabel());
         }else {
-            SetLabel(lvp.GetLabel().Clone());
+            SetLabel(lvp.GetLabel().CloneTyped());
         }
         
         if(lvp.GetValue() == null) {
             SetValue(lvp.GetValue());
         }else {
-            SetValue(lvp.GetValue().Clone());
+            SetValue(lvp.GetValue().CloneTyped());
         }
         
         if(lvp.GetPosition() == null) {
@@ -119,6 +120,7 @@ public class MmgLabelValuePair extends MmgObj {
      * @param cl        Color to use to draw the text.
      */
     public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, MmgVector2 pos, MmgColor cl) {
+        super();
         skipReset = true;
         SetLabel(new MmgFont(fontLbl));
         SetValue(new MmgFont(fontVal));
@@ -168,33 +170,77 @@ public class MmgLabelValuePair extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override
+    public MmgLabelValuePair CloneTyped() {
+        return new MmgLabelValuePair(this);
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
     public int GetPaddingX() {
         return paddingX;
     }
     
+    /**
+     * 
+     * 
+     * @param p 
+     */
     public void SetPaddingX(int p ) {
         paddingX = p;
         Reset();
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public String GetValueText() {
         return val.GetText();
     }
 
+    /**
+     * 
+     * 
+     * @param s 
+     */
     public void SetValueText(String s) {
         val.SetText(s);
         Reset();
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public String GetLabelText() {
         return lbl.GetText();
     }
     
+    /**
+     * 
+     * 
+     * @param s 
+     */
     public void SetLabelText(String s) {
         lbl.SetText(s);
         Reset();
     }
     
+    /**
+     * 
+     * 
+     */
     private void Reset() {
         if(skipReset == false) {
             SetWidth(lbl.GetWidth() + paddingX + val.GetWidth());
@@ -233,19 +279,39 @@ public class MmgLabelValuePair extends MmgObj {
         }
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgFont GetLabel() {
         return lbl;
     }
     
+    /**
+     * 
+     * 
+     * @param ft 
+     */
     public void SetLabel(MmgFont ft) {
         lbl = ft;
         Reset();
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgFont GetValue() {
         return val;
     }
     
+    /**
+     * 
+     * 
+     * @param ft 
+     */
     public void SetValue(MmgFont ft) {
         val = ft;
         Reset();
@@ -260,21 +326,40 @@ public class MmgLabelValuePair extends MmgObj {
         return lbl.GetFont();
     }
 
+    /**
+     * 
+     * 
+     * @param ft 
+     */
     public void SetLabelFont(Font ft) {
         lbl.SetFont(ft);
         Reset();
     }
     
-    
+    /**
+     * 
+     * 
+     * @return 
+     */
     public Font GetValueFont() {
         return val.GetFont();
     }
     
+    /**
+     * 
+     * 
+     * @param ft 
+     */
     public void SetValueFont(Font ft) {
         val.SetFont(ft);
         Reset();
     }
     
+    /**
+     * 
+     * 
+     * @param v 
+     */
     @Override
     public void SetPosition(MmgVector2 v) {
         super.SetPosition(v);
@@ -282,6 +367,11 @@ public class MmgLabelValuePair extends MmgObj {
         Reset();
     }
     
+    /**
+     * 
+     * 
+     * @param c 
+     */
     @Override
     public void SetMmgColor(MmgColor c) {
         super.SetMmgColor(c);
@@ -289,6 +379,11 @@ public class MmgLabelValuePair extends MmgObj {
         val.SetMmgColor(c);
     }
     
+    /**
+     * 
+     * 
+     * @param x 
+     */
     @Override
     public void SetX(int x) {
         super.SetX(x);
@@ -296,6 +391,11 @@ public class MmgLabelValuePair extends MmgObj {
         Reset();
     }
     
+    /**
+     * 
+     * 
+     * @param y 
+     */
     @Override
     public void SetY(int y) {
         super.SetY(y);
@@ -319,6 +419,12 @@ public class MmgLabelValuePair extends MmgObj {
         }
     }
     
+    /**
+     * 
+     * 
+     * @param r
+     * @return 
+     */
     public boolean Equals(MmgLabelValuePair r) {
         if(GetLabel().Equals(r.GetLabel()) == true
             && GetValue().Equals(r.GetValue()) == true

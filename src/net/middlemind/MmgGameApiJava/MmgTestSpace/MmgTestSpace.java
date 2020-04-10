@@ -110,6 +110,47 @@ public final class MmgTestSpace {
     }
 
     /**
+     * Run OS specific code on startup before the native libraries are loaded and the game engine
+     * config XML file.
+     */
+    public static void RunOsSpecificCode() {
+        try {
+            String OS = System.getProperty("os.name").toLowerCase();
+            Helper.wr("Found platform: " + OS);
+            
+            if (isWindows(OS)) {
+                Helper.wr("This is Windows");
+                
+            } else if (isMac(OS)) {
+                Helper.wr("This is Mac");
+                GameSettings.LOAD_NATIVE_LIBRARIES = true;
+                GameSettings.GAMEPAD_1_ON = true;
+                GameSettings.GAMEPAD_1_THREADED_POLLING = false;
+                GameSettings.GAMEPAD_2_ON = false;
+                GameSettings.GPIO_GAMEPAD_ON = false;
+                
+            } else if (isUnix(OS)) {
+                Helper.wr("This is Unix or Linux");
+                GameSettings.LOAD_NATIVE_LIBRARIES = false;
+                GameSettings.GAMEPAD_1_ON = false;
+                GameSettings.GAMEPAD_2_ON = false;
+                GameSettings.GPIO_GAMEPAD_ON = true;
+                GameSettings.GPIO_GAMEPAD_THREADED_POLLING = true;
+                
+            } else if (isSolaris(OS)) {
+                Helper.wr("This is Solaris");
+                
+            } else {
+                Helper.wr("Your OS is not supported!!");
+
+            }
+            
+        } catch(Exception e) {
+            Helper.wrErr(e);
+        }
+    }    
+    
+    /**
      * A static method that loads native libraries that allow access to gamepads and controllers.
      */
     public static void LoadNativeLibraries() {
@@ -230,7 +271,13 @@ public final class MmgTestSpace {
      * @param args The command line arguments
      */
     public static final void main(String[] args) {
-        LoadNativeLibraries();        
+        if(GameSettings.RUN_OS_SPECIFIC_CODE) {
+            RunOsSpecificCode();
+        }
+        
+        if(GameSettings.LOAD_NATIVE_LIBRARIES) {
+            LoadNativeLibraries();
+        }
 
         //Store program arguments for future reference
         ARGS = args;        
@@ -309,7 +356,7 @@ public final class MmgTestSpace {
                                 SetField(ent, f);
                             }
                         } else if(ent.from != null && ent.from.equals("Helper") == true) {
-                            f = GameSettings.class.getField(ent.key);
+                            f = Helper.class.getField(ent.key);
                             if (f != null) {
                                 System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);

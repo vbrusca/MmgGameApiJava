@@ -15,8 +15,18 @@ import java.awt.image.BufferedImage;
  */
 public class MmgBmpScaler {
 
+    /**
+     * 
+     */
     public static GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
+    /**
+     * 
+     * 
+     * @param subj
+     * @param alpha
+     * @return 
+     */
     public static MmgBmp ScaleMmgBmpToGameScreen(MmgBmp subj, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();        

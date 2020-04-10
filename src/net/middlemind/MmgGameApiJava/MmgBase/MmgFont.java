@@ -45,6 +45,7 @@ public class MmgFont extends MmgObj {
      * @param tf Font to use for text drawing.
      */
     public MmgFont(Font tf) {
+        super();
         frc = new FontRenderContext(null, true, true);
         text = "";
         font = tf;
@@ -100,6 +101,7 @@ public class MmgFont extends MmgObj {
      * @param cl Color to use to draw the text.
      */
     public MmgFont(Font sf, String txt, MmgVector2 pos, MmgColor cl) {
+        super();        
         frc = new FontRenderContext(null, true, true);
         SetFont(sf);
         SetText(txt);
@@ -118,6 +120,7 @@ public class MmgFont extends MmgObj {
      * @param cl Color to use to draw the text.
      */
     public MmgFont(Font sf, String txt, int x, int y, MmgColor cl) {
+        super();
         frc = new FontRenderContext(null, true, true);
         SetFont(sf);
         SetText(txt);
@@ -132,10 +135,20 @@ public class MmgFont extends MmgObj {
      * @return A clone of this object.
      */
     @Override
-    public MmgFont Clone() {
+    public MmgObj Clone() {
         MmgFont ret = new MmgFont(this);
-        return ret;
+        return (MmgObj) ret;
     }
+
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override
+    public MmgFont CloneTyped() {
+        return new MmgFont(this);
+    }    
     
     /**
      * Gets the text for this object.

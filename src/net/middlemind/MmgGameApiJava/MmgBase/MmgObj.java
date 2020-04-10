@@ -36,7 +36,7 @@ public class MmgObj {
     /**
      * The version of this MmgApi.
      */
-    private String version = "1.0.4"; //"1.0.0";
+    private String version = "1.0.4";
 
     /**
      * Flag indicating if this MmgObj has a parent container.
@@ -218,10 +218,18 @@ public class MmgObj {
      * @return      A clone of this object.
      */
     public MmgObj Clone() {
-        MmgObj ret = new MmgObj(this);
-        return ret;
+        return new MmgObj(this);
     }
 
+    /**
+     * Clones the current object typed as an MmgObj.
+     *
+     * @return      A clone of this class.
+     */
+    public MmgObj CloneTyped() {
+        return new MmgObj(this);
+    }    
+    
     /**
      * Gets the API version number.
      * 
@@ -318,6 +326,12 @@ public class MmgObj {
         pos = v;
     }
 
+    /**
+     * 
+     * 
+     * @param x
+     * @param y 
+     */
     public void SetPosition(int x, int y) {
         pos = new MmgVector2(x, y);
     }    
@@ -385,42 +399,93 @@ public class MmgObj {
         return this.GetPosition().GetY();
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public String GetName() {
         return name;
     }
     
+    /**
+     * 
+     * 
+     * @param n 
+     */
     public void SetName(String n) {
         name = n;
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public String GetId() {
         return mmgUid;
     }
     
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetId(String i) {
         mmgUid = i;
     }
     
+    /**
+     * 
+     * 
+     * @param b 
+     */
     public void SetHasParent(boolean b) {
         hasParent = b;
     }
     
+    /**
+     * 
+     * 
+     * @param o 
+     */
     public void SetParent(MmgObj o) {
         parent = o;
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public boolean GetHasParent() {
         return hasParent;
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgObj GetParent() {
         return parent;
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public String ToString() {
         return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString();
     }
     
+    /**
+     * 
+     * 
+     * @param o
+     * @return 
+     */
     public boolean Equals(MmgObj o) {
         if(o != null 
                 && o.GetHasParent() == GetHasParent() 

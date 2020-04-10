@@ -4,7 +4,8 @@ import java.awt.*;
 
 /**
  * Class that wraps the lower level bitmap object. Created by Middlemind Games
- *
+ * Created by Middlemind Games
+ * 
  * @author Victor G. Brusca
  */
 public class MmgBmp extends MmgObj {
@@ -13,7 +14,6 @@ public class MmgBmp extends MmgObj {
      * Drawing mode to determine the best way to handle drawing a bitmap.
      */
     public enum MmgBmpDrawMode {
-
         DRAW_BMP_FULL,
         DRAW_BMP_BASIC_CACHE,
         DRAW_BMP_BASIC
@@ -102,52 +102,53 @@ public class MmgBmp extends MmgObj {
     /**
      * Construct from a previous instance of MmgBmp.
      *
-     * @param bmp The object to create this class from.
+     * @param obj The object to create this class from.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgBmp(MmgBmp bmp) {
-        SetRotation(bmp.GetRotation());
+    public MmgBmp(MmgBmp obj) {
+        super();
+        SetRotation(obj.GetRotation());
 
-        if (bmp.GetOrigin() == null) {
-            SetOrigin(bmp.GetOrigin());
+        if (obj.GetOrigin() == null) {
+            SetOrigin(obj.GetOrigin());
         } else {
-            SetOrigin(bmp.GetOrigin().Clone());
+            SetOrigin(obj.GetOrigin().Clone());
         }
 
-        if (bmp.GetSrcRect() == null) {
-            SetSrcRect(bmp.GetSrcRect());
+        if (obj.GetSrcRect() == null) {
+            SetSrcRect(obj.GetSrcRect());
         } else {
-            SetSrcRect(bmp.GetSrcRect().Clone());
+            SetSrcRect(obj.GetSrcRect().Clone());
         }
 
-        if (bmp.GetDstRect() == null) {
-            SetDstRect(bmp.GetDstRect());
+        if (obj.GetDstRect() == null) {
+            SetDstRect(obj.GetDstRect());
         } else {
-            SetDstRect(bmp.GetDstRect().Clone());
+            SetDstRect(obj.GetDstRect().Clone());
         }
 
-        SetTexture2D(bmp.GetTexture2D());
+        SetTexture2D(obj.GetTexture2D());
 
-        if (bmp.GetPosition() == null) {
-            SetPosition(bmp.GetPosition());
+        if (obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
         } else {
-            SetPosition(bmp.GetPosition().Clone());
+            SetPosition(obj.GetPosition().Clone());
         }
 
-        if (bmp.GetScaling() == null) {
-            SetScaling(bmp.GetScaling());
+        if (obj.GetScaling() == null) {
+            SetScaling(obj.GetScaling());
         } else {
-            SetScaling(bmp.GetScaling().Clone());
+            SetScaling(obj.GetScaling().Clone());
         }
 
-        SetWidth(bmp.GetUnscaledWidth());
-        SetHeight(bmp.GetUnscaledHeight());
-        SetIsVisible(bmp.GetIsVisible());
+        SetWidth(obj.GetUnscaledWidth());
+        SetHeight(obj.GetUnscaledHeight());
+        SetIsVisible(obj.GetIsVisible());
 
-        if (bmp.GetMmgColor() == null) {
-            SetMmgColor(bmp.GetMmgColor());
+        if (obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
         } else {
-            SetMmgColor(bmp.GetMmgColor().Clone());
+            SetMmgColor(obj.GetMmgColor().Clone());
         }
         SetBmpId();
     }
@@ -160,6 +161,7 @@ public class MmgBmp extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(Image t) {
+        super();
         SetRotation(0f);
         SetOrigin(MmgVector2.GetOriginVec());
         SetScaling(MmgVector2.GetUnitVec());
@@ -189,6 +191,7 @@ public class MmgBmp extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(Image t, MmgRect Src, MmgRect Dst, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
+        super();
         SetRotation(Rotation);
         SetOrigin(Origin);
         SetScaling(Scaling);
@@ -216,6 +219,7 @@ public class MmgBmp extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(Image t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
+        super();
         SetRotation(Rotation);
         SetOrigin(Origin);
         SetScaling(Scaling);
@@ -337,7 +341,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Clones the current object.
      *
-     * @return Returns a new MmgObj based on the original MmgObj.
+     * @return      Returns a new MmgObj based on the original MmgObj.
      */
     @Override
     public MmgObj Clone() {
@@ -345,6 +349,16 @@ public class MmgBmp extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * Clones the current object typed as an MmgBmp.
+     *
+     * @return      Returns a new MmgObj based on the original MmgObj.
+     */
+    @Override
+    public MmgBmp CloneTyped() {
+        return new MmgBmp(this);
+    }    
+    
     /**
      * Returns the image of this bitmap.
      *
@@ -562,7 +576,7 @@ public class MmgBmp extends MmgObj {
     /**
      * The base drawing method for the bitmap object.
      *
-     * @param p The MmgPen used to draw this bitmap.
+     * @param p     The MmgPen used to draw this bitmap.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -578,7 +592,13 @@ public class MmgBmp extends MmgObj {
             //do nothing
         }
     }
-
+        
+    /**
+     * 
+     * 
+     * @param b
+     * @return 
+     */
     public boolean Equals(MmgBmp b) {
         if (b != null) {
             //ORIGIN

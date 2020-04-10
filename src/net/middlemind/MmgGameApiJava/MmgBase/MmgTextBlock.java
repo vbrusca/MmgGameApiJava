@@ -95,7 +95,15 @@ public class MmgTextBlock extends MmgObj {
      */
     private MmgFont dTmp = null;
 
+    /**
+     * The character encoding to use for setting a new line in the text block.
+     */
     public static String NEW_LINE = "[b]";
+    
+    /**
+     * A boolean flag that toggles drawing a bounding box around the text block
+     * to help with aligning the text block.
+     */
     public static boolean SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
     /**

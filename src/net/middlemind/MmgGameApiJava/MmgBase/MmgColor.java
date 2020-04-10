@@ -67,162 +67,362 @@ public class MmgColor {
         return new MmgColor(Color.BLACK);
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetRed() {
         return new MmgColor(Color.RED);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetBlue() {
         return new MmgColor(Color.BLUE);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGreen() {
         return new MmgColor(Color.GREEN);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetCyan() {
         return new MmgColor(Color.CYAN);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGray() {
         return new MmgColor(Color.GRAY);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetDarkGray() {
         return new MmgColor(Color.DARK_GRAY);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetLightGray() {
         return new MmgColor(Color.LIGHT_GRAY);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetMagenta() {
         return new MmgColor(Color.MAGENTA);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetOrange() {
         return new MmgColor(Color.ORANGE);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetPink() {
         return new MmgColor(Color.PINK);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetYellow() {
         return new MmgColor(Color.YELLOW);
     }
      
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetLimeGreen() {
         return new MmgColor(Color.decode("#DAF7A6"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetYellowOrange() {
         return new MmgColor(Color.decode("#FFC300"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetRedOrange() {
         return new MmgColor(Color.decode("#FF5733"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetPurpleRed() {
         return new MmgColor(Color.decode("#C70039"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetDarkRed() {
         return new MmgColor(Color.decode("#900C3F"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetDarkBlue() {
         return new MmgColor(Color.decode("#0000A0"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetLightBlue() {
         return new MmgColor(Color.decode("#ADD8E6"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetOlive() {
         return new MmgColor(Color.decode("#808000"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetBrown() {
         return new MmgColor(Color.decode("#A52A2A"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetMaroon() {
         return new MmgColor(Color.decode("#800000"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGunMetalGrey() {
         return new MmgColor(Color.decode("#2C3539"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetNight() {
         return new MmgColor(Color.decode("#0C090A"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetMidnight() {
         return new MmgColor(Color.decode("#2B1B17"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetCharcoal() {
         return new MmgColor(Color.decode("#34282C"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetDarkSlateGrey() {
         return new MmgColor(Color.decode("#25383C"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetOil() {
         return new MmgColor(Color.decode("#3B3131"));
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetCalmBlue() {
         return new MmgColor(Color.decode("#3B8EFF"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetBlackCat() {
         return new MmgColor(Color.decode("#413839"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetIridium() {
         return new MmgColor(Color.decode("#3D3C3A"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGreyWolf() {
         return new MmgColor(Color.decode("#504A4B"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGreyDolphin() {
         return new MmgColor(Color.decode("#5C5858"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetCarbonGrey() {
         return new MmgColor(Color.decode("#625D5D"));
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetBattleshipGrey() {
         return new MmgColor(Color.decode("#848482"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGreyCloud() {
         return new MmgColor(Color.decode("#B6B6B4"));
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetGreyGoose() {
         return new MmgColor(Color.decode("#D1D0CE"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetPlatinum() {
         return new MmgColor(Color.decode("#E5E4E2"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetMetallicSilver() {
         return new MmgColor(Color.decode("#BCC6CC"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetBlueGrey() {
         return new MmgColor(Color.decode("#98AFC7"));
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetSlateBlue() {
         return new MmgColor(Color.decode("#737CA1"));
     }
@@ -287,10 +487,21 @@ public class MmgColor {
     //dark violet: #842DCE
     //lavender blue: #E3E4FA
     
+    /**
+     * 
+     * 
+     * @param htmlColor
+     * @return 
+     */
     public static MmgColor GetDecodedColor(String htmlColor) {
         return new MmgColor(Color.decode(htmlColor));
     }    
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public static MmgColor GetTransparent() {
         return new MmgColor(new Color(0f, 0f, 0f, 1f));
     }    
@@ -320,6 +531,7 @@ public class MmgColor {
      return new Color();
      }
      */
+    
     public boolean Equals(MmgColor c) {
         if (c != null && c.GetColor().equals(GetColor()) == true) {
             return true;

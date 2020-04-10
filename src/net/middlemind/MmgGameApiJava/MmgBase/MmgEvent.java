@@ -189,6 +189,11 @@ public class MmgEvent {
         return type;
     }
 
+    /**
+     * 
+     * 
+     * @param s 
+     */
     public void SetEventType(int s) {
         type = s;
     }

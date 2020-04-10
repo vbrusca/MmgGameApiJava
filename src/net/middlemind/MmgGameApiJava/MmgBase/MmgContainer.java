@@ -20,7 +20,6 @@ public class MmgContainer extends MmgObj {
      * performed on a child.
      */
     private enum ChildAction {
-
         STAMP,
         UNSTAMP
     }
@@ -125,6 +124,16 @@ public class MmgContainer extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override
+    public  MmgContainer CloneTyped() {
+        return new MmgContainer(this);
+    }
+    
     /**
      * Adds a new MmgObj to the container.
      *
