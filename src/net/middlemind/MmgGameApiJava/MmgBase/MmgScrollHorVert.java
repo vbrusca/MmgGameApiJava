@@ -2,8 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -233,7 +231,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * An event handler that is used to process scroll pane click events.
      */
-    private GenericEventHandler handler;
+    private MmgGenericEventHandler handler;
     
     /**
      * A game state used in the event handler calls.
@@ -658,7 +656,7 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The event handler for this class instance.
      */    
-    public GenericEventHandler GetHandler() {
+    public MmgGenericEventHandler GetHandler() {
         return handler;
     }
 
@@ -667,7 +665,7 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param Handler   The event handler for this class instance.
      */    
-    public void SetHandler(GenericEventHandler Handler) {
+    public void SetHandler(MmgGenericEventHandler Handler) {
         handler = Handler;
     }
 
@@ -803,7 +801,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }                                    
             
             isDirty = true;
@@ -820,7 +818,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }                        
             
             isDirty = true;            
@@ -837,7 +835,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
             }
             
             isDirty = true;
@@ -854,7 +852,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
             }            
             
             isDirty = true;            
@@ -878,7 +876,7 @@ public class MmgScrollHorVert extends MmgObj {
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
             MmgDebug.wr("Both: viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y + offsetYScrollPane - GetY()), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y + offsetYScrollPane - GetY()), gameState));
             }
             ret = true;
             
@@ -898,7 +896,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }            
             
             isDirty = true;
@@ -916,7 +914,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }                        
             
             isDirty = true;            
@@ -933,7 +931,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
             }                        
             
             isDirty = true;
@@ -950,7 +948,7 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
             }                                    
             
             isDirty = true;

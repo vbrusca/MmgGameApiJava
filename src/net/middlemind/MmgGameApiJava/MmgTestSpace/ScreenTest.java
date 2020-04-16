@@ -1,8 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -22,6 +21,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHorVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgTextField;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventHandler;
 
 /**
  * A game screen object, ScreenTest, that extends the MmgGameScreen base
@@ -30,7 +30,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
  * @author Victor G. Brusca
  * 02/25/2020
  */
-public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
+public class ScreenTest extends MmgGameScreen implements MmgGenericEventHandler {
 
     /**
      * The game state this screen has.
@@ -41,7 +41,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
      * Event handler for firing generic events. Events would fire when the
      * screen has non UI actions to broadcast.
      */
-    protected GenericEventHandler handler;
+    protected MmgGenericEventHandler handler;
 
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
@@ -84,12 +84,12 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
      *
      * @param Handler A class that implements the GenericEventHandler interface.
      */
-    public void SetGenericEventHandler(GenericEventHandler Handler) {
+    public void SetGenericEventHandler(MmgGenericEventHandler Handler) {
         Helper.wr("Odroid.ScreenTest.SetGenericEventHandler");
         handler = Handler;
     }
 
-    public GenericEventHandler GetGenericEventHandler() {
+    public MmgGenericEventHandler GetGenericEventHandler() {
         return handler;
     }
        
@@ -235,7 +235,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         MmgHelper.CenterHorAndVert(scrollBoth);
         AddObj(scrollBoth);
         
-        txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), 200, 50, 12);
+        txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), 200, 50, 12, GameStates.MAIN_GAME);
         txtField.SetPosition(50, 100);
         AddObj(txtField);
         
@@ -326,10 +326,10 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     @Override
     public boolean ProcessKeyClick(char c, int code) {
         if(Character.isLetterOrDigit(c)) {
-            txtField.ProcessKeyClick(c);
-            
+            txtField.ProcessKeyClick(c, code);            
+        } else if(code == 8) {
+            txtField.DeleteChar();
         }
-        MmgHelper.wr("ScreenTest: ProcessKeyClick: " + code);
         return true;
     }
     
@@ -385,7 +385,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     }
 
     @Override
-    public void HandleGenericEvent(GenericEventMessage obj) {
+    public void HandleGenericEvent(MmgGenericEventMessage obj) {
         Helper.wr("ScreenTest.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
         if(obj.id == MmgScrollVert.SCROLL_VERT_CLICK_EVENT_ID || obj.id == MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID || obj.id == MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID) {
             MmgVector2 v2 = (MmgVector2)obj.payload;

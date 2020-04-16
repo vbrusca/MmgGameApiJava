@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventHandler;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,7 +25,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  * @author Victor G. Brusca
  */
 @SuppressWarnings("UseOfObsoleteCollectionType")
-public class GamePanel implements GenericEventHandler, GamePadSimple {
+public class GamePanel implements MmgGenericEventHandler, GamePadSimple {
 
     /**
      * An enumeration that lists all of the game states.
@@ -458,7 +460,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     
                 }
                 
-                ProcessKeyClick(e.getKeyChar(), e.getKeyCode());
+                ProcessKeyClick(e.getKeyChar(), e.getExtendedKeyCode());
             }
 
             @Override
@@ -937,7 +939,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param obj       A GenericEventMessage instance that has information about the generic event that was fired.
      */
     @Override
-    public void HandleGenericEvent(GenericEventMessage obj) {
+    public void HandleGenericEvent(MmgGenericEventMessage obj) {
         Helper.wr("HandleGenericEvent");
         if (obj != null) {
             if (obj.GetGameState() == GameStates.LOADING) {

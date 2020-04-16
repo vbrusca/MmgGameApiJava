@@ -1,8 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
@@ -13,6 +12,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSplashScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventHandler;
 
 /**
  * A game screen object, ScreenSplash, that extends the MmgGameScreen base
@@ -38,7 +38,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      * Event handler for firing generic events. Events would fire when the
      * screen has non UI actions to broadcast.
      */
-    public GenericEventHandler handler;
+    public MmgGenericEventHandler handler;
 
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
@@ -71,11 +71,11 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      *
      * @param Handler A class that implements the GenericEventHandler interface.
      */
-    public void SetGenericEventHandler(GenericEventHandler Handler) {
+    public void SetGenericEventHandler(MmgGenericEventHandler Handler) {
         handler = Handler;
     }
 
-    public GenericEventHandler GetGenericEventHandler() {
+    public MmgGenericEventHandler GetGenericEventHandler() {
         return handler;
     }
         
@@ -88,7 +88,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     @Override
     public void MmgHandleUpdate(Object obj) {
         if (handler != null) {
-            handler.HandleGenericEvent(new GenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
+            handler.HandleGenericEvent(new MmgGenericEventMessage(ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }
     }
 

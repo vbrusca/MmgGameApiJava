@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventHandler;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
@@ -18,7 +20,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
  * @author Victor G. Brusca
  * 03/15/2020
  */
-public class Screen extends MmgGameScreen implements GenericEventHandler {
+public class Screen extends MmgGameScreen implements MmgGenericEventHandler {
 
     /**
      * The game state this screen has.
@@ -53,7 +55,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
     
     @Override
-    public void HandleGenericEvent(GenericEventMessage obj) {
+    public void HandleGenericEvent(MmgGenericEventMessage obj) {
         
     }
     

@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.*;
 
-//TODO: Add clone and typed clone, add MmgTextBlock contructor
+//TODO: Finish documentation
 
 /**
  * A class to control the background story of the game. 
@@ -34,27 +34,27 @@ public class MmgTextBlock extends MmgObj {
     /**
      * The Y axis padding to use for rendering text.
      */
-    private int paddingY = 4;
+    private int paddingY;
 
     /**
      * The X axis padding to used for rendering text.
      */
-    private int paddingX = 4;
+    private int paddingX;
 
     /**
      * The line height to use for rendering text.
      */
-    private int lineHeight = 16;
+    private int lineHeight;
 
     /**
      * The height to use for rendering the background story.
      */
-    private int height = 100;
+    private int height;
 
     /**
      * The width to use for rendering the background story.
      */
-    private int width = 100;
+    private int width;
 
     /**
      * The number of pages found in parsing the background story.
@@ -114,8 +114,8 @@ public class MmgTextBlock extends MmgObj {
      */
     @SuppressWarnings({"OverridableMethodCallInConstructor", "Convert2Diamond"})
     public MmgTextBlock() {
-        SetPaddingY(4);
         SetPaddingX(4);
+        SetPaddingY(4);
         SetLineHeight(16);
         SetHeight(100);
         SetWidth(100);
@@ -125,6 +125,111 @@ public class MmgTextBlock extends MmgObj {
         SetColor(MmgColor.GetBlack());
     }
 
+    /**
+     * 
+     * 
+     * @param obj 
+     */
+    public MmgTextBlock(MmgTextBlock obj) {
+        SetPaddingX(obj.GetPaddingX());
+        SetPaddingY(obj.GetPaddingY());
+        SetHeight(obj.GetHeight());
+        SetWidth(obj.GetWidth());
+        
+        SetPages(obj.GetPages());
+        SetLineHeight(obj.GetLineHeight());        
+        SetSpriteFont(obj.GetSpriteFont());
+        
+        if(obj.GetColor() == null) {
+            SetColor(obj.GetColor());
+        } else {
+            SetColor(obj.GetColor().Clone());
+        }
+        
+        MmgFont tmpF = null;
+        ArrayList<MmgFont> tmpL = null;
+        if(obj.GetLines() == null) {
+            SetLines(obj.GetLines());
+        } else {
+            tmpL = obj.GetLines();
+            lines = new ArrayList<MmgFont>(STARTING_LINE_COUNT);
+            for(int i = 0; i < lines.size(); i++) {
+                tmpF = tmpL.get(i);
+                lines.add(tmpF.CloneTyped());
+            }
+        }
+        
+        tmpF = null;
+        tmpL = null;
+        if(obj.GetTxt() == null) {
+            SetTxt(obj.GetTxt());
+        } else {
+            tmpL = obj.GetTxt();
+            txt = new ArrayList<MmgFont>(STARTING_TXT_COUNT);
+            for(int i = 0; i < txt.size(); i++) {
+                tmpF = tmpL.get(i);
+                txt.add(tmpF.CloneTyped());
+            }
+        }
+
+        SetWordCount(obj.GetWordCount());
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public MmgObj Clone() {
+        MmgTextBlock ret = new MmgTextBlock(this);
+        return (MmgObj) ret;
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public MmgTextBlock CloneTyped() {
+        return new MmgTextBlock(this);
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public ArrayList<MmgFont> GetLines() {
+        return lines;
+    }
+    
+    /**
+     * 
+     * 
+     * @param a 
+     */
+    public void SetLines(ArrayList<MmgFont> a) {
+        lines = a;
+    }    
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public ArrayList<MmgFont> GetTxt() {
+        return txt;
+    }
+        
+    /**
+     * 
+     * 
+     * @param a 
+     */
+    public void SetTxt(ArrayList<MmgFont> a) {
+        txt = a;
+    }
+    
     /**
      * 
      */
@@ -418,6 +523,15 @@ public class MmgTextBlock extends MmgObj {
         return words;
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
+    public void SetWordCount(int i) {
+        words = i;
+    }
+    
     /**
      * Prepares the text for rendering for the given page index.
      *

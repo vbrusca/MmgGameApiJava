@@ -1,7 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-//TODO: Finish documentation
-
 /**
  * Class that provides tween support to an underlying MmgObj instance.
  * Created by Middlemind Games 12/01/2016
@@ -175,9 +173,9 @@ public class MmgPositionTween extends MmgObj {
     }
 
     /**
+     * A constructor that is based on the an instance of the MmgPositionTween object.
      * 
-     * 
-     * @param obj 
+     * @param obj       An MmgPositionTween object to create an new instance of the MmgPositionTween class from.
      */
     public MmgPositionTween(MmgPositionTween obj) {
         super();

@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.MainFrame;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
@@ -165,7 +165,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     }    
     
     @Override
-    public void HandleGenericEvent(GenericEventMessage obj) {
+    public void HandleGenericEvent(MmgGenericEventMessage obj) {
         if (obj != null) {
             Helper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {

@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventHandler;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import java.io.File;
 import java.util.Hashtable;
@@ -46,7 +48,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      * Event handler for firing generic events. Events would fire when the
      * screen has non UI actions to broadcast.
      */
-    public GenericEventHandler handler;
+    public MmgGenericEventHandler handler;
 
     /**
      * The GamePanel that owns this game screen. Usually a JPanel instance that
@@ -106,11 +108,11 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      *
      * @param Handler A class that implements the GenericEventHandler interface.
      */
-    public void SetGenericEventHandler(GenericEventHandler Handler) {
+    public void SetGenericEventHandler(MmgGenericEventHandler Handler) {
         handler = Handler;
     }
 
-    public GenericEventHandler GetGenericEventHandler() {
+    public MmgGenericEventHandler GetGenericEventHandler() {
         return handler;
     }
 
@@ -372,7 +374,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
 
             if (GetLoadComplete() == true) {
                 if (handler != null) {
-                    handler.HandleGenericEvent(new GenericEventMessage(ScreenLoading.EVENT_LOAD_COMPLETE, null, GetGameState()));
+                    handler.HandleGenericEvent(new MmgGenericEventMessage(ScreenLoading.EVENT_LOAD_COMPLETE, null, GetGameState()));
                 }
             }
             

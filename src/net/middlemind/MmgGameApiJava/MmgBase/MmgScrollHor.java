@@ -2,8 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -93,37 +91,37 @@ public class MmgScrollHor extends MmgObj {
     /**
      * An MmgColor for the horizontal scroll bar background color.
      */
-    private MmgColor scrollBarColor = MmgColor.GetWhite();
+    private MmgColor scrollBarColor;
     
     /**
      * An MmgColor for the horizontal scroll bar slider's color.
      */
-    private MmgColor scrollBarSliderColor = MmgColor.GetRed();    
+    private MmgColor scrollBarSliderColor;    
     
     /**
      * The horizontal scroll bar height.
      */    
-    private int scrollBarHorHeight = MmgHelper.ScaleValue(10);
+    private int scrollBarHorHeight;
     
     /**
      * The width of the horizontal scroll bar slider.
      */
-    private int scrollBarHorSliderWidth = MmgHelper.ScaleValue(30);
+    private int scrollBarHorSliderWidth;
     
     /**
      * The width of the scroll bar slider button.
      */    
-    private int scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
+    private int scrollBarSliderButtonWidth;
     
     /**
      * The scroll interval of the horizontal slider.
      */    
-    private int intervalX = 5;
+    private int intervalX;
     
     /**
      * The scroll interval percentage of the horizontal slider.
      */    
-    private double intervalPrctX = 5.0;
+    private double intervalPrctX;
     
     /**
      * A boolean flag indicating if the scroll pane needs to be updated during the MmgUpdate call.
@@ -143,7 +141,7 @@ public class MmgScrollHor extends MmgObj {
     /**
      * An event handler that is used to process scroll pane click events.
      */    
-    private GenericEventHandler handler;
+    private MmgGenericEventHandler handler;
     
     /**
      * A game state used in the event handler calls.
@@ -440,7 +438,7 @@ public class MmgScrollHor extends MmgObj {
      * 
      * @return      The event handler for this class instance.
      */    
-    public GenericEventHandler GetHandler() {
+    public MmgGenericEventHandler GetHandler() {
         return handler;
     }
 
@@ -449,7 +447,7 @@ public class MmgScrollHor extends MmgObj {
      * 
      * @param Handler   The event handler for this class instance.
      */    
-    public void SetHandler(GenericEventHandler Handler) {
+    public void SetHandler(MmgGenericEventHandler Handler) {
         handler = Handler;
     }
 
@@ -552,7 +550,7 @@ public class MmgScrollHor extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }            
             
             isDirty = true;
@@ -569,7 +567,7 @@ public class MmgScrollHor extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }                        
             
             isDirty = true;            
@@ -593,7 +591,7 @@ public class MmgScrollHor extends MmgObj {
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
             MmgDebug.wr("viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y - GetY()), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y - GetY()), gameState));
             }
             ret = true;
             
@@ -612,7 +610,7 @@ public class MmgScrollHor extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }                        
             
             isDirty = true;
@@ -629,7 +627,7 @@ public class MmgScrollHor extends MmgObj {
             }
             
             if(handler != null) {
-                handler.HandleGenericEvent(new GenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
             }            
             
             isDirty = true;            

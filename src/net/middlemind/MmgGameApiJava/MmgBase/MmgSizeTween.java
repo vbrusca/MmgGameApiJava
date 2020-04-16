@@ -151,6 +151,13 @@ public class MmgSizeTween extends MmgObj {
         MmgDebug.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
+    /**
+     * 
+     * 
+     * @param msTimeToChange
+     * @param startSize
+     * @param finishSize 
+     */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
         super();
@@ -174,74 +181,159 @@ public class MmgSizeTween extends MmgObj {
         MmgDebug.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetFinishEventId(int i) {
         if (reachFinish != null) {
             reachFinish.SetEventId(i);
         }
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetStartEventId(int i) {
         if (reachStart != null) {
             reachStart.SetEventId(i);
         }
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgEventHandler GetOnReachFinish() {
         return onReachFinish;
     }
 
+    /**
+     * 
+     * 
+     * @param o 
+     */
     public void SetOnReachFinish(MmgEventHandler o) {
         onReachFinish = o;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgEventHandler GetOnReachStart() {
         return onReachStart;
     }
 
+    /**
+     * 
+     * 
+     * @param o 
+     */
     public void SetOnReachStart(MmgEventHandler o) {
         onReachStart = o;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public long GetMsStartChange() {
         return msStartChange;
     }
 
+    /**
+     * 
+     * 
+     * @param l 
+     */
     public void SetMsStartChange(long l) {
         msStartChange = l;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public float GetPixelsPerMsToChangeX() {
         return pixelsPerMsToChangeX;
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetPixelsPerMsToChangeX(float i) {
         pixelsPerMsToChangeX = i;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public float GetPixelsPerMsToChangeY() {
         return pixelsPerMsToChangeY;
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetPixelsPerMsToChangeY(float i) {
         pixelsPerMsToChangeY = i;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public boolean GetChanging() {
         return changing;
     }
 
+    /**
+     * 
+     * 
+     * @param b 
+     */
     public void SetChanging(boolean b) {
         changing = b;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public boolean GetDirStartToFinish() {
         return dirStartToFinish;
     }
 
+    /**
+     * 
+     * 
+     * @param b 
+     */
     public void SetDirStartToFinish(boolean b) {
         dirStartToFinish = b;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgVector2 GetStartSize() {
         return startSize;
     }
