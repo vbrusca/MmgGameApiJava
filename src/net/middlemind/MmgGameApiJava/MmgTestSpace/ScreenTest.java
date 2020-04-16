@@ -11,6 +11,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
@@ -19,6 +20,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollHorVert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScrollVert;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgTextField;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
 /**
@@ -52,7 +54,11 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     protected MmgScrollHorVert scrollBoth;
     
     private MmgBmp bground;
-    private Mmg9Slice menuBground;    
+    private Mmg9Slice menuBground;
+    private MmgTextField txtField;
+    
+    private boolean isDirty = false;
+    private boolean lret = false;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -156,7 +162,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval, gameState);
         //scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
         scrollVert.SetIsVisible(true);
-        scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
+        scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarVertWidth());
         scrollVert.SetHeight(sHeight);
         scrollVert.SetHandler(this);    
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
@@ -190,7 +196,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         //scrollHor = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
         scrollHor.SetIsVisible(true);
         scrollHor.SetWidth(sWidth);
-        scrollHor.SetHeight(sHeight + scrollHor.GetScrollBarHeight());
+        scrollHor.SetHeight(sHeight + scrollHor.GetScrollBarHorHeight());
         scrollHor.SetHandler(this);
         MmgScrollHor.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollHor);
@@ -222,12 +228,16 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollBoth = new MmgScrollHorVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarWidth, sBarSldrHeight, sBarSldrHeight, interval, interval, gameState);
         //scrollBoth = new MmgScrollHor(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
         scrollBoth.SetIsVisible(true);
-        scrollBoth.SetWidth(sWidth + scrollBoth.GetScrollBarWidth());
-        scrollBoth.SetHeight(sHeight + scrollBoth.GetScrollBarHeight());
+        scrollBoth.SetWidth(sWidth + scrollBoth.GetScrollBarVertWidth());
+        scrollBoth.SetHeight(sHeight + scrollBoth.GetScrollBarHorHeight());
         scrollBoth.SetHandler(this);
         MmgScrollHorVert.SHOW_CONTROL_BOUNDING_BOX = true;
         MmgHelper.CenterHorAndVert(scrollBoth);
         AddObj(scrollBoth);
+        
+        txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), 200, 50, 12);
+        txtField.SetPosition(50, 100);
+        AddObj(txtField);
         
         ready = true;
         pause = false;
@@ -287,8 +297,8 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollVert.ProcessDpadRelease(dir);
         scrollHor.ProcessDpadRelease(dir);
         scrollBoth.ProcessDpadRelease(dir);
-
-        return false;
+        isDirty = true;
+        return true;
     }
     
     @Override
@@ -309,9 +319,19 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
         scrollVert.ProcessScreenClick(x, y);
         scrollHor.ProcessScreenClick(x, y);
         scrollBoth.ProcessScreenClick(x, y);
-        
-        return false;
+        isDirty = true;
+        return true;
     }    
+    
+    @Override
+    public boolean ProcessKeyClick(char c, int code) {
+        if(Character.isLetterOrDigit(c)) {
+            txtField.ProcessKeyClick(c);
+            
+        }
+        MmgHelper.wr("ScreenTest: ProcessKeyClick: " + code);
+        return true;
+    }
     
     /**
      * Unloads resources needed to display this game screen.
@@ -331,7 +351,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
     public GameStates GetGameState() {
         return gameState;
     }
-
+    
     /**
      * The main drawing routine.
      *
@@ -339,22 +359,29 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {            
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-            
-            /*
-            Graphics g = p.GetGraphics();
-            Color ct = g.getColor();
-            g.setColor(Color.WHITE);
-            //g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
-            g.fillRect(GetX(), GetY(), w, h);
-            g.setColor(ct);
-            */
-            
-            super.GetObjects().MmgDraw(p);
-        } else {
-            //do nothing
         }
+    }
+
+    @Override
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        lret = false;
+
+        if (pause == false && isVisible == true) {
+            //always run this update
+            txtField.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+            
+            if (isDirty == true) {
+                super.GetObjects().SetIsDirty(true);            
+
+                if (super.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                    lret = true;
+                }
+            }
+        }
+
+        return lret;
     }
 
     @Override

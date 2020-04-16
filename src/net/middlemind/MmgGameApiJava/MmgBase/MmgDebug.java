@@ -1,11 +1,11 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * A helper class that provides logging functionality. This class is more geared
- * towards Android logging. Created by Middlemind Games
+ * A helper class that provides logging functionality. 
+ * This class is more geared towards Android logging. 
+ * Created by Middlemind Games 08/29/2016
  *
  * @author Victor G. Brusca
- *
  */
 public class MmgDebug {
 
@@ -17,12 +17,12 @@ public class MmgDebug {
     /**
      * The prefix to add to all logged lines.
      */
-    public static String appName = "TyreAndroidApp";
+    public static String appName = "MmgApi.MmgDebug";
 
     /**
      * A static helper method for logging.
      *
-     * @param s The string to log.
+     * @param s     The string to log.
      */
     public static void wr(String s) {
         if (DEBUGGING_ON == true) {
@@ -33,8 +33,8 @@ public class MmgDebug {
     /**
      * A static helper method for logging.
      *
-     * @param key The key to use to log th line.
-     * @param s The line to log.
+     * @param key   The key to use to log the line.
+     * @param s     The line to log.
      */
     public static void wr(String key, String s) {
         if (DEBUGGING_ON == true) {
@@ -45,7 +45,7 @@ public class MmgDebug {
     /**
      * A static helper method for logging.
      *
-     * @param s The string to log.
+     * @param s     The string to log.
      */
     public static void wrTs(String s) {
         if (DEBUGGING_ON == true) {

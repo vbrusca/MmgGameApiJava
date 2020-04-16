@@ -4,12 +4,15 @@ import java.awt.Color;
 
 /**
  * A class that represents a menu item.
- * Created by Middlemind Games
+ * Created by Middlemind Games 08/29/2016
  * 
  * @author Victor G. Brusca
  */
 public class MmgMenuItem extends MmgObj {
 
+    /**
+     * Used to represent a neutral menu item state.
+     */
     public static int STATE_NONE = -1;
     
     /**
@@ -52,6 +55,9 @@ public class MmgMenuItem extends MmgObj {
      */
     private MmgObj current;
     
+    /**
+     * A sound effect to play when the menu item is selected.
+     */
     private MmgSound sound;
     
     /**
@@ -59,6 +65,9 @@ public class MmgMenuItem extends MmgObj {
      */
     private int state;
 
+    /**
+     * A static class field that is used to show a bounding box around the object.
+     */
     public static boolean SHOW_MENU_ITEM_BOUNDING_BOX = false;
     
     /**
@@ -98,6 +107,7 @@ public class MmgMenuItem extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuItem(MmgMenuItem m) {
+        super();
         SetEventPress(m.GetEventPress());
         SetNormal(m.GetNormal());
         SetSelected(m.GetSelected());
@@ -146,7 +156,7 @@ public class MmgMenuItem extends MmgObj {
     }
 
     /**
-     * Clones this class.
+     * Creates a basic clone of this class.
      * 
      * @return      A clone of this class. 
      */
@@ -155,11 +165,31 @@ public class MmgMenuItem extends MmgObj {
         MmgMenuItem ret = new MmgMenuItem(this);
         return (MmgObj) ret;
     }
+    
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class. 
+     */
+    @Override
+    public MmgMenuItem CloneTyped() {
+        return new MmgMenuItem(this);
+    }
 
+    /**
+     * Gets the current menu sound object.
+     * 
+     * @return      An MmgSound object used in menu item selection.
+     */
     public MmgSound GetSound() {
         return sound;
     }
 
+    /**
+     * Sets the current menu sound object.
+     * 
+     * @param Sound     An MmgSound object used in menu item selection.
+     */
     public void SetSound(MmgSound Sound) {
         sound = Sound;
     }    
@@ -322,7 +352,7 @@ public class MmgMenuItem extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             if (MmgMenuItem.SHOW_MENU_ITEM_BOUNDING_BOX == true) {
                 Color c = p.GetGraphics().getColor();
                 p.GetGraphics().setColor(Color.red);
@@ -333,8 +363,6 @@ public class MmgMenuItem extends MmgObj {
             current.SetPosition(GetPosition());
             current.SetMmgColor(GetMmgColor());
             current.MmgDraw(p);
-        }else {
-            //do nothing
         }
     }
 }

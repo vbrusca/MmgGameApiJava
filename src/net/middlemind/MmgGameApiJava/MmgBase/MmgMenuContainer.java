@@ -4,14 +4,14 @@ import java.util.*;
 
 /**
  * A class that contains a collection of MmgMenuItem objects.
- * Created by Middlemind Games
+ * Created by Middlemind Games 08/29/2016
  * 
  * @author Victor G. Brusca
  */
 public class MmgMenuContainer extends MmgObj {
 
     /**
-     * The ArrayList that holds the MmgMenuItem objects,
+     * The ArrayList that holds the MmgMenuItem objects.
      */
     private ArrayList<Object> container;
     
@@ -68,6 +68,7 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer(MmgMenuContainer cont) {
+        super();
         SetContainer(cont.GetContainer());
 
         SetPosition(MmgVector2.GetOriginVec());
@@ -83,7 +84,7 @@ public class MmgMenuContainer extends MmgObj {
     }
 
     /**
-     * Clones this class.
+     * Creates a basic clone of this class.
      * 
      * @return      A clone of this class. 
      */
@@ -92,6 +93,16 @@ public class MmgMenuContainer extends MmgObj {
         MmgMenuContainer ret = new MmgMenuContainer(this);
         return (MmgObj) ret;
     }
+    
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class. 
+     */
+    @Override
+    public MmgMenuContainer CloneTyped() {
+        return new MmgMenuContainer(this);
+    }    
 
     /**
      * Adds a MmgMenuItem object to the menu item ArrayList.
@@ -161,20 +172,16 @@ public class MmgMenuContainer extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             if (container != null) {
                 a = container.toArray();
                 for (i = 0; i < a.length; i++) {
                     mo = (MmgObj) a[i];
                     if (mo != null && mo.GetIsVisible() == true) {
                         mo.MmgDraw(p);
-                    } else {
-                        //do nothing
                     }
                 }
             }
-        } else {
-            //do nothing
         }
     }
 }

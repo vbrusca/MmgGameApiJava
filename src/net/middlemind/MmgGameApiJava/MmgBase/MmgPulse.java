@@ -1,8 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * Class that represents a pulse or changing value. Created on June 1, 2005,
- * 10:57 PM by Middlemind Games Created by Middlemind Games
+ * Class that represents a pulse or changing value.
+ * Created by Middlemind Games 06/01/2005
  *
  * @author Victor G. Brusca
  */
@@ -67,10 +67,10 @@ public class MmgPulse {
      * Constructor that sets the start direction, the total milliseconds, the
      * change, and a baseline scaling value.
      *
-     * @param startDir The oscillation start direction.
-     * @param totalMs The total milliseconds to use for the entire oscillation.
-     * @param chng The change to apply to the object.
-     * @param blS A baseline scaling value.
+     * @param startDir      The oscillation start direction.
+     * @param totalMs       The total milliseconds to use for the entire oscillation.
+     * @param chng          The change to apply to the object.
+     * @param blS           A baseline scaling value.
      */
     public MmgPulse(int startDir, long totalMs, double chng, MmgVector2 blS) {
         direction = startDir;
@@ -98,7 +98,7 @@ public class MmgPulse {
     /**
      * Gets the direction of the oscillation.
      *
-     * @return The direction of the oscillation.
+     * @return      The direction of the oscillation.
      */
     public int GetDirection() {
         return direction;
@@ -107,7 +107,7 @@ public class MmgPulse {
     /**
      * Sets the direction of the oscillation.
      *
-     * @param d The direction of the oscillation.
+     * @param d     The direction of the oscillation.
      */
     public void SetDirection(int d) {
         direction = d;
@@ -116,7 +116,7 @@ public class MmgPulse {
     /**
      * Gets the oscillation time flip for this object.
      *
-     * @return The oscillation time flip.
+     * @return      The oscillation time flip.
      */
     public long GetTimeFlip() {
         return timeFlip;
@@ -125,7 +125,7 @@ public class MmgPulse {
     /**
      * Sets the oscillation time flip for this object.
      *
-     * @param l The oscillation time flip.
+     * @param l     The oscillation time flip.
      */
     public void SetTimeFlip(long l) {
         timeFlip = l;
@@ -134,7 +134,7 @@ public class MmgPulse {
     /**
      * Gets the total oscillation time.
      *
-     * @return The total oscillation time.
+     * @return      The total oscillation time.
      */
     public long GetTimeTotal() {
         return timeTotal;
@@ -143,7 +143,7 @@ public class MmgPulse {
     /**
      * Sets the total oscillation time.
      *
-     * @param l The total oscillation time.
+     * @param l     The total oscillation time.
      */
     public void SetTimeTotal(long l) {
         timeTotal = l;
@@ -152,7 +152,7 @@ public class MmgPulse {
     /**
      * Gets the oscillation start time.
      *
-     * @return The oscillation start time.
+     * @return      The oscillation start time.
      */
     public long GetTimeStart() {
         return timeStart;
@@ -161,7 +161,7 @@ public class MmgPulse {
     /**
      * Sets the oscillation start time.
      *
-     * @param l The oscillation start time.
+     * @param l     The oscillation start time.
      */
     public void SetTimeStart(long l) {
         timeStart = l;
@@ -170,7 +170,7 @@ public class MmgPulse {
     /**
      * Gets the rate of change.
      *
-     * @return The rate of change.
+     * @return      The rate of change.
      */
     public double GetChange() {
         return change;
@@ -179,7 +179,7 @@ public class MmgPulse {
     /**
      * Sets the rate of change.
      *
-     * @param c The rate of change.
+     * @param c     The rate of change.
      */
     public void SetChange(double c) {
         change = c;
@@ -188,7 +188,7 @@ public class MmgPulse {
     /**
      * Updates the current pulse state.
      *
-     * @param v The current object position.
+     * @param v     The current object position.
      */
     public void Update(MmgVector2 v) {
         if (timeStart == 0) {

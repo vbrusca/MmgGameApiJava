@@ -43,7 +43,14 @@ public class MmgPen {
      */
     public static boolean ADV_RENDER_HINTS = true;
 
+    /**
+     * A private class field used to hold a temporary reference to the Font used.
+     */
     private Font tmpF;
+    
+    /**
+     * A private class field used to hold a temporary reference to the Color used.
+     */
     private Color tmpC;
     
     /**
@@ -58,7 +65,7 @@ public class MmgPen {
      * Constructor that sets the local Graphics reference.
      * 
      * @param p     The Graphics reference to use for drawing.
-     * @see Graphics
+     * @see         Graphics
      */
     public MmgPen(Graphics p) {
         pen = p;
@@ -100,7 +107,7 @@ public class MmgPen {
      * Drawing method to use for drawing text to the screen.
      * 
      * @param f     The MmgFont object to draw.
-     * @see MmgFont
+     * @see         MmgFont
      */
     public void DrawText(MmgFont f) {
         tmpF = pen.getFont();
@@ -120,7 +127,7 @@ public class MmgPen {
      * @param f     The MmgFont object to draw.
      * @param x     The x position to draw the object.
      * @param y     The y position to draw the object.
-     * @see MmgFont
+     * @see         MmgFont
      */
     public void DrawText(MmgFont f, int x, int y) {
         tmpF = pen.getFont();
@@ -139,7 +146,7 @@ public class MmgPen {
      * 
      * @param f     The MmgFont object to draw.
      * @param pos   The position to draw the object.
-     * @see MmgFont
+     * @see         MmgFont
      */
     public void DrawText(MmgFont f, MmgVector2 pos) {
         tmpF = pen.getFont();
@@ -256,6 +263,14 @@ public class MmgPen {
         return rImage;
     }
     
+    /**
+     * Creates an Image that is filled with the specified color.
+     * 
+     * @param w         The width of the image to create.
+     * @param h         The height of the image to create.
+     * @param c         The color to use for filling the image.
+     * @return          A colored image with the width and height specified and filled with the specified color.
+     */
     public static Image CreateColorTile(int w, int h, MmgColor c) {
         BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = rImage.createGraphics();
@@ -267,7 +282,7 @@ public class MmgPen {
     
     /**
      * Sets the advanced render hints flags in the current Graphics context.
-     * @see Graphics
+     * @see             Graphics
      */
     public void SetAdvRenderHints() {
         if(MmgPen.ADV_RENDER_HINTS == true) {
@@ -307,8 +322,8 @@ public class MmgPen {
     /**
      * Drawing method for drawing bitmap images.
      * 
-     * @param b         The MmgBmp object to draw.
-     * @see MmgBmp
+     * @param b     The MmgBmp object to draw.
+     * @see         MmgBmp
      */
     public void DrawBmpBasic(MmgBmp b) {
         DrawBmp(b, b.GetPosition());
@@ -318,7 +333,7 @@ public class MmgPen {
      * Drawing method for drawing a bitmap from the central cache.
      * 
      * @param b     The MmgBmp object to draw.
-     * @see MmgBmp
+     * @see         MmgBmp
      */
     public void DrawBmpFromCache(MmgBmp b) {
         DrawBmpBasic(b.GetBmpIdStr(), b.GetPosition());
@@ -340,6 +355,13 @@ public class MmgPen {
         }
     }
     
+    /**
+     * Drawing method for drawing bitmap images.
+     * 
+     * @param b     The MmgBmp object to draw.
+     * @param x     The X coordinate to draw the image to.
+     * @param y     The Y coordinate to draw the image to.
+     */
     public void DrawBmp(MmgBmp b, int x, int y) {
         if (color != null) {
             pen.drawImage(b.GetTexture2D(), x, y, color, null);
@@ -397,9 +419,9 @@ public class MmgPen {
     /**
      * Draw a bitmap image onto another bitmap image using source and destination rectangles.
      * 
-     * @param b
-     * @param srcRect
-     * @param dstRect 
+     * @param b         The MmgBmp object used to draw the source rectangle to the destination rectangle.
+     * @param srcRect   The source rectangle to use.
+     * @param dstRect   The destination rectangle to use.
      */
     public void DrawBmp(MmgBmp b, MmgRect srcRect, MmgRect dstRect) {
         tmpIdStr = b.GetBmpIdStr();
@@ -431,7 +453,7 @@ public class MmgPen {
      * @param scaling       The scaling to apply to the image.
      * @param origin        The origin to use to draw the image.
      * @param rotation      The rotation to apply to the image.
-     * @see MmgBmp
+     * @see                 MmgBmp
      */
     public void DrawBmp(MmgBmp b, MmgVector2 position, MmgRect srcRect, MmgRect dstRect, MmgVector2 scaling, MmgVector2 origin, float rotation) {
         if(rotation != 0 && scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
@@ -526,7 +548,7 @@ public class MmgPen {
      * Drawing method for drawing bitmap images.
      * 
      * @param b         The MmgBmp object to draw.
-     * @see MmgBmp
+     * @see             MmgBmp
      */
     public void DrawBmp(MmgBmp b) {
         DrawBmp(b, b.GetPosition(), b.GetSrcRect(), b.GetDstRect(), b.GetScaling(), b.GetOrigin(), b.GetRotation());
@@ -536,16 +558,27 @@ public class MmgPen {
      * Drawing method for drawing rectangles.
      * 
      * @param obj       The MmgObj to draw a rectangle for.
-     * @see MmgObj
+     * @see             MmgObj
      */
     public void DrawRect(MmgObj obj) {
         DrawRect(obj.GetPosition().GetX(), obj.GetPosition().GetY(), obj.GetWidth(), obj.GetHeight());
     }
     
+    /**
+     * Drawing method for drawing rectangles.
+     * 
+     * @param obj       The MmgObj to draw a rectangle for.
+     * @param pos       The position to use when drawing the rectangle.
+     */
     public void DrawRect(MmgObj obj, MmgVector2 pos) {
         DrawRect(pos.GetX(), pos.GetY(), obj.GetWidth(), obj.GetHeight());
     }    
     
+    /**
+     * Drawing method for drawing rectangles.
+     * 
+     * @param r         The MmgRect object to draw.
+     */
     public void DrawRect(MmgRect r) {
         DrawRect(r.GetLeft(), r.GetTop(), r.GetWidth(), r.GetHeight());
     }
@@ -565,7 +598,7 @@ public class MmgPen {
     /**
      * Gets the lower level drawing class.
      * 
-     * @return  A Graphics object. 
+     * @return      A Graphics object. 
      */
     public Graphics GetSpriteBatch() {
         return pen;
@@ -592,7 +625,7 @@ public class MmgPen {
     /**
      * Gets the lower level drawing class.
      * 
-     * @return  A Graphics object. 
+     * @return      A Graphics object. 
      */
     public Graphics GetGraphics() {
         return GetSpriteBatch();
@@ -616,11 +649,21 @@ public class MmgPen {
         return color;
     }
     
+    /**
+     * Sets the color of this object and the lower level Java pen.
+     * 
+     * @param c     The color of the pen.
+     */
     public void SetGraphicsColor(Color c) {
         color = c;
         pen.setColor(c);
     }
     
+    /**
+     * Gets the color of the lower level Java pen.
+     * 
+     * @return      The color of the pen.
+     */
     public Color GetGraphicsColor() {
         return pen.getColor();
     }    

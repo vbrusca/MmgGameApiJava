@@ -30,7 +30,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      * holds a reference to this game screen object.
      */
     public GamePanel owner;
-    public boolean dirty;
+    public boolean isDirty;
     public boolean lret;
     
     public Hashtable<String, MmgCfgFileEntry> classConfig;
@@ -45,7 +45,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     @SuppressWarnings("LeakingThisInConstructor")
     public Screen(GameStates State, GamePanel Owner) {
         super();
-        dirty = false;
+        isDirty = false;
         pause = false;
         ready = false;
         state = State;
@@ -78,7 +78,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
             SetCenteredBackground(tB);
         }
 
-        dirty = true;
+        isDirty = true;
         ready = true;
         pause = false;
     }
@@ -100,7 +100,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      */
     public void DrawScreen() {
         pause = true;
-        dirty = false;
+        isDirty = false;
 
 
         pause = false;
@@ -110,7 +110,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      * Unloads resources needed to display this game screen.
      */
     public void UnloadResources() {
-        dirty = false;
+        isDirty = false;
         pause = true;
         SetIsVisible(false);
         SetBackground(null);
@@ -129,16 +129,12 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
         return state;
     }
 
-    public boolean IsDirty() {
-        return dirty;
+    public boolean GetIsDirty() {
+        return isDirty;
     }
 
-    public void SetDirty(boolean b) {
-        dirty = b;
-    }
-
-    public void MakeDirty() {
-        dirty = true;
+    public void SetIsDirty(boolean b) {
+        isDirty = b;
     }
 
     /**
@@ -148,10 +144,8 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 
@@ -159,18 +153,15 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;
 
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             if (super.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
                 lret = true;
             }
 
-            if (dirty == true) {
+            if (isDirty == true) {
                 lret = true;
                 DrawScreen();
             }
-
-        } else {
-            //do nothing
         }
 
         return lret;

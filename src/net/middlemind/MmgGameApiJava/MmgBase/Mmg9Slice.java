@@ -211,7 +211,7 @@ public class Mmg9Slice extends MmgObj {
     }
 
     /**
-     * Clones this class.
+     * Creates a basic clone of this class.
      *
      * @return      A clone of this class.
      */
@@ -222,9 +222,9 @@ public class Mmg9Slice extends MmgObj {
     }
 
     /**
-     * Clones the current object typed as an Mmg9Slice.
+     * Creates a typed clone of this class.
      *
-     * @return      A clone of this class.
+     * @return      A typed clone of this class.
      */
     @Override
     public Mmg9Slice CloneTyped() {
@@ -232,16 +232,14 @@ public class Mmg9Slice extends MmgObj {
     }
     
     /**
-     * The base drawing method for the bitmap object.
+     * The base drawing method for this object.
      *
-     * @param p     The MmgPen used to draw this bitmap.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             p.DrawBmp(dest);
-        } else {
-            //do nothing
         }
     }
 
@@ -249,7 +247,6 @@ public class Mmg9Slice extends MmgObj {
      * Tests if this object is equal to another Mmg9Slice object.
      * 
      * @param r     An Mmg9Slice object instance to compare to.
-     * 
      * @return      Returns true if the objects are considered equal and false otherwise.
      */
     public boolean Equals(Mmg9Slice r) {
@@ -276,6 +273,16 @@ public class Mmg9Slice extends MmgObj {
             dest.SetPosition(pos);
         }
     }
+    
+    /**
+     * Sets the position of the Mmg9Slice object.
+     * 
+     * @param pos       The desired position to set for this Mmg9Slice object.
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }    
     
     /**
      * Sets the width of the Mmg9Slice object.

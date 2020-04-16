@@ -3,8 +3,8 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 import java.awt.*;
 
 /**
- * Class that wraps the lower level bitmap object. Created by Middlemind Games
- * Created by Middlemind Games
+ * Class that wraps the lower level bitmap object.
+ * Created by Middlemind Games 08/29/2016
  * 
  * @author Victor G. Brusca
  */
@@ -86,7 +86,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Construct from a previous instance of MmgObj.
      *
-     * @param obj The object to create this class from.
+     * @param obj       The object to create this class from.
      */
     public MmgBmp(MmgObj obj) {
         super(obj);
@@ -102,7 +102,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Construct from a previous instance of MmgBmp.
      *
-     * @param obj The object to create this class from.
+     * @param obj       The object to create this class from.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(MmgBmp obj) {
@@ -156,8 +156,8 @@ public class MmgBmp extends MmgObj {
     /**
      * Construct from a lower level Image objects.
      *
-     * @param t The object to create this instance from.
-     * @see Image
+     * @param t     The object to create this instance from.
+     * @see         Image
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(Image t) {
@@ -182,12 +182,12 @@ public class MmgBmp extends MmgObj {
      * Construct this instance from a lower level image object and some
      * rendering hints.
      *
-     * @param t The lower level Image object to create this instance from.
-     * @param Src The source drawing rectangle.
-     * @param Dst The destination drawing rectangle.
-     * @param Origin The origin this image should be rotated from.
-     * @param Scaling The scaling values to use when drawing this image.
-     * @param Rotation The rotation values to use when drawing this image.
+     * @param t             The lower level Image object to create this instance from.
+     * @param Src           The source drawing rectangle.
+     * @param Dst           The destination drawing rectangle.
+     * @param Origin        The origin this image should be rotated from.
+     * @param Scaling       The scaling values to use when drawing this image.
+     * @param Rotation      The rotation values to use when drawing this image.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(Image t, MmgRect Src, MmgRect Dst, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
@@ -211,11 +211,11 @@ public class MmgBmp extends MmgObj {
      * Construct this instance from a lower level image object and some
      * rendering hints.
      *
-     * @param t The lower level Image object to create this instance from.
-     * @param Position The position this object should be drawn at.
-     * @param Origin The origin this image should be rotated from.
-     * @param Scaling The scaling values to use when drawing this image.
-     * @param Rotation The rotation values to use when drawing this image.
+     * @param t             The lower level Image object to create this instance from.
+     * @param Position      The position this object should be drawn at.
+     * @param Origin        The origin this image should be rotated from.
+     * @param Scaling       The scaling values to use when drawing this image.
+     * @param Rotation      The rotation values to use when drawing this image.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(Image t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
@@ -239,9 +239,9 @@ public class MmgBmp extends MmgObj {
     /**
      * Returns an id string, used in image caching, based on rotation.
      *
-     * @param rotation The rotation value to use in id string creation.
-     * @return A new id string.
-     * @see MmgPen
+     * @param rotation      The rotation value to use in id string creation.
+     * @return              A new id string.
+     * @see                 MmgPen
      */
     public String GetIdStr(float rotation) {
         return (idStr + "_" + rotation);
@@ -250,20 +250,21 @@ public class MmgBmp extends MmgObj {
     /**
      * Returns an id string, used in image caching, based on scaling.
      *
-     * @param scaling The scaling value to use in id string creation.
-     * @return A new id string.
-     * @see MmgPen
+     * @param scaling       The scaling value to use in id string creation.
+     * @return              A new id string.
+     * @see                 MmgPen
      */
     public String GetIdStr(MmgVector2 scaling) {
         return (idStr + "_" + scaling.GetXFloat() + "x" + scaling.GetYFloat());
     }
 
     /**
+     * Returns an id string taking the rotation and scaling into consideration.
+     * Used in image caching as a unique id to store a local copy of the image.
      *
-     *
-     * @param rotation
-     * @param scaling
-     * @return
+     * @param rotation      The rotation value to use in id string creation.
+     * @param scaling       The scaling value to use in id string creation.
+     * @return              A new id string.
      */
     public String GetIdStr(float rotation, MmgVector2 scaling) {
         return (idStr + "_" + rotation + "_" + scaling.GetXFloat() + "x" + scaling.GetYFloat());
@@ -272,8 +273,8 @@ public class MmgBmp extends MmgObj {
     /**
      * Id helper method, takes rotation into account when making an id.
      *
-     * @param rotation The rotation of the bitmap.
-     * @return The unique id of the bitmap.
+     * @param rotation      The rotation of the bitmap.
+     * @return              The unique id of the bitmap.
      */
     public int GetId(float rotation) {
         return Integer.parseInt((id + "0" + (int) (rotation)));
@@ -282,8 +283,8 @@ public class MmgBmp extends MmgObj {
     /**
      * Id helper method, takes scaling into account when making an id.
      *
-     * @param scaling The scaling to apply to the object.
-     * @return The unique id of the bitmap.
+     * @param scaling       The scaling to apply to the object.
+     * @return              The unique id of the bitmap.
      */
     public int GetId(MmgVector2 scaling) {
         return Integer.parseInt((idStr + "0" + (int) (scaling.GetXFloat() * 10) + "0" + (int) (scaling.GetYFloat() * 10)));
@@ -293,9 +294,9 @@ public class MmgBmp extends MmgObj {
      * If helper method, takes rotation, and scaling into account when making an
      * id.
      *
-     * @param rotation The rotation of the bitmap.
-     * @param scaling The scaling of the bitmap.
-     * @return The unique id of the bitmap.
+     * @param rotation      The rotation of the bitmap.
+     * @param scaling       The scaling of the bitmap.
+     * @return              The unique id of the bitmap.
      */
     public int GetId(float rotation, MmgVector2 scaling) {
         return Integer.parseInt((idStr + "0" + (int) (rotation) + "0" + (int) (scaling.GetXFloat() * 10) + "0" + (int) (scaling.GetYFloat() * 10)));
@@ -304,7 +305,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Get the unique id of the bitmap in string form.
      *
-     * @return The string form of the unique id.
+     * @return      The string form of the unique id.
      */
     public String GetBmpIdStr() {
         return idStr;
@@ -313,7 +314,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the string form of the id.
      *
-     * @param IdStr A unique id string.
+     * @param IdStr     A unique id string.
      */
     public void SetBmpIdStr(String IdStr) {
         idStr = IdStr;
@@ -322,7 +323,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the string form of the id.
      *
-     * @return A unique id integer.
+     * @return      A unique id integer.
      */
     public int GetBmpId() {
         return id;
@@ -339,9 +340,9 @@ public class MmgBmp extends MmgObj {
     }
 
     /**
-     * Clones the current object.
+     * Creates a basic clone of this class.
      *
-     * @return      Returns a new MmgObj based on the original MmgObj.
+     * @return      A clone of this class.
      */
     @Override
     public MmgObj Clone() {
@@ -350,9 +351,9 @@ public class MmgBmp extends MmgObj {
     }
 
     /**
-     * Clones the current object typed as an MmgBmp.
+     * Creates a typed clone of this class.
      *
-     * @return      Returns a new MmgObj based on the original MmgObj.
+     * @return      A typed clone of this class.
      */
     @Override
     public MmgBmp CloneTyped() {
@@ -362,7 +363,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Returns the image of this bitmap.
      *
-     * @return This bitmaps image.
+     * @return      This bitmaps image.
      */
     public Image GetTexture2D() {
         return b;
@@ -371,7 +372,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the image of this bitmap.
      *
-     * @param d The image to set for this bitmap.
+     * @param d     The image to set for this bitmap.
      */
     public void SetTexture2D(Image d) {
         b = d;
@@ -380,7 +381,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the image of this bitmap. Same as GetTexture2D.
      *
-     * @return The image of this bitmap.
+     * @return      The image of this bitmap.
      */
     public Image GetImage() {
         return GetTexture2D();
@@ -389,7 +390,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the image of this bitmap. Same as SetTexture2D.
      *
-     * @param d The image to set for this bitmap.
+     * @param d     The image to set for this bitmap.
      */
     public void SetImage(Image d) {
         SetTexture2D(d);
@@ -400,8 +401,8 @@ public class MmgBmp extends MmgObj {
      * methods in the MmgPen class that supports, source, or source, destination
      * drawing methods.
      *
-     * @return The source drawing rectangle.
-     * @see MmgPen
+     * @return      The source drawing rectangle.
+     * @see         MmgPen
      */
     public MmgRect GetSrcRect() {
         return srcRect;
@@ -412,8 +413,8 @@ public class MmgBmp extends MmgObj {
      * MmgPen class that supports, source, or source, destination drawing
      * methods.
      *
-     * @param r The source drawing rectangle.
-     * @see MmgPen
+     * @param r     The source drawing rectangle.
+     * @see         MmgPen
      */
     public void SetSrcRect(MmgRect r) {
         srcRect = r;
@@ -422,7 +423,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the destination drawing rectangle.
      *
-     * @return The destination drawing rectangle.
+     * @return      The destination drawing rectangle.
      */
     public MmgRect GetDstRect() {
         return dstRect;
@@ -431,7 +432,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the destination drawing rectangle.
      *
-     * @param r The destination drawing rectangle.
+     * @param r     The destination drawing rectangle.
      */
     public void SetDstRect(MmgRect r) {
         dstRect = r;
@@ -440,7 +441,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the rotation of the bitmap.
      *
-     * @return The rotation of the bitmap.
+     * @return      The rotation of the bitmap.
      */
     public float GetRotation() {
         return rotation;
@@ -449,7 +450,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the rotation of the bitmap.
      *
-     * @param r The rotation of the bitmap.
+     * @param r     The rotation of the bitmap.
      */
     public void SetRotation(float r) {
         rotation = r;
@@ -458,7 +459,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the origin used in drawing the bitmap.
      *
-     * @return The drawing origin of the bitmap.
+     * @return      The drawing origin of the bitmap.
      */
     public MmgVector2 GetOrigin() {
         return origin;
@@ -467,7 +468,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the origin used in drawing the bitmap.
      *
-     * @param v The drawing origin of the bitmap.
+     * @param v     The drawing origin of the bitmap.
      */
     public void SetOrigin(MmgVector2 v) {
         origin = v;
@@ -476,7 +477,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaling value used to scale the bitmap.
      *
-     * @return The drawing scaling value.
+     * @return      The drawing scaling value.
      */
     public MmgVector2 GetScaling() {
         return scaling;
@@ -485,7 +486,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Sets the scaling value used to scale the bitmap.
      *
-     * @param v The drawing scaling value.
+     * @param v     The drawing scaling value.
      */
     public void SetScaling(MmgVector2 v) {
         scaling = v;
@@ -494,7 +495,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaled height of this bitmap.
      *
-     * @return The scaled height of this bitmap.
+     * @return      The scaled height of this bitmap.
      */
     public double GetScaledHeight() {
         if (GetScaling() == null) {
@@ -507,7 +508,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the un-scaled, original height of the bitmap.
      *
-     * @return The un-scaled, original height of the bitmap.
+     * @return      The un-scaled, original height of the bitmap.
      */
     public int GetUnscaledHeight() {
         return super.GetHeight();
@@ -516,7 +517,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaled height of the bitmap.
      *
-     * @return The scaled height of the bitmap.
+     * @return      The scaled height of the bitmap.
      */
     @Override
     public int GetHeight() {
@@ -526,7 +527,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaled height of the bitmap in float form.
      *
-     * @return The scaled height of the bitmap.
+     * @return      The scaled height of the bitmap.
      */
     public float GetHeightFloat() {
         return (float) GetScaledHeight();
@@ -535,7 +536,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the un-scaled, original width of the bitmap.
      *
-     * @return The un-scaled, original width of the bitmap.
+     * @return      The un-scaled, original width of the bitmap.
      */
     public int GetUnscaledWidth() {
         return super.GetWidth();
@@ -544,7 +545,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaled width of the bitmap.
      *
-     * @return The scaled width of the bitmap.
+     * @return      The scaled width of the bitmap.
      */
     public double GetScaledWidth() {
         if (GetScaling() == null) {
@@ -557,7 +558,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaled width of the bitmap.
      *
-     * @return The scaled width of the bitmap.
+     * @return      The scaled width of the bitmap.
      */
     @Override
     public int GetWidth() {
@@ -580,7 +581,7 @@ public class MmgBmp extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_FULL) {
                 p.DrawBmp(this);
             } else if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_BASIC) {
@@ -588,16 +589,16 @@ public class MmgBmp extends MmgObj {
             } else if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_BASIC_CACHE) {
                 p.DrawBmpFromCache(this);
             }
-        } else {
-            //do nothing
         }
     }
         
     /**
+     * A method for testing equality with other MmgBmp objects.
+     * Takes into account the MmgObj Equals method if nothing different is
+     * found in the MmgBmp comparison.
      * 
-     * 
-     * @param b
-     * @return 
+     * @param b     An MmgBmp object to check equality with.
+     * @return      Returns true if the determination is made that the two objects are the same, false otherwise.
      */
     public boolean Equals(MmgBmp b) {
         if (b != null) {

@@ -16,35 +16,38 @@ import net.middlemind.MmgGameApiJava.MmgCore.GamePadInput.GamePadButton;
  */
 public class GamePadHub {
     
+    /**
+     * A static integer for describing the default length of gamepad input.
+     */
     public static int LEN = 6;
     
     /**
-     * A static integer for tracking the UP button on the game pad.
+     * A static integer for tracking the UP button on the gamepad.
      */
     public static int UP = 0;
     
     /**
-     * A static integer for tracking the DOWN button on the game pad.
+     * A static integer for tracking the DOWN button on the gamepad.
      */
     public static int DOWN = 1;
     
     /**
-     * A static integer for tracking the LEFT button on the game pad.
+     * A static integer for tracking the LEFT button on the gamepad.
      */
     public static int LEFT = 2;
     
     /**
-     * A static integer for tracking the RIGHT button on the game pad.
+     * A static integer for tracking the RIGHT button on the gamepad.
      */
     public static int RIGHT = 3;
     
     /**
-     * A static integer for tracking the A button on the game pad.
+     * A static integer for tracking the A button on the gamepad.
      */
     public static int A = 4;
     
     /**
-     * A static integer for tracking the B button on the game pad.
+     * A static integer for tracking the B button on the gamepad.
      */
     public static int B = 5;
         
@@ -64,12 +67,12 @@ public class GamePadHub {
     public boolean gamePadEnabled = false;
           
     /**
-     * A JInput controller to read game pad data from.
+     * A JInput controller to read gamepad data from.
      */
     public Controller gamePad = null;
     
     /**
-     * An array of components supported by this game pad.
+     * An array of components supported by this gamepad.
      */
     public Component[] components = null;
     

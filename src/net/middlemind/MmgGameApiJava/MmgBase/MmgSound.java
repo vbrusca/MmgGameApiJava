@@ -3,8 +3,8 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 import javax.sound.sampled.Clip;
 
 /**
- * Class that wraps the underlying sound object. Created on June 1, 2005, 10:57
- * PM by Middlemind Games Created by Middlemind Games
+ * Class that wraps the underlying sound object. 
+ * Created by Middlemind Games 06/01/2005
  *
  * @author Victor G. Brusca
  */
@@ -38,8 +38,8 @@ public class MmgSound {
     /**
      * Constructor that sets the sound Clip value.
      *
-     * @param se The sound clip for this sounds object.
-     * @see Clip
+     * @param se        The sound clip for this sounds object.
+     * @see             Clip
      */
     public MmgSound(Clip se) {
         sound = se;
@@ -50,7 +50,7 @@ public class MmgSound {
      * Constructor that sets the value of this class based on the attributes of
      * the given argument.
      *
-     * @param se The sound object to use as a basis for a new sound object.
+     * @param se    The sound object to use as a basis for a new sound object.
      */
     public MmgSound(MmgSound se) {
         sound = se.GetSound();
@@ -60,8 +60,8 @@ public class MmgSound {
     /**
      * Sets the volume of the sound system.
      *
-     * @param f The volume to set for all sounds.
-     * @return The current volume.
+     * @param f     The volume to set for all sounds.
+     * @return      The current volume.
      */
     public static float SetVolume(float f) {
         volume = f;
@@ -78,7 +78,7 @@ public class MmgSound {
     /**
      * Gets a string version of the id.
      *
-     * @return A string version of the id.
+     * @return      A string version of the id.
      */
     public String GetIdStr() {
         return idStr;
@@ -87,7 +87,7 @@ public class MmgSound {
     /**
      * Gets an integer version of the id.
      *
-     * @return An integer version of the id.
+     * @return      An integer version of the id.
      */
     public int GetId() {
         return id;
@@ -103,9 +103,9 @@ public class MmgSound {
     }
 
     /**
-     * Clones this object.
+     * Creates a basic clone of this class.
      *
-     * @return A clone of this object.
+     * @return      A clone of this object.
      */
     public MmgSound Clone() {
         return new MmgSound(sound);
@@ -114,8 +114,8 @@ public class MmgSound {
     /**
      * Gets the low level Clip object.
      *
-     * @return The sound this class represents.
-     * @see Clip
+     * @return      The sound this class represents.
+     * @see         Clip
      */
     public Clip GetSound() {
         return sound;
@@ -136,8 +136,8 @@ public class MmgSound {
     /**
      * Starts playing this sound with the given loop and rate values.
      *
-     * @param loop The loop variable used when playing this sound.
-     * @param rate The rate variable used when playing this sound.
+     * @param loop  The loop variable used when playing this sound.
+     * @param rate  The rate variable used when playing this sound.
      */
     public void Play(int loop, float rate) {
         if(sound.isRunning()) {

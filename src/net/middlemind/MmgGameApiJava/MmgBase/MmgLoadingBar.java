@@ -2,7 +2,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
  * Class that creates a loading bar object.
- * Created by Middlemind Games
+ * Created by Middlemind Games 08/29/2016
  * 
  * @author Victor G. Brusca
  */
@@ -65,6 +65,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar(MmgLoadingBar mlb) {
+        super();
         if (mlb.GetLoadingBarBack() != null) {
             SetLoadingBarBack((MmgBmp) mlb.GetLoadingBarBack().Clone());
         } else {
@@ -84,7 +85,6 @@ public class MmgLoadingBar extends MmgObj {
             SetPosition(mlb.GetPosition().Clone());
         } else {
             SetPosition(mlb.GetPosition());
-
         }
 
         if (loadingBarFront != null) {
@@ -109,6 +109,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar(MmgBmp LoadingBarBack, MmgBmp LoadingBarFront) {
+        super();
         SetLoadingBarBack(LoadingBarBack);
         SetLoadingBarFront(LoadingBarFront);
         SetPaddingX(0);
@@ -192,6 +193,11 @@ public class MmgLoadingBar extends MmgObj {
         return fillWidth;
     }
 
+    /**
+     * The position to use to draw this object.
+     * 
+     * @param pos       The position to this object to.
+     */
     @Override
     public void SetPosition(MmgVector2 pos) {
         super.SetPosition(pos);
@@ -199,6 +205,11 @@ public class MmgLoadingBar extends MmgObj {
         loadingBarBack.SetPosition(pos);
     }
     
+    /**
+     * The X coordinate to use to draw this object.
+     * 
+     * @param inX       The X coordinate to use to draw this object.
+     */
     @Override
     public void SetX(int inX) {
         super.SetX(inX);
@@ -206,6 +217,11 @@ public class MmgLoadingBar extends MmgObj {
         loadingBarBack.SetX(inX);
     }
     
+    /**
+     * The Y coordinate to use to draw this object.
+     * 
+     * @param inY       The Y coordinate to use to draw this object.
+     */    
     @Override
     public void SetY(int inY) {
         super.SetY(inY);
@@ -223,7 +239,7 @@ public class MmgLoadingBar extends MmgObj {
     }
 
     /**
-     * Clones this class.
+     * Creates a basic clone of this class.
      * 
      * @return      A clone of this class. 
      */
@@ -233,6 +249,16 @@ public class MmgLoadingBar extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class. 
+     */
+    @Override
+    public MmgLoadingBar CloneTyped() {
+        return new MmgLoadingBar(this);
+    }    
+    
     /**
      * Gets the loading bar back image.
      * 
@@ -295,7 +321,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if(GetIsVisible() == true) {
+        if(isVisible == true) {
             if(loadingBarBack != null) {
                 loadingBarBack.SetMmgColor(GetMmgColor());
                 loadingBarBack.SetSrcRect(new MmgRect(MmgVector2.GetOriginVec(), loadingBarBack.GetWidth(), loadingBarBack.GetHeight()));

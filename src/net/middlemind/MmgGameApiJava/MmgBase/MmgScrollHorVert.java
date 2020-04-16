@@ -16,96 +16,302 @@ import java.awt.Graphics2D;
 public class MmgScrollHorVert extends MmgObj {
     
     /**
-     * 
+     * An MmgBmp object that is the view port for a scroll pane that sits behind the view port.
      */
-    private MmgBmp viewPort = null;
+    private MmgBmp viewPort;
     
     /**
-     * 
+     * A rectangle with the dimensions of the view port.
      */
-    private MmgRect viewPortRect = null;  
+    private MmgRect viewPortRect;  
     
     /**
-     * 
+     * The width of the scroll pane view port.
      */
-    private int viewPortWidth = 0;
+    private int viewPortWidth;
     
     /**
-     * 
+     * The height of the scroll pane view port.
      */
-    private int viewPortHeight = 0;
+    private int viewPortHeight;
     
-    private MmgBmp scrollPane = null;
-    private MmgRect scrollPaneRect = null;
-    private int scrollPaneWidth = 0;
-    private int scrollPaneHeight = 0;
+    /**
+     * An MmgBmp object that is the scroll pane to show a portion of through the view port.
+     */
+    private MmgBmp scrollPane;
     
-    private MmgBmp sliderHor = null;
-    private MmgRect sliderHorRect = null;
+    /**
+     * A rectangle with the dimensions of the scroll pane.
+     */
+    private MmgRect scrollPaneRect;
     
-    private MmgBmp sliderVert = null;
-    private MmgRect sliderVertRect = null;    
+    /**
+     * The width of the scroll pane.
+     */
+    private int scrollPaneWidth;
     
-    private MmgBmp sliderLeftButton = null;
-    private MmgRect sliderLeftButtonRect = null;
+    /**
+     * The height of the scroll pane
+     */
+    private int scrollPaneHeight;
     
-    private MmgBmp sliderRightButton = null;
-    private MmgRect sliderRightButtonRect = null;
+    /**
+     * An MmgBmp object that is the horizontal slider.
+     */
+    private MmgBmp sliderHor;
     
-    private MmgBmp sliderTopButton = null;
-    private MmgRect sliderTopButtonRect = null;
+    /**
+     * A rectangle with the dimensions of the horizontal slider.
+     */
+    private MmgRect sliderHorRect;
     
-    private MmgBmp sliderBottomButton = null;
-    private MmgRect sliderBottomButtonRect = null;    
+    /**
+     * An MmgBmp object that is the vertical slider.
+     */
+    private MmgBmp sliderVert;
     
-    private int widthDiff = 0;
-    private double widthDiffPrct = 0.0;
+    /**
+     * A rectangle with the dimensions of the vertical slider.
+     */
+    private MmgRect sliderVertRect;    
     
-    private int heightDiff = 0;
-    private double heightDiffPrct = 0.0;    
+    /**
+     * An MmgBmp that is the horizontal slider's left button.
+     */
+    private MmgBmp sliderLeftButton;
     
-    private boolean scrollBarHorVisible = false;
-    private boolean scrollBarVertVisible = false;    
-    private MmgColor scrollBarColor = MmgColor.GetWhite();
-    private MmgColor scrollBarSliderColor = MmgColor.GetRed();    
+    /**
+     * A rectangle with the dimensions of the horizontal slider's left button.
+     */
+    private MmgRect sliderLeftButtonRect;
     
-    private int scrollBarHorHeight = MmgHelper.ScaleValue(10);
-    private int scrollBarVertWidth = MmgHelper.ScaleValue(10);
+    /**
+     * An MmgBmp that is the horizontal slider's right button.
+     */    
+    private MmgBmp sliderRightButton;
     
-    private int scrollBarHorSliderWidth = MmgHelper.ScaleValue(30);
-    private int scrollBarVertSliderHeight = MmgHelper.ScaleValue(30);
-    private int scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);    
-    private int scrollBarSliderButtonHeight = MmgHelper.ScaleValue(15);    
+    /**
+     * A rectangle with the dimensions of the horizontal slider's right button.
+     */    
+    private MmgRect sliderRightButtonRect;
     
-    private int intervalX = 5;
-    private int intervalY = 5;    
-    private double intervalPrctX = 5.0;
-    private double intervalPrctY = 5.0;
+    /**
+     * An MmgBmp that is the vertical slider's top button.
+     */    
+    private MmgBmp sliderUpButton;
     
-    private boolean isDirty = false;
-    private int offsetXScrollBarSlider = 0;
-    private int offsetYScrollBarSlider = 0;
+    /**
+     * A rectangle with the dimensions of the horizontal slider's top button.
+     */    
+    private MmgRect sliderUpButtonRect;
     
-    private int offsetXScrollPane = 0;
-    private int offsetYScrollPane = 0;    
+    /**
+     * An MmgBmp that is the vertical slider's bottom button.
+     */    
+    private MmgBmp sliderDownButton;
+
+    /**
+     * A rectangle with the dimensions of the horizontal slider's bottom button.
+     */    
+    private MmgRect sliderDownButtonRect;    
     
-    private GenericEventHandler handler = null;
-    private GameStates gameState = GameStates.BLANK;
-    public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
+    /**
+     * The width difference between the view port and the scroll pane.
+     */
+    private int widthDiff;
+    
+    /**
+     * The width difference percentage between the view port and the scroll pane.
+     */
+    private double widthDiffPrct;
+    
+    /**
+     * The height difference between the view port and the scroll pane.
+     */    
+    private int heightDiff;
+    
+    /**
+     * The height difference percentage between the view port and the scroll pane.
+     */    
+    private double heightDiffPrct;    
+    
+    /**
+     * A boolean flag indicating if the horizontal scroll bar is visible.
+     */    
+    private boolean scrollBarHorVisible;
+    
+    /**
+     * A boolean flag indicating if the vertical scroll bar is visible.
+     */    
+    private boolean scrollBarVertVisible;  
+    
+    /**
+     * An MmgColor for the horizontal scroll bar background color.
+     */    
+    private MmgColor scrollBarColor;
+    
+    /**
+     * An MmgColor for the horizontal scroll bar slider's color.
+     */    
+    private MmgColor scrollBarSliderColor;    
+    
+    /**
+     * The horizontal scroll bar height.
+     */
+    private int scrollBarHorHeight;
+    
+    /**
+     * The vertical scroll bar width.
+     */
+    private int scrollBarVertWidth;
+    
+    /**
+     * The width of the horizontal scroll bar slider.
+     */    
+    private int scrollBarHorSliderWidth;
+    
+    /**
+     * The height of the vertical scroll bar slider.
+     */
+    private int scrollBarVertSliderHeight;
+    
+    /**
+     * The width of the scroll bar slider button.
+     */
+    private int scrollBarSliderButtonWidth;
+    
+    /**
+     * The height of the scroll bar slider button.
+     */
+    private int scrollBarSliderButtonHeight;    
+    
+    /**
+     * The scroll interval of the horizontal slider.
+     */
+    private int intervalX;
+    
+    /**
+     * The scroll interval of the vertical slider.
+     */
+    private int intervalY;
+    
+    /**
+     * The scroll interval percentage of the horizontal slider.
+     */
+    private double intervalPrctX;
+    
+    /**
+     * The scroll interval percentage of the vertical slider.
+     */
+    private double intervalPrctY;
+    
+    /**
+     * A boolean flag indicating if the scroll pane needs to be updated during the MmgUpdate call.
+     */    
+    private boolean isDirty;
+    
+    /**
+     * The current offset of the horizontal scroll bar's slider.
+     */
+    private int offsetXScrollBarSlider;
+    
+    /**
+     * The current offset of the vertical scroll bar's slider.
+     */
+    private int offsetYScrollBarSlider;
+    
+    /**
+     * The current offset of the horizontal scroll pane.
+     */    
+    private int offsetXScrollPane;
+    
+    /**
+     * The current offset of the vertical scroll pane.
+     */    
+    private int offsetYScrollPane;    
+    
+    /**
+     * An event handler that is used to process scroll pane click events.
+     */
+    private GenericEventHandler handler;
+    
+    /**
+     * A game state used in the event handler calls.
+     */
+    private GameStates gameState;
+    
+    /**
+     * A boolean flag indicating if a bounding box should be drawn around the elements of the scroll pane.
+     */    
+    public static boolean SHOW_CONTROL_BOUNDING_BOX = false;
+    
+    /**
+     * An event id for a scroll pane click event.
+     */
     public static int SCROLL_BOTH_CLICK_EVENT_ID = 6;
+    
+    /**
+     * An event id for a scroll pane up click event.
+     */
     public static int SCROLL_BOTH_SCROLL_UP_EVENT_ID = 7;
+    
+    /**
+     * An event id for a scroll pane down click event.
+     */
     public static int SCROLL_BOTH_SCROLL_DOWN_EVENT_ID = 8;
+    
+    /**
+     * An event id for a scroll pane left click event.
+     */
     public static int SCROLL_BOTH_SCROLL_LEFT_EVENT_ID = 9;
+    
+    /**
+     * An event id for a scroll pane right click event.
+     */
     public static int SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID = 10;        
     
-    //Internal
-    private MmgPen p = null;    
-    private MmgRect updSrcRect = null;
-    private MmgRect updDestRect = null;
-    private Color c = null;
+    /**
+     * An MmgPen object instance used to draw the visible portion of the scroll pane to the view port.
+     */
+    private MmgPen p; 
     
+    /**
+     * An MmgRect used in the MmgUpdate method.
+     */    
+    private MmgRect updSrcRect;
+    
+    /**
+     * An MmgRect used in the MmgUpdate method.
+     */    
+    private MmgRect updDestRect;
+    
+    /**
+     * A Color object used in the bounding box drawing of the MmgDraw method.
+     */    
+    private Color c;
+    
+    /**
+     * Basic constructor that sets the required objects, colors, and dimensions.
+     * Prepares the drawing dimensions based on the provided objects.
+     * 
+     * @param ViewPort                  The MmgBmp that shows a portion of the MmgBmp scroll pane.
+     * @param ScrollPane                The MmgBmp the is used to display a portion of itself to the view port.
+     * @param ScrollBarColor            The MmgColor to use for the scroll bar.
+     * @param ScrollBarSliderColor      The MmgColor to use for the scroll bar slider.
+     * @param ScrollBarHeight           The height of the scroll bar.
+     * @param ScrollBarWidth            The width of the scroll bar.
+     * @param ScrollBarSliderHeight     The height of the scroll bar slider.
+     * @param ScrollBarSliderWidth      The width of the scroll bar slider.
+     * @param IntervalX                 The interval to use when moving the scroll bar.
+     * @param IntervalY                 The interval to use when moving the scroll bar.
+     * @param GameState                 The game state to use when firing events from the scroll view.
+     */    
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY, GameStates GameState) {
         super();
+        
+        scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
+        scrollBarSliderButtonHeight = MmgHelper.ScaleValue(15);         
+        
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHorHeight = ScrollBarHeight;
@@ -128,8 +334,28 @@ public class MmgScrollHorVert extends MmgObj {
         }
     }
 
+    /**
+     * Abridged constructor that sets the required objects, colors, and dimensions.
+     * Prepares the drawing dimensions based on the provided objects.
+     * 
+     * @param ViewPort                  The MmgBmp that shows a portion of the MmgBmp scroll pane.
+     * @param ScrollPane                The MmgBmp the is used to display a portion of itself to the view port.
+     * @param ScrollBarColor            The MmgColor to use for the scroll bar.
+     * @param ScrollBarSliderColor      The MmgColor to use for the scroll bar slider.
+     * @param IntervalX                 The interval to use when moving the scroll bar.
+     * @param IntervalY                 The interval to use when moving the scroll bar.
+     * @param GameState                 The game state to use when firing events from the scroll view.
+     */    
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY, GameStates GameState) {
         super();
+        
+        scrollBarHorHeight = MmgHelper.ScaleValue(10);
+        scrollBarVertWidth = MmgHelper.ScaleValue(10);
+        scrollBarHorSliderWidth = MmgHelper.ScaleValue(30);
+        scrollBarVertSliderHeight = MmgHelper.ScaleValue(30);
+        scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
+        scrollBarSliderButtonHeight = MmgHelper.ScaleValue(15);        
+        
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarColor = ScrollBarColor;
@@ -147,6 +373,11 @@ public class MmgScrollHorVert extends MmgObj {
         }
     }    
     
+    /**
+     * Constructor that is based on an instance of this class.
+     * 
+     * @param obj       An MmgScrollHor instance.
+     */
     public MmgScrollHorVert(MmgScrollHorVert obj) {
         super();
         if(obj.GetViewPort() == null) {
@@ -195,20 +426,108 @@ public class MmgScrollHorVert extends MmgObj {
             SetSliderVertRect(obj.GetSliderVertRect());
         } else {
             SetSliderVertRect(obj.GetSliderVertRect().Clone());
-        }                
+        }
+        
+       if(obj.GetSliderLeftButton() == null) {
+            SetSliderLeftButton(obj.GetSliderLeftButton());
+        } else {
+            SetSliderLeftButton(obj.GetSliderLeftButton().CloneTyped());
+        }        
+        
+        if(obj.GetSliderLeftButtonRect() == null) {
+            SetSliderLeftButtonRect(obj.GetSliderLeftButtonRect());
+        } else {
+            SetSliderLeftButtonRect(obj.GetSliderLeftButtonRect().Clone());
+        }
+
+        if(obj.GetSliderRightButton() == null) {
+            SetSliderRightButton(obj.GetSliderRightButton());
+        } else {
+            SetSliderRightButton(obj.GetSliderRightButton().CloneTyped());
+        }        
+        
+        if(obj.GetSliderRightButtonRect() == null) {
+            SetSliderRightButtonRect(obj.GetSliderRightButtonRect());
+        } else {
+            SetSliderRightButtonRect(obj.GetSliderRightButtonRect().Clone());
+        }
+
+        if(obj.GetSliderUpButton() == null) {
+            SetSliderUpButton(obj.GetSliderUpButton());
+        } else {
+            SetSliderUpButton(obj.GetSliderUpButton().CloneTyped());
+        }        
+        
+        if(obj.GetSliderUpButtonRect() == null) {
+            SetSliderUpButtonRect(obj.GetSliderUpButtonRect());
+        } else {
+            SetSliderUpButtonRect(obj.GetSliderUpButtonRect().Clone());
+        }
+        
+        if(obj.GetSliderDownButton() == null) {
+            SetSliderDownButton(obj.GetSliderDownButton());
+        } else {
+            SetSliderDownButton(obj.GetSliderDownButton().CloneTyped());
+        }        
+        
+        if(obj.GetSliderDownButtonRect() == null) {
+            SetSliderDownButtonRect(obj.GetSliderDownButtonRect());
+        } else {
+            SetSliderDownButtonRect(obj.GetSliderDownButtonRect().Clone());
+        } 
+        
+        SetWidthDiff(obj.GetWidthDiff());
+        SetHeightDiff(obj.GetHeightDiff());
+        SetScrollBarHorVisible(obj.IsScrollBarHorVisible());
+        SetScrollBarVertVisible(obj.IsScrollBarVertVisible());
+        
+        if(obj.GetScrollBarColor() == null) {
+            SetScrollBarColor(obj.GetScrollBarColor());
+        } else {
+            SetScrollBarColor(obj.GetScrollBarColor().Clone());
+        }
+        
+        if(obj.GetScrollBarSliderColor() == null) {
+            SetScrollBarSliderColor(obj.GetScrollBarSliderColor());
+        } else {
+            SetScrollBarSliderColor(obj.GetScrollBarSliderColor().Clone());
+        }
+        
+        SetScrollBarHorHeight(obj.GetScrollBarHorHeight());
+        SetScrollBarVertWidth(obj.GetScrollBarVertWidth());
+        SetScrollBarHorSliderWidth(obj.GetScrollBarHorSliderWidth());
+        SetScrollBarVertSliderHeight(obj.GetScrollBarVertSliderHeight());        
+        SetIntervalX(obj.GetIntervalX());
+        SetIntervalY(obj.GetIntervalY());
+        SetOffsetX(obj.GetOffsetX());
+        SetOffsetY(obj.GetOffsetY());
+        SetGameState(obj.GetGameState());
     }
     
+    /**
+     * Creates a basic clone of this class.
+     * 
+     * @return      A clone of this class.
+     */
     @Override
     public MmgObj Clone() {
         MmgScrollHorVert ret = new MmgScrollHorVert(this);
         return (MmgObj) ret;
     }
     
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class.
+     */
     @Override    
     public MmgScrollHorVert CloneTyped() {
         return new MmgScrollHorVert(this);
     }    
     
+    /**
+     * Prepares the dimension of the scroll view, scroll bar, slider, and buttons.
+     */
     public void PrepDimensions() {
         int left = 0;
         int top = 0;
@@ -220,8 +539,8 @@ public class MmgScrollHorVert extends MmgObj {
         
         sliderLeftButton = MmgHelper.GetBasicCachedBmp("scroll_bar_left_sm.png");
         sliderRightButton = MmgHelper.GetBasicCachedBmp("scroll_bar_right_sm.png");
-        sliderBottomButton = MmgHelper.GetBasicCachedBmp("scroll_bar_down_sm.png");
-        sliderTopButton = MmgHelper.GetBasicCachedBmp("scroll_bar_up_sm.png");
+        sliderDownButton = MmgHelper.GetBasicCachedBmp("scroll_bar_down_sm.png");
+        sliderUpButton = MmgHelper.GetBasicCachedBmp("scroll_bar_up_sm.png");
         
         sliderHor = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
         if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
@@ -231,9 +550,9 @@ public class MmgScrollHorVert extends MmgObj {
         }
         
         sliderVert = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
-        if(sliderTopButton != null && sliderBottomButton != null && sliderVert != null) {
-            scrollBarSliderButtonHeight = sliderTopButton.GetHeight();
-            scrollBarVertWidth = sliderTopButton.GetWidth();
+        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
+            scrollBarSliderButtonHeight = sliderUpButton.GetHeight();
+            scrollBarVertWidth = sliderUpButton.GetWidth();
             scrollBarVertSliderHeight = sliderHor.GetHeight();            
         }        
         
@@ -278,14 +597,14 @@ public class MmgScrollHorVert extends MmgObj {
         top = 0;
         bottom = scrollBarSliderButtonHeight;
         right = viewPort.GetWidth() + scrollBarVertWidth;
-        sliderTopButtonRect = new MmgRect(left, top, bottom, right);        
+        sliderUpButtonRect = new MmgRect(left, top, bottom, right);        
         
         //button bottom
         left = viewPort.GetWidth();
         top = viewPort.GetHeight() - scrollBarSliderButtonHeight;
         bottom = viewPort.GetHeight();
         right = viewPort.GetWidth() + scrollBarVertWidth;
-        sliderBottomButtonRect = new MmgRect(left, top, bottom, right);           
+        sliderDownButtonRect = new MmgRect(left, top, bottom, right);           
         
         if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
             sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
@@ -293,9 +612,9 @@ public class MmgScrollHorVert extends MmgObj {
             sliderHor.SetPosition(sliderHorRect.GetPosition());
         }
         
-        if(sliderTopButton != null && sliderBottomButton != null && sliderVert != null) {
-            sliderTopButton.SetPosition(sliderTopButtonRect.GetPosition());
-            sliderBottomButton.SetPosition(sliderBottomButtonRect.GetPosition());            
+        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
+            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
+            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition());            
             sliderVert.SetPosition(sliderVertRect.GetPosition());
         }        
         
@@ -303,6 +622,10 @@ public class MmgScrollHorVert extends MmgObj {
         isDirty = true;
     }
     
+    /**
+     * Finalizes the scroll view's preparation.
+     * Called at the end of the PrepDimensions method.
+     */     
     public void PrepScrollPane() {
         if(scrollPaneWidth - viewPortWidth > 0) {
             widthDiff = scrollPaneWidth - viewPortWidth;
@@ -330,22 +653,47 @@ public class MmgScrollHorVert extends MmgObj {
         p.SetAdvRenderHints();        
     }    
 
+    /**
+     * Returns the event handler for this class instance.
+     * 
+     * @return      The event handler for this class instance.
+     */    
     public GenericEventHandler GetHandler() {
         return handler;
     }
 
+    /**
+     * Sets the event handler for this class instance.
+     * 
+     * @param Handler   The event handler for this class instance.
+     */    
     public void SetHandler(GenericEventHandler Handler) {
         handler = Handler;
     }
 
-    public GameStates SetGameState() {
+    /**
+     * Gets the game state value used when firing events from this class instance.
+     * 
+     * @return      The game state value used when firing events.
+     */    
+    public GameStates GetGameState() {
         return gameState;
     }
 
+    /**
+     * Sets the game state value used when firing events from this class instance.
+     * 
+     * @param GameState     The game state value when firing events.
+     */     
     public void SetGameState(GameStates GameState) {
         gameState = GameState;
     }
     
+    /**
+     * Sets the X coordinate of this scroll view.
+     * 
+     * @param inX       The X coordinate of this scroll view.
+     */    
     @Override
     public void SetX(int inX) {
         super.SetX(inX);
@@ -363,16 +711,21 @@ public class MmgScrollHorVert extends MmgObj {
         }
         
         sliderVertRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderVertRect.GetTop()));
-        sliderTopButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderTopButtonRect.GetTop()));
-        sliderBottomButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderBottomButtonRect.GetTop()));        
+        sliderUpButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderUpButtonRect.GetTop()));
+        sliderDownButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderDownButtonRect.GetTop()));        
         
-        if(sliderTopButton != null && sliderBottomButton != null && sliderVert != null) {
-            sliderTopButton.SetPosition(sliderTopButtonRect.GetPosition());
-            sliderBottomButton.SetPosition(sliderBottomButtonRect.GetPosition());            
+        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
+            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
+            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition());            
             sliderVert.SetPosition(sliderVertRect.GetPosition());
         }
     }
     
+    /**
+     * Sets the Y coordinate of this scroll view.
+     * 
+     * @param inY       The Y coordinate of this scroll view.
+     */     
     @Override
     public void SetY(int inY) {
         super.SetX(inY);
@@ -390,16 +743,21 @@ public class MmgScrollHorVert extends MmgObj {
         }
         
         sliderVertRect.SetPosition(new MmgVector2(sliderVertRect.GetLeft(), inY + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
-        sliderTopButtonRect.SetPosition(new MmgVector2(sliderTopButtonRect.GetLeft(), inY));
-        sliderBottomButtonRect.SetPosition(new MmgVector2(sliderBottomButtonRect.GetLeft(), inY + viewPortRect.GetHeight() - scrollBarSliderButtonHeight));
+        sliderUpButtonRect.SetPosition(new MmgVector2(sliderUpButtonRect.GetLeft(), inY));
+        sliderDownButtonRect.SetPosition(new MmgVector2(sliderDownButtonRect.GetLeft(), inY + viewPortRect.GetHeight() - scrollBarSliderButtonHeight));
         
-        if(sliderTopButton != null && sliderBottomButton != null && sliderVert != null) {
-            sliderTopButton.SetPosition(sliderTopButtonRect.GetPosition());
-            sliderBottomButton.SetPosition(sliderBottomButtonRect.GetPosition()); 
+        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
+            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
+            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition()); 
             sliderVert.SetPosition(sliderVertRect.GetPosition());
         }        
     }
     
+    /**
+     * Sets the position of the scroll view.
+     * 
+     * @param inPos     The position to set the scroll view.
+     */    
     @Override
     public void SetPosition(MmgVector2 inPos) {
         super.SetPosition(inPos);
@@ -417,18 +775,24 @@ public class MmgScrollHorVert extends MmgObj {
         }
         
         sliderVertRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
-        sliderTopButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY()));
-        sliderBottomButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + viewPortRect.GetHeight() - scrollBarSliderButtonHeight));
+        sliderUpButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY()));
+        sliderDownButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + viewPortRect.GetHeight() - scrollBarSliderButtonHeight));
         
-        if(sliderTopButton != null && sliderBottomButton != null && sliderVert != null) {
-            sliderTopButton.SetPosition(sliderTopButtonRect.GetPosition());
-            sliderBottomButton.SetPosition(sliderBottomButtonRect.GetPosition());            
+        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
+            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
+            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition());            
             sliderVert.SetPosition(sliderVertRect.GetPosition());
         }         
     }
-         
+        
+    /**
+     * Processes dpad input release events.
+     * 
+     * @param dir   The direction of the dpad input to process.
+     * @return      A boolean indicating if the dpad input was handled.
+     */    
     public boolean ProcessDpadRelease(int dir) {
-        if(scrollBarHorVisible && dir == GameSettings.LEFT_KEYBOARD) {
+        if(scrollBarHorVisible && (dir == GameSettings.LEFT_KEYBOARD || dir == GameSettings.LEFT_GAMEPAD_1 || dir == GameSettings.LEFT_GPIO)) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
@@ -445,7 +809,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             return true;
             
-        } else if(scrollBarHorVisible && dir == GameSettings.RIGHT_KEYBOARD) {
+        } else if(scrollBarHorVisible && (dir == GameSettings.RIGHT_KEYBOARD || dir == GameSettings.RIGHT_GAMEPAD_1 || dir == GameSettings.RIGHT_GPIO)) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
                 offsetXScrollBarSlider += intervalX;
@@ -462,7 +826,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;            
             return true;
             
-        } else if(scrollBarVertVisible && dir == GameSettings.UP_KEYBOARD) {
+        } else if(scrollBarVertVisible && (dir == GameSettings.UP_KEYBOARD || dir == GameSettings.UP_GAMEPAD_1 || dir == GameSettings.UP_GPIO)) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
                 offsetYScrollBarSlider -= intervalY;
@@ -479,7 +843,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             return true;
             
-        } else if(scrollBarVertVisible && dir == GameSettings.DOWN_KEYBOARD) {
+        } else if(scrollBarVertVisible && (dir == GameSettings.DOWN_KEYBOARD || dir == GameSettings.DOWN_GAMEPAD_1 || dir == GameSettings.DOWN_GPIO)) {
             MmgDebug.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
             if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
                 offsetYScrollBarSlider += intervalY;
@@ -501,6 +865,13 @@ public class MmgScrollHorVert extends MmgObj {
         return false;
     }
     
+    /**
+     * Handle screen click events.
+     * 
+     * @param x     The X coordinate of the screen click event.
+     * @param y     The Y coordinate of the screen click event.
+     * @return      A boolean indicating if the click event was handled.
+     */
     public boolean ProcessScreenClick(int x, int y) {
         boolean ret = false;
         
@@ -551,7 +922,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;            
             ret = true;
             
-        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderTopButtonRect)) {
+        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderUpButtonRect)) {
             MmgDebug.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
                 offsetYScrollBarSlider -= intervalY;
@@ -568,7 +939,7 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             ret = true;
             
-        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderBottomButtonRect)) {            
+        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderDownButtonRect)) {            
             MmgDebug.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
             if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
                 offsetYScrollBarSlider += intervalY;
@@ -594,225 +965,576 @@ public class MmgScrollHorVert extends MmgObj {
         return ret;
     }
     
+    /**
+     * Gets the current view port for scroll view.
+     * 
+     * @return      The view port for scroll view.
+     */    
     public MmgBmp GetViewPort() {
         return viewPort;
     }
 
+    /**
+     * Sets the current view port for this scroll view.
+     * Changing the view port requires a call to PrepDimensions.
+     * 
+     * @param ViewPort      The view port for this scroll view.
+     */ 
     public void SetViewPort(MmgBmp ViewPort) {
         viewPort = ViewPort;
-        PrepDimensions();
     }
 
+    /**
+     * Gets the scroll pane for this scroll view.
+     * 
+     * @return      The scroll pane for this scroll view.
+     */     
     public MmgBmp GetScrollPane() {
         return scrollPane;
     }
 
+    /**
+     * Sets the scroll pane for this scroll view.
+     * Changing the scroll pane requires a call to PrepDimensions.
+     * 
+     * @param ScrollPane    The scroll pane for this scroll view.
+     */
     public void SetScrollPane(MmgBmp ScrollPane) {
         scrollPane = ScrollPane;
-        PrepDimensions();        
     }
 
+    /**
+     * Gets the MmgRect dimensions for the view port.
+     * 
+     * @return      The MmgRect dimensions for the view port.
+     */    
     public MmgRect GetViewPortRect() {
         return viewPortRect;
     }
 
+    /**
+     * Sets the MmgRect dimensions for the view port.
+     * Changing the view port dimensions requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect dimensions for the view ports.
+     */
     public void SetViewPortRect(MmgRect r) {
         viewPortRect = r;
     }
     
+    /**
+     * Gets the MmgRect dimensions for the scroll pane.
+     * 
+     * @return      The MmgRect dimensions for the scroll pane.
+     */    
     public MmgRect GetScrollPaneRect() {
         return scrollPaneRect;
     }
 
+    /**
+     * Sets the MmgRect dimensions for the scroll pane.
+     * Changing the scroll pane dimensions requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect dimensions for this scroll pane.
+     */
     public void SetScrollPaneRect(MmgRect r) {
         scrollPaneRect = r;
     }
     
+    /**
+     * Gets the MmgBmp that is used for the horizontal slider.
+     * 
+     * @return      The MmgBmp used for the horizontal slider.
+     */    
     public MmgBmp GetSliderHor() {
         return sliderHor;
     }
     
+    /**
+     * Sets the MmgBmp that is used for the horizontal slider.
+     * Changing the slider requires a call to PrepDimensions.
+     * 
+     * @param b     The MmgBmp used for the horizontal slider.
+     */    
     public void SetSliderHor(MmgBmp b) {
         sliderHor = b;
     }
     
+    /**
+     * Gets the MmgBmp that is used for the vertical slider.
+     * 
+     * @return      The MmgBmp used for the vertical slider.
+     */    
     public MmgBmp GetSliderVert() {
         return sliderVert;
     }
     
+    /**
+     * Sets the MmgBmp that is used for the horizontal slider.
+     * Changing the slider requires a call to PrepDimensions.
+     * 
+     * @param b     The MmgBmp used for the horizontal slider.
+     */    
     public void SetSliderVert(MmgBmp b) {
         sliderVert = b;
     }
     
+    /**
+     * Gets the MmgRect dimensions for the horizontal slider.
+     * 
+     * @return      The MmgRect dimensions for the horizontal slider.
+     */    
     public MmgRect GetSliderHorRect() {
         return sliderHorRect;
     }
     
+    /**
+     * Sets the MmgRect dimensions for the horizontal slider.
+     * Changing the slider dimensions requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect dimensions for the horizontal slider.
+     */    
     public void SetSliderHorRect(MmgRect r) {
         sliderHorRect = r;
     }
     
+    /**
+     * Gets the MmgRect dimensions for the vertical slider.
+     * 
+     * @return      The MmgRect dimensions for the vertical slider.
+     */    
     public MmgRect GetSliderVertRect() {
         return sliderVertRect;
     }
     
+    /**
+     * Sets the MmgRect dimensions for the vertical slider.
+     * Changing the slider dimensions requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect dimensions for the vertical slider.
+     */    
     public void SetSliderVertRect(MmgRect r) {
         sliderVertRect = r;
     }    
+       
+    /**
+     * Gets the MmgBmp used for the slider up button.
+     * 
+     * @return      The MmgBmp used for the slider up button.
+     */    
+    public MmgBmp GetSliderLeftButton() {
+        return sliderLeftButton;
+    }
     
+    /**
+     * Sets the MmgBmp used for the slider up button.
+     * Changing the slider up button requires a call to PrepDimensions.
+     * 
+     * @param b     The MmgBmp used for the slider up button.
+     */    
+    public void SetSliderLeftButton(MmgBmp b) {
+        sliderLeftButton = b;
+    }    
+    
+    /**
+     * Gets the MmgRect dimensions for the left button.
+     * 
+     * @return      The MmgRect used for the left button.
+     */    
     public MmgRect GetSliderLeftButtonRect() {
         return sliderLeftButtonRect;
     }
-    
+        
+    /**
+     * Sets the MmgRect dimensions for the left button.
+     * Changing the left button requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect used for the left button.
+     */    
     public void SetSliderLeftButtonRect(MmgRect r) {
         sliderLeftButtonRect = r;
     }    
     
+    /**
+     * Gets the MmgBmp for the slider right button.
+     * 
+     * @return      The MmgBmp for the right button.
+     */    
+    public MmgBmp GetSliderRightButton() {
+        return sliderRightButton;
+    }
+    
+    /**
+     * Sets the MmgBmp for the slider right button.
+     * Changing the right button requires a call to PrepDimensions.
+     * 
+     * @param b     The MmgBmp for the right button.
+     */    
+    public void SetSliderRightButton(MmgBmp b) {
+        sliderRightButton = b;
+    }
+    
+    /**
+     * Gets the MmgRect dimensions for the right button.
+     * 
+     * @return      The MmgRect used for the right button.
+     */    
     public MmgRect GetSliderRightButtonRect() {
         return sliderRightButtonRect;
     }
     
+    /**
+     * Sets the MmgRect dimensions for the right button.
+     * Changing the right button requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect used for the right button.
+     */    
     public void SetSliderRightButtonRect(MmgRect r) {
         sliderRightButtonRect = r;
-    }
-    
-    public MmgRect GetSliderTopButtonRect() {
-        return sliderTopButtonRect;
-    }
-    
-    public void GetSliderTopButtonRect(MmgRect r) {
-        sliderTopButtonRect = r;
     }    
     
-    public MmgRect GetSliderBottomButtonRect() {
-        return sliderBottomButtonRect;
+    /**
+     * Gets the MmgBmp used for the slider up button.
+     * 
+     * @return      The MmgBmp used for the slider up button.
+     */    
+    public MmgBmp GetSliderUpButton() {
+        return sliderUpButton;
     }
     
-    public void GetSliderBottomButtonRect(MmgRect r) {
-        sliderBottomButtonRect = r;
+    /**
+     * Sets the MmgBmp used for the slider up button.
+     * Changing the slider up button requires a call to PrepDimensions.
+     * 
+     * @param b     The MmgBmp used for the slider up button.
+     */    
+    public void SetSliderUpButton(MmgBmp b) {
+        sliderUpButton = b;
+    }    
+
+    /**
+     * Gets the MmgRect dimensions for the up button.
+     * 
+     * @return      The MmgRect used for the up button.
+     */    
+    public MmgRect GetSliderUpButtonRect() {
+        return sliderUpButtonRect;
+    }
+    
+    /**
+     * Sets the MmgRect dimensions for the up button.
+     * Changing the up button requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect used for the up button.
+     */    
+    public void SetSliderUpButtonRect(MmgRect r) {
+        sliderUpButtonRect = r;
     }    
     
+    /**
+     * Gets the MmgBmp for the slider down button.
+     * 
+     * @return      The MmgBmp for the down button.
+     */     
+    public MmgBmp GetSliderDownButton() {
+        return sliderDownButton;
+    }
+    
+    /**
+     * Sets the MmgBmp for the slider down button.
+     * Changing the down button requires a call to PrepDimensions.
+     * 
+     * @param b     The MmgBmp for the down button.
+     */     
+    public void SetSliderDownButton(MmgBmp b) {
+        sliderDownButton = b;
+    }    
+    
+    /**
+     * Gets the MmgRect dimensions for the down button.
+     * 
+     * @return      The MmgRect used for the down button.
+     */     
+    public MmgRect GetSliderDownButtonRect() {
+        return sliderDownButtonRect;
+    }
+    
+    /**
+     * Sets the MmgRect dimensions for the down button.
+     * Changing the down button requires a call to PrepDimensions.
+     * 
+     * @param r     The MmgRect used for the down button.
+     */    
+    public void SetSliderDownButtonRect(MmgRect r) {
+        sliderDownButtonRect = r;
+    }        
+    
+    /**
+     * Gets the width difference between the view port and the scroll pane.
+     * 
+     * @return      The width difference between the view port and the scroll pane.
+     */    
     public int GetWidthDiff() {
         return widthDiff;
     }
 
+    /**
+     * Sets the width difference between the view port and the scroll pane.
+     * 
+     * @param HeightDiff    The width difference between the view port and the scroll pane.
+     */     
     public void SetWidthDiff(int WidthDiff) {
         widthDiff = WidthDiff;
     }
 
-    public double GetWidthDiffPrct() {
-        return widthDiffPrct;
-    }
-
-    public void SetWidthDiffPrct(double d) {
-        widthDiffPrct = d;
-    }    
-    
+    /**
+     * Gets the height difference between the view port and the scroll pane.
+     * 
+     * @return      The height difference between the view port and the scroll pane.
+     */    
     public int GetHeightDiff() {
         return heightDiff;
     }
     
+    /**
+     * Sets the height difference between the view port and the scroll pane.
+     * 
+     * @param HeightDiff    The height difference between the view port and the scroll pane.
+     */    
     public void SetHeightDiff(int HeightDiff) {
         heightDiff = HeightDiff;
-    }
+    }    
 
+    /**
+     * Gets the width difference percentage between the view port and the scroll pane.
+     * 
+     * @return      The width difference percentage between the view port and the scroll pane.
+     */        
+    public double GetWidthDiffPrct() {
+        return widthDiffPrct;
+    }    
+    
+    /**
+     * Sets the width difference percentage between the view port and the scroll pane.
+     * 
+     * @param d     The width difference percentage between the view port and the scroll pane.
+     */    
+    public void SetWidthDiffPrct(double d) {
+        widthDiffPrct = d;
+    }    
+    
+    /**
+     * Gets the height difference percentage between the view port and the scroll pane.
+     * 
+     * @return      The height difference percentage between the view port and the scroll pane.
+     */    
     public double GetHeightDiffPrct() {
         return heightDiffPrct;
     }    
     
-    public void GetHeightDiffPrct(double d) {
+     /**
+     * Sets the height difference percentage between the view port and the scroll pane.
+     * 
+     * @param d     The height difference percentage between the view port and the scroll pane.
+     */    
+    public void SetHeightDiffPrct(double d) {
         heightDiffPrct = d;
     }     
     
+    /**
+     * Gets a boolean indicating if the horizontal scroll bar is visible.
+     * 
+     * @return  A boolean indicating if the horizontal scroll bar is visible.
+     */      
     public boolean IsScrollBarHorVisible() {
         return scrollBarHorVisible;
     }
 
+    /**
+     * Sets a boolean value indicating if the horizontal scroll bar is visible.
+     * 
+     * @param ScrollBarHorVisible       A boolean indicating if the horizontal scroll bar is visible.
+     */    
     public void SetScrollBarHorVisible(boolean ScrollBarHorVisible) {
         scrollBarHorVisible = ScrollBarHorVisible;
     }
 
+    /**
+     * Gets a boolean indicating if the vertical scroll bar is visible.
+     * 
+     * @return  A boolean indicating if the vertical scroll bar is visible.
+     */    
     public boolean IsScrollBarVertVisible() {
         return scrollBarVertVisible;
     }
 
+    /**
+     * Sets a boolean value indicating if the vertical scroll bar is visible.
+     * 
+     * @param ScrollBarVertVisible      A boolean indicating if the vertical scroll bar is visible.
+     */    
     public void SetScrollBarVertVisible(boolean ScrollBarVertVisible) {
         scrollBarVertVisible = ScrollBarVertVisible;
     }    
     
+    /**
+     * Gets the MmgColor of the scroll bar.
+     * 
+     * @return      The MmgColor of the scroll bar.
+     */    
     public MmgColor GetScrollBarColor() {
         return scrollBarColor;
     }
 
+    /**
+     * Sets the MmgColor of the scroll bar.
+     * 
+     * @param ScrollBarColor    The MmgColor of the scroll bar.
+     */    
     public void SetScrollBarColor(MmgColor ScrollBarColor) {
         scrollBarColor = ScrollBarColor;
     }
 
+    /**
+     * Gets the MmgColor of the scroll bar slider.
+     * 
+     * @return      The MmgColor of the scroll bar slider.
+     */    
     public MmgColor GetScrollBarSliderColor() {
         return scrollBarSliderColor;
     }
 
+    /**
+     * Sets the MmgColor of the scroll bar slider.
+     * 
+     * @param ScrollBarSliderColor      The MmgColor of the scroll bar.
+     */     
     public void SetScrollBarSliderColor(MmgColor ScrollBarSliderColor) {
         scrollBarSliderColor = ScrollBarSliderColor;
     }
 
+    /**
+     * Gets the horizontal scroll bar height.
+     * 
+     * @return      The horizontal scroll bar height.
+     */    
     public int GetScrollBarHorHeight() {
         return scrollBarHorHeight;
     }
 
+    /**
+     * Sets the vertical scroll bar height.
+     * 
+     * @param ScrollBarVertWidth    The vertical scroll bar height.
+     */     
     public void SetScrollBarHorHeight(int ScrollBarHeight) {
         scrollBarHorHeight = ScrollBarHeight;
     }
 
+    /**
+     * Gets the vertical scroll bar height.
+     * 
+     * @return      The vertical scroll bar height.
+     */      
     public int GetScrollBarVertWidth() {
         return scrollBarVertWidth;
     }
 
+    /**
+     * Sets the vertical scroll bar height.
+     * 
+     * @param ScrollBarVertWidth    The vertical scroll bar height.
+     */    
     public void SetScrollBarVertWidth(int ScrollBarWidth) {
         scrollBarVertWidth = ScrollBarWidth;
     }    
     
+    /**
+     * Gets the scroll bar slider button width.
+     * 
+     * @return      The scroll bar slider button width.
+     */    
     public int GetScrollBarSliderButtonWidth() {
         return scrollBarSliderButtonWidth;
     }
 
+    /**
+     * Sets the scroll bar slider button width.
+     * 
+     * @param ScrollBarSliderButtonWidth        The scroll bar slider button width.
+     */    
     public void SetScrollBarSliderButtonWidth(int ScrollBarSliderButtonWidth) {
         scrollBarSliderButtonWidth = ScrollBarSliderButtonWidth;
     }
     
+    /**
+     * Gets the scroll bar slider button height.
+     * 
+     * @return      The scroll bar slider button height.
+     */    
     public int GetScrollBarSliderButtonHeight() {
         return scrollBarSliderButtonHeight;
     }
 
+    /**
+     * Sets the scroll bar slider button height.
+     * 
+     * @param ScrollBarSliderButtonWidth        The scroll bar slider button height.
+     */    
     public void SetScrollBarSliderButtonHeight(int ScrollBarSliderButtonHeight) {
         scrollBarSliderButtonHeight = ScrollBarSliderButtonHeight;
-        PrepDimensions();        
     }    
     
+    /**
+     * Gets the scroll bar horizontal slider width. 
+     * 
+     * @return      The scroll bar horizontal slider width.
+     */    
     public int GetScrollBarHorSliderWidth() {
         return scrollBarHorSliderWidth;
     }
 
+    /**
+     * Sets the scroll bar horizontal slider width.
+     * 
+     * @param ScrollBarHorSliderWidth       The scroll bar horizontal slider width.
+     */    
     public void SetScrollBarHorSliderWidth(int ScrollBarSliderWidth) {
         scrollBarHorSliderWidth = ScrollBarSliderWidth;
     }
 
+    /**
+     * Gets the scroll bar vertical slider height.
+     * 
+     * @return      The scroll bar vertical slider height.
+     */    
     public int GetScrollBarVertSliderHeight() {
         return scrollBarVertSliderHeight;
     }
 
+    /**
+     * Sets the scroll bar vertical slider width.
+     * 
+     * @param ScrollBarHorSliderWidth       The scroll bar vertical slider width.
+     */     
     public void SetScrollBarVertSliderHeight(int ScrollBarSliderHeight) {
         scrollBarVertSliderHeight = ScrollBarSliderHeight;
     }    
     
+    /**
+     * Gets the interval for movement on the X axis.
+     * 
+     * @return      The X interval for movement.
+     */    
     public int GetIntervalX() {
         return intervalX;
     }
 
-    public int GetIntervalY() {
-        return intervalY;
-    }    
-    
+    /**
+     * Sets the interval for movement on the X axis.
+     * 
+     * @param IntervalX     The X interval for movement.
+     */    
     public void SetIntervalX(int IntervalX) {
         if(IntervalX != 0) {
             intervalX = IntervalX;
@@ -820,6 +1542,20 @@ public class MmgScrollHorVert extends MmgObj {
         }
     }
 
+    /**
+     * Gets the interval for movement on the Y axis.
+     * 
+     * @return      The Y interval for movement.
+     */    
+    public int GetIntervalY() {
+        return intervalY;
+    }    
+        
+    /**
+     * Sets the interval for movement on the X axis.
+     * 
+     * @param IntervalX     The X interval for movement.
+     */    
     public void SetIntervalY(int IntervalY) {
         if(IntervalY != 0) {
             intervalY = IntervalY;
@@ -827,54 +1563,88 @@ public class MmgScrollHorVert extends MmgObj {
         }
     }    
     
+    /**
+     * Gets a boolean indicating if the scroll view needs to be redrawn.
+     * 
+     * @return      A boolean indicating if the scroll view needs to be redrawn.
+     */    
     public boolean IsIsDirty() {
         return isDirty;
     }
 
+    /**
+     * Sets a boolean indicating if the scroll view needs to be redrawn.
+     * 
+     * @param IsDirty       A boolean indicating if the scroll view needs to be redrawn.
+     */    
     public void SetIsDirty(boolean IsDirty) {
         isDirty = IsDirty;
     }
 
+    /**
+     * Gets the X offset.
+     * 
+     * @return      The X offset.
+     */      
     public int GetOffsetX() {
         return offsetXScrollBarSlider;
     }
 
+    /**
+     * Sets the X offset.
+     * 
+     * @param OffsetX       The X offset.
+     */    
     public void SetOffsetX(int OffsetX) {
         offsetXScrollBarSlider = OffsetX;
     }
        
+    /**
+     * Gets the Y offset.
+     * 
+     * @return      The Y offset.
+     */      
     public int GetOffsetY() {
         return offsetYScrollBarSlider;
     }
 
+    /**
+     * Sets the Y offset.
+     * 
+     * @param OffsetX       The Y offset.
+     */    
     public void SetOffsetY(int OffsetY) {
         offsetYScrollBarSlider = OffsetY;
     }    
     
+    /**
+     * The MmgUpdate method used to call the update method of the child objects.
+     * 
+     * @param updateTicks           The update tick number. 
+     * @param currentTimeMs         The current time in the game in milliseconds.
+     * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
+     * @return                      A boolean indicating if any work was done.
+     */    
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        if(GetIsVisible() == true) {
-            if(isDirty) {
-                scrollPaneRect.SetPosition(new MmgVector2(GetX() - offsetXScrollPane, GetY() - offsetYScrollPane));
-                
-                sliderHorRect.SetPosition(new MmgVector2(GetX() + scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderHorRect.GetTop()));            
-                if(sliderHor != null) {
-                    sliderHor.SetPosition(sliderHorRect.GetPosition());                    
-                }
-                
-                sliderVertRect.SetPosition(new MmgVector2(sliderVertRect.GetLeft(), GetY() + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
-                if(sliderVert != null) {
-                    sliderVert.SetPosition(sliderVertRect.GetPosition());                    
-                }
-                
-                updSrcRect = new MmgRect(offsetXScrollBarSlider, offsetYScrollBarSlider, offsetYScrollBarSlider + viewPortRect.GetHeight(), offsetXScrollBarSlider + viewPortRect.GetWidth());
-                updDestRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
-                p.DrawBmp(scrollPane, updSrcRect, updDestRect);                
+        if(isVisible == true && isDirty == true) {
+            scrollPaneRect.SetPosition(new MmgVector2(GetX() - offsetXScrollPane, GetY() - offsetYScrollPane));
+
+            sliderHorRect.SetPosition(new MmgVector2(GetX() + scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderHorRect.GetTop()));            
+            if(sliderHor != null) {
+                sliderHor.SetPosition(sliderHorRect.GetPosition());                    
             }
+
+            sliderVertRect.SetPosition(new MmgVector2(sliderVertRect.GetLeft(), GetY() + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
+            if(sliderVert != null) {
+                sliderVert.SetPosition(sliderVertRect.GetPosition());                    
+            }
+
+            updSrcRect = new MmgRect(offsetXScrollBarSlider, offsetYScrollBarSlider, offsetYScrollBarSlider + viewPortRect.GetHeight(), offsetXScrollBarSlider + viewPortRect.GetWidth());
+            updDestRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
+            p.DrawBmp(scrollPane, updSrcRect, updDestRect);                
             
             isDirty = false;
-            
-        }else {
-            //do nothing
+            return true;
         }
         
         return false;
@@ -883,11 +1653,11 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Draws this object using the given pen, MmgPen.
      *
-     * @param p The pen to use to draw this object, MmgPen.
+     * @param p     The pen to use to draw this object, MmgPen.
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             if (MmgScrollHorVert.SHOW_CONTROL_BOUNDING_BOX == true) {
                 c = p.GetGraphicsColor();
 
@@ -925,11 +1695,11 @@ public class MmgScrollHorVert extends MmgObj {
 
                     //slider button bottom
                     p.SetGraphicsColor(Color.CYAN);
-                    p.DrawRect(sliderBottomButtonRect);
+                    p.DrawRect(sliderDownButtonRect);
 
                     //slider button top
                     p.SetGraphicsColor(Color.PINK);
-                    p.DrawRect(sliderTopButtonRect);
+                    p.DrawRect(sliderUpButtonRect);
                 }                
                 
                 p.GetGraphics().setColor(c);
@@ -965,12 +1735,12 @@ public class MmgScrollHorVert extends MmgObj {
             }
             
            if(scrollBarVertVisible) {            
-                if(sliderTopButton != null) {
-                    p.DrawBmp(sliderTopButton);
+                if(sliderUpButton != null) {
+                    p.DrawBmp(sliderUpButton);
                 }
                 
-                if(sliderBottomButton != null) {
-                    p.DrawBmp(sliderBottomButton);
+                if(sliderDownButton != null) {
+                    p.DrawBmp(sliderDownButton);
                 }
                 
                 if(sliderVert != null) {
@@ -980,9 +1750,6 @@ public class MmgScrollHorVert extends MmgObj {
 
           p.DrawBmp(viewPort, GetPosition());
             
-        } else {
-            //do nothing
-
         }
     }    
 }

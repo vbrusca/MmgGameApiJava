@@ -2,7 +2,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
  * The base drawable class of the MmgApi.
- * Created by Middlemind Games
+ * Created by Middlemind Games 08/29/2016
  * 
  * @author Victor G. Brusca
  */
@@ -36,7 +36,7 @@ public class MmgObj {
     /**
      * The version of this MmgApi.
      */
-    private String version = "1.0.4";
+    private String version = "1.0.5";
 
     /**
      * Flag indicating if this MmgObj has a parent container.
@@ -57,7 +57,6 @@ public class MmgObj {
      * The id of this MmgObj.
      */
     public String mmgUid;
-    
     
     /**
      * Constructor for this class.
@@ -213,7 +212,7 @@ public class MmgObj {
     }
 
     /**
-     * Clones this object.
+     * Creates a basic clone of this class.
      * 
      * @return      A clone of this object.
      */
@@ -222,9 +221,9 @@ public class MmgObj {
     }
 
     /**
-     * Clones the current object typed as an MmgObj.
+     * Creates a typed clone of this class.
      *
-     * @return      A clone of this class.
+     * @return      A typed clone of this class.
      */
     public MmgObj CloneTyped() {
         return new MmgObj(this);
@@ -245,21 +244,24 @@ public class MmgObj {
      * @param p     The MmgPen that would be used to draw this object.
      */
     public void MmgDraw(MmgPen p) {
-        //do nothing
         if(isVisible == true) {
             
-        }else {
-            //do nothing
         }
     }
 
+    /**
+     * The MmgUpdate method that handles updating any object fields during the update calls.
+     * 
+     * @param updateTick            The index of the update call.
+     * @param currentTimeMs         The current time in milliseconds that the update was called.
+     * @param msSinceLastFrame      The difference in milliseconds between this update call and the previous update call.
+     * @return                      A boolean indicating if the update call was handled.
+     */
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(isVisible == true) {
             
-        }else {
-            //do nothing
+            return true;
         }
-        
         return false;
     }
     
@@ -327,10 +329,10 @@ public class MmgObj {
     }
 
     /**
+     * Sets the position of this object using X, Y coordinates.
      * 
-     * 
-     * @param x
-     * @param y 
+     * @param x     The X coordinate to set this object position to.
+     * @param y     The Y coordinate to set this object position to.
      */
     public void SetPosition(int x, int y) {
         pos = new MmgVector2(x, y);
@@ -400,91 +402,92 @@ public class MmgObj {
     }
     
     /**
+     * Gets the name of this MmgObj class instance.
      * 
-     * 
-     * @return 
+     * @return      The name of this MmgObj.
      */
     public String GetName() {
         return name;
     }
     
     /**
+     * Sets the name of this MmgObj class instance.
      * 
-     * 
-     * @param n 
+     * @param n     The name of this MmgObj.
      */
     public void SetName(String n) {
         name = n;
     }
     
     /**
+     * Gets the id of this MmgObj.
      * 
-     * 
-     * @return 
+     * @return      The id of this MmgObj.
      */
     public String GetId() {
         return mmgUid;
     }
     
     /**
+     * Sets the id of this MmgObj.
      * 
-     * 
-     * @param i 
+     * @param i     The id of this MmgObj.
      */
     public void SetId(String i) {
         mmgUid = i;
     }
     
     /**
+     * Sets that this MmgObj has a parent.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean indicating that this object has a parent.
      */
     public void SetHasParent(boolean b) {
         hasParent = b;
     }
     
     /**
+     * Sets the parent of this MmgObj.
      * 
-     * 
-     * @param o 
+     * @param o     The parent of this MmgObj.
      */
     public void SetParent(MmgObj o) {
         parent = o;
     }
     
     /**
+     * Gets a boolean indicating if this MmgObj has a parent.
      * 
-     * 
-     * @return 
+     * @return      A boolean indicating if this class instance has a parent.
      */
     public boolean GetHasParent() {
         return hasParent;
     }
     
     /**
+     * Gets the parent of this MmgObj instance.
      * 
-     * 
-     * @return 
+     * @return      The parent MmgObj of this class instance.
      */
     public MmgObj GetParent() {
         return parent;
     }
     
     /**
+     * A string representation of this class.
      * 
-     * 
-     * @return 
+     * @return      A string representation of this class.
      */
     public String ToString() {
         return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString();
     }
     
     /**
+     * A class method that checks equality of this class with another MmgObj class by comparing
+     * some key class fields.
      * 
-     * 
-     * @param o
-     * @return 
+     * @param o     A MmgObj to compare this class to.
+     * @return      A boolean indicating if this class instance is equal to the comparison class instance.
      */
     public boolean Equals(MmgObj o) {
         if(o != null 

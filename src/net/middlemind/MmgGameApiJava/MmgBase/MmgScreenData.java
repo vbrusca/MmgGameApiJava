@@ -1,9 +1,9 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * A class that represents the screen data of the game. Also provides helper
- * methods for scaling. Created on June 1, 2005, 10:57 PM by Middlemind Games
- * Created by Middlemind Games
+ * A class that represents the screen data of the game.
+ * Also provides helper methods for scaling.
+ * Created by Middlemind Games 06/01/2005
  *
  * @author Victor G. Brusca
  */
@@ -99,8 +99,8 @@ public class MmgScreenData {
      * Constructor for this class that sets the screen width and height to the
      * same given values as the game width and height.
      *
-     * @param w The game and screen width.
-     * @param h The game and screen height.
+     * @param w     The game and screen width.
+     * @param h     The game and screen height.
      */
     public MmgScreenData(int w, int h) {
         MmgScreenData.gameWidth = w;
@@ -119,10 +119,10 @@ public class MmgScreenData {
      * Constructor for this class that sets the screen dimensions and the game
      * dimensions.
      *
-     * @param ScreenWidth The screen width.
-     * @param ScreenHeight The screen height.
-     * @param GameWidth The game width.
-     * @param GameHeight The game height.
+     * @param ScreenWidth       The screen width.
+     * @param ScreenHeight      The screen height.
+     * @param GameWidth         The game width.
+     * @param GameHeight        The game height.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgScreenData(int ScreenWidth, int ScreenHeight, int GameWidth, int GameHeight) {
@@ -138,7 +138,7 @@ public class MmgScreenData {
     /**
      * A string representation of the screen data.
      *
-     * @return A string representing the screen data state.
+     * @return      A string representing the screen data state.
      */
     public static String ToString() {
         String ret = "";
@@ -156,7 +156,7 @@ public class MmgScreenData {
     /**
      * Gets the game width.
      *
-     * @return The game width.
+     * @return      The game width.
      */
     public static int GetGameWidth() {
         return MmgScreenData.gameWidth;
@@ -165,7 +165,7 @@ public class MmgScreenData {
     /**
      * Sets the game width.
      *
-     * @param w The game width.
+     * @param w     The game width.
      */
     public static void SetGameWidth(int w) {
         MmgScreenData.gameWidth = w;
@@ -174,7 +174,7 @@ public class MmgScreenData {
     /**
      * Gets the game top position, Y axis.
      *
-     * @return The game top position, Y axis.
+     * @return      The game top position, Y axis.
      */
     public static int GetGameTop() {
         return MmgScreenData.gameTop;
@@ -183,7 +183,7 @@ public class MmgScreenData {
     /**
      * Gets the game bottom position, Y axis.
      *
-     * @return The game bottom position, Y axis.
+     * @return      The game bottom position, Y axis.
      */    
     public static int GetGameBottom() {
         return (MmgScreenData.gameTop + MmgScreenData.gameHeight);
@@ -192,7 +192,7 @@ public class MmgScreenData {
     /**
      * Sets the game top position, Y axis.
      *
-     * @param t The game top position, Y axis.
+     * @param t     The game top position, Y axis.
      */
     public static void SetGameTop(int t) {
         MmgScreenData.gameTop = t;
@@ -201,7 +201,7 @@ public class MmgScreenData {
     /**
      * Gets the game left position, X axis.
      *
-     * @return The game left position, X axis.
+     * @return      The game left position, X axis.
      */
     public static int GetGameLeft() {
         return MmgScreenData.gameLeft;
@@ -210,7 +210,7 @@ public class MmgScreenData {
     /**
      * Gets the game right position, X axis.
      *
-     * @return The game right position, X axis.
+     * @return      The game right position, X axis.
      */
     public static int GetGameRight() {
         return (MmgScreenData.gameLeft + MmgScreenData.gameWidth);
@@ -219,7 +219,7 @@ public class MmgScreenData {
     /**
      * Sets the game left position, Y axis.
      *
-     * @param l The game left position, Y axis.
+     * @param l     The game left position, Y axis.
      */
     public static void SetGameLeft(int l) {
         MmgScreenData.gameLeft = l;
@@ -228,7 +228,7 @@ public class MmgScreenData {
     /**
      * Gets the game screen height.
      *
-     * @return The game screen height.
+     * @return      The game screen height.
      */
     public static int GetGameHeight() {
         return MmgScreenData.gameHeight;
@@ -237,7 +237,7 @@ public class MmgScreenData {
     /**
      * Sets the game screen height.
      *
-     * @param h The game screen height.
+     * @param h     The game screen height.
      */
     public static void SetGameHeight(int h) {
         MmgScreenData.gameHeight = h;
@@ -246,7 +246,7 @@ public class MmgScreenData {
     /**
      * Sets the screen width.
      *
-     * @param w The screen width.
+     * @param w     The screen width.
      */
     public static void SetScreenWidth(int w) {
         MmgScreenData.screenWidth = w;
@@ -255,7 +255,7 @@ public class MmgScreenData {
     /**
      * Gets the screen width.
      *
-     * @return The screen width.
+     * @return      The screen width.
      */
     public static int GetScreenWidth() {
         return MmgScreenData.screenWidth;
@@ -264,7 +264,7 @@ public class MmgScreenData {
     /**
      * Sets the screen height.
      *
-     * @param h The screen height.
+     * @param h     The screen height.
      */
     public static void SetScreenHeight(int h) {
         MmgScreenData.screenHeight = h;
@@ -273,7 +273,7 @@ public class MmgScreenData {
     /**
      * Gets the screen height.
      *
-     * @return The screen height.
+     * @return      The screen height.
      */
     public static int GetScreenHeight() {
         return MmgScreenData.screenHeight;
@@ -282,7 +282,7 @@ public class MmgScreenData {
     /**
      * Gets scale X.
      *
-     * @return The X scale value.
+     * @return      The X scale value.
      */
     public static double GetScaleX() {
         return MmgScreenData.scaleX;
@@ -291,7 +291,7 @@ public class MmgScreenData {
     /**
      * Sets scale X.
      *
-     * @param x The X scale value.
+     * @param x     The X scale value.
      */
     public static void SetScaleX(double x) {
         MmgScreenData.scaleX = x;
@@ -300,7 +300,7 @@ public class MmgScreenData {
     /**
      * Gets scale Y.
      *
-     * @return The scale Y value.
+     * @return      The scale Y value.
      */
     public static double GetScaleY() {
         return MmgScreenData.scaleY;
@@ -309,7 +309,7 @@ public class MmgScreenData {
     /**
      * Sets scale Y.
      *
-     * @param y The scale Y value.
+     * @param y     The scale Y value.
      */
     public static void SetScaleY(double y) {
         MmgScreenData.scaleY = y;
@@ -318,7 +318,7 @@ public class MmgScreenData {
     /**
      * Gets if scale X is on.
      *
-     * @return If scale X is on.
+     * @return      If scale X is on.
      */
     public static boolean GetScaleXOn() {
         return MmgScreenData.scaleXOn;
@@ -327,7 +327,7 @@ public class MmgScreenData {
     /**
      * Sets if scale X is on.
      *
-     * @param b If scale X is on.
+     * @param b     If scale X is on.
      */
     public static void SetScaleXOn(boolean b) {
         MmgScreenData.scaleXOn = b;
@@ -336,7 +336,7 @@ public class MmgScreenData {
     /**
      * Gets if scale Y is on.
      *
-     * @return If scale Y is on.
+     * @return      If scale Y is on.
      */
     public static boolean GetScaleYOn() {
         return MmgScreenData.scaleYOn;
@@ -345,7 +345,7 @@ public class MmgScreenData {
     /**
      * Sets if scale Y is on.
      *
-     * @param b If scale Y is on.
+     * @param b     If scale Y is on.
      */
     public static void SetScaleYOn(boolean b) {
         MmgScreenData.scaleYOn = b;
@@ -354,7 +354,7 @@ public class MmgScreenData {
     /**
      * Gets the scale vector.
      *
-     * @return The scale vector.
+     * @return      The scale vector.
      */
     public static MmgVector2 GetScale() {
         return MmgScreenData.scaleVec;
@@ -363,7 +363,7 @@ public class MmgScreenData {
     /**
      * Gets the position vector.
      *
-     * @return The position vector.
+     * @return      The position vector.
      */
     public static MmgVector2 GetPosition() {
         return MmgScreenData.posVec;
@@ -384,8 +384,8 @@ public class MmgScreenData {
     }
 
     /**
-     * Calculates the scale value on the X axis for the game. Based on the
-     * screen dimensions and the default game width and height.
+     * Calculates the scale value on the X axis for the game. 
+     * Based on the screen dimensions and the default game width and height.
      */
     @SuppressWarnings("UnusedAssignment")
     private static void CalculateScaleX() {
@@ -428,8 +428,8 @@ public class MmgScreenData {
     }
 
     /**
-     * Calculates the scale value on the Y axis for the game. Based on the
-     * screen dimensions and the default game width and height.
+     * Calculates the scale value on the Y axis for the game. 
+     * Based on the screen dimensions and the default game width and height.
      */
     @SuppressWarnings("UnusedAssignment")
     private static void CalculateScaleY() {

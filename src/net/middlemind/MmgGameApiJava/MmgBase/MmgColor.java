@@ -3,7 +3,8 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 import java.awt.*;
 
 /**
- * Class that wraps the lower level color object. Created by Middlemind Games
+ * Class that wraps the lower level color object. 
+ * Created by Middlemind Games 08/29/2016
  *
  * @author Victor G. Brusca
  */
@@ -25,7 +26,7 @@ public class MmgColor {
     /**
      * Constructor that sets its properties from an input MmgColor object.
      *
-     * @param m Input MmgColor object.
+     * @param m     Input MmgColor object.
      */
     public MmgColor(MmgColor m) {
         c = m.GetColor();
@@ -34,16 +35,16 @@ public class MmgColor {
     /**
      * Constructor that sets the color to the given argument.
      *
-     * @param C The color to set the object.
+     * @param C     The color to set the object.
      */
     public MmgColor(Color C) {
         c = C;
     }
 
     /**
-     * Clones the current object.
+     * Creates a typed clone of this class.
      *
-     * @return Clone of this object.
+     * @return      A typed clone of this class.
      */
     public MmgColor Clone() {
         return new MmgColor(c);
@@ -52,7 +53,7 @@ public class MmgColor {
     /**
      * Static helper method returns white.
      *
-     * @return The color white.
+     * @return      The color white.
      */
     public static MmgColor GetWhite() {
         return new MmgColor(Color.WHITE);
@@ -61,367 +62,367 @@ public class MmgColor {
     /**
      * Static helper method returns black.
      *
-     * @return The color black.
+     * @return      The color black.
      */
     public static MmgColor GetBlack() {
         return new MmgColor(Color.BLACK);
     }
 
     /**
+     * Static helper method returns red.
      * 
-     * 
-     * @return 
+     * @return      The color red.
      */
     public static MmgColor GetRed() {
         return new MmgColor(Color.RED);
     }
     
     /**
+     * Static helper method returns blue.
      * 
-     * 
-     * @return 
+     * @return      The color blue.
      */
     public static MmgColor GetBlue() {
         return new MmgColor(Color.BLUE);
     }
     
     /**
+     * Static helper method returns green.
      * 
-     * 
-     * @return 
+     * @return      The color green.
      */
     public static MmgColor GetGreen() {
         return new MmgColor(Color.GREEN);
     }
     
     /**
+     * Static helper method returns cyan.
      * 
-     * 
-     * @return 
+     * @return      The color cyan.
      */
     public static MmgColor GetCyan() {
         return new MmgColor(Color.CYAN);
     }
     
     /**
+     * Static helper method returns gray.
      * 
-     * 
-     * @return 
+     * @return      The color gray.
      */
     public static MmgColor GetGray() {
         return new MmgColor(Color.GRAY);
     }
     
     /**
+     * Static helper method returns dark gray.
      * 
-     * 
-     * @return 
+     * @return      The color dark gray.
      */
     public static MmgColor GetDarkGray() {
         return new MmgColor(Color.DARK_GRAY);
     }
     
     /**
+     * Static helper method returns light gray.
      * 
-     * 
-     * @return 
+     * @return      The color light gray.
      */
     public static MmgColor GetLightGray() {
         return new MmgColor(Color.LIGHT_GRAY);
     }
     
     /**
+     * Static helper method returns magenta.
      * 
-     * 
-     * @return 
+     * @return      The color magenta.
      */
     public static MmgColor GetMagenta() {
         return new MmgColor(Color.MAGENTA);
     }
     
     /**
+     * Static helper method returns orange.
      * 
-     * 
-     * @return 
+     * @return      The color orange.
      */
     public static MmgColor GetOrange() {
         return new MmgColor(Color.ORANGE);
     }
     
     /**
+     * Static helper method returns pink.
      * 
-     * 
-     * @return 
+     * @return      The color pink.
      */
     public static MmgColor GetPink() {
         return new MmgColor(Color.PINK);
     }
     
     /**
+     * Static helper method returns yellow.
      * 
-     * 
-     * @return 
+     * @return      The color yellow.
      */
     public static MmgColor GetYellow() {
         return new MmgColor(Color.YELLOW);
     }
      
     /**
+     * Static helper method returns lime green.
      * 
-     * 
-     * @return 
+     * @return      The color lime green.
      */
     public static MmgColor GetLimeGreen() {
         return new MmgColor(Color.decode("#DAF7A6"));
     }
     
     /**
+     * Static helper method returns yellow orange.
      * 
-     * 
-     * @return 
+     * @return      The color yellow orange.
      */
     public static MmgColor GetYellowOrange() {
         return new MmgColor(Color.decode("#FFC300"));
     }
     
     /**
+     * Static helper method returns red orange.
      * 
-     * 
-     * @return 
+     * @return      The color red orange.
      */
     public static MmgColor GetRedOrange() {
         return new MmgColor(Color.decode("#FF5733"));
     }
     
     /**
+     * Static helper method returns purple red.
      * 
-     * 
-     * @return 
+     * @return      The color purple red.
      */
     public static MmgColor GetPurpleRed() {
         return new MmgColor(Color.decode("#C70039"));
     }
     
     /**
+     * Static helper method returns dark red.
      * 
-     * 
-     * @return 
+     * @return      The color dark red.
      */
     public static MmgColor GetDarkRed() {
         return new MmgColor(Color.decode("#900C3F"));
     }
     
     /**
+     * Static helper method returns dark blue.
      * 
-     * 
-     * @return 
+     * @return      The color dark blue.
      */
     public static MmgColor GetDarkBlue() {
         return new MmgColor(Color.decode("#0000A0"));
     }
     
     /**
+     * Static helper method returns light blue.
      * 
-     * 
-     * @return 
+     * @return      The color light blue.
      */
     public static MmgColor GetLightBlue() {
         return new MmgColor(Color.decode("#ADD8E6"));
     }
     
     /**
+     * Static helper method returns olive.
      * 
-     * 
-     * @return 
+     * @return      The color olive.
      */
     public static MmgColor GetOlive() {
         return new MmgColor(Color.decode("#808000"));
     }
     
     /**
+     * Static helper method returns brown.
      * 
-     * 
-     * @return 
+     * @return      The color brown.
      */
     public static MmgColor GetBrown() {
         return new MmgColor(Color.decode("#A52A2A"));
     }
     
     /**
+     * Static helper method returns maroon.
      * 
-     * 
-     * @return 
+     * @return      The color maroon.
      */
     public static MmgColor GetMaroon() {
         return new MmgColor(Color.decode("#800000"));
     }
     
     /**
+     * Static helper method returns gun metal gray.
      * 
-     * 
-     * @return 
+     * @return      The color gun metal gray.
      */
-    public static MmgColor GetGunMetalGrey() {
+    public static MmgColor GetGunMetalGray() {
         return new MmgColor(Color.decode("#2C3539"));
     }
     
     /**
+     * Static helper method returns night.
      * 
-     * 
-     * @return 
+     * @return      The color night.
      */
     public static MmgColor GetNight() {
         return new MmgColor(Color.decode("#0C090A"));
     }
     
     /**
+     * Static helper method returns midnight.
      * 
-     * 
-     * @return 
+     * @return      The color midnight.
      */
     public static MmgColor GetMidnight() {
         return new MmgColor(Color.decode("#2B1B17"));
     }
     
     /**
+     * Static helper method returns charcoal.
      * 
-     * 
-     * @return 
+     * @return      The color charcoal.
      */
     public static MmgColor GetCharcoal() {
         return new MmgColor(Color.decode("#34282C"));
     }
     
     /**
+     * Static helper method returns dark slate gray.
      * 
-     * 
-     * @return 
+     * @return      The color dark slate gray.
      */
-    public static MmgColor GetDarkSlateGrey() {
+    public static MmgColor GetDarkSlateGray() {
         return new MmgColor(Color.decode("#25383C"));
     }
     
     /**
+     * Static helper method returns oil.
      * 
-     * 
-     * @return 
+     * @return      The color oil.
      */
     public static MmgColor GetOil() {
         return new MmgColor(Color.decode("#3B3131"));
     }
 
     /**
+     * Static helper method returns calm blue.
      * 
-     * 
-     * @return 
+     * @return      The color calm blue.
      */
     public static MmgColor GetCalmBlue() {
         return new MmgColor(Color.decode("#3B8EFF"));
     }
     
     /**
+     * Static helper method returns black cat.
      * 
-     * 
-     * @return 
+     * @return      The color black cat.
      */
     public static MmgColor GetBlackCat() {
         return new MmgColor(Color.decode("#413839"));
     }
     
     /**
+     * Static helper method returns iridium.
      * 
-     * 
-     * @return 
+     * @return      The color iridium.
      */
     public static MmgColor GetIridium() {
         return new MmgColor(Color.decode("#3D3C3A"));
     }
     
     /**
+     * Static helper method returns gray wolf.
      * 
-     * 
-     * @return 
+     * @return      The color gray wolf.
      */
-    public static MmgColor GetGreyWolf() {
+    public static MmgColor GetGrayWolf() {
         return new MmgColor(Color.decode("#504A4B"));
     }
     
     /**
+     * Static helper method returns gray dolphin.
      * 
-     * 
-     * @return 
+     * @return      The color gray dolphin.
      */
-    public static MmgColor GetGreyDolphin() {
+    public static MmgColor GetGrayDolphin() {
         return new MmgColor(Color.decode("#5C5858"));
     }
     
     /**
+     * Static helper method returns carbon gray.
      * 
-     * 
-     * @return 
+     * @return      The color carbon gray.
      */
-    public static MmgColor GetCarbonGrey() {
+    public static MmgColor GetCarbonGray() {
         return new MmgColor(Color.decode("#625D5D"));
     }
 
     /**
+     * Static helper method returns battleship gray.
      * 
-     * 
-     * @return 
+     * @return      The color battleship gray.
      */
-    public static MmgColor GetBattleshipGrey() {
+    public static MmgColor GetBattleshipGray() {
         return new MmgColor(Color.decode("#848482"));
     }
     
     /**
+     * Static helper method returns gray cloud.
      * 
-     * 
-     * @return 
+     * @return      The color gray cloud.
      */
-    public static MmgColor GetGreyCloud() {
+    public static MmgColor GetGrayCloud() {
         return new MmgColor(Color.decode("#B6B6B4"));
     }
 
     /**
+     * Static helper method returns gray goose.
      * 
-     * 
-     * @return 
+     * @return      The color gray goose.
      */
-    public static MmgColor GetGreyGoose() {
+    public static MmgColor GetGrayGoose() {
         return new MmgColor(Color.decode("#D1D0CE"));
     }
     
     /**
+     * Static helper method returns platinum.
      * 
-     * 
-     * @return 
+     * @return      The color platinum.
      */
     public static MmgColor GetPlatinum() {
         return new MmgColor(Color.decode("#E5E4E2"));
     }
     
     /**
+     * Static helper method returns metallic silver.
      * 
-     * 
-     * @return 
+     * @return      The color metallic silver.
      */
     public static MmgColor GetMetallicSilver() {
         return new MmgColor(Color.decode("#BCC6CC"));
     }
     
     /**
+     * Static helper method returns blue gray.
      * 
-     * 
-     * @return 
+     * @return      The color blue gray
      */
-    public static MmgColor GetBlueGrey() {
+    public static MmgColor GetBlueGray() {
         return new MmgColor(Color.decode("#98AFC7"));
     }
     
     /**
+     * Static helper method returns slate blue.
      * 
-     * 
-     * @return 
+     * @return      The color slate blue.
      */
     public static MmgColor GetSlateBlue() {
         return new MmgColor(Color.decode("#737CA1"));
@@ -487,20 +488,28 @@ public class MmgColor {
     //dark violet: #842DCE
     //lavender blue: #E3E4FA
     
+    /*
+     public Paint GetPaint() {
+     p = new Paint();
+     p.setColor(GetColor());
+     return new Color();
+     }
+     */    
+    
     /**
+     * Static helper method that decodes an HTML color.
      * 
-     * 
-     * @param htmlColor
-     * @return 
+     * @param htmlColor     The HTML color to decode.
+     * @return              A new MmgColor object with the HTML color.
      */
     public static MmgColor GetDecodedColor(String htmlColor) {
         return new MmgColor(Color.decode(htmlColor));
     }    
     
     /**
+     * Static helper method that returns a transparent color.
      * 
-     * 
-     * @return 
+     * @return      A new MmgColor object that has transparent color.
      */
     public static MmgColor GetTransparent() {
         return new MmgColor(new Color(0f, 0f, 0f, 1f));
@@ -509,7 +518,7 @@ public class MmgColor {
     /**
      * Returns the color of this MmgColor object.
      *
-     * @return The color of this object.
+     * @return          The color of this object.
      */
     public Color GetColor() {
         return c;
@@ -518,20 +527,18 @@ public class MmgColor {
     /**
      * Sets the color of this MmgColor object.
      *
-     * @param C The color of this object.
+     * @param C         The color of this object.
      */
     public void SetColor(Color C) {
         c = C;
     }
-
-    /*
-     public Paint GetPaint() {
-     p = new Paint();
-     p.setColor(GetColor());
-     return new Color();
-     }
-     */
     
+    /**
+     * A method that checks to see if this MmgColor is equal to the passed in MmgColor.
+     * 
+     * @param c     The MmgColor object instance to test for equality.
+     * @return      Returns true if both MmgColor objects have the same color.
+     */
     public boolean Equals(MmgColor c) {
         if (c != null && c.GetColor().equals(GetColor()) == true) {
             return true;

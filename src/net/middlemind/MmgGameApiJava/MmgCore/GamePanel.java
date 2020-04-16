@@ -456,9 +456,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 } else if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
                     ProcessDebugClick();
                     
-                } else {
-                    ProcessKeyClick(e.getKeyChar());
-                }                  
+                }
+                
+                ProcessKeyClick(e.getKeyChar(), e.getKeyCode());
             }
 
             @Override
@@ -478,9 +478,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     } else if (e.getKeyCode() == 39) {
                         ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
                         
-                    } else {
-                        ProcessKeyPress(e.getKeyChar());
                     }
+                    
+                    ProcessKeyPress(e.getKeyChar(), e.getKeyCode());
                 }
             }
 
@@ -500,9 +500,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     } else if (e.getKeyCode() == 39) {
                         ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
                         
-                    } else {
-                        ProcessKeyRelease(e.getKeyChar());
-                    }                    
+                    }
+                    
+                    ProcessKeyRelease(e.getKeyChar(), e.getKeyCode());
                 }
             }
         });
@@ -657,8 +657,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * 
      * @param c     The c argument is the character of the keyboard press event.
      */
-    public void ProcessKeyPress(char c) {
-        currentScreen.ProcessKeyPress(c);
+    public void ProcessKeyPress(char c, int code) {
+        currentScreen.ProcessKeyPress(c, code);
     }
     
     /**
@@ -666,8 +666,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * 
      * @param c     The c argument is the character of the keyboard release event.
      */    
-    public void ProcessKeyRelease(char c) {
-        currentScreen.ProcessKeyRelease(c);
+    public void ProcessKeyRelease(char c, int code) {
+        currentScreen.ProcessKeyRelease(c, code);
     }    
     
     /**
@@ -675,8 +675,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * 
      * @param c     The c argument is the character of the keyboard click event.
      */    
-    public void ProcessKeyClick(char c) {
-        currentScreen.ProcessKeyClick(c);
+    public void ProcessKeyClick(char c, int code) {
+        currentScreen.ProcessKeyClick(c, code);
     }    
     
     /**

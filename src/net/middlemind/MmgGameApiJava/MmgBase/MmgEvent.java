@@ -1,10 +1,10 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * The base event class for event handling. Created by Middlemind Games
+ * The base event class for event handling. 
+ * Created by Middlemind Games 08/29/2016
  *
  * @author Victor G. Brusca
- *
  */
 public class MmgEvent {
 
@@ -87,12 +87,12 @@ public class MmgEvent {
      * Constructor that sets the parent handler, the message, the id, the type,
      * and the target event handler, with optional payload object.
      *
-     * @param ParentHandler The parent event handler.
-     * @param Msg The event message.
-     * @param Id The event id.
-     * @param Type The event type.
-     * @param TargetHandler The target event handler.
-     * @param Ex The payload object to pass with the event.
+     * @param ParentHandler     The parent event handler.
+     * @param Msg               The event message.
+     * @param Id                The event id.
+     * @param Type              The event type.
+     * @param TargetHandler     The target event handler.
+     * @param Ex                The payload object to pass with the event.
      */
     public MmgEvent(MmgEventHandler ParentHandler, String Msg, int Id, int Type, MmgEventHandler TargetHandler, Object Ex) {
         parentHandler = ParentHandler;
@@ -107,7 +107,7 @@ public class MmgEvent {
     /**
      * Gets the previous event in the event sequence.
      *
-     * @return The previous event.
+     * @return      The previous event.
      */
     public MmgEvent GetPrevEvent() {
         return prevEvent;
@@ -116,7 +116,7 @@ public class MmgEvent {
     /**
      * Sets the previous event in the event sequence.
      *
-     * @param p The previous event.
+     * @param p     The previous event.
      */
     public void SetPrevEvent(MmgEvent p) {
         prevEvent = p;
@@ -125,7 +125,7 @@ public class MmgEvent {
     /**
      * Sets the parent event handler.
      *
-     * @param e The parent event handler.
+     * @param e     The parent event handler.
      */
     public void SetParentEventHandler(MmgEventHandler e) {
         parentHandler = e;
@@ -134,7 +134,7 @@ public class MmgEvent {
     /**
      * Gets the parent event handler.
      *
-     * @return The parent event handler.
+     * @return      The parent event handler.
      */
     public MmgEventHandler GetParentEventHandler() {
         return parentHandler;
@@ -143,7 +143,7 @@ public class MmgEvent {
     /**
      * Sets the target event handler.
      *
-     * @param e The target event handler.
+     * @param e     The target event handler.
      */
     public void SetTargetEventHandler(MmgEventHandler e) {
         targetHandler = e;
@@ -152,7 +152,7 @@ public class MmgEvent {
     /**
      * Gets the target event handler.
      *
-     * @return The target event handler.
+     * @return      The target event handler.
      */
     public MmgEventHandler GetTargetEventHandler() {
         return targetHandler;
@@ -161,7 +161,7 @@ public class MmgEvent {
     /**
      * Gets the event message.
      *
-     * @return The event message.
+     * @return      The event message.
      */
     public String GetMessage() {
         return message;
@@ -170,7 +170,7 @@ public class MmgEvent {
     /**
      * Gets the event id.
      *
-     * @return The event id.
+     * @return      The event id.
      */
     public int GetEventId() {
         return id;
@@ -183,16 +183,16 @@ public class MmgEvent {
     /**
      * Gets the event type.
      *
-     * @return The event type.
+     * @return      The event type.
      */
     public int GetEventType() {
         return type;
     }
 
     /**
+     * Sets the event type.
      * 
-     * 
-     * @param s 
+     * @param s     An integer value to set the type to.
      */
     public void SetEventType(int s) {
         type = s;
@@ -201,7 +201,7 @@ public class MmgEvent {
     /**
      * Gets the payload object.
      *
-     * @return The payload object.
+     * @return      The payload object.
      */
     public Object GetExtra() {
         return extra;

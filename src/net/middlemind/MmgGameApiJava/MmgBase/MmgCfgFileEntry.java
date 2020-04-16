@@ -9,7 +9,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 public class MmgCfgFileEntry {
     
     /**
-     * 
+     * An enumeration that specifies the type of data the CfgEntryType holds.
      */
     public enum CfgEntryType {
         TYPE_DOUBLE,
@@ -18,29 +18,29 @@ public class MmgCfgFileEntry {
     }
     
     /**
-     * 
+     * The type of data this MmgCfgFileEntry holds.
      */
     public CfgEntryType cfgType = CfgEntryType.NONE;
     
     /**
-     * 
+     * The double value this MmgCfgFileEntry holds, if it holds numeric data.
      */
     public Double number;
     
     /**
-     * 
+     * The string value this MmgCfgFileEntry holds, if it holds string data.
      */
     public String string;
     
     /**
-     * 
+     * The name or key of this MmgCfgFileEntry.
      */
     public String name;
     
     /**
+     * A standard method that prints the contents of this MmgCfgFileEntry.
      * 
-     * 
-     * @return 
+     * @return      A string representation of this class.
      */
     public String ToString() {
         String ret = "";

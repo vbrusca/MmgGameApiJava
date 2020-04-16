@@ -1,25 +1,18 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.Image;
-//import java.awt.MediaTracker;
 import java.util.Hashtable;
 import javax.sound.sampled.Clip;
 
 /**
  * A local class that provides static access to a media tracker and image cache.
- * Created on 07-29-2015 by Middlemind Games
- * Created by Middlemind Games
+ * Created by Middlemind Games 07/29/2015
  * 
  * @author Victor G. Brusca
  */
 @SuppressWarnings("UseOfObsoleteCollectionType")
 public class MmgMediaTracker {
-    
-    /**
-     * MediaTracker used in tracking loading of AWT based images.
-     */
-    //public static MediaTracker mt = new MediaTracker(null);
-    
+        
     /**
      * Hashtable used to track loading of image resources, in a central place.
      */
@@ -53,7 +46,7 @@ public class MmgMediaTracker {
      * @param val       The image object to cache.
      */
     public static void CacheImage(String key, Image val) {
-        MmgApiUtils.wr("+++++++++ Cache image with key: " + key);
+        //MmgApiUtils.wr("+++++++++ Cache image with key: " + key);
         if(MmgMediaTracker.HasBmpKey(key) == false) {
             MmgMediaTracker.cacheBmp.put(key, val);
         }else {
@@ -71,7 +64,7 @@ public class MmgMediaTracker {
      * @param val       The sound object to cache.
      */
     public static void CacheSound(String key, Clip val) {
-        MmgApiUtils.wr("+++++++++ Cache sound with key: " + key);
+        //MmgApiUtils.wr("+++++++++ Cache sound with key: " + key);
         if(MmgMediaTracker.HasSoundKey(key) == false) {
             MmgMediaTracker.cacheSound.put(key, val);
         }else {
@@ -82,13 +75,23 @@ public class MmgMediaTracker {
         }
     }    
     
+    /**
+     * Gets the size of the image, bitmap, object cache.
+     * 
+     * @return      The size of the image object cache.
+     */
     public static int GetBmpCacheSize() {
-        MmgApiUtils.wr("+++++++++ Cache Image Size: " + cacheBmp.size());
+        //MmgApiUtils.wr("+++++++++ Cache Image Size: " + cacheBmp.size());
         return cacheBmp.size();
     }
     
+    /**
+     * Gets the size of the sound object cache.
+     * 
+     * @return      The size of the sound object cache.
+     */
     public static int GetSoundCacheSize() {
-        MmgApiUtils.wr("+++++++++ Cache Sound Size: " + cacheBmp.size());
+        //MmgApiUtils.wr("+++++++++ Cache Sound Size: " + cacheBmp.size());
         return cacheSound.size();
     }    
     

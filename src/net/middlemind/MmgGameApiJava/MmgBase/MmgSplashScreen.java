@@ -1,16 +1,16 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * A class that represents a splash screen. Created on June 1, 2005, 10:57 PM by
- * Middlemind Games Created by Middlemind Games
+ * A class that represents a splash screen. 
+ * Created by Middlemind Games 06/01/2005
  *
  * @author Victor G. Brusca
  */
 public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
 
     /**
-     * Inner class used to time how long to display the splash screen. Created
-     * on June 1, 2005, 10:57 PM by Middlemind Games Created by Middlemind Games
+     * Inner class used to time how long to display the splash screen. 
+     * Created by Middlemind Games 06/01/2005
      *
      * @author Victor G. Brusca
      */
@@ -29,7 +29,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
         /**
          * Generic constructor sets the display time in ms.
          *
-         * @param DisplayTime Splash screen display time in ms.
+         * @param DisplayTime   Splash screen display time in ms.
          */
         public MmgSplashScreenTimer(long DisplayTime) {
             displayTime = DisplayTime;
@@ -39,7 +39,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
          * Sets the update handler for this runnable. Calls back to the update
          * handler once the display time has passed.
          *
-         * @param Update A class that supports the MmgUpdateHandler interface.
+         * @param Update        A class that supports the MmgUpdateHandler interface.
          */
         public void SetUpdateHandler(MmgUpdateHandler Update) {
             update = Update;
@@ -60,7 +60,6 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
 
             }
         }
-
     }
 
     /**
@@ -81,8 +80,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Constructor that sets the splash screen display time.
      *
-     * @param DisplayTime The display time for this splash screen, in
-     * milliseconds.
+     * @param DisplayTime   The display time for this splash screen, in milliseconds.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSplashScreen(int DisplayTime) {
@@ -91,10 +89,9 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     }
 
     /**
-     * Constructor that sets the splash screen attributes based on the values of
-     * the given argument.
+     * Constructor that sets the splash screen attributes based on the values of the given argument.
      *
-     * @param mls The display time in milliseconds.
+     * @param mls       The display time in milliseconds.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSplashScreen(MmgSplashScreen mls) {
@@ -132,7 +129,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Sets the update event handler.
      *
-     * @param Update The update event handler.
+     * @param Update    The update event handler.
      */
     public void SetUpdateHandler(MmgUpdateHandler Update) {
         update = Update;
@@ -141,7 +138,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Handles update events.
      *
-     * @param obj The update event to handle.
+     * @param obj   The update event to handle.
      */
     @Override
     public void MmgHandleUpdate(Object obj) {
@@ -151,9 +148,9 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     }
 
     /**
-     * Clone this object.
+     * Creates a basic clone of this class.
      *
-     * @return A clone of this object.
+     * @return      A clone of this class.
      */
     @Override
     public MmgObj Clone() {
@@ -162,9 +159,19 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     }
 
     /**
+     * Creates a typed clone of this class.
+     *
+     * @return      A typed clone of this class.
+     */
+    @Override
+    public MmgSplashScreen CloneTyped() {
+        return new MmgSplashScreen(this);
+    }    
+    
+    /**
      * Sets the background centered.
      *
-     * @param b The object to set as a centered background.
+     * @param b     The object to set as a centered background.
      */
     @Override
     public void SetCenteredBackground(MmgObj b) {
@@ -175,7 +182,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Gets the current display time.
      *
-     * @return The current display time.
+     * @return      The current display time.
      */
     public int GetDisplayTime() {
         return displayTime;
@@ -184,7 +191,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Sets the current display time.
      *
-     * @param DisplayTime The current display time.
+     * @param DisplayTime   The current display time.
      */
     public void SetDisplayTime(int DisplayTime) {
         displayTime = DisplayTime;
@@ -193,15 +200,13 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Draws this object to the screen.
      *
-     * @param p The MmgPen to draw this object with.
+     * @param p     The MmgPen to draw this object with.
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             super.MmgDraw(p);
 
-        } else {
-            //do nothing
         }
     }
 }

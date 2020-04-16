@@ -66,9 +66,6 @@ public final class MmgTestSpace {
      */
     public static long FPS = 16l;
 
-    public static String DAT_MAP_FILE = "../cfg/data_map/chapter2.xml";
-    public static String DAT_FILE = "../cfg/data/chapter2.dat";
-
     /**
      * Base engine config files.
      */

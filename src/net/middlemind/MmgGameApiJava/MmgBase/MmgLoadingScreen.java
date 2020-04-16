@@ -2,7 +2,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
  * Class that represents a game loading screen.
- * Created by Middlemind Games
+ * Created by Middlemind Games 08/29/2016
  * 
  * @author Victor G. Brusca
  */
@@ -59,7 +59,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
     }
     
     /**
-     * Clones this class.
+     * Creates a basic clone of this class.
      * 
      * @return      A clone of this class. 
      */
@@ -69,6 +69,16 @@ public class MmgLoadingScreen extends MmgGameScreen {
         return (MmgObj) ret;
     }
 
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class. 
+     */
+    @Override
+    public MmgLoadingScreen CloneTyped() {
+        return new MmgLoadingScreen(this);
+    }    
+    
     /**
      * Sets the background object of this game screen
      * centered horizontally and vertically.
@@ -122,14 +132,12 @@ public class MmgLoadingScreen extends MmgGameScreen {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if(GetIsVisible() == true) {
+        if(isVisible == true) {
             super.MmgDraw(p);
             
             if(loadingBar != null) {
                 loadingBar.MmgDraw(p);
             }
-        }else {
-            //do nothing
         }
     }
 }

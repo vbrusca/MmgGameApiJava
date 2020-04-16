@@ -5,10 +5,10 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
 /**
- * Class that wraps the lower level font class. Created by Middlemind Games
+ * Class that wraps the lower level font class. 
+ * Created by Middlemind Games 08/29/2016
  *
  * @author Victor G. Brusca
- *
  */
 public class MmgFont extends MmgObj {
 
@@ -42,7 +42,7 @@ public class MmgFont extends MmgObj {
     /**
      * Constructor that sets the lower level font class.
      *
-     * @param tf Font to use for text drawing.
+     * @param tf    Font to use for text drawing.
      */
     public MmgFont(Font tf) {
         super();
@@ -57,7 +57,7 @@ public class MmgFont extends MmgObj {
      * Constructor that sets the lower level attributes based on the given
      * argument.
      *
-     * @param obj The MmgObj to use.
+     * @param obj   The MmgObj to use.
      */
     public MmgFont(MmgObj obj) {
         super(obj);
@@ -74,6 +74,7 @@ public class MmgFont extends MmgObj {
      * @param fnt
      */
     public MmgFont(MmgFont fnt) {
+        super();
         frc = new FontRenderContext(null, true, true);
         SetFont(fnt.GetFont());
         SetText(fnt.GetText());
@@ -95,10 +96,10 @@ public class MmgFont extends MmgObj {
     /**
      * Constructor that sets the font, text, position, and color.
      *
-     * @param sf Low level font class.
-     * @param txt Text to draw.
-     * @param pos Position to draw the text.
-     * @param cl Color to use to draw the text.
+     * @param sf    Low level font class.
+     * @param txt   Text to draw.
+     * @param pos   Position to draw the text.
+     * @param cl    Color to use to draw the text.
      */
     public MmgFont(Font sf, String txt, MmgVector2 pos, MmgColor cl) {
         super();        
@@ -113,11 +114,11 @@ public class MmgFont extends MmgObj {
     /**
      * Constructor that sets the font, text, position in X, Y, and color.
      *
-     * @param sf Low level font class.
-     * @param txt Text to draw.
-     * @param x Position, on the X axis.
-     * @param y Position, on the Y axis.
-     * @param cl Color to use to draw the text.
+     * @param sf    Low level font class.
+     * @param txt   Text to draw.
+     * @param x     Position, on the X axis.
+     * @param y     Position, on the Y axis.
+     * @param cl    Color to use to draw the text.
      */
     public MmgFont(Font sf, String txt, int x, int y, MmgColor cl) {
         super();
@@ -130,9 +131,9 @@ public class MmgFont extends MmgObj {
     }
 
     /**
-     * Clones the current object.
+     * Creates a basic clone of this class.
      *
-     * @return A clone of this object.
+     * @return      A clone of this class.
      */
     @Override
     public MmgObj Clone() {
@@ -141,9 +142,9 @@ public class MmgFont extends MmgObj {
     }
 
     /**
+     * Creates a typed clone of this class.
      * 
-     * 
-     * @return 
+     * @return      A typed clone of this class.
      */
     @Override
     public MmgFont CloneTyped() {
@@ -153,17 +154,18 @@ public class MmgFont extends MmgObj {
     /**
      * Gets the text for this object.
      *
-     * @return The text for this object.
+     * @return      The text for this object.
      */
     public String GetText() {
         return text;
     }
 
     /**
-     * Sets the text for this object. Recalculates the drawing bounds of this
+     * Sets the text for this object. 
+     * Recalculates the drawing bounds of this
      * object.
      *
-     * @param s The text for this object.
+     * @param s     The text for this object.
      */
     public void SetText(String s) {
         if (s != null) {
@@ -187,49 +189,43 @@ public class MmgFont extends MmgObj {
     /**
      * Sets the size of the font.
      *
-     * @param sz The size of the font.
+     * @param sz    The size of the font.
      */
     public void SetFontSize(int sz) {
-        //if(font != null) {
         font = font.deriveFont((float) sz);
-        //}
     }
 
     /**
      * Gets the size of the font.
      *
-     * @return The size of the font.
+     * @return      The size of the font.
      */
     public int GetFontSize() {
-        //if(font != null) {
         return (int) font.getSize();
-        //}else {
-        //    return 0;
-        //}
     }
 
     /**
      * Sets the sprite font, or font to use to draw text.
      *
-     * @param tf
+     * @param tf    The font to use for this MmgFont object.
      */
     public void SetFont(Font tf) {
-        //SetSpriteFont(tf);
         font = tf;
     }
 
     /**
      * Sets the sprite font, or font to use to draw text.
      *
-     * @param tf
+     * @param tf    The font to use to draw text.
      */
     //public void SetSpriteFont(Font tf) {
     //    font = tf;
     //}
+    
     /**
      * Gets the font object used to draw text.
      *
-     * @return The font used to draw text.
+     * @return      The font used to draw text.
      */
     public Font GetFont() {
         return font;
@@ -238,29 +234,34 @@ public class MmgFont extends MmgObj {
     /**
      * Gets the font objects used to draw text.
      *
-     * @return The font used to draw text.
+     * @return      The font used to draw text.
      */
     /*
      public Font GetSpriteFont() {
      return font;
      }
      */
+    
     /**
      * The base drawing method used to draw this object.
      *
-     * @param p The MmgPen used to draw this object.
-     * @see MmgPen
+     * @param p     The MmgPen used to draw this object.
+     * @see         MmgPen
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
-            
+        if (isVisible == true) {            
             p.DrawText(this);
-        } else {
-            //do nothing
         }
     }
 
+    /**
+     * A class method that tests for equality based on the font and text of the
+     * comparison object.
+     * 
+     * @param r     The MmgFont object to compare
+     * @return      A boolean indicating if the object instance is equal to the argument object instance. 
+     */
     public boolean Equals(MmgFont r) {
         if (GetFont().equals(r.GetFont()) == true && GetText().equals(r.GetText()) == true) {
             return true;

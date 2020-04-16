@@ -10,22 +10,24 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author victor
+ * A class that provides help with MmgBmp scaling.
+ * Created by Middlemind Games 10/12/2016
+ * 
+ * @author Victor G. Brusca
  */
 public class MmgBmpScaler {
 
     /**
-     * 
+     * Environment graphics configuration data to use when creating new bitmaps to draw on.
      */
     public static GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
     /**
+     * A static class method that scales an MmgBmp object to the size of the game screen.
      * 
-     * 
-     * @param subj
-     * @param alpha
-     * @return 
+     * @param subj      The MmgBmp object to scale to the size of the screen.
+     * @param alpha     A boolean flag indicating if transparency should be taken into consideration when creating new images.
+     * @return          A new MmgBmp object instance scaled to the size of the screen.
      */
     public static MmgBmp ScaleMmgBmpToGameScreen(MmgBmp subj, boolean alpha) {
         int w = subj.GetWidth();
@@ -47,6 +49,14 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }         
     
+    /**
+     * A static class method that scales an MmgBmp object to the specified size.
+     * 
+     * @param subj      The MmgBmp object to scale to the specified size.
+     * @param newSize   The size to scale the MmgBmp object to, specified by an MmgVector2 object instance.
+     * @param alpha     A boolean flag indicating if transparency should be taken into consideration when creating new images.
+     * @return          A new MmgBmp object instance scaled to the size of the screen.
+     */
     public static MmgBmp ScaleMmgBmp(MmgBmp subj, MmgVector2 newSize, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();        
@@ -67,6 +77,14 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }
     
+    /**
+     * A static class method that scales an MmgBmp object to the screen's X scaling.
+     * 
+     * @param subj                      The MmgBmp object to scale to the specified size.
+     * @param useScreenDataScaleX       The scaling size of the screen in the X direction.
+     * @param alpha                     A boolean flag indicating if transparency should be taken into consideration when creating new images.
+     * @return                          A new MmgBmp object instance scaled to the size of the screen's X coordinate scale.
+     */
     public static MmgBmp ScaleMmgBmp(MmgBmp subj, boolean useScreenDataScaleX, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();
@@ -96,6 +114,14 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }    
     
+    /**
+     * A static class method that scales an MmgBmp object to the provided scale value.
+     * 
+     * @param subj      The MmgBmp object to scale to the specified size.
+     * @param scale     The value to scale the MmgBmp to.
+     * @param alpha     A boolean flag indicating if transparency should be taken into consideration when creating new images.
+     * @return          A new MmgBmp object instance scaled to the size of the provided scale value.
+     */
     public static MmgBmp ScaleMmgBmp(MmgBmp subj, double scale, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();
@@ -116,6 +142,14 @@ public class MmgBmpScaler {
         return new MmgBmp(bg);
     }
 
+    /**
+     * A static class method that creates a new rotated image from a subject image and returns in.
+     * 
+     * @param subj      The MmgBmp object to rotate to the specified angle.
+     * @param angle     The angle to rotate the image to.
+     * @param alpha     A boolean flag indicating if transparency should be taken into consideration when creating new images.
+     * @return          A new MmgBmp rotated to the specified angle.
+     */
     public static MmgBmp RotateMmgBmp(MmgBmp subj, int angle, boolean alpha) {
         int w = subj.GetWidth();
         int h = subj.GetHeight();

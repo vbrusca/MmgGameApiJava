@@ -1,7 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * Class that represents a basic game screen. Created by Middlemind Games
+ * Class that represents a basic game screen. 
+ * Created by Middlemind Games 08/29/2016
  *
  * @author Victor G. Brusca
  */
@@ -77,9 +78,24 @@ public class MmgGameScreen extends MmgObj {
      */
     private int menuStop;
 
+    /**
+     * The X offset of the left menu cursor.
+     */
     private int menuCursorLeftOffsetX;
+    
+    /**
+     * The Y offset of the left menu cursor.
+     */
     private int menuCursorLeftOffsetY;
+    
+    /**
+     * The X offset of the right menu cursor.
+     */
     private int menuCursorRightOffsetX;
+    
+    /**
+     * The Y offset of the right menu cursor.
+     */
     private int menuCursorRightOffsetY;
     
     /**
@@ -92,6 +108,9 @@ public class MmgGameScreen extends MmgObj {
      */
     private boolean menuOn;
 
+    /**
+     * A private flag the holds a boolean return value.
+     */
     private boolean lret;
     
     /**
@@ -123,10 +142,11 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Constructor that sets attributes based on the given argument.
      *
-     * @param gm The MmgGameScreen to use for attribute settings.
+     * @param gm    The MmgGameScreen to use for attribute settings.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen(MmgGameScreen gm) {
+        super();
         SetObjects(gm.GetObjects());
         SetMenu(gm.GetMenu());
         SetBackground(gm.GetBackground());
@@ -152,9 +172,9 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * Clone of this object.
+     * Creates a basic clone of this class.
      *
-     * @return A clone of this object.
+     * @return      A clone of this class.
      */
     @Override
     public MmgObj Clone() {
@@ -162,34 +182,84 @@ public class MmgGameScreen extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class.  
+     */
+    @Override
+    public MmgGameScreen CloneTyped() {
+        return new MmgGameScreen(this);
+    }
+    
+    /**
+     * Gets the X axis cursor offset to use with mouse coordinates, left cursor.
+     * 
+     * @return      The X axis offset to use with mouse coordinates, left cursor.
+     */
     public int GetMenuCursorLeftOffsetX() {
         return menuCursorLeftOffsetX;
     }
 
+    /**
+     * Sets the X axis cursor offset to use with mouse coordinates, left cursor.
+     * 
+     * @param i     The X axis offset to use with mouse coordinates, left cursor.
+     */
     public void SetMenuCursorLeftOffsetX(int i) {
         menuCursorLeftOffsetX = i;
     }
 
+    /**
+     * Gets the Y axis cursor offset to use with mouse coordinates, left cursor.
+     * 
+     * @return      The Y axis offset to use with mouse coordinates, left cursor.
+     */
     public int GetMenuCursorLeftOffsetY() {
         return menuCursorLeftOffsetY;
     }
 
+    /**
+     * Sets the Y axis cursor offset to use with mouse coordinates, left cursor.
+     * 
+     * @param i     The Y axis offset to use with mouse coordinates, left cursor.
+     */
     public void SetMenuCursorLeftOffsetY(int i) {
         menuCursorLeftOffsetY = i;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public int GetMenuCursorRightOffsetX() {
         return menuCursorRightOffsetX;
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetMenuCursorRightOffsetX(int i) {
         menuCursorRightOffsetX = i;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public int GetMenuCursorRightOffsetY() {
         return menuCursorRightOffsetY;
     }
 
+    /**
+     * 
+     * 
+     * @param i 
+     */
     public void SetMenuCursorRightOffsetY(int i) {
         menuCursorRightOffsetY = i;
     }
@@ -198,7 +268,7 @@ public class MmgGameScreen extends MmgObj {
      * Gets true if this game screen has loaded its resources and is ready to
      * display itself.
      *
-     * @return True if this object is ready, false otherwise.
+     * @return      True if this object is ready, false otherwise.
      */
     public boolean IsReady() {
         return ready;
@@ -207,14 +277,15 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets if this game screen is ready to display itself.
      *
-     * @param b A boolean indicating if this object is ready for display.
+     * @param b     A boolean indicating if this object is ready for display.
      */
     public void SetReady(boolean b) {
         ready = b;
     }
 
     /**
-     * Pauses this object. If paused no drawing occurs.
+     * Pauses this object. 
+     * If paused no drawing occurs.
      */
     public void Pause() {
         pause = true;
@@ -222,7 +293,8 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * Un-pause this object. If paused no drawing occurs.
+     * Un-pause this object. 
+     * If paused no drawing occurs.
      */
     public void UnPause() {
         pause = false;
@@ -232,7 +304,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the pause state of this object.
      *
-     * @return True if this object was paused, false otherwise.
+     * @return      True if this object was paused, false otherwise.
      */
     public boolean IsPaused() {
         if (pause == true) {
@@ -245,7 +317,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets if the menu is on.
      *
-     * @return The menu on flag.
+     * @return      The menu on flag.
      */
     public boolean GetMenuOn() {
         return menuOn;
@@ -254,7 +326,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets if the menu is on.
      *
-     * @param m The menu on flag.
+     * @param m     The menu on flag.
      */
     public void SetMenuOn(boolean m) {
         menuOn = m;
@@ -263,7 +335,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Adds an MmgObj to the game screen.
      *
-     * @param obj The object to add.
+     * @param obj   The object to add.
      */
     public void AddObj(MmgObj obj) {
         if (objects != null) {
@@ -274,7 +346,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Removes an MmgObj from the game screen.
      *
-     * @param obj The object to remove.
+     * @param obj   The object to remove.
      */
     public void RemoveObj(MmgObj obj) {
         if (objects != null) {
@@ -294,7 +366,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Event handler for processing simple menu events.
      *
-     * @param e The MmgEvent object to handle.
+     * @param e     The MmgEvent object to handle.
      */
     @SuppressWarnings("UnusedAssignment")
     public void EventHandler(MmgEvent e) {
@@ -322,7 +394,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the object container for this game screen.
      *
-     * @return The MmgContainer used by this game screen.
+     * @return      The MmgContainer used by this game screen.
      */
     public MmgContainer GetObjects() {
         return objects;
@@ -331,7 +403,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the object container for this game screen.
      *
-     * @param c The MmgContainer used by this game screen.
+     * @param c     The MmgContainer used by this game screen.
      */
     public void SetObjects(MmgContainer c) {
         objects = c;
@@ -340,7 +412,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the background object for this game screen.
      *
-     * @return The background object.
+     * @return      The background object.
      */
     public MmgObj GetBackground() {
         return background;
@@ -349,7 +421,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the background object for this game screen.
      *
-     * @param b The background object.
+     * @param b     The background object.
      */
     public void SetBackground(MmgObj b) {
         background = b;
@@ -358,8 +430,8 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the background object centered.
      *
-     * @param b The background object.
-     * @see MmgHelper
+     * @param b     The background object.
+     * @see         MmgHelper
      */
     public void SetCenteredBackground(MmgObj b) {
         MmgHelper.CenterHorAndVert(b);
@@ -369,7 +441,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the foreground object.
      *
-     * @return The foreground object.
+     * @return      The foreground object.
      */
     public MmgObj GetForeground() {
         return foreground;
@@ -378,7 +450,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the foreground object.
      *
-     * @param b The foreground object.
+     * @param b     The foreground object.
      */
     public void SetForeground(MmgObj b) {
         foreground = b;
@@ -387,7 +459,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the header object.
      *
-     * @return The header object.
+     * @return      The header object.
      */
     public MmgObj GetHeader() {
         return header;
@@ -396,7 +468,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the header object.
      *
-     * @param m The header object.
+     * @param m     The header object.
      */
     public void SetHeader(MmgObj m) {
         header = m;
@@ -406,7 +478,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the footer object.
      *
-     * @return The footer object.
+     * @return      The footer object.
      */
     public MmgObj GetFooter() {
         return footer;
@@ -415,7 +487,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the footer object.
      *
-     * @param m The footer object.
+     * @param m     The footer object.
      */
     public void SetFooter(MmgObj m) {
         footer = m;
@@ -425,7 +497,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the left menu cursor.
      *
-     * @return The left menu cursor.
+     * @return      The left menu cursor.
      */
     public MmgObj GetLeftCursor() {
         return leftCursor;
@@ -434,7 +506,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the left menu cursor.
      *
-     * @param m The left menu cursor.
+     * @param m     The left menu cursor.
      */
     public void SetLeftCursor(MmgObj m) {
         leftCursor = m;
@@ -443,7 +515,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the right menu cursor.
      *
-     * @return The right menu cursor.
+     * @return      The right menu cursor.
      */
     public MmgObj GetRightCursor() {
         return rightCursor;
@@ -452,7 +524,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the right menu cursor.
      *
-     * @param m The right menu cursor.
+     * @param m     The right menu cursor.
      */
     public void SetRightCursor(MmgObj m) {
         rightCursor = m;
@@ -461,7 +533,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the message object.
      *
-     * @return The message object.
+     * @return      The message object.
      */
     public MmgObj GetMessage() {
         return message;
@@ -470,7 +542,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the message object.
      *
-     * @param m The message object.
+     * @param m     The message object.
      */
     public void SetMessage(MmgObj m) {
         message = m;
@@ -479,7 +551,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the MmgMenuContainer object.
      *
-     * @return The MmgMenuContainer object.
+     * @return      The MmgMenuContainer object.
      */
     public MmgMenuContainer GetMenu() {
         return menu;
@@ -488,7 +560,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the MmgMenuContainer object.
      *
-     * @param m The MmgMenuContainer object.
+     * @param m     The MmgMenuContainer object.
      */
     public void SetMenu(MmgMenuContainer m) {
         menu = m;
@@ -497,7 +569,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the current menu item index.
      *
-     * @return The menu item index.
+     * @return      The menu item index.
      */
     public int GetMenuIdx() {
         return menuIdx;
@@ -506,7 +578,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the current menu item index.
      *
-     * @param i The menu item index.
+     * @param i     The menu item index.
      */
     public void SetMenuIdx(int i) {
         menuIdx = i;
@@ -515,7 +587,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets the menu start index.
      *
-     * @return The menu start index.
+     * @return      The menu start index.
      */
     public int GetMenuStart() {
         return menuStart;
@@ -524,16 +596,16 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the menu start index.
      *
-     * @param i The menu start index.
+     * @param i     The menu start index.
      */
     public void SetMenuStart(int i) {
         menuStart = i;
     }
 
     /**
-     * Gets the meu stop index.
+     * Gets the menu stop index.
      *
-     * @return The menu stop index.
+     * @return      The menu stop index.
      */
     public int GetMenuStop() {
         return menuStop;
@@ -542,7 +614,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets the menu stop index.
      *
-     * @param i The menu stop index.
+     * @param i     The menu stop index.
      */
     public void SetMenuStop(int i) {
         menuStop = i;
@@ -576,7 +648,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Sets a handler for the update event.
      *
-     * @param u An MmgUpdateHandler to handle events from this object.
+     * @param u     An MmgUpdateHandler to handle events from this object.
      */
     public void SetMmgUpdateHandler(MmgUpdateHandler u) {
         updateHandler = u;
@@ -585,7 +657,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Gets a handler for the update event.
      *
-     * @return The MmgUpdateHandler that handles update events from this class.
+     * @return      The MmgUpdateHandler that handles update events from this class.
      */
     public MmgUpdateHandler GetMmgUpdateHandler() {
         return updateHandler;
@@ -594,7 +666,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Fires an update event to the update handler.
      *
-     * @param data The event data to process.
+     * @param data  The event data to process.
      */
     public void Update(Object data) {
         if (updateHandler != null) {
@@ -605,81 +677,84 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Base draw method, handles drawing this class.
      *
-     * @param p The MmgPen used to draw this object.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (IsPaused() == true) {
-            //do nothing
-        } else {
-            if (GetIsVisible() == true) {
-                if (background != null) {
-                    background.MmgDraw(p);
-                }
+        if (pause == false && isVisible == true) {
+            if (background != null) {
+                background.MmgDraw(p);
+            }
 
-                if (header != null) {
-                    header.MmgDraw(p);
-                }
+            if (header != null) {
+                header.MmgDraw(p);
+            }
 
-                if (footer != null) {
-                    footer.MmgDraw(p);
-                }
+            if (footer != null) {
+                footer.MmgDraw(p);
+            }
 
-                if (message != null) {
-                    message.MmgDraw(p);
-                }
+            if (message != null) {
+                message.MmgDraw(p);
+            }
 
-                if (objects != null) {
-                    objects.MmgDraw(p);
-                }
+            if (objects != null) {
+                objects.MmgDraw(p);
+            }
 
-                if (menuOn == true) {
-                    DrawMenu(p);
-                }
+            if (menuOn == true) {
+                DrawMenu(p);
+            }
 
-                if (foreground != null) {
-                    foreground.MmgDraw(p);
-                }
-            } else {
-                //do nothing
+            if (foreground != null) {
+                foreground.MmgDraw(p);
             }
         }
     }
 
+    /**
+     * The MmgUpdate method used to call the update method of the child objects.
+     * 
+     * @param updateTicks           The update tick number. 
+     * @param currentTimeMs         The current time in the game in milliseconds.
+     * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
+     * @return 
+     */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;
 
-        if (IsPaused() == true) {
-            //do nothing
-
-        } else {
-            if (GetIsVisible() == true) {
-                if (message != null) {
-                    if (message.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                        lret = true;
-                    }
+        if (pause == false && isVisible == true) {
+            if (message != null) {
+                if (message.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                    lret = true;
                 }
+            }
 
-                if (objects != null) {
-                    if (objects.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                        lret = true;
-                    }
+            if (objects != null) {
+                if (objects.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                    lret = true;
                 }
+            }
 
-                if (foreground != null) {
-                    if (foreground.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                        lret = true;
-                    }
+            if (foreground != null) {
+                if (foreground.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
+                    lret = true;
                 }
-            } else {
-                //do nothing
             }
         }
 
         return lret;
     }
 
+    /**
+     * Expects a relative X, Y coordinate that takes into account the game's offset and the current panel's
+     * offset.
+     * 
+     * @param x     The X coordinate of the mouse.
+     * @param y     The Y coordinate of the mouse.
+     * @return      A boolean indicating if the event was handled or not.
+     */
     public boolean ProcessMouseMove(int x, int y) {
         return true;
     }    
@@ -687,8 +762,9 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
      * offset.
-     * @param v
-     * @return 
+     * 
+     * @param v     The coordinates of the mouse event.
+     * @return      A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMousePress(MmgVector2 v) {
         return ProcessMousePress(v.GetX(), v.GetY());
@@ -697,9 +773,10 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Expects a relative X, Y values that takes into account the game's offset and the current panel's
      * offset.
-     * @param x
-     * @param y
-     * @return 
+     * 
+     * @param x     The X coordinate of the mouse.
+     * @param y     The Y coordinate of the mouse.
+     * @return      A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMousePress(int x, int y) {
         return true;
@@ -708,42 +785,43 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
      * offset.
-     * @param v
-     * @return 
+     * 
+     * @param v     The coordinates of the mouse event.
+     * @return      A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMouseRelease(MmgVector2 v) {
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
     /**
-     * Expects a relative X, Y values that takes into account the game's offset and the current panel's
-     * offset.
-     * @param x
-     * @param y
-     * @return 
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
+     * 
+     * @param x     The X coordinate of the event.
+     * @param y     The Y coordinate of the event.
+     * @return      A boolean indicating if the event was handled or not.      
      */
     public boolean ProcessMouseRelease(int x, int y) {
         return true;
     }
 
     /**
-     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
      *
-     * @param v The coordinates of the click.
-     * @return Boolean indicating if a menu item was the target of the click,
-     * menu item event is fired automatically by this class.
+     * @param v     The coordinates of the click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     public boolean ProcessMouseClick(MmgVector2 v) {
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
     /**
-     * Process a screen click. Expects coordinate that don't take into account the offset of the game and panel.
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
      *
-     * @param x The X axis coordinate of the screen click.
-     * @param y The Y axis coordinate of the screen click.
-     * @return Boolean indicating if a menu item was the target of the click,
-     * menu item event is fired automatically by this class.
+     * @param x     The X axis coordinate of the screen click.
+     * @param y     The Y axis coordinate of the screen click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     @SuppressWarnings("UnusedAssignment")
     public boolean ProcessMouseClick(int x, int y) {
@@ -766,54 +844,129 @@ public class MmgGameScreen extends MmgObj {
         return false;
     }    
     
+    /**
+     * A method to handle A press events.
+     * 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessAPress(int src) {
         return true;
     }    
     
+    /**
+     * A method to handle A release events.
+     * 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessARelease(int src) {
         return true;
     }    
     
+    /**
+     * A method to handle A click events.
+     * 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessAClick(int src) {
         return true;
     }
     
+    /**
+     * A method to handle B press events.
+     * 
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessBPress(int src) {
         return true;
     }    
     
+    /**
+     * A method to handle B release events.
+     * 
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessBRelease(int src) {
         return true;
     }    
     
+    /**
+     * A method to handle B click events.
+     * 
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessBClick(int src) {
         return true;
     }
     
+    /**
+     * A method to handle special debug events that can be customized for each game.
+     */
     public void ProcessDebugClick() {
 
     }
     
-    public boolean ProcessKeyPress(char c) {
+    /**
+     * A method to handle keyboard press events.
+     * 
+     * @param c         The key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
+    public boolean ProcessKeyPress(char c, int code) {
         return true;
     }
     
-    public boolean ProcessKeyRelease(char c) {
+    /**
+     * A method to handle keyboard release events.
+     * 
+     * @param c         The key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
+    public boolean ProcessKeyRelease(char c, int code) {
         return true;
     }
     
-    public boolean ProcessKeyClick(char c) {
+    /**
+     * A method to handle keyboard click events.
+     * 
+     * @param c         The key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
+    public boolean ProcessKeyClick(char c, int code) {
         return true;
     }    
     
+    /**
+     * A method to handle dpad press events.
+     * 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessDpadPress(int dir) {
         return true;
     }
     
+    /**
+     * A method to handle dpad release events.
+     * 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessDpadRelease(int dir) {
         return true;
     }
     
+    /**
+     * A method to handle dpad click events.
+     * 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
+     */
     public boolean ProcessDpadClick(int dir) {
         return true;
     }
@@ -821,8 +974,8 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Fire the click event registered in the target menu item object.
      *
-     * @param item The menu item to fire a click event for.
-     * @see MmgMenuItem
+     * @param item      The menu item to fire a click event for.
+     * @see             MmgMenuItem
      */
     public void ProcessMenuItemSel(MmgMenuItem item) {
         if (item != null) {
@@ -854,7 +1007,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Draws the current menu.
      *
-     * @param p The MmgPen object used to draw the menu.
+     * @param p     The MmgPen object used to draw the menu.
      */
     private void DrawMenu(MmgPen p) {
         if (menu != null) {
@@ -898,8 +1051,6 @@ public class MmgGameScreen extends MmgObj {
                     }
                 }
             }
-        } else {
-            //menu is null;
         }
     }
 }

@@ -3,6 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 /**
  * The DatConstantsEntry class is used to hold data from an engine_config.xml file entry.
  * The data is used to set class field values at runtime from an XML file.
+ * Created by Middlemind Games 01/05/2020
  * 
  * @author Victor G. Brusca
  */

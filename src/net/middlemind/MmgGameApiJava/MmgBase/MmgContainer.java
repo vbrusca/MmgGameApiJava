@@ -3,8 +3,8 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 import java.util.*;
 
 /**
- * Class that represents a container of MmgObj objects. Created by Middlemind
- * Games
+ * Class that represents a container of MmgObj objects. 
+ * Created by Middlemind Games 08/29/2016
  *
  * @author Victor G. Brusca
  */
@@ -17,7 +17,8 @@ public class MmgContainer extends MmgObj {
 
     /**
      * Private enumeration that lists the stamp, un-stamp actions that can be
-     * performed on a child.
+     * performed on a child. Stamping marks the child as being associated with the
+     * container.
      */
     private enum ChildAction {
         STAMP,
@@ -45,11 +46,22 @@ public class MmgContainer extends MmgObj {
     private int i;
 
     /**
+     * A boolean flag that marks this object as dirty and allows the MmgUpdate call to 
+     * be called on child objects.
+     */
+    private boolean isDirty;
+    
+    /**
+     * A private local variable used in the MmgUpdate method to flag if the update was handled this frame.
+     */
+    private boolean lret = false;
+    
+    /**
      * Constructor for this class.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer() {
-        super();
+        super();        
         SetContainer(new ArrayList(INITIAL_SIZE));
     }
 
@@ -57,7 +69,7 @@ public class MmgContainer extends MmgObj {
      * Constructor that sets the base objects properties equal to the given
      * arguments properties.
      *
-     * @param obj The object to get MmgObj properties from.
+     * @param obj       The object to get MmgObj properties from.
      */
     public MmgContainer(MmgObj obj) {
         super(obj);
@@ -67,7 +79,7 @@ public class MmgContainer extends MmgObj {
      * Constructor that initializes an ArrayList of objects contained by this
      * container object.
      *
-     * @param objects The objects to add to this container.
+     * @param objects       The objects to add to this container.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer(ArrayList<MmgObj> objects) {
@@ -79,11 +91,12 @@ public class MmgContainer extends MmgObj {
      * Constructor that initializes this class based on the attributes of a
      * given argument.
      *
-     * @param cont An MmgContainer class to use to set all the attributes of
+     * @param cont          An MmgContainer class to use to set all the attributes of
      * this class.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer(MmgContainer cont) {
+        super();
         ArrayList<MmgObj> tmp1 = cont.GetContainer();
         if (tmp1 != null) {
             int len = tmp1.size();
@@ -114,9 +127,27 @@ public class MmgContainer extends MmgObj {
     }
 
     /**
-     * Clones this object.
+     * A setter method that sets the isDirty flag.
+     * 
+     * @param b     The boolean value to set the isDirty flag to.
+     */
+    public void SetIsDirty(boolean b) {
+        isDirty = b;
+    }
+    
+    /**
+     * A getter method that returns the state of the isDirty boolean.
+     * 
+     * @return      The boolean value of the isDirty flag.
+     */
+    public boolean GetIsDirty() {
+        return isDirty;
+    }
+    
+    /**
+     * Creates a basic clone of this class.
      *
-     * @return A clone of this object.
+     * @return      A clone of this class.
      */
     @Override
     public MmgObj Clone() {
@@ -125,19 +156,19 @@ public class MmgContainer extends MmgObj {
     }
 
     /**
+     * Creates a typed clone of this class.
      * 
-     * 
-     * @return 
+     * @return      A typed clone of this class.
      */
     @Override
-    public  MmgContainer CloneTyped() {
+    public MmgContainer CloneTyped() {
         return new MmgContainer(this);
     }
-    
+        
     /**
      * Adds a new MmgObj to the container.
      *
-     * @param obj An MmgObj to add to the container.
+     * @param obj   An MmgObj to add to the container.
      */
     public void Add(MmgObj obj) {
         if (obj != null) {
@@ -150,8 +181,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Adds a new MmgObj to the container at the specified index.
      *
-     * @param idx The index to add the object at.
-     * @param obj The object to add.
+     * @param idx   The index to add the object at.
+     * @param obj   The object to add.
      */
     public void AddAt(int idx, MmgObj obj) {
         if (obj != null) {
@@ -162,7 +193,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Removes an MmgObj from the container.
      *
-     * @param obj An MmgObj to remove from the container.
+     * @param obj   An MmgObj to remove from the container.
      */
     public void Remove(MmgObj obj) {
         if (obj != null) {
@@ -175,8 +206,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Removes an MmgObj from the container at the specified index.
      *
-     * @param idx The index to remove the object from.
-     * @return The MmgObj to remove.
+     * @param idx   The index to remove the object from.
+     * @return      The MmgObj to remove.
      */
     public MmgObj RemoveAt(int idx) {
         MmgObj obj = container.remove(idx);
@@ -189,7 +220,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Gets the number of objects in the container.
      *
-     * @return The number of objects in the container.
+     * @return      The number of objects in the container.
      */
     public int GetCount() {
         return container.size();
@@ -198,7 +229,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Gets an array representation of the objects in the container.
      *
-     * @return An array of the objects in the container.
+     * @return      An array of the objects in the container.
      */
     public Object[] GetArray() {
         return container.toArray();
@@ -207,8 +238,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the MmgObj at the given index.
      *
-     * @param idx The index to get an MmgObj from.
-     * @return The MmgObj at the specified index.
+     * @param idx   The index to get an MmgObj from.
+     * @return      The MmgObj at the specified index.
      */
     public MmgObj GetAt(int idx) {
         return container.get(idx);
@@ -225,7 +256,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Gets the ArrayList container that holds all child objects.
      *
-     * @return The ArrayList container of this MmgContainer object.
+     * @return      The ArrayList container of this MmgContainer object.
      */
     public ArrayList<MmgObj> GetContainer() {
         return container;
@@ -234,7 +265,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Sets the ArrayList container that holds all the child objects.
      *
-     * @param aTmp An ArrayList to set this container's contents from.
+     * @param aTmp  An ArrayList to set this container's contents from.
      */
     public void SetContainer(ArrayList<MmgObj> aTmp) {
         if (aTmp != null) {
@@ -245,6 +276,11 @@ public class MmgContainer extends MmgObj {
         }
     }
 
+    /**
+     * A method to update all children with the provided action.
+     * 
+     * @param act   The action to perform on the child objects.
+     */
     private void UpdateAllChildren(ChildAction act) {
         int len = GetCount();
         MmgObj obj;
@@ -260,6 +296,11 @@ public class MmgContainer extends MmgObj {
         }
     }
 
+    /**
+     * A method that stamps the child as belonging to the parent.
+     * 
+     * @param obj   The child to perform the operation on.
+     */
     private void StampChild(MmgObj obj) {
         if (obj != null) {
             obj.SetHasParent(true);
@@ -267,6 +308,11 @@ public class MmgContainer extends MmgObj {
         }
     }
 
+    /**
+     * A method that un-stamps the child, removing it from belonging to the parent.
+     * 
+     * @param obj   The child to perform the operation on. 
+     */
     private void UnstampChild(MmgObj obj) {
         if (obj != null) {
             obj.SetHasParent(false);
@@ -277,8 +323,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the child at the given index.
      *
-     * @param idx The index of the child to get.
-     * @return The child at the given index.
+     * @param idx   The index of the child to get.
+     * @return      The child at the given index.
      */
     public MmgObj GetChildAt(int idx) {
         return container.get(idx);
@@ -287,8 +333,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the relative position of the child at the given index.
      *
-     * @param idx The index of the child to get.
-     * @return An MmgVector2 object with the relative position of the child.
+     * @param idx   The index of the child to get.
+     * @return      An MmgVector2 object with the relative position of the child.
      */
     public MmgVector2 GetChildPosRelative(int idx) {
         MmgObj obj = container.get(idx);
@@ -301,8 +347,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the absolute position of the child at the given index.
      *
-     * @param idx The index of the child to get.
-     * @return An MmgVector2 object with the absolute position of the child.
+     * @param idx   The index of the child to get.
+     * @return      An MmgVector2 object with the absolute position of the child.
      */
     public MmgVector2 GetChildPosAbsolute(int idx) {
         return container.get(idx).GetPosition();
@@ -311,47 +357,48 @@ public class MmgContainer extends MmgObj {
     /**
      * The base drawing method used to render this object with an MmgPen.
      *
-     * @param p The MmgPen that will draw this object.
-     * @see MmgPen
+     * @param p     The MmgPen that will draw this object.
+     * @see         MmgPen
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             a = container.toArray();
             for (i = 0; i < a.length; i++) {
                 mo = (MmgObj) a[i];
-                if (mo != null && mo.GetIsVisible() == true) {
+                if (mo != null && mo.isVisible == true) {
                     mo.MmgDraw(p);
-                } else {
-                    //do nothing
                 }
             }
-        } else {
-            //do nothing
         }
     }
 
+    /**
+     * The MmgUpdate method used to call the update method of the child objects.
+     * 
+     * @param updateTicks           The update tick number. 
+     * @param currentTimeMs         The current time in the game in milliseconds.
+     * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
+     * @return                      A boolean indicating if any work was done.
+     */
     @Override
     public boolean MmgUpdate(int updateTicks, long currentTimeMs, long msSinceLastFrame) {
-        boolean ret = false;
+        lret = false;
 
-        if (GetIsVisible() == true) {
+        if (isVisible == true && isDirty == true) {
+            isDirty = false;
             a = container.toArray();
 
             for (i = 0; i < a.length; i++) {
                 mo = (MmgObj) a[i];
-                if (mo != null && mo.GetIsVisible() == true) {
+                if (mo != null && mo.isVisible == true) {
                     if (mo.MmgUpdate(updateTicks, currentTimeMs, msSinceLastFrame) == true) {
-                        ret = true;
+                        lret = true;
                     }
-                } else {
-                    //do nothing
                 }
             }
-        } else {
-            //do nothing
         }
 
-        return ret;
+        return lret;
     }
 }

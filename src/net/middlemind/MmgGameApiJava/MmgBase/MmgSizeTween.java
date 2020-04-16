@@ -1,35 +1,133 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+//TODO: Finish documentation, Add typed clone, add constructor that takes an MmgSizeTween
+
 /**
- * Class that provides tween support to an underlying MmgObj instance. Created
- * by Middlemind Games 12/01/2016
+ * Class that provides tween support to an underlying MmgObj instance. 
+ * Created by Middlemind Games 12/01/2016
  *
  * @author Victor G. Brusca
  */
 public class MmgSizeTween extends MmgObj {
 
+    /**
+     * An event id indicating the MmgSizeTween has reached the finish.
+     */
     public static int MMG_SIZE_TWEEN_REACH_FINISH = 0;
+    
+    /**
+     * An event id indicating the MmgSizeTween has reached the start.
+     */
     public static int MMG_SIZE_TWEEN_REACH_START = 1;
+    
+    /**
+     * An event type id for the MmgSizeTween finish event.
+     */
     public static int MMG_SIZE_TWEEN_REACH_FINISH_TYPE = 0;
+    
+    /**
+     * An event type if for the MmgSizeTween start event.
+     */
     public static int MMG_SIZE_TWEEN_REACH_START_TYPE = 1;
+    
+    /**
+     * 
+     */
     private MmgObj subj;
+    
+    /**
+     * 
+     */
     private boolean atStart;
+    
+    /**
+     * 
+     */
     private boolean atFinish;
+    
+    /**
+     * 
+     */
     private MmgVector2 pixelSizeToChange;
+    
+    /**
+     * 
+     */
     private float msSizeToChange;
+    
+    /**
+     * 
+     */
     private float pixelsPerMsToChangeX;
+    
+    /**
+     * 
+     */
     private float pixelsPerMsToChangeY;
+    
+    /**
+     * 
+     */
     private MmgVector2 startSize;
+    
+    /**
+     * 
+     */
     private MmgVector2 finishSize;
+    
+    /**
+     * 
+     */
     private boolean dirStartToFinish;
+    
+    /**
+     * 
+     */
     private boolean changing;
+    
+    /**
+     * 
+     */
     private long msStartChange;
+    
+    /**
+     * 
+     */
     private MmgVector2 tmpV;
+    
+    /**
+     * 
+     */
     private MmgEventHandler onReachFinish;
+    
+    /**
+     * 
+     */
     private MmgEventHandler onReachStart;
+    
+    /**
+     * 
+     */
+    private boolean lret;
+    
+    /**
+     * 
+     */
     private MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH, MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH_TYPE, null, null);
+    
+    /**
+     * 
+     */
     private MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgSizeTween.MMG_SIZE_TWEEN_REACH_START, MmgSizeTween.MMG_SIZE_TWEEN_REACH_START_TYPE, null, null);
 
+    /**
+     * 
+     * 
+     * @param subj
+     * @param msTimeToChange
+     * @param startSize
+     * @param finishSize 
+     */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
         super();
@@ -225,10 +323,8 @@ public class MmgSizeTween extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             subj.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 
@@ -243,9 +339,9 @@ public class MmgSizeTween extends MmgObj {
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        boolean ret = false;
+        lret = false;
 
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             if (GetChanging() == true) {
                 if (GetDirStartToFinish() == true) {
                     //changing start to finish
@@ -258,17 +354,17 @@ public class MmgSizeTween extends MmgObj {
                         if (onReachFinish != null) {
                             onReachFinish.MmgHandleEvent(reachFinish);
                         }
-                        ret = true;
+                        lret = true;
                     } else {
                         tmpV = new MmgVector2(startSize.GetX() + (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), startSize.GetY() + (pixelsPerMsToChangeY * (currentTimeMs - msStartChange)));
                         SetWidth(tmpV.GetX());
                         SetHeight(tmpV.GetY());
-                        ret = true;
+                        lret = true;
                     }
 
                 } else {
                     //changing finish to start
-                    MmgDebug.wr("changing finish to start " + (currentTimeMs - msStartChange) + ", " + msSizeToChange);
+                    //MmgDebug.wr("changing finish to start " + (currentTimeMs - msStartChange) + ", " + msSizeToChange);
                     if ((currentTimeMs - msStartChange) >= msSizeToChange) {
                         SetAtFinish(false);
                         SetAtStart(true);
@@ -278,20 +374,18 @@ public class MmgSizeTween extends MmgObj {
                         if (onReachStart != null) {
                             onReachStart.MmgHandleEvent(reachStart);
                         }
-                        ret = true;
+                        lret = true;
                     } else {
                         tmpV = new MmgVector2(finishSize.GetX() - (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), finishSize.GetY() - (pixelsPerMsToChangeY * (currentTimeMs - msStartChange)));
                         SetWidth(tmpV.GetX());
                         SetHeight(tmpV.GetY());                        
-                        ret = true;
+                        lret = true;
                     }
                 }
             }
-        } else {
-            //do nothing
         }
 
-        return ret;
+        return lret;
     }
 
     @Override

@@ -2,14 +2,20 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
  * A class that represents a sprite image.
- * Created on June 1, 2005, 10:57 PM by Middlemind Games
- * Created by Middlemind Games
+ * Created by Middlemind Games 06/01/2005
  * 
  * @author Victor G. Brusca
  */
 public class MmgSprite extends MmgObj {
 
+    /**
+     * The event type for sprite frame changes.
+     */
     public static int MMG_SPRITE_FRAME_CHANGE_TYPE = 0;
+    
+    /**
+     * The event id for sprite frame changes.
+     */
     public static int MMG_SPRITE_FRAME_CHANGE = 0;
     
     /**
@@ -51,7 +57,15 @@ public class MmgSprite extends MmgObj {
      * The frame stop.
      */
     private int frameStop;
+    
+    /**
+     * The time of the current frame.
+     */
     private long frameTime = -1;
+    
+    /**
+     * The time of the previous frame.
+     */
     private long prevFrameTime = -1;
     
     /**
@@ -64,6 +78,9 @@ public class MmgSprite extends MmgObj {
      */
     private long msPerFrame;
 
+    /**
+     * A static field that controls the default milliseconds per frame change.
+     */
     public static int DEFAULT_MS_PER_FRAME = 100;
     
     /**
@@ -81,11 +98,28 @@ public class MmgSprite extends MmgObj {
      */
     //private boolean frameChange;
     
+    /**
+     * A boolean indicating that only simple rendering should be done, no rotation or other image modifications.
+     */
     private boolean simpleRendering;
+    
+    /**
+     * An event handler to use for frame change events.
+     */
     private MmgEventHandler onFrameChange;
+    
+    /**
+     * A boolean indicating if this sprite is based only on a timer for frame changes.
+     */
     private boolean timerOnly;
+    
+    /**
+     * An MmgEvent to use for frame change event calls.
+     */
     private MmgEvent frameChange = new MmgEvent(null, "frame_changed", MmgSprite.MMG_SPRITE_FRAME_CHANGE, MmgSprite.MMG_SPRITE_FRAME_CHANGE_TYPE, null, null);
 
+    private boolean lret;
+    
     /**
      * Constructor that sets the MmgBmp array, the source rectangle, the destination rectangle,
      * the origin, the scaling vector, and the rotation.
@@ -99,6 +133,9 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgRect Src, MmgRect Dst, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
+        super();
+        frameTime = -1;
+        prevFrameTime = -1;
         SetRotation(Rotation);
         SetOrigin(Origin);
         SetScaling(Scaling);
@@ -127,6 +164,9 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
+        super();
+        frameTime = -1;
+        prevFrameTime = -1;        
         SetRotation(Rotation);
         SetOrigin(Origin);
         SetScaling(Scaling);
@@ -145,8 +185,17 @@ public class MmgSprite extends MmgObj {
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
     }
 
+    /**
+     * Constructor that sets the value of the sprite frames based on an array of MmgBmp instances and a position to use for drawing.
+     * 
+     * @param t             An array of MmgBmp instances to use as the frames for this class.
+     * @param Position      An MmgVector2 class instance to use the position information for this class.
+     */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position) {
+        super();
+        SetFrameTime(-1);
+        SetPrevFrameTime(-1);
         SetRotation(0);
         SetOrigin(MmgVector2.GetOriginVec());
         SetScaling(MmgVector2.GetUnitVec());
@@ -164,8 +213,16 @@ public class MmgSprite extends MmgObj {
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
     }    
     
+    /**
+     * Constructor that sets the value of the sprite frames based on an array of MmgBmp instances.
+     * 
+     * @param t         An array of MmgBmp instances to use as the frames for this class.
+     */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t) {
+        super();
+        SetFrameTime(-1);
+        SetPrevFrameTime(-1);
         SetRotation(0);
         SetOrigin(MmgVector2.GetOriginVec());
         SetScaling(MmgVector2.GetUnitVec());
@@ -191,6 +248,9 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgSprite spr) {
+        super();
+        SetFrameTime(spr.GetFrameTime());
+        SetPrevFrameTime(spr.GetPrevFrameTime());
         SetRotation(spr.GetRotation());
 
         if (spr.GetOrigin() == null) {
@@ -235,38 +295,111 @@ public class MmgSprite extends MmgObj {
         SetMsPerFrame(spr.GetMsPerFrame());
     }
 
+    /**
+     * Gets the current frame time.
+     * 
+     * @return      The current frame time.
+     */
+    public long GetFrameTime() {
+        return frameTime;
+    }
+
+    /**
+     * Sets the current frame time.
+     * 
+     * @param l     The current frame time.
+     */
+    public void SetFrameTime(long l) {
+        frameTime = l;
+    }
+
+    /**
+     * Gets the previous frame time.
+     * 
+     * @return      The previous frame time.
+     */
+    public long GetPrevFrameTime() {
+        return prevFrameTime;
+    }
+
+    /**
+     * Sets the previous frame time.
+     * 
+     * @param l     The previous frame time.
+     */
+    public void SetPrevFrameTime(long l) {
+        prevFrameTime = l;
+    }
+    
+    /**
+     * Sets the event id to use when the frame change event is fired.
+     * 
+     * @param i     The event id to use when the frame change event is called.
+     */
     public void SetFrameChangeEventId(int i) {
         if(frameChange != null) {
             frameChange.SetEventId(i);
         }
     }
     
+    /**
+     * Gets the event handler to use when the sprite frame changes.
+     * 
+     * @return      The event handler to use when the frame changes.
+     */
     public MmgEventHandler GetOnFrameChange() {
         return onFrameChange;
     }
 
+    /**
+     * Sets the event handler to use when the sprite frame changes.
+     * 
+     * @param e     The event handler to use when the frame changes.
+     */
     public void SetOnFrameChange(MmgEventHandler e) {
         onFrameChange = e;
     }
 
+    /**
+     * Gets a boolean indicating if this class uses simple rendering, no rotation or advanced
+     * adjustment of the MmgBmp frames.
+     * 
+     * @return      A boolean indicating if this class should use simple rendering.
+     */
     public boolean GetSimpleRendering() {
         return simpleRendering;
     }
 
+    /**
+     * Sets a boolean indicating if this class uses simple rendering, no rotation or advanced
+     * adjustment of the MmgBmp frames.
+     * 
+     * @param s     A boolean indicating if this class should use simple rendering.
+     */
     public void SetSimpleRendering(boolean s) {
         simpleRendering = s;
     }
 
+    /**
+     * Gets if this MmgSprite is timer only.
+     * 
+     * @return      A boolean indicating if this class is timer only.
+     */
     public boolean IsTimerOnly() {
         return timerOnly;
     }
 
+    /**
+     * Sets if the MmgSprite is timer only.
+     * 
+     * @param b     A boolean value to use to set if it's timer only.
+     */
     public void SetTimerOnly(boolean b) {
         timerOnly = b;
     }
 
     /**
-     * Clones this class.
+     * Creates a basic clone of this class.
      * 
      * @return      A clone of this class.
      */
@@ -276,6 +409,21 @@ public class MmgSprite extends MmgObj {
         return (MmgObj) ret;
     }
 
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class.
+     */
+    @Override
+    public MmgSprite CloneTyped() {
+        return new MmgSprite(this);
+    }    
+    
+    /**
+     * Gets the current frame of this MmgSprite object.
+     * 
+     * @return      The MmgBmp of the current frame.
+     */
     public MmgBmp GetCurrentFrame() {
         return b[frameIdx];
     }
@@ -413,6 +561,12 @@ public class MmgSprite extends MmgObj {
         frameIdx = f;
     }
 
+    /**
+     * Checks to see if the sprite frame is null.
+     * 
+     * @param i     The index of the frame to check.
+     * @return      A boolean indicating if the frame is null.
+     */
     public boolean IsFrameNull(int i) {
         if(i >= 0 && i < b.length) {
             if(b!= null && b[i] != null) {
@@ -483,7 +637,7 @@ public class MmgSprite extends MmgObj {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             //MmgDebug.wr("FrameIdx: " + frameIdx);
             if (b[frameIdx] != null) {
                 if(GetSimpleRendering() == true) {
@@ -504,24 +658,22 @@ public class MmgSprite extends MmgObj {
                     }
                 }
             }
-        } else {
-            //do nothing
         }
     }
 
     /***
      * Update the current sprite animation frame index.
      * 
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame 
-     * @return 
+     * @param updateTick            The index of the MmgUpdate call.
+     * @param currentTimeMs         The current time in milliseconds of the MmgUpdate call.
+     * @param msSinceLastFrame      The number of milliseconds since the last MmgUpdate call.
+     * @return                      A boolean flag indicating if any work was done.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        boolean ret = false;
+        lret = false;
         
-        if (GetIsVisible() == true) {
+        if (isVisible == true) {
             prevFrameTime = frameTime;
             frameTime += msSinceLastFrame;
             if(frameTime >= msPerFrame || prevFrameTime == -1) {
@@ -541,12 +693,10 @@ public class MmgSprite extends MmgObj {
                     
                 }
                 
-                ret = true;
+                lret = true;
             }
-        } else {
-            //do nothing
         }
         
-        return ret;
+        return lret;
     }
 }
