@@ -39,7 +39,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     /**
      * 
      */
-    public boolean lret;
+    private boolean lret;
     
     /**
      * 
