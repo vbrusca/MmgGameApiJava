@@ -1,9 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.GamePanel;
-import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
+//TODO: Finish documentation
 
 /**
  * 
@@ -129,6 +126,7 @@ public class MmgTextField extends MmgObj {
      * @param Padding 
      */
     public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, int DisplayChars) {
+        super();
         bgroundSrc = BgroundSrc;
         font = Font;
         padding = Padding;
@@ -140,6 +138,35 @@ public class MmgTextField extends MmgObj {
         Prep();
     }
 
+    public MmgTextField(MmgTextField obj) {
+        super();
+        if(obj.GetBgroundSrc() != null) {
+            SetBgroundSrc(obj.GetBgroundSrc());
+        } else {
+            SetBgroundSrc(obj.GetBgroundSrc().CloneTyped());
+        }
+        
+        if(obj.GetFont() == null) {
+            SetFont(obj.GetFont());
+        } else {
+            SetFont(obj.GetFont().CloneTyped());            
+        }
+        
+        SetPadding(obj.GetPadding());
+        SetDisplayChars(obj.GetDisplayChars());
+        SetMaxLength(obj.GetMaxLength());
+        Prep();
+    }
+    
+    public MmgObj Clone() {
+        MmgTextField ret = new MmgTextField(this);
+        return (MmgObj)ret;
+    }
+    
+    public MmgTextField CloneTyped() {
+        return new MmgTextField(this);
+    }
+    
     /**
      * 
      */

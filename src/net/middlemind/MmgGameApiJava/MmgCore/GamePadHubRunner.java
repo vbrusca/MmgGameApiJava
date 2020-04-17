@@ -1,7 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
-import java.io.IOException;
-
 /**
  * The GamePadRunner class is a threaded class that is used to connect to a USB GamePad via JInput and determine the state of each
  * of the target buttons at interval.
