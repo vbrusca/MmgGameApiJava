@@ -93,7 +93,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     /**
      * 
      */
-    private boolean lret;
+    public boolean lret;
     
     /**
      * 

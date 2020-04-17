@@ -46,6 +46,9 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      */
     public GamePanel owner;
 
+    /**
+     * 
+     */
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**

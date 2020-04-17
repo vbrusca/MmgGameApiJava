@@ -11,12 +11,12 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Pause this screen.
      */
-    protected boolean pause;
+    public boolean pause;
 
     /**
      * Is this screen ready.
      */
-    protected boolean ready;
+    public boolean ready;
 
     /**
      * The MmgContainer that holds all the child objects.

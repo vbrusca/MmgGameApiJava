@@ -64,7 +64,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     /**
      * 
      */
-    private Hashtable<String, MmgCfgFileEntry> classConfig;   
+    public Hashtable<String, MmgCfgFileEntry> classConfig;   
     
     /**
      * Constructor, sets the loading bar, the loading bar offset, the game state
