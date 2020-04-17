@@ -49,7 +49,7 @@ public final class MmgTestSpace {
     /**
      * The game panel height.
      */
-    public static int PANEL_HEIGHT = 596; //416;
+    public static int PANEL_HEIGHT = 596;
 
     /**
      * The game width.

@@ -13,6 +13,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgLoadingScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
+//TODO: Finish documentation
+
 /**
  * A game screen object, ScreenLoading, that extends the MmgLoadingScreen base
  * class. This game screen is for displaying a loading screen. Created on August
@@ -54,16 +56,21 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      */
     public GamePanel owner;
 
+    /**
+     * 
+     */
     public long slowDown;
     
+    /**
+     * 
+     */
     private Hashtable<String, MmgCfgFileEntry> classConfig;   
     
     /**
      * Constructor, sets the loading bar, the loading bar offset, the game state
      * of this game screen, and the GamePanel that owns this game screen.
      *
-     * @param LoadingBar A loading bar object, MmgLoadingBar, to use as this
-     * screen's loading bar.
+     * @param LoadingBar A loading bar object, MmgLoadingBar, to use as this screen's loading bar.
      * @param lBarOff An offset used in drawing the loading bar.
      * @param State The game state of this game screen.
      * @param Owner The owner of this game screen.
@@ -92,10 +99,20 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         slowDown = 0;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public long GetSlowDown() {
         return slowDown;
     }
 
+    /**
+     * 
+     * 
+     * @param l 
+     */
     public void SetSlowDown(long l) {
         slowDown = l;
     }
@@ -110,22 +127,47 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         handler = Handler;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public RunResourceLoad GetLoader() {
         return datLoad;
     }
 
+    /**
+     * 
+     * 
+     * @param DatLoad 
+     */
     public void SetLoader(RunResourceLoad DatLoad) {
         datLoad = DatLoad;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgLoadingBar GetLoadingBar() {
         return loadingBar;
     }
 
+    /**
+     * 
+     * 
+     * @param LoadingBar 
+     */
     public void SetLoadingBar(MmgLoadingBar LoadingBar) {
         loadingBar = LoadingBar;
     }
@@ -288,7 +330,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     /**
      * Returns the game state of this game screen.
      *
-     * @return The game state of this game screen.
+     * @return      The game state of this game screen.
      */
     public GameStates GetGameState() {
         return state;
@@ -297,21 +339,19 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     /**
      * The main drawing routine.
      *
-     * @param p An MmgPen object to use for drawing this game screen.
+     * @param p     An MmgPen object to use for drawing this game screen.
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 
     /**
      * Loads the DAT file data from the file system.
      *
-     * @return A byte array representation of the DAT file.
+     * @return      A byte array representation of the DAT file.
      */
     public boolean GetResourceFileData() {
         try {
@@ -359,7 +399,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      * Handles load DAT update events, LoadDatUpdateMessage. Fires a generic
      * event when the load has completed.
      *
-     * @param obj The load DAT update message sent.
+     * @param obj       The load DAT update message sent.
      */
     @Override
     public void HandleUpdate(LoadResourceUpdateMessage obj) {
@@ -383,7 +423,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     /**
      * Gets the DAT read result value.
      *
-     * @return True if the read was successful, false otherwise.
+     * @return      True if the read was successful, false otherwise.
      */
     public boolean GetLoadResult() {
         if (datLoad != null) {
@@ -397,7 +437,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     /**
      * Gets the DAT load complete value.
      *
-     * @return True if the load was successful, false otherwise.
+     * @return      True if the load was successful, false otherwise.
      */
     public boolean GetLoadComplete() {
         if (datLoad != null) {

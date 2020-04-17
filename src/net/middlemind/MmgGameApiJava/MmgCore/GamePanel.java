@@ -17,8 +17,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
  * The Canvas used to render the game to. This is the connection point between
- * native UI rendering and the game rendering. Created on August 1, 2015, 10:57
- * PM by Middlemind Games
+ * native UI rendering and the game rendering.
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */
@@ -337,12 +337,34 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public MmgFontData fontData;
     
+    /**
+     * 
+     */
     public GamePadHub gamePadHub;
+    
+    /**
+     * 
+     */
     public GamePadHubRunner gamePadRunner;
+    
+    /**
+     * 
+     */
     public Thread gpadTr;
     
+    /**
+     * 
+     */
     public GpioHub gpioHub;
+    
+    /**
+     * 
+     */
     public GpioHubRunner gpioRunner;
+    
+    /**
+     * 
+     */
     public Thread gpioTr;    
     
     /**

@@ -12,6 +12,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSplashScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
 
+//TODO: Finish documentation
+
 /**
  * A game screen object, ScreenSplash, that extends the MmgGameScreen base
  * class. This game screen is for displaying a splash screen before the game
@@ -73,6 +75,11 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         handler = Handler;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
     }
@@ -191,10 +198,8 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 }

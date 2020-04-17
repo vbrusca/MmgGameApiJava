@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
  * A class the provides support for a horizontal and vertical scroll pane.
@@ -228,27 +227,27 @@ public class MmgScrollHorVert extends MmgObj {
     private int offsetYScrollPane;    
     
     /**
-     * 
+     * The MmgEvent to fire when a screen click occurs.
      */
     private MmgEvent clickScreen = new MmgEvent(null, "both_click_screen", MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);    
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll up event occurs.
      */
     private MmgEvent clickUp = new MmgEvent(null, "both_click_up", MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);        
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll down event occurs.
      */
     private MmgEvent clickDown = new MmgEvent(null, "both_click_down", MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);
         
     /**
-     * 
+     * The MmgEvent to fire when a scroll left event occurs.
      */
     private MmgEvent clickLeft = new MmgEvent(null, "both_click_left", MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);        
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll right event occurs.
      */
     private MmgEvent clickRight = new MmgEvent(null, "both_click_right", MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);
             
@@ -257,6 +256,9 @@ public class MmgScrollHorVert extends MmgObj {
      */    
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;
     
+    /**
+     * An event type id for this object's events.
+     */
     public static int SCROLL_BOTH_CLICK_EVENT_TYPE = 2;
     
     /**
@@ -428,7 +430,7 @@ public class MmgScrollHorVert extends MmgObj {
             SetSliderHorRect(obj.GetSliderHorRect().Clone());
         }
         
-       if(obj.GetSliderVert() == null) {
+        if(obj.GetSliderVert() == null) {
             SetSliderVert(obj.GetSliderVert());
         } else {
             SetSliderVert(obj.GetSliderVert().CloneTyped());
@@ -440,7 +442,7 @@ public class MmgScrollHorVert extends MmgObj {
             SetSliderVertRect(obj.GetSliderVertRect().Clone());
         }
         
-       if(obj.GetSliderLeftButton() == null) {
+        if(obj.GetSliderLeftButton() == null) {
             SetSliderLeftButton(obj.GetSliderLeftButton());
         } else {
             SetSliderLeftButton(obj.GetSliderLeftButton().CloneTyped());
@@ -664,6 +666,11 @@ public class MmgScrollHorVert extends MmgObj {
         p.SetAdvRenderHints();        
     }    
 
+    /**
+     * Sets event handlers for all this object's event.
+     * 
+     * @param e 
+     */    
     public void SetEventHandler(MmgEventHandler e) {
         clickScreen.SetTargetEventHandler(e);
         clickLeft.SetTargetEventHandler(e);
@@ -672,42 +679,92 @@ public class MmgScrollHorVert extends MmgObj {
         clickDown.SetTargetEventHandler(e);        
     }    
     
+    /**
+     * Gets the click screen event.
+     * 
+     * @return      The click screen event.
+     */    
     public MmgEvent GetClickScreen() {
         return clickScreen;
     }
 
+    /**
+     * Sets the click screen event.
+     * 
+     * @param e     The click screen event.
+     */    
     public void SetClickScreen(MmgEvent e) {
         clickScreen = e;
     }
 
+    /**
+     * Gets the scroll up event.
+     * 
+     * @return      The scroll up event. 
+     */
     public MmgEvent GetClickUp() {
         return clickUp;
     }
 
+    /**
+     * Sets the scroll up event.
+     * 
+     * @param e     The scroll up event.
+     */
     public void SetClickUp(MmgEvent e) {
         clickUp = e;
     }
 
+    /**
+     * Gets the scroll down event.
+     * 
+     * @return      The scroll down event.
+     */
     public MmgEvent GetClickDown() {
         return clickDown;
     }
 
+    /**
+     * Sets the scroll down event.
+     * 
+     * @param e     The scroll down event.
+     */
     public void SetClickDown(MmgEvent e) {
         clickDown = e;
     }
     
+    /**
+     * Gets the scroll left event.
+     * 
+     * @return      The scroll left event.
+     */
     public MmgEvent GetClickLeft() {
         return clickLeft;
     }
 
+    /**
+     * Sets the scroll left event.
+     * 
+     * @param e     The scroll left event.
+     */
     public void SetClickLeft(MmgEvent e) {
         clickLeft = e;
     }
 
+    /**
+     * Gets the scroll right event.
+     * 
+     * @return      The scroll right event.
+     */
     public MmgEvent GetClickRight() {
         return clickRight;
     }
 
+    /**
+     * Sets the scroll right event.
+     * 
+     * @param e     The scroll right event.
+     */
     public void SetClickRight(MmgEvent e) {
         clickRight = e;
     }    
@@ -904,11 +961,7 @@ public class MmgScrollHorVert extends MmgObj {
                 clickScreen.Fire();
             }
             ret = true;
-            
-        //}else if(MmgHelper.RectCollision(x, y, 3, 3, scrollPaneRect)) {
-            //MmgHelper.wr("scrollPane click");
-            //ret = true;
-                        
+                                    
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderLeftButtonRect)) {
             MmgHelper.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
@@ -978,11 +1031,7 @@ public class MmgScrollHorVert extends MmgObj {
             
             isDirty = true;
             ret = true;
-            
-        //}else if(MmgHelper.RectCollision(x, y, sliderRect)) {
-            //MmgHelper.wr("sliderRect click");            
-            //ret = true;
-            
+                        
         }
         
         return ret;

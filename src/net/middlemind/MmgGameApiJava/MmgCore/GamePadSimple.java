@@ -4,11 +4,12 @@ package net.middlemind.MmgGameApiJava.MmgCore;
  * The GamePadSimple interface is an interface for routing simple gamepad input.
  * The interface is designed to handle direction pad input with press, release, click
  * methods, and A, B, button input with press, release, click methods.
+ * Created by Middlemind Games 01/05/2020
  * 
- * @author Victor G. Brusca, Middlemind Games
- * 01/05/2020
+ * @author Victor G. Brusca
  */
 public interface GamePadSimple {
+    
     /**
      * The ProcessDpadPress method is designed to handle dpad press events and takes a
      * direction code as input.

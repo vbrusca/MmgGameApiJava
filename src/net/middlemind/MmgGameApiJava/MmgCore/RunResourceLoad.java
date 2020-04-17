@@ -249,10 +249,20 @@ public class RunResourceLoad implements Runnable {
         }
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public long GetSlowDown() {
         return slowDown;
     }
 
+    /**
+     * 
+     * 
+     * @param l 
+     */
     public void SetSlowDown(long l) {
         slowDown = l;
     }

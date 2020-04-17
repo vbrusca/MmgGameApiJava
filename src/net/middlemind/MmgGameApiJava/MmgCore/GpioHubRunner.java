@@ -10,6 +10,7 @@ import java.io.IOException;
  * 01/05/2020
  */
 public class GpioHubRunner implements Runnable {
+    
     /**
      * A reference to the GpioHub to the GpioHubRunner will monitor.
      */

@@ -7,6 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
  * 01/05/2020
  */
 public class GpioPin {
+    
     /**
      * An enumeration used to indicate the button type mapped to this GpioPin.
      */

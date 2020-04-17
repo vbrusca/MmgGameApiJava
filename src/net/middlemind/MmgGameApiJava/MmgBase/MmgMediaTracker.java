@@ -19,26 +19,7 @@ public class MmgMediaTracker {
     public static Hashtable<String, Image> cacheBmp = new Hashtable();
     public static Hashtable<String, Clip> cacheSound = new Hashtable();    
     public static boolean REMOVE_EXISTING = true;
-    
-    /**
-     * Tracks the loading of images via the media tracker class.
-     * 
-     * @param imageId       The unique image id.
-     * @param img           The image object to track.
-     */
-    /*
-    public static void MediaTrackImage(int imageId, Image img) {        
-        MmgMediaTracker.mt.removeImage(img, imageId);
-        MmgMediaTracker.mt.addImage(img, imageId);
-        try {
-            MmgMediaTracker.mt.waitForID(imageId);
-        }catch (Exception e) {
-            MmgHelper.wrErr("Exception while loading image.");
-            MmgHelper.wrErr(e);
-        }
-    }
-    */
-    
+        
     /**
      * Stores cached images by an unique id string and an image class.
      * 

@@ -1,129 +1,126 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-//TODO: Finish documentation
-
 /**
+ * A class used to display a text field for getting text values from the the user.
+ * Created by Middlemind Games 04/9/2020
  * 
- * 
- * @author Victor G. Brusca, Middlemind Games
+ * @author Victor G. Brusca
  */
 public class MmgTextField extends MmgObj {
     
     /**
-     * 
+     * The MmgBmp object to use with the Mmg9Slice object as the background for this text field.
      */
     private MmgBmp bgroundSrc;
     
     /**
-     * 
+     * The object to use as the background for this text field.
      */
     private Mmg9Slice bground;
     
     /**
-     * 
+     * The MmgFont object to use for rendering text on this text field.
      */
     private MmgFont font;
     
     /**
-     * 
+     * The maximum length of text to allow.
      */
     private int maxLength;
     
     /**
-     * 
+     * A boolean flag indicating if the maximum length check is on.
      */
     private boolean maxLengthOn;
     
     /**
-     * 
+     * The String that holds the actual text for this text field.
      */
     private String textFieldString = "";
     
+    /**
+     * The number of characters to display in this text field, should be adjusted based on the text field's width.
+     */
     private int displayChars;
     
     /**
-     * 
+     * An integer value indicating how wide the font should be, not currently used in display calculations.
      */
-    private int fontWidth;
+    //private int fontWidth;
     
     /**
-     * 
+     * An integer value indicating how tall the font is, not currently used in display calculations.
      */
     private int fontHeight;
     
     /**
-     * 
+     * An integer value used in slight positioning of the font text.
      */
     private int padding;
     
     /**
-     * 
+     * A private class field used to track the cursor blink start.
      */
     private long cursorBlinkStart;
     
     /**
-     * 
+     * A boolean flag indicating if the cursor is currently on.
      */
     private boolean cursorBlinkOn;
     
     /**
-     * 
+     * A private temporary value used in timing calculations.
      */
     private long tmpL;
     
     /**
-     * 
+     * A boolean flag indicating if this object needs to do any work in the MmgUpdate method.
      */
     private boolean isDirty;
-    
+        
     /**
-     * 
-     */
-    private String tmpStr;
-    
-    /**
-     * 
+     * An MmgEvent to fire when the max length error has occured, needs to have its event handler set.
      */
     private MmgEvent errorMaxLength = new MmgEvent(null, "error_max_length", MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE, null, null);
     
     /**
-     * 
+     * A static class field that control how the background MmgBmp is sliced using the 9 slice technique.
      */
     public static int TEXT_FIELD_9_SLICE_OFFSET = 16;
     
     /**
-     * 
+     * A static field that determines what character is used for the cursor.
      */
     public static String TEXT_FIELD_CURSOR = "_";
     
     /**
-     * 
+     * A static field that determines how quickly the cursor blinks.
      */
     public static long TEXT_FIELD_CURSOR_BLINK_RATE_MS = 350l;
         
     /**
-     * 
+     * A static integer used as the max length error event id.
      */
     public static int TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID = 1;
     
     /**
-     * 
+     * A static integer used as the max length error event type.
      */
     public static int TEXT_FIELD_MAX_LENGTH_ERROR_TYPE = 0;    
     
     /**
-     * 
+     * A static integer used to determine the max number or characters before a max length error event is fired.
      */
     public static int DEFAULT_MAX_LENGTH = 20;
     
     /**
+     * The default constructor that sets all the basic needs for this class to display properly.
      * 
-     * 
-     * @param BgroundSrc
-     * @param Font
-     * @param Width
-     * @param Height
-     * @param Padding 
+     * @param BgroundSrc        The MmgBmp object to use as the source image to be 9 sliced and resized as the background image.
+     * @param Font              The MmgFont object used to render the text.
+     * @param Width             The width of this object and the width used to resize the BgroundSrc MmgObj.
+     * @param Height            The height of this object and the height used to resize the BgroundSrc MmgObj.
+     * @param Padding           The padding value to use in slight font positioning calculations.
      */
     public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, int DisplayChars) {
         super();
@@ -138,6 +135,11 @@ public class MmgTextField extends MmgObj {
         Prep();
     }
 
+    /**
+     * A constructor that creates a new instance of this class by cloning values from another clas instance.
+     * 
+     * @param obj       The class used to create a new MmgTextField from.
+     */
     public MmgTextField(MmgTextField obj) {
         super();
         if(obj.GetBgroundSrc() != null) {
@@ -158,226 +160,258 @@ public class MmgTextField extends MmgObj {
         Prep();
     }
     
+    /**
+     * Creates a basic clone of this class.
+     * 
+     * @return      A clone of this class.
+     */
+    @Override    
     public MmgObj Clone() {
         MmgTextField ret = new MmgTextField(this);
         return (MmgObj)ret;
     }
     
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class.
+     */
+    @Override     
     public MmgTextField CloneTyped() {
         return new MmgTextField(this);
     }
     
     /**
-     * 
+     * A method that prepares the class for rendering to the screen.
      */
     public void Prep() {
         cursorBlinkStart = System.currentTimeMillis();
         fontHeight = font.GetHeight();
-        fontWidth = GetWidth() - (padding * 2);
+        //fontWidth = GetWidth() - (padding * 2);
         textFieldString = "";
         bground = new Mmg9Slice(TEXT_FIELD_9_SLICE_OFFSET, bgroundSrc, GetWidth(), GetHeight());        
     }
 
+    /**
+     * Gets the max length error event.
+     * 
+     * @return      The max length error event.
+     */
     public MmgEvent GetErrorMaxLength() {
         return errorMaxLength;
     }
 
+    /**
+     * Sets the max length error event.
+     * 
+     * @param e     The max length error event.
+     */
     public void SetErrorMaxLength(MmgEvent e) {
         errorMaxLength = e;
     }
     
     /**
+     * Gets the MmgObj used as the basis for the 9 sliced background image for this object.
      * 
-     * 
-     * @return 
+     * @return      The MmgObj used as the basis for the 9 sliced background.
      */
     public MmgBmp GetBgroundSrc() {
         return bgroundSrc;
     }
 
     /**
+     * Sets the MmgObj used as the basis for the 9 sliced background image for this object.
      * 
-     * 
-     * @param bg 
+     * @param bg    The MmgObj used as the basis for the 9 sliced background.
      */
     public void SetBgroundSrc(MmgBmp bg) {
         bgroundSrc = bg;
     }
 
     /**
+     * Gets the Mmg9Slice background object.
      * 
-     * 
-     * @return 
+     * @return      The Mmg9Slice background object.
      */
     public Mmg9Slice GetBground() {
         return bground;
     }
 
     /**
+     * Sets the Mmg9Slice background object.
      * 
-     * 
-     * @param bg 
+     * @param bg    The Mmg9Slice background object.
      */
     public void SetBground(Mmg9Slice bg) {
         bground = bg;
     }
 
     /**
+     * Get the MmgFont used to render text.
      * 
-     * 
-     * @return 
+     * @return      The MmgFont used to render text.
      */
     public MmgFont GetFont() {
         return font;
     }
 
     /**
+     * Sets the MmgFont used to render text.
      * 
-     * 
-     * @param f 
+     * @param f     The MmgFont used to render text.
      */
     public void SetFont(MmgFont f) {
         font = f;
     }
 
     /**
+     * Gets the max length of characters allowed if the max length limitation is on.
      * 
-     * 
-     * @return 
+     * @return      The max length of characters allowed if the max length limitation is on.
      */
     public int GetMaxLength() {
         return maxLength;
     }
 
     /**
+     * Sets the max length of characters allowed if the max length limitation is on.
      * 
-     * 
-     * @param i 
+     * @param i     The max length of characters allowed if the max length limitation is on.
      */
     public void SetMaxLength(int i) {
         maxLength = i;
     }
 
     /**
+     * Gets the boolean flag indicating if the max length limitation is on.
      * 
-     * 
-     * @return 
+     * @return      A boolean flag indicating if the max length limitation is on.
      */
     public boolean IsMaxLengthOn() {
         return maxLengthOn;
     }
 
     /**
+     * Sets the boolean flag indicating if the max length limitation is on.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean flag indicating if the max length limitation is on
      */
     public void SetMaxLengthOn(boolean b) {
         maxLengthOn = b;
     }
 
     /**
+     * Gets the text field string stored by this object.
      * 
-     * 
-     * @return 
+     * @return      The text field string stored by this object.
      */
     public String GetTextFieldString() {
         return textFieldString;
     }
 
     /**
+     * Sets the text field string stored by this object.
      * 
-     * 
-     * @param str 
+     * @param str   The text field string stored by this object.
      */
     public void SetTextFieldString(String str) {
         textFieldString = str;
     }
 
+    /**
+     * Gets the maximum number of characters to display in the text field.
+     * 
+     * @return      The maximum number of characters to display in the text field.
+     */
     public int GetDisplayChars() {
         return displayChars;
     }
 
+    /**
+     * Sets the maximum number of characters to display in the text field.
+     * 
+     * @param i     The maximum number of characters to display in the text field.
+     */
     public void SetDisplayChars(int i) {
         displayChars = i;
     }
 
     /**
-     * 
+     * Gets the font maximum width for text dis
      * 
      * @return 
      */
-    public int GetFontWidth() {
-        return fontWidth;
-    }
+    //public int GetFontWidth() {
+    //    return fontWidth;
+    //}
 
     /**
      * 
      * 
      * @param i 
      */
-    public void SetFontWidth(int i) {
-        fontWidth = i;
-    }
+    //public void SetFontWidth(int i) {
+    //    fontWidth = i;
+    //}
 
     /**
+     * Gets the height of the MmgFont used to render text.
      * 
-     * 
-     * @return 
+     * @return      The height of the MmgFont used to render text.
      */
     public int GetFontHeight() {
         return fontHeight;
     }
 
     /**
+     * Sets the height of the MmgFont used to render text.
      * 
-     * 
-     * @param i 
+     * @param i     The height of the MmgFont used to render text.
      */
     public void SetFontHeight(int i) {
         fontHeight = i;
     }
 
     /**
+     * Gets the padding used in positioning the MmgFont text in the text field.
      * 
-     * 
-     * @return 
+     * @return      The padding used in positioning the MmgFont text in the text field.
      */
     public int GetPadding() {
         return padding;
     }
 
     /**
+     * Sets the padding used in positioning the MmgFont text in the text field.
      * 
-     * 
-     * @param i 
+     * @param i     The padding used in positioning the MmgFont text in the text field.
      */
     public void SetPadding(int i) {
         padding = i;
     }
 
     /**
+     * Gets a boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.
      * 
-     * 
-     * @return 
+     * @return      A boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call. 
      */
     public boolean GetIsDirty() {
         return isDirty;
     }
 
     /**
+     * Sets a boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.
      */
     public void SetIsDirty(boolean b) {
         isDirty = b;
     }
     
     /**
+     * Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
      * 
-     * 
-     * @param pos 
+     * @param pos   The position of the text field.
      */
     @Override
     public void SetPosition(MmgVector2 pos) {
@@ -387,11 +421,11 @@ public class MmgTextField extends MmgObj {
     }
     
     /**
+     * A method for handling intake of characters to append to the text field string value.
      * 
-     * 
-     * @param c
-     * @param code
-     * @return 
+     * @param c         A character to append to the text field string value.
+     * @param code      A character code used to find non-ASCII characters if need be.
+     * @return          A boolean flag indicating if any work was done.
      */
     public boolean ProcessKeyClick(char c, int code) {
         if(maxLengthOn) {
@@ -409,8 +443,7 @@ public class MmgTextField extends MmgObj {
     }    
     
     /**
-     * 
-     * 
+     * A method for handling the deletion of characters from the text field.
      */
     public void DeleteChar() {
         if(textFieldString.length() > 0) {
@@ -420,9 +453,10 @@ public class MmgTextField extends MmgObj {
     }
     
     /**
+     * Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
      * 
-     * 
-     * @param pos 
+     * @param x     The X position to use when setting the position of the text field.
+     * @param y     The Y position to use when setting the position of the text field.
      */
     @Override
     public void SetPosition(int x, int y) {
@@ -430,9 +464,9 @@ public class MmgTextField extends MmgObj {
     }    
     
     /**
+     * Sets the X position of the text field.
      * 
-     * 
-     * @param x 
+     * @param x    The X position to use when setting the position of the text field. 
      */
     @Override
     public void SetX(int x) {
@@ -442,9 +476,9 @@ public class MmgTextField extends MmgObj {
     }
     
     /**
+     * Sets the Y position of the text field.
      * 
-     * 
-     * @param y 
+     * @param y     The Y position to use when setting the position of the text field. 
      */
     @Override
     public void SetY(int y) {

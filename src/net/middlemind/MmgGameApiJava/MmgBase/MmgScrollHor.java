@@ -1,9 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
  * A class the provides support for a horizontal scroll pane.
@@ -137,33 +135,30 @@ public class MmgScrollHor extends MmgObj {
      * The current offset of the horizontal scroll pane.
      */
     private int offsetXScrollPane;
-    
-    /**
-     * An event handler that is used to process scroll pane click events.
-     */    
-    private GenericEventHandler handler;
-        
+     
     /**
      * A boolean flag indicating if a bounding box should be drawn around the elements of the scroll pane.
      */
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;   
     
     /**
-     * 
+     * The MmgEvent to fire when a screen click occurs.
      */
     private MmgEvent clickScreen = new MmgEvent(null, "hor_click_screen", MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, MmgScrollHor.SCROLL_HOR_CLICK_EVENT_TYPE, null, null);    
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll left event occurs.
      */
     private MmgEvent clickLeft = new MmgEvent(null, "hor_click_left", MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, MmgScrollHor.SCROLL_HOR_CLICK_EVENT_TYPE, null, null);        
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll right event occurs.
      */
     private MmgEvent clickRight = new MmgEvent(null, "hor_click_right", MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, MmgScrollHor.SCROLL_HOR_CLICK_EVENT_TYPE, null, null);
     
-    
+    /**
+     * An event type id for this object's events.
+     */
     public static int SCROLL_HOR_CLICK_EVENT_TYPE = 0;    
     
     /**
@@ -443,32 +438,67 @@ public class MmgScrollHor extends MmgObj {
         p.SetAdvRenderHints();
     }    
 
+    /**
+     * Sets event handlers for all this object's event.
+     * 
+     * @param e 
+     */
     public void SetEventHandler(MmgEventHandler e) {
         clickScreen.SetTargetEventHandler(e);
         clickLeft.SetTargetEventHandler(e);
         clickRight.SetTargetEventHandler(e);
     }
     
+    /**
+     * Gets the click screen event.
+     * 
+     * @return      The click screen event.
+     */
     public MmgEvent GetClickScreen() {
         return clickScreen;
     }
 
+    /**
+     * Sets the click screen event.
+     * 
+     * @param e     The click screen event.
+     */
     public void SetClickScreen(MmgEvent e) {
         clickScreen = e;
     }
 
+    /**
+     * Gets the scroll left event.
+     * 
+     * @return      The scroll left event.
+     */
     public MmgEvent GetClickLeft() {
         return clickLeft;
     }
 
+    /**
+     * Sets the scroll left event.
+     * 
+     * @param e     The scroll left event.
+     */
     public void SetClickLeft(MmgEvent e) {
         clickLeft = e;
     }
 
+    /**
+     * Gets the scroll right event.
+     * 
+     * @return      The scroll right event.
+     */
     public MmgEvent GetClickRight() {
         return clickRight;
     }
 
+    /**
+     * Sets the scroll right event.
+     * 
+     * @param e     The scroll right event.
+     */
     public void SetClickRight(MmgEvent e) {
         clickRight = e;
     }
@@ -598,11 +628,7 @@ public class MmgScrollHor extends MmgObj {
                 clickScreen.Fire();
             }
             ret = true;
-            
-        //}else if(MmgHelper.RectCollision(x, y, 3, 3, scrollPaneRect)) {
-            //MmgHelper.wr("scrollPane click");
-            //ret = true;
-                        
+                                    
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderLeftButtonRect)) {
             MmgHelper.wr("ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
@@ -636,11 +662,7 @@ public class MmgScrollHor extends MmgObj {
             
             isDirty = true;            
             ret = true;
-            
-        //}else if(MmgHelper.RectCollision(x, y, sliderRect)) {
-            //MmgHelper.wr("sliderRect click");            
-            //ret = true;
-            
+                       
         }
         
         return ret;

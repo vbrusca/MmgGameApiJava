@@ -1,9 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
  * A class the provides support for a vertical scroll pane.
@@ -144,17 +142,17 @@ public class MmgScrollVert extends MmgObj {
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;
     
     /**
-     * 
+     * The MmgEvent to fire when a screen click occurs.
      */
     private MmgEvent clickScreen = new MmgEvent(null, "vert_click_screen", MmgScrollVert.SCROLL_VERT_CLICK_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);    
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll up event occurs.
      */
     private MmgEvent clickUp = new MmgEvent(null, "vert_click_up", MmgScrollVert.SCROLL_VERT_SCROLL_UP_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);        
     
     /**
-     * 
+     * The MmgEvent to fire when a scroll down event occurs.
      */
     private MmgEvent clickDown = new MmgEvent(null, "vert_click_down", MmgScrollVert.SCROLL_VERT_SCROLL_DOWN_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);
     
@@ -437,32 +435,67 @@ public class MmgScrollVert extends MmgObj {
         p.SetAdvRenderHints();
     }    
 
+    /**
+     * Sets event handlers for all this object's event.
+     * 
+     * @param e 
+     */    
     public void SetEventHandler(MmgEventHandler e) {
         clickScreen.SetTargetEventHandler(e);
         clickUp.SetTargetEventHandler(e);
         clickDown.SetTargetEventHandler(e);
     }
-    
+
+    /**
+     * Gets the click screen event.
+     * 
+     * @return      The click screen event.
+     */    
     public MmgEvent GetClickScreen() {
         return clickScreen;
     }
 
+    /**
+     * Sets the click screen event.
+     * 
+     * @param e     The click screen event.
+     */    
     public void SetClickScreen(MmgEvent e) {
         clickScreen = e;
     }
 
+    /**
+     * Gets the scroll up event.
+     * 
+     * @return      The scroll up event.
+     */
     public MmgEvent GetClickUp() {
         return clickUp;
     }
 
+    /**
+     * Sets the scroll up event.
+     * 
+     * @param e     The scroll up event.
+     */
     public void SetClickUp(MmgEvent e) {
         clickUp = e;
     }
 
+    /**
+     * Gets the scroll down event.
+     * 
+     * @return      The scroll down event.
+     */
     public MmgEvent GetClickDown() {
         return clickDown;
     }
 
+    /**
+     * Sets the scroll down event.
+     * 
+     * @param e     The scroll down event.
+     */
     public void SetClickDown(MmgEvent e) {
         clickDown = e;
     }
@@ -592,11 +625,7 @@ public class MmgScrollVert extends MmgObj {
                 clickScreen.Fire();
             }
             ret = true;
-            
-        //}else if(MmgHelper.RectCollision(x, y, 3, 3, scrollPaneRect)) {
-            //MmgHelper.wr("scrollPane click");
-            //return true;
-                        
+                                    
         }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderUpButtonRect)) {
             MmgHelper.wr("ProcessScreenClick.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
@@ -630,11 +659,7 @@ public class MmgScrollVert extends MmgObj {
             
             isDirty = true;
             ret = true;
-            
-        //}else if(MmgHelper.RectCollision(x, y, sliderRect)) {
-            //MmgHelper.wr("sliderRect click");            
-            //ret = true;
-            
+                        
         }
         
         return ret;
@@ -1130,7 +1155,6 @@ public class MmgScrollVert extends MmgObj {
             }
             
             p.DrawBmp(viewPort, GetPosition());
-            
         }
     }    
 }

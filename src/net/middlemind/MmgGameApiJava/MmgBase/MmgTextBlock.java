@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.*;
 
-//TODO: Finish documentation
-
 /**
  * A class to control the background story of the game. 
  * Renders the story in a box with a detected number of lines drawn.
@@ -126,9 +124,9 @@ public class MmgTextBlock extends MmgObj {
     }
 
     /**
+     * A constructor that creates a new instance of this class from an existing one by cloning class fields.
      * 
-     * 
-     * @param obj 
+     * @param obj       A class instance used to create a new class instance.
      */
     public MmgTextBlock(MmgTextBlock obj) {
         SetPaddingX(obj.GetPaddingX());
@@ -176,62 +174,64 @@ public class MmgTextBlock extends MmgObj {
     }
     
     /**
+     * Creates a basic clone of this class.
      * 
-     * 
-     * @return 
+     * @return      A clone of this class.
      */
+    @Override
     public MmgObj Clone() {
         MmgTextBlock ret = new MmgTextBlock(this);
         return (MmgObj) ret;
     }
     
     /**
+     * Creates a typed clone of this class.
      * 
-     * 
-     * @return 
+     * @return      A typed clone of this class.
      */
+    @Override
     public MmgTextBlock CloneTyped() {
         return new MmgTextBlock(this);
     }
     
     /**
+     * Gets the lines of text created when splitting the input text to fit the width and height of this object.
      * 
-     * 
-     * @return 
+     * @return      The lines of this text block.
      */
     public ArrayList<MmgFont> GetLines() {
         return lines;
     }
     
     /**
+     * Sets the lines of text created when splitting the input text to fit the width and height of this object.
      * 
-     * 
-     * @param a 
+     * @param a     The lines of this text block.
      */
     public void SetLines(ArrayList<MmgFont> a) {
         lines = a;
     }    
     
     /**
+     * Gets the lines of text displayed on this page of text.
      * 
-     * 
-     * @return 
+     * @return      The lines of text displayed on this page of text.
      */
     public ArrayList<MmgFont> GetTxt() {
         return txt;
     }
         
     /**
+     * Sets the lines of text displayed on this page of text.
      * 
-     * 
-     * @param a 
+     * @param a     The lines of text displayed on this page of text.
      */
     public void SetTxt(ArrayList<MmgFont> a) {
         txt = a;
     }
     
     /**
-     * 
+     * A method used to reset the lines split from the original text and the lines displayed on this page.
      */
     public void Reset() {
         lines = new ArrayList<MmgFont>(STARTING_LINE_COUNT);

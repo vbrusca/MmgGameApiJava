@@ -13,6 +13,9 @@ import java.io.IOException;
  */
 public class GpioHub {
     
+    /**
+     * 
+     */
     public static int LEN = 6;    
     
     /**
@@ -557,7 +560,6 @@ public class GpioHub {
             } catch(Exception e) {
                 gpioEnabled = false;
                 throw(e);
-                
             }
         }
     }

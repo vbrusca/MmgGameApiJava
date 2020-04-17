@@ -16,6 +16,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 
+//TODO: Finish documentation
+
 /**
  * A game screen object, ScreenMainMenu, that extends the MmgGameScreen base
  * class. This game screen is for displaying a main menu screen. Created on
@@ -62,8 +64,14 @@ public class ScreenMainMenu extends MmgGameScreen {
      */
     public MmgMenuContainer menu;
 
+    /**
+     * 
+     */
     public MmgSound menuSound;
     
+    /**
+     * 
+     */
     public MmgFont version;
     
     /**
@@ -76,9 +84,20 @@ public class ScreenMainMenu extends MmgGameScreen {
      * holds a reference to this game screen object.
      */
     public GamePanel owner;
-    public boolean dirty;
-    public boolean lret;
     
+    /**
+     * 
+     */
+    public boolean isDirty;
+    
+    /**
+     * 
+     */
+    private boolean lret;
+    
+    /**
+     * 
+     */
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
@@ -91,7 +110,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenMainMenu(GameStates State, GamePanel Owner) {
         super();
-        dirty = false;
+        isDirty = false;
         pause = false;
         ready = false;
         state = State;
@@ -417,11 +436,17 @@ public class ScreenMainMenu extends MmgGameScreen {
         version.SetPosition(MmgHelper.ScaleValue(10), GetY() + (h - version.GetHeight() + MmgHelper.ScaleValue(10)));
         AddObj(version);
         
-        dirty = true;
+        isDirty = true;
         ready = true;
         pause = false;
     }
 
+    /**
+     * 
+     * 
+     * @param src
+     * @return 
+     */
     @Override
     public boolean ProcessAClick(int src) {
         int idx = GetMenuIdx();
@@ -436,6 +461,12 @@ public class ScreenMainMenu extends MmgGameScreen {
         return true;
     }
     
+    /**
+     * 
+     * 
+     * @param dir
+     * @return 
+     */
     @Override
     public boolean ProcessDpadRelease(int dir) {
         if (dir == GameSettings.UP_KEYBOARD || dir == GameSettings.UP_GAMEPAD_1) {            
@@ -457,7 +488,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         pause = true;
         menu = new MmgMenuContainer();
         menu.SetMmgColor(null);
-        dirty = false;
+        isDirty = false;
 
         MmgMenuItem mItm = null;
         
@@ -485,7 +516,7 @@ public class ScreenMainMenu extends MmgGameScreen {
      * Unloads resources needed to display this game screen.
      */
     public void UnloadResources() {
-        dirty = false;
+        isDirty = false;
         pause = true;
         SetIsVisible(false);
         SetBackground(null);
@@ -513,16 +544,22 @@ public class ScreenMainMenu extends MmgGameScreen {
         return state;
     }
 
-    public boolean IsDirty() {
-        return dirty;
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public boolean GetIsDirty() {
+        return isDirty;
     }
 
-    public void SetDirty(boolean b) {
-        dirty = b;
-    }
-
-    public void MakeDirty() {
-        dirty = true;
+    /**
+     * 
+     * 
+     * @param b 
+     */
+    public void SetIsDirty(boolean b) {
+        isDirty = b;
     }
 
     /**
@@ -532,29 +569,33 @@ public class ScreenMainMenu extends MmgGameScreen {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 
+    /**
+     * 
+     * 
+     * @param updateTick
+     * @param currentTimeMs
+     * @param msSinceLastFrame
+     * @return 
+     */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;
 
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             if (super.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
                 lret = true;
             }
 
-            if (dirty == true) {
+            if (isDirty == true) {
                 lret = true;
                 DrawScreen();
             }
 
-        } else {
-            //do nothing
         }
 
         return lret;

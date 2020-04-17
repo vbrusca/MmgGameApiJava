@@ -5,10 +5,12 @@ import java.util.Hashtable;
 /**
  * DatExternalStrings is a class used to hold static references to strings configured in the class
  * and referenced via a Hashtable.
+ * Created by Middlemind Games 02/25/2020
  * 
- * @author Victor G. Brusca, Middlemind Games
+ * @author Victor G. Brusca
  */
 public class DatExternalStrings {
+    
     /**
      * The EXT static class field holds references to all the strings loaded by the
      * LOAD_EXT_STRINGS static lass method. The class is designed to support multiple languages

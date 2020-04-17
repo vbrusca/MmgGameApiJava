@@ -30,9 +30,20 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      * holds a reference to this game screen object.
      */
     public GamePanel owner;
+    
+    /**
+     * 
+     */
     public boolean isDirty;
+    
+    /**
+     * 
+     */
     public boolean lret;
     
+    /**
+     * 
+     */
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
@@ -52,6 +63,10 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
         owner = Owner;
     }
     
+    /**
+     * 
+     * @param obj 
+     */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         
@@ -83,11 +98,23 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
         pause = false;
     }
 
+    /**
+     * 
+     * 
+     * @param src
+     * @return 
+     */
     @Override
     public boolean ProcessAClick(int src) {
         return true;
     }
     
+    /**
+     * 
+     * 
+     * @param dir
+     * @return 
+     */
     @Override
     public boolean ProcessDpadRelease(int dir) {
         return true;
@@ -129,10 +156,20 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
         return state;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public boolean GetIsDirty() {
         return isDirty;
     }
 
+    /**
+     * 
+     * 
+     * @param b 
+     */
     public void SetIsDirty(boolean b) {
         isDirty = b;
     }
@@ -149,6 +186,14 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
         }
     }
 
+    /**
+     * 
+     * 
+     * @param updateTick
+     * @param currentTimeMs
+     * @param msSinceLastFrame
+     * @return 
+     */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;

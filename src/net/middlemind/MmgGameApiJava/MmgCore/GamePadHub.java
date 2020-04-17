@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+//TODO: Finish documentation
+
 import java.io.IOException;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
@@ -10,9 +12,9 @@ import net.middlemind.MmgGameApiJava.MmgCore.GamePadInput.GamePadButton;
 
 /**
  * The GamePadHub class is used to provide access to up to 6 buttons from a USB game pad.
+ * Created by Middlemind Games 01/05/2020
  * 
- * @author Victor G. Brusca, Middlemind Games
- * 01/05/202
+ * @author Victor G. Brusca
  */
 public class GamePadHub {
     
@@ -76,20 +78,70 @@ public class GamePadHub {
      */
     public Component[] components = null;
     
+    /**
+     * 
+     */
     public int gamePadIdx = 0;
+    
+    /**
+     * 
+     */
     public int gamePadSrc = GameSettings.SRC_GAMEPAD_1;
+    
+    /**
+     * 
+     */
     public int gamePadUp = GameSettings.UP_GAMEPAD_1;
+    
+    /**
+     * 
+     */
     public int gamePadDown = GameSettings.DOWN_GAMEPAD_1;
+    
+    /**
+     * 
+     */
     public int gamePadLeft = GameSettings.LEFT_GAMEPAD_1;
     public int gamePadRight = GameSettings.RIGHT_GAMEPAD_1;    
     
+    /**
+     * 
+     */
     private int i;
+    
+    /**
+     * 
+     */
     private int j;    
+    
+    /**
+     * 
+     */
     private int k;    
+    
+    /**
+     * 
+     */
     private GamePadInput btn1;
+    
+    /**
+     * 
+     */
     private GamePadInput btn2;    
+    
+    /**
+     * 
+     */
     private GamePadInput btn3;    
+    
+    /**
+     * 
+     */
     private Controller[] ca;
+    
+    /**
+     * 
+     */
     private boolean btmp;
     
     /**
@@ -125,6 +177,12 @@ public class GamePadHub {
         Prep();
     }
 
+    /**
+     * 
+     * 
+     * @param player1
+     * @param GamePadIndex 
+     */
     public GamePadHub(boolean player1, int GamePadIndex) {               
         gamePadIdx = GamePadIndex;
 
@@ -184,6 +242,9 @@ public class GamePadHub {
         Prep();
     }
 
+    /**
+     * 
+     */
     private void AddListener() {
         ControllerEnvironment.getDefaultEnvironment().addControllerListener(new ControllerListener() {
             @Override
@@ -228,6 +289,9 @@ public class GamePadHub {
         });
     }
     
+    /**
+     * 
+    */
     private void Prep() {
         try {
             prepped = false;
