@@ -1,9 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
  * A class the provides support for a horizontal and vertical scroll pane.
@@ -229,19 +228,36 @@ public class MmgScrollHorVert extends MmgObj {
     private int offsetYScrollPane;    
     
     /**
-     * An event handler that is used to process scroll pane click events.
+     * 
      */
-    private MmgGenericEventHandler handler;
+    private MmgEvent clickScreen = new MmgEvent(null, "both_click_screen", MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);    
     
     /**
-     * A game state used in the event handler calls.
+     * 
      */
-    private GameStates gameState;
+    private MmgEvent clickUp = new MmgEvent(null, "both_click_up", MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);        
     
+    /**
+     * 
+     */
+    private MmgEvent clickDown = new MmgEvent(null, "both_click_down", MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);
+        
+    /**
+     * 
+     */
+    private MmgEvent clickLeft = new MmgEvent(null, "both_click_left", MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);        
+    
+    /**
+     * 
+     */
+    private MmgEvent clickRight = new MmgEvent(null, "both_click_right", MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);
+            
     /**
      * A boolean flag indicating if a bounding box should be drawn around the elements of the scroll pane.
      */    
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;
+    
+    public static int SCROLL_BOTH_CLICK_EVENT_TYPE = 2;
     
     /**
      * An event id for a scroll pane click event.
@@ -304,7 +320,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @param IntervalY                 The interval to use when moving the scroll bar.
      * @param GameState                 The game state to use when firing events from the scroll view.
      */    
-    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY, GameStates GameState) {
+    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY) {
         super();
         
         scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
@@ -320,7 +336,6 @@ public class MmgScrollHorVert extends MmgObj {
         scrollBarHorSliderWidth = ScrollBarSliderWidth;
         scrollBarVertSliderHeight = ScrollBarSliderHeight;
         
-        gameState = GameState;       
         PrepDimensions();
 
         if(IntervalX != 0) {
@@ -344,7 +359,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @param IntervalY                 The interval to use when moving the scroll bar.
      * @param GameState                 The game state to use when firing events from the scroll view.
      */    
-    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY, GameStates GameState) {
+    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY) {
         super();
         
         scrollBarHorHeight = MmgHelper.ScaleValue(10);
@@ -359,7 +374,6 @@ public class MmgScrollHorVert extends MmgObj {
         scrollBarColor = ScrollBarColor;
         scrollBarSliderColor = ScrollBarSliderColor;        
         
-        gameState = GameState;
         PrepDimensions();
         
         if(IntervalX != 0) {
@@ -499,7 +513,6 @@ public class MmgScrollHorVert extends MmgObj {
         SetIntervalY(obj.GetIntervalY());
         SetOffsetX(obj.GetOffsetX());
         SetOffsetY(obj.GetOffsetY());
-        SetGameState(obj.GetGameState());
     }
     
     /**
@@ -634,7 +647,7 @@ public class MmgScrollHorVert extends MmgObj {
             widthDiffPrct = 0.0;
             scrollBarHorVisible = false;
         }
-        MmgDebug.wr("scrollBarHorVisible: " + scrollBarHorVisible);
+        MmgHelper.wr("scrollBarHorVisible: " + scrollBarHorVisible);
         
         if(scrollPaneHeight - viewPortHeight > 0) {
             heightDiff = scrollPaneHeight - viewPortHeight;
@@ -645,47 +658,59 @@ public class MmgScrollHorVert extends MmgObj {
             heightDiffPrct = 0.0;
             scrollBarVertVisible = false;
         }
-        MmgDebug.wr("scrollBarVertVisible: " + scrollBarVertVisible);
+        MmgHelper.wr("scrollBarVertVisible: " + scrollBarVertVisible);
         
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();        
     }    
 
-    /**
-     * Returns the event handler for this class instance.
-     * 
-     * @return      The event handler for this class instance.
-     */    
-    public MmgGenericEventHandler GetHandler() {
-        return handler;
+    public void SetEventHandler(MmgEventHandler e) {
+        clickScreen.SetTargetEventHandler(e);
+        clickLeft.SetTargetEventHandler(e);
+        clickRight.SetTargetEventHandler(e);
+        clickUp.SetTargetEventHandler(e);
+        clickDown.SetTargetEventHandler(e);        
+    }    
+    
+    public MmgEvent GetClickScreen() {
+        return clickScreen;
     }
 
-    /**
-     * Sets the event handler for this class instance.
-     * 
-     * @param Handler   The event handler for this class instance.
-     */    
-    public void SetHandler(MmgGenericEventHandler Handler) {
-        handler = Handler;
+    public void SetClickScreen(MmgEvent e) {
+        clickScreen = e;
     }
 
-    /**
-     * Gets the game state value used when firing events from this class instance.
-     * 
-     * @return      The game state value used when firing events.
-     */    
-    public GameStates GetGameState() {
-        return gameState;
+    public MmgEvent GetClickUp() {
+        return clickUp;
     }
 
-    /**
-     * Sets the game state value used when firing events from this class instance.
-     * 
-     * @param GameState     The game state value when firing events.
-     */     
-    public void SetGameState(GameStates GameState) {
-        gameState = GameState;
+    public void SetClickUp(MmgEvent e) {
+        clickUp = e;
     }
+
+    public MmgEvent GetClickDown() {
+        return clickDown;
+    }
+
+    public void SetClickDown(MmgEvent e) {
+        clickDown = e;
+    }
+    
+    public MmgEvent GetClickLeft() {
+        return clickLeft;
+    }
+
+    public void SetClickLeft(MmgEvent e) {
+        clickLeft = e;
+    }
+
+    public MmgEvent GetClickRight() {
+        return clickRight;
+    }
+
+    public void SetClickRight(MmgEvent e) {
+        clickRight = e;
+    }    
     
     /**
      * Sets the X coordinate of this scroll view.
@@ -790,8 +815,8 @@ public class MmgScrollHorVert extends MmgObj {
      * @return      A boolean indicating if the dpad input was handled.
      */    
     public boolean ProcessDpadRelease(int dir) {
-        if(scrollBarHorVisible && (dir == GameSettings.LEFT_KEYBOARD || dir == GameSettings.LEFT_GAMEPAD_1 || dir == GameSettings.LEFT_GPIO)) {
-            MmgDebug.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
+        if(scrollBarHorVisible && dir == MmgDir.DIR_LEFT) {
+            MmgHelper.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
@@ -800,15 +825,15 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            if(clickLeft != null) {
+                clickLeft.Fire();
             }                                    
             
             isDirty = true;
             return true;
             
-        } else if(scrollBarHorVisible && (dir == GameSettings.RIGHT_KEYBOARD || dir == GameSettings.RIGHT_GAMEPAD_1 || dir == GameSettings.RIGHT_GPIO)) {
-            MmgDebug.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
+        } else if(scrollBarHorVisible && dir == MmgDir.DIR_RIGHT) {
+            MmgHelper.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
                 offsetXScrollBarSlider += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
@@ -817,15 +842,15 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = widthDiff;  
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
-            }                        
+            if(clickRight != null) {
+                clickRight.Fire();
+            }
             
             isDirty = true;            
             return true;
             
-        } else if(scrollBarVertVisible && (dir == GameSettings.UP_KEYBOARD || dir == GameSettings.UP_GAMEPAD_1 || dir == GameSettings.UP_GPIO)) {
-            MmgDebug.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
+        } else if(scrollBarVertVisible && dir == MmgDir.DIR_BACK) {
+            MmgHelper.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
                 offsetYScrollBarSlider -= intervalY;
                 offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
@@ -834,15 +859,15 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollPane = 0; 
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            if(clickUp != null) {
+                clickUp.Fire();
             }
             
             isDirty = true;
             return true;
             
-        } else if(scrollBarVertVisible && (dir == GameSettings.DOWN_KEYBOARD || dir == GameSettings.DOWN_GAMEPAD_1 || dir == GameSettings.DOWN_GPIO)) {
-            MmgDebug.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
+        } else if(scrollBarVertVisible && dir == MmgDir.DIR_FRONT) {
+            MmgHelper.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
             if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
                 offsetYScrollBarSlider += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
@@ -851,8 +876,8 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollPane = heightDiff;  
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            if(clickDown != null) {
+                clickDown.Fire();
             }            
             
             isDirty = true;            
@@ -874,20 +899,20 @@ public class MmgScrollHorVert extends MmgObj {
         boolean ret = false;
         
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
-            MmgDebug.wr("Both: viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y + offsetYScrollPane - GetY()), gameState));
+            MmgHelper.wr("Both: viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
+            if(clickScreen != null) {
+                clickScreen.Fire();
             }
             ret = true;
             
         //}else if(MmgHelper.RectCollision(x, y, 3, 3, scrollPaneRect)) {
-            //MmgDebug.wr("scrollPane click");
+            //MmgHelper.wr("scrollPane click");
             //ret = true;
                         
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderLeftButtonRect)) {
-            MmgDebug.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
+            MmgHelper.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
-                MmgDebug.wr("AAA");
+                MmgHelper.wr("AAA");
                 offsetXScrollBarSlider -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
             } else {
@@ -895,17 +920,17 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
-            }            
+            if(clickLeft != null) {
+                clickLeft.Fire();
+            }
             
             isDirty = true;
             ret = true;
             
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderRightButtonRect)) {            
-            MmgDebug.wr("Both: ProcessScreenClick.sliderRightButtonRect click");
+            MmgHelper.wr("Both: ProcessScreenClick.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
-                MmgDebug.wr("AAA");
+                MmgHelper.wr("AAA");
                 offsetXScrollBarSlider += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
             } else {
@@ -913,15 +938,15 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetXScrollPane = widthDiff;  
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            if(clickRight != null) {
+                clickRight.Fire();
             }                        
             
             isDirty = true;            
             ret = true;
             
         }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderUpButtonRect)) {
-            MmgDebug.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
+            MmgHelper.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
             if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
                 offsetYScrollBarSlider -= intervalY;
                 offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
@@ -930,15 +955,15 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollPane = 0; 
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_UP_EVENT_ID, new Integer(offsetYScrollPane), gameState));
+            if(clickUp != null) {
+                clickUp.Fire();
             }                        
             
             isDirty = true;
             ret = true;
             
         }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderDownButtonRect)) {            
-            MmgDebug.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
+            MmgHelper.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
             if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
                 offsetYScrollBarSlider += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
@@ -947,15 +972,15 @@ public class MmgScrollHorVert extends MmgObj {
                 offsetYScrollPane = heightDiff;  
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHorVert.SCROLL_BOTH_SCROLL_DOWN_EVENT_ID, new Integer(offsetYScrollPane), gameState));
-            }                                    
+            if(clickDown != null) {
+                clickDown.Fire();
+            }                                   
             
             isDirty = true;
             ret = true;
             
         //}else if(MmgHelper.RectCollision(x, y, sliderRect)) {
-            //MmgDebug.wr("sliderRect click");            
+            //MmgHelper.wr("sliderRect click");            
             //ret = true;
             
         }

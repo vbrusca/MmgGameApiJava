@@ -638,7 +638,7 @@ public class MmgSprite extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
-            //MmgDebug.wr("FrameIdx: " + frameIdx);
+            //MmgHelper.wr("FrameIdx: " + frameIdx);
             if (b[frameIdx] != null) {
                 if(GetSimpleRendering() == true) {
                     p.DrawBmp(b[frameIdx], GetPosition());

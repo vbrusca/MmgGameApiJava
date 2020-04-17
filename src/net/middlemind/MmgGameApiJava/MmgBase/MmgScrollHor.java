@@ -1,9 +1,9 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
  * A class the provides support for a horizontal scroll pane.
@@ -141,17 +141,30 @@ public class MmgScrollHor extends MmgObj {
     /**
      * An event handler that is used to process scroll pane click events.
      */    
-    private MmgGenericEventHandler handler;
-    
-    /**
-     * A game state used in the event handler calls.
-     */    
-    private GameStates gameState;
-    
+    private GenericEventHandler handler;
+        
     /**
      * A boolean flag indicating if a bounding box should be drawn around the elements of the scroll pane.
      */
     public static boolean SHOW_CONTROL_BOUNDING_BOX = false;   
+    
+    /**
+     * 
+     */
+    private MmgEvent clickScreen = new MmgEvent(null, "hor_click_screen", MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, MmgScrollHor.SCROLL_HOR_CLICK_EVENT_TYPE, null, null);    
+    
+    /**
+     * 
+     */
+    private MmgEvent clickLeft = new MmgEvent(null, "hor_click_left", MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, MmgScrollHor.SCROLL_HOR_CLICK_EVENT_TYPE, null, null);        
+    
+    /**
+     * 
+     */
+    private MmgEvent clickRight = new MmgEvent(null, "hor_click_right", MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, MmgScrollHor.SCROLL_HOR_CLICK_EVENT_TYPE, null, null);
+    
+    
+    public static int SCROLL_HOR_CLICK_EVENT_TYPE = 0;    
     
     /**
      * An event id for a scroll pane click event.
@@ -201,7 +214,7 @@ public class MmgScrollHor extends MmgObj {
      * @param IntervalX                 The interval to use when moving the scroll bar.
      * @param GameState                 The game state to use when firing events from the scroll view.
      */
-    public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarSliderWidth, int IntervalX, GameStates GameState) {
+    public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarSliderWidth, int IntervalX) {
         super();        
         viewPort = ViewPort;
         scrollPane = ScrollPane;
@@ -210,7 +223,6 @@ public class MmgScrollHor extends MmgObj {
         scrollBarSliderColor = ScrollBarSliderColor;
         scrollBarHorSliderWidth = ScrollBarSliderWidth;
         scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
-        gameState = GameState;       
         PrepDimensions();
 
         if(IntervalX != 0) {
@@ -229,7 +241,7 @@ public class MmgScrollHor extends MmgObj {
      * @param IntervalX                 The interval to use when moving the scroll bar.
      * @param GameState                 The game state to use when firing events from the scroll view.
      */
-    public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, GameStates GameState) {
+    public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX) {
         super();
         viewPort = ViewPort;
         scrollPane = ScrollPane;
@@ -238,7 +250,6 @@ public class MmgScrollHor extends MmgObj {
         scrollBarSliderColor = ScrollBarSliderColor;
         scrollBarHorSliderWidth = MmgHelper.ScaleValue(30);
         scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
-        gameState = GameState;
         PrepDimensions();
         
         if(IntervalX != 0) {
@@ -333,7 +344,6 @@ public class MmgScrollHor extends MmgObj {
         SetScrollBarHorSliderWidth(obj.GetScrollBarHorSliderWidth());
         SetIntervalX(obj.GetIntervalX());
         SetOffsetX(obj.GetOffsetX());
-        SetGameState(obj.GetGameState());        
     }    
     
     /**
@@ -427,48 +437,42 @@ public class MmgScrollHor extends MmgObj {
             scrollBarHorVisible = false;
         }
        
-        MmgDebug.wr("scrollBarHorVisible: " + scrollBarHorVisible);        
+        MmgHelper.wr("scrollBarHorVisible: " + scrollBarHorVisible);        
         
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();
     }    
 
-    /**
-     * Returns the event handler for this class instance.
-     * 
-     * @return      The event handler for this class instance.
-     */    
-    public MmgGenericEventHandler GetHandler() {
-        return handler;
-    }
-
-    /**
-     * Sets the event handler for this class instance.
-     * 
-     * @param Handler   The event handler for this class instance.
-     */    
-    public void SetHandler(MmgGenericEventHandler Handler) {
-        handler = Handler;
-    }
-
-    /**
-     * Gets the game state value used when firing events from this class instance.
-     * 
-     * @return      The game state value used when firing events.
-     */
-    public GameStates GetGameState() {
-        return gameState;
-    }
-
-    /**
-     * Sets the game state value used when firing events from this class instance.
-     * 
-     * @param GameState     The game state value when firing events.
-     */
-    public void SetGameState(GameStates GameState) {
-        gameState = GameState;
+    public void SetEventHandler(MmgEventHandler e) {
+        clickScreen.SetTargetEventHandler(e);
+        clickLeft.SetTargetEventHandler(e);
+        clickRight.SetTargetEventHandler(e);
     }
     
+    public MmgEvent GetClickScreen() {
+        return clickScreen;
+    }
+
+    public void SetClickScreen(MmgEvent e) {
+        clickScreen = e;
+    }
+
+    public MmgEvent GetClickLeft() {
+        return clickLeft;
+    }
+
+    public void SetClickLeft(MmgEvent e) {
+        clickLeft = e;
+    }
+
+    public MmgEvent GetClickRight() {
+        return clickRight;
+    }
+
+    public void SetClickRight(MmgEvent e) {
+        clickRight = e;
+    }
+
     /**
      * Sets the X coordinate of this scroll view.
      * 
@@ -539,8 +543,8 @@ public class MmgScrollHor extends MmgObj {
      * @return      A boolean indicating if the dpad input was handled.
      */    
     public boolean ProcessDpadRelease(int dir) {
-        if(scrollBarHorVisible && (dir == GameSettings.LEFT_KEYBOARD || dir == GameSettings.LEFT_GAMEPAD_1 || dir == GameSettings.LEFT_GPIO)) {
-            MmgDebug.wr("ProcessDpadRelease.sliderLeftButtonRect click");
+        if(scrollBarHorVisible && dir == MmgDir.DIR_LEFT) {
+            MmgHelper.wr("ProcessDpadRelease.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
@@ -549,15 +553,15 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            if(clickLeft != null) {
+                clickLeft.Fire();
             }            
             
             isDirty = true;
             return true;
             
-        } else if(scrollBarHorVisible && (dir == GameSettings.RIGHT_KEYBOARD || dir == GameSettings.RIGHT_GAMEPAD_1 || dir == GameSettings.RIGHT_GPIO)) {
-            MmgDebug.wr("ProcessDpadRelease.sliderRightButtonRect click");
+        } else if(scrollBarHorVisible && dir == MmgDir.DIR_RIGHT) {
+            MmgHelper.wr("ProcessDpadRelease.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
                 offsetXScrollBarSlider += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
@@ -566,8 +570,8 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollPane = widthDiff;  
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            if(clickRight != null) {
+                clickRight.Fire();
             }                        
             
             isDirty = true;            
@@ -589,18 +593,18 @@ public class MmgScrollHor extends MmgObj {
         boolean ret = false;
         
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
-            MmgDebug.wr("viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID, new MmgVector2(x + offsetXScrollPane - GetX(), y - GetY()), gameState));
+            MmgHelper.wr("viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
+            if(clickScreen != null) {
+                clickScreen.Fire();
             }
             ret = true;
             
         //}else if(MmgHelper.RectCollision(x, y, 3, 3, scrollPaneRect)) {
-            //MmgDebug.wr("scrollPane click");
+            //MmgHelper.wr("scrollPane click");
             //ret = true;
                         
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderLeftButtonRect)) {
-            MmgDebug.wr("ProcessScreenClick.sliderLeftButtonRect click");
+            MmgHelper.wr("ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
                 offsetXScrollBarSlider -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
@@ -609,15 +613,15 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollPane = 0; 
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_RIGHT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            if(clickRight != null) {
+                clickRight.Fire();
             }                        
             
             isDirty = true;
             ret = true;
             
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderRightButtonRect)) {            
-            MmgDebug.wr("ProcessScreenClick.sliderRightButtonRect click");
+            MmgHelper.wr("ProcessScreenClick.sliderRightButtonRect click");
             if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
                 offsetXScrollBarSlider += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
@@ -626,15 +630,15 @@ public class MmgScrollHor extends MmgObj {
                 offsetXScrollPane = widthDiff;  
             }
             
-            if(handler != null) {
-                handler.HandleGenericEvent(new MmgGenericEventMessage(MmgScrollHor.SCROLL_HOR_SCROLL_LEFT_EVENT_ID, new Integer(offsetXScrollPane), gameState));
+            if(clickLeft != null) {
+                clickLeft.Fire();
             }            
             
             isDirty = true;            
             ret = true;
             
         //}else if(MmgHelper.RectCollision(x, y, sliderRect)) {
-            //MmgDebug.wr("sliderRect click");            
+            //MmgHelper.wr("sliderRect click");            
             //ret = true;
             
         }

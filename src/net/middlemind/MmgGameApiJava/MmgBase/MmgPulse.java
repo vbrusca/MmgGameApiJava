@@ -83,16 +83,16 @@ public class MmgPulse {
 
         changePerMs = (adjScaling.GetXDouble() - baseLineScaling.GetXDouble()) / timeFlip;
 
-        MmgDebug.wr("Direction: " + direction);
-        MmgDebug.wr("TimeTotal: " + timeTotal);
-        MmgDebug.wr("TimeFlip: " + timeFlip);
-        MmgDebug.wr("TimeStart: " + timeStart);
-        MmgDebug.wr("Change: " + change);
-        MmgDebug.wr("Change/MS: " + changePerMs);
-        MmgDebug.wr("MaxX: " + adjScaling.GetXDouble());
-        MmgDebug.wr("MaxY: " + adjScaling.GetYDouble());
-        MmgDebug.wr("BaseX: " + baseLineScaling.GetXDouble());
-        MmgDebug.wr("BaseY: " + baseLineScaling.GetYDouble());
+        MmgHelper.wr("Direction: " + direction);
+        MmgHelper.wr("TimeTotal: " + timeTotal);
+        MmgHelper.wr("TimeFlip: " + timeFlip);
+        MmgHelper.wr("TimeStart: " + timeStart);
+        MmgHelper.wr("Change: " + change);
+        MmgHelper.wr("Change/MS: " + changePerMs);
+        MmgHelper.wr("MaxX: " + adjScaling.GetXDouble());
+        MmgHelper.wr("MaxY: " + adjScaling.GetYDouble());
+        MmgHelper.wr("BaseX: " + baseLineScaling.GetXDouble());
+        MmgHelper.wr("BaseY: " + baseLineScaling.GetYDouble());
     }
 
     /**

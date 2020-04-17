@@ -125,8 +125,8 @@ public class MmgPositionTween extends MmgObj {
     public MmgPositionTween(MmgObj subj, float msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
         super();
         
-        MmgDebug.wr("MmgPositionTween Found start pos: " + startPos.ToString() + ", " + msTimeToMove);
-        MmgDebug.wr("MmgPositionTween Found end pos: " + finishPos.ToString());
+        MmgHelper.wr("MmgPositionTween Found start pos: " + startPos.ToString() + ", " + msTimeToMove);
+        MmgHelper.wr("MmgPositionTween Found end pos: " + finishPos.ToString());
         
         SetSubj(subj);
         SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
@@ -140,7 +140,7 @@ public class MmgPositionTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetMoving(false);
-        MmgDebug.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
+        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
     }
 
     /**
@@ -155,8 +155,8 @@ public class MmgPositionTween extends MmgObj {
     public MmgPositionTween(float msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
         super();
 
-        MmgDebug.wr("MmgPositionTween Found start pos: " + startPos.ToString());
-        MmgDebug.wr("MmgPositionTween Found end pos: " + finishPos.ToString());
+        MmgHelper.wr("MmgPositionTween Found start pos: " + startPos.ToString());
+        MmgHelper.wr("MmgPositionTween Found end pos: " + finishPos.ToString());
         
         SetSubj(subj);
         SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
@@ -558,7 +558,7 @@ public class MmgPositionTween extends MmgObj {
                     
                 }else {
                     //moving finish to start
-                    MmgDebug.wr("moving finish to start " + (currentTimeMs - msStartMove) + ", " + msTimeToMove);
+                    MmgHelper.wr("moving finish to start " + (currentTimeMs - msStartMove) + ", " + msTimeToMove);
                     if((currentTimeMs - msStartMove) >= msTimeToMove) {
                         SetAtFinish(false);
                         SetAtStart(true);

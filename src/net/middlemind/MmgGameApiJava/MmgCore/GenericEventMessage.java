@@ -1,4 +1,4 @@
-package net.middlemind.MmgGameApiJava.MmgBase;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 
@@ -9,7 +9,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
  *
  * @author Victor G. Brusca
  */
-public class MmgGenericEventMessage {
+public class GenericEventMessage {
 
     /**
      * The identifier of this generic event message.
@@ -34,7 +34,7 @@ public class MmgGenericEventMessage {
      * @param Payload The information payload of the message.
      * @param GameState The game state of the message.
      */
-    public MmgGenericEventMessage(int Id, Object Payload, GameStates GameState) {
+    public GenericEventMessage(int Id, Object Payload, GameStates GameState) {
         id = Id;
         payload = Payload;
         gameState = GameState;

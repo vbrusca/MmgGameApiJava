@@ -328,10 +328,10 @@ public class MmgLoadingBar extends MmgObj {
                 loadingBarBack.SetDstRect(new MmgRect(new MmgVector2(GetPosition().GetX() + GetPaddingX(), GetPosition().GetY() + GetPaddingY()), (int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt), GetFillHeight() - GetPaddingY()));
                 
                 //MmgRect r = loadingBarBack.GetSrcRect();
-                //MmgApiUtils.wr("Src L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight());
+                //MmgHelper.wr("Src L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight());
                 
                 //r = loadingBarBack.GetDstRect();
-                //MmgApiUtils.wr("Dst L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight() + " C1:" + ((int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt)) + " C2:" + (GetFillHeight() - GetPaddingY()));
+                //MmgHelper.wr("Dst L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight() + " C1:" + ((int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt)) + " C2:" + (GetFillHeight() - GetPaddingY()));
                 loadingBarBack.MmgDraw(p);
             }
 

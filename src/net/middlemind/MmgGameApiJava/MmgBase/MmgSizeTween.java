@@ -132,8 +132,8 @@ public class MmgSizeTween extends MmgObj {
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
         super();
 
-        MmgDebug.wr("MmgSizeTween Found start pos: " + startSize.ToString() + ", " + msTimeToChange);
-        MmgDebug.wr("MmgSizeTween Found end pos: " + finishSize.ToString());
+        MmgHelper.wr("MmgSizeTween Found start pos: " + startSize.ToString() + ", " + msTimeToChange);
+        MmgHelper.wr("MmgSizeTween Found end pos: " + finishSize.ToString());
 
         SetSubj(subj);
         SetPixelSizeToChange(new MmgVector2((finishSize.GetX() - startSize.GetX()), (finishSize.GetY() - startSize.GetY())));
@@ -148,7 +148,7 @@ public class MmgSizeTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetChanging(false);
-        MmgDebug.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
+        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
     /**
@@ -162,8 +162,8 @@ public class MmgSizeTween extends MmgObj {
     public MmgSizeTween(float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
         super();
 
-        MmgDebug.wr("MmgSizeTween Found start pos: " + startSize.ToString() + ", " + msTimeToChange);
-        MmgDebug.wr("MmgSizeTween Found end pos: " + finishSize.ToString());
+        MmgHelper.wr("MmgSizeTween Found start pos: " + startSize.ToString() + ", " + msTimeToChange);
+        MmgHelper.wr("MmgSizeTween Found end pos: " + finishSize.ToString());
 
         SetSubj(subj);
         SetPixelSizeToChange(new MmgVector2((finishSize.GetX() - startSize.GetX()), (finishSize.GetY() - startSize.GetY())));
@@ -178,7 +178,7 @@ public class MmgSizeTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetChanging(false);
-        MmgDebug.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
+        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
     /**
@@ -456,7 +456,7 @@ public class MmgSizeTween extends MmgObj {
 
                 } else {
                     //changing finish to start
-                    //MmgDebug.wr("changing finish to start " + (currentTimeMs - msStartChange) + ", " + msSizeToChange);
+                    //MmgHelper.wr("changing finish to start " + (currentTimeMs - msStartChange) + ", " + msSizeToChange);
                     if ((currentTimeMs - msStartChange) >= msSizeToChange) {
                         SetAtFinish(false);
                         SetAtStart(true);

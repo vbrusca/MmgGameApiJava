@@ -658,12 +658,12 @@ public class MmgTextBlock extends MmgObj {
             }
 
             dLen = GetLineCount();
-            //TyreDatGameUtils.wr("Text Lines: " + dLen);
+            //MmgHelper.wr("Text Lines: " + dLen);
             for (dI = 0; dI < dLen; dI++) {
                 dTmp = txt.get(dI);
                 if (dTmp != null && dTmp.GetIsVisible() == true) {
                     p.DrawText(dTmp);
-                    //TyreDatGameUtils.wr(dI + ": " + dTmp.GetText() + ", " + dTmp.GetPosition().ToString());
+                    //MmgHelper.wr(dI + ": " + dTmp.GetText() + ", " + dTmp.GetPosition().ToString());
                 }
             }
         }

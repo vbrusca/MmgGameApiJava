@@ -1,12 +1,11 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgGenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.MainFrame;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
  *
@@ -22,7 +21,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         Helper.wr("TestSpace.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
-        screenLoading.SetSlowDown(500);
+        //screenLoading.SetSlowDown(500);
         
         screenTest = new ScreenTest(GameStates.GAME_SCREEN_01, this);
         screenTest.Pause();
@@ -165,7 +164,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     }    
     
     @Override
-    public void HandleGenericEvent(MmgGenericEventMessage obj) {
+    public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {
             Helper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {

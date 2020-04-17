@@ -215,7 +215,11 @@ public class MmgEvent {
         if (targetHandler != null) {
             targetHandler.MmgHandleEvent(this);
         } else {
-            MmgDebug.wr("cannot fire event because event handler is null");
+            MmgHelper.wr("cannot fire event because event handler is null");
         }
+    }
+    
+    public String ToString() {
+        return "Msg: " + message + " Id: " + id + " Type: " + type;
     }
 }

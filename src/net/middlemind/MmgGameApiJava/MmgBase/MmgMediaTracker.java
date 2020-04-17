@@ -33,8 +33,8 @@ public class MmgMediaTracker {
         try {
             MmgMediaTracker.mt.waitForID(imageId);
         }catch (Exception e) {
-            MmgApiUtils.wrErr("Exception while loading image.");
-            MmgApiUtils.wrErr(e);
+            MmgHelper.wrErr("Exception while loading image.");
+            MmgHelper.wrErr(e);
         }
     }
     */
@@ -46,7 +46,7 @@ public class MmgMediaTracker {
      * @param val       The image object to cache.
      */
     public static void CacheImage(String key, Image val) {
-        //MmgApiUtils.wr("+++++++++ Cache image with key: " + key);
+        //MmgHelper.wr("+++++++++ Cache image with key: " + key);
         if(MmgMediaTracker.HasBmpKey(key) == false) {
             MmgMediaTracker.cacheBmp.put(key, val);
         }else {
@@ -64,7 +64,7 @@ public class MmgMediaTracker {
      * @param val       The sound object to cache.
      */
     public static void CacheSound(String key, Clip val) {
-        //MmgApiUtils.wr("+++++++++ Cache sound with key: " + key);
+        //MmgHelper.wr("+++++++++ Cache sound with key: " + key);
         if(MmgMediaTracker.HasSoundKey(key) == false) {
             MmgMediaTracker.cacheSound.put(key, val);
         }else {
@@ -81,7 +81,7 @@ public class MmgMediaTracker {
      * @return      The size of the image object cache.
      */
     public static int GetBmpCacheSize() {
-        //MmgApiUtils.wr("+++++++++ Cache Image Size: " + cacheBmp.size());
+        //MmgHelper.wr("+++++++++ Cache Image Size: " + cacheBmp.size());
         return cacheBmp.size();
     }
     
@@ -91,7 +91,7 @@ public class MmgMediaTracker {
      * @return      The size of the sound object cache.
      */
     public static int GetSoundCacheSize() {
-        //MmgApiUtils.wr("+++++++++ Cache Sound Size: " + cacheBmp.size());
+        //MmgHelper.wr("+++++++++ Cache Sound Size: " + cacheBmp.size());
         return cacheSound.size();
     }    
     

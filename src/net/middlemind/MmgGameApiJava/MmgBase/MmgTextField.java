@@ -1,7 +1,9 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
+import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
  * 
@@ -40,15 +42,7 @@ public class MmgTextField extends MmgObj {
      */
     private String textFieldString = "";
     
-    /**
-     * 
-     */
-    private int charStart;
-    
-    /**
-     * 
-     */
-    private int charEnd;
+    private int displayChars;
     
     /**
      * 
@@ -93,12 +87,7 @@ public class MmgTextField extends MmgObj {
     /**
      * 
      */
-    private MmgGenericEventHandler handler;
-    
-    /**
-     * The game state of this generic event message.
-     */
-    public GamePanel.GameStates gameState;    
+    private MmgEvent errorMaxLength = new MmgEvent(null, "error_max_length", MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE, null, null);
     
     /**
      * 
@@ -123,6 +112,11 @@ public class MmgTextField extends MmgObj {
     /**
      * 
      */
+    public static int TEXT_FIELD_MAX_LENGTH_ERROR_TYPE = 0;    
+    
+    /**
+     * 
+     */
     public static int DEFAULT_MAX_LENGTH = 20;
     
     /**
@@ -134,11 +128,11 @@ public class MmgTextField extends MmgObj {
      * @param Height
      * @param Padding 
      */
-    public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, GameStates GameState) {
-        gameState = GameState;
+    public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, int DisplayChars) {
         bgroundSrc = BgroundSrc;
         font = Font;
         padding = Padding;
+        displayChars = DisplayChars;
         SetWidth(Width);
         SetHeight(Height);
         SetMaxLength(DEFAULT_MAX_LENGTH);
@@ -156,31 +150,13 @@ public class MmgTextField extends MmgObj {
         textFieldString = "";
         bground = new Mmg9Slice(TEXT_FIELD_9_SLICE_OFFSET, bgroundSrc, GetWidth(), GetHeight());        
     }
-    
-    public void SetGameState(GameStates gs) {
-        gameState = gs;
+
+    public MmgEvent GetErrorMaxLength() {
+        return errorMaxLength;
     }
-    
-    public GameStates GetGameState() {
-        return gameState;
-    }
-    
-    /**
-     * 
-     * 
-     * @param h 
-     */
-    public void SetEventHandler(MmgGenericEventHandler h) {
-        handler = h;
-    }
-    
-    /**
-     * 
-     * 
-     * @return 
-     */
-    public MmgGenericEventHandler GetEventHandler() {
-        return handler;
+
+    public void SetErrorMaxLength(MmgEvent e) {
+        errorMaxLength = e;
     }
     
     /**
@@ -291,40 +267,12 @@ public class MmgTextField extends MmgObj {
         textFieldString = str;
     }
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    public int GetCharStart() {
-        return charStart;
+    public int GetDisplayChars() {
+        return displayChars;
     }
 
-    /**
-     * 
-     * 
-     * @param i 
-     */
-    public void SetCharStart(int i) {
-        charStart = i;
-    }
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    public int GetCharEnd() {
-        return charEnd;
-    }
-
-    /**
-     * 
-     * 
-     * @param i 
-     */
-    public void SetCharEnd(int i) {
-        charEnd = i;
+    public void SetDisplayChars(int i) {
+        displayChars = i;
     }
 
     /**
@@ -421,8 +369,8 @@ public class MmgTextField extends MmgObj {
     public boolean ProcessKeyClick(char c, int code) {
         if(maxLengthOn) {
             if(textFieldString.length() + 1 >= maxLength) {
-                if(handler != null) {
-                    handler.HandleGenericEvent(new MmgGenericEventMessage(TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID, new Integer(maxLength), gameState));
+                if(errorMaxLength != null) {
+                    errorMaxLength.Fire();
                 }
                 return true;
             }
@@ -496,20 +444,15 @@ public class MmgTextField extends MmgObj {
             }
             
             if(isDirty) {
-                //tmpStr = font.GetText();
-                if(cursorBlinkOn) {
-                    font.SetText(textFieldString + TEXT_FIELD_CURSOR);
+                if(textFieldString.length() > displayChars) {
+                    font.SetText(textFieldString.substring(textFieldString.length() - displayChars));
                 } else {
-                    font.SetText(textFieldString);
+                    font.SetText(textFieldString); 
                 }
-                charStart = 0;
-                
-                tmpStr = font.GetText();
-                while(font.GetX() + font.GetWidth() > GetX() + GetWidth() - padding) {
-                    font.SetText(tmpStr);                    
-                    charStart += 2;
-                    tmpStr = tmpStr.substring(charStart);
-                }
+
+                if(cursorBlinkOn) {
+                    font.SetText(font.GetText() + TEXT_FIELD_CURSOR);
+                }                
                 
                 isDirty = false;
             }

@@ -1,4 +1,4 @@
-package net.middlemind.MmgGameApiJava.MmgBase;
+package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * An interface class for handling generic events. Generic events are events
@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  *
  * @author Victor G. Brusca
  */
-public interface MmgGenericEventHandler {
+public interface GenericEventHandler {
 
     /**
      * Method for handling generic events.
@@ -15,6 +15,6 @@ public interface MmgGenericEventHandler {
      * @param obj A generic event message used to determine what to do in the
      * actual implementation of this method.
      */
-    public void HandleGenericEvent(MmgGenericEventMessage obj);
+    public void HandleGenericEvent(GenericEventMessage obj);
 
 }

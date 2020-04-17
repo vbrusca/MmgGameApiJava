@@ -291,7 +291,7 @@ public class MmgPen {
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);            
         }else {
-            MmgApiUtils.wr("ADV_RENDER_HINTS is set to false.");
+            MmgHelper.wr("ADV_RENDER_HINTS is set to false.");
         }
     }
     
