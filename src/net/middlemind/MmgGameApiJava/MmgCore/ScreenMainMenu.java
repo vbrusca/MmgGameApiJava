@@ -57,6 +57,9 @@ public class ScreenMainMenu extends MmgGameScreen {
      */
     public MmgBmp menuFooterUrl;
 
+    /**
+     * 
+     */
     public MmgBmp menuCursor;
 
     /**
@@ -93,7 +96,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     /**
      * 
      */
-    public boolean lret;
+    private boolean lret;
     
     /**
      * 
