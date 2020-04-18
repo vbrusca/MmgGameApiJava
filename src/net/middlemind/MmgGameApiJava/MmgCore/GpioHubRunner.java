@@ -3,11 +3,10 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import java.io.IOException;
 
 /**
- * The GpioHubRunner class is a threaded class that is used to run a GpioHub and determine the state of each
- * of the GPIO pins at interval.
+ * The GpioHubRunner class is a threaded class that is used to run a GpioHub and determine the state of each of the GPIO pins at interval.
+ * Created by Middlemind Games 01/05/2020
  * 
- * @author Victor G. Brusca, Middlemind Games
- * 01/05/2020
+ * @author Victor G. Brusca
  */
 public class GpioHubRunner implements Runnable {
     

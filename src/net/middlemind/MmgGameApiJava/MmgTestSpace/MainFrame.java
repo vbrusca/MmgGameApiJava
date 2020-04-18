@@ -3,9 +3,9 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 
 /**
- *
- * @author Victor G. Brusca, Middlemind Games
- * 02/19/2020
+ * Created by Middlemind Games 02/19/2020
+ * 
+ * @author Victor G. Brusca
  */
 public class MainFrame extends net.middlemind.MmgGameApiJava.MmgCore.MainFrame {
     

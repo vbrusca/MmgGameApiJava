@@ -21,11 +21,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 /**
  * Provides support for static helper methods. This class provides similar methods to the MmgHelper
  * class but allows the developer to tie into higher level libraries and code structure outside of the
- * base Mmg API. The GameSettings class controls the image and sound cache via the SND_CACHE_ON, 
- * BMP_CACHE_ON static variables.
- * 
- * Created on August 1, 2015, 10:57
- * PM by Middlemind Games Created by Middlemind Games
+ * base Mmg API. The GameSettings class controls the image and sound cache via the SND_CACHE_ON, BMP_CACHE_ON static variables.
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */

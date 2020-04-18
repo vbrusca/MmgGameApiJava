@@ -7,14 +7,14 @@ import java.io.IOException;
 /**
  * The GpioHub class is used to provide access to up to 6 GPIO pins, most likely on a Linux system.
  * The class tracks the state of the pins to provide press, release, click information on the GPIO pins.
+ * Created by Middlemind Games 01/05/2020
  * 
- * @author Victor G. Brusca, Middlemind Games
- * 01/05/202
+ * @author Victor G. Brusca
  */
 public class GpioHub {
     
     /**
-     * 
+     * A static integer that determines the length of the GPIO input array, used to speed up loops that check the GPIO input pins.
      */
     public static int LEN = 6;    
     
@@ -84,11 +84,34 @@ public class GpioHub {
      */
     public boolean gpioEnabled = false;
 
+    /**
+     * A private loop counting class field.
+     */    
     private int i;
-    private int j;    
-    private int k;    
+    
+    /**
+     * A private loop counting class field.
+     */    
+    private int j;  
+    
+    /**
+     * A private loop counting class field.
+     */    
+    private int k;
+    
+    /**
+     * A private temporary class field for gamepad input.
+     */    
     private GpioPin btn1;
-    private GpioPin btn2;    
+    
+    /**
+     * A private temporary class field for gamepad input.
+     */    
+    private GpioPin btn2;
+    
+    /**
+     * A private temporary class field for gamepad input.
+     */    
     private GpioPin btn3;    
     
     /**

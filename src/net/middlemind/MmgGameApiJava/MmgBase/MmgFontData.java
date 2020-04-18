@@ -511,7 +511,7 @@ public class MmgFontData {
      * @return      The MmgFont for normal text.
      */
     public static MmgFont GetMmgFontNorm() {
-        return mmgFontNorm;
+        return mmgFontNorm.CloneTyped();
     }
 
     /**
@@ -529,7 +529,7 @@ public class MmgFontData {
      * @return      The MmgFont for bold text.
      */
     public static MmgFont GetMmgFontBold() {
-        return mmgFontBold;
+        return mmgFontBold.CloneTyped();
     }
 
     /**
@@ -547,7 +547,7 @@ public class MmgFontData {
      * @return      The MmgFont for italic text.
      */
     public static MmgFont GetMmgFontItalic() {
-        return mmgFontItalic;
+        return mmgFontItalic.CloneTyped();
     }
 
     /**

@@ -12,14 +12,11 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSplashScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
 
-//TODO: Finish documentation
-
 /**
  * A game screen object, ScreenSplash, that extends the MmgGameScreen base
- * class. This game screen is for displaying a splash screen before the game
- * loading screen. Created on August 1, 2015, 10:57 PM by Middlemind Games.
- * Created by Middlemind Games.
- *
+ * class. This game screen is for displaying a splash screen before the game loading screen. 
+ * Created by Middlemind Games 08/01/2015
+ * 
  * @author Victor G. Brusca
  */
 public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
@@ -47,7 +44,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     public GamePanel owner;
 
     /**
-     * 
+     * A data structure that stores all the class configuration file entries from the target file.
      */
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
@@ -55,8 +52,8 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
      *
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param State     The game state of this game screen.
+     * @param Owner     The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenSplash(GameStates State, GamePanel Owner) {
@@ -69,19 +66,18 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     }
 
     /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
+     * Sets a generic event handler that will receive generic events from this object.
      *
-     * @param Handler A class that implements the GenericEventHandler interface.
+     * @param Handler   A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
         handler = Handler;
     }
 
     /**
+     * Gets a generic event handler that will receive generic events from this object.
      * 
-     * 
-     * @return 
+     * @return      A class that implements the GenericEventHandler interface.
      */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
@@ -91,7 +87,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
      * Public method that fires the local generic event, the listener will
      * receive a display complete event.
      *
-     * @param obj The information payload to send along with this message.
+     * @param obj   The information payload to send along with this message.
      */
     @Override
     public void MmgHandleUpdate(Object obj) {
@@ -188,7 +184,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     /**
      * Returns the game state of this game screen.
      *
-     * @return The game state of this game screen.
+     * @return      The game state of this game screen.
      */
     public GameStates GetGameState() {
         return state;
@@ -197,7 +193,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     /**
      * The main drawing routine.
      *
-     * @param p An MmgPen object to use for drawing this game screen.
+     * @param p     An MmgPen object to use for drawing this game screen.
      */
     @Override
     public void MmgDraw(MmgPen p) {

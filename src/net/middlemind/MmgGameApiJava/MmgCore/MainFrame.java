@@ -6,11 +6,8 @@ import javax.swing.*;
 
 /**
  * The main frame of the game, extends the JFrame class. Handles housing
- * the GamePanel, JPanel, that draws each game state by making the corresponding
- * game screen the active screen. 
- * 
- * Created on August 1, 2015, 10:57 PM by
- * Middlemind Games Created by Middlemind Games
+ * the GamePanel, JPanel, that draws each game state by making the corresponding game screen the active screen. 
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */

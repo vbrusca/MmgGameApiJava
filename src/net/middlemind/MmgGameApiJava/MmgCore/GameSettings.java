@@ -4,7 +4,8 @@ package net.middlemind.MmgGameApiJava.MmgCore;
  * Class that holds global game settings. Can be set using the engine config XML files. All path variables should end in
  * a path separator character. Application specific engine config XML files can be specified and used by the executable
  * class, i.e. ENGINE_CONFIG_FILE = "../cfg/engine_config_mmg_pong_clone.xml".
- *
+ * Created by Middlemind Games 01/05/2020
+ * 
  * @author Victor G. Brusca
  */
 public class GameSettings {

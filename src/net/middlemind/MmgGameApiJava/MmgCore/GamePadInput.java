@@ -84,9 +84,7 @@ public class GamePadInput {
      * A class field that determines if the GPIO pin attribute, clicked, should be checked.
      */    
     public boolean checkClicked;    
-    
-    //public Component component;
-    
+        
     /**
      * The main GpioPin constructor that sets all class field values.
      * 

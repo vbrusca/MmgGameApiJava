@@ -8,13 +8,14 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
 
 /**
- *
- * @author Victor G. Brusca, Middlemind Games
- * 02/19/2020
+ * Created by Middlemind Games 02/19/2020
+ * 
+ * @author Victor G. Brusca
  */
 public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
-    protected ScreenTest screenTest;
+    public ScreenTest screenTest;
+    public ScreenTestMmg9Slice screenTestMmg9Slice;
     
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
@@ -26,6 +27,10 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         screenTest = new ScreenTest(GameStates.GAME_SCREEN_01, this);
         screenTest.Pause();
         screenTest.SetIsVisible(false);
+        
+        screenTestMmg9Slice = new ScreenTestMmg9Slice(GameStates.GAME_SCREEN_02, this);
+        screenTestMmg9Slice.Pause();
+        screenTestMmg9Slice.SetIsVisible(false);        
     }
         
     @Override
@@ -64,6 +69,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTest.Pause();
             screenTest.SetIsVisible(false);
             screenTest.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_02) {
+            Helper.wr("Hiding GAME_SCREEN_02 screen.");
+            screenTestMmg9Slice.Pause();
+            screenTestMmg9Slice.SetIsVisible(false);
+            screenTestMmg9Slice.UnloadResources();            
                         
         } else if (prevGameState == GameStates.MAIN_MENU) {
             Helper.wr("Hiding MAIN_MENU screen.");
@@ -125,6 +136,13 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTest.SetIsVisible(true);
             currentScreen = screenTest;
                         
+        } else if (gameState == GameStates.GAME_SCREEN_02) {
+            Helper.wr("Showing GAME_SCREEN_02 screen.");
+            screenTestMmg9Slice.LoadResources();
+            screenTestMmg9Slice.UnPause();
+            screenTestMmg9Slice.SetIsVisible(true);
+            currentScreen = screenTestMmg9Slice;            
+            
         } else if (gameState == GameStates.MAIN_MENU) {
             Helper.wr("Showing MAIN_MENU screen.");
             //mainMenuScreen.LoadResources();
@@ -170,8 +188,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             if (obj.GetGameState() == GameStates.LOADING) {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps
-                    DatExternalStrings.LOAD_EXT_STRINGS();                    
-                    SwitchGameState(GameStates.GAME_SCREEN_01);
+                    DatExternalStrings.LOAD_EXT_STRINGS();
+                    if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("0")) {
+                        SwitchGameState(GameStates.GAME_SCREEN_01);
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("1")) {
+                        SwitchGameState(GameStates.GAME_SCREEN_02);
+                    }
                 }
                 
             } else if (obj.GetGameState() == GameStates.SPLASH) {

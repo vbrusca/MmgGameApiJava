@@ -16,12 +16,10 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 
-//TODO: Finish documentation
-
 /**
- * A game screen object, ScreenMainMenu, that extends the MmgGameScreen base
- * class. This game screen is for displaying a main menu screen. Created on
- * August 1, 2015, 10:57 PM by Middlemind Games. Created by Middlemind Games.
+ * A game screen object, ScreenMainMenu, that extends the MmgGameScreen base class. 
+ * This game screen is for displaying a main menu screen.
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */
@@ -58,7 +56,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     public MmgBmp menuFooterUrl;
 
     /**
-     * 
+     * The MmgBmp image to use as a menu cursor.
      */
     public MmgBmp menuCursor;
 
@@ -68,12 +66,12 @@ public class ScreenMainMenu extends MmgGameScreen {
     public MmgMenuContainer menu;
 
     /**
-     * 
+     * The MmgSound to use when a menu item is selected.
      */
     public MmgSound menuSound;
     
     /**
-     * 
+     * The MmgFont used to display the version code for the case.
      */
     public MmgFont version;
     
@@ -89,17 +87,17 @@ public class ScreenMainMenu extends MmgGameScreen {
     public GamePanel owner;
     
     /**
-     * 
+     * A boolean flag indicating if work needs to be done on the next MmgUpdate method.
      */
     public boolean isDirty;
     
     /**
-     * 
+     * A private boolean used in the MmgUpdate method.
      */
     private boolean lret;
     
     /**
-     * 
+     * A data structure that stores all the class configuration file entries from the target file.
      */
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
@@ -107,8 +105,8 @@ public class ScreenMainMenu extends MmgGameScreen {
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
      *
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param State     The game state of this game screen.
+     * @param Owner     The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenMainMenu(GameStates State, GamePanel Owner) {
@@ -445,10 +443,10 @@ public class ScreenMainMenu extends MmgGameScreen {
     }
 
     /**
+     * A callback method used to process A click events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source of the A click event, keyboard, GPIO gamepad, USB gamepad.
+     * @return          A boolean flag indicating if work was done.
      */
     @Override
     public boolean ProcessAClick(int src) {
@@ -465,10 +463,10 @@ public class ScreenMainMenu extends MmgGameScreen {
     }
     
     /**
+     * A callback method used to process dpad release events.
      * 
-     * 
-     * @param dir
-     * @return 
+     * @param dir       The dpad direction of the event.
+     * @return          A boolean flag indicating if work was done.
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
@@ -548,18 +546,18 @@ public class ScreenMainMenu extends MmgGameScreen {
     }
 
     /**
+     * Gets a boolean flag indicating if there is work to be done on the next MmgUpdate method call.
      * 
-     * 
-     * @return 
+     * @return      A flag indicating if there is work to be done on the next MmgUpdate call.
      */
     public boolean GetIsDirty() {
         return isDirty;
     }
 
     /**
+     * Sets a boolean flag indicating if there is work to be done on the next MmgUpdate method call.
      * 
-     * 
-     * @param b 
+     * @param b     A flag indicating if there is work to be done on the next MmgUpdate call.
      */
     public void SetIsDirty(boolean b) {
         isDirty = b;
@@ -578,12 +576,12 @@ public class ScreenMainMenu extends MmgGameScreen {
     }
 
     /**
+     * Update the current sprite animation frame index.
      * 
-     * 
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame
-     * @return 
+     * @param updateTick            The index of the MmgUpdate call.
+     * @param currentTimeMs         The current time in milliseconds of the MmgUpdate call.
+     * @param msSinceLastFrame      The number of milliseconds since the last MmgUpdate call.
+     * @return                      A boolean flag indicating if any work was done.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {

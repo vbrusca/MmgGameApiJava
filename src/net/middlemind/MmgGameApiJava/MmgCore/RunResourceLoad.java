@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
- * A worker thread that handles loading the Tyre game DAT file. Created on
- * August 1, 2015, 10:57 PM by Middlemind Games Created by Middlemind Games
+ * A worker thread that handles loading the Tyre game DAT file.
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */
@@ -38,7 +38,6 @@ public class RunResourceLoad implements Runnable {
      * value to 1000's so that the progress bar math stays away from small number division.
      */
     public int loadMultiplier = 1000;
-
 
     /**
      * An event handler for receiving update messages from the DAT loader.
@@ -250,18 +249,18 @@ public class RunResourceLoad implements Runnable {
     }
 
     /**
+     * Gets the slow down value that will slow down the loading process when there are only a few resources to load.
      * 
-     * 
-     * @return 
+     * @return      The slow down time in milliseconds.
      */
     public long GetSlowDown() {
         return slowDown;
     }
 
     /**
+     * Sets the slow down value that will slow down the loading process when there are only a few resources to load.
      * 
-     * 
-     * @param l 
+     * @param l     The slow down time in milliseconds.
      */
     public void SetSlowDown(long l) {
         slowDown = l;
@@ -287,7 +286,7 @@ public class RunResourceLoad implements Runnable {
     /**
      * Gets the current read position.
      *
-     * @return The current read position.
+     * @return      The current read position.
      */
     public int GetPos() {
         return readPos;
@@ -296,7 +295,7 @@ public class RunResourceLoad implements Runnable {
     /**
      * Gets the result of the last read operation.
      *
-     * @return The result of the last read operation.
+     * @return      The result of the last read operation.
      */
     public boolean GetReadResult() {
         return readResult;
@@ -305,7 +304,7 @@ public class RunResourceLoad implements Runnable {
     /**
      * Gets and indication if the DAT load completed.
      *
-     * @return
+     * @return      A boolean flag indicates that the loading process has completed.
      */
     public boolean GetReadComplete() {
         return readComplete;

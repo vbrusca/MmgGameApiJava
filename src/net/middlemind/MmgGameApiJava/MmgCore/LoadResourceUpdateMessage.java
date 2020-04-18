@@ -2,7 +2,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * A class that wraps the LoadDat update information.
- * Created by Middlemind Games
+ * Created by Middlemind Games 01/22/2020
  * 
  * @author Victor G. Brusca
  */

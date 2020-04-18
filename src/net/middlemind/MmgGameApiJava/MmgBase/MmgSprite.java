@@ -661,7 +661,7 @@ public class MmgSprite extends MmgObj {
         }
     }
 
-    /***
+    /**
      * Update the current sprite animation frame index.
      * 
      * @param updateTick            The index of the MmgUpdate call.

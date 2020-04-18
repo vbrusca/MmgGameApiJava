@@ -9,8 +9,8 @@ import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
- * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT Created on
- * August 1, 2015, 10:57 PM by Middlemind Games Created by Middlemind Games
+ * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT 
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */
@@ -81,6 +81,8 @@ public final class MmgTestSpace {
      */       
     public static String[] ARGS = null;    
         
+    public static String TEST_TO_RUN = "0";
+    
     /**
      * Method that searches an array for a string match.
      *
@@ -316,6 +318,11 @@ public final class MmgTestSpace {
             if (res != null) {
                 ENGINE_CONFIG_FILE = res.split("=")[1];
             }
+            
+            res = ArrayHasEntryLike("TEST=", args);
+            if (res != null) {
+                TEST_TO_RUN = res.split("=")[1];
+            }            
             
             res = ArrayHasEntryLike("ODROID=true", args);
             if(res != null) {

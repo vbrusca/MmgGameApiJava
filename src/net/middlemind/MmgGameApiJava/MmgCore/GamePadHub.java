@@ -1,7 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
-//TODO: Finish documentation
-
 import java.io.IOException;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
@@ -79,68 +77,72 @@ public class GamePadHub {
     public Component[] components = null;
     
     /**
-     * 
+     * An integer representing the index of the gampepad on the host operating system.
      */
     public int gamePadIdx = 0;
     
     /**
-     * 
+     * The gamepad source id from the GamSettings class to send along with input events.
      */
     public int gamePadSrc = GameSettings.SRC_GAMEPAD_1;
     
     /**
-     * 
+     * The gamepad code for dpad up input events.
      */
     public int gamePadUp = GameSettings.UP_GAMEPAD_1;
     
     /**
-     * 
+     * The gamepad code for dpad down input events.
      */
     public int gamePadDown = GameSettings.DOWN_GAMEPAD_1;
     
     /**
-     * 
+     * The gamepad code for dpad left input events.
      */
     public int gamePadLeft = GameSettings.LEFT_GAMEPAD_1;
+    
+    /**
+     * The gamepad code for dpad right input events.
+     */
     public int gamePadRight = GameSettings.RIGHT_GAMEPAD_1;    
     
     /**
-     * 
+     * A private loop counting class field.
      */
     private int i;
     
     /**
-     * 
+     * A private loop counting class field.
      */
     private int j;    
     
     /**
-     * 
+     * A private loop counting class field.
      */
     private int k;    
     
     /**
-     * 
+     * A private temporary class field for gamepad input.
      */
     private GamePadInput btn1;
     
     /**
-     * 
+     * A private temporary class field for gamepad input.
      */
     private GamePadInput btn2;    
     
     /**
-     * 
+     * A private temporary class field for gamepad input.
      */
     private GamePadInput btn3;    
     
     /**
-     * 
+     * A private array of controller found on the operating system.
      */
     private Controller[] ca;
     
     /**
-     * 
+     * A private boolean flag for input processing.
      */
     private boolean btmp;
     
@@ -148,6 +150,8 @@ public class GamePadHub {
      * A default constructor for the GpioHub class that checks to see if GPIO is supported on the system.
      * Creates a default array of 6 GpioPin instances using values from the GameSettings class to set the GPIO pin numbers
      * and the events that should be tracked.
+     * 
+     * @param GamePadIndex      The index of the gamepad on the OS.
      */
     public GamePadHub(int GamePadIndex) {        
         gamePadIdx = GamePadIndex;
@@ -178,10 +182,12 @@ public class GamePadHub {
     }
 
     /**
+     * A default constructor for the GpioHub class that checks to see if GPIO is supported on the system.
+     * Creates a default array of 6 GpioPin instances using values from the GameSettings class to set the GPIO pin numbers
+     * and the events that should be tracked. This constructor takes into account which player the gamepad input is for.
      * 
-     * 
-     * @param player1
-     * @param GamePadIndex 
+     * @param player1           The player, 1 or 2, this GamePadHub is processing input for.
+     * @param GamePadIndex      The index of the gamepad on the OS.
      */
     public GamePadHub(boolean player1, int GamePadIndex) {               
         gamePadIdx = GamePadIndex;
@@ -243,7 +249,7 @@ public class GamePadHub {
     }
 
     /**
-     * 
+     * An event listener for determining if a gamepad has been disconnected or reconnected.
      */
     private void AddListener() {
         ControllerEnvironment.getDefaultEnvironment().addControllerListener(new ControllerListener() {
@@ -290,7 +296,7 @@ public class GamePadHub {
     }
     
     /**
-     * 
+     * A preparation method that sets up all the button mappings using the input indexes set in the class fields.
     */
     private void Prep() {
         try {
@@ -648,7 +654,7 @@ public class GamePadHub {
      * A method to determine the state of the GPIO pins. The methods scans all the GPIO pins in the buttons
      * array to determine the state of each button.
      * 
-     * @throws IOException 
+     * @throws      IOException 
      */
     public void GetState() throws Exception { 
         if(gamePadEnabled == true) {

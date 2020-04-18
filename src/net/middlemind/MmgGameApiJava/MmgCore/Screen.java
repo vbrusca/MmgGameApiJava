@@ -12,11 +12,10 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
  * A game screen object, Screen, that extends the MmgGameScreen base
- * class. This game screen is for displaying a main menu screen. Created on
- * August 1, 2015, 10:57 PM by Middlemind Games. Created by Middlemind Games.
- *
+ * class. This game screen is for displaying a main menu screen.
+ * Created by Middlemind Games 03/15/2020
+ * 
  * @author Victor G. Brusca
- * 03/15/2020
  */
 public class Screen extends MmgGameScreen implements GenericEventHandler {
 
@@ -32,17 +31,17 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     public GamePanel owner;
     
     /**
-     * 
+     * A boolean flag that indicates if there is work to be donw on the next MmgUpdate method call.
      */
     public boolean isDirty;
     
     /**
-     * 
+     * A private boolean flag used in the drawing routine.
      */
     private boolean lret;
     
     /**
-     * 
+     * A data structure that stores all the class configuration file entries from the target file.
      */
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
@@ -50,8 +49,8 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
      *
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param State         The game state of this game screen.
+     * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public Screen(GameStates State, GamePanel Owner) {
@@ -64,8 +63,9 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
     
     /**
+     * A class method for handling GenericEventMessages.
      * 
-     * @param obj 
+     * @param obj       The GenericEventMessage to process.
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
@@ -99,10 +99,10 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
 
     /**
+     * A callback method used to process A click events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source of the A click event, keyboard, GPIO gamepad, USB gamepad.
+     * @return          A boolean flag indicating if work was done.
      */
     @Override
     public boolean ProcessAClick(int src) {
@@ -110,10 +110,10 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
     
     /**
+     * A callback method used to process dpad release events.
      * 
-     * 
-     * @param dir
-     * @return 
+     * @param dir       The dpad direction of the event.
+     * @return          A boolean flag indicating if work was done.
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
@@ -150,25 +150,25 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     /**
      * Returns the game state of this game screen.
      *
-     * @return The game state of this game screen.
+     * @return      The game state of this game screen.
      */
     public GameStates GetGameState() {
         return state;
     }
 
     /**
+     * Gets a boolean flag indicating if there is work to be done on the next MmgUpdate method call.
      * 
-     * 
-     * @return 
+     * @return      A flag indicating if there is work to be done on the next MmgUpdate call.
      */
     public boolean GetIsDirty() {
         return isDirty;
     }
 
     /**
+     * Sets a boolean flag indicating if there is work to be done on the next MmgUpdate method call.
      * 
-     * 
-     * @param b 
+     * @param b     A flag indicating if there is work to be done on the next MmgUpdate call.
      */
     public void SetIsDirty(boolean b) {
         isDirty = b;
@@ -177,7 +177,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     /**
      * The main drawing routine.
      *
-     * @param p An MmgPen object to use for drawing this game screen.
+     * @param p     An MmgPen object to use for drawing this game screen.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -187,12 +187,12 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
 
     /**
+     * Update the current sprite animation frame index.
      * 
-     * 
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame
-     * @return 
+     * @param updateTick            The index of the MmgUpdate call.
+     * @param currentTimeMs         The current time in milliseconds of the MmgUpdate call.
+     * @param msSinceLastFrame      The number of milliseconds since the last MmgUpdate call.
+     * @return                      A boolean flag indicating if any work was done.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {

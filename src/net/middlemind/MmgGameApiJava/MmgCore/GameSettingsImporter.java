@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
  * The GameSettingsImporter class is used to load game settings data from an engine config XML file.
  * The file data is stored in the values, Hashtable, class field for processing. Applying the rules 
  * would update class filed values of target classes.
+ * Created by Middlemind Games 01/05/2020
  * 
  * @author Victor G. Brusca
  */

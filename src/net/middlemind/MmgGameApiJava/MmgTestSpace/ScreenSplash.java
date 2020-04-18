@@ -6,9 +6,9 @@ import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
- *
+ * Created by Middlemind Games 02/19/2020
+ * 
  * @author Victor G. Brusca, Middlemind Games
- * 02/19/2020
  */
 public class ScreenSplash extends net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash {
     

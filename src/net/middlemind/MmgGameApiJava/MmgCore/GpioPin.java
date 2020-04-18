@@ -2,9 +2,9 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
  * The GpioPin class is used to map the state of Linux GPIO pins for use as a source of input.
+ * Created by Middlemind Games 01/05/2020
  * 
- * @author Victor G. Brusca, Middlemind Games
- * 01/05/2020
+ * @author Victor G. Brusca
  */
 public class GpioPin {
     

@@ -1,17 +1,15 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
- * The frame rate worker thread, runs the main loop while tracking frame rate
- * information. Created on August 1, 2015, 10:57 PM by Middlemind Games Created
- * by Middlemind Games
+ * The frame rate worker thread, runs the main loop while tracking frame rate information. 
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */
 public class RunFrameRate implements Runnable {
 
     /**
-     * The MainFrame that houses the game, connection between JFrame, JPanel and
-     * the game.
+     * The MainFrame that houses the game, connection between JFrame, JPanel and the game.
      */
     public final MainFrame mf;
 
@@ -71,8 +69,8 @@ public class RunFrameRate implements Runnable {
      * Constructor, sets the MainFrame, JFrame, and the target frames per
      * second.
      *
-     * @param Mf The MainFrame, JFrame for this game.
-     * @param Fps The target frames per second to use for the main loop.
+     * @param Mf        The MainFrame, JFrame for this game.
+     * @param Fps       The target frames per second to use for the main loop.
      */
     public RunFrameRate(MainFrame Mf, long Fps) {
         mf = Mf;

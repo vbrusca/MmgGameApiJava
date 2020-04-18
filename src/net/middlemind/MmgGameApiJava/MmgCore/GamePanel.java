@@ -338,32 +338,32 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public MmgFontData fontData;
     
     /**
-     * 
+     * A GamePadHub instance used for processing USB gamepad input.
      */
     public GamePadHub gamePadHub;
     
     /**
-     * 
+     * A GamePadRunner instance used for polling gamepad input from the GamePadHub.
      */
     public GamePadHubRunner gamePadRunner;
     
     /**
-     * 
+     * A Thread used to process the USB gamepad input if threaded polling is enabled in the GameSettings class.
      */
     public Thread gpadTr;
     
     /**
-     * 
+     * A GpioPadHub instance used for processing GPIO gamepad input.
      */
     public GpioHub gpioHub;
     
     /**
-     * 
+     * A GpioPadRunner instance used for polling gamepad input from the GpioPadHub.
      */
     public GpioHubRunner gpioRunner;
     
     /**
-     * 
+     * A Thread used to process the GPIO gamepad input if threaded polling is enabled in the GameSettings class.
      */
     public Thread gpioTr;    
     
@@ -371,11 +371,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * Constructor, sets the MainFrame, window dimensions, and position of this
      * Canvas.
      *
-     * @param Mf The MainFrame class this panel belongs to.
-     * @param WinWidth The target window width.
-     * @param WinHeight The target window height.
-     * @param X The X coordinate of this Canvas.
-     * @param Y The Y coordinate of this Canvas.
+     * @param Mf            The MainFrame class this panel belongs to.
+     * @param WinWidth      The target window width.
+     * @param WinHeight     The target window height.
+     * @param X             The X coordinate of this Canvas.
+     * @param Y             The Y coordinate of this Canvas.
      */
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {

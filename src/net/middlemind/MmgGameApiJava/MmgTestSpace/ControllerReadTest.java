@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
@@ -63,7 +61,7 @@ public class ControllerReadTest extends JFrame {
             } else if (data == 1.0f) {
                 digitalState.setBackground(Color.green);
                 digitalState.setText("ON");
-            } else { // shoudl never happen
+            } else { // should never happen
                 digitalState.setBackground(Color.red);
                 digitalState.setText("ERR:" + data);
             }

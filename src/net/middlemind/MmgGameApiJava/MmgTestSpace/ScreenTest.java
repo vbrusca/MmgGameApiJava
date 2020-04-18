@@ -25,11 +25,11 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
- * A game screen object, ScreenTest, that extends the MmgGameScreen base
- * class. This class is for testing new UI widgets, etc.
- *
+ * A game screen object, ScreenTest, that extends the MmgGameScreen base class.
+ * This class is for testing new UI widgets, etc.
+ * Created by Middlemind Games 02/25/2020
+ * 
  * @author Victor G. Brusca
- * 02/25/2020
  */
 public class ScreenTest extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
@@ -50,23 +50,52 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
      */
     protected final GamePanel owner;
     
+    /**
+     * 
+     */
     protected MmgScrollVert scrollVert;
+    
+    /**
+     * 
+     */
     protected MmgScrollHor scrollHor;
+    
+    /**
+     * 
+     */
     protected MmgScrollHorVert scrollBoth;
     
+    /**
+     * 
+     */
     private MmgBmp bground;
+    
+    /**
+     * 
+     */
     private Mmg9Slice menuBground;
+    
+    /**
+     * 
+     */
     private MmgTextField txtField;
     
+    /**
+     * 
+     */
     private boolean isDirty = false;
+    
+    /**
+     * 
+     */
     private boolean lret = false;
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
      *
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param State         The game state of this game screen.
+     * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenTest(GameStates State, GamePanel Owner) {
@@ -83,7 +112,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
      * Sets a generic event handler that will receive generic events from this
      * object.
      *
-     * @param Handler A class that implements the GenericEventHandler interface.
+     * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
         Helper.wr("Odroid.ScreenTest.SetGenericEventHandler");

@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 import javax.swing.JFrame;
 
 /**
- * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT Created on
- * August 1, 2015, 10:57 PM by Middlemind Games Created by Middlemind Games
+ * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT 
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */

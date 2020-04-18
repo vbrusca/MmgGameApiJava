@@ -13,12 +13,10 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgLoadingScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
-//TODO: Finish documentation
-
 /**
  * A game screen object, ScreenLoading, that extends the MmgLoadingScreen base
- * class. This game screen is for displaying a loading screen. Created on August
- * 1, 2015, 10:57 PM by Middlemind Games. Created by Middlemind Games.
+ * class. This game screen is for displaying a loading screen.
+ * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
  */
@@ -57,12 +55,12 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     public GamePanel owner;
 
     /**
-     * 
+     * A timing value in milliseconds used to slow down the resource loading process when there are few resources to load.
      */
     public long slowDown;
     
     /**
-     * 
+     * A data structure that stores all the class configuration file entries from the target file.
      */
     public Hashtable<String, MmgCfgFileEntry> classConfig;   
     
@@ -70,10 +68,10 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      * Constructor, sets the loading bar, the loading bar offset, the game state
      * of this game screen, and the GamePanel that owns this game screen.
      *
-     * @param LoadingBar A loading bar object, MmgLoadingBar, to use as this screen's loading bar.
-     * @param lBarOff An offset used in drawing the loading bar.
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param LoadingBar    A loading bar object, MmgLoadingBar, to use as this screen's loading bar.
+     * @param lBarOff       An offset used in drawing the loading bar.
+     * @param State         The game state of this game screen.
+     * @param Owner         The owner of this game screen.
      */
     public ScreenLoading(MmgLoadingBar LoadingBar, float lBarOff, GameStates State, GamePanel Owner) {
         super(LoadingBar, lBarOff);
@@ -88,8 +86,8 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      * Constructor, sets the game state associated with this screen, and sets
      * the owner GamePanel instance.
      *
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param State     The game state of this game screen.
+     * @param Owner     The owner of this game screen.
      */
     public ScreenLoading(GameStates State, GamePanel Owner) {
         pause = false;
@@ -100,18 +98,18 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     }
 
     /**
+     * Gets the slow down value that will slow down the loading process when there are only a few resources to load.
      * 
-     * 
-     * @return 
+     * @return      The slow down time in milliseconds.
      */
     public long GetSlowDown() {
         return slowDown;
     }
 
     /**
+     * Sets the slow down value that will slow down the loading process when there are only a few resources to load.
      * 
-     * 
-     * @param l 
+     * @param l     The slow down time in milliseconds.
      */
     public void SetSlowDown(long l) {
         slowDown = l;
@@ -121,52 +119,52 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      * Sets a generic event handler that will receive generic events from this
      * object.
      *
-     * @param Handler A class that implements the GenericEventHandler interface.
+     * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
         handler = Handler;
     }
 
     /**
+     * Gets the generic event handler.
      * 
-     * 
-     * @return 
+     * @return      The generic event handler.
      */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
     }
 
     /**
+     * Gets the resource loader that handles actually loading resources.
      * 
-     * 
-     * @return 
+     * @return      The resource loader.
      */
     public RunResourceLoad GetLoader() {
         return datLoad;
     }
 
     /**
+     * Sets the resource loader that handles actually loading resources.
      * 
-     * 
-     * @param DatLoad 
+     * @param DatLoad       The resource loader.
      */
     public void SetLoader(RunResourceLoad DatLoad) {
         datLoad = DatLoad;
     }
 
     /**
+     * Gets the loading bar used to display the loading progress.
      * 
-     * 
-     * @return 
+     * @return      The loading bar.
      */
     public MmgLoadingBar GetLoadingBar() {
         return loadingBar;
     }
 
     /**
+     * Sets the loading bar used to display the loading progress.
      * 
-     * 
-     * @param LoadingBar 
+     * @param LoadingBar    The loading bar.
      */
     public void SetLoadingBar(MmgLoadingBar LoadingBar) {
         loadingBar = LoadingBar;
