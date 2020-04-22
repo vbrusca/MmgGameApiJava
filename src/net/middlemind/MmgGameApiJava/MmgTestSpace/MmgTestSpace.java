@@ -69,7 +69,7 @@ public final class MmgTestSpace {
     /**
      * Base engine config files.
      */
-    public static String ENGINE_CONFIG_FILE = "../cfg/engine_config.xml";
+    public static String ENGINE_CONFIG_FILE = "../cfg/engine_config_mmg_test_space.xml";
 
     /**
      * The GamePanel used to render the game in a MainFrame instance.
@@ -81,7 +81,10 @@ public final class MmgTestSpace {
      */       
     public static String[] ARGS = null;    
         
-    public static String TEST_TO_RUN = "0";
+    /**
+     * A static class field that holds a numeric value indicating which test to run, can be set via command line argument - TEST=X - where X is some integer.
+     */
+    public static String TEST_TO_RUN = "2";
     
     /**
      * Method that searches an array for a string match.

@@ -9,14 +9,30 @@ import net.middlemind.MmgGameApiJava.MmgCore.Helper;
  */
 public class MainFrame extends net.middlemind.MmgGameApiJava.MmgCore.MainFrame {
     
+    /**
+     * 
+     * 
+     * @param WinWidth
+     * @param WinHeight
+     * @param PanWidth
+     * @param PanHeight
+     * @param GameWidth
+     * @param GameHeight 
+     */
     public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight, int GameWidth, int GameHeight) {
         super(WinWidth, WinHeight, PanWidth, PanHeight, GameWidth, GameHeight);
-        Helper.wr("TestSpace.MainFrame.Constructor");
+        Helper.wr("MainFrame.Constructor");
     }
     
+    /**
+     * 
+     * 
+     * @param WinWidth
+     * @param WinHeight 
+     */
     public MainFrame(int WinWidth, int WinHeight) {
         super(WinWidth, WinHeight);
-        Helper.wr("TestSpace.MainFrame.Constructor");        
+        Helper.wr("MainFrame.Constructor");        
     }    
     
 }

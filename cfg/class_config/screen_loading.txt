@@ -1,8 +1,8 @@
-bmpLogo->odroid_logo2.png
+bmpLogo->logo_large2.png
 
-loadingLogoSlowDown=100
+loadingLogoSlowDown=0
 
-loadingLogoScale=0.75
+loadingLogoScale=1.5
 #loadingLogoOffsetY=0
 #loadingLogoOffsetX=0
 #loadingLogoPosY=0

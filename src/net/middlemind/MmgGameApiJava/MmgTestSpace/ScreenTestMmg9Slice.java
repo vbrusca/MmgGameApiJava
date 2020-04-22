@@ -14,6 +14,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
+import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
@@ -46,6 +47,11 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
      * 
      */
     private MmgFont bgroundLabel;    
+    
+    /**
+     * 
+     */
+    private MmgFont title;
     
     /**
      * 
@@ -126,10 +132,17 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
 
         int width = MmgHelper.ScaleValue(345);
         int height = MmgHelper.ScaleValue(300);
+        
+        title = MmgFontData.CreateDefaultBoldMmgFontLg();
+        title.SetText("<  Screen Test Mmg 9 Slice  >");
+        MmgHelper.CenterHorAndTop(title);
+        title.SetY(title.GetY() + 30);
+        AddObj(title);
+        
         bground = Helper.GetBasicCachedBmp("popup_window_base.png");
         MmgHelper.CenterHorAndVert(bground);
         bground.SetX(bground.GetX() - 200);
-        bground.SetY(bground.GetY() - 50);
+        bground.SetY(bground.GetY() - 32);
         AddObj(bground);
         
         bgroundLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -144,7 +157,7 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
         menuBground.SetHeight(height);
         MmgHelper.CenterHorAndVert(menuBground);
         menuBground.SetX(menuBground.GetX() + 200);
-        menuBground.SetY(menuBground.GetY() + 16);        
+        menuBground.SetY(menuBground.GetY() + 36);        
         AddObj(menuBground);
         
         menuBgroundLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -261,6 +274,13 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     @Override
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMmg9Slice.ProcessDpadRelease: " + dir);
+        if(dir == GameSettings.RIGHT_KEYBOARD) {
+            owner.SwitchGameState(GameStates.GAME_SCREEN_03);
+            
+        } else if(dir == GameSettings.LEFT_KEYBOARD) {
+            owner.SwitchGameState(GameStates.GAME_SCREEN_07);
+
+        }
         return true;
     }
     
@@ -322,6 +342,7 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
         SetBackground(null);
         bground = null;
         bgroundLabel = null;
+        title = null;
         menuBground = null;
         menuBgroundLabel = null;
         super.ClearObjs();

@@ -12,18 +12,34 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  */
 public class ScreenSplash extends net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash {
     
+    /**
+     * 
+     * 
+     * @param State
+     * @param Owner 
+     */
     public ScreenSplash(GamePanel.GameStates State, GamePanel Owner) {
         super(State, Owner);
     }
   
+    /**
+     * 
+     * 
+     * @param Handler 
+     */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("TestSpace.ScreenSplash.SetGenericEventHandler");
+        Helper.wr("ScreenSplash.SetGenericEventHandler");
         handler = Handler;
     }    
     
+    /**
+     * 
+     * 
+     * @param obj 
+     */
     @Override
     public void MmgHandleUpdate(Object obj) {
-        Helper.wr("TestSpace.ScreenSplash.MmgHandleUpdate");
+        Helper.wr("ScreenSplash.MmgHandleUpdate");
         if (handler != null) {
             handler.HandleGenericEvent(new GenericEventMessage(net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }

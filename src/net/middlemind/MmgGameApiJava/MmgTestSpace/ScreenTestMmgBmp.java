@@ -1,9 +1,13 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
+import java.awt.Color;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -12,7 +16,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgTextField;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -24,7 +28,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -46,37 +50,82 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
     /**
      * 
      */
-    private MmgBmp bground;
+    private MmgBmp bmpCache;
+    
+    /**
+     * 
+     */
+    private MmgFont bmpCacheLabel;
+    
+    /**
+     * 
+     */
+    private MmgBmp bmpFile;
+    
+    /**
+     * 
+     */
+    private MmgFont bmpFileLabel;    
+    
+    /**
+     * 
+     */
+    private MmgBmp bmpCustomFill;
+    
+    /**
+     * 
+     */
+    private MmgFont bmpCustomFillLabel;    
+    
+    /**
+     * 
+     */
+    private MmgBmp bmpPartialCopy;
+    
+    /**
+     * 
+     */
+    private MmgFont bmpPartialCopyLabel;    
         
     /**
      * 
      */
-    private MmgTextField txtField;
+    private MmgDrawableBmpSet bmpSet;
     
     /**
      * 
      */
-    private MmgFont txtFieldLabel;
+    private MmgRect srcRect;
     
     /**
      * 
      */
-    private MmgFont maxLenLabel;
-    
-    /**
-     * 
-     */
-    private MmgFont txtFieldText;
-    
-    /**
-     * 
-     */
-    private MmgFont txtFieldMaxLenError;
+    private MmgRect dstRect;
     
     /**
      * 
      */
     private MmgFont title;
+    
+    /**
+     * 
+     */
+    private MmgBmp bmpScaled;
+    
+    /**
+     * 
+     */
+    private MmgFont bmpScaledLabel;
+    
+    /**
+     * 
+     */
+    private MmgBmp bmpRotate;
+    
+    /**
+     * 
+     */
+    private MmgFont bmpRotateLabel;    
     
     /**
      * 
@@ -96,13 +145,13 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgTextField(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgBmp(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMsgTextField.Constructor");
+        Helper.wr("ScreenTestMmgBmp.Constructor");
     }
 
     /**
@@ -112,7 +161,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMsgTextField.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgBmp.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -130,53 +179,79 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMsgTextField.LoadResources");
+        Helper.wr("ScreenTestMmgBmp.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        int width = MmgHelper.ScaleValue(200);
-        int height = MmgHelper.ScaleValue(50);
-        
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Text Field  >");
+        title.SetText("<  Screen Test Mmg Bmp  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
-        AddObj(title);        
+        AddObj(title);         
         
-        bground = Helper.GetBasicCachedBmp("popup_window_base.png");
+        bmpCache = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
+        bmpCache.SetY(GetY() + 90);
+        bmpCache.SetX(220);
+        AddObj(bmpCache);
+
+        bmpCacheLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        bmpCacheLabel.SetText("MmgBmp From Auto Load Cache");
+        bmpCacheLabel.SetPosition(50, GetY() + 70);
+        AddObj(bmpCacheLabel);
         
-        txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), width, height, 12, 15);
-        MmgHelper.CenterHorAndVert(txtField);
-        txtField.SetMaxLengthOn(true);
-        txtField.SetEventHandler(this);
-        txtField.SetY(txtField.GetY() - 30);
-        AddObj(txtField);
+        bmpFile = MmgHelper.GetBasicCachedBmp("../cfg/drawable/loading_bar.png", "loading_bar.png");
+        bmpFile.SetY(GetY() + 90);
+        bmpFile.SetX(560);
+        AddObj(bmpFile);
         
-        txtFieldLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        txtFieldLabel.SetText("MmgTextField Example");
-        MmgHelper.CenterHorAndVert(txtFieldLabel);
-        txtFieldLabel.SetY(txtFieldLabel.GetY() - 55);
-        AddObj(txtFieldLabel);
+        bmpFileLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        bmpFileLabel.SetText("MmgBmp From Path");
+        bmpFileLabel.SetPosition(545, GetY() + 70);
+        AddObj(bmpFileLabel);
         
-        txtFieldText = MmgFontData.CreateDefaultBoldMmgFontLg();
-        txtFieldText.SetText("Text Field Text: ");
-        MmgHelper.CenterHorAndVert(txtFieldText);
-        txtFieldText.SetY(txtFieldText.GetY() + 40);
-        AddObj(txtFieldText);
+        bmpCustomFill = MmgHelper.CreateFilledBmp(50, 50, MmgColor.GetCalmBlue());
+        bmpCustomFill.SetY(GetY() + 210);
+        bmpCustomFill.SetX(205);
+        AddObj(bmpCustomFill);        
         
-        maxLenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        maxLenLabel.SetText("Max Len Error On: " + txtField.IsMaxLengthOn() + " Max Len: " + MmgTextField.DEFAULT_MAX_LENGTH);
-        MmgHelper.CenterHorAndVert(maxLenLabel);
-        maxLenLabel.SetY(maxLenLabel.GetY() + 70);
-        AddObj(maxLenLabel);
+        bmpCustomFillLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        bmpCustomFillLabel.SetText("MmgBmp Created Custom with Fill");
+        bmpCustomFillLabel.SetPosition(45, GetY() + 190);
+        AddObj(bmpCustomFillLabel);
+                
+        bmpSet = MmgHelper.CreateDrawableBmpSet(bmpCache.GetWidth()/2, bmpCache.GetHeight()/2, true);
+        srcRect = new MmgRect(0, 0, bmpCache.GetHeight()/2, bmpCache.GetWidth()/2);
+        dstRect = new MmgRect(0, 0, bmpCache.GetHeight()/2, bmpCache.GetWidth()/2);        
+        bmpSet.p.DrawBmp(bmpCache, srcRect, dstRect);
         
-        txtFieldMaxLenError = MmgFontData.CreateDefaultBoldMmgFontLg();
-        txtFieldMaxLenError.SetText("Max Len Error Current Time MS: ");
-        MmgHelper.CenterHorAndVert(txtFieldMaxLenError);
-        txtFieldMaxLenError.SetY(txtFieldMaxLenError.GetY() + 100);
-        AddObj(txtFieldMaxLenError);
+        bmpSet.img.SetY(GetY() + 210);
+        bmpSet.img.SetX(650);
+        AddObj(bmpSet.img);        
+        
+        bmpPartialCopyLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        bmpPartialCopyLabel.SetText("MmgBmp Custom with Copy");
+        bmpPartialCopyLabel.SetPosition(505, GetY() + 190);
+        AddObj(bmpPartialCopyLabel);        
+        
+        bmpScaled = MmgBmpScaler.ScaleMmgBmp(bmpCache, 1.50, true);
+        bmpScaled.SetPosition(213, GetY() + 330);        
+        AddObj(bmpScaled);
+        
+        bmpScaledLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        bmpScaledLabel.SetText("MmgBmp Custom Scaled");
+        bmpScaledLabel.SetPosition(90, GetY() + 310);
+        AddObj(bmpScaledLabel);
+        
+        bmpRotate = MmgBmpScaler.RotateMmgBmp(bmpCache, 90, true);
+        bmpRotate.SetPosition(645, GetY() + 330);        
+        AddObj(bmpRotate);        
+        
+        bmpRotateLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        bmpRotateLabel.SetText("MmgBmp Custom Rotated");
+        bmpRotateLabel.SetPosition(515, GetY() + 310);
+        AddObj(bmpRotateLabel);        
         
         ready = true;
         pause = false;
@@ -190,7 +265,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgBmp.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -203,7 +278,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgBmp.ProcessScreenPress");
         return true;
     }
 
@@ -215,7 +290,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgBmp.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -228,7 +303,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgBmp.ProcessScreenRelease");
         return true;
     }
     
@@ -240,7 +315,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMsgTextField.ProcessAClick");
+        Helper.wr("ScreenTestMmgBmp.ProcessAClick");
         return true;
     }
     
@@ -252,7 +327,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMsgTextField.ProcessBClick");        
+        Helper.wr("ScreenTestMmgBmp.ProcessBClick");        
         return true;
     }
     
@@ -261,7 +336,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMsgTextField.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgBmp.ProcessDebugClick");
     }
 
     /**
@@ -272,7 +347,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgBmp.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -284,14 +359,14 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgBmp.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_05);
-        
-        } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_03);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_06);            
             
-        }
+        } else if(dir == GameSettings.LEFT_KEYBOARD) {
+            owner.SwitchGameState(GameStates.GAME_SCREEN_04);
+            
+        }        
         return true;
     }
     
@@ -303,7 +378,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgBmp.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -315,7 +390,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgBmp.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -328,7 +403,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgBmp.ProcessScreenClick");
         return true;
     }    
     
@@ -341,13 +416,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        if(Character.isLetterOrDigit(c)) {
-            txtField.ProcessKeyClick(c, code);            
-        } else if(code == 8) {
-            txtField.DeleteChar();
-        }
-        txtFieldText.SetText("Text Field Text: " + txtField.GetTextFieldString());
-        MmgHelper.CenterHor(txtFieldText);
+        Helper.wr("ScreenTestMmgBmp.ProcessKeyClick");
         return true;
     }
     
@@ -357,10 +426,21 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
-        bground = null;
-        txtField = null;
-        title = null;
-        txtFieldLabel = null;
+        
+        bmpCache = null;
+        bmpCacheLabel = null;
+        bmpCustomFill = null;
+        bmpCustomFillLabel = null;
+        bmpFile = null;
+        bmpFileLabel = null;
+        bmpPartialCopy = null;
+        bmpPartialCopyLabel = null;
+        bmpRotate = null;
+        bmpRotateLabel = null;
+        bmpScaled = null;
+        bmpScaledLabel = null;
+        bmpSet = null;
+        
         ClearObjs();
         ready = false;
     }
@@ -385,34 +465,6 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
             super.MmgDraw(p);
         }
     }
-
-    /**
-     * 
-     * 
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame
-     * @return 
-     */
-    @Override
-    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        lret = false;
-
-        if (pause == false && isVisible == true) {
-            //always run this update
-            txtField.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
-            
-            if (isDirty == true) {
-                super.GetObjects().SetIsDirty(true);            
-
-                if (super.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                    lret = true;
-                }
-            }
-        }
-
-        return lret;
-    }
     
     /**
      * 
@@ -421,7 +473,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMsgTextField.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgBmp.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -431,10 +483,6 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());   
-        if(e.GetMessage() != null && e.GetMessage().equals("error_max_length") == true) {
-            txtFieldMaxLenError.SetText("Max Len Error Current Time MS: " + System.currentTimeMillis());
-            MmgHelper.CenterHor(txtFieldMaxLenError);
-        }
+        Helper.wr("ScreenTestMmg9Slice.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());        
     }
 }

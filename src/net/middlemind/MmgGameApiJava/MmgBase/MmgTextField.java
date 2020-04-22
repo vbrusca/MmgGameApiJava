@@ -535,5 +535,9 @@ public class MmgTextField extends MmgObj {
             bground.MmgDraw(p);
             font.MmgDraw(p);
         }
-    }    
+    }
+
+    public void SetEventHandler(MmgEventHandler h) {
+        errorMaxLength.SetTargetEventHandler(h);
+    }
 }

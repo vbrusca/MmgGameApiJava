@@ -12,6 +12,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgTextField;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
@@ -24,7 +25,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -46,33 +47,23 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
     /**
      * 
      */
-    private MmgBmp bground;
+    private MmgSound sound1;
+            
+    /**
+     * 
+     */
+    private MmgSound sound2;    
+    
+    /**
+     * 
+     */
+    private MmgFont soundLabel1;
+    
+    /**
+     * 
+     */
+    private MmgFont soundLabel2;
         
-    /**
-     * 
-     */
-    private MmgTextField txtField;
-    
-    /**
-     * 
-     */
-    private MmgFont txtFieldLabel;
-    
-    /**
-     * 
-     */
-    private MmgFont maxLenLabel;
-    
-    /**
-     * 
-     */
-    private MmgFont txtFieldText;
-    
-    /**
-     * 
-     */
-    private MmgFont txtFieldMaxLenError;
-    
     /**
      * 
      */
@@ -96,7 +87,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgTextField(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgSprite(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
@@ -135,49 +126,28 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
-
-        int width = MmgHelper.ScaleValue(200);
-        int height = MmgHelper.ScaleValue(50);
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Text Field  >");
+        title.SetText("<  Screen Test Mmg Sprite  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
-        AddObj(title);        
+        AddObj(title);
+               
+        sound1 = MmgHelper.GetBasicCachedSound("jump1.wav");
+        sound2 = MmgHelper.GetBasicCachedSound("jump2.wav");        
         
-        bground = Helper.GetBasicCachedBmp("popup_window_base.png");
+        soundLabel1 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        soundLabel1.SetText("MmgSound Example");
+        MmgHelper.CenterHorAndVert(soundLabel1);
+        soundLabel1.SetY(soundLabel1.GetY() - 20);
+        AddObj(soundLabel1);
         
-        txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), width, height, 12, 15);
-        MmgHelper.CenterHorAndVert(txtField);
-        txtField.SetMaxLengthOn(true);
-        txtField.SetEventHandler(this);
-        txtField.SetY(txtField.GetY() - 30);
-        AddObj(txtField);
-        
-        txtFieldLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        txtFieldLabel.SetText("MmgTextField Example");
-        MmgHelper.CenterHorAndVert(txtFieldLabel);
-        txtFieldLabel.SetY(txtFieldLabel.GetY() - 55);
-        AddObj(txtFieldLabel);
-        
-        txtFieldText = MmgFontData.CreateDefaultBoldMmgFontLg();
-        txtFieldText.SetText("Text Field Text: ");
-        MmgHelper.CenterHorAndVert(txtFieldText);
-        txtFieldText.SetY(txtFieldText.GetY() + 40);
-        AddObj(txtFieldText);
-        
-        maxLenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        maxLenLabel.SetText("Max Len Error On: " + txtField.IsMaxLengthOn() + " Max Len: " + MmgTextField.DEFAULT_MAX_LENGTH);
-        MmgHelper.CenterHorAndVert(maxLenLabel);
-        maxLenLabel.SetY(maxLenLabel.GetY() + 70);
-        AddObj(maxLenLabel);
-        
-        txtFieldMaxLenError = MmgFontData.CreateDefaultBoldMmgFontLg();
-        txtFieldMaxLenError.SetText("Max Len Error Current Time MS: ");
-        MmgHelper.CenterHorAndVert(txtFieldMaxLenError);
-        txtFieldMaxLenError.SetY(txtFieldMaxLenError.GetY() + 100);
-        AddObj(txtFieldMaxLenError);
-        
+        soundLabel2 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        soundLabel2.SetText("Press Enter or Space to Play a Sound");
+        MmgHelper.CenterHorAndVert(soundLabel2);
+        soundLabel2.SetY(soundLabel2.GetY() + 20);
+        AddObj(soundLabel2);        
+                
         ready = true;
         pause = false;
     }
@@ -286,10 +256,10 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMsgTextField.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_05);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_02);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_03);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_07);
             
         }
         return true;
@@ -341,13 +311,13 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        if(Character.isLetterOrDigit(c)) {
-            txtField.ProcessKeyClick(c, code);            
-        } else if(code == 8) {
-            txtField.DeleteChar();
+        if(c == '\n') {
+            sound1.Play();
+        
+        } else if(c ==  ' ') {
+            sound2.Play();
+            
         }
-        txtFieldText.SetText("Text Field Text: " + txtField.GetTextFieldString());
-        MmgHelper.CenterHor(txtFieldText);
         return true;
     }
     
@@ -357,10 +327,11 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
-        bground = null;
-        txtField = null;
+        sound1 = null;
+        sound2 = null;
         title = null;
-        txtFieldLabel = null;
+        soundLabel1 = null;
+        soundLabel2 = null;        
         ClearObjs();
         ready = false;
     }
@@ -385,34 +356,6 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
             super.MmgDraw(p);
         }
     }
-
-    /**
-     * 
-     * 
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame
-     * @return 
-     */
-    @Override
-    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        lret = false;
-
-        if (pause == false && isVisible == true) {
-            //always run this update
-            txtField.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
-            
-            if (isDirty == true) {
-                super.GetObjects().SetIsDirty(true);            
-
-                if (super.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame) == true) {
-                    lret = true;
-                }
-            }
-        }
-
-        return lret;
-    }
     
     /**
      * 
@@ -431,10 +374,6 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());   
-        if(e.GetMessage() != null && e.GetMessage().equals("error_max_length") == true) {
-            txtFieldMaxLenError.SetText("Max Len Error Current Time MS: " + System.currentTimeMillis());
-            MmgHelper.CenterHor(txtFieldMaxLenError);
-        }
+        Helper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }
