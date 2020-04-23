@@ -3,7 +3,6 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -13,7 +12,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgTextField;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -93,7 +91,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMsgTextField.Constructor");
+        Helper.wr("ScreenTestMmgSound.Constructor");
     }
 
     /**
@@ -103,7 +101,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMsgTextField.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgSound.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -121,14 +119,14 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMsgTextField.LoadResources");
+        Helper.wr("ScreenTestMmgSound.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Sound  >");
+        title.SetText("<  Screen Test Mmg Sound (6)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
@@ -160,7 +158,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgSound.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -173,7 +171,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgSound.ProcessScreenPress");
         return true;
     }
 
@@ -185,7 +183,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgSound.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -198,7 +196,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgSound.ProcessScreenRelease");
         return true;
     }
     
@@ -210,7 +208,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMsgTextField.ProcessAClick");
+        Helper.wr("ScreenTestMmgSound.ProcessAClick");
         return true;
     }
     
@@ -222,7 +220,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMsgTextField.ProcessBClick");        
+        Helper.wr("ScreenTestMmgSound.ProcessBClick");        
         return true;
     }
     
@@ -231,7 +229,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMsgTextField.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgSound.ProcessDebugClick");
     }
 
     /**
@@ -242,7 +240,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgSound.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -254,7 +252,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgSound.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_07);
         
@@ -273,7 +271,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgSound.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -285,7 +283,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgSound.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -298,7 +296,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgSound.ProcessScreenClick");
         return true;
     }    
     
@@ -311,6 +309,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
+        Helper.wr("ScreenTestMmgSound.ProcessKeyClick");        
         if(c == '\n') {
             sound1.Play();
         
@@ -364,7 +363,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMsgTextField.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgSound.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -374,6 +373,6 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        Helper.wr("ScreenTestMmgSound.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

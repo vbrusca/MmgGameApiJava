@@ -134,7 +134,7 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
         int height = MmgHelper.ScaleValue(300);
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg 9 Slice  >");
+        title.SetText("<  Screen Test Mmg 9 Slice (2)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
@@ -278,7 +278,7 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
             owner.SwitchGameState(GameStates.GAME_SCREEN_03);
             
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_07);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_09);
 
         }
         return true;

@@ -140,7 +140,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         int height = MmgHelper.ScaleValue(50);
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Text Field  >");
+        title.SetText("<  Screen Test Mmg Text Field (4)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);        

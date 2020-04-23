@@ -83,7 +83,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
         int tmp = 0;
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Main Menu  >");
+        title.SetText("<  Screen Test Mmg Main Menu (7)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);        
@@ -466,10 +466,12 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     public boolean ProcessDpadRelease(int dir) {
         if (dir == GameSettings.UP_KEYBOARD || dir == GameSettings.UP_GAMEPAD_1) {            
             MoveMenuSelUp();
+            
         } else if (dir == GameSettings.DOWN_KEYBOARD || dir == GameSettings.DOWN_GAMEPAD_1) {
             MoveMenuSelDown();
+            
         } else if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_02);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_08);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_06);

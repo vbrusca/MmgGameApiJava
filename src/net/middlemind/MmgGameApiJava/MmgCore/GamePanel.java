@@ -502,7 +502,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                         
                     }
                     
-                    ProcessKeyPress(e.getKeyChar(), e.getKeyCode());
+                    ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
                 }
             }
 
@@ -512,19 +512,23 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
                     if (e.getKeyCode() == 40) {
                         ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
+                        ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 38) {
                         ProcessDpadRelease(GameSettings.UP_KEYBOARD);
+                        ProcessDpadClick(GameSettings.UP_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 37) {
                         ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
+                        ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
                         
                     } else if (e.getKeyCode() == 39) {
                         ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
+                        ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
                         
                     }
                     
-                    ProcessKeyRelease(e.getKeyChar(), e.getKeyCode());
+                    ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
                 }
             }
         });

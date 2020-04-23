@@ -1,6 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import java.awt.Color;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
@@ -186,7 +185,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
         SetPosition(MmgScreenData.GetPosition());
 
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Bmp  >");
+        title.SetText("<  Screen Test Mmg Bmp (5)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);         
