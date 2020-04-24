@@ -500,6 +500,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     } else if (e.getKeyCode() == 39) {
                         ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
                         
+                    } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
+                        ProcessAPress(GameSettings.SRC_KEYBOARD);
+                    
+                    } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
+                        ProcessBPress(GameSettings.SRC_KEYBOARD);
+                    
                     }
                     
                     ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
@@ -526,7 +532,13 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                         ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
                         ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
                         
-                    }
+                    } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
+                        ProcessARelease(GameSettings.SRC_KEYBOARD);
+                    
+                    } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
+                        ProcessBRelease(GameSettings.SRC_KEYBOARD);
+                    
+                    }                    
                     
                     ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
                 }

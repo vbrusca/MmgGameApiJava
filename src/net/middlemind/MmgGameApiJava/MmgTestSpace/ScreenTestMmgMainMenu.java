@@ -28,7 +28,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     private MmgBmp menuStartGame1P;
 
     /**
-     * An MmgBmp instance that proveds custom menu items for two player games.
+     * An MmgBmp instance that provides custom menu items for two player games.
      */
     private MmgBmp menuStartGame2P;    
         

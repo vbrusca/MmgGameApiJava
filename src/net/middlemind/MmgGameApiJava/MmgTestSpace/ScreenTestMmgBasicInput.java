@@ -662,7 +662,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         }        
         
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_02);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_10);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_08);

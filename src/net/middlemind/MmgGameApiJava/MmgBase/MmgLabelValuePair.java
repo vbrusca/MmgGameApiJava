@@ -51,10 +51,10 @@ public class MmgLabelValuePair extends MmgObj {
     }
 
     /**
-     * Constructor that sets the lower level font class.
+     * Constructor that sets the lower level font classes with Font classs instances.
      * 
-     * @param fontLbl       The font to use for the label.
-     * @param fontVal       The font to use for the value.
+     * @param fontLbl       The Font to use for the label.
+     * @param fontVal       The Font to use for the value.
      */
     public MmgLabelValuePair(Font fontLbl, Font fontVal) {
         super();
@@ -68,6 +68,24 @@ public class MmgLabelValuePair extends MmgObj {
         Reset();
     }
 
+    /**
+     * Constructor that sets the lower level font classes with MmgFont class instances.
+     * 
+     * @param fontLbl       The MmgFont to use for the label.
+     * @param fontVal       The MmgFont to use for the value.
+     */
+    public MmgLabelValuePair(MmgFont fontLbl, MmgFont fontVal) {
+        super();
+        skipReset = true;
+        SetLabel(fontLbl);
+        SetValue(fontVal);
+        SetPaddingX(DEFAULT_PADDING_X);
+        SetWidth(0);
+        SetHeight(0);    
+        skipReset = false;
+        Reset();
+    }        
+    
     /**
      * Constructor that sets the lower level attributes based
      * on the given argument.

@@ -63,6 +63,31 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     
     /**
      * 
+     */
+    public ScreenTestMmgCfgFileEntry screenTestMmgCfgFileEntry;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgScreenData screenTestMmgScreenData;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgColor screenTestMmgColor;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgContainer screenTestMmgContainer;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgLabelValuePair screenTestMmgLabelValuePair;
+    
+    /**
+     * 
      * 
      * @param Mf
      * @param WinWidth
@@ -77,11 +102,15 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         Helper.wr("TestSpace.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
+
         //screenLoading.SetSlowDown(500);
-        
         screenTest = new ScreenTest(GameStates.GAME_SCREEN_01, this);
         screenTest.Pause();
         screenTest.SetIsVisible(false);
+        
+        screenTestMmgScreenData = new ScreenTestMmgScreenData(GameStates.GAME_SCREEN_01, this);
+        screenTestMmgScreenData.Pause();
+        screenTestMmgScreenData.SetIsVisible(false);
         
         screenTestMmg9Slice = new ScreenTestMmg9Slice(GameStates.GAME_SCREEN_02, this);
         screenTestMmg9Slice.Pause();
@@ -114,6 +143,22 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         screenTestMmgBasicInput = new ScreenTestMmgBasicInput(GameStates.GAME_SCREEN_09, this);
         screenTestMmgBasicInput.Pause();
         screenTestMmgBasicInput.SetIsVisible(false);
+        
+        screenTestMmgCfgFileEntry = new ScreenTestMmgCfgFileEntry(GameStates.GAME_SCREEN_10, this);
+        screenTestMmgCfgFileEntry.Pause();
+        screenTestMmgCfgFileEntry.SetIsVisible(false);
+        
+        screenTestMmgColor = new ScreenTestMmgColor(GameStates.GAME_SCREEN_11, this);
+        screenTestMmgColor.Pause();
+        screenTestMmgColor.SetIsVisible(false);    
+        
+        screenTestMmgContainer = new ScreenTestMmgContainer(GameStates.GAME_SCREEN_12, this);
+        screenTestMmgContainer.Pause();
+        screenTestMmgContainer.SetIsVisible(false);
+        
+        screenTestMmgLabelValuePair = new ScreenTestMmgLabelValuePair(GameStates.GAME_SCREEN_13, this);
+        screenTestMmgLabelValuePair.Pause();
+        screenTestMmgLabelValuePair.SetIsVisible(false);        
     }
         
     /**
@@ -154,9 +199,9 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
 
         } else if (prevGameState == GameStates.GAME_SCREEN_01) {
             Helper.wr("Hiding GAME_SCREEN_01 screen.");
-            screenTest.Pause();
-            screenTest.SetIsVisible(false);
-            screenTest.UnloadResources();
+            screenTestMmgScreenData.Pause();
+            screenTestMmgScreenData.SetIsVisible(false);
+            screenTestMmgScreenData.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_02) {
             Helper.wr("Hiding GAME_SCREEN_02 screen.");
@@ -205,6 +250,30 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgBasicInput.Pause();
             screenTestMmgBasicInput.SetIsVisible(false);
             screenTestMmgBasicInput.UnloadResources();            
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_10) {
+            Helper.wr("Hiding GAME_SCREEN_10 screen.");
+            screenTestMmgCfgFileEntry.Pause();
+            screenTestMmgCfgFileEntry.SetIsVisible(false);
+            screenTestMmgCfgFileEntry.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_11) {
+            Helper.wr("Hiding GAME_SCREEN_11 screen.");
+            screenTestMmgColor.Pause();
+            screenTestMmgColor.SetIsVisible(false);
+            screenTestMmgColor.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_12) {
+            Helper.wr("Hiding GAME_SCREEN_12 screen.");
+            screenTestMmgContainer.Pause();
+            screenTestMmgContainer.SetIsVisible(false);
+            screenTestMmgContainer.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_13) {
+            Helper.wr("Hiding GAME_SCREEN_13 screen.");
+            screenTestMmgLabelValuePair.Pause();
+            screenTestMmgLabelValuePair.SetIsVisible(false);
+            screenTestMmgLabelValuePair.UnloadResources();            
             
         } else if (prevGameState == GameStates.MAIN_MENU) {
             Helper.wr("Hiding MAIN_MENU screen.");
@@ -261,10 +330,10 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
 
         } else if (gameState == GameStates.GAME_SCREEN_01) {
             Helper.wr("Showing GAME_SCREEN_01 screen.");
-            screenTest.LoadResources();
-            screenTest.UnPause();
-            screenTest.SetIsVisible(true);
-            currentScreen = screenTest;
+            screenTestMmgScreenData.LoadResources();
+            screenTestMmgScreenData.UnPause();
+            screenTestMmgScreenData.SetIsVisible(true);
+            currentScreen = screenTestMmgScreenData;
                         
         } else if (gameState == GameStates.GAME_SCREEN_02) {
             Helper.wr("Showing GAME_SCREEN_02 screen.");
@@ -320,7 +389,35 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgBasicInput.LoadResources();
             screenTestMmgBasicInput.UnPause();
             screenTestMmgBasicInput.SetIsVisible(true);
-            currentScreen = screenTestMmgBasicInput;            
+            currentScreen = screenTestMmgBasicInput;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_10) {
+            Helper.wr("Showing GAME_SCREEN_10 screen.");
+            screenTestMmgCfgFileEntry.LoadResources();
+            screenTestMmgCfgFileEntry.UnPause();
+            screenTestMmgCfgFileEntry.SetIsVisible(true);
+            currentScreen = screenTestMmgCfgFileEntry;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_11) {
+            Helper.wr("Showing GAME_SCREEN_11 screen.");
+            screenTestMmgColor.LoadResources();
+            screenTestMmgColor.UnPause();
+            screenTestMmgColor.SetIsVisible(true);
+            currentScreen = screenTestMmgColor;            
+            
+        } else if (gameState == GameStates.GAME_SCREEN_12) {
+            Helper.wr("Showing GAME_SCREEN_12 screen.");
+            screenTestMmgContainer.LoadResources();
+            screenTestMmgContainer.UnPause();
+            screenTestMmgContainer.SetIsVisible(true);
+            currentScreen = screenTestMmgContainer;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_13) {
+            Helper.wr("Showing GAME_SCREEN_13 screen.");
+            screenTestMmgLabelValuePair.LoadResources();
+            screenTestMmgLabelValuePair.UnPause();
+            screenTestMmgLabelValuePair.SetIsVisible(true);
+            currentScreen = screenTestMmgLabelValuePair;                        
             
         } else if (gameState == GameStates.MAIN_MENU) {
             Helper.wr("Showing MAIN_MENU screen.");
@@ -375,6 +472,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                     //Final loading steps
                     DatExternalStrings.LOAD_EXT_STRINGS();
                     if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("0")) {
+                        //Test MmgScreenData
                         SwitchGameState(GameStates.GAME_SCREEN_01);
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("2")) {
@@ -406,8 +504,24 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                         SwitchGameState(GameStates.GAME_SCREEN_08);
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("9")) {
-                        //Test Basic Input
+                        //Test MmgBasicInput
                         SwitchGameState(GameStates.GAME_SCREEN_09);                        
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("10")) {
+                        //Test MmgCfgFileEntry
+                        SwitchGameState(GameStates.GAME_SCREEN_10);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("11")) {
+                        //Test MmgColor
+                        SwitchGameState(GameStates.GAME_SCREEN_11);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("12")) {
+                        //Test MmgContainer
+                        SwitchGameState(GameStates.GAME_SCREEN_12);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("13")) {
+                        //Test MmgLabelValuePair
+                        SwitchGameState(GameStates.GAME_SCREEN_13);                        
                         
                     }
                 }
