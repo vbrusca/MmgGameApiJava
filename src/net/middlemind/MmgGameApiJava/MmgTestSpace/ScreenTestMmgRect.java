@@ -94,7 +94,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgSound.Constructor");
+        Helper.wr("ScreenTestMmgRect.Constructor");
     }
 
     /**
@@ -104,7 +104,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgSound.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgRect.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -122,7 +122,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgSound.LoadResources");
+        Helper.wr("ScreenTestMmgRect.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -150,7 +150,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgRect.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -163,7 +163,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgRect.ProcessScreenPress");
         return true;
     }
 
@@ -175,7 +175,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgRect.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -188,7 +188,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgRect.ProcessScreenRelease");
         return true;
     }
     
@@ -200,7 +200,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgSound.ProcessAClick");
+        Helper.wr("ScreenTestMmgRect.ProcessAClick");
         return true;
     }
     
@@ -212,7 +212,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgSound.ProcessBClick");        
+        Helper.wr("ScreenTestMmgRect.ProcessBClick");        
         return true;
     }
     
@@ -221,7 +221,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgSound.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgRect.ProcessDebugClick");
     }
 
     /**
@@ -232,7 +232,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgSound.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgRect.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -244,7 +244,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgSound.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgRect.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_01);
         
@@ -263,7 +263,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgSound.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgRect.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -275,7 +275,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgRect.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -288,7 +288,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgRect.ProcessScreenClick");
         return true;
     }    
     
@@ -301,7 +301,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgSound.ProcessKeyClick");
+        Helper.wr("ScreenTestMmgRect.ProcessKeyClick");
         return true;
     }
     
@@ -362,7 +362,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgSound.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgRect.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -372,6 +372,6 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgSound.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        Helper.wr("ScreenTestMmgRect.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }
