@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+
 /**
  * Class that provides tween support to an underlying MmgObj instance.
  * Created by Middlemind Games 12/01/2016
@@ -140,6 +142,7 @@ public class MmgPositionTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetMoving(false);
+        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToMoveX);        
         MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
     }
 
@@ -217,7 +220,7 @@ public class MmgPositionTween extends MmgObj {
         SetOnReachStart(obj.GetOnReachStart());
         SetOnReachFinish(obj.GetOnReachFinish());
     }
-    
+        
     /**
      * Sets the finish event id.
      * 
@@ -558,7 +561,6 @@ public class MmgPositionTween extends MmgObj {
                     
                 }else {
                     //moving finish to start
-                    MmgHelper.wr("moving finish to start " + (currentTimeMs - msStartMove) + ", " + msTimeToMove);
                     if((currentTimeMs - msStartMove) >= msTimeToMove) {
                         SetAtFinish(false);
                         SetAtStart(true);

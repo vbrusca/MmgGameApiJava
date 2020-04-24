@@ -80,6 +80,11 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      * 
      */
     private MmgFont posTweenLabel;
+    
+    /**
+     * 
+     */
+    private MmgFont eventLabel;    
         
     /**
      * 
@@ -177,11 +182,24 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         posTweenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         posTweenLabel.SetText("MmgSprite Example with 4 Frames Attached to an MmgPositionTween");
         MmgHelper.CenterHorAndVert(posTweenLabel);
-        posTweenLabel.SetY(40);
-        AddObj(posTweenLabel);        
+        posTweenLabel.SetY(GetY() + 70);
+        AddObj(posTweenLabel);
         
-        posTween = new MmgPositionTween(sprite, 2000, new MmgVector2(100, 200), new MmgVector2(300, 200));
+        MmgVector2 start = new MmgVector2(100, GetY() + (GetHeight() - frame1.GetHeight()) / 2);
+        MmgVector2 stop = new MmgVector2(GetWidth() - 100, GetY() + (GetHeight() - frame1.GetHeight()) / 2);
+        
+        posTween = new MmgPositionTween(sprite, 10000, start, stop);
+        posTween.SetOnReachStart(this);
+        posTween.SetOnReachFinish(this);
+        posTween.SetMsStartMove(2000);
+        posTween.SetMsStartMove(System.currentTimeMillis());
         posTween.SetMoving(true);
+        
+        eventLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        eventLabel.SetText("Event:");
+        MmgHelper.CenterHor(eventLabel);
+        eventLabel.SetY(GetY() + GetHeight() - 30);
+        AddObj(eventLabel); 
         
         ready = true;
         pause = false;
@@ -358,7 +376,15 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         SetBackground(null);
 
         title = null;
-
+        frame1 = null;
+        frame2 = null;
+        frame3 = null;
+        frames = null;
+        sprite = null;
+        posTween = null;
+        posTweenLabel = null;
+        eventLabel = null;
+        
         ClearObjs();
         ready = false;
     }
@@ -386,8 +412,8 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
 
         if (pause == false && isVisible == true) {
             //always run this update
-            sprite.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
             posTween.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+            sprite.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);            
         }
 
         return lret;
@@ -423,5 +449,20 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
     @Override
     public void MmgHandleEvent(MmgEvent e) {
         Helper.wr("ScreenTestMmgPositionTween.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        eventLabel.SetText("Event: " + e.GetMessage() + " Id: " + e.GetEventId() + " Type: " + e.GetEventType());
+        MmgHelper.CenterHor(eventLabel);
+        if(e.GetEventId() == MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH) {
+            posTween.SetDirStartToFinish(false);
+            posTween.SetMsStartMove(2000);
+            posTween.SetMsStartMove(System.currentTimeMillis());
+            posTween.SetMoving(true);
+            
+        } else {
+            posTween.SetDirStartToFinish(true);
+            posTween.SetMsStartMove(2000);
+            posTween.SetMsStartMove(System.currentTimeMillis());        
+            posTween.SetMoving(true);            
+        
+        }
     }
 }
