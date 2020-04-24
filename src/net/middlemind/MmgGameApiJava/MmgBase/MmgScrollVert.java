@@ -593,7 +593,7 @@ public class MmgScrollVert extends MmgObj {
                 offsetYScrollBarSlider += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
+                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
                 offsetYScrollPane = heightDiff;  
             }
             
@@ -622,6 +622,7 @@ public class MmgScrollVert extends MmgObj {
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
             MmgHelper.wr("viewPort Vert click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
             if(clickScreen != null) {
+                clickScreen.SetExtra(new MmgVector2(x, y));                
                 clickScreen.Fire();
             }
             ret = true;
@@ -649,7 +650,7 @@ public class MmgScrollVert extends MmgObj {
                 offsetYScrollBarSlider += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
+                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
                 offsetYScrollPane = heightDiff;  
             }
             
