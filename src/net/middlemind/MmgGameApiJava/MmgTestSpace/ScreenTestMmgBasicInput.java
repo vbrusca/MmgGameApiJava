@@ -175,6 +175,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     /**
      * 
      */
+    private MmgFont instr;
+    
+    /**
+     * 
+     */
     private MmgFont title;
     
     /**
@@ -430,6 +435,12 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         AddObj(processMouseMove);
         i++;         
         
+        instr = MmgFontData.CreateDefaultMmgFontSm();
+        instr.SetText("Press 'L' to navigate left, press 'R' to navigate right.");
+        MmgHelper.CenterHor(instr);
+        instr.SetY(GetY() + GetHeight() - 25);
+        AddObj(instr);
+        
         ready = true;
         pause = false;
     }
@@ -659,15 +670,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         } else if(dir == GameSettings.RIGHT_KEYBOARD) {
             processRightBtnRelease.SetText("ProcessRightBtnRelease: " + System.currentTimeMillis());            
             
-        }        
-        
-        if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_10);
-        
-        } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_08);
-            
-        }
+        }                
         return true;
     }
     
@@ -721,6 +724,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     public boolean ProcessKeyRelease(char c, int code) {
         Helper.wr("ScreenTestMmgBasicInput.ProcessKeyRelease: " + code);
         processKeyRelease.SetText(("ProcessKeyRelease: " + System.currentTimeMillis()));
+        if(c == 'l' || c == 'L') {
+            owner.SwitchGameState(GameStates.GAME_SCREEN_08);
+        } else if(c == 'r' || c == 'R') {
+            owner.SwitchGameState(GameStates.GAME_SCREEN_10);            
+        }
         return true;
     }    
     

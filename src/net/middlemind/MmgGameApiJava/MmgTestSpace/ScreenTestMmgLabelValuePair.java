@@ -284,7 +284,7 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMmgLabelValuePair.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_14);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_12);

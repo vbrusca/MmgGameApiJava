@@ -168,6 +168,15 @@ public class MmgEvent {
     }
 
     /**
+     * Sets the event message.
+     * 
+     * @param s     The event message.
+     */
+    public void SetMessage(String s) {
+        message = s;
+    }
+    
+    /**
      * Gets the event id.
      *
      * @return      The event id.
@@ -176,6 +185,11 @@ public class MmgEvent {
         return id;
     }
 
+    /**
+     * Sets the event id.
+     * 
+     * @param s     The event id.
+     */
     public void SetEventId(int s) {
         id = s;
     }
@@ -207,6 +221,15 @@ public class MmgEvent {
         return extra;
     }
 
+    /**
+     * Sets the payload object.
+     * 
+     * @param obj   The payload object.
+     */
+    public void SetExtra(Object obj) {
+        extra = obj;
+    }
+    
     /**
      * Fires the event, calling the target event handler's MmgHandleEvent
      * method.
