@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import java.awt.Color;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
@@ -13,8 +13,9 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgPositionTween;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -26,7 +27,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgPositionTween extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -48,27 +49,42 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
     /**
      * 
      */
-    private MmgRect rect1;
-            
-    /**
-     * 
-     */
-    private MmgRect rect2;    
+    private MmgBmp frame1;
     
     /**
      * 
      */
-    private MmgRect rect3;
-            
+    private MmgBmp frame2;
+    
+    /**
+     * 
+     */
+    private MmgBmp frame3;
+    
+    /**
+     * 
+     */
+    private MmgBmp[] frames;
+    
+    /**
+     * 
+     */
+    private MmgSprite sprite;    
+    
+    /**
+     * 
+     */
+    private MmgPositionTween posTween;
+                
+    /**
+     * 
+     */
+    private MmgFont posTweenLabel;
+        
     /**
      * 
      */
     private MmgFont title;
-    
-    /**
-     * 
-     */
-    private Color c;
     
     /**
      * 
@@ -88,13 +104,13 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgRect(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgPositionTween(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgRect.Constructor");
+        Helper.wr("ScreenTestMmgPositionTween.Constructor");
     }
 
     /**
@@ -104,7 +120,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgRect.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgPositionTween.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -122,21 +138,50 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgRect.LoadResources");
+        Helper.wr("ScreenTestMmgPositionTween.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Rect (17)  >");
+        title.SetText("<  Screen Test Mmg Position Tween (18)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
-               
-        rect1 = new MmgRect(100, 190, 190 + GetHeight()/4, GetWidth() - 100);
-        rect2 = new MmgRect(100, 210 + GetHeight()/4, 210 + GetHeight()/4 + GetHeight()/4, GetWidth() - 100);
-        rect3 = new MmgRect(90, 180, 90 + GetHeight()/2 + GetHeight()/4 + 28, GetWidth() - 90);
+              
+        frame1 = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
+        frame1 = MmgBmpScaler.ScaleMmgBmp(frame1, 2.0f, true);
+        MmgHelper.CenterHorAndVert(frame1);
+        
+        frame2 = MmgHelper.GetBasicCachedBmp("soldier_frame_2.png");    
+        frame2 = MmgBmpScaler.ScaleMmgBmp(frame2, 2.0f, true);
+        MmgHelper.CenterHorAndVert(frame2);
+        
+        frame3 = MmgHelper.GetBasicCachedBmp("soldier_frame_3.png");
+        frame3 = MmgBmpScaler.ScaleMmgBmp(frame3, 2.0f, true);
+        MmgHelper.CenterHorAndVert(frame3);
+        
+        frames = new MmgBmp[4];
+        frames[0] = frame1;
+        frames[1] = frame2;
+        frames[2] = frame3;
+        frames[3] = frame2;        
+        
+        MmgVector2 tmpPos = frame1.GetPosition().Clone();
+        tmpPos.SetY(tmpPos.GetY() + 15);
+        sprite = new MmgSprite(frames, tmpPos);
+        sprite.SetFrameTime(200l);
+        AddObj(sprite);
+        
+        posTweenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        posTweenLabel.SetText("MmgSprite Example with 4 Frames Attached to an MmgPositionTween");
+        MmgHelper.CenterHorAndVert(posTweenLabel);
+        posTweenLabel.SetY(40);
+        AddObj(posTweenLabel);        
+        
+        posTween = new MmgPositionTween(sprite, 2000, new MmgVector2(100, 200), new MmgVector2(300, 200));
+        posTween.SetMoving(true);
         
         ready = true;
         pause = false;
@@ -150,7 +195,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgRect.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -163,7 +208,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgRect.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenPress");
         return true;
     }
 
@@ -175,7 +220,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgRect.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -188,7 +233,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgRect.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenRelease");
         return true;
     }
     
@@ -200,7 +245,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgRect.ProcessAClick");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessAClick");
         return true;
     }
     
@@ -212,7 +257,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgRect.ProcessBClick");        
+        Helper.wr("ScreenTestMmgPositionTween.ProcessBClick");        
         return true;
     }
     
@@ -221,7 +266,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgRect.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessDebugClick");
     }
 
     /**
@@ -232,7 +277,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgRect.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgPositionTween.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -244,12 +289,12 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgRect.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgPositionTween.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_18);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_16);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_17);
             
         }
         return true;
@@ -263,7 +308,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgRect.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgPositionTween.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -275,7 +320,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgRect.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -288,7 +333,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgRect.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenClick");
         return true;
     }    
     
@@ -301,7 +346,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgRect.ProcessKeyClick");
+        Helper.wr("ScreenTestMmgPositionTween.ProcessKeyClick");
         return true;
     }
     
@@ -312,12 +357,8 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
         pause = true;
         SetBackground(null);
 
-        rect1 = null;
-        rect2 = null;
-        rect3 = null;
         title = null;
-        color = null;
-        
+
         ClearObjs();
         ready = false;
     }
@@ -332,6 +373,27 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
     }
     
     /**
+     * 
+     * 
+     * @param updateTick
+     * @param currentTimeMs
+     * @param msSinceLastFrame
+     * @return 
+     */
+    @Override
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        lret = false;
+
+        if (pause == false && isVisible == true) {
+            //always run this update
+            sprite.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+            posTween.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+        }
+
+        return lret;
+    }    
+    
+    /**
      * The main drawing routine.
      *
      * @param p     An MmgPen object to use for drawing this game screen.
@@ -340,18 +402,6 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
     public void MmgDraw(MmgPen p) {
         if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-            c = p.GetColor();
-            
-            p.SetGraphicsColor(MmgColor.GetLimeGreen().GetColor());
-            p.DrawRect(rect1);
-            
-            p.SetGraphicsColor(MmgColor.GetPink().GetColor());
-            p.DrawRect(rect2);
-            
-            p.SetGraphicsColor(MmgColor.GetYellowOrange().GetColor());
-            p.DrawRect(rect3);            
-            
-            p.SetColor(c);
         }
     }
     
@@ -362,7 +412,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgRect.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgPositionTween.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -372,6 +422,6 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgRect.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        Helper.wr("ScreenTestMmgPositionTween.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

@@ -631,7 +631,18 @@ public class MmgPositionTween extends MmgObj {
     }
     
     /**
-     * Sets the position of this object.
+     * Sets the position of this object's subject.
+     * 
+     * @param x     The X coordinate of the subject's position.
+     * @param y     The Y coordinate of the subject's position.
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }
+    
+    /**
+     * Sets the position of this object's subject.
      * 
      * @param v     The position of the subject.
      */
