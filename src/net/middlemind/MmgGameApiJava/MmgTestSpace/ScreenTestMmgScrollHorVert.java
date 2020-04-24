@@ -248,7 +248,7 @@ public class ScreenTestMmgScrollHorVert extends MmgGameScreen implements Generic
     public boolean ProcessBClick(int src) {
         Helper.wr("ScreenTestMmgScrollHorVert.ProcessBClick");
         //Go Right
-        owner.SwitchGameState(GameStates.GAME_SCREEN_01);        
+        owner.SwitchGameState(GameStates.GAME_SCREEN_17);        
         return true;
     }
     
@@ -303,6 +303,14 @@ public class ScreenTestMmgScrollHorVert extends MmgGameScreen implements Generic
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
+        
+        scrollBoth = null;
+        bground = null;
+        menuBground = null;
+        title = null;
+        instr = null;
+        event = null;        
+        
         ClearObjs();
         ready = false;
     }

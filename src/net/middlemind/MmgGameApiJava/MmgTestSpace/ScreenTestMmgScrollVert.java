@@ -302,6 +302,14 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
+        
+        scrollVert = null;
+        bground = null;
+        menuBground = null;
+        title = null;
+        instr = null;
+        event = null;        
+        
         ClearObjs();
         ready = false;
     }

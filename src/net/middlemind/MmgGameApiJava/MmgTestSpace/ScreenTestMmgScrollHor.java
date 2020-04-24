@@ -306,6 +306,14 @@ public class ScreenTestMmgScrollHor extends MmgGameScreen implements GenericEven
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
+        
+        scrollHor = null;
+        bground = null;
+        menuBground = null;
+        title = null;
+        instr = null;
+        event = null;        
+        
         ClearObjs();
         ready = false;
     }
