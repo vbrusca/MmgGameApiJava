@@ -61,7 +61,12 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
     /**
      * 
      */
-    private MmgLabelValuePair lvPair2;    
+    private MmgLabelValuePair lvPair2;
+    
+    /**
+     * 
+     */
+    private MmgLabelValuePair lvPair3;        
     
     /**
      * 
@@ -137,12 +142,12 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
         labelFont.SetText("Label1:");
         
         valueFont = MmgFontData.CreateDefaultBoldMmgFontSm();
-        valueFont.SetMmgColor(MmgColor.GetSlateBlue());
+        valueFont.SetMmgColor(MmgColor.GetBlueGray());
         valueFont.SetText("Value1");
         
         lvPair1 = new MmgLabelValuePair(labelFont, valueFont);
         MmgHelper.CenterHorAndVert(lvPair1);
-        lvPair1.SetY(lvPair1.GetY() - 20);
+        lvPair1.SetY(lvPair1.GetY() - 30);
         AddObj(lvPair1);
                
         labelFont = labelFont.CloneTyped();
@@ -150,13 +155,26 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
         labelFont.SetText("Label2:");
         
         valueFont = valueFont.CloneTyped();
-        valueFont.SetMmgColor(MmgColor.GetBlueGray());        
+        valueFont.SetMmgColor(MmgColor.GetSlateBlue());
         valueFont.SetText("Value2");        
         
         lvPair2 = new MmgLabelValuePair(labelFont, valueFont);
         MmgHelper.CenterHorAndVert(lvPair2);
-        lvPair2.SetY(lvPair2.GetY() + 20);
+        lvPair2.SetY(lvPair2.GetY() + 0);
         AddObj(lvPair2);        
+        
+        labelFont = labelFont.CloneTyped();
+        labelFont.SetMmgColor(MmgColor.GetGrayWolf());        
+        labelFont.SetText("Label3:");
+        
+        valueFont = valueFont.CloneTyped();
+        valueFont.SetMmgColor(MmgColor.GetCalmBlue());        
+        valueFont.SetText("Value3");        
+        
+        lvPair3 = new MmgLabelValuePair(labelFont, valueFont);
+        MmgHelper.CenterHorAndVert(lvPair3);
+        lvPair3.SetY(lvPair3.GetY() + 30);
+        AddObj(lvPair3);        
         
         ready = true;
         pause = false;
