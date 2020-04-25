@@ -31,102 +31,102 @@ public class MmgSizeTween extends MmgObj {
     public static int MMG_SIZE_TWEEN_REACH_START_TYPE = 1;
     
     /**
-     * 
+     * The subject of this size tween.
      */
     private MmgObj subj;
     
     /**
-     * 
+     * A boolean indicating the tween is at the start position.
      */
     private boolean atStart;
     
     /**
-     * 
+     * A boolean indicating the tween is at the finish position.
      */
     private boolean atFinish;
     
     /**
-     * 
+     * An MmgVector2 that holds the size to change in X, Y values.
      */
     private MmgVector2 pixelSizeToChange;
     
     /**
-     * 
+     * A float indicating the milliseconds allowed to scale to the specified size.
      */
     private float msSizeToChange;
     
     /**
-     * 
+     * The pixels per millisecond to scale on the X axis.
      */
     private float pixelsPerMsToChangeX;
     
     /**
-     * 
+     * The pixels per millisecond to scale on the Y axis.
      */
     private float pixelsPerMsToChangeY;
     
     /**
-     * 
+     * An MmgVector2 that holds the start size.
      */
     private MmgVector2 startSize;
     
     /**
-     * 
+     * An MmgVector2 that holds the finish size.
      */
     private MmgVector2 finishSize;
     
     /**
-     * 
+     * A boolean indicating the direction to scale, start to finish or finish to start.
      */
     private boolean dirStartToFinish;
     
     /**
-     * 
+     * A boolean indicating if the object is changing.
      */
     private boolean changing;
     
     /**
-     * 
+     * A long value that determines how long to wait before scaling.
      */
     private long msStartChange;
     
     /**
-     * 
+     * A temporary class field used to calculate a new MmgVector2 with scaling information.
      */
     private MmgVector2 tmpV;
     
     /**
-     * 
+     * An event handler for the reach finish event.
      */
     private MmgEventHandler onReachFinish;
     
     /**
-     * 
+     * An event handler for the reach start event.
      */
     private MmgEventHandler onReachStart;
-    
+        
     /**
-     * 
-     */
-    private boolean lret;
-    
-    /**
-     * 
+     * An event template for the reach finish event.
      */
     private MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH, MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH_TYPE, null, null);
     
     /**
-     * 
+     * An event template for the reach start event.
      */
     private MmgEvent reachStart = new MmgEvent(null, "reach_start", MmgSizeTween.MMG_SIZE_TWEEN_REACH_START, MmgSizeTween.MMG_SIZE_TWEEN_REACH_START_TYPE, null, null);
 
     /**
+     * A private boolean flag for the MmgUpdate method indicating if any work was done.
+     */
+    private boolean lret;    
+    
+    /**
+     * A basic constructor for the MmgSizeTween object.
      * 
-     * 
-     * @param subj
-     * @param msTimeToChange
-     * @param startSize
-     * @param finishSize 
+     * @param subj                  The MmgObj that is the subject of the tween.
+     * @param msTimeToChange        The number of milliseconds to scale the object.
+     * @param startSize             The start size of the tween.
+     * @param finishSize            The finish size of the tween.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
@@ -148,15 +148,17 @@ public class MmgSizeTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetChanging(false);
+        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToChangeX);
         MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
     /**
+     * A constructor for the MmgPositionTween object that doesn't set the MmgObj subject.
+     * You'll have to specify this object before starting the tween scaling.
      * 
-     * 
-     * @param msTimeToChange
-     * @param startSize
-     * @param finishSize 
+     * @param msTimeToChange        The number of milliseconds to scale the object.
+     * @param startSize             The start size of the tween.
+     * @param finishSize            The finish size of the tween.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
@@ -178,13 +180,60 @@ public class MmgSizeTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetChanging(false);
+        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToChangeX);        
         MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
     /**
+     * A constructor that is based on the an instance of the MmgSizeTween object.
      * 
+     * @param obj       An MmgSizeTween object used to create an new instance of the MmgSizeTween class.
+     */
+    public MmgSizeTween(MmgSizeTween obj) {
+        super();
+        
+        if(obj.GetSubj() == null) {
+            SetSubj(obj.GetSubj());
+        } else {
+            SetSubj(obj.GetSubj().Clone());
+        }
+        
+        SetAtStart(obj.GetAtStart());
+        SetAtFinish(obj.GetAtStart());
+        
+        if(obj.GetPixelSizeToChange() == null) {
+            SetPixelSizeToChange(obj.GetPixelSizeToChange());
+        } else {
+            SetPixelSizeToChange(obj.GetPixelSizeToChange().Clone());
+        }
+        
+        SetMsTimeToChange(obj.GetMsTimeToChange());
+        SetPixelsPerMsToChangeX(obj.GetPixelsPerMsToChangeX());
+        SetPixelsPerMsToChangeY(obj.GetPixelsPerMsToChangeY());
+        
+        if(obj.GetStartSize() == null) {
+            SetStartSize(obj.GetStartSize());
+        } else {
+            SetStartSize(obj.GetStartSize().Clone());            
+        }
+        
+        if(obj.GetFinishSize() == null) {
+            SetFinishSize(obj.GetFinishSize());
+        } else {
+            SetFinishSize(obj.GetFinishSize().Clone());            
+        }    
+        
+        SetDirStartToFinish(obj.GetDirStartToFinish());
+        SetChanging(obj.GetChanging());
+        SetMsStartChange(obj.GetMsStartChange());
+        SetOnReachStart(obj.GetOnReachStart());
+        SetOnReachFinish(obj.GetOnReachFinish());
+    }    
+    
+    /**
+     * Sets the finish event id.
      * 
-     * @param i 
+     * @param i     The finish event id.
      */
     public void SetFinishEventId(int i) {
         if (reachFinish != null) {
@@ -193,9 +242,9 @@ public class MmgSizeTween extends MmgObj {
     }
 
     /**
+     * Sets the start event id.
      * 
-     * 
-     * @param i 
+     * @param i     The start event id.
      */
     public void SetStartEventId(int i) {
         if (reachStart != null) {
@@ -204,45 +253,45 @@ public class MmgSizeTween extends MmgObj {
     }
 
     /**
+     * Gets the on reach finish event handler.
      * 
-     * 
-     * @return 
+     * @return      The on reach finish event handler.
      */
     public MmgEventHandler GetOnReachFinish() {
         return onReachFinish;
     }
 
     /**
+     * Sets the on reach finish event handler.
      * 
-     * 
-     * @param o 
+     * @param o     The on reach finish event handler. 
      */
     public void SetOnReachFinish(MmgEventHandler o) {
         onReachFinish = o;
     }
 
     /**
+     * Gets the on reach start event handler.
      * 
-     * 
-     * @return 
+     * @return      The on reach start event handler.
      */
     public MmgEventHandler GetOnReachStart() {
         return onReachStart;
     }
 
     /**
+     * Sets the on reach start event handler.
      * 
-     * 
-     * @param o 
+     * @param o     The on reach start event handler.
      */
     public void SetOnReachStart(MmgEventHandler o) {
         onReachStart = o;
     }
 
     /**
+     * Gets the milliseconds to wait before starting the scaling.
      * 
-     * 
-     * @return 
+     * @return      The milliseconds to wait before starting the scaling.
      */
     public long GetMsStartChange() {
         return msStartChange;
@@ -456,7 +505,6 @@ public class MmgSizeTween extends MmgObj {
 
                 } else {
                     //changing finish to start
-                    //MmgHelper.wr("changing finish to start " + (currentTimeMs - msStartChange) + ", " + msSizeToChange);
                     if ((currentTimeMs - msStartChange) >= msSizeToChange) {
                         SetAtFinish(false);
                         SetAtStart(true);

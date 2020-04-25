@@ -669,7 +669,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets event handlers for all this object's event.
      * 
-     * @param e 
+     * @param e     The MmgEventHandler to use to handle events.
      */    
     public void SetEventHandler(MmgEventHandler e) {
         clickScreen.SetTargetEventHandler(e);
@@ -868,8 +868,8 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Processes dpad input release events.
      * 
-     * @param dir   The direction of the dpad input to process.
-     * @return      A boolean indicating if the dpad input was handled.
+     * @param dir       The direction of the dpad input to process.
+     * @return          A boolean indicating if the dpad input was handled.
      */    
     public boolean ProcessDpadRelease(int dir) {
         if(scrollBarHorVisible && dir == MmgDir.DIR_LEFT) {
@@ -948,9 +948,9 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Handle screen click events.
      * 
-     * @param x     The X coordinate of the screen click event.
-     * @param y     The Y coordinate of the screen click event.
-     * @return      A boolean indicating if the click event was handled.
+     * @param x         The X coordinate of the screen click event.
+     * @param y         The Y coordinate of the screen click event.
+     * @return          A boolean indicating if the click event was handled.
      */
     public boolean ProcessScreenClick(int x, int y) {
         boolean ret = false;
@@ -1777,22 +1777,7 @@ public class MmgScrollHorVert extends MmgObj {
                 
                 p.GetGraphics().setColor(c);
             }
-            
-            /*
-            Graphics g = p.GetGraphics();
-            Color ct = g.getColor();
-            g.setColor(Color.WHITE);
-            g.fillRect(GetX(), GetY(), w, h - scrollBarHorHeight);
-                       
-            g.setColor(Color.LIGHT_GRAY);
-            g.fillRect(GetX(), GetY(), 100, 100);            
-            
-            g.setColor(Color.cyan);
-            g.fillRect(GetX(), GetY(), 50, 50);
-            
-            g.setColor(ct);
-            */
-            
+                        
             if(scrollBarHorVisible) {            
                 if(sliderLeftButton != null) {
                     p.DrawBmp(sliderLeftButton);

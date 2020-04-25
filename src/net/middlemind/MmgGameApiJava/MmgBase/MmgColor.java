@@ -14,7 +14,6 @@ public class MmgColor {
      * The color of this object.
      */
     private Color c;
-    //private Paint p;
 
     /**
      * Constructor of this object.
@@ -487,15 +486,7 @@ public class MmgColor {
     //grape: #5E5A80
     //dark violet: #842DCE
     //lavender blue: #E3E4FA
-    
-    /*
-     public Paint GetPaint() {
-     p = new Paint();
-     p.setColor(GetColor());
-     return new Color();
-     }
-     */    
-    
+        
     /**
      * Static helper method that decodes an HTML color.
      * 

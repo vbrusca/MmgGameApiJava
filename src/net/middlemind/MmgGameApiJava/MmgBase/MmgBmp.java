@@ -65,6 +65,16 @@ public class MmgBmp extends MmgObj {
     private int id;
 
     /**
+     * A temporary MmgObj instance used in the Equals method.
+     */
+    private MmgObj o1;
+    
+    /**
+     * A temporary MmgObj instance used in the Equals method.
+     */
+    private MmgObj o2;    
+    
+    /**
      * The strategy to use when drawing bitmaps.
      */
     public MmgBmpDrawMode DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_BASIC;
@@ -506,9 +516,9 @@ public class MmgBmp extends MmgObj {
     }
 
     /**
-     * Gets the un-scaled, original height of the bitmap.
+     * Gets the unscaled, original height of the bitmap.
      *
-     * @return      The un-scaled, original height of the bitmap.
+     * @return      The unscaled, original height of the bitmap.
      */
     public int GetUnscaledHeight() {
         return super.GetHeight();
@@ -684,8 +694,8 @@ public class MmgBmp extends MmgObj {
                 return false;
             }
 
-            MmgObj o1 = (MmgObj) this;
-            MmgObj o2 = (MmgObj) b;
+            o1 = (MmgObj) this;
+            o2 = (MmgObj) b;
             if (o1 != null && o2 != null && o1.Equals(o2) == false) {
                 return false;
             }

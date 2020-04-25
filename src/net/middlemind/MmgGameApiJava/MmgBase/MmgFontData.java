@@ -409,7 +409,7 @@ public class MmgFontData {
     /**
      * Sets the font size.
      *
-     * @param fontSize  The font size.
+     * @param fontSize      The font size.
      */
     public static void SetFontSize(int fontSize) {
         MmgFontData.fontSize = fontSize;

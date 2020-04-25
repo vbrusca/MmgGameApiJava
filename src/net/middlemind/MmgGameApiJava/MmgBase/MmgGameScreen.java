@@ -142,7 +142,7 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Constructor that sets attributes based on the given argument.
      *
-     * @param gm    The MmgGameScreen to use for attribute settings.
+     * @param gm        The MmgGameScreen to use for attribute settings.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen(MmgGameScreen gm) {
@@ -193,80 +193,79 @@ public class MmgGameScreen extends MmgObj {
     }
     
     /**
-     * Gets the X axis cursor offset to use with mouse coordinates, left cursor.
+     * Gets the X axis cursor offset, left cursor.
      * 
-     * @return      The X axis offset to use with mouse coordinates, left cursor.
+     * @return      The X axis offset, left cursor.
      */
     public int GetMenuCursorLeftOffsetX() {
         return menuCursorLeftOffsetX;
     }
 
     /**
-     * Sets the X axis cursor offset to use with mouse coordinates, left cursor.
+     * Sets the X axis cursor offset, left cursor.
      * 
-     * @param i     The X axis offset to use with mouse coordinates, left cursor.
+     * @param i     The X axis offset, left cursor.
      */
     public void SetMenuCursorLeftOffsetX(int i) {
         menuCursorLeftOffsetX = i;
     }
 
     /**
-     * Gets the Y axis cursor offset to use with mouse coordinates, left cursor.
+     * Gets the Y axis cursor offset, left cursor.
      * 
-     * @return      The Y axis offset to use with mouse coordinates, left cursor.
+     * @return      The Y axis offset, left cursor.
      */
     public int GetMenuCursorLeftOffsetY() {
         return menuCursorLeftOffsetY;
     }
 
     /**
-     * Sets the Y axis cursor offset to use with mouse coordinates, left cursor.
+     * Sets the Y axis cursor offset, left cursor.
      * 
-     * @param i     The Y axis offset to use with mouse coordinates, left cursor.
+     * @param i     The Y axis offset, left cursor.
      */
     public void SetMenuCursorLeftOffsetY(int i) {
         menuCursorLeftOffsetY = i;
     }
 
     /**
+     * Gets the X axis cursor offset, right cursor.
      * 
-     * 
-     * @return 
+     * @return      The X axis offset, right cursor.
      */
     public int GetMenuCursorRightOffsetX() {
         return menuCursorRightOffsetX;
     }
 
     /**
+     * Sets the X axis cursor offset, right cursor.
      * 
-     * 
-     * @param i 
+     * @param i     The X axis offset, right cursor. 
      */
     public void SetMenuCursorRightOffsetX(int i) {
         menuCursorRightOffsetX = i;
     }
 
     /**
+     * Gets the Y axis cursor offset, right cursor.
      * 
-     * 
-     * @return 
+     * @return      The Y axis offset, right cursor.
      */
     public int GetMenuCursorRightOffsetY() {
         return menuCursorRightOffsetY;
     }
 
     /**
+     * Sets the Y axis cursor offset, right cursor.
      * 
-     * 
-     * @param i 
+     * @param i     The Y axis offset, right cursor.
      */
     public void SetMenuCursorRightOffsetY(int i) {
         menuCursorRightOffsetY = i;
     }
     
     /**
-     * Gets true if this game screen has loaded its resources and is ready to
-     * display itself.
+     * Gets true if this game screen has loaded its resources and is ready to display itself.
      *
      * @return      True if this object is ready, false otherwise.
      */

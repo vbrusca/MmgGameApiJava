@@ -91,8 +91,7 @@ public class MmgContainer extends MmgObj {
      * Constructor that initializes this class based on the attributes of a
      * given argument.
      *
-     * @param cont          An MmgContainer class to use to set all the attributes of
-     * this class.
+     * @param cont          An MmgContainer class to use to set all the attributes of this class.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer(MmgContainer cont) {
@@ -168,7 +167,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Adds a new MmgObj to the container.
      *
-     * @param obj   An MmgObj to add to the container.
+     * @param obj       An MmgObj to add to the container.
      */
     public void Add(MmgObj obj) {
         if (obj != null) {
@@ -181,8 +180,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Adds a new MmgObj to the container at the specified index.
      *
-     * @param idx   The index to add the object at.
-     * @param obj   The object to add.
+     * @param idx       The index to add the object at.
+     * @param obj       The object to add.
      */
     public void AddAt(int idx, MmgObj obj) {
         if (obj != null) {
@@ -193,7 +192,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Removes an MmgObj from the container.
      *
-     * @param obj   An MmgObj to remove from the container.
+     * @param obj       An MmgObj to remove from the container.
      */
     public void Remove(MmgObj obj) {
         if (obj != null) {
@@ -206,8 +205,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Removes an MmgObj from the container at the specified index.
      *
-     * @param idx   The index to remove the object from.
-     * @return      The MmgObj to remove.
+     * @param idx       The index to remove the object from.
+     * @return          The MmgObj to remove.
      */
     public MmgObj RemoveAt(int idx) {
         MmgObj obj = container.remove(idx);
@@ -220,7 +219,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Gets the number of objects in the container.
      *
-     * @return      The number of objects in the container.
+     * @return          The number of objects in the container.
      */
     public int GetCount() {
         return container.size();
@@ -229,7 +228,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Gets an array representation of the objects in the container.
      *
-     * @return      An array of the objects in the container.
+     * @return          An array of the objects in the container.
      */
     public Object[] GetArray() {
         return container.toArray();
@@ -238,8 +237,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the MmgObj at the given index.
      *
-     * @param idx   The index to get an MmgObj from.
-     * @return      The MmgObj at the specified index.
+     * @param idx       The index to get an MmgObj from.
+     * @return          The MmgObj at the specified index.
      */
     public MmgObj GetAt(int idx) {
         return container.get(idx);
@@ -256,7 +255,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Gets the ArrayList container that holds all child objects.
      *
-     * @return      The ArrayList container of this MmgContainer object.
+     * @return          The ArrayList container of this MmgContainer object.
      */
     public ArrayList<MmgObj> GetContainer() {
         return container;
@@ -265,7 +264,7 @@ public class MmgContainer extends MmgObj {
     /**
      * Sets the ArrayList container that holds all the child objects.
      *
-     * @param aTmp  An ArrayList to set this container's contents from.
+     * @param aTmp      An ArrayList to set this container's contents from.
      */
     public void SetContainer(ArrayList<MmgObj> aTmp) {
         if (aTmp != null) {
@@ -279,7 +278,7 @@ public class MmgContainer extends MmgObj {
     /**
      * A method to update all children with the provided action.
      * 
-     * @param act   The action to perform on the child objects.
+     * @param act       The action to perform on the child objects.
      */
     private void UpdateAllChildren(ChildAction act) {
         int len = GetCount();
@@ -299,7 +298,7 @@ public class MmgContainer extends MmgObj {
     /**
      * A method that stamps the child as belonging to the parent.
      * 
-     * @param obj   The child to perform the operation on.
+     * @param obj       The child to perform the operation on.
      */
     private void StampChild(MmgObj obj) {
         if (obj != null) {
@@ -311,7 +310,7 @@ public class MmgContainer extends MmgObj {
     /**
      * A method that un-stamps the child, removing it from belonging to the parent.
      * 
-     * @param obj   The child to perform the operation on. 
+     * @param obj       The child to perform the operation on. 
      */
     private void UnstampChild(MmgObj obj) {
         if (obj != null) {
@@ -323,8 +322,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the child at the given index.
      *
-     * @param idx   The index of the child to get.
-     * @return      The child at the given index.
+     * @param idx       The index of the child to get.
+     * @return          The child at the given index.
      */
     public MmgObj GetChildAt(int idx) {
         return container.get(idx);
@@ -333,8 +332,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the relative position of the child at the given index.
      *
-     * @param idx   The index of the child to get.
-     * @return      An MmgVector2 object with the relative position of the child.
+     * @param idx       The index of the child to get.
+     * @return          An MmgVector2 object with the relative position of the child.
      */
     public MmgVector2 GetChildPosRelative(int idx) {
         MmgObj obj = container.get(idx);
@@ -347,8 +346,8 @@ public class MmgContainer extends MmgObj {
     /**
      * Returns the absolute position of the child at the given index.
      *
-     * @param idx   The index of the child to get.
-     * @return      An MmgVector2 object with the absolute position of the child.
+     * @param idx       The index of the child to get.
+     * @return          An MmgVector2 object with the absolute position of the child.
      */
     public MmgVector2 GetChildPosAbsolute(int idx) {
         return container.get(idx).GetPosition();
@@ -357,8 +356,8 @@ public class MmgContainer extends MmgObj {
     /**
      * The base drawing method used to render this object with an MmgPen.
      *
-     * @param p     The MmgPen that will draw this object.
-     * @see         MmgPen
+     * @param p         The MmgPen that will draw this object.
+     * @see             MmgPen
      */
     @Override
     public void MmgDraw(MmgPen p) {

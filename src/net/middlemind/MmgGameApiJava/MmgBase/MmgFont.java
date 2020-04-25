@@ -71,7 +71,7 @@ public class MmgFont extends MmgObj {
     /**
      * Constructor that sets attributes based on the given argument.
      *
-     * @param fnt
+     * @param fnt   The MmgFont class instance to use to set all the class fields.
      */
     public MmgFont(MmgFont fnt) {
         super();
@@ -212,15 +212,6 @@ public class MmgFont extends MmgObj {
     public void SetFont(Font tf) {
         font = tf;
     }
-
-    /**
-     * Sets the sprite font, or font to use to draw text.
-     *
-     * @param tf    The font to use to draw text.
-     */
-    //public void SetSpriteFont(Font tf) {
-    //    font = tf;
-    //}
     
     /**
      * Gets the font object used to draw text.
@@ -230,17 +221,6 @@ public class MmgFont extends MmgObj {
     public Font GetFont() {
         return font;
     }
-
-    /**
-     * Gets the font objects used to draw text.
-     *
-     * @return      The font used to draw text.
-     */
-    /*
-     public Font GetSpriteFont() {
-     return font;
-     }
-     */
     
     /**
      * The base drawing method used to draw this object.

@@ -9,26 +9,22 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 public class MmgDir {
 
     /**
-     * A static integer that can be used to map the bottom, down direction, or the front of an RPG
-     * character.
+     * A static integer that can be used to map the bottom, down direction, or the front of an RPG character.
      */
     public static int DIR_FRONT = 0;
     
     /**
-     * A static integer that can be used to map the bottom, down, direction, or the front of an RPG
-     * character.
+     * A static integer that can be used to map the bottom, down, direction, or the front of an RPG character.
      */
     public static int DIR_BOTTOM = 0;
     
     /**
-     * A static integer that can be used to map the top, up, direction, of the back of an RPG
-     * character.
+     * A static integer that can be used to map the top, up, direction, of the back of an RPG character.
      */
     public static int DIR_BACK = 1;
     
     /**
-     * A static integer that can be used to map the top, up, direction, of the back of an RPG
-     * character.
+     * A static integer that can be used to map the top, up, direction, of the back of an RPG character.
      */
     public static int DIR_TOP = 1;
     

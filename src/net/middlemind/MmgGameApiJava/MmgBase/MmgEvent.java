@@ -242,6 +242,11 @@ public class MmgEvent {
         }
     }
     
+    /**
+     * An API level ToString method that returns a string representation of this class.
+     * 
+     * @return      A string representation of this class.
+     */
     public String ToString() {
         return "Msg: " + message + " Id: " + id + " Type: " + type;
     }

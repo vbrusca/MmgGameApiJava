@@ -484,28 +484,6 @@ public class MmgScreenData {
         } else {
             boolean sX = true;
             boolean sY = true;
-
-            /*
-             if(MmgScreenData.screenHeight > MmgScreenData.gameHeight) {
-                MmgScreenData.scaleY = 1.0f;
-                MmgScreenData.CalculateTop();
-                MmgScreenData.CalculateLeft();
-             }else{
-             */
-                //calculate the scale Y
-                //sY = true;
-            //}
-            
-            /*
-             if(MmgScreenData.screenWidth > MmgScreenData.gameWidth) {
-                MmgScreenData.scaleX = 1.0f;
-                MmgScreenData.CalculateTop();
-                MmgScreenData.CalculateLeft();
-             }else{
-             */
-                //calculate the scale X
-                //sX = true;
-            //}
             
             MmgHelper.wr("ScaleX: " + sX + " ScaleY: " + sY);
             if (sX == true && sY == false) {

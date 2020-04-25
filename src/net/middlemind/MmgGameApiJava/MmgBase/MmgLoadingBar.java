@@ -206,6 +206,17 @@ public class MmgLoadingBar extends MmgObj {
     }
     
     /**
+     * Sets the position of this object and resets the label, value pair positioning.
+     * 
+     * @param x     The X coordinate to set in the position.
+     * @param y     The Y coordinate to set in the position.
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }    
+    
+    /**
      * The X coordinate to use to draw this object.
      * 
      * @param inX       The X coordinate to use to draw this object.

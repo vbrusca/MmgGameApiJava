@@ -438,7 +438,7 @@ public class MmgScrollVert extends MmgObj {
     /**
      * Sets event handlers for all this object's event.
      * 
-     * @param e 
+     * @param e     The MmgEventHandler to use to handle events.
      */    
     public void SetEventHandler(MmgEventHandler e) {
         clickScreen.SetTargetEventHandler(e);
@@ -1126,21 +1126,6 @@ public class MmgScrollVert extends MmgObj {
                 p.SetGraphicsColor(c);
             }
 
-            /*
-            Graphics g = p.GetGraphics();
-            Color ct = g.getColor();
-            g.setColor(Color.WHITE);
-            g.fillRect(GetX(), GetY(), w - scrollBarWidth, h);
-                       
-            g.setColor(Color.LIGHT_GRAY);
-            g.fillRect(GetX(), GetY(), 100, 100);            
-            
-            g.setColor(Color.cyan);
-            g.fillRect(GetX(), GetY(), 50, 50);
-            
-            g.setColor(ct);
-            */
-            
             if(scrollBarVertVisible) {            
                 if(sliderUpButton != null) {
                     p.DrawBmp(sliderUpButton);

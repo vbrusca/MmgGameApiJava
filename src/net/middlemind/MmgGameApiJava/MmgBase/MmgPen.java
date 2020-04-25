@@ -54,10 +54,15 @@ public class MmgPen {
     private Color tmpC;
     
     /**
+     * A static class field that holds a reference to a transparent Color class instance.
+     */
+    public static Color TRANSPARENT = new Color(0f, 0f, 0f, 1f);
+    
+    /**
      * Constructor for this class.
      */
     public MmgPen() {
-        //color = Color.WHITE;
+        color = MmgPen.TRANSPARENT;
         cacheOn = false;
     }
     
@@ -190,7 +195,6 @@ public class MmgPen {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bi.createGraphics();
         
-        //g.setComposite(AlphaComposite.Src);
         if(MmgPen.ADV_RENDER_HINTS == true)
         {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -251,7 +255,6 @@ public class MmgPen {
         Graphics2D g = rImage.createGraphics();
         g.drawImage(img, 0, 0, w, h, null);
         
-        //g.setComposite(AlphaComposite.Src);
         if(MmgPen.ADV_RENDER_HINTS == true)
         {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -290,7 +293,7 @@ public class MmgPen {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);            
-        }else {
+        } else {
             MmgHelper.wr("ADV_RENDER_HINTS is set to false.");
         }
     }
@@ -348,9 +351,9 @@ public class MmgPen {
     public void DrawBmp(MmgBmp b, MmgVector2 position) {
         if (color != null) {
             pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), color, null);
-        }else if(b.GetMmgColor() != null) {
+        } else if(b.GetMmgColor() != null) {
             pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
-        }else {
+        } else {
             pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), null);
         }
     }
@@ -365,9 +368,9 @@ public class MmgPen {
     public void DrawBmp(MmgBmp b, int x, int y) {
         if (color != null) {
             pen.drawImage(b.GetTexture2D(), x, y, color, null);
-        }else if(b.GetMmgColor() != null) {
+        } else if(b.GetMmgColor() != null) {
             pen.drawImage(b.GetTexture2D(), x, y, b.GetMmgColor().GetColor(), null);
-        }else {
+        } else {
             pen.drawImage(b.GetTexture2D(), x, y, null);
         }
     }    
@@ -397,21 +400,21 @@ public class MmgPen {
         if(rotation != 0) {
             if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
                 tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
-            }else {
+            } else {
                 tmpImg = RotateImage(b.GetWidth(), b.GetHeight(), b.GetTexture2D(), (int)rotation, origin.GetX(), origin.GetY());
                 if(cacheOn == true) {
                     MmgMediaTracker.CacheImage(tmpIdStr, tmpImg);
                 }
             }
-        }else {
+        } else {
             tmpImg = b.GetTexture2D();
         }
         
         if(color != null) {
             pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
-        }else if(b.GetMmgColor() != null) {
+        } else if(b.GetMmgColor() != null) {
             pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
-        }else {
+        } else {
             pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
         }
     }
@@ -428,17 +431,17 @@ public class MmgPen {
         
         if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
             tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);       
-        }else {
+        } else {
             tmpImg = b.GetTexture2D();
         }
         
         if(srcRect != null && dstRect != null) {
             pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
-        }else if(srcRect == null) {
+        } else if(srcRect == null) {
             pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);            
-        }else if(dstRect == null) {
+        } else if(dstRect == null) {
             pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
-        }else {
+        } else {
             pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), 0, 0, b.GetWidth(), b.GetHeight(), null);                        
         }
     }    
@@ -458,20 +461,20 @@ public class MmgPen {
     public void DrawBmp(MmgBmp b, MmgVector2 position, MmgRect srcRect, MmgRect dstRect, MmgVector2 scaling, MmgVector2 origin, float rotation) {
         if(rotation != 0 && scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
             tmpIdStr = b.GetIdStr(rotation, scaling);
-        }else if(rotation != 0) {
+        } else if(rotation != 0) {
             tmpIdStr = b.GetIdStr(rotation);
-        }else if(scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
+        } else if(scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
             tmpIdStr = b.GetIdStr(scaling);
-        }else{
+        } else{
             tmpIdStr = b.GetBmpIdStr();
         }
         
         if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
             tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
-        }else if(rotation != 0 && scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
+        } else if(rotation != 0 && scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
             if(cacheOn == true && MmgMediaTracker.HasBmpKey(b.GetIdStr(rotation)) == true) {
                 tmpImg = MmgMediaTracker.GetBmpValue(b.GetIdStr(rotation));
-            }else {
+            } else {
                 tmpImg = RotateImage(b.GetWidth(), b.GetHeight(), b.GetTexture2D(), (int)rotation, origin.GetX(), origin.GetY());
                 if(cacheOn == true) {
                     MmgMediaTracker.CacheImage(b.GetIdStr(rotation), tmpImg);
@@ -482,25 +485,25 @@ public class MmgPen {
             if(cacheOn == true) {
                 MmgMediaTracker.CacheImage(tmpIdStr, tmpImg);
             }
-        }else if(rotation != 0) {
+        } else if(rotation != 0) {
             if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
                 tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
-            }else {
+            } else {
                 tmpImg = RotateImage(b.GetWidth(), b.GetHeight(), b.GetTexture2D(), (int)rotation, origin.GetX(), origin.GetY());
                 if(cacheOn == true) {
                     MmgMediaTracker.CacheImage(tmpIdStr, tmpImg);
                 }
             }
-        }else if(scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
+        } else if(scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0)) {
            if(cacheOn == true && MmgMediaTracker.HasBmpKey(tmpIdStr) == true) {
                tmpImg = MmgMediaTracker.GetBmpValue(tmpIdStr);
-           }else {
+           } else {
                 tmpImg = ScaleImage(tmpImg, scaling.GetXDouble(), scaling.GetYDouble());
                 if(cacheOn == true) {
                     MmgMediaTracker.CacheImage(tmpIdStr, tmpImg);
                 }
            }
-        }else {
+        } else {
             tmpImg = b.GetTexture2D();
         }
         
@@ -508,36 +511,36 @@ public class MmgPen {
             if(srcRect == null) {
                 if(color != null) {
                     pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
-                }else if(b.GetMmgColor() != null) {
+                } else if(b.GetMmgColor() != null) {
                     pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
-                }else {
+                } else {
                     pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
                 }
-            }else {
+            } else {
                 //src rect is not null
                 if(color != null) {
                     pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
-                }else if(b.GetMmgColor() != null) {
+                } else if(b.GetMmgColor() != null) {
                     pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
-                }else {
+                } else {
                     pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
                 }
             }
-        }else {
+        } else {
             if(srcRect == null) {
                 if(color != null) {
                     pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), color, null);
-                }else if(b.GetMmgColor() != null) {
+                } else if(b.GetMmgColor() != null) {
                     pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), b.GetMmgColor().GetColor(), null);
-                }else{
+                } else{
                     pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
                 }
-            }else {
+            } else {
                 if(color != null) {
                     pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
-                }else if(b.GetMmgColor() != null) {
+                } else if(b.GetMmgColor() != null) {
                     pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
-                }else {
+                } else {
                     pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
                 }
             }

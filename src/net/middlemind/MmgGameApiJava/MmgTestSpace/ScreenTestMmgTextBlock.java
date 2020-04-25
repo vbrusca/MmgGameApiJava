@@ -1,7 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
@@ -13,9 +12,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgPositionTween;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgTextBlock;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -27,7 +25,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgPositionTween extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -45,47 +43,22 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      * holds a reference to this game screen object.
      */
     protected final GamePanel owner;
+       
+    /**
+     * 
+     */
+    private MmgTextBlock txtBlock;
         
     /**
      * 
      */
-    private MmgBmp frame1;
+    private MmgFont txtWords;
     
     /**
      * 
      */
-    private MmgBmp frame2;
+    private String txt;
     
-    /**
-     * 
-     */
-    private MmgBmp frame3;
-    
-    /**
-     * 
-     */
-    private MmgBmp[] frames;
-    
-    /**
-     * 
-     */
-    private MmgSprite sprite;    
-    
-    /**
-     * 
-     */
-    private MmgPositionTween posTween;
-                
-    /**
-     * 
-     */
-    private MmgFont posTweenLabel;
-    
-    /**
-     * 
-     */
-    private MmgFont eventLabel;    
-        
     /**
      * 
      */
@@ -109,13 +82,13 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgPositionTween(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgTextBlock(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgPositionTween.Constructor");
+        Helper.wr("ScreenTestMmgTextBlock.Constructor");
     }
 
     /**
@@ -125,7 +98,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgPositionTween.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgTextBlock.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -143,63 +116,47 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgPositionTween.LoadResources");
+        Helper.wr("ScreenTestMmgTextBlock.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Position Tween (18)  >");
+        title.SetText("<  Screen Test Mmg Text Block (19)  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
-              
-        frame1 = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
-        frame1 = MmgBmpScaler.ScaleMmgBmp(frame1, 2.0f, true);
-        MmgHelper.CenterHorAndVert(frame1);
+               
+        txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec sapien eget velit hendrerit ultrices ut ac tortor. Sed a elit libero. Fusce venenatis dapibus auctor. Nullam lacinia consectetur erat id rhoncus. Nullam consequat scelerisque tincidunt. Phasellus et dolor justo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas hendrerit ante eros, et dapibus augue eleifend ut. Integer et dapibus metus. Donec ac mi blandit elit tristique mollis sit amet vel lorem. Cras vehicula eros vel arcu dapibus tempor. In at lectus porta, mattis nisi vitae, tristique urna. Nunc eget vestibulum odio, nec convallis enim. Cras viverra turpis ut tempor feugiat. Mauris ut mauris et felis vehicula facilisis vitae quis nisl. Nam vulputate semper enim, ut iaculis nulla elementum at. Integer mattis pulvinar nunc vestibulum placerat. Nulla semper id nulla non condimentum. In efficitur dignissim libero laoreet aliquam. Sed eu metus urna. Sed semper quam quis ultrices pharetra. Aenean ante neque, pulvinar eget facilisis sit amet, tempor quis dolor. Vivamus eleifend purus vitae urna imperdiet commodo. Etiam non commodo neque. Sed iaculis luctus mollis. Maecenas id purus mollis, hendrerit diam in, sagittis erat. Nullam eu malesuada sem. Etiam dolor orci, maximus id rutrum at, cursus nec lectus. Vivamus ac eleifend nulla. Donec efficitur, quam at pretium aliquet, velit justo iaculis tortor, eget rutrum libero sem non velit. Mauris est tellus, pharetra nec tempus vitae, eleifend non neque. Nulla convallis neque nibh, eu luctus metus congue in. Pellentesque non sem a leo consequat luctus. Nullam volutpat urna sed magna imperdiet aliquam. Fusce fringilla, felis a sodales posuere, urna dui pretium enim, in rutrum neque massa id eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin rhoncus interdum nisl, in vulputate nulla gravida vel. Integer id interdum nisi. Nullam a interdum dolor, convallis molestie odio. Mauris lorem metus, pulvinar ac justo non, accumsan lobortis lorem. Donec commodo purus eu nunc varius porttitor.";
         
-        frame2 = MmgHelper.GetBasicCachedBmp("soldier_frame_2.png");    
-        frame2 = MmgBmpScaler.ScaleMmgBmp(frame2, 2.0f, true);
-        MmgHelper.CenterHorAndVert(frame2);
+        MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = true;        
+        txtBlock = new MmgTextBlock();
+        txtBlock.SetLineHeight(MmgFontData.GetTargetPixelHeightScaled() + MmgHelper.ScaleValue(5));
+        txtBlock.SetHeight(MmgHelper.ScaleValue(300));
+        txtBlock.SetWidth(MmgHelper.ScaleValue(400));
+        txtBlock.SetPaddingX(MmgHelper.ScaleValue(txtBlock.GetPaddingX()));
+        txtBlock.SetPaddingY(MmgHelper.ScaleValue(txtBlock.GetPaddingY()));
+        txtBlock.PrepLinesInBox(txtBlock.GetLinesInBox());
+        txtBlock.PrepTextSplit(txt, MmgFontData.GetFontNorm(), MmgFontData.GetFontSize(), MmgHelper.ScaleValue(375));
+        txtBlock.SetColor(MmgColor.GetWhite());
         
-        frame3 = MmgHelper.GetBasicCachedBmp("soldier_frame_3.png");
-        frame3 = MmgBmpScaler.ScaleMmgBmp(frame3, 2.0f, true);
-        MmgHelper.CenterHorAndVert(frame3);
+        MmgHelper.CenterHorAndVert(txtBlock);
+        txtBlock.PrepPage(0);
         
-        frames = new MmgBmp[4];
-        frames[0] = frame1;
-        frames[1] = frame2;
-        frames[2] = frame3;
-        frames[3] = frame2;        
+        //Must be done after the text split to set the position of each line of text.
+        txtBlock.SetPosition(txtBlock.GetPosition());
+        AddObj(txtBlock);
+                
+        Helper.wr("Words: " + txtBlock.GetWordCount());
+        Helper.wr("Lines: " + txtBlock.GetLineCount());
+        Helper.wr("Pages: " + txtBlock.GetPageCount());        
         
-        MmgVector2 tmpPos = frame1.GetPosition().Clone();
-        tmpPos.SetY(tmpPos.GetY() + 15);
-        sprite = new MmgSprite(frames, tmpPos);
-        sprite.SetFrameTime(200l);
-        AddObj(sprite);
-        
-        posTweenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        posTweenLabel.SetText("MmgSprite Example with 4 Frames Attached to an MmgPositionTween");
-        MmgHelper.CenterHorAndVert(posTweenLabel);
-        posTweenLabel.SetY(GetY() + 70);
-        AddObj(posTweenLabel);
-        
-        MmgVector2 start = new MmgVector2(100, GetY() + (GetHeight() - frame1.GetHeight()) / 2);
-        MmgVector2 stop = new MmgVector2(GetWidth() - 100, GetY() + (GetHeight() - frame1.GetHeight()) / 2);
-        
-        posTween = new MmgPositionTween(sprite, 10000, start, stop);
-        posTween.SetOnReachStart(this);
-        posTween.SetOnReachFinish(this);
-        posTween.SetMsStartMove(2000);
-        posTween.SetMsStartMove(System.currentTimeMillis());
-        posTween.SetMoving(true);
-        
-        eventLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        eventLabel.SetText("Event:");
-        MmgHelper.CenterHor(eventLabel);
-        eventLabel.SetY(GetY() + GetHeight() - 30);
-        AddObj(eventLabel); 
+        txtWords = MmgFontData.CreateDefaultBoldMmgFontSm();
+        txtWords.SetText("Words: " + txtBlock.GetWordCount() + "  Lines: " + txtBlock.GetLineCount() + "  Pages: " + txtBlock.GetPageCount());
+        MmgHelper.CenterHor(txtWords);
+        txtWords.SetY(GetY() + GetHeight() - 30);
+        AddObj(txtWords);
         
         ready = true;
         pause = false;
@@ -213,7 +170,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -226,7 +183,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessScreenPress");
         return true;
     }
 
@@ -238,7 +195,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -251,7 +208,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessScreenRelease");
         return true;
     }
     
@@ -263,7 +220,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessAClick");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessAClick");
         return true;
     }
     
@@ -275,7 +232,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessBClick");        
+        Helper.wr("ScreenTestMmgTextBlock.ProcessBClick");        
         return true;
     }
     
@@ -284,7 +241,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessDebugClick");
     }
 
     /**
@@ -295,7 +252,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgTextBlock.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -307,12 +264,12 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgTextBlock.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_19);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_17);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_18);
             
         }
         return true;
@@ -326,7 +283,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgTextBlock.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -338,7 +295,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgTextBlock.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -351,7 +308,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessScreenClick");
         return true;
     }    
     
@@ -364,7 +321,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgPositionTween.ProcessKeyClick");
+        Helper.wr("ScreenTestMmgTextBlock.ProcessKeyClick");
         return true;
     }
     
@@ -376,14 +333,9 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         SetBackground(null);
 
         title = null;
-        frame1 = null;
-        frame2 = null;
-        frame3 = null;
-        frames = null;
-        sprite = null;
-        posTween = null;
-        posTweenLabel = null;
-        eventLabel = null;
+        txtBlock = null;
+        txt = null;
+        txtWords = null;
         
         ClearObjs();
         ready = false;
@@ -397,27 +349,6 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
     public GameStates GetGameState() {
         return gameState;
     }
-    
-    /**
-     * 
-     * 
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame
-     * @return 
-     */
-    @Override
-    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
-        lret = false;
-
-        if (pause == false && isVisible == true) {
-            //always run this update
-            posTween.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
-            sprite.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);            
-        }
-
-        return lret;
-    }    
     
     /**
      * The main drawing routine.
@@ -438,7 +369,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgPositionTween.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgTextBlock.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -448,21 +379,6 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgPositionTween.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
-        eventLabel.SetText("Event: " + e.GetMessage() + " Id: " + e.GetEventId() + " Type: " + e.GetEventType());
-        MmgHelper.CenterHor(eventLabel);
-        if(e.GetEventId() == MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH) {
-            posTween.SetDirStartToFinish(false);
-            posTween.SetMsStartMove(2000);
-            posTween.SetMsStartMove(System.currentTimeMillis());
-            posTween.SetMoving(true);
-            
-        } else {
-            posTween.SetDirStartToFinish(true);
-            posTween.SetMsStartMove(2000);
-            posTween.SetMsStartMove(System.currentTimeMillis());        
-            posTween.SetMoving(true);            
-        
-        }
+        Helper.wr("ScreenTestMmgTextBlock.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

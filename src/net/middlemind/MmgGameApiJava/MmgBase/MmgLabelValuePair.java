@@ -51,7 +51,7 @@ public class MmgLabelValuePair extends MmgObj {
     }
 
     /**
-     * Constructor that sets the lower level font classes with Font classs instances.
+     * Constructor that sets the lower level font classes with Font class instances.
      * 
      * @param fontLbl       The Font to use for the label.
      * @param fontVal       The Font to use for the value.
@@ -402,6 +402,17 @@ public class MmgLabelValuePair extends MmgObj {
         lbl.SetPosition(v);
         Reset();
     }
+    
+    /**
+     * Sets the position of this object and resets the label, value pair positioning.
+     * 
+     * @param x     The X coordinate to set in the position.
+     * @param y     The Y coordinate to set in the position.
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }    
     
     /**
      * Sets the MmgColor to use for drawing the label, value pair text.

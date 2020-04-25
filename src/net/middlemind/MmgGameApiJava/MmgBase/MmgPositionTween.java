@@ -1,7 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
-
 /**
  * Class that provides tween support to an underlying MmgObj instance.
  * Created by Middlemind Games 12/01/2016
@@ -91,6 +89,11 @@ public class MmgPositionTween extends MmgObj {
     private long msStartMove;
     
     /**
+     * A temporary class field used to calculate a new MmgVector2 with position information.
+     */
+    private MmgVector2 tmpV;    
+    
+    /**
      * An event handler for the reach finish event.
      */
     private MmgEventHandler onReachFinish;
@@ -173,12 +176,14 @@ public class MmgPositionTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetMoving(false);
+        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToMoveX);        
+        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);        
     }
 
     /**
      * A constructor that is based on the an instance of the MmgPositionTween object.
      * 
-     * @param obj       An MmgPositionTween object to create an new instance of the MmgPositionTween class from.
+     * @param obj       An MmgPositionTween object used to create an new instance of the MmgPositionTween class.
      */
     public MmgPositionTween(MmgPositionTween obj) {
         super();
@@ -555,7 +560,8 @@ public class MmgPositionTween extends MmgObj {
                         }
                         lret = true;
                     }else{
-                        SetPosition(new MmgVector2(startPosition.GetX() + (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() + (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                        tmpV = new MmgVector2(startPosition.GetX() + (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), startPosition.GetY() + (pixelsPerMsToMoveY * (currentTimeMs - msStartMove)));
+                        SetPosition(tmpV);
                         lret = true;
                     }
                     
@@ -571,7 +577,8 @@ public class MmgPositionTween extends MmgObj {
                         }
                         lret = true;
                     }else{
-                        SetPosition(new MmgVector2(finishPosition.GetX() - (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), finishPosition.GetY() - (pixelsPerMsToMoveY * (currentTimeMs - msStartMove))));
+                        tmpV = new MmgVector2(finishPosition.GetX() - (pixelsPerMsToMoveX * (currentTimeMs - msStartMove)), finishPosition.GetY() - (pixelsPerMsToMoveY * (currentTimeMs - msStartMove)));
+                        SetPosition(tmpV);
                         lret = true;
                     }
                 }
@@ -674,7 +681,7 @@ public class MmgPositionTween extends MmgObj {
             && GetMoving() == r.GetMoving()
         ) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }

@@ -60,7 +60,6 @@ public class MmgHelper {
         try {
             if(data != null && data.length > 0) {
                 MmgCfgFileEntry cfe = null;
-                //File f = new File(file);                        
                 FileWriter fw = new FileWriter(file, false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 int len = data.length;
@@ -106,7 +105,6 @@ public class MmgHelper {
         try {
             if(data != null && data.size() > 0) {
                 MmgCfgFileEntry cfe = null;
-                //File f = new File(file);                        
                 FileWriter fw = new FileWriter(file, false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 Set<String> keys = data.keySet();
@@ -328,15 +326,15 @@ public class MmgHelper {
     /**
      * Tests for collisions of two rectangles.
      *
-     * @param r1x   Rectangle #1, X coordinate.
-     * @param r1y   Rectangle #1, Y coordinate.
-     * @param r1w   Rectangle #1, width.
-     * @param r1h   Rectangle #1, height.
-     * @param r2x   Rectangle #2, X coordinate.
-     * @param r2y   Rectangle #2, Y coordinate.
-     * @param r2w   Rectangle #2, width.
-     * @param r2h   Rectangle #2, height.
-     * @return      True if there is a collision of the two rectangles.
+     * @param r1x       Rectangle #1, X coordinate.
+     * @param r1y       Rectangle #1, Y coordinate.
+     * @param r1w       Rectangle #1, width.
+     * @param r1h       Rectangle #1, height.
+     * @param r2x       Rectangle #2, X coordinate.
+     * @param r2y       Rectangle #2, Y coordinate.
+     * @param r2w       Rectangle #2, width.
+     * @param r2h       Rectangle #2, height.
+     * @return          True if there is a collision of the two rectangles.
      */
     public static boolean RectCollision(int r1x, int r1y, int r1w, int r1h, int r2x, int r2y, int r2w, int r2h) {
 
@@ -372,11 +370,11 @@ public class MmgHelper {
     /**
      * The absolute value of the distance between two points.
      *
-     * @param x1    Point #1, X coordinate.
-     * @param x2    Point #2, X coordinate.
-     * @param y1    Point #1, Y coordinate.
-     * @param y2    Point #2, Y coordinate.
-     * @return      The absolute value of the calculated distance.
+     * @param x1        Point #1, X coordinate.
+     * @param x2        Point #2, X coordinate.
+     * @param y1        Point #1, Y coordinate.
+     * @param y2        Point #2, Y coordinate.
+     * @return          The absolute value of the calculated distance.
      */
     public static int AbsDistance(int x1, int x2, int y1, int y2) {
         return (int) Math.sqrt((double) (((y1 - x1) * (y1 - x1)) + ((y2 - x2) * (y2 - x2))));
@@ -385,9 +383,9 @@ public class MmgHelper {
     /**
      * Centers an MmgObj horizontally.
      *
-     * @param obj   The object to center.
-     * @return      A centered object.
-     * @see         MmgScreenData
+     * @param obj       The object to center.
+     * @return          A centered object.
+     * @see             MmgScreenData
      */
     public static MmgObj CenterHor(MmgObj obj) {
         MmgVector2 vec = new MmgVector2((int) (MmgScreenData.GetGameLeft() + (MmgScreenData.GetGameWidth() - obj.GetWidth()) / 2), obj.GetPosition().GetY());
@@ -398,9 +396,9 @@ public class MmgHelper {
     /**
      * Centers an MmgObj vertically.
      *
-     * @param obj   The object to center.
-     * @return      A centered object.
-     * @see         MmgScreenData
+     * @param obj       The object to center.
+     * @return          A centered object.
+     * @see             MmgScreenData
      */
     public static MmgObj CenterVert(MmgObj obj) {
         MmgVector2 vec = new MmgVector2(obj.GetPosition().GetX(), (int) (MmgScreenData.GetGameTop() + (MmgScreenData.GetGameHeight() - obj.GetHeight()) / 2));
@@ -411,9 +409,9 @@ public class MmgHelper {
     /**
      * Centers an MmgObj horizontally and vertically.
      *
-     * @param obj   The object to center.
-     * @return      A centered object.
-     * @see         MmgScreenData
+     * @param obj       The object to center.
+     * @return          A centered object.
+     * @see             MmgScreenData
      */
     public static MmgObj CenterHorAndVert(MmgObj obj) {
         obj = CenterHor(obj);
@@ -425,9 +423,9 @@ public class MmgHelper {
      * Centers an MmgObj horizontally and places it at the top of the screen
      * vertically.
      *
-     * @param obj   The object to position.
-     * @return      A repositioned object.
-     * @see         MmgScreenData
+     * @param obj       The object to position.
+     * @return          A repositioned object.
+     * @see             MmgScreenData
      */
     public static MmgObj CenterHorAndTop(MmgObj obj) {
         obj = CenterHor(obj);
@@ -441,8 +439,8 @@ public class MmgHelper {
      * Centers an MmgObj horizontally and places it at the bottom of the screen
      * vertically.
      *
-     * @param obj   The object to position.
-     * @return      A repositioned object.
+     * @param obj       The object to position.
+     * @return          A repositioned object.
      */
     public static MmgObj CenterHorAndBot(MmgObj obj) {
         obj = CenterHor(obj);
@@ -456,8 +454,8 @@ public class MmgHelper {
     /**
      * Centers an MmgObj horizontally and vertically.
      *
-     * @param obj   The object to position.
-     * @return      A repositioned object.
+     * @param obj       The object to position.
+     * @return          A repositioned object.
      */
     public static MmgObj CenterHorAndMid(MmgObj obj) {
         return CenterHorAndVert(obj);
@@ -466,8 +464,8 @@ public class MmgHelper {
     /**
      * Repositions an MmgObj horizontally left and vertically top.
      *
-     * @param obj   The object to position.
-     * @return      A repositioned object.
+     * @param obj       The object to position.
+     * @return          A repositioned object.
      */
     public static MmgObj LeftHorAndTop(MmgObj obj) {
         MmgVector2 pos = obj.GetPosition().Clone();
@@ -480,8 +478,8 @@ public class MmgHelper {
     /**
      * Repositions an MmgObj horizontally left, and vertically top.
      *
-     * @param obj   The object to position.
-     * @return      A repositioned object.
+     * @param obj       The object to position.
+     * @return          A repositioned object.
      */
     public static MmgObj LeftHorAndMid(MmgObj obj) {
         MmgVector2 pos = obj.GetPosition().Clone();
@@ -493,8 +491,8 @@ public class MmgHelper {
     /**
      * Repositions an MmgObj horizontally left and vertically bottom.
      *
-     * @param obj   The object to reposition.
-     * @return      A repositioned object.
+     * @param obj       The object to reposition.
+     * @return          A repositioned object.
      */
     public static MmgObj LeftHorAndBot(MmgObj obj) {
         MmgVector2 pos = obj.GetPosition().Clone();
@@ -508,8 +506,8 @@ public class MmgHelper {
     /**
      * Repositions an MmgObj horizontally right, and vertically top.
      *
-     * @param obj   The object to reposition.
-     * @return      A repositioned object.
+     * @param obj       The object to reposition.
+     * @return          A repositioned object.
      */
     public static MmgObj RightHorAndTop(MmgObj obj) {
         MmgVector2 pos = obj.GetPosition().Clone();
@@ -523,8 +521,8 @@ public class MmgHelper {
     /**
      * Repositions an MmgObj horizontally right, and vertically middle.
      *
-     * @param obj   The object to reposition.
-     * @return      A repositioned object.
+     * @param obj       The object to reposition.
+     * @return          A repositioned object.
      */
     public static MmgObj RightHorAndMid(MmgObj obj) {
         MmgVector2 pos = obj.GetPosition().Clone();
@@ -537,8 +535,8 @@ public class MmgHelper {
     /**
      * Repositions an MmgObj horizontally right, and vertically bottom.
      *
-     * @param obj   The object to reposition.
-     * @return      A repositioned object.
+     * @param obj       The object to reposition.
+     * @return          A repositioned object.
      */
     public static MmgObj RightHorAndBot(MmgObj obj) {
         MmgVector2 pos = obj.GetPosition().Clone();
@@ -553,8 +551,8 @@ public class MmgHelper {
     /**
      * Scaling method, applies the scale X to the given argument.
      *
-     * @param val   The value to scale.
-     * @return      A scaled value.
+     * @param val       The value to scale.
+     * @return          A scaled value.
      */
     public static int ScaleValue(int val) {
         return (int) ((double) val * MmgScreenData.GetScaleX());
@@ -563,8 +561,8 @@ public class MmgHelper {
     /**
      * Scaling method, applies the scale x to the given argument.
      *
-     * @param val   The value to scale.
-     * @return      A scaled value.
+     * @param val       The value to scale.
+     * @return          A scaled value.
      */
     public static float ScaleValue(float val) {
         return (float) ((double) val * MmgScreenData.GetScaleX());
@@ -573,8 +571,8 @@ public class MmgHelper {
     /**
      * Scaling method, applies the scale x to the given argument.
      *
-     * @param val   The value to scale.
-     * @return      A scaled value.
+     * @param val       The value to scale.
+     * @return          A scaled value.
      */
     public static double ScaleValue(double val) {
         return (double) ((double) val * MmgScreenData.GetScaleX());
@@ -741,8 +739,8 @@ public class MmgHelper {
     /**
      * Gets a basic sound from the file system.
      *
-     * @param src   A path to a valid sound resource.
-     * @return      A sound loaded from the file path.
+     * @param src       A path to a valid sound resource.
+     * @return          A sound loaded from the file path.
      */
     public static MmgSound GetBasicSound(String src) {
         Clip in = null;
@@ -766,8 +764,8 @@ public class MmgHelper {
     /**
      * Gets a basic bitmap from the file system.
      *
-     * @param src   A path to a valid bitmap resource.
-     * @return      A bitmap loaded from the file path.
+     * @param src       A path to a valid bitmap resource.
+     * @return          A bitmap loaded from the file path.
      */
     public static MmgBmp GetBasicBmp(String src) {
         Image b = null;
@@ -794,8 +792,8 @@ public class MmgHelper {
     /**
      * A static method for converting binary image data into an MmgBmp object.
      * 
-     * @param d     The array of bytes representing the image data.
-     * @return      An MmgBmp object that is created from the binary image data.
+     * @param d         The array of bytes representing the image data.
+     * @return          An MmgBmp object that is created from the binary image data.
      */
     public static MmgBmp GetBinaryBmp(byte[] d) {
         Image b = null;
@@ -822,8 +820,8 @@ public class MmgHelper {
     /**
      * A static method for converting the lower level Java image into an MmgBmp object.
      * 
-     * @param b     The Image instance used to create an MmgBmp object.
-     * @return      An MmgBmp object that is created from the binary image data.
+     * @param b         The Image instance used to create an MmgBmp object.
+     * @return          An MmgBmp object that is created from the binary image data.
      */
     public static MmgBmp GetImageBmp(Image b) {
         MmgBmp r = null;
@@ -843,8 +841,8 @@ public class MmgHelper {
     /**
      * A static method for converting the lower level Java image into an MmgBmp object.
      * 
-     * @param b     The Image instance used to create an MmgBmp object.
-     * @return      An MmgBmp object that is created from the binary image data.
+     * @param b         The Image instance used to create an MmgBmp object.
+     * @return          An MmgBmp object that is created from the binary image data.
      */
     public static MmgBmp GetImageCacheBmp(Image b) {
         MmgBmp r = null;
@@ -863,12 +861,12 @@ public class MmgHelper {
     /**
      * Gets a basic MmgMenuItem instance.
      *
-     * @param handler   The event handler of the menu item.
-     * @param name      The name of the menu item.
-     * @param eventId   The id of the menu item event.
-     * @param eventType The type of the menu item event.
-     * @param img       The image used to display the menu item.
-     * @return          A new configured MmgMenuItem.
+     * @param handler       The event handler of the menu item.
+     * @param name          The name of the menu item.
+     * @param eventId       The id of the menu item event.
+     * @param eventType     The type of the menu item event.
+     * @param img           The image used to display the menu item.
+     * @return              A new configured MmgMenuItem.
      */
     public static MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, String name, int eventId, int eventType, MmgBmp img) {
         MmgMenuItem itm;

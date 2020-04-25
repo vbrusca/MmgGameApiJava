@@ -139,7 +139,6 @@ public class MmgRect {
      */
     public int GetWidth() {
         return rect.width;
-        //return (GetRight() - GetLeft());
     }
 
     public void SetWidth(int w) {
@@ -152,7 +151,6 @@ public class MmgRect {
      * @return      The height of the rectangle.
      */
     public int GetHeight() {
-        //return (GetBottom() - GetTop());
         return rect.height;
     }
 
