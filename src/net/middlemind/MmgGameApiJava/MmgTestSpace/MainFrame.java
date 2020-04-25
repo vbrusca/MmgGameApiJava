@@ -3,7 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 
 /**
- * An application specific implementation of the MmgCore's MainFrame class.
+ * An application specific extension of the MmgCore's MainFrame class.
  * Created by Middlemind Games 02/19/2020
  * 
  * @author Victor G. Brusca

@@ -30,171 +30,169 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     protected final GameStates gameState;
 
     /**
-     * Event handler for firing generic events. Events would fire when the
-     * screen has non UI actions to broadcast.
+     * Event handler for firing generic events. 
+     * Events would fire when the screen has non UI actions to broadcast.
      */
     protected GenericEventHandler handler;
 
     /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
+     * The GamePanel that owns this game screen. 
+     * Usually a JPanel instance that holds a reference to this game screen object.
      */
     protected final GamePanel owner;
         
     /**
-     * 
+     * An MmgFont class instance for tracking A button press events.
      */
     private MmgFont processABtnPress;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking A button release events.
      */
     private MmgFont processABtnRelease;
     
     /**
-     * 
+     * An MmgFont class instance for tracking A button click events.
      */
     private MmgFont processABtnClick;
         
     /**
-     * 
+     * An MmgFont class instance for tracking A button press events.
      */
     private MmgFont processBBtnPress;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking A button release events.
      */
     private MmgFont processBBtnRelease;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking A button click events.
      */
     private MmgFont processBBtnClick;
     
     /**
-     * 
+     * An MmgFont class instance for tracking "Debug" events.
      */
     private MmgFont processDebugClick;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Up button press events.
      */
     private MmgFont processUpBtnPress;
     
     /**
-     * 
+     * An MmgFont class instance for tracking Up button release events.
      */
     private MmgFont processUpBtnRelease;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Up button click events.
      */
     private MmgFont processUpBtnClick;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Down button press events.
      */
     private MmgFont processDownBtnPress;
     
     /**
-     * 
+     * An MmgFont class instance for tracking Down button release events.
      */
     private MmgFont processDownBtnRelease;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Down button click events.
      */
     private MmgFont processDownBtnClick;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Left button press events.
      */
     private MmgFont processLeftBtnPress;
     
     /**
-     * 
+     * An MmgFont class instance for tracking Left button release events.
      */
     private MmgFont processLeftBtnRelease;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Left button click events.
      */
     private MmgFont processLeftBtnClick;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Right button press events.
      */
     private MmgFont processRightBtnPress;
     
     /**
-     * 
+     * An MmgFont class instance for tracking Right button release events.
      */
     private MmgFont processRightBtnRelease;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking Right button click events.
      */
     private MmgFont processRightBtnClick;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking keyboard press events.
      */
     private MmgFont processKeyPress;
     
     /**
-     * 
+     * An MmgFont class instance for tracking keyboard release events.
      */
     private MmgFont processKeyRelease;    
     
     /**
-     * 
+     * An MmgFont class instance for tracking keyboard click events.
      */
     private MmgFont processKeyClick;
     
     /**
-     * 
+     * An MmgFont class instance for tracking mouse press events.
      */
     private MmgFont processMousePress;
     
     /**
-     * 
+     * An MmgFont class instance for tracking mouse release events.
      */
     private MmgFont processMouseRelease;    
     
-    
     /**
-     * 
+     * An MmgFont class instance for tracking mouse click events.
      */
     private MmgFont processMouseClick;
     
     /**
-     * 
+     * An MmgFont class instance for tracking mouse move events.
      */
     private MmgFont processMouseMove;    
         
     /**
-     * 
+     * A private temporary MmgFont class instance used internally.
      */
     private MmgFont instr;
     
     /**
-     * 
+     * An MmgFont class instance used as the title for the test game screen.
      */
     private MmgFont title;
     
     /**
-     * 
+     * A private boolean flag used to indicate work has to be done on the next MmgUpdate method call.
      */
     private boolean isDirty = false;
     
     /**
-     * 
+     * A private boolean flag used in the MmgUpdate method to indicate that work has been done this MmgUpdate call.
      */
     private boolean lret = false;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State         The game state of this game screen.
      * @param Owner         The owner of this game screen.
@@ -210,8 +208,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
+     * Sets a generic event handler that will receive generic events from this object.
      *
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
@@ -221,9 +218,9 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * Gets the GenericEventHandler this game screen uses to handle GenericEvents.
      * 
-     * 
-     * @return 
+     * @return      The GenericEventHandler this screen uses to handle GenericEvents.
      */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
@@ -446,23 +443,25 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * 
-     * @param v
-     * @return 
-     */
+     * @param v     The coordinates of the mouse event.
+     * @return      A boolean indicating if the event was handled or not.
+     */  
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
         Helper.wr("ScreenTestMmgBasicInput.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
-    /**
+   /**
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * 
-     * @param x
-     * @param y
-     * @return 
+     * @param x     The X coordinate of the mouse.
+     * @param y     The Y coordinate of the mouse.
+     * @return      A boolean indicating if the event was handled or not.
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
@@ -472,10 +471,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * 
-     * @param v
-     * @return 
+     * @param v     The coordinates of the mouse event.
+     * @return      A boolean indicating if the event was handled or not.
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
@@ -484,11 +484,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
      * 
-     * 
-     * @param x
-     * @param y
-     * @return 
+     * @param x     The X coordinate of the event.
+     * @param y     The Y coordinate of the event.
+     * @return      A boolean indicating if the event was handled or not.      
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
@@ -498,10 +498,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
-     * 
-     * 
-     * @param v
-     * @return 
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
+     *
+     * @param v     The coordinates of the click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
@@ -510,11 +511,12 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
-     * 
-     * 
-     * @param x
-     * @param y
-     * @return 
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
+     *
+     * @param x     The X axis coordinate of the screen click.
+     * @param y     The Y axis coordinate of the screen click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
@@ -524,11 +526,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }    
     
     /**
+     * Expects a relative X, Y coordinate that takes into account the game's offset and the current panel's offset.
      * 
-     * 
-     * @param x
-     * @param y
-     * @return 
+     * @param x     The X coordinate of the mouse.
+     * @param y     The Y coordinate of the mouse.
+     * @return      A boolean indicating if the event was handled or not.
      */
     @Override
     public boolean ProcessMouseMove(int x, int y) {
@@ -538,10 +540,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }         
     
     /**
+     * A method to handle A press events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessAPress(int src) {
@@ -551,10 +553,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
+     * A method to handle A release events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessARelease(int src) {
@@ -564,10 +566,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }    
     
     /**
+     * A method to handle A click events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessAClick(int src) {
@@ -577,10 +579,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
+     * A method to handle B press events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessBPress(int src) {
@@ -590,10 +592,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
+     * A method to handle B release events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessBRelease(int src) {
@@ -603,11 +605,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }    
     
     /**
+     * A method to handle B click events.
      * 
-     * 
-     * @param src
-     * @return 
-     */
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
+     */ 
     @Override
     public boolean ProcessBClick(int src) {
         Helper.wr("ScreenTestMmgBasicInput.ProcessBClick");
@@ -616,7 +618,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
-     * 
+     * A method to handle special debug events that can be customized for each game.
      */
     @Override
     public void ProcessDebugClick() {
@@ -625,10 +627,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * A method to handle dpad press events.
      * 
-     * 
-     * @param dir
-     * @return 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
@@ -650,10 +652,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * A method to handle dpad release events.
      * 
-     * 
-     * @param dir
-     * @return 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
@@ -675,10 +677,10 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
+     * A method to handle dpad click events.
      * 
-     * 
-     * @param dir
-     * @return 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
@@ -700,11 +702,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
         
     /**
+     * A method to handle keyboard press events.
      * 
-     * 
-     * @param c
-     * @param code
-     * @return 
+     * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessKeyPress(char c, int code) {
@@ -714,11 +716,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * A method to handle keyboard release events.
      * 
-     * 
-     * @param c
-     * @param code
-     * @return 
+     * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessKeyRelease(char c, int code) {
@@ -733,11 +735,11 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }    
     
     /**
+     * A method to handle keyboard click events.
      * 
-     * 
-     * @param c
-     * @param code
-     * @return 
+     * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
@@ -752,8 +754,8 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
-        title = null;
         
+        title = null;        
         processABtnClick = null;
         processBBtnClick = null;
         processDownBtnClick = null;
@@ -786,9 +788,9 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
-     * The main drawing routine.
+     * Base draw method, handles drawing this class.
      *
-     * @param p     An MmgPen object to use for drawing this game screen.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -798,9 +800,9 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
     
     /**
+     * The callback method to handle GenericEventMessage objects.
      * 
-     * 
-     * @param obj 
+     * @param obj       A GenericEventMessage object instance to process.
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
@@ -808,9 +810,9 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
     }
 
     /**
+     * The callback method to handle MmgEvent objects.
      * 
-     * 
-     * @param e 
+     * @param e         An MmgEvent object instance to process.
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {

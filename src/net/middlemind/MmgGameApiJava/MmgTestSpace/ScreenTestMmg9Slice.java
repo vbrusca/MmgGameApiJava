@@ -44,43 +44,42 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     protected final GamePanel owner;
         
     /**
-     * 
+     * An MmgFont class instance used to label the background MmgBmp class.
      */
     private MmgFont bgroundLabel;    
     
     /**
-     * 
+     * An MmgFont class instance used as the title of this test screen.
      */
     private MmgFont title;
     
     /**
-     * 
+     * An MmgBmp class instance used as the source of the Mmg9Slice scaling object.
      */
     private MmgBmp bground;
     
     /**
-     * 
+     * An MmgFont class instance used as the Mmg9Slice label.
      */
     private MmgFont menuBgroundLabel;    
     
     /**
-     * 
+     * An Mmg9Slice class instance used to scale the MmgBmp bground object.
      */
     private Mmg9Slice menuBground;
         
     /**
-     * 
+     * A private boolean flag indicating that there is work to be done on the next MmgUpdate call.
      */
     private boolean isDirty = false;
     
     /**
-     * 
+     * A private boolean flag indicating work was done during the MmgUpdate method call.
      */
     private boolean lret = false;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State         The game state of this game screen.
      * @param Owner         The owner of this game screen.
@@ -96,8 +95,7 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
+     * Sets a generic event handler that will receive generic events from this object.
      *
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
@@ -107,9 +105,9 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * Gets the GenericEventHandler this game screen uses to handle GenericEvents.
      * 
-     * 
-     * @return 
+     * @return      The GenericEventHandler this screen uses to handle GenericEvents.
      */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
@@ -171,11 +169,12 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * 
-     * @param v
-     * @return 
-     */
+     * @param v     The coordinates of the mouse event.
+     * @return      A boolean indicating if the event was handled or not.
+     */   
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
         Helper.wr("ScreenTestMmg9Slice.ProcessScreenPress");
@@ -183,12 +182,13 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
+     * @param x     The X coordinate of the mouse.
+     * @param y     The Y coordinate of the mouse.
+     * @return      A boolean indicating if the event was handled or not.
+     */ 
     @Override
     public boolean ProcessMousePress(int x, int y) {
         Helper.wr("ScreenTestMmg9Slice.ProcessScreenPress");
@@ -196,11 +196,12 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * 
-     * @param v
-     * @return 
-     */
+     * @param v     The coordinates of the mouse event.
+     * @return      A boolean indicating if the event was handled or not.
+     */  
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
         Helper.wr("ScreenTestMmg9Slice.ProcessScreenRelease");
@@ -208,12 +209,12 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
      * 
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
+     * @param x     The X coordinate of the event.
+     * @param y     The Y coordinate of the event.
+     * @return      A boolean indicating if the event was handled or not.      
+     */ 
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
         Helper.wr("ScreenTestMmg9Slice.ProcessScreenRelease");
@@ -221,10 +222,10 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
     
     /**
+     * A method to handle A click events.
      * 
-     * 
-     * @param src
-     * @return 
+     * @param src       The source gamepad, keyboard of the A event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessAClick(int src) {
@@ -233,11 +234,11 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
     
     /**
+     * A method to handle B click events.
      * 
-     * 
-     * @param src
-     * @return 
-     */
+     * @param src       The source gamepad, keyboard of the B event.
+     * @return          A boolean indicating if this event was handled or not.
+     */  
     @Override
     public boolean ProcessBClick(int src) {
         Helper.wr("ScreenTestMmg9Slice.ProcessBClick");        
@@ -245,8 +246,7 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
     
     /**
-     * 
-     * 
+     * A method to handle special debug events that can be customized for each game.
      */
     @Override
     public void ProcessDebugClick() {
@@ -254,10 +254,10 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * A method to handle dpad press events.
      * 
-     * 
-     * @param dir
-     * @return 
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
@@ -266,11 +266,11 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * A method to handle dpad release events.
      * 
-     * 
-     * @param dir
-     * @return 
-     */
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
+     */ 
     @Override
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMmg9Slice.ProcessDpadRelease: " + dir);
@@ -285,11 +285,11 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
     
     /**
+     * A method to handle dpad click events.
      * 
-     * 
-     * @param dir
-     * @return 
-     */
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
+     */ 
     @Override
     public boolean ProcessDpadClick(int dir) {
         Helper.wr("ScreenTestMmg9Slice.ProcessDpadClick: " + dir);        
@@ -297,11 +297,12 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
     
     /**
-     * 
-     * 
-     * @param v
-     * @return 
-     */
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
+     *
+     * @param v     The coordinates of the click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
+     */ 
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
         Helper.wr("ScreenTestMmg9Slice.ProcessScreenClick");        
@@ -309,12 +310,13 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
-     * 
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
+     *
+     * @param x     The X axis coordinate of the screen click.
+     * @param y     The Y axis coordinate of the screen click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
+     */  
     @Override
     public boolean ProcessMouseClick(int x, int y) {
         Helper.wr("ScreenTestMmg9Slice.ProcessScreenClick");
@@ -322,11 +324,11 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }    
     
     /**
+     * A method to handle keyboard click events.
      * 
-     * 
-     * @param c
-     * @param code
-     * @return 
+     * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
+     * @return          A boolean indicating if this event was handled or not.
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
@@ -358,10 +360,10 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
         return gameState;
     }
     
-    /**
-     * The main drawing routine.
+   /**
+     * Base draw method, handles drawing this class.
      *
-     * @param p     An MmgPen object to use for drawing this game screen.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -371,9 +373,9 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * The callback method to handle GenericEventMessage objects.
      * 
-     * 
-     * @param obj 
+     * @param obj       A GenericEventMessage object instance to process.
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
@@ -381,9 +383,9 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
     }
 
     /**
+     * The callback method to handle MmgEvent objects.
      * 
-     * 
-     * @param e 
+     * @param e         An MmgEvent object instance to process.
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {

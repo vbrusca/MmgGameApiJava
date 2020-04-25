@@ -914,6 +914,7 @@ public class MmgGameScreen extends MmgObj {
      * A method to handle keyboard press events.
      * 
      * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
      * @return          A boolean indicating if this event was handled or not.
      */
     public boolean ProcessKeyPress(char c, int code) {
@@ -924,6 +925,7 @@ public class MmgGameScreen extends MmgObj {
      * A method to handle keyboard release events.
      * 
      * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
      * @return          A boolean indicating if this event was handled or not.
      */
     public boolean ProcessKeyRelease(char c, int code) {
@@ -934,6 +936,7 @@ public class MmgGameScreen extends MmgObj {
      * A method to handle keyboard click events.
      * 
      * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
      * @return          A boolean indicating if this event was handled or not.
      */
     public boolean ProcessKeyClick(char c, int code) {

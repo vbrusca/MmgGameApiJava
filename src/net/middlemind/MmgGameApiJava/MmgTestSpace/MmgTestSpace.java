@@ -91,7 +91,6 @@ public final class MmgTestSpace {
      *
      * @param v     The string to find a match for.
      * @param s     The array of string to search through.
-     * 
      * @return      The command line argument that matched the test string, v.
      */
     public static String ArrayHasEntryLike(String v, String[] s) {
@@ -112,8 +111,7 @@ public final class MmgTestSpace {
     }
 
     /**
-     * Run OS specific code on startup before the native libraries are loaded and the game engine
-     * config XML file.
+     * Run OS specific code on startup before the native libraries are loaded and the game engine config XML file.
      */
     public static void RunOsSpecificCode() {
         try {
@@ -192,7 +190,6 @@ public final class MmgTestSpace {
      * A static class method for checking if this Java application is running on Windows.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on Windows.
      */
     public static boolean isWindows(String OS) {
@@ -203,7 +200,6 @@ public final class MmgTestSpace {
      * A static class method for checking if this Java application is running on a Mac.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on a Mac.
      */
     public static boolean isMac(String OS) {
@@ -214,7 +210,6 @@ public final class MmgTestSpace {
      * A static class method for checking if this Java application is running on Linux.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on Linux.
      */
     public static boolean isUnix(String OS) {
@@ -225,7 +220,6 @@ public final class MmgTestSpace {
      * A static class method for checking if this Java application is running on Sun OS.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on Sun OS.
      */
     public static boolean isSolaris(String OS) {
@@ -235,10 +229,9 @@ public final class MmgTestSpace {
     /**
      * Sets the value of the field specified by the field reflection object.
      *
-     * @param ent Entry object that wraps the XML entry.
-     * @param f Class member that needs to be updated.
-     * 
-     * @throws Exception
+     * @param ent       Entry object that wraps the XML entry.
+     * @param f         Class member that needs to be updated.
+     * @throws          Exception
      */
     public static void SetField(DatConstantsEntry ent, Field f) throws Exception {
         if (ent.type != null && ent.type.equals("int") == true) {
@@ -270,7 +263,7 @@ public final class MmgTestSpace {
     /**
      * Static access method.
      *
-     * @param args The command line arguments
+     * @param args      The command line arguments
      */
     public static final void main(String[] args) {
         if(GameSettings.RUN_OS_SPECIFIC_CODE) {

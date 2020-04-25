@@ -1,8 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
-import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.MainFrame;
@@ -10,7 +8,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
 
 /**
- * An application specific version of the MmgCore API's GamePanel class.
+ * An application specific extension of the MmgCore API's GamePanel class.
  * Created by Middlemind Games 02/19/2020
  * 
  * @author Victor G. Brusca
