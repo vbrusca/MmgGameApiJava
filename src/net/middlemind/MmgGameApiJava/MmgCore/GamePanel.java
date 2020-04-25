@@ -16,8 +16,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
- * The Canvas used to render the game to. This is the connection point between
- * native UI rendering and the game rendering.
+ * The Canvas used to render the game to. 
+ * This is the connection point between native UI rendering and the game rendering.
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
@@ -204,8 +204,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public BufferStrategy strategy;
     
     /**
-     * A BufferedImage used to render the game screen to. The background image is then rendered to the 
-     * panel once it is done drawing.
+     * A BufferedImage used to render the game screen to. 
+     * The background image is then rendered to the panel once it is done drawing.
      */
     public BufferedImage background;
     
@@ -225,8 +225,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public double scale = 1.0;
     
     /**
-     * An integer that records how many frames have been drawn. The updateTick class field is updated on each 
-     * UpdateGame method call.
+     * An integer that records how many frames have been drawn. 
+     * The updateTick class field is updated on each UpdateGame method call.
      */
     public int updateTick = 0;
     
@@ -251,14 +251,13 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public Color debugColor = Color.WHITE;
     
     /**
-     * A place holder class field for storing the current font of the Java rendering API Pen class. Used to hold the
-     * Pen's current font, then sets the Pen's font for drawing debug information, then restoring the Pen's previous font. 
+     * A place holder class field for storing the current font of the Java rendering API Pen class. 
+     * Used to hold the Pen's current font, then sets the Pen's font for drawing debug information, then restoring the Pen's previous font. 
      */
     public Font tmpF;
     
     /**
-     * An instance of the GameType enumeration that can be used to track if the game is a new game or a continuation
-     * of an existing game.
+     * An instance of the GameType enumeration that can be used to track if the game is a new game or a continuation of an existing game.
      */
     public static GameType GAME_TYPE = GameType.GAME_NEW;
 
@@ -368,8 +367,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public Thread gpioTr;    
     
     /**
-     * Constructor, sets the MainFrame, window dimensions, and position of this
-     * Canvas.
+     * Constructor, sets the MainFrame, window dimensions, and position of this Canvas.
      *
      * @param Mf            The MainFrame class this panel belongs to.
      * @param WinWidth      The target window width.
@@ -593,9 +591,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The ProcessDpadPress method is used to pass dpad press information from the GamePanel class down
-     * to the MmgGameScreen class implementation, currentScreen. The dir code can come from different sources, keyboard, GPIO gamepad,
-     * or a USB game controller.
+     * The ProcessDpadPress method is used to pass dpad press information from the GamePanel class down to the MmgGameScreen class implementation, currentScreen. 
+     * The dir code can come from different sources, keyboard, GPIO gamepad, or a USB game controller.
      * 
      * @param dir       The dir argument is a code that represents which dpad direction was processed.
      */
@@ -605,9 +602,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The ProcessDpadRelease method is used to pass dpad release information from the GamePanel class down 
-     * to the MmgGameScreen class implementation, currentScreen. The dir code can come from different sources, keyboard, GPIO gamepad,
-     * or a USB game controller.
+     * The ProcessDpadRelease method is used to pass dpad release information from the GamePanel class down to the MmgGameScreen class implementation, currentScreen. 
+     * The dir code can come from different sources, keyboard, GPIO gamepad, or a USB game controller.
      * 
      * @param dir        The dir argument is a code that represents which dpad direction was processed.
      */
@@ -617,9 +613,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }    
     
     /**
-     * The ProcessDpadClick method is used to pass dpad click information from the GamePanel class down
-     * to the MmgGameScreen class implementation, currentScreen. The dir code can come from different sources, keyboard, GPIO gamepad,
-     * or a USB game controller.
+     * The ProcessDpadClick method is used to pass dpad click information from the GamePanel class down to the MmgGameScreen class implementation, currentScreen. 
+     * The dir code can come from different sources, keyboard, GPIO gamepad, or a USB game controller.
      * 
      * @param dir       The dir argument is a code that represents which dpad direction was processed.
      */
@@ -629,8 +624,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The ProcessAPress method is used to pass A button press events from the GamePanel class down to the MmgGameScreen class
-     * implementation, currentScreen.
+     * The ProcessAPress method is used to pass A button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */
     @Override
     public void ProcessAPress(int src) {
@@ -638,8 +632,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The ProcessARelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class
-     * implementation, currentScreen.
+     * The ProcessARelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */    
     @Override
     public void ProcessARelease(int src) {
@@ -647,8 +640,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The ProcessAClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class
-     * implementation, currentScreen.
+     * The ProcessAClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */    
     @Override    
     public void ProcessAClick(int src) {
@@ -656,8 +648,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }    
     
     /**
-     * The ProcessBPress method is used to pass B button press events from the GamePanel class down to the MmgGameScreen class
-     * implementation, currentScreen.
+     * The ProcessBPress method is used to pass B button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */    
     @Override
     public void ProcessBPress(int src) {
@@ -665,8 +656,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The ProcessBRelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class
-     * implementation, currentScreen.
+     * The ProcessBRelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */        
     @Override
     public void ProcessBRelease(int src) {
@@ -674,8 +664,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
     
     /**
-     * The ProcessBClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class
-     * implementation, currentScreen.
+     * The ProcessBClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */    
     @Override    
     public void ProcessBClick(int src) {
@@ -788,7 +777,6 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param width     The desired width of the BufferedImage.
      * @param height    The desired height of the BufferedImage.
      * @param alpha     The desired transparency flag of the BufferedImage.
-     * 
      * @return          Returns a BufferedImage with the desired coordinates and transparency. 
      */
     public BufferedImage create(int width, int height, boolean alpha) {
@@ -995,8 +983,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * Returns a Graphics2D instance that is based on the default screen configuration used for drawing on
-     * the JFrame.
+     * Returns a Graphics2D instance that is based on the default screen configuration used for drawing on the JFrame.
      * 
      * @return      A Graphics2D instance that is used to draw on the JFrame.
      */
@@ -1093,8 +1080,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * The RenderGame method is used to draw the entire JFrame Canvas, the debug frame rate, the debug variables,
-     * and the game screen.
+     * The RenderGame method is used to draw the entire JFrame Canvas, the debug frame rate, the debug variables, and the game screen.
      */
     public void RenderGame() {
         if (PAUSE == true || EXIT == true) {

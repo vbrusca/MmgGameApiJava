@@ -717,7 +717,7 @@ public class MmgGameScreen extends MmgObj {
      * @param updateTicks           The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
-     * @return 
+     * @return                      A boolean indicating if any work was done this game frame.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {

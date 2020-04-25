@@ -24,7 +24,7 @@ public class MmgVector2 {
      * Constructor for this class sets its values based on the attributes of the
      * given argument.
      *
-     * @param v         The MmgVector to base this class off of.
+     * @param v     The MmgVector to base this class off of.
      */
     public MmgVector2(MmgVector2 v) {
         vec = v.GetVector();
@@ -33,7 +33,7 @@ public class MmgVector2 {
     /**
      * Constructor that sets the X, Y value of the vector.
      *
-     * @param v         The X, Y value of the vector.
+     * @param v     The X, Y value of the vector.
      */
     public MmgVector2(double[] v) {
         vec = v;
@@ -42,8 +42,8 @@ public class MmgVector2 {
     /**
      * Constructor that sets the X, Y value of the vector.
      *
-     * @param x         The X value of the vector.
-     * @param y         The Y value of the vector.
+     * @param x     The X value of the vector.
+     * @param y     The Y value of the vector.
      */
     public MmgVector2(double x, double y) {
         vec = new double[]{x, y};
@@ -52,7 +52,7 @@ public class MmgVector2 {
     /**
      * Constructor that sets the X, Y value based on one argument.
      * 
-     * @param x         The X value used to set both the X, Y coordinate.
+     * @param x     The X value used to set both the X, Y coordinate.
      */
     public MmgVector2(double x) {
         vec = new double[]{(double) x, (double) x};
@@ -61,8 +61,8 @@ public class MmgVector2 {
     /**
      * Constructor that sets the X, Y value of the vector.
      *
-     * @param x         The X value of the vector.
-     * @param y         The Y value of the vector.
+     * @param x     The X value of the vector.
+     * @param y     The Y value of the vector.
      */
     public MmgVector2(float x, float y) {
         vec = new double[]{(double) x, (double) y};
@@ -71,7 +71,7 @@ public class MmgVector2 {
     /**
      * Constructor that sets the X, Y value based on one argument.
      * 
-     * @param x         The X value used to set both the X, Y coordinate.
+     * @param x     The X value used to set both the X, Y coordinate.
      */
     public MmgVector2(float x) {
         vec = new double[]{(double) x, (double) x};
@@ -80,8 +80,8 @@ public class MmgVector2 {
     /**
      * Constructor that sets the X, Y value of the vector.
      *
-     * @param x The X value of the vector.
-     * @param y The Y value of the vector.
+     * @param x     The X value of the vector.
+     * @param y     The Y value of the vector.
      */
     public MmgVector2(int x, int y) {
         vec = new double[]{(double) x, (double) y};

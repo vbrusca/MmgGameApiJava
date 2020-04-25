@@ -537,6 +537,11 @@ public class MmgTextField extends MmgObj {
         }
     }
 
+    /**
+     * Sets the event handler for events.
+     * 
+     * @param h     The event handler for events. 
+     */
     public void SetEventHandler(MmgEventHandler h) {
         errorMaxLength.SetTargetEventHandler(h);
     }

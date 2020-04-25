@@ -24,12 +24,14 @@ public class RunFrameRate implements Runnable {
     public final long tFrameTime;
 
     /**
-     * Actual frames per second. The actual frames the game might run at if it wasn't controlled.
+     * Actual frames per second. 
+     * The actual frames the game might run at if it wasn't controlled.
      */
     public long aFps;
     
     /**
-     * Real frames per second. The controlled frames per second.
+     * Real frames per second. 
+     * The controlled frames per second.
      */
     public long rFps;
 
@@ -49,8 +51,8 @@ public class RunFrameRate implements Runnable {
     public long frameTime;
 
     /**
-     * Frame time difference from actual time to target time. Used to sleep the
-     * few milliseconds between the target time and the actual time if the
+     * Frame time difference from actual time to target time. 
+     * Used to sleep the few milliseconds between the target time and the actual time if the
      * actual time is less than the target time.
      */
     public long frameTimeDiff;
@@ -66,8 +68,7 @@ public class RunFrameRate implements Runnable {
     public static boolean RUNNING = true;
 
     /**
-     * Constructor, sets the MainFrame, JFrame, and the target frames per
-     * second.
+     * Constructor, sets the MainFrame, JFrame, and the target frames per second.
      *
      * @param Mf        The MainFrame, JFrame for this game.
      * @param Fps       The target frames per second to use for the main loop.
@@ -90,7 +91,7 @@ public class RunFrameRate implements Runnable {
     /**
      * Gets the pause status of the main loop.
      *
-     * @return The pause status of the main loop.
+     * @return      The pause status of the main loop.
      */
     public static boolean IsPaused() {
         return PAUSE;
@@ -113,15 +114,15 @@ public class RunFrameRate implements Runnable {
     /**
      * Gets the running status of the main loop.
      *
-     * @return True if running, false otherwise.
+     * @return      True if running, false otherwise.
      */
     public static boolean IsRunning() {
         return RUNNING;
     }
 
     /**
-     * Starts running the main loop but only if run is called again. Once the
-     * main loop exits the run method returns.
+     * Starts running the main loop but only if run is called again. 
+     * Once the main loop exits the run method returns.
      */
     public static void StartRunning() {
         RUNNING = true;
@@ -130,7 +131,7 @@ public class RunFrameRate implements Runnable {
     /**
      * Gets the actual frame rate of the game.
      *
-     * @return The game's frame rate.
+     * @return      The game's frame rate.
      */
     public long GetActualFrameRate() {
         return aFps;
@@ -139,7 +140,7 @@ public class RunFrameRate implements Runnable {
     /**
      * Gets the target frame rate of the game.
      *
-     * @return The game's target frame rate.
+     * @return      The game's target frame rate.
      */
     public long GetTargetFrameRate() {
         return tFps;

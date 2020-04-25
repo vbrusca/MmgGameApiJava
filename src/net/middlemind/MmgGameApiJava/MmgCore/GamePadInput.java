@@ -114,8 +114,8 @@ public class GamePadInput {
     
     
     /**
-     * A GpioPin constructor that sets all class field values except pinHigh and pinIn. The pinHigh and pinIn field value
-     * are defaulted to false with this constructor.
+     * A GpioPin constructor that sets all class field values except pinHigh and pinIn. 
+     * The pinHigh and pinIn field value are defaulted to false with this constructor.
      * 
      * @param pinNumber         The GPIO pin number of the host computer system.
      * @param buttonType        The GpioButton type to assign to the GpioPin class instance.

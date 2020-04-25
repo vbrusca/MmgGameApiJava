@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
- * A worker thread that handles loading the Tyre game DAT file.
+ * A worker thread that handles loading the game resources.
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
@@ -33,8 +33,8 @@ public class RunResourceLoad implements Runnable {
     public int readLen;
 
     /**
-     * A value used to increase the size of the steps to process. In case
-     * there are only a few load operations to perform this number will change that
+     * A value used to increase the size of the steps to process. 
+     * In case there are only a few load operations to perform this number will change that
      * value to 1000's so that the progress bar math stays away from small number division.
      */
     public int loadMultiplier = 1000;
@@ -53,12 +53,19 @@ public class RunResourceLoad implements Runnable {
      * A private class field used to track each loop iteration when processing resource files.
      */
     private int i;
+    
+    /**
+     * The number of milliseconds to apply as a slow down to the resource loading process.
+     */
     public long slowDown;
+    
+    /**
+     * A boolean flag inidcating if the resource loading should exit.
+     */
     public boolean exitLoad;
     
     /**
-     * A constructor that sets the thin load option, don't load binary image or
-     * sound data yet, and sets the source byte array to parse.
+     * A constructor that sets the thin load option, don't load binary image or sound data yet, and sets the source byte array to parse.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public RunResourceLoad() {
@@ -277,7 +284,7 @@ public class RunResourceLoad implements Runnable {
     /**
      * Gets the current read length.
      *
-     * @return Integer representing the read length.
+     * @return      Integer representing the read length.
      */
     public int GetLen() {
         return readLen;

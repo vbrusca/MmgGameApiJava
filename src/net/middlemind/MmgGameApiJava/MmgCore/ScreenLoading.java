@@ -14,8 +14,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
- * A game screen object, ScreenLoading, that extends the MmgLoadingScreen base
- * class. This game screen is for displaying a loading screen.
+ * A game screen object, ScreenLoading, that extends the MmgLoadingScreen base class. 
+ * This game screen is for displaying a loading screen.
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
@@ -43,14 +43,14 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     public GameStates state;
 
     /**
-     * Event handler for firing generic events. Events would fire when the
-     * screen has non UI actions to broadcast.
+     * Event handler for firing generic events. 
+     * Events would fire when the screen has non UI actions to broadcast.
      */
     public GenericEventHandler handler;
 
     /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
+     * The GamePanel that owns this game screen. 
+     * Usually a JPanel instance that holds a reference to this game screen object.
      */
     public GamePanel owner;
 
@@ -65,8 +65,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     public Hashtable<String, MmgCfgFileEntry> classConfig;   
     
     /**
-     * Constructor, sets the loading bar, the loading bar offset, the game state
-     * of this game screen, and the GamePanel that owns this game screen.
+     * Constructor, sets the loading bar, the loading bar offset, the game state of this game screen, and the GamePanel that owns this game screen.
      *
      * @param LoadingBar    A loading bar object, MmgLoadingBar, to use as this screen's loading bar.
      * @param lBarOff       An offset used in drawing the loading bar.
@@ -83,8 +82,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     }
 
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State     The game state of this game screen.
      * @param Owner     The owner of this game screen.
@@ -116,8 +114,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     }
    
     /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
+     * Sets a generic event handler that will receive generic events from this object.
      *
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
@@ -394,8 +391,8 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     }
 
     /**
-     * Handles load DAT update events, LoadDatUpdateMessage. Fires a generic
-     * event when the load has completed.
+     * Handles load DAT update events, LoadDatUpdateMessage. 
+     * Fires a generic event when the load has completed.
      *
      * @param obj       The load DAT update message sent.
      */

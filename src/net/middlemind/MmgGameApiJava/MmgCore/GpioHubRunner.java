@@ -112,8 +112,8 @@ public class GpioHubRunner implements Runnable {
     }
 
     /**
-     * The PollGpio method is used to update the GPIO pin state and call event handler methods from the GamePadSimple
-     * interface. The last step in the process is to call the CleanUp method of the GpioHub class.
+     * The PollGpio method is used to update the GPIO pin state and call event handler methods from the GamePadSimple interface. 
+     * The last step in the process is to call the CleanUp method of the GpioHub class.
      */
     @SuppressWarnings("CallToPrintStackTrace")
     public void PollGpio() {

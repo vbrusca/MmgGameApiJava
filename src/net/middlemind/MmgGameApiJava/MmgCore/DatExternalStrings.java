@@ -3,8 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import java.util.Hashtable;
 
 /**
- * DatExternalStrings is a class used to hold static references to strings configured in the class
- * and referenced via a Hashtable.
+ * DatExternalStrings is a class used to hold static references to strings configured in the class and referenced via a Hashtable.
  * Created by Middlemind Games 02/25/2020
  * 
  * @author Victor G. Brusca
@@ -12,9 +11,8 @@ import java.util.Hashtable;
 public class DatExternalStrings {
     
     /**
-     * The EXT static class field holds references to all the strings loaded by the
-     * LOAD_EXT_STRINGS static lass method. The class is designed to support multiple languages
-     * through the use of a language code but is not configured to do by default.
+     * The EXT static class field holds references to all the strings loaded by the LOAD_EXT_STRINGS static lass method. 
+     * The class is designed to support multiple languages through the use of a language code but is not configured to do by default.
      */
     public static Hashtable<Integer, String> EXT = new Hashtable<Integer, String>();
     
@@ -71,8 +69,7 @@ public class DatExternalStrings {
      * This form of the static class method takes a language code argument that can be used to load string of
      * different languages.
      * 
-     * @param langCode      A string argument the defines a language code that can be used to load different strings
-     * based on the language code.
+     * @param langCode      A string argument the defines a language code that can be used to load different strings based on the language code.
      */
     public static void LOAD_EXT_STRINGS(String langCode) {
         //Called when loading bar complete generic event is processed

@@ -80,7 +80,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Constructor that sets the splash screen display time.
      *
-     * @param DisplayTime   The display time for this splash screen, in milliseconds.
+     * @param DisplayTime       The display time for this splash screen, in milliseconds.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSplashScreen(int DisplayTime) {
@@ -138,7 +138,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Handles update events.
      *
-     * @param obj   The update event to handle.
+     * @param obj       The update event to handle.
      */
     @Override
     public void MmgHandleUpdate(Object obj) {

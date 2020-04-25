@@ -81,8 +81,8 @@ public class ScreenMainMenu extends MmgGameScreen {
     public HandleMainMenuEvent handleMenuEvent = null;
 
     /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
+     * The GamePanel that owns this game screen. 
+     * Usually a JPanel instance that holds a reference to this game screen object.
      */
     public GamePanel owner;
     
@@ -102,8 +102,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State     The game state of this game screen.
      * @param Owner     The owner of this game screen.
@@ -480,9 +479,8 @@ public class ScreenMainMenu extends MmgGameScreen {
     }
 
     /**
-     * Forces this screen to prepare itself for display. This is the method that
-     * handles displaying different game screen text. Calling draw screen
-     * prepares the screen for display.
+     * Forces this screen to prepare itself for display. 
+     * This is the method that handles displaying different game screen text. Calling draw screen prepares the screen for display.
      */
     public void DrawScreen() {
         //int mainY;
@@ -539,7 +537,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     /**
      * Returns the game state of this game screen.
      *
-     * @return The game state of this game screen.
+     * @return      The game state of this game screen.
      */
     public GameStates GetGameState() {
         return state;
@@ -566,7 +564,7 @@ public class ScreenMainMenu extends MmgGameScreen {
     /**
      * The main drawing routine.
      *
-     * @param p An MmgPen object to use for drawing this game screen.
+     * @param p     An MmgPen object to use for drawing this game screen.
      */
     @Override
     public void MmgDraw(MmgPen p) {

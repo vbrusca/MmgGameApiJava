@@ -13,8 +13,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgSplashScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgUpdateHandler;
 
 /**
- * A game screen object, ScreenSplash, that extends the MmgGameScreen base
- * class. This game screen is for displaying a splash screen before the game loading screen. 
+ * A game screen object, ScreenSplash, that extends the MmgGameScreen base class. 
+ * This game screen is for displaying a splash screen before the game loading screen. 
  * Created by Middlemind Games 08/01/2015
  * 
  * @author Victor G. Brusca
@@ -32,14 +32,14 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     public GameStates state;
 
     /**
-     * Event handler for firing generic events. Events would fire when the
-     * screen has non UI actions to broadcast.
+     * Event handler for firing generic events. 
+     * Events would fire when the screen has non UI actions to broadcast.
      */
     public GenericEventHandler handler;
 
     /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
+     * The GamePanel that owns this game screen. 
+     * Usually a JPanel instance that holds a reference to this game screen object.
      */
     public GamePanel owner;
 
@@ -49,8 +49,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State     The game state of this game screen.
      * @param Owner     The owner of this game screen.
@@ -84,8 +83,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
     }
         
     /**
-     * Public method that fires the local generic event, the listener will
-     * receive a display complete event.
+     * Public method that fires the local generic event, the listener will receive a display complete event.
      *
      * @param obj   The information payload to send along with this message.
      */

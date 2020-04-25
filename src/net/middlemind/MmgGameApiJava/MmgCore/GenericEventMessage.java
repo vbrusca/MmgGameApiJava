@@ -3,8 +3,8 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 
 /**
- * A base class used to represent a generic event message. This is the event
- * message argument used by the GenericEventHandler class.
+ * A base class used to represent a generic event message. 
+ * This is the event message argument used by the GenericEventHandler class.
  * Created by Middlemind Games 08/01/2020
  *
  * @author Victor G. Brusca
@@ -27,8 +27,7 @@ public class GenericEventMessage {
     public GameStates gameState;
 
     /**
-     * Constructor for the generic event message object, sets the message id,
-     * the message payload, and the game state the message is associated with.
+     * Constructor for the generic event message object, sets the message id, the message payload, and the game state the message is associated with.
      *
      * @param Id            The id of the message.
      * @param Payload       The information payload of the message.

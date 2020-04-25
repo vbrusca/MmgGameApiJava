@@ -4,7 +4,8 @@ import java.lang.reflect.Field;
 import javax.swing.JFrame;
 
 /**
- * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT 
+ * Java swing game that runs the Tyre DAT file. 
+ * STATIC MAIN ENTRY POINT EXAMPLE
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
@@ -81,7 +82,6 @@ public class OdroidGame {
      *
      * @param v     The string to find a match for.
      * @param s     The array of string to search through.
-     * 
      * @return      The command line argument that matched the test string, v.
      */
     public static String ArrayHasEntryLike(String v, String[] s) {
@@ -141,7 +141,6 @@ public class OdroidGame {
      * A static class method for checking if this Java application is running on Windows.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on Windows.
      */
     public static boolean isWindows(String OS) {
@@ -152,7 +151,6 @@ public class OdroidGame {
      * A static class method for checking if this Java application is running on a Mac.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on a Mac.
      */
     public static boolean isMac(String OS) {
@@ -163,7 +161,6 @@ public class OdroidGame {
      * A static class method for checking if this Java application is running on Linux.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on Linux.
      */
     public static boolean isUnix(String OS) {
@@ -174,7 +171,6 @@ public class OdroidGame {
      * A static class method for checking if this Java application is running on Sun OS.
      * 
      * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-     * 
      * @return          A boolean value indicating if the Java application is running on Sun OS.
      */
     public static boolean isSolaris(String OS) {

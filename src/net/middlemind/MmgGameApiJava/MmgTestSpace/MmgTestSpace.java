@@ -9,7 +9,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
- * Java swing game that runs the Tyre DAT file. MAIN ENTRY POINT 
+ * Java swing game that runs a set of test game screens demonstrating different game API functionality. 
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca

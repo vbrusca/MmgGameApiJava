@@ -10,6 +10,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
 
 /**
+ * An application specific version of the MmgCore API's GamePanel class.
  * Created by Middlemind Games 02/19/2020
  * 
  * @author Victor G. Brusca
@@ -17,115 +18,115 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
 public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
     /**
-     * 
+     * A reference to a game screen used for testing.
      */
     public ScreenTest screenTest;
     
     /**
-     * 
+     * A reference to a game screen used for testing the Mmg9Slice class.
      */
     public ScreenTestMmg9Slice screenTestMmg9Slice;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgFont class.
      */
     public ScreenTestMmgFont screenTestMmgFont;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgTextField class.
      */
     public ScreenTestMmgTextField screenTestMmgTextField;    
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgBmp class.
      */
     public ScreenTestMmgBmp screenTestMmgBmp;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgSound class.
      */
     public ScreenTestMmgSound screenTestMmgSound;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgMainMenu class.
      */
     public ScreenTestMmgMainMenu screenTestMmgMainMenu;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgSprite class.
      */
     public ScreenTestMmgSprite screenTestMmgSprite;    
     
     /**
-     * 
+     * A reference to a game screen used for testing basic keyboard and mouse input.
      */
     public ScreenTestMmgBasicInput screenTestMmgBasicInput;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgCfgFileEntry class.
      */
     public ScreenTestMmgCfgFileEntry screenTestMmgCfgFileEntry;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgScreenData class.
      */
     public ScreenTestMmgScreenData screenTestMmgScreenData;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgColor class.
      */
     public ScreenTestMmgColor screenTestMmgColor;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgContainer class.
      */
     public ScreenTestMmgContainer screenTestMmgContainer;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgLabelValuePair class.
      */
     public ScreenTestMmgLabelValuePair screenTestMmgLabelValuePair;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgScrollHor class.
      */
     public ScreenTestMmgScrollHor screenTestMmgScrollHor;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgScrollVert class.
      */
     public ScreenTestMmgScrollVert screenTestMmgScrollVert;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgScrollHorVert class.
      */
     public ScreenTestMmgScrollHorVert screenTestMmgScrollHorVert;    
 
     /**
-     * 
+     * A reference to a game screen used for testing the MmgPositionTween class.
      */
     public ScreenTestMmgPositionTween screenTestMmgPositionTween;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgRect class.
      */
     public ScreenTestMmgRect screenTestMmgRect;
     
     /**
-     * 
+     * A reference to a game screen used for testing the MmgTextBlock class.
      */
     public ScreenTestMmgTextBlock screenTestMmgTextBlock;
     
     /**
+     * The basic constructor for this GamePanel extended class.
      * 
-     * 
-     * @param Mf
-     * @param WinWidth
-     * @param WinHeight
-     * @param X
-     * @param Y
-     * @param GameWidth
-     * @param GameHeight 
+     * @param Mf                The MainFrame that is associated with this GamePanel.
+     * @param WinWidth          The width to use for this GamePanel.
+     * @param WinHeight         The height to use for this GamePanel.
+     * @param X                 The X position of this GamePanel.
+     * @param Y                 The Y position of this GamePanel.
+     * @param GameWidth         The width of the game drawn on this GamePanel.
+     * @param GameHeight        The height of the game drawn on this GamePanel.
      */
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
@@ -216,9 +217,9 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     }
         
     /**
+     * Changes the currently visible game screen and cleans up the previously visible game screen.
      * 
-     * 
-     * @param g 
+     * @param g         The game state associated with the currently visible game screen.
      */
     @Override
     public void SwitchGameState(GameStates g) {
@@ -591,9 +592,9 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     }    
     
     /**
+     * The generic event handler method used to handle events from different game screens like the splash screen and the loading screen.
      * 
-     * 
-     * @param obj 
+     * @param obj       The generic event message to process.
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {

@@ -49,12 +49,14 @@ public class GpioHub {
     public static int B = 5;
     
     /**
-     * A quick lookup of the integer value of ASCII character 0. When checking sys/class/gpio value files.
+     * A quick lookup of the integer value of ASCII character 0. 
+     * When checking sys/class/gpio value files.
      */
     public static int char0toInt = 48;
     
     /**
-     * A quick lookup of the integer value of ASCII character 1. When checking sys/class/gpio value files.
+     * A quick lookup of the integer value of ASCII character 1. 
+     * When checking sys/class/gpio value files.
      */    
     public static int char1toInt = 49;
     
@@ -203,7 +205,6 @@ public class GpioHub {
      * A method that returns a boolean flag indicating if the GpioPin at the given array index, i, is enabled.
      * 
      * @param i     An argument indicating which array index, GpioPin, to verify is enabled.
-     * 
      * @return      A boolean indicating if the GpioPin at the given index is enabled. 
      */
     public boolean ButtonEnabled(int i) {
@@ -546,8 +547,8 @@ public class GpioHub {
     }
     
     /**
-     * A method to determine the state of the GPIO pins. The methods scans all the GPIO pins in the buttons
-     * array to determine the state of each button.
+     * A method to determine the state of the GPIO pins. 
+     * The methods scans all the GPIO pins in the buttons array to determine the state of each button.
      * 
      * @throws IOException 
      */

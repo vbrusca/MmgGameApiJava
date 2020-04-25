@@ -1,7 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
-//TODO: Finish documentation, Add typed clone, add constructor that takes an MmgSizeTween
-
 /**
  * Class that provides tween support to an underlying MmgObj instance. 
  * Created by Middlemind Games 12/01/2016
@@ -298,169 +296,237 @@ public class MmgSizeTween extends MmgObj {
     }
 
     /**
+     * Sets the milliseconds to wait before starting the scaling.
      * 
-     * 
-     * @param l 
+     * @param l     The milliseconds to wait before starting the scaling.
      */
     public void SetMsStartChange(long l) {
         msStartChange = l;
     }
 
     /**
+     * Gets the pixels per millisecond to scale on the X axis.
      * 
-     * 
-     * @return 
+     * @return      The pixels per millisecond to scale on the X axis.
      */
     public float GetPixelsPerMsToChangeX() {
         return pixelsPerMsToChangeX;
     }
 
     /**
+     * Sets the pixels per millisecond to scale on the X axis.
      * 
-     * 
-     * @param i 
+     * @param i     The pixels per millisecond to scale on the X axis.
      */
     public void SetPixelsPerMsToChangeX(float i) {
         pixelsPerMsToChangeX = i;
     }
 
     /**
+     * Gets the pixels per millisecond to scale on the Y axis.
      * 
-     * 
-     * @return 
+     * @return      The pixels per millisecond to scale on the Y axis.
      */
     public float GetPixelsPerMsToChangeY() {
         return pixelsPerMsToChangeY;
     }
 
     /**
+     * Sets the pixels per millisecond to scale on the Y axis.
      * 
-     * 
-     * @param i 
+     * @param i     The pixels per millisecond to scale on the Y axis.
      */
     public void SetPixelsPerMsToChangeY(float i) {
         pixelsPerMsToChangeY = i;
     }
 
     /**
+     * Gets a boolean indicating if the subject is scaling.
      * 
-     * 
-     * @return 
+     * @return      A boolean indicating if the subject is scaling.
      */
     public boolean GetChanging() {
         return changing;
     }
 
     /**
+     * Sets a boolean indicating if the subject is scaling.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean indicating if the subject is scaling.
      */
     public void SetChanging(boolean b) {
         changing = b;
     }
 
     /**
+     * Gets a boolean indicating the direction of the tween movement, start to finish or finish to start.
      * 
-     * 
-     * @return 
+     * @return      A boolean indicating the direction of the tween movement.
      */
     public boolean GetDirStartToFinish() {
         return dirStartToFinish;
     }
 
     /**
+     * Sets a boolean indicating the direction of the tween movement, start to finish or finish to start.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean indicating the direction of the tween movement.
      */
     public void SetDirStartToFinish(boolean b) {
         dirStartToFinish = b;
     }
 
     /**
+     * Gets the start size of the size tween.
      * 
-     * 
-     * @return 
+     * @return      The start size of the size tween.
      */
     public MmgVector2 GetStartSize() {
         return startSize;
     }
 
+    /**
+     * Sets the start size of the size tween.
+     * 
+     * @param v     The start size of the size tween.
+     */    
     public void SetStartSize(MmgVector2 v) {
         startSize = v;
     }
 
+    /**
+     * Gets the finish size of the size tween.
+     * 
+     * @return      The finish size of the size tween.
+     */    
     public MmgVector2 GetFinishSize() {
         return finishSize;
     }
 
+    /**
+     * Sets the finish size of the size tween
+     * 
+     * @param v     The finish size of the size tween.
+     */    
     public void SetFinishSize(MmgVector2 v) {
         finishSize = v;
     }
 
+    /**
+     * Gets the pixel size to scale on the X and Y axis.
+     * 
+     * @return      The pixel size to scale on the X and Y axis.
+     */    
     public MmgVector2 GetPixelSizeToChange() {
         return pixelSizeToChange;
     }
 
+    /**
+     * Sets the pixel size to scale on the X and Y axis.
+     * 
+     * @param v     The pixel size to scale on the X and Y axis.
+     */    
     public void SetPixelSizeToChange(MmgVector2 v) {
         pixelSizeToChange = v;
     }
 
+    /**
+     * Gets the millisecond time to complete the scaling.
+     * 
+     * @return      The millisecond time to complete the scaling.
+     */    
     public float GetMsTimeToChange() {
         return msSizeToChange;
     }
 
+    /**
+     * Sets the millisecond time to complete the scaling.
+     * 
+     * @param i     The millisecond time to complete the scaling.
+     */    
     public void SetMsTimeToChange(float i) {
         msSizeToChange = i;
     }
 
+    /**
+     * Sets a boolean indicating that the tween is at the start size.
+     * 
+     * @param b     A boolean indicating that the tween is at the start size.
+     */    
     public void SetAtStart(boolean b) {
         atStart = b;
     }
 
+    /**
+     * Gets a boolean indicating that the tween is at the start size.
+     * 
+     * @return      A boolean indicating that the tween is at the start size.
+     */    
     public boolean GetAtStart() {
         return atStart;
     }
 
+    /**
+     * Sets a boolean indicating that the tween is at the finish size.
+     * 
+     * @param b     A boolean indicating that the tween is at the finish size.
+     */     
     public void SetAtFinish(boolean b) {
         atFinish = b;
     }
 
+    /**
+     * Gets a boolean indicating that the tween is at the finish size.
+     * 
+     * @return      A boolean indicating that the tween is at the finish size.
+     */     
     public boolean GetAtFinish() {
         return atFinish;
     }
 
+    /**
+     * Sets the subject of the size tween.
+     * 
+     * @param b     The subject of the size tween
+     */    
     public void SetSubj(MmgObj b) {
         subj = b;
     }
 
+    /**
+     * Gets the subject of the size tween.
+     * 
+     * @return      The subject of the size tween.
+     */    
     public MmgObj GetSubj() {
         return subj;
     }
 
     /**
-     * Clones this class.
-     *
-     * @return A clone of this class.
+     * Creates a basic clone of this class.
+     * 
+     * @return      A clone of this class.
      */
     @Override
     public MmgObj Clone() {
-        MmgSizeTween ret = new MmgSizeTween(GetSubj(), GetMsTimeToChange(), GetStartSize(), GetFinishSize());
-        ret.SetAtStart(GetAtStart());
-        ret.SetAtFinish(GetAtFinish());
-        ret.SetDirStartToFinish(GetDirStartToFinish());
-        ret.SetChanging(GetChanging());
-        ret.SetMsStartChange(GetMsStartChange());
-        ret.SetPixelsPerMsToChangeX(GetPixelsPerMsToChangeX());
-        ret.SetPixelsPerMsToChangeY(GetPixelsPerMsToChangeY());
+        MmgSizeTween ret = new MmgSizeTween(this);
         return (MmgObj) ret;
     }
 
     /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class.
+     */
+    @Override
+    public MmgSizeTween CloneTyped() {
+        return new MmgSizeTween(this);
+    }    
+    
+    /**
      * The base drawing method for the bitmap object.
      *
-     * @param p The MmgPen used to draw this bitmap.
+     * @param p     The MmgPen used to draw this bitmap.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -469,14 +535,13 @@ public class MmgSizeTween extends MmgObj {
         }
     }
 
-    /**
-     * *
-     * Update the current sprite animation frame index.
-     *
-     * @param updateTick
-     * @param currentTimeMs
-     * @param msSinceLastFrame
-     * @return
+     /**
+     * The MmgUpdate method used to call the update method of the child objects.
+     * 
+     * @param updateTicks           The update tick number. 
+     * @param currentTimeMs         The current time in the game in milliseconds.
+     * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
+     * @return                      A boolean indicating if any work was done this game frame.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
@@ -528,41 +593,94 @@ public class MmgSizeTween extends MmgObj {
         return lret;
     }
 
+    /**
+     * Gets the width of the subject.
+     * 
+     * @return      The width of the subject.
+     */    
     @Override
     public int GetWidth() {
         return subj.GetWidth();
     }
 
+    /**
+     * Sets the width of this subject.
+     * 
+     * @param w     The width of the subject.
+     */    
     @Override
     public void SetWidth(int w) {
         subj.SetWidth(w);
     }
 
+    /**
+     * Gets the height of the subject.
+     * 
+     * @return      The height of the subject.
+     */    
     @Override
     public int GetHeight() {
         return subj.GetHeight();
     }
 
+    /**
+     * Sets the height of the subject.
+     * 
+     * @param h     The height of the subject.
+     */    
     @Override
     public void SetHeight(int h) {
         subj.SetHeight(h);
     }
 
+    /**
+     * Gets the position of this object.
+     * 
+     * @return      The position of the subject.
+     */    
     @Override
     public MmgVector2 GetPosition() {
         return subj.GetPosition();
     }
 
+    /**
+     * Sets the position of this object's subject.
+     * 
+     * @param x     The X coordinate of the subject's position.
+     * @param y     The Y coordinate of the subject's position.
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }    
+    
+    /**
+     * Sets the position of this object's subject.
+     * 
+     * @param v     The position of the subject.
+     */    
     @Override
     public void SetPosition(MmgVector2 v) {
         subj.SetPosition(v);
     }
 
+    /**
+     * Sets the size of the subject.
+     * 
+     * @param v     The desired size of the subject represented as an MmgVector2.
+     */
     public void SetSize(MmgVector2 v) {
         subj.SetWidth(v.GetX());
         subj.SetHeight(v.GetY());
     }
     
+    /**
+     * A method used to check the equality of this MmgPositionTween when compared to another MmgPositionTween.
+     * Compares object fields to determine equality.
+     * 
+     * @param r     The MmgPositionTween object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */    
     public boolean Equals(MmgSizeTween r) {
         if (GetSubj().Equals(r.GetSubj()) == true
                 && GetAtStart() == r.GetAtStart()
@@ -574,7 +692,8 @@ public class MmgSizeTween extends MmgObj {
                 && GetStartSize().Equals(r.GetStartSize()) == true
                 && GetFinishSize().Equals(r.GetFinishSize()) == true
                 && GetDirStartToFinish() == r.GetDirStartToFinish()
-                && GetChanging() == r.GetChanging()) {
+                && GetChanging() == r.GetChanging()
+        ) {
             return true;
         } else {
             return false;

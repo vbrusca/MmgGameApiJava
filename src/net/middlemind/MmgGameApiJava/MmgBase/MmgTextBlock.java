@@ -75,8 +75,7 @@ public class MmgTextBlock extends MmgObj {
     private int STARTING_TXT_COUNT = 100;
 
     /**
-     * A text object, MmgFont, representation of each display line on the
-     * current page.
+     * A text object, MmgFont, representation of each display line on the current page.
      */
     private ArrayList<MmgFont> lines;
 
@@ -101,8 +100,7 @@ public class MmgTextBlock extends MmgObj {
     public static String NEW_LINE = "[b]";
     
     /**
-     * A boolean flag that toggles drawing a bounding box around the text block
-     * to help with aligning the text block.
+     * A boolean flag that toggles drawing a bounding box around the text block to help with aligning the text block.
      */
     public static boolean SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
@@ -524,9 +522,10 @@ public class MmgTextBlock extends MmgObj {
     }
 
     /**
+     * Sets the number of words that are in the background story.
+     * This really should not need to be used as the text processing methods will set the value automatically.
      * 
-     * 
-     * @param i 
+     * @param i     The number of words in the background story.
      */
     public void SetWordCount(int i) {
         words = i;
@@ -575,10 +574,10 @@ public class MmgTextBlock extends MmgObj {
     /**
      * Parses and prepares the text for display in a paged view.
      *
-     * @param text      The text to parse as the background story.
-     * @param typeFace  The Font to use to render the text.
-     * @param fontSize  The size of the font used to parse the text.
-     * @param width     The width to use as the maximum width for one line.
+     * @param text          The text to parse as the background story.
+     * @param typeFace      The Font to use to render the text.
+     * @param fontSize      The size of the font used to parse the text.
+     * @param width         The width to use as the maximum width for one line.
      */
     @SuppressWarnings("UnusedAssignment")
     public void PrepTextSplit(String text, Font typeFace, int fontSize, int width) {
@@ -658,12 +657,10 @@ public class MmgTextBlock extends MmgObj {
             }
 
             dLen = GetLineCount();
-            //MmgHelper.wr("Text Lines: " + dLen);
             for (dI = 0; dI < dLen; dI++) {
                 dTmp = txt.get(dI);
                 if (dTmp != null && dTmp.GetIsVisible() == true) {
                     p.DrawText(dTmp);
-                    //MmgHelper.wr(dI + ": " + dTmp.GetText() + ", " + dTmp.GetPosition().ToString());
                 }
             }
         }

@@ -28,14 +28,13 @@ public class GameSettingsImporter {
     public Hashtable<String, DatConstantsEntry> values;
     
     /**
-     * A class field used to store a version number. Can be used to differentiate different engine config file
-     * loads by version number.
+     * A class field used to store a version number.
+     * Can be used to differentiate different engine config file loads by version number.
      */
     public String version;
     
     /**
-     * The RunImportGameSettings class method is used load engine config rules, XML data used to create a DatConstantsEntry
-     * class instance.
+     * The RunImportGameSettings class method is used load engine config rules, XML data used to create a DatConstantsEntry class instance.
      * 
      * @param xmlFile       The target engine config XML file to load.
      * 
@@ -85,8 +84,8 @@ public class GameSettingsImporter {
     }
 
     /**
-     * The ImportGameSettings method is used to load an engine config XML files in a safe way. The method returns
-     * a boolean value indicating if the XML file load is successful of not.
+     * The ImportGameSettings method is used to load an engine config XML files in a safe way. 
+     * The method returns a boolean value indicating if the XML file load is successful of not.
      * 
      * @param xmlFile       The target engine config XML file to load.
      * @return              Returns a boolean flag indicating if the file load was successful.

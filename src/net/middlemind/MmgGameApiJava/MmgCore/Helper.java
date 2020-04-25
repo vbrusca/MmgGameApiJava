@@ -19,8 +19,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 
 /**
- * Provides support for static helper methods. This class provides similar methods to the MmgHelper
- * class but allows the developer to tie into higher level libraries and code structure outside of the
+ * Provides support for static helper methods. 
+ * This class provides similar methods to the MmgHelper class but allows the developer to tie into higher level libraries and code structure outside of the
  * base Mmg API. The GameSettings class controls the image and sound cache via the SND_CACHE_ON, BMP_CACHE_ON static variables.
  * Created by Middlemind Games 08/01/2015
  *
@@ -42,7 +42,6 @@ public class Helper {
      * A static helper method that is used to generate a random integer value with an exclusive upper bound.
      * 
      * @param exclusiveUpperBound       A method argument that provides the exclusive upper bound for the random number generator.
-     * 
      * @return                          A random integer value greater then or equal to zero and less than the exclusiveUpperBound. 
      */
     public static int GetRandomInt(int exclusiveUpperBound) {
@@ -92,7 +91,6 @@ public class Helper {
      * 
      * @param path      A method argument that is the location of the sound file to load.
      * @param sndId     A method argument that is the ID used in the audio cache.
-     * 
      * @return          An MmgSound object created from the source resource file.
      */
     @SuppressWarnings("UnusedAssignment")
@@ -115,7 +113,6 @@ public class Helper {
      * A helper method to get a sound resource from the audio cache using the ID method argument.
      * 
      * @param sndId     A method argument that is the ID used in the audio cache.
-     * 
      * @return          An MmgSound object returned from the audio cache.
      */
     @SuppressWarnings("UnusedAssignment")
@@ -134,7 +131,6 @@ public class Helper {
      * 
      * @param path      A method argument that is the location of the image file to load.
      * @param imgId     A method argument that is the ID used in the image cache.
-     * 
      * @return          An MmgBmp object created from the source resource file.
      */    
     @SuppressWarnings("UnusedAssignment")
@@ -158,7 +154,6 @@ public class Helper {
      * A helper method to get an image resource from the image cache using the ID method argument.
      * 
      * @param imgId     A method argument that is the ID used in the image cache.
-     * 
      * @return          An MmgBmp object created from the source resource file.
      */    
     @SuppressWarnings("UnusedAssignment")
@@ -204,7 +199,6 @@ public class Helper {
      * Gets a basic image from the file system.
      *
      * @param src       A path to a valid image resource.
-     * 
      * @return          An MmgBmp object loaded from the file path.
      */
     public static MmgBmp GetBasicBmp(String src) {
@@ -233,7 +227,6 @@ public class Helper {
      * Gets a basic sound from the file system.
      *
      * @param src       A path to a valid sound resource.
-     * 
      * @return          An MmgSound object loaded from the file path.
      */
     public static MmgSound GetBasicSound(String src) {
@@ -259,7 +252,6 @@ public class Helper {
      * A helper method that creates an MmgBmp object from an array of bytes that constitutes an image file.
      * 
      * @param d     A method argument that is a binary array of image data.
-     * 
      * @return      An MmgBmp object created from the binary array data.
      */
     public static MmgBmp GetBinaryBmp(byte[] d) {
@@ -288,7 +280,6 @@ public class Helper {
      * A helper method that creates an MmgBmp object from a lower level Image object and scales it based on the screen scaling data.
      * 
      * @param b     A Java Image class instance.
-     * 
      * @return      An MmgBmp object created from the lower level Java Image class instance.
      */
     public static MmgBmp GetImageBmp(Image b) {
@@ -311,7 +302,6 @@ public class Helper {
      * Despite the name of this method the MmgBmp is not cached.
      * 
      * @param b     A Java Image class instance
-     * 
      * @return      An MmgBmp object created from the lower level Java Image class instance.
      */
     public static MmgBmp GetImageCacheBmp(Image b) {
@@ -336,8 +326,7 @@ public class Helper {
      * @param eventId       The id of the menu item event.
      * @param eventType     The type of the menu item event.
      * @param img           The image used to display the menu item.
-     * 
-     * @return
+     * @return              Returns a configured MmgMenuItem instance.
      */
     public static MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, String name, int eventId, int eventType, MmgBmp img) {
         MmgMenuItem itm;

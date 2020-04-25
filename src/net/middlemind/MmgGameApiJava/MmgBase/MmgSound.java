@@ -136,8 +136,8 @@ public class MmgSound {
     /**
      * Starts playing this sound with the given loop and rate values.
      *
-     * @param loop  The loop variable used when playing this sound.
-     * @param rate  The rate variable used when playing this sound.
+     * @param loop      The loop variable used when playing this sound.
+     * @param rate      The rate variable used when playing this sound.
      */
     public void Play(int loop, float rate) {
         if(sound.isRunning()) {

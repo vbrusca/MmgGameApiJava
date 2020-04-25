@@ -11,24 +11,21 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 public interface GamePadSimple {
     
     /**
-     * The ProcessDpadPress method is designed to handle dpad press events and takes a
-     * direction code as input.
+     * The ProcessDpadPress method is designed to handle dpad press events and takes a direction code as input.
      * 
      * @param dir       The dir argument is the code for the dpad direction pressed.
      */
     public void ProcessDpadPress(int dir);
     
     /**
-     * The ProcessDpadRelease method is designed to handle dpad release events and takes a 
-     * direction code as input.
+     * The ProcessDpadRelease method is designed to handle dpad release events and takes a  direction code as input.
      * 
      * @param dir       The dir argument is the code for the dpad direction released.
      */
     public void ProcessDpadRelease(int dir);
     
     /**
-     * The ProcessDpadClick method is designed to handle dpad click events and takes a
-     * direction code as input.
+     * The ProcessDpadClick method is designed to handle dpad click events and takes a direction code as input.
      * 
      * @param dir       The dir argument is the code for the dpad direction clicked.
      */    

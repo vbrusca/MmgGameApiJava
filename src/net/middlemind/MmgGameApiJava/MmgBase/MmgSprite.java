@@ -82,22 +82,7 @@ public class MmgSprite extends MmgObj {
      * A static field that controls the default milliseconds per frame change.
      */
     public static int DEFAULT_MS_PER_FRAME = 100;
-    
-    /**
-     * The frame start time.
-     */
-    //private long frameStartTime;
-    
-    /**
-     * The frame stop time.
-     */
-    //private long frameStopTime;
-    
-    /**
-     * True if there was a frame change.
-     */
-    //private boolean frameChange;
-    
+        
     /**
      * A boolean indicating that only simple rendering should be done, no rotation or other image modifications.
      */
@@ -118,6 +103,9 @@ public class MmgSprite extends MmgObj {
      */
     private MmgEvent frameChange = new MmgEvent(null, "frame_changed", MmgSprite.MMG_SPRITE_FRAME_CHANGE, MmgSprite.MMG_SPRITE_FRAME_CHANGE_TYPE, null, null);
 
+    /**
+     * A private boolean used in the MmgUpdate method called during the update process.
+     */
     private boolean lret;
     
     /**
@@ -638,22 +626,21 @@ public class MmgSprite extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
-            //MmgHelper.wr("FrameIdx: " + frameIdx);
             if (b[frameIdx] != null) {
                 if(GetSimpleRendering() == true) {
                     p.DrawBmp(b[frameIdx], GetPosition());
-                }else {
+                } else {
                     if(GetSrcRect() == null || GetDstRect() == null) {
                         if(GetOrigin() == null) {
                             if(GetRotation() == 0.0) {
                                 p.DrawBmp(b[frameIdx], GetPosition());
-                            }else {
+                            } else {
                                 p.DrawBmp(b[frameIdx], GetPosition(), GetRotation());
                             }
-                        }else {
+                        } else {
                             p.DrawBmp(b[frameIdx], GetPosition(), GetOrigin(), GetRotation());
                         }
-                    }else{
+                    } else{
                         p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), GetOrigin(), GetRotation());
                     }
                 }

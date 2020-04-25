@@ -11,8 +11,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
- * A game screen object, Screen, that extends the MmgGameScreen base
- * class. This game screen is for displaying a main menu screen.
+ * A game screen object, Screen, that extends the MmgGameScreen base class. 
+ * This game screen is for displaying a main menu screen.
  * Created by Middlemind Games 03/15/2020
  * 
  * @author Victor G. Brusca
@@ -25,13 +25,13 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     public GameStates state;
     
     /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
+     * The GamePanel that owns this game screen. 
+     * Usually a JPanel instance that holds a reference to this game screen object.
      */
     public GamePanel owner;
     
     /**
-     * A boolean flag that indicates if there is work to be donw on the next MmgUpdate method call.
+     * A boolean flag that indicates if there is work to be done on the next MmgUpdate method call.
      */
     public boolean isDirty;
     
@@ -46,8 +46,7 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     public Hashtable<String, MmgCfgFileEntry> classConfig;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State         The game state of this game screen.
      * @param Owner         The owner of this game screen.
@@ -121,9 +120,8 @@ public class Screen extends MmgGameScreen implements GenericEventHandler {
     }
 
     /**
-     * Forces this screen to prepare itself for display. This is the method that
-     * handles displaying different game screen text. Calling draw screen
-     * prepares the screen for display.
+     * Forces this screen to prepare itself for display. 
+     * This is the method that handles displaying different game screen text. Calling draw screen prepares the screen for display.
      */
     public void DrawScreen() {
         pause = true;

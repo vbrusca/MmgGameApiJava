@@ -365,7 +365,6 @@ public class GamePadHub {
      * A method that returns a boolean flag indicating if the GpioPin at the given array index, i, is enabled.
      * 
      * @param i     An argument indicating which array index, GpioPin, to verify is enabled.
-     * 
      * @return      A boolean indicating if the GpioPin at the given index is enabled. 
      */
     public boolean ButtonEnabled(int i) {

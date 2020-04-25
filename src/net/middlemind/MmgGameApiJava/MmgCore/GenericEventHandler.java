@@ -1,8 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
 /**
- * An interface class for handling generic events. Generic events are events
- * that are not necessarily driven by user interaction. 
+ * An interface class for handling generic events. 
+ * Generic events are events that are not necessarily driven by user interaction. 
  * Created by Middlemind Games 08/01/2020
  *
  * @author Victor G. Brusca

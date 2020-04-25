@@ -5,7 +5,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 
 /**
- * Handles events that originate from the main menu screen. Implements the MmgEventHandler. 
+ * Handles events that originate from the main menu screen. 
+ * Implements the MmgEventHandler. 
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
@@ -18,8 +19,7 @@ public class HandleMainMenuEvent implements MmgEventHandler {
     private MmgGameScreen cApp;
 
     /**
-     * The game panel object, GamePanel, that owns the main menu screen object,
-     * ScreenMainMenu.
+     * The game panel object, GamePanel, that owns the main menu screen object, ScreenMainMenu.
      */
     private GamePanel owner;
 
@@ -80,7 +80,7 @@ public class HandleMainMenuEvent implements MmgEventHandler {
      * Event handler call back, when a UI action event occurs on the owner this
      * event handler can react to that event and either call methods in the
      * screen object that this class belongs to or it can call methods in the
-     * GamePanel that owns the screen, i.e. switch the current game state.
+     * GamePanel that owns the screen, in other words switch the current game state.
      *
      * @param e     An MmgEvent object.
      */

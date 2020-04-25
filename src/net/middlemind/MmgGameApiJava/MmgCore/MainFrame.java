@@ -5,8 +5,8 @@ import java.awt.event.WindowListener;
 import javax.swing.*;
 
 /**
- * The main frame of the game, extends the JFrame class. Handles housing
- * the GamePanel, JPanel, that draws each game state by making the corresponding game screen the active screen. 
+ * The main frame of the game, extends the JFrame class. 
+ * Handles housing the GamePanel, JPanel, that draws each game state by making the corresponding game screen the active screen. 
  * Created by Middlemind Games 08/01/2015
  *
  * @author Victor G. Brusca
@@ -14,8 +14,7 @@ import javax.swing.*;
 public class MainFrame extends JFrame {
 
     /**
-     * The GamePanel, extends JFrame, class that handles drawing the different
-     * game states.
+     * The GamePanel, extends JFrame, class that handles drawing the different game states.
      */
     public GamePanel pnlGame;
 
@@ -60,8 +59,8 @@ public class MainFrame extends JFrame {
     public final int gameHeight;    
 
     /**
-     * Constructor that sets the window width and height, and defaults the X, Y
-     * offsets to 0. It also sets the JFrame and game width and height to that of the window width and height.
+     * Constructor that sets the window width and height, and defaults the X, Y offsets to 0. 
+     * It also sets the JFrame and game width and height to that of the window width and height.
      *
      * @param WinWidth      The desired window width.
      * @param WinHeight     The desired window height.
@@ -107,9 +106,7 @@ public class MainFrame extends JFrame {
     /**
      * Sets the display text of the frame rate label.
      *
-     * @param fr        A long representing the current drawing frame rate, or the
-     * frame rate if no time lock is applied.
-     * 
+     * @param fr        A long representing the current drawing frame rate, or the frame rate if no time lock is applied.
      * @param rfr       A long representing the locked frame rate.
      */
     public void SetFrameRate(long fr, long rfr) {

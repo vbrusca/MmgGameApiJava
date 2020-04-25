@@ -205,7 +205,7 @@ public class MmgPositionTween extends MmgObj {
         
         SetMsTimeToMove(obj.GetMsTimeToMove());
         SetPixelsPerMsToMoveX(obj.GetPixelsPerMsToMoveX());
-        SetPixelsPerMsToMoveX(obj.GetPixelsPerMsToMoveY());
+        SetPixelsPerMsToMoveY(obj.GetPixelsPerMsToMoveY());
         
         if(obj.GetStartPosition() == null) {
             SetStartPosition(obj.GetStartPosition());
@@ -511,7 +511,6 @@ public class MmgPositionTween extends MmgObj {
         return (MmgObj) ret;
     }
     
-    
     /**
      * Creates a typed clone of this class.
      * 
@@ -540,7 +539,7 @@ public class MmgPositionTween extends MmgObj {
      * @param updateTicks           The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
-     * @return 
+     * @return                      A boolean indicating if any work was done this game frame.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
@@ -589,9 +588,9 @@ public class MmgPositionTween extends MmgObj {
     }
     
     /**
-     * Gets the width of this object.
+     * Gets the width of the subject.
      * 
-     * @return      The width of this object.
+     * @return      The width of the subject.
      */
     @Override
     public int GetWidth() {
@@ -599,9 +598,9 @@ public class MmgPositionTween extends MmgObj {
     }
     
     /**
-     * Sets the width of this object.
+     * Sets the width of this subject.
      * 
-     * @param w     The width of this object.
+     * @param w     The width of the subject.
      */
     @Override
     public void SetWidth(int w) {
@@ -630,7 +629,6 @@ public class MmgPositionTween extends MmgObj {
     
     /**
      * Gets the position of this object.
-     * Sets the position of the movement tween subject.
      * 
      * @return      The position of the subject.
      */
