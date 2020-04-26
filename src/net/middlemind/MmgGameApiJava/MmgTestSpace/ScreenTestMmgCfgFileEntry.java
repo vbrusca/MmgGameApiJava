@@ -18,8 +18,8 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
- * A game screen object, ScreenTest, that extends the MmgGameScreen base class.
- * This class is for testing new UI widgets, etc.
+ * A game screen class that extends the MmgGameScreen base class.
+ * This class is for testing API classes.
  * Created by Middlemind Games 02/25/2020
  * 
  * @author Victor G. Brusca

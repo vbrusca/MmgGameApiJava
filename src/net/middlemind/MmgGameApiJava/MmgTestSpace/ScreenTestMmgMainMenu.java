@@ -17,8 +17,11 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 
 /**
+ * A game screen class that extends the MmgGameScreen base class.
+ * This class is for testing API classes.
+ * Created by Middlemind Games 03/22/2020
+ * 
  * @author Victor G. Brusca
- * 03/22/2020
  */
 public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.ScreenMainMenu {
 
@@ -33,21 +36,20 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     private MmgBmp menuStartGame2P;    
         
     /**
-     * 
+     * An MmgFont class instance used as the title of this test screen.
      */
     private MmgFont title;
     
     /**
-     * 
+     * A private boolean flag used in the MmgUpdate method during the update process.
      */
     private boolean lret;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
-     * @param State The game state of this game screen.
-     * @param Owner The owner of this game screen.
+     * @param State     The game state of this game screen.
+     * @param Owner     The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
     public ScreenTestMmgMainMenu(GameStates State, GamePanel Owner) {
@@ -459,7 +461,6 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
      * A method to handle dpad release events from the MainFrame.
      * 
      * @param dir       A dpad code indicating if the UP, DOWN, LEFT, RIGHT direction was released.
-     * 
      * @return          A boolean indicating if the Screen handled the dpad release event.
      */
     @Override
@@ -582,9 +583,9 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     }
 
     /**
-     * The main drawing routine.
+     * Base draw method, handles drawing this class.
      *
-     * @param p An MmgPen object to use for drawing this game screen.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -596,15 +597,12 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     }
 
     /**
-     * The main update routine responsible for calling DrawnScreen when game updates are processed.
+     * The MmgUpdate method used to call the update method of the child objects.
      * 
-     * @param updateTick            A value indicating the number of the update call.
-     * 
-     * @param currentTimeMs         The current time in ms of the update call.
-     * 
-     * @param msSinceLastFrame      The number of ms between this update call and the previous update call.
-     * 
-     * @return      A boolean indicating if the update was processed.
+     * @param updateTicks           The update tick number. 
+     * @param currentTimeMs         The current time in the game in milliseconds.
+     * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
+     * @return                      A boolean indicating if any work was done this game frame.
      */
     @Override
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {

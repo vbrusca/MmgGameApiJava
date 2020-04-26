@@ -15,8 +15,8 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
- * A game screen object, ScreenTest, that extends the MmgGameScreen base class.
- * This class is for testing new UI widgets, etc.
+ * A game screen class that extends the MmgGameScreen base class.
+ * This class is for testing API classes.
  * Created by Middlemind Games 02/25/2020
  * 
  * @author Victor G. Brusca
@@ -41,83 +41,82 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     protected final GamePanel owner;
         
     /**
-     * 
+     * An MmgFont class instance that is used as the title for this test game screen.
      */
     private MmgFont title;
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of bold large text.
      */
     private MmgFont fontBoldLg;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of bold medium text.
      */
     private MmgFont fontBoldMd;   
         
     /**
-     * 
+     * An MmgFont class instance that is used as an example of bold small text.
      */
     private MmgFont fontBoldSm;
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of normal large text.
      */
     private MmgFont fontNormLg;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of normal medium text.
      */
     private MmgFont fontNormMd;   
         
     /**
-     * 
+     * An MmgFont class instance that is used as an example of normal small text.
      */
     private MmgFont fontNormSm;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of italic large text.
      */
     private MmgFont fontItalicLg;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of italic medium text.
      */
     private MmgFont fontItalicMd;   
         
     /**
-     * 
+     * An MmgFont class instance that is used as an example of italic small text.
      */
     private MmgFont fontItalicSm;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of custom large text.
      */
     private MmgFont fontCustomLg;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of custom medium text.
      */
     private MmgFont fontCustomMd;    
     
     /**
-     * 
+     * An MmgFont class instance that is used as an example of custom small text.
      */
-    private MmgFont fontCustomSm;    
+    private MmgFont fontCustomSm;
     
     /**
-     * 
+     * A boolean flag indicating if there is work to do in the next MmgUpdate call.
      */
     private boolean isDirty = false;
     
     /**
-     * 
+     * A private boolean flag used in the MmgUpdate method during the update process.
      */
     private boolean lret = false;
     
     /**
-     * Constructor, sets the game state associated with this screen, and sets
-     * the owner GamePanel instance.
+     * Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
      *
      * @param State         The game state of this game screen.
      * @param Owner         The owner of this game screen.
@@ -133,8 +132,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     }
 
     /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
+     * Sets a generic event handler that will receive generic events from this object.
      *
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
@@ -144,9 +142,9 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     }
 
     /**
+     * Gets the GenericEventHandler this game screen uses to handle GenericEvents.
      * 
-     * 
-     * @return 
+     * @return      The GenericEventHandler this screen uses to handle GenericEvents.
      */
     public GenericEventHandler GetGenericEventHandler() {
         return handler;
@@ -253,11 +251,11 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     }
     
     /**
+     * A method to handle dpad release events.
      * 
-     * 
-     * @param dir
-     * @return 
-     */
+     * @param dir       The direction id for the dpad event.
+     * @return          A boolean indicating if this event was handled or not.
+     */  
     @Override
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMmgFont.ProcessDpadRelease: " + dir);
@@ -304,9 +302,9 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     }
     
     /**
-     * The main drawing routine.
+     * Base draw method, handles drawing this class.
      *
-     * @param p     An MmgPen object to use for drawing this game screen.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -316,9 +314,9 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     }
 
     /**
+     * The callback method to handle GenericEventMessage objects.
      * 
-     * 
-     * @param obj 
+     * @param obj       A GenericEventMessage object instance to process.
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
@@ -326,9 +324,9 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
     }
 
     /**
+     * The callback method to handle MmgEvent objects.
      * 
-     * 
-     * @param e 
+     * @param e         An MmgEvent object instance to process.
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {

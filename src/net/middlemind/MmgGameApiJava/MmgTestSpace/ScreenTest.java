@@ -437,6 +437,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
      * A method to handle keyboard click events.
      * 
      * @param c         The key used in the event.
+     * @param code      The code of the key used in the event.
      * @return          A boolean indicating if this event was handled or not.
      */    
     @Override
@@ -462,7 +463,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
     /**
      * Returns the game state of this game screen.
      *
-     * @return The game state of this game screen.
+     * @return      The game state of this game screen.
      */
     public GameStates GetGameState() {
         return gameState;
