@@ -142,7 +142,7 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Container and Mmg Pulse (12)  >");
+        title.SetText("<  Screen Test Mmg Container and Mmg Pulse (12 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);

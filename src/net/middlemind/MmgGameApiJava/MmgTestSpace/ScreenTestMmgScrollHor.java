@@ -135,7 +135,7 @@ public class ScreenTestMmgScrollHor extends MmgGameScreen implements GenericEven
         SetPosition(MmgScreenData.GetPosition());
 
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Scroll Hor (14)  >");
+        title.SetText("<  Screen Test Mmg Scroll Hor (14 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);        

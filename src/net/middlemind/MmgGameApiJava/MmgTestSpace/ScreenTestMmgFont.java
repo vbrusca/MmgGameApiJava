@@ -164,7 +164,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
         int y = 60;
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Font (3)  >");
+        title.SetText("<  Screen Test Mmg Font (3 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);        

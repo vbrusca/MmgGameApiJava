@@ -61,9 +61,9 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     public ScreenTestMmgBasicInput screenTestMmgBasicInput;
     
     /**
-     * A reference to a game screen used for testing the MmgCfgFileEntry class.
+     * A reference to a game screen used for testing the MmgCfgFileEntry class during configuration file reading.
      */
-    public ScreenTestMmgCfgFileEntry screenTestMmgCfgFileEntry;
+    public ScreenTestMmgCfgFileEntryRead screenTestMmgCfgFileEntryRead;
     
     /**
      * A reference to a game screen used for testing the MmgScreenData class.
@@ -114,6 +114,16 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
      * A reference to a game screen used for testing the MmgTextBlock class.
      */
     public ScreenTestMmgTextBlock screenTestMmgTextBlock;
+    
+    /**
+     * A reference to a game screen used for testing the MmgCfgFileEntry class during configuration file writing.
+     */
+    public ScreenTestMmgCfgFileEntryWrite screenTestMmgCfgFileEntryWrite;    
+    
+    /**
+     * A static class field that contains the total number of test game screens.
+     */
+    public static int TOTAL_TESTS = 20;
     
     /**
      * The basic constructor for this GamePanel extended class.
@@ -173,9 +183,9 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         screenTestMmgBasicInput.Pause();
         screenTestMmgBasicInput.SetIsVisible(false);
         
-        screenTestMmgCfgFileEntry = new ScreenTestMmgCfgFileEntry(GameStates.GAME_SCREEN_10, this);
-        screenTestMmgCfgFileEntry.Pause();
-        screenTestMmgCfgFileEntry.SetIsVisible(false);
+        screenTestMmgCfgFileEntryRead = new ScreenTestMmgCfgFileEntryRead(GameStates.GAME_SCREEN_10, this);
+        screenTestMmgCfgFileEntryRead.Pause();
+        screenTestMmgCfgFileEntryRead.SetIsVisible(false);
         
         screenTestMmgColor = new ScreenTestMmgColor(GameStates.GAME_SCREEN_11, this);
         screenTestMmgColor.Pause();
@@ -211,7 +221,11 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
         screenTestMmgTextBlock = new ScreenTestMmgTextBlock(GameStates.GAME_SCREEN_19, this);
         screenTestMmgTextBlock.Pause();
-        screenTestMmgTextBlock.SetIsVisible(false);        
+        screenTestMmgTextBlock.SetIsVisible(false);
+        
+        screenTestMmgCfgFileEntryWrite = new ScreenTestMmgCfgFileEntryWrite(GameStates.GAME_SCREEN_20, this);
+        screenTestMmgCfgFileEntryWrite.Pause();
+        screenTestMmgCfgFileEntryWrite.SetIsVisible(false);        
     }
         
     /**
@@ -306,9 +320,9 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             
         } else if (prevGameState == GameStates.GAME_SCREEN_10) {
             Helper.wr("Hiding GAME_SCREEN_10 screen.");
-            screenTestMmgCfgFileEntry.Pause();
-            screenTestMmgCfgFileEntry.SetIsVisible(false);
-            screenTestMmgCfgFileEntry.UnloadResources();
+            screenTestMmgCfgFileEntryRead.Pause();
+            screenTestMmgCfgFileEntryRead.SetIsVisible(false);
+            screenTestMmgCfgFileEntryRead.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_11) {
             Helper.wr("Hiding GAME_SCREEN_11 screen.");
@@ -362,7 +376,13 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             Helper.wr("Hiding GAME_SCREEN_19 screen.");
             screenTestMmgTextBlock.Pause();
             screenTestMmgTextBlock.SetIsVisible(false);
-            screenTestMmgTextBlock.UnloadResources();            
+            screenTestMmgTextBlock.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_20) {
+            Helper.wr("Hiding GAME_SCREEN_20 screen.");
+            screenTestMmgCfgFileEntryWrite.Pause();
+            screenTestMmgCfgFileEntryWrite.SetIsVisible(false);
+            screenTestMmgCfgFileEntryWrite.UnloadResources();            
             
         } else if (prevGameState == GameStates.MAIN_MENU) {
             Helper.wr("Hiding MAIN_MENU screen.");
@@ -482,10 +502,10 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             
         } else if (gameState == GameStates.GAME_SCREEN_10) {
             Helper.wr("Showing GAME_SCREEN_10 screen.");
-            screenTestMmgCfgFileEntry.LoadResources();
-            screenTestMmgCfgFileEntry.UnPause();
-            screenTestMmgCfgFileEntry.SetIsVisible(true);
-            currentScreen = screenTestMmgCfgFileEntry;
+            screenTestMmgCfgFileEntryRead.LoadResources();
+            screenTestMmgCfgFileEntryRead.UnPause();
+            screenTestMmgCfgFileEntryRead.SetIsVisible(true);
+            currentScreen = screenTestMmgCfgFileEntryRead;
             
         } else if (gameState == GameStates.GAME_SCREEN_11) {
             Helper.wr("Showing GAME_SCREEN_11 screen.");
@@ -548,7 +568,14 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgTextBlock.LoadResources();
             screenTestMmgTextBlock.UnPause();
             screenTestMmgTextBlock.SetIsVisible(true);
-            currentScreen = screenTestMmgTextBlock;            
+            currentScreen = screenTestMmgTextBlock;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_20) {
+            Helper.wr("Showing GAME_SCREEN_20 screen.");
+            screenTestMmgCfgFileEntryWrite.LoadResources();
+            screenTestMmgCfgFileEntryWrite.UnPause();
+            screenTestMmgCfgFileEntryWrite.SetIsVisible(true);
+            currentScreen = screenTestMmgCfgFileEntryWrite;            
             
         } else if (gameState == GameStates.MAIN_MENU) {
             Helper.wr("Showing MAIN_MENU screen.");
@@ -639,7 +666,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                         SwitchGameState(GameStates.GAME_SCREEN_09);                        
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("10")) {
-                        //Test MmgCfgFileEntry
+                        //Test MmgCfgFileEntry Read
                         SwitchGameState(GameStates.GAME_SCREEN_10);
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("11")) {
@@ -676,7 +703,11 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("19")) {
                         //Test MmgTextBlock
-                        SwitchGameState(GameStates.GAME_SCREEN_19);                        
+                        SwitchGameState(GameStates.GAME_SCREEN_19);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("20")) {
+                        //Test MmgCfgFileEntry Write
+                        SwitchGameState(GameStates.GAME_SCREEN_20);                        
                         
                     }
                 }

@@ -24,7 +24,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgCfgFileEntryRead extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -90,13 +90,13 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgCfgFileEntry(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgCfgFileEntryRead(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgSound.Constructor");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.Constructor");
     }
 
     /**
@@ -105,7 +105,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgSound.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -123,7 +123,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgSound.LoadResources");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -132,7 +132,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
         classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry.txt");        
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Cfg File Entry (10)  >");
+        title.SetText("<  Screen Test Mmg Cfg File Entry Read (10 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
@@ -195,7 +195,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -209,7 +209,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessScreenPress");
         return true;
     }
 
@@ -222,7 +222,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -235,7 +235,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessScreenRelease");
         return true;
     }
     
@@ -247,7 +247,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgSound.ProcessAClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessAClick");
         return true;
     }
     
@@ -259,7 +259,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgSound.ProcessBClick");        
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessBClick");        
         return true;
     }
     
@@ -268,7 +268,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgSound.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessDebugClick");
     }
 
     /**
@@ -279,7 +279,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgSound.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -291,7 +291,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgSound.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_11);
         
@@ -310,7 +310,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgSound.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -323,7 +323,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -337,7 +337,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgSound.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessScreenClick");
         return true;
     }    
     
@@ -350,7 +350,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgSound.ProcessKeyClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.ProcessKeyClick");
         return true;
     }
     
@@ -400,7 +400,7 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgSound.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
    /**
@@ -410,6 +410,6 @@ public class ScreenTestMmgCfgFileEntry extends MmgGameScreen implements GenericE
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgSound.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        Helper.wr("ScreenTestMmgCfgFileEntryRead.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

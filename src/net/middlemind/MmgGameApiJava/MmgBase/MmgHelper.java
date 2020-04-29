@@ -10,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Random;
 import java.util.Set;
@@ -58,10 +59,11 @@ public class MmgHelper {
         boolean ret = false;
         
         try {
-            if(data != null && data.length > 0) {
+            if(data != null && data.length > 0) {                
                 MmgCfgFileEntry cfe = null;
                 FileWriter fw = new FileWriter(file, false);
                 BufferedWriter bw = new BufferedWriter(fw);
+                Arrays.sort(data);
                 int len = data.length;
                 
                 for(int i = 0; i < len; i++) {
@@ -107,10 +109,16 @@ public class MmgHelper {
                 MmgCfgFileEntry cfe = null;
                 FileWriter fw = new FileWriter(file, false);
                 BufferedWriter bw = new BufferedWriter(fw);
-                Set<String> keys = data.keySet();
+                Set<String> keys = data.keySet();                
+                String[] nKeys = new String[keys.size()];
+                nKeys = keys.toArray(nKeys);
+                Arrays.sort(nKeys);
+                int len = nKeys.length;
                 
-                for(String key : keys) {
-                    cfe = data.get(key);
+                //for(String key : keys) {
+                for(int i = 0; i < len; i++) {
+                    //cfe = data.get(key);
+                    cfe = data.get(nKeys[i]);
                     bw.write(cfe.ToString());
                     bw.newLine();
                 }

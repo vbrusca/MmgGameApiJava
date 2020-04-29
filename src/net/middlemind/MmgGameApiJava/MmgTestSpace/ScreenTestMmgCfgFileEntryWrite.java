@@ -1,12 +1,10 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
+import java.util.Hashtable;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Helper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgDrawableBmpSet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -15,7 +13,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -27,7 +24,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -45,61 +42,36 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      * holds a reference to this game screen object.
      */
     protected final GamePanel owner;
+            
+    /**
+     * An MmgFont class instance that is used to label the String value pulled from the class configuration file.
+     */
+    private MmgFont cfgFileStringLabel;
+    
+    /**
+     * An MmgFont class instance that is used to label the float value pulled from the class configuration file.
+     */
+    private MmgFont cfgFileFloatLabel;
         
     /**
-     * An MmgBmp class instance that is loaded from the MmgBmp cache.
+     * An MmgFont class instance that is used to label the int value pulled from the class configuration file.
      */
-    private MmgBmp bmpCache;
+    private MmgFont cfgFileIntLabel;    
     
     /**
-     * An MmgFont class instance used as a label for the MmgBmp loaded from the cache.
+     * An MmgFont class instance that is used to label the class configuration entries with information about the file used to load the values.
      */
-    private MmgFont bmpCacheLabel;
+    private MmgFont infoLabel1;
     
     /**
-     * An MmgBmp class instance that is loaded from a file path.
-     */
-    private MmgBmp bmpFile;
+     * An MmgFont class instance that is used to label the commands to run a write configuration file test.
+     */    
+    private MmgFont infoLabel2;
     
     /**
-     * An MmgFont class instance used as a label for the MmgBmp loaded from a file.
-     */
-    private MmgFont bmpFileLabel;    
-    
-    /**
-     * An MmgBmp class instance that is an example of a custom color fill.
-     */
-    private MmgBmp bmpCustomFill;
-    
-    /**
-     * An MmgFont class instance used as a label for the MmgBmp that is an example of a custom color fill.
-     */
-    private MmgFont bmpCustomFillLabel;
-    
-    /**
-     * An MmgBmp class instance that is an example of a partial copy of another MmgBmp.
-     */
-    private MmgBmp bmpPartialCopy;
-    
-    /**
-     * An MmgFont class instance used as a label for the MmgBmp that is an example of a partial copy of another MmgBmp.
-     */
-    private MmgFont bmpPartialCopyLabel;    
-        
-    /**
-     * An MmgDrawableBmpSet class instance that is an example of creating a custom bitmap crawing set.
-     */
-    private MmgDrawableBmpSet bmpSet;
-    
-    /**
-     * An MmgRect class instance used as the source rectangle for a custom bitmap copy.
-     */
-    private MmgRect srcRect;
-    
-    /**
-     * An MmgRect class instance used as the destination rectangle for a custom bitmap copy.
-     */
-    private MmgRect dstRect;
+     * An MmgFont class instance that is used to label the path where the configuration file is written.
+     */    
+    private MmgFont infoLabel3;    
     
     /**
      * An MmgFont class instance used as the title of the test game screen.
@@ -107,24 +79,9 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
     private MmgFont title;
     
     /**
-     * An MmgBmp class instance used as an example of the MmgBmp scaling process.
+     * A data structure that stores all the class configuration file entries from the target file.
      */
-    private MmgBmp bmpScaled;
-    
-    /**
-     * An MmgFont class instance used as a label for the MmgBmp that is an example of bitmap scaling.
-     */
-    private MmgFont bmpScaledLabel;
-    
-    /**
-     * An MmgFont class instance used as an example of the MmgBmp rotation process.
-     */
-    private MmgBmp bmpRotate;
-    
-    /**
-     * An MmgFont class instance used as a label for the MmgBmp that is an example of the MmgBmp rotation process.
-     */
-    private MmgFont bmpRotateLabel;
+    public Hashtable<String, MmgCfgFileEntry> classConfig;    
     
     /**
      * A boolean flag indicating if there is work to do in the next MmgUpdate call.
@@ -143,13 +100,13 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgBmp(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgCfgFileEntryWrite(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgBmp.Constructor");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.Constructor");
     }
 
     /**
@@ -158,7 +115,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgBmp.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -176,79 +133,76 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgBmp.LoadResources");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
-
+        
+        classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry.txt");        
+        
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Bmp (5 / " + GamePanel.TOTAL_TESTS + ")  >");
+        title.SetText("<  Screen Test Mmg Cfg File Entry Write (20 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
-        AddObj(title);         
+        AddObj(title);
+            
+        String val = "";
+        float fval = 0.0f;
+        int ival = 0;
         
-        bmpCache = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
-        bmpCache.SetY(GetY() + 90);
-        bmpCache.SetX(220);
-        AddObj(bmpCache);
-
-        bmpCacheLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        bmpCacheLabel.SetText("MmgBmp From Auto Load Cache");
-        bmpCacheLabel.SetPosition(50, GetY() + 70);
-        AddObj(bmpCacheLabel);
+        cfgFileStringLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        if(classConfig.containsKey("example_string")) {
+            val = classConfig.get("example_string").string;
+        } else {
+            val = "Unknown Example String";
+        }
+        cfgFileStringLabel.SetText("Config File Entry String Value: " + val);
+        MmgHelper.CenterHorAndVert(cfgFileStringLabel);
+        cfgFileStringLabel.SetY(cfgFileStringLabel.GetY() - 60);
+        AddObj(cfgFileStringLabel);
         
-        bmpFile = MmgHelper.GetBasicCachedBmp("../cfg/drawable/loading_bar.png", "loading_bar.png");
-        bmpFile.SetY(GetY() + 90);
-        bmpFile.SetX(560);
-        AddObj(bmpFile);
+        cfgFileFloatLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        if(classConfig.containsKey("example_float")) {
+            fval = classConfig.get("example_float").number.floatValue();
+            val = (fval + "");
+        } else {
+            val = "Unknown Example Float";
+        }
+        cfgFileFloatLabel.SetText("Config File Entry Float Value: " + val);
+        MmgHelper.CenterHorAndVert(cfgFileFloatLabel);
+        cfgFileFloatLabel.SetY(cfgFileStringLabel.GetY() + 40);
+        AddObj(cfgFileFloatLabel);
         
-        bmpFileLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        bmpFileLabel.SetText("MmgBmp From Path");
-        bmpFileLabel.SetPosition(545, GetY() + 70);
-        AddObj(bmpFileLabel);
+        cfgFileIntLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        if(classConfig.containsKey("example_int")) {
+            ival = classConfig.get("example_int").number.intValue();
+            val = (ival + "");
+        } else {
+            val = "Unknown Example Integer";
+        }
+        cfgFileIntLabel.SetText("Config File Entry Int Value: " + val);
+        MmgHelper.CenterHorAndVert(cfgFileIntLabel);
+        cfgFileIntLabel.SetY(cfgFileFloatLabel.GetY() + 40);
+        AddObj(cfgFileIntLabel);
         
-        bmpCustomFill = MmgHelper.CreateFilledBmp(50, 50, MmgColor.GetCalmBlue());
-        bmpCustomFill.SetY(GetY() + 210);
-        bmpCustomFill.SetX(205);
-        AddObj(bmpCustomFill);        
+        infoLabel1 = MmgFontData.CreateDefaultBoldMmgFontSm(); 
+        infoLabel1.SetText("Class config loaded from: screen_test_mmg_cfg_file_entry.txt");
+        MmgHelper.CenterHorAndVert(infoLabel1);
+        infoLabel1.SetY(cfgFileIntLabel.GetY() + 40);
+        AddObj(infoLabel1);
         
-        bmpCustomFillLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        bmpCustomFillLabel.SetText("MmgBmp Created Custom with Fill");
-        bmpCustomFillLabel.SetPosition(45, GetY() + 190);
-        AddObj(bmpCustomFillLabel);
-                
-        bmpSet = MmgHelper.CreateDrawableBmpSet(bmpCache.GetWidth()/2, bmpCache.GetHeight()/2, true);
-        srcRect = new MmgRect(0, 0, bmpCache.GetHeight()/2, bmpCache.GetWidth()/2);
-        dstRect = new MmgRect(0, 0, bmpCache.GetHeight()/2, bmpCache.GetWidth()/2);        
-        bmpSet.p.DrawBmp(bmpCache, srcRect, dstRect);
+        infoLabel2 = MmgFontData.CreateDefaultBoldMmgFontSm(); 
+        infoLabel2.SetText("Press 'w' to write config entries to: screen_test_mmg_cfg_file_entry_output.txt");
+        MmgHelper.CenterHorAndVert(infoLabel2);
+        infoLabel2.SetY(infoLabel1.GetY() + 40);
+        AddObj(infoLabel2);
         
-        bmpSet.img.SetY(GetY() + 210);
-        bmpSet.img.SetX(650);
-        AddObj(bmpSet.img);        
-        
-        bmpPartialCopyLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        bmpPartialCopyLabel.SetText("MmgBmp Custom with Copy");
-        bmpPartialCopyLabel.SetPosition(505, GetY() + 190);
-        AddObj(bmpPartialCopyLabel);        
-        
-        bmpScaled = MmgBmpScaler.ScaleMmgBmp(bmpCache, 1.50, true);
-        bmpScaled.SetPosition(213, GetY() + 330);        
-        AddObj(bmpScaled);
-        
-        bmpScaledLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        bmpScaledLabel.SetText("MmgBmp Custom Scaled");
-        bmpScaledLabel.SetPosition(90, GetY() + 310);
-        AddObj(bmpScaledLabel);
-        
-        bmpRotate = MmgBmpScaler.RotateMmgBmp(bmpCache, 90, true);
-        bmpRotate.SetPosition(645, GetY() + 330);        
-        AddObj(bmpRotate);        
-        
-        bmpRotateLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        bmpRotateLabel.SetText("MmgBmp Custom Rotated");
-        bmpRotateLabel.SetPosition(515, GetY() + 310);
-        AddObj(bmpRotateLabel);        
+        infoLabel3 = MmgFontData.CreateDefaultBoldMmgFontSm(); 
+        infoLabel3.SetText(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry_output.txt");
+        MmgHelper.CenterHorAndVert(infoLabel3);
+        infoLabel3.SetY(infoLabel2.GetY() + 40);
+        AddObj(infoLabel3);        
         
         ready = true;
         pause = false;
@@ -263,11 +217,11 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgBmp.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
-   /**
+    /**
      * Expects a relative X, Y values that takes into account the game's offset and the current panel's
      * offset.
      * 
@@ -277,7 +231,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgBmp.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
         return true;
     }
 
@@ -290,7 +244,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgBmp.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -303,7 +257,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgBmp.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
         return true;
     }
     
@@ -315,7 +269,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgBmp.ProcessAClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessAClick");
         return true;
     }
     
@@ -327,7 +281,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgBmp.ProcessBClick");        
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessBClick");        
         return true;
     }
     
@@ -336,10 +290,10 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgBmp.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDebugClick");
     }
 
-   /**
+    /**
      * A method to handle dpad press events.
      * 
      * @param dir       The direction id for the dpad event.
@@ -347,7 +301,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgBmp.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -359,14 +313,14 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgBmp.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_06);            
-            
+            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+        
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_04);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_19);
             
-        }        
+        }
         return true;
     }
     
@@ -378,7 +332,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgBmp.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -391,7 +345,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgBmp.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -405,7 +359,7 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgBmp.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");
         return true;
     }    
     
@@ -418,7 +372,12 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgBmp.ProcessKeyClick");
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessKeyClick");
+        if(c == 'w' || c == 'W') {
+            MmgHelper.WriteClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry_output.txt", classConfig);
+            infoLabel1.SetText("Class config written to: screen_test_mmg_cfg_file_entry_output.txt on: " + System.currentTimeMillis());
+            MmgHelper.CenterHor(infoLabel1);        
+        }
         return true;
     }
     
@@ -428,20 +387,15 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
+        title = null;
         
-        bmpCache = null;
-        bmpCacheLabel = null;
-        bmpCustomFill = null;
-        bmpCustomFillLabel = null;
-        bmpFile = null;
-        bmpFileLabel = null;
-        bmpPartialCopy = null;
-        bmpPartialCopyLabel = null;
-        bmpRotate = null;
-        bmpRotateLabel = null;
-        bmpScaled = null;
-        bmpScaledLabel = null;
-        bmpSet = null;
+        cfgFileFloatLabel = null;
+        cfgFileIntLabel = null;
+        cfgFileStringLabel = null;
+        classConfig = null;
+        infoLabel1 = null;
+        infoLabel2 = null;                
+        infoLabel3 = null;
         
         ClearObjs();
         ready = false;
@@ -475,16 +429,16 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgBmp.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
-    /**
+   /**
      * The callback method to handle MmgEvent objects.
      * 
      * @param e         An MmgEvent object instance to process.
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmg9Slice.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());        
+        Helper.wr("ScreenTestMmgCfgFileEntryWrite.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

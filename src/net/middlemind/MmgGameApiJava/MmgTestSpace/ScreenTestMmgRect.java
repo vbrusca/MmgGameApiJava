@@ -126,7 +126,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Rect (17)  >");
+        title.SetText("<  Screen Test Mmg Rect (17 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);

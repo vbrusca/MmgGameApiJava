@@ -147,7 +147,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Position Tween (18)  >");
+        title.SetText("<  Screen Test Mmg Position Tween (18 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);

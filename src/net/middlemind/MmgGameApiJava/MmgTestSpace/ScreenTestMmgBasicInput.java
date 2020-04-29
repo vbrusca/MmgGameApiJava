@@ -238,7 +238,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Basic Input (9)  >");
+        title.SetText("<  Screen Test Mmg Basic Input (9 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);

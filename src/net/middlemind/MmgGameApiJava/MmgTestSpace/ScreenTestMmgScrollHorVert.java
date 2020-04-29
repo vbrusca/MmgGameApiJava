@@ -135,7 +135,7 @@ public class ScreenTestMmgScrollHorVert extends MmgGameScreen implements Generic
         SetPosition(MmgScreenData.GetPosition());
 
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Scroll Hor and Vert (16)  >");
+        title.SetText("<  Screen Test Mmg Scroll Hor and Vert (16 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);        

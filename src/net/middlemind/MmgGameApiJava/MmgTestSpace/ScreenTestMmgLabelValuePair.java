@@ -131,7 +131,7 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Label Value Pair (13)  >");
+        title.SetText("<  Screen Test Mmg Label Value Pair (13 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);

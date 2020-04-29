@@ -44,32 +44,32 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
     protected final GamePanel owner;
         
     /**
-     * 
+     * An MmgBmp class instance used as the background for the MmgTextField test object.
      */
     private MmgBmp bground;
         
     /**
-     * 
+     * An MmgTextField class instance used as the example object in this test game screen.
      */
     private MmgTextField txtField;
     
     /**
-     * 
+     * An MmgFont class instance used as a label for the text field.
      */
     private MmgFont txtFieldLabel;
     
     /**
-     * 
+     * An MmgFont class instance used as a label for the maximum length of the text field.
      */
     private MmgFont maxLenLabel;
     
     /**
-     * 
+     * An MmgFont class instance that displays the text held by the MmgTextField.
      */
     private MmgFont txtFieldText;
     
     /**
-     * 
+     * An MmgFont class instance that displays error information when a maximum length error occurs in the MmgTextField test object.
      */
     private MmgFont txtFieldMaxLenError;
     
@@ -138,7 +138,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         int height = MmgHelper.ScaleValue(50);
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Text Field (4)  >");
+        title.SetText("<  Screen Test Mmg Text Field (4 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);        

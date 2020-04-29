@@ -44,32 +44,32 @@ public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEven
     protected final GamePanel owner;
        
     /**
-     * 
+     * An MmgTextBlock class instance used as the test object for this test game screen.
      */
     private MmgTextBlock txtBlock;
         
     /**
-     * 
+     * An MmgFont class instances used to display the numbers of pages, words and lines extracted from the source text.
      */
     private MmgFont txtWords;
     
     /**
-     * 
+     * A String class field used to store the source text that is split and displayed by the MmgTextBlock.
      */
     private String txt;
     
     /**
-     * 
+     * An MmgFont class instance used as the title for the test game screen.
      */
     private MmgFont title;
     
     /**
-     * 
+     * A boolean flag indicating if there is work to do in the next MmgUpdate call.
      */
     private boolean isDirty = false;
     
     /**
-     * 
+     * A private boolean flag used in the MmgUpdate method during the update process.
      */
     private boolean lret = false;
     
@@ -120,7 +120,7 @@ public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEven
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Text Block (19)  >");
+        title.SetText("<  Screen Test Mmg Text Block (19 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
@@ -266,7 +266,7 @@ public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEven
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMmgTextBlock.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_20);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_18);

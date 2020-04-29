@@ -1,12 +1,14 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.util.Comparator;
+
 /**
  * Class used to store rows of information from a class config text file.
  * Created by Middlemind Games 03/15/2020
  * 
  * @author Victor G. Brusca
  */
-public class MmgCfgFileEntry {
+public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
     
     /**
      * An enumeration that specifies the type of data the CfgEntryType holds.
@@ -50,11 +52,16 @@ public class MmgCfgFileEntry {
                 ret = name.trim() + "=" + number.toString();
 
             } else if(cfgType == CfgEntryType.TYPE_STRING) {
-                ret = name.trim() + "=" + string;
+                ret = name.trim() + "->" + string;
 
             }
         }
         
         return ret;
     }
+    
+    @Override
+    public int compare(MmgCfgFileEntry o1, MmgCfgFileEntry o2) {
+        return o1.name.compareToIgnoreCase(o2.name);
+    }    
 }

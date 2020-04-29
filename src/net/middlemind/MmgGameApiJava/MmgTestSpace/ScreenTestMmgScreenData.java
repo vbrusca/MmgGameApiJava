@@ -153,7 +153,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Screen Data (1)  >");
+        title.SetText("<  Screen Test Mmg Screen Data (1 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
@@ -350,7 +350,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
             owner.SwitchGameState(GameStates.GAME_SCREEN_02);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_19);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_20);
             
         }
         return true;

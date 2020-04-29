@@ -136,7 +136,7 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Sprite (8)  >");
+        title.SetText("<  Screen Test Mmg Sprite (8 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + 30);
         AddObj(title);
