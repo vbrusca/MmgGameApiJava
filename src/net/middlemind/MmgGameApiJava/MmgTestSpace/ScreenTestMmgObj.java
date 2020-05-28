@@ -1,5 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
+import java.awt.Color;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
@@ -12,6 +13,8 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -23,7 +26,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgObj extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
     /**
      * The game state this screen has.
@@ -31,71 +34,47 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
     protected final GameStates gameState;
 
     /**
-     * Event handler for firing generic events. 
+     * Event handler for firing generic events.
      * Events would fire when the screen has non UI actions to broadcast.
      */
     protected GenericEventHandler handler;
 
     /**
-     * The GamePanel that owns this game screen. 
+     * The GamePanel that owns this game screen.
      * Usually a JPanel instance that holds a reference to this game screen object.
      */
     protected final GamePanel owner;
+        
+    /**
+     * An MmgRect class instance used as an example of drawing rectangles in this test game screen.
+     */
+    private MmgObj obj1;
             
+    private MmgFont font1;
+        
     /**
-     * An MmgFont instance used as a label for the first color entry.
+     * An MmgRect class instance used as an example of drawing rectangles in this test game screen.
      */
-    private MmgFont color1Label;
+    private MmgObj obj2;    
+    
+    private MmgFont font2;
     
     /**
-     * An MmgFont instance used as a label for the second color entry.
+     * An MmgRect class instance used as an example of drawing rectangles in this test game screen.
      */
-    private MmgFont color2Label;
-       
-    /**
-     * An MmgFont instance used as a label for the third color entry.
-     */
-    private MmgFont color3Label;
+    private MmgObj obj3;
+            
+    private MmgFont font3;    
     
     /**
-     * An MmgFont instance used as a label for the fourth color entry.
-     */
-    private MmgFont color4Label;
-    
-    /**
-     * An MmgFont instance used as a label for the fifth color entry.
-     */
-    private MmgFont color5Label;
-    
-    /**
-     * An MmgFont instance used as a label for the sixth color entry.
-     */
-    private MmgFont color6Label;    
-
-    /**
-     * An MmgFont instance used as a label for the seventh color entry.
-     */
-    private MmgFont color7Label;
-    
-    /**
-     * An MmgFont instance used as a label for the eighth color entry.
-     */
-    private MmgFont color8Label;
-
-    /**
-     * An MmgFont instance used as a label for the ninth color entry.
-     */
-    private MmgFont color9Label;
-    
-    /**
-     * An MmgFont instance used as a label for the tenth color entry.
-     */
-    private MmgFont color10Label;
-    
-    /**
-     * An MmgFont class instance used as the title of the test game screen.
+     * An MmgFont class instance used as the title for the test game screen.
      */
     private MmgFont title;
+    
+    /**
+     * An instance of the lower level Java Color class used to adjust the color of the MmgPen class.
+     */
+    private Color c;
     
     /**
      * A boolean flag indicating if there is work to do in the next MmgUpdate call.
@@ -114,23 +93,22 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgColor(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgObj(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgColor.Constructor");
+        Helper.wr("ScreenTestMmgObj.Constructor");
     }
 
     /**
-     * Sets a generic event handler that will receive generic events from this
-     * object.
+     * Sets a generic event handler that will receive generic events from this object.
      *
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgColor.SetGenericEventHandler");
+        Helper.wr("ScreenTestMmgObj.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -148,105 +126,58 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgColor.LoadResources");
+        Helper.wr("ScreenTestMmgObj.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Color (11 / " + GamePanel.TOTAL_TESTS + ")  >");
+        title.SetText("<  Screen Test Mmg Obj (21 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
+        title.SetY(title.GetY() + 30);
         AddObj(title);
+            
+        int padding = MmgHelper.ScaleValue(20);
+        int objW = (GetWidth() - (padding * 4)) / 3;
+        int objH = MmgHelper.ScaleValue(150);
+        int objY = (GetHeight() - (objH + padding + MmgHelper.ScaleValue(10))) / 2 + GetY();
+        int objX = padding;
+        
+        obj1 = new MmgObj();
+        obj1.SetPosition(objX, objY);
+        obj1.SetWidth(objW);
+        obj1.SetHeight(objH);
+        
+        font1 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        font1.SetText("MmgObj 1");
+        font1.SetX(obj1.GetX() + (objW - font1.GetWidth()) / 2);
+        font1.SetY(objY + objH + padding + MmgHelper.ScaleValue(10));        
+        AddObj(font1);
+        
+        objX += objW + padding;
+        obj2 = new MmgObj();
+        obj2.SetPosition(objX, objY);
+        obj2.SetWidth(objW);
+        obj2.SetHeight(objH);
+
+        font2 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        font2.SetText("MmgObj 2");
+        font2.SetX(obj2.GetX() + (objW - font2.GetWidth()) / 2);
+        font2.SetY(objY + objH + padding + MmgHelper.ScaleValue(10));
+        AddObj(font2);
+        
+        objX += objW + padding;        
+        obj3 = new MmgObj();
+        obj3.SetPosition(objX, objY);
+        obj3.SetWidth(objW);
+        obj3.SetHeight(objH);
                 
-        int yDiff = MmgHelper.ScaleValue(40);
-        int yStrt = GetY() + MmgHelper.ScaleValue(140);
-        int xLeft = MmgHelper.ScaleValue(200);
-        int i = 0;
-        
-        color1Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color1Label.SetMmgColor(MmgColor.GetBlueGray());
-        color1Label.SetText("Color: BlueGray");
-        color1Label.SetX(xLeft);
-        color1Label.SetY(yStrt + (yDiff * i));
-        AddObj(color1Label);
-        i++;
-        
-        color2Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color2Label.SetMmgColor(MmgColor.GetCarbonGray());
-        color2Label.SetText("Color: CarbonGray");
-        color2Label.SetX(xLeft);
-        color2Label.SetY(yStrt + (yDiff * i));
-        AddObj(color2Label);
-        i++;
-        
-        color3Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color3Label.SetMmgColor(MmgColor.GetDarkRed());
-        color3Label.SetText("Color: DarkRed");
-        color3Label.SetX(xLeft);
-        color3Label.SetY(yStrt + (yDiff * i));
-        AddObj(color3Label);
-        i++;
-                
-        color4Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color4Label.SetMmgColor(MmgColor.GetIridium());
-        color4Label.SetText("Color: Iridium");
-        color4Label.SetX(xLeft);
-        color4Label.SetY(yStrt + (yDiff * i));
-        AddObj(color4Label);
-        i++;
-        
-        color5Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color5Label.SetMmgColor(MmgColor.GetLimeGreen());
-        color5Label.SetText("Color: LimeGreen");
-        color5Label.SetX(xLeft);
-        color5Label.SetY(yStrt + (yDiff * i));
-        AddObj(color5Label);
-        i++;        
-                
-        xLeft = GetWidth()/2 + MmgHelper.ScaleValue(70);
-        i = 0;
-        
-        color6Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color6Label.SetMmgColor(MmgColor.GetMaroon());
-        color6Label.SetText("Color: Maroon");
-        color6Label.SetX(xLeft);
-        color6Label.SetY(yStrt + (yDiff * i));
-        AddObj(color6Label);
-        i++;
-        
-        color7Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color7Label.SetMmgColor(MmgColor.GetOil());
-        color7Label.SetText("Color: Oil");
-        color7Label.SetX(xLeft);
-        color7Label.SetY(yStrt + (yDiff * i));
-        AddObj(color7Label);
-        i++;
-        
-        color8Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color8Label.SetMmgColor(MmgColor.GetOlive());
-        color8Label.SetText("Color: Olive");
-        color8Label.SetX(xLeft);
-        color8Label.SetY(yStrt + (yDiff * i));
-        AddObj(color8Label);
-        i++;
-        
-        color9Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color9Label.SetMmgColor(MmgColor.GetOrange());
-        color9Label.SetText("Color: Orange");
-        color9Label.SetX(xLeft);
-        color9Label.SetY(yStrt + (yDiff * i));
-        AddObj(color9Label);
-        i++;
-        
-        color10Label = MmgFontData.CreateDefaultBoldMmgFontLg();
-        color10Label.SetMmgColor(MmgColor.GetPlatinum());
-        color10Label.SetText("Color: Platinum");
-        color10Label.SetX(xLeft);
-        color10Label.SetY(yStrt + (yDiff * i));
-        AddObj(color10Label);
-        i++;
+        font3 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        font3.SetText("MmgObj 3");
+        font3.SetX(obj3.GetX() + (objW - font3.GetWidth()) / 2);
+        font3.SetY(objY + objH + padding + MmgHelper.ScaleValue(10));        
+        AddObj(font3);
         
         ready = true;
         pause = false;
@@ -261,7 +192,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgColor.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgObj.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -275,7 +206,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgColor.ProcessScreenPress");
+        Helper.wr("ScreenTestMmgObj.ProcessScreenPress");
         return true;
     }
 
@@ -288,7 +219,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgColor.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgObj.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -301,7 +232,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgColor.ProcessScreenRelease");
+        Helper.wr("ScreenTestMmgObj.ProcessScreenRelease");
         return true;
     }
     
@@ -313,7 +244,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgColor.ProcessAClick");
+        Helper.wr("ScreenTestMmgObj.ProcessAClick");
         return true;
     }
     
@@ -325,7 +256,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgColor.ProcessBClick");        
+        Helper.wr("ScreenTestMmgObj.ProcessBClick");        
         return true;
     }
     
@@ -334,7 +265,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgColor.ProcessDebugClick");
+        Helper.wr("ScreenTestMmgObj.ProcessDebugClick");
     }
 
     /**
@@ -345,7 +276,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgColor.ProcessDpadPress: " + dir);
+        Helper.wr("ScreenTestMmgObj.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -357,12 +288,12 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgColor.ProcessDpadRelease: " + dir);
+        Helper.wr("ScreenTestMmgObj.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_12);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_10);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_20);
             
         }
         return true;
@@ -376,7 +307,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgColor.ProcessDpadClick: " + dir);        
+        Helper.wr("ScreenTestMmgObj.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -389,7 +320,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgColor.ProcessScreenClick");        
+        Helper.wr("ScreenTestMmgObj.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -403,7 +334,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgColor.ProcessScreenClick");
+        Helper.wr("ScreenTestMmgObj.ProcessScreenClick");
         return true;
     }    
     
@@ -416,7 +347,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgColor.ProcessKeyClick");
+        Helper.wr("ScreenTestMmgObj.ProcessKeyClick");
         return true;
     }
     
@@ -426,7 +357,13 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
+
+        obj1 = null;
+        obj2 = null;
+        obj3 = null;
         title = null;
+        color = null;
+        
         ClearObjs();
         ready = false;
     }
@@ -449,6 +386,18 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
     public void MmgDraw(MmgPen p) {
         if (pause == false && isVisible == true) {
             super.MmgDraw(p);
+            c = p.GetGraphicsColor();
+            
+            p.SetGraphicsColor(MmgColor.GetLimeGreen().GetColor());
+            p.DrawRect(obj1);
+            
+            p.SetGraphicsColor(MmgColor.GetPink().GetColor());
+            p.DrawRect(obj2);
+            
+            p.SetGraphicsColor(MmgColor.GetYellowOrange().GetColor());
+            p.DrawRect(obj3);            
+            
+            p.SetGraphicsColor(c);
         }
     }
     
@@ -459,7 +408,7 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgColor.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        Helper.wr("ScreenTestMmgObj.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -469,6 +418,6 @@ public class ScreenTestMmgColor extends MmgGameScreen implements GenericEventHan
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgColor.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        Helper.wr("ScreenTestMmgObj.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

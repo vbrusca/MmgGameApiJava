@@ -28,7 +28,8 @@ public class MmgColor {
      * @param m     Input MmgColor object.
      */
     public MmgColor(MmgColor m) {
-        c = m.GetColor();
+        Color tmpC = m.GetColor();
+        c = new Color(tmpC.getRed(), tmpC.getGreen(), tmpC.getBlue(), tmpC.getAlpha());
     }
 
     /**

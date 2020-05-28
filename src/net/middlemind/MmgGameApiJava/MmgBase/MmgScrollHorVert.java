@@ -1775,7 +1775,7 @@ public class MmgScrollHorVert extends MmgObj {
                     p.DrawRect(sliderUpButtonRect);
                 }                
                 
-                p.GetGraphics().setColor(c);
+                p.SetGraphicsColor(c);
             }
                         
             if(scrollBarHorVisible) {            

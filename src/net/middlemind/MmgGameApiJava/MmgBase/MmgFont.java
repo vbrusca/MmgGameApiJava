@@ -137,8 +137,7 @@ public class MmgFont extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgFont ret = new MmgFont(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgFont(this);
     }
 
     /**

@@ -128,12 +128,12 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Rect (17 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                
-        rect1 = new MmgRect(100, 190, 190 + GetHeight()/4, GetWidth() - 100);
-        rect2 = new MmgRect(100, 210 + GetHeight()/4, 210 + GetHeight()/4 + GetHeight()/4, GetWidth() - 100);
-        rect3 = new MmgRect(90, 180, 90 + GetHeight()/2 + GetHeight()/4 + 28, GetWidth() - 90);
+        rect1 = new MmgRect(MmgHelper.ScaleValue(100), MmgHelper.ScaleValue(190), MmgHelper.ScaleValue(190) + GetHeight()/4, GetWidth() - MmgHelper.ScaleValue(100));
+        rect2 = new MmgRect(MmgHelper.ScaleValue(100), MmgHelper.ScaleValue(210) + GetHeight()/4, MmgHelper.ScaleValue(210) + GetHeight()/4 + GetHeight()/4, GetWidth() - MmgHelper.ScaleValue(100));
+        rect3 = new MmgRect(MmgHelper.ScaleValue(90), MmgHelper.ScaleValue(180), MmgHelper.ScaleValue(90) + GetHeight()/2 + GetHeight()/4 + MmgHelper.ScaleValue(28), GetWidth() - MmgHelper.ScaleValue(90));
         
         ready = true;
         pause = false;
@@ -342,7 +342,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
     public void MmgDraw(MmgPen p) {
         if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-            c = p.GetColor();
+            c = p.GetGraphicsColor();
             
             p.SetGraphicsColor(MmgColor.GetLimeGreen().GetColor());
             p.DrawRect(rect1);
@@ -353,7 +353,7 @@ public class ScreenTestMmgRect extends MmgGameScreen implements GenericEventHand
             p.SetGraphicsColor(MmgColor.GetYellowOrange().GetColor());
             p.DrawRect(rect3);            
             
-            p.SetColor(c);
+            p.SetGraphicsColor(c);
         }
     }
     

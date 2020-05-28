@@ -29,7 +29,7 @@ public class MmgRect {
      * @param r     The MmgRect to use as a basis for this class.
      */
     public MmgRect(MmgRect r) {
-        rect = r.GetRect();
+        rect = new Rectangle(r.GetLeft(), r.GetTop(), r.GetWidth(), r.GetHeight());
     }
 
     /**
@@ -84,7 +84,7 @@ public class MmgRect {
      * @return      A typed clone of this class.
      */
     public MmgRect Clone() {
-        return new MmgRect(rect.x, rect.y, (rect.y + rect.height), (rect.x + rect.width));
+        return new MmgRect(this);
     }
 
     /**
@@ -186,18 +186,30 @@ public class MmgRect {
      * @return                  The X difference between the two MmgRect instances.
      */
     public int GetDiffX(MmgRect inRect, int direction, boolean opposite, boolean left2right) {
-        if (MmgDir.DIR_LEFT == direction && opposite == false) {
+        if (MmgDir.DIR_LEFT == direction && opposite == false && left2right == true) {
             return (GetLeft() - inRect.GetLeft());
+            
+        } else if (MmgDir.DIR_LEFT == direction && opposite == false && left2right == false) {
+            return (inRect.GetLeft() - GetLeft());            
+        
         } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == true) {
-            return (GetRight() - inRect.GetLeft());
+            return (GetLeft() - inRect.GetRight());
+        
         } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == false) {
             return (inRect.GetLeft() - GetRight());
-        } else if (MmgDir.DIR_RIGHT == direction && opposite == false) {
+        
+        } else if (MmgDir.DIR_RIGHT == direction && opposite == false && left2right == true) {
             return (GetRight() - inRect.GetRight());
+        
+        } else if (MmgDir.DIR_RIGHT == direction && opposite == false && left2right == false) {
+            return (inRect.GetRight() - GetRight());            
+        
         } else if (MmgDir.DIR_RIGHT == direction && opposite == true && left2right == true) {
             return (GetRight() - inRect.GetLeft());
+        
         } else if (MmgDir.DIR_RIGHT == direction && opposite == true && left2right == false) {
-            return (inRect.GetLeft() - GetRight());
+            return (inRect.GetRight() - GetRight());
+        
         } else {
             return 0;
         }
@@ -212,19 +224,22 @@ public class MmgRect {
      * @param left2right    A boolean indicating if the calculation should be left to right.
      * @return              The X difference between the two coordinate values.
      */
-    public int GetDiffX(int x, int direction, boolean opposite, boolean left2right) {
+    public int GetDiffX(int x, int direction, boolean opposite) {
         if (MmgDir.DIR_LEFT == direction && opposite == false) {
             return (GetLeft() - x);
-        } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == true) {
-            return (GetLeft() - x);
-        } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == false) {
+                    
+        } else if (MmgDir.DIR_LEFT == direction && opposite == true) {
             return (x - GetLeft());
+                
         } else if (MmgDir.DIR_RIGHT == direction && opposite == false) {
             return (GetRight() - x);
-        } else if (MmgDir.DIR_RIGHT == direction && opposite == true && left2right == true) {
+                
+        } else if (MmgDir.DIR_RIGHT == direction && opposite == true) {
             return (GetRight() - x);
-        } else if (MmgDir.DIR_RIGHT == direction && opposite == true && left2right == false) {
+        
+        } else if (MmgDir.DIR_RIGHT == direction && opposite == false) {
             return (x - GetRight());
+        
         } else {
             return 0;
         }
@@ -240,18 +255,30 @@ public class MmgRect {
      * @return              The Y difference between the two MmgRect instances.
      */
     public int GetDiffY(MmgRect inRect, int direction, boolean opposite, boolean left2right) {
-        if (MmgDir.DIR_TOP == direction && opposite == false) {
+        if (MmgDir.DIR_TOP == direction && opposite == false && left2right == true) {
             return (GetTop() - inRect.GetTop());
+            
+        } else if (MmgDir.DIR_TOP == direction && opposite == false && left2right == false) {            
+            return (inRect.GetTop() - GetTop());  
+            
         } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == true) {
             return (GetBottom() - inRect.GetTop());
+            
         } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == false) {
             return (inRect.GetTop() - GetBottom());
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false) {
+            
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false && left2right == true) {
             return (GetBottom() - inRect.GetBottom());
+            
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false && left2right == false) {
+            return (inRect.GetBottom() - GetBottom());
+            
         } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == true) {
-            return (GetBottom() - inRect.GetTop());
+            return (GetTop() - inRect.GetBottom());
+            
         } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == false) {
-            return (inRect.GetTop() - GetBottom());
+            return (inRect.GetBottom() - GetTop());
+            
         } else {
             return 0;
         }
@@ -263,22 +290,21 @@ public class MmgRect {
      * @param y             The Y coordinate to compare with to calculate the Y difference.
      * @param direction     The direction to compare the X difference in up or down.
      * @param opposite      A boolean indicating to calculate the Y difference in the opposite direction.
-     * @param left2right    A boolean indicating if the calculation should be top to bottom.
      * @return              The Y difference between the two coordinate values.
      */
-    public int GetDiffY(int y, int direction, boolean opposite, boolean left2right) {
+    public int GetDiffY(int y, int direction, boolean opposite) {
         if (MmgDir.DIR_TOP == direction && opposite == false) {
-            return (GetLeft() - y);
-        } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == true) {
-            return (GetLeft() - y);
-        } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == false) {
-            return (y - GetLeft());
+            return (GetTop() - y);
+            
+        } else if (MmgDir.DIR_TOP == direction && opposite == false) {
+            return (y - GetTop());
+                        
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true) {
+            return (GetBottom() - y);
+            
         } else if (MmgDir.DIR_BOTTOM == direction && opposite == false) {
-            return (GetRight() - y);
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == true) {
-            return (GetRight() - y);
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == false) {
-            return (y - GetRight());
+            return (y - GetBottom());
+            
         } else {
             return 0;
         }
@@ -302,6 +328,16 @@ public class MmgRect {
         rect.setLocation(v.GetX(), v.GetY());
     }
 
+    /**
+     * Sets the position of the rectangle.
+     * 
+     * @param x     The position of the rectangle on the X axis.
+     * @param y     The position of the rectangle on the Y axis.
+     */
+    public void SetPosition(int x, int y) {
+        rect.setLocation(x, y);
+    }
+    
     /**
      * A string representation of this object.
      *

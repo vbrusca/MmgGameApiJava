@@ -161,89 +161,89 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
         
-        int y = 60;
+        int y = MmgHelper.ScaleValue(60);
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Font (3 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);        
         
         fontBoldLg = MmgFontData.CreateDefaultBoldMmgFontLg();
         fontBoldLg.SetText("Font Bold Large");
-        fontBoldLg.SetY(GetY() + 15 + (y * 1));
-        fontBoldLg.SetX(60);
+        fontBoldLg.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 1));
+        fontBoldLg.SetX(y);
         AddObj(fontBoldLg);
                 
-        fontBoldMd = MmgFontData.CreateDefaultBoldMmgFontLg();
+        fontBoldMd = MmgFontData.CreateDefaultBoldMmgFont(title.GetFontSize() - MmgHelper.ScaleValue(2));
         fontBoldMd.SetText("Font Bold Medium");
-        fontBoldMd.SetY(GetY() + 15 + (y * 2));
-        fontBoldMd.SetX(60);        
+        fontBoldMd.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 2));
+        fontBoldMd.SetX(y);        
         AddObj(fontBoldMd);
         
-        fontBoldSm = MmgFontData.CreateDefaultBoldMmgFontLg();
+        fontBoldSm = MmgFontData.CreateDefaultBoldMmgFontSm();
         fontBoldSm.SetText("Font Bold Small");
-        fontBoldSm.SetY(GetY() + 15 + (y * 3));
-        fontBoldSm.SetX(60);        
+        fontBoldSm.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 3));
+        fontBoldSm.SetX(y);        
         AddObj(fontBoldSm);                 
                 
         fontNormLg = MmgFontData.CreateDefaultMmgFontLg();
         fontNormLg.SetText("Font Norm Large");
-        fontNormLg.SetY(GetY() + 15 + (y * 4));
-        fontNormLg.SetX(60);
+        fontNormLg.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 4));
+        fontNormLg.SetX(y);
         AddObj(fontNormLg);
                 
-        fontNormMd = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize());
+        fontNormMd = MmgFontData.CreateDefaultMmgFont(title.GetFontSize() - MmgHelper.ScaleValue(2));
         fontNormMd.SetText("Font Norm Medium");
-        fontNormMd.SetY(GetY() + 15 + (y * 5));
-        fontNormMd.SetX(60);        
+        fontNormMd.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 5));
+        fontNormMd.SetX(y);        
         AddObj(fontNormMd);
         
         fontNormSm = MmgFontData.CreateDefaultMmgFontSm();
         fontNormSm.SetText("Font Norm Small");
-        fontNormSm.SetY(GetY() + 15 + (y * 6));
-        fontNormSm.SetX(60);        
+        fontNormSm.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 6));
+        fontNormSm.SetX(y);        
         AddObj(fontNormSm);         
         
         fontItalicLg = MmgFontData.CreateDefaultItalicMmgFontLg();
         fontItalicLg.SetText("Font Italic Large");
-        fontItalicLg.SetY(GetY() + 15 + (y * 1));
-        fontItalicLg.SetX(GetWidth()/2 + 60);
+        fontItalicLg.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 1));
+        fontItalicLg.SetX(GetWidth()/2 + y);
         AddObj(fontItalicLg);
         
-        fontItalicMd = MmgFontData.CreateDefaultItalicMmgFont(MmgFontData.GetFontSize());
+        fontItalicMd = MmgFontData.CreateDefaultItalicMmgFont(title.GetFontSize() - MmgHelper.ScaleValue(2));
         fontItalicMd.SetText("Font Italic Medium");
         MmgHelper.CenterHorAndVert(fontItalicMd);
-        fontItalicMd.SetY(GetY() + 15 + (y * 2));
-        fontItalicMd.SetX(GetWidth()/2 + 60);        
+        fontItalicMd.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 2));
+        fontItalicMd.SetX(GetWidth()/2 + y);        
         AddObj(fontItalicMd);        
         
         fontItalicSm = MmgFontData.CreateDefaultItalicMmgFontSm();
         fontItalicSm.SetText("Font Italic Small");
         MmgHelper.CenterHorAndVert(fontItalicSm);
-        fontItalicSm.SetY(GetY() + 15 + (y * 3));
-        fontItalicSm.SetX(GetWidth()/2 + 60);        
+        fontItalicSm.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 3));
+        fontItalicSm.SetX(GetWidth()/2 + y);        
         AddObj(fontItalicSm);        
         
-        fontCustomLg = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize() + 12);
+        fontCustomLg = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize() + MmgHelper.ScaleValue(12));
         fontCustomLg.SetText("Font Custom Large");
         MmgHelper.CenterHorAndVert(fontCustomLg);
-        fontCustomLg.SetY(GetY() + 15 + (y * 4));
-        fontCustomLg.SetX(GetWidth()/2 + 60);
+        fontCustomLg.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 4));
+        fontCustomLg.SetX(GetWidth()/2 + y);
         AddObj(fontCustomLg);        
         
-        fontCustomMd = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize() + 8);
+        fontCustomMd = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize() + MmgHelper.ScaleValue(8));
         fontCustomMd.SetText("Font Custom Medium");
         MmgHelper.CenterHorAndVert(fontCustomMd);
-        fontCustomMd.SetY(GetY() + 15 + (y * 5));
-        fontCustomMd.SetX(GetWidth()/2 + 60);
+        fontCustomMd.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 5));
+        fontCustomMd.SetX(GetWidth()/2 + y);
         AddObj(fontCustomMd);
         
-        fontCustomSm = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize() + 4);
+        fontCustomSm = MmgFontData.CreateDefaultMmgFont(MmgFontData.GetFontSize() + MmgHelper.ScaleValue(4));
         fontCustomSm.SetText("Font Custom Small");
         MmgHelper.CenterHorAndVert(fontCustomSm);
-        fontCustomSm.SetY(GetY() + 15 + (y * 6));
-        fontCustomSm.SetX(GetWidth()/2 + 60);        
+        fontCustomSm.SetY(GetY() + MmgHelper.ScaleValue(15) + (y * 6));
+        fontCustomSm.SetX(GetWidth()/2 + y);        
         AddObj(fontCustomSm);
         
         ready = true;

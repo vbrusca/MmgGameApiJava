@@ -120,10 +120,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
      */
     public ScreenTestMmgCfgFileEntryWrite screenTestMmgCfgFileEntryWrite;    
     
+    public ScreenTestMmgObj screenTestMmgObj;
+    
     /**
      * A static class field that contains the total number of test game screens.
      */
-    public static int TOTAL_TESTS = 20;
+    public static int TOTAL_TESTS = 21;
     
     /**
      * The basic constructor for this GamePanel extended class.
@@ -225,7 +227,11 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
         screenTestMmgCfgFileEntryWrite = new ScreenTestMmgCfgFileEntryWrite(GameStates.GAME_SCREEN_20, this);
         screenTestMmgCfgFileEntryWrite.Pause();
-        screenTestMmgCfgFileEntryWrite.SetIsVisible(false);        
+        screenTestMmgCfgFileEntryWrite.SetIsVisible(false);
+
+        screenTestMmgObj = new ScreenTestMmgObj(GameStates.GAME_SCREEN_21, this);
+        screenTestMmgObj.Pause();
+        screenTestMmgObj.SetIsVisible(false);        
     }
         
     /**
@@ -383,6 +389,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgCfgFileEntryWrite.Pause();
             screenTestMmgCfgFileEntryWrite.SetIsVisible(false);
             screenTestMmgCfgFileEntryWrite.UnloadResources();            
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_21) {
+            Helper.wr("Hiding GAME_SCREEN_21 screen.");
+            screenTestMmgObj.Pause();
+            screenTestMmgObj.SetIsVisible(false);
+            screenTestMmgObj.UnloadResources();
             
         } else if (prevGameState == GameStates.MAIN_MENU) {
             Helper.wr("Hiding MAIN_MENU screen.");
@@ -575,7 +587,14 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgCfgFileEntryWrite.LoadResources();
             screenTestMmgCfgFileEntryWrite.UnPause();
             screenTestMmgCfgFileEntryWrite.SetIsVisible(true);
-            currentScreen = screenTestMmgCfgFileEntryWrite;            
+            currentScreen = screenTestMmgCfgFileEntryWrite;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_21) {
+            Helper.wr("Showing GAME_SCREEN_21 screen.");
+            screenTestMmgObj.LoadResources();
+            screenTestMmgObj.UnPause();
+            screenTestMmgObj.SetIsVisible(true);
+            currentScreen = screenTestMmgObj;            
             
         } else if (gameState == GameStates.MAIN_MENU) {
             Helper.wr("Showing MAIN_MENU screen.");
@@ -666,7 +685,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                         SwitchGameState(GameStates.GAME_SCREEN_09);                        
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("10")) {
-                        //Test MmgCfgFileEntry Read
+                        //Test MmgCfgFileEntryRead
                         SwitchGameState(GameStates.GAME_SCREEN_10);
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("11")) {
@@ -706,8 +725,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                         SwitchGameState(GameStates.GAME_SCREEN_19);
                         
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("20")) {
-                        //Test MmgCfgFileEntry Write
+                        //Test MmgCfgFileEntryWrite
                         SwitchGameState(GameStates.GAME_SCREEN_20);                        
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("21")) {
+                        //Test MmgObj
+                        SwitchGameState(GameStates.GAME_SCREEN_21);
                         
                     }
                 }

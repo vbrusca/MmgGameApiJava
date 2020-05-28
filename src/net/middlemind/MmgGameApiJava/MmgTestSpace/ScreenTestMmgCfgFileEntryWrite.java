@@ -315,7 +315,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
     public boolean ProcessDpadRelease(int dir) {
         Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_21);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_19);
