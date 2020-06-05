@@ -126,7 +126,7 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Sound (6 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                
         sound1 = MmgHelper.GetBasicCachedSound("jump1.wav");
@@ -135,13 +135,13 @@ public class ScreenTestMmgSound extends MmgGameScreen implements GenericEventHan
         soundLabel1 = MmgFontData.CreateDefaultBoldMmgFontLg();
         soundLabel1.SetText("MmgSound Example");
         MmgHelper.CenterHorAndVert(soundLabel1);
-        soundLabel1.SetY(soundLabel1.GetY() - 20);
+        soundLabel1.SetY(soundLabel1.GetY() - MmgHelper.ScaleValue(20));
         AddObj(soundLabel1);
         
         soundLabel2 = MmgFontData.CreateDefaultBoldMmgFontLg();
         soundLabel2.SetText("Press Enter or Space to Play a Sound");
         MmgHelper.CenterHorAndVert(soundLabel2);
-        soundLabel2.SetY(soundLabel2.GetY() + 20);
+        soundLabel2.SetY(soundLabel2.GetY() + MmgHelper.ScaleValue(20));
         AddObj(soundLabel2);        
                 
         ready = true;

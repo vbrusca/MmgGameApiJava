@@ -786,7 +786,7 @@ public class MmgHelper {
         }
 
         if (b != null) {
-            b = MmgPen.ScaleImage(b, MmgScreenData.GetScale());
+            b = MmgPen.ScaleImageStatic(b, MmgScreenData.GetScale());
             r = new MmgBmp(b);
             r.SetScaling(MmgVector2.GetUnitVec());
             r.SetPosition(MmgVector2.GetOriginVec());
@@ -814,7 +814,7 @@ public class MmgHelper {
         }
 
         if (b != null) {
-            b = MmgPen.ScaleImage(b, MmgScreenData.GetScale());
+            b = MmgPen.ScaleImageStatic(b, MmgScreenData.GetScale());
             r = new MmgBmp(b);
             r.SetScaling(MmgVector2.GetUnitVec());
             r.SetPosition(MmgVector2.GetOriginVec());
@@ -835,7 +835,7 @@ public class MmgHelper {
         MmgBmp r = null;
 
         if (b != null) {
-            b = MmgPen.ScaleImage(b, MmgScreenData.GetScale());
+            b = MmgPen.ScaleImageStatic(b, MmgScreenData.GetScale());
             r = new MmgBmp(b);
             r.SetScaling(MmgVector2.GetUnitVec());
             r.SetPosition(MmgVector2.GetOriginVec());

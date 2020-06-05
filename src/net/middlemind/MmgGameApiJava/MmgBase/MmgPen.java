@@ -236,7 +236,7 @@ public class MmgPen {
      * @param scale         The scale factor in the X, Y axis directions.
      * @return              A scaled image.
      */
-    public static Image ScaleImage(Image img, MmgVector2 scale) {
+    public static Image ScaleImageStatic(Image img, MmgVector2 scale) {
         return MmgPen.ScaleImageStatic(img, scale.GetXDouble(), scale.GetYDouble());
     }
     
