@@ -19,7 +19,7 @@ public class MmgApiUtils {
      * @param s     The string to be logged.
      */
     public static void wr(String s) {
-        if (MmgApiUtils.LOGGING = true) {
+        if (MmgApiUtils.LOGGING == true) {
             System.out.println(s);
         }
     }
@@ -30,7 +30,7 @@ public class MmgApiUtils {
      * @param e     The exception to be logged.
      */
     public static void wrErr(Exception e) {
-        if (MmgApiUtils.LOGGING = true) {
+        if (MmgApiUtils.LOGGING == true) {
             System.err.println(e.getMessage());
             StackTraceElement[] els = e.getStackTrace();
             int len = els.length;
@@ -46,7 +46,7 @@ public class MmgApiUtils {
      * @param s     The string to be logged.
      */
     public static void wrErr(String s) {
-        if (MmgApiUtils.LOGGING = true) {
+        if (MmgApiUtils.LOGGING == true) {
             System.err.println(s);
         }
     }

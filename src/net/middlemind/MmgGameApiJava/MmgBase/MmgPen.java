@@ -253,7 +253,6 @@ public class MmgPen {
         int h = (int)(img.getHeight(null) * scaleY);
         BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = rImage.createGraphics();
-        g.drawImage(img, 0, 0, w, h, null);
         
         if(MmgPen.ADV_RENDER_HINTS == true)
         {
@@ -261,7 +260,8 @@ public class MmgPen {
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
-        
+
+        g.drawImage(img, 0, 0, w, h, null);        
         g.dispose();
         return rImage;
     }

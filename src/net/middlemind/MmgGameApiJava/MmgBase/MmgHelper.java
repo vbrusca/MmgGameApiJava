@@ -115,9 +115,7 @@ public class MmgHelper {
                 Arrays.sort(nKeys);
                 int len = nKeys.length;
                 
-                //for(String key : keys) {
                 for(int i = 0; i < len; i++) {
-                    //cfe = data.get(key);
                     cfe = data.get(nKeys[i]);
                     bw.write(cfe.ToString());
                     bw.newLine();
@@ -761,7 +759,7 @@ public class MmgHelper {
             in.open(audioIn);
             snd = new MmgSound(in);
         }
-        catch( Exception e )
+        catch(Exception e)
         {
             e.printStackTrace();
         }

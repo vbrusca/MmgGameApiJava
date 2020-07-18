@@ -27,7 +27,7 @@ public class MmgVector2 {
      * @param v     The MmgVector to base this class off of.
      */
     public MmgVector2(MmgVector2 v) {
-        vec = v.GetVector();
+        vec = new double[] { v.GetXDouble(), v.GetYDouble() };
     }
 
     /**
@@ -102,8 +102,7 @@ public class MmgVector2 {
      * @return      A clone of this class.
      */
     public MmgVector2 Clone() {
-        MmgVector2 v = new MmgVector2(vec[0], vec[1]);
-        return v;
+        return new MmgVector2(vec[0], vec[1]);
     }
     
     /**
@@ -238,8 +237,7 @@ public class MmgVector2 {
      * @return      A float based clone.
      */
     public MmgVector2 CloneFloat() {
-        MmgVector2 v = new MmgVector2(GetXFloat(), GetYFloat());
-        return v;
+        return new MmgVector2(GetXFloat(), GetYFloat());
     }
 
     /**
@@ -248,10 +246,18 @@ public class MmgVector2 {
      * @return      A double based clone.
      */
     public MmgVector2 CloneDouble() {
-        MmgVector2 v = new MmgVector2(GetXDouble(), GetYDouble());
-        return v;
+        return new MmgVector2(GetXDouble(), GetYDouble());
     }
 
+    /**
+     * Clones this object to an integer based vector.
+     *
+     * @return      An integer based clone.
+     */
+    public MmgVector2 CloneInt() {
+        return new MmgVector2(GetX(), GetY());
+    }    
+    
     /**
      * Returns a new copy of the origin vector, (0, 0).
      *

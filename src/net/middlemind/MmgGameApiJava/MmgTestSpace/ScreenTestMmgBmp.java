@@ -185,37 +185,37 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Bmp (5 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);         
         
         bmpCache = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
-        bmpCache.SetY(GetY() + 90);
-        bmpCache.SetX(220);
+        bmpCache.SetY(GetY() + MmgHelper.ScaleValue(90));
+        bmpCache.SetX(MmgHelper.ScaleValue(220));
         AddObj(bmpCache);
 
         bmpCacheLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         bmpCacheLabel.SetText("MmgBmp From Auto Load Cache");
-        bmpCacheLabel.SetPosition(50, GetY() + 70);
+        bmpCacheLabel.SetPosition(MmgHelper.ScaleValue(50), GetY() + MmgHelper.ScaleValue(70));
         AddObj(bmpCacheLabel);
         
         bmpFile = MmgHelper.GetBasicCachedBmp("../cfg/drawable/loading_bar.png", "loading_bar.png");
-        bmpFile.SetY(GetY() + 90);
-        bmpFile.SetX(560);
+        bmpFile.SetY(GetY() + MmgHelper.ScaleValue(90));
+        bmpFile.SetX(MmgHelper.ScaleValue(560));
         AddObj(bmpFile);
         
         bmpFileLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         bmpFileLabel.SetText("MmgBmp From Path");
-        bmpFileLabel.SetPosition(545, GetY() + 70);
+        bmpFileLabel.SetPosition(MmgHelper.ScaleValue(545), GetY() + MmgHelper.ScaleValue(70));
         AddObj(bmpFileLabel);
         
-        bmpCustomFill = MmgHelper.CreateFilledBmp(50, 50, MmgColor.GetCalmBlue());
-        bmpCustomFill.SetY(GetY() + 210);
-        bmpCustomFill.SetX(205);
+        bmpCustomFill = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(50), MmgHelper.ScaleValue(50), MmgColor.GetCalmBlue());
+        bmpCustomFill.SetY(GetY() + MmgHelper.ScaleValue(210));
+        bmpCustomFill.SetX(MmgHelper.ScaleValue(205));
         AddObj(bmpCustomFill);        
         
         bmpCustomFillLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         bmpCustomFillLabel.SetText("MmgBmp Created Custom with Fill");
-        bmpCustomFillLabel.SetPosition(45, GetY() + 190);
+        bmpCustomFillLabel.SetPosition(MmgHelper.ScaleValue(45), GetY() + MmgHelper.ScaleValue(190));
         AddObj(bmpCustomFillLabel);
                 
         bmpSet = MmgHelper.CreateDrawableBmpSet(bmpCache.GetWidth()/2, bmpCache.GetHeight()/2, true);
@@ -223,31 +223,31 @@ public class ScreenTestMmgBmp extends MmgGameScreen implements GenericEventHandl
         dstRect = new MmgRect(0, 0, bmpCache.GetHeight()/2, bmpCache.GetWidth()/2);        
         bmpSet.p.DrawBmp(bmpCache, srcRect, dstRect);
         
-        bmpSet.img.SetY(GetY() + 210);
-        bmpSet.img.SetX(650);
+        bmpSet.img.SetY(GetY() + MmgHelper.ScaleValue(210));
+        bmpSet.img.SetX(MmgHelper.ScaleValue(650));
         AddObj(bmpSet.img);        
         
         bmpPartialCopyLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         bmpPartialCopyLabel.SetText("MmgBmp Custom with Copy");
-        bmpPartialCopyLabel.SetPosition(505, GetY() + 190);
+        bmpPartialCopyLabel.SetPosition(MmgHelper.ScaleValue(505), GetY() + MmgHelper.ScaleValue(190));
         AddObj(bmpPartialCopyLabel);        
         
         bmpScaled = MmgBmpScaler.ScaleMmgBmp(bmpCache, 1.50, true);
-        bmpScaled.SetPosition(213, GetY() + 330);        
+        bmpScaled.SetPosition(MmgHelper.ScaleValue(213), GetY() + MmgHelper.ScaleValue(330));
         AddObj(bmpScaled);
         
         bmpScaledLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         bmpScaledLabel.SetText("MmgBmp Custom Scaled");
-        bmpScaledLabel.SetPosition(90, GetY() + 310);
+        bmpScaledLabel.SetPosition(MmgHelper.ScaleValue(90), GetY() + MmgHelper.ScaleValue(310));
         AddObj(bmpScaledLabel);
         
         bmpRotate = MmgBmpScaler.RotateMmgBmp(bmpCache, 90, true);
-        bmpRotate.SetPosition(645, GetY() + 330);        
+        bmpRotate.SetPosition(MmgHelper.ScaleValue(645), GetY() + MmgHelper.ScaleValue(330));
         AddObj(bmpRotate);        
         
         bmpRotateLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         bmpRotateLabel.SetText("MmgBmp Custom Rotated");
-        bmpRotateLabel.SetPosition(515, GetY() + 310);
+        bmpRotateLabel.SetPosition(MmgHelper.ScaleValue(515), GetY() + MmgHelper.ScaleValue(310));
         AddObj(bmpRotateLabel);        
         
         ready = true;

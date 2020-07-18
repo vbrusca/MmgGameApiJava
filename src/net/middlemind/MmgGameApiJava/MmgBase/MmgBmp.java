@@ -356,8 +356,7 @@ public class MmgBmp extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgBmp ret = new MmgBmp(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgBmp(this);
     }
 
     /**
@@ -679,14 +678,6 @@ public class MmgBmp extends MmgObj {
 
             //OTHER VARS
             if (GetRotation() != b.GetRotation()) {
-                return false;
-            }
-
-            if (GetBmpIdStr().equals(b.GetBmpIdStr()) == true) {
-                return false;
-            }
-
-            if (GetBmpId() == b.GetBmpId()) {
                 return false;
             }
 
