@@ -10,6 +10,21 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 public class MmgScreenData {
 
     /**
+     * An enumeration used to track the scaling mode used by this class.
+     */
+    public enum ScalingMode {
+        AXIS_X,
+        AXIS_Y,
+        AXIS_X_AND_Y,
+        NONE
+    }
+    
+    /**
+     * The scaling mode to use by this class when scaling the game screen into the window screen.
+     */
+    public static ScalingMode scalingMode = ScalingMode.AXIS_X_AND_Y;
+            
+    /**
      * Default screen width.
      */
     public static int DEFAULT_WIDTH = 1024;
@@ -424,7 +439,7 @@ public class MmgScreenData {
         MmgScreenData.gameHeight *= MmgScreenData.scaleY;
         CalculateTop();
         CalculateLeft();
-        MmgHelper.wr("Found X Scale: " + prctDiffX + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
+        MmgHelper.wr("CalculateScaleX: Found X,Y Scale: " + prctDiffX + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
     }
 
     /**
@@ -468,7 +483,7 @@ public class MmgScreenData {
         MmgScreenData.gameHeight *= MmgScreenData.scaleY;
         CalculateTop();
         CalculateLeft();
-        MmgHelper.wr("Found Y Scale: " + prctDiffY + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
+        MmgHelper.wr("CalculateScaley: Found Updated X, Y Scale: " + prctDiffY + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
     }
 
     /**
@@ -481,25 +496,27 @@ public class MmgScreenData {
             MmgScreenData.scaleY = 1.0f;
             MmgScreenData.gameTop = 0;
             MmgScreenData.gameLeft = 0;
+            MmgScreenData.scaleXOn = false;
+            MmgScreenData.scaleYOn = false;
         } else {
-            boolean sX = true;
-            boolean sY = true;
-            
-            MmgHelper.wr("ScaleX: " + sX + " ScaleY: " + sY);
-            if (sX == true && sY == false) {
-                //scale X
+            if(MmgScreenData.scalingMode == ScalingMode.AXIS_X) {
                 CalculateScaleX();
 
-            } else if (sY == true && sX == false) {
-                //scale Y
+            } else if(MmgScreenData.scalingMode == ScalingMode.AXIS_Y) {
                 CalculateScaleY();
 
-            } else if (sX == true && sY == true) {
-                //scale both
+            } else if(MmgScreenData.scalingMode == ScalingMode.AXIS_X_AND_Y) {
                 CalculateScaleX();
                 if (MmgScreenData.gameHeight > MmgScreenData.screenHeight) {
                     CalculateScaleY();
                 }
+            } else {
+                MmgScreenData.scaleX = 1.0f;
+                MmgScreenData.scaleY = 1.0f;
+                MmgScreenData.gameTop = 0;
+                MmgScreenData.gameLeft = 0;
+                MmgScreenData.scaleXOn = false;
+                MmgScreenData.scaleYOn = false;                
             }
         }
     }

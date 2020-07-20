@@ -62,7 +62,6 @@ public class MmgPen {
      * Constructor for this class.
      */
     public MmgPen() {
-        color = MmgPen.TRANSPARENT;
         cacheOn = false;
     }
     
@@ -261,7 +260,7 @@ public class MmgPen {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
 
-        g.drawImage(img, 0, 0, w, h, null);        
+        g.drawImage(img, 0, 0, w, h, null);
         g.dispose();
         return rImage;
     }
