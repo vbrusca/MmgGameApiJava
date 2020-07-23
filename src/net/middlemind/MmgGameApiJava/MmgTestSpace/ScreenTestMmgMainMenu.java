@@ -64,6 +64,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     /**
      * Loads all the resources needed to display this game screen.
      */
+    @Override
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
         pause = true;
@@ -87,7 +88,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Main Menu (7 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);        
         
         p = new MmgPen();

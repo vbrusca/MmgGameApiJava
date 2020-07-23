@@ -122,7 +122,7 @@ public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEven
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Text Block (19 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                
         txt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec sapien eget velit hendrerit ultrices ut ac tortor. Sed a elit libero. Fusce venenatis dapibus auctor. Nullam lacinia consectetur erat id rhoncus. Nullam consequat scelerisque tincidunt. Phasellus et dolor justo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas hendrerit ante eros, et dapibus augue eleifend ut. Integer et dapibus metus. Donec ac mi blandit elit tristique mollis sit amet vel lorem. Cras vehicula eros vel arcu dapibus tempor. In at lectus porta, mattis nisi vitae, tristique urna. Nunc eget vestibulum odio, nec convallis enim. Cras viverra turpis ut tempor feugiat. Mauris ut mauris et felis vehicula facilisis vitae quis nisl. Nam vulputate semper enim, ut iaculis nulla elementum at. Integer mattis pulvinar nunc vestibulum placerat. Nulla semper id nulla non condimentum. In efficitur dignissim libero laoreet aliquam. Sed eu metus urna. Sed semper quam quis ultrices pharetra. Aenean ante neque, pulvinar eget facilisis sit amet, tempor quis dolor. Vivamus eleifend purus vitae urna imperdiet commodo. Etiam non commodo neque. Sed iaculis luctus mollis. Maecenas id purus mollis, hendrerit diam in, sagittis erat. Nullam eu malesuada sem. Etiam dolor orci, maximus id rutrum at, cursus nec lectus. Vivamus ac eleifend nulla. Donec efficitur, quam at pretium aliquet, velit justo iaculis tortor, eget rutrum libero sem non velit. Mauris est tellus, pharetra nec tempus vitae, eleifend non neque. Nulla convallis neque nibh, eu luctus metus congue in. Pellentesque non sem a leo consequat luctus. Nullam volutpat urna sed magna imperdiet aliquam. Fusce fringilla, felis a sodales posuere, urna dui pretium enim, in rutrum neque massa id eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin rhoncus interdum nisl, in vulputate nulla gravida vel. Integer id interdum nisi. Nullam a interdum dolor, convallis molestie odio. Mauris lorem metus, pulvinar ac justo non, accumsan lobortis lorem. Donec commodo purus eu nunc varius porttitor.";
@@ -152,7 +152,7 @@ public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEven
         txtWords = MmgFontData.CreateDefaultBoldMmgFontSm();
         txtWords.SetText("Words: " + txtBlock.GetWordCount() + "  Lines: " + txtBlock.GetLineCount() + "  Pages: " + txtBlock.GetPageCount());
         MmgHelper.CenterHor(txtWords);
-        txtWords.SetY(GetY() + GetHeight() - 30);
+        txtWords.SetY(GetY() + GetHeight() - MmgHelper.ScaleValue(30));
         AddObj(txtWords);
         
         ready = true;

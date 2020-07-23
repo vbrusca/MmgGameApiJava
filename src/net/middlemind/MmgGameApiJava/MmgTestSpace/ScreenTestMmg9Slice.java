@@ -134,13 +134,13 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg 9 Slice (2 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
         
         bground = Helper.GetBasicCachedBmp("popup_window_base.png");
         MmgHelper.CenterHorAndVert(bground);
-        bground.SetX(bground.GetX() - 200);
-        bground.SetY(bground.GetY() - 32);
+        bground.SetX(bground.GetX() - MmgHelper.ScaleValue(200));
+        bground.SetY(bground.GetY() - MmgHelper.ScaleValue(32));
         AddObj(bground);
         
         bgroundLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -149,13 +149,13 @@ public class ScreenTestMmg9Slice extends MmgGameScreen implements GenericEventHa
         bgroundLabel.SetY(bgroundLabel.GetY() - bgroundLabel.GetHeight());        
         AddObj(bgroundLabel);
         
-        menuBground = new Mmg9Slice(16, bground, width, height);
+        menuBground = new Mmg9Slice(MmgHelper.ScaleValue(16), bground, width, height);
         menuBground.SetPosition(MmgVector2.GetOriginVec());
         menuBground.SetWidth(width);
         menuBground.SetHeight(height);
         MmgHelper.CenterHorAndVert(menuBground);
-        menuBground.SetX(menuBground.GetX() + 200);
-        menuBground.SetY(menuBground.GetY() + 36);        
+        menuBground.SetX(menuBground.GetX() + MmgHelper.ScaleValue(200));
+        menuBground.SetY(menuBground.GetY() + MmgHelper.ScaleValue(36));
         AddObj(menuBground);
         
         menuBgroundLabel = MmgFontData.CreateDefaultBoldMmgFontLg();

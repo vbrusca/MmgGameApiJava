@@ -137,13 +137,13 @@ public class ScreenTestMmgScrollHor extends MmgGameScreen implements GenericEven
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Scroll Hor (14 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);        
         
         instr = MmgFontData.CreateDefaultBoldMmgFontLg();
         instr.SetText("Press 'A' to navigate left, press 'B' to navigate right.");
         MmgHelper.CenterHorAndTop(instr);
-        instr.SetY(instr.GetY() + 70);
+        instr.SetY(instr.GetY() + MmgHelper.ScaleValue(70));
         AddObj(instr);
         
         MmgPen p;
@@ -207,7 +207,7 @@ public class ScreenTestMmgScrollHor extends MmgGameScreen implements GenericEven
         event = MmgFontData.CreateDefaultMmgFontSm();
         event.SetText("Event: ");
         MmgHelper.CenterHorAndTop(event);
-        event.SetY(scrollHor.GetY() + scrollHor.GetHeight() + 30);
+        event.SetY(scrollHor.GetY() + scrollHor.GetHeight() + MmgHelper.ScaleValue(30));
         AddObj(event);        
         
         ready = true;

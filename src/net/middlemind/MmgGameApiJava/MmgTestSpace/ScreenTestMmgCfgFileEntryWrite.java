@@ -144,7 +144,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Cfg File Entry Write (20 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
             
         String val = "";
@@ -159,7 +159,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
         }
         cfgFileStringLabel.SetText("Config File Entry String Value: " + val);
         MmgHelper.CenterHorAndVert(cfgFileStringLabel);
-        cfgFileStringLabel.SetY(cfgFileStringLabel.GetY() - 60);
+        cfgFileStringLabel.SetY(cfgFileStringLabel.GetY() - MmgHelper.ScaleValue(60));
         AddObj(cfgFileStringLabel);
         
         cfgFileFloatLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -171,7 +171,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
         }
         cfgFileFloatLabel.SetText("Config File Entry Float Value: " + val);
         MmgHelper.CenterHorAndVert(cfgFileFloatLabel);
-        cfgFileFloatLabel.SetY(cfgFileStringLabel.GetY() + 40);
+        cfgFileFloatLabel.SetY(cfgFileStringLabel.GetY() + MmgHelper.ScaleValue(40));
         AddObj(cfgFileFloatLabel);
         
         cfgFileIntLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -183,25 +183,25 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
         }
         cfgFileIntLabel.SetText("Config File Entry Int Value: " + val);
         MmgHelper.CenterHorAndVert(cfgFileIntLabel);
-        cfgFileIntLabel.SetY(cfgFileFloatLabel.GetY() + 40);
+        cfgFileIntLabel.SetY(cfgFileFloatLabel.GetY() + MmgHelper.ScaleValue(40));
         AddObj(cfgFileIntLabel);
         
         infoLabel1 = MmgFontData.CreateDefaultBoldMmgFontSm(); 
         infoLabel1.SetText("Class config loaded from: screen_test_mmg_cfg_file_entry.txt");
         MmgHelper.CenterHorAndVert(infoLabel1);
-        infoLabel1.SetY(cfgFileIntLabel.GetY() + 40);
+        infoLabel1.SetY(cfgFileIntLabel.GetY() + MmgHelper.ScaleValue(40));
         AddObj(infoLabel1);
         
         infoLabel2 = MmgFontData.CreateDefaultBoldMmgFontSm(); 
         infoLabel2.SetText("Press 'w' to write config entries to: screen_test_mmg_cfg_file_entry_output.txt");
         MmgHelper.CenterHorAndVert(infoLabel2);
-        infoLabel2.SetY(infoLabel1.GetY() + 40);
+        infoLabel2.SetY(infoLabel1.GetY() + MmgHelper.ScaleValue(40));
         AddObj(infoLabel2);
         
         infoLabel3 = MmgFontData.CreateDefaultBoldMmgFontSm(); 
         infoLabel3.SetText(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry_output.txt");
         MmgHelper.CenterHorAndVert(infoLabel3);
-        infoLabel3.SetY(infoLabel2.GetY() + 40);
+        infoLabel3.SetY(infoLabel2.GetY() + MmgHelper.ScaleValue(40));
         AddObj(infoLabel3);        
         
         ready = true;

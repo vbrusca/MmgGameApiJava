@@ -133,7 +133,7 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Label Value Pair (13 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                
         labelFont = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -146,7 +146,7 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
         
         lvPair1 = new MmgLabelValuePair(labelFont, valueFont);
         MmgHelper.CenterHorAndVert(lvPair1);
-        lvPair1.SetY(lvPair1.GetY() - 30);
+        lvPair1.SetY(lvPair1.GetY() - MmgHelper.ScaleValue(30));
         AddObj(lvPair1);
                
         labelFont = labelFont.CloneTyped();
@@ -172,7 +172,7 @@ public class ScreenTestMmgLabelValuePair extends MmgGameScreen implements Generi
         
         lvPair3 = new MmgLabelValuePair(labelFont, valueFont);
         MmgHelper.CenterHorAndVert(lvPair3);
-        lvPair3.SetY(lvPair3.GetY() + 30);
+        lvPair3.SetY(lvPair3.GetY() + MmgHelper.ScaleValue(30));
         AddObj(lvPair3);        
         
         ready = true;

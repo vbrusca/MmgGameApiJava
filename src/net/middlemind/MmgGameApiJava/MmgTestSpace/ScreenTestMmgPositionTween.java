@@ -150,7 +150,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Position Tween (18 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
               
         frame1 = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
@@ -172,7 +172,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         frames[3] = frame2;        
         
         MmgVector2 tmpPos = frame1.GetPosition().Clone();
-        tmpPos.SetY(tmpPos.GetY() + 15);
+        tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(15));
         sprite = new MmgSprite(frames, tmpPos);
         sprite.SetFrameTime(200l);
         AddObj(sprite);
@@ -180,11 +180,11 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         posTweenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         posTweenLabel.SetText("MmgSprite Example with 4 Frames Attached to an MmgPositionTween");
         MmgHelper.CenterHorAndVert(posTweenLabel);
-        posTweenLabel.SetY(GetY() + 70);
+        posTweenLabel.SetY(GetY() + MmgHelper.ScaleValue(70));
         AddObj(posTweenLabel);
         
-        MmgVector2 start = new MmgVector2(100, GetY() + (GetHeight() - frame1.GetHeight()) / 2);
-        MmgVector2 stop = new MmgVector2(GetWidth() - 100, GetY() + (GetHeight() - frame1.GetHeight()) / 2);
+        MmgVector2 start = new MmgVector2(MmgHelper.ScaleValue(100), GetY() + (GetHeight() - frame1.GetHeight()) / 2);
+        MmgVector2 stop = new MmgVector2(GetWidth() - MmgHelper.ScaleValue(100), GetY() + (GetHeight() - frame1.GetHeight()) / 2);
         
         posTween = new MmgPositionTween(sprite, 10000, start, stop);
         posTween.SetOnReachStart(this);
@@ -196,7 +196,7 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         eventLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         eventLabel.SetText("Event:");
         MmgHelper.CenterHor(eventLabel);
-        eventLabel.SetY(GetY() + GetHeight() - 30);
+        eventLabel.SetY(GetY() + GetHeight() - MmgHelper.ScaleValue(30));
         AddObj(eventLabel); 
         
         ready = true;

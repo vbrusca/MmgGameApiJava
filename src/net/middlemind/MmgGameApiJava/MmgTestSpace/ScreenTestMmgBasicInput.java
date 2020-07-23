@@ -240,12 +240,12 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Basic Input (9 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
 
-        int yDiff = 25;
-        int yStrt = GetY() + 60;
-        int xLeft = 20;
+        int yDiff = MmgHelper.ScaleValue(25);
+        int yStrt = GetY() + MmgHelper.ScaleValue(60);
+        int xLeft = MmgHelper.ScaleValue(20);
         int i = 0;
                 
         processABtnPress = MmgFontData.CreateDefaultBoldMmgFontSm();
@@ -339,7 +339,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         AddObj(processDownBtnClick);
         i++;
         
-        xLeft = GetWidth()/2 + 50;
+        xLeft = GetWidth()/2 + MmgHelper.ScaleValue(50);
         i = 0;        
         processLeftBtnPress = MmgFontData.CreateDefaultBoldMmgFontSm();
         processLeftBtnPress.SetText("ProcessLeftBtnPress: ");
@@ -435,7 +435,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         instr = MmgFontData.CreateDefaultMmgFontSm();
         instr.SetText("Press 'L' to navigate left, press 'R' to navigate right.");
         MmgHelper.CenterHor(instr);
-        instr.SetY(GetY() + GetHeight() - 25);
+        instr.SetY(GetY() + GetHeight() - MmgHelper.ScaleValue(25));
         AddObj(instr);
         
         ready = true;

@@ -138,7 +138,7 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Sprite (8 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                
         frame1 = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
@@ -160,7 +160,7 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         frames[3] = frame2;        
         
         MmgVector2 tmpPos = frame1.GetPosition().Clone();
-        tmpPos.SetY(tmpPos.GetY() + 15);
+        tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(15));
         sprite = new MmgSprite(frames, tmpPos);
         sprite.SetFrameTime(200l);
         AddObj(sprite);
@@ -168,7 +168,7 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         spriteLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         spriteLabel.SetText("MmgSprite Example with 4 Frames");
         MmgHelper.CenterHorAndVert(spriteLabel);
-        spriteLabel.SetY(spriteLabel.GetY() - 20);
+        spriteLabel.SetY(spriteLabel.GetY() - MmgHelper.ScaleValue(20));
         AddObj(spriteLabel);
         
         ready = true;

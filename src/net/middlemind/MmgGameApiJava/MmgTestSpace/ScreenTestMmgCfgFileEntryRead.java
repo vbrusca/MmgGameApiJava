@@ -134,7 +134,7 @@ public class ScreenTestMmgCfgFileEntryRead extends MmgGameScreen implements Gene
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Cfg File Entry Read (10 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
             
         String val = "";
@@ -149,7 +149,7 @@ public class ScreenTestMmgCfgFileEntryRead extends MmgGameScreen implements Gene
         }
         cfgFileStringLabel.SetText("Config File Entry String Value: " + val);
         MmgHelper.CenterHorAndVert(cfgFileStringLabel);
-        cfgFileStringLabel.SetY(cfgFileStringLabel.GetY() - 60);
+        cfgFileStringLabel.SetY(cfgFileStringLabel.GetY() - MmgHelper.ScaleValue(60));
         AddObj(cfgFileStringLabel);
         
         cfgFileFloatLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -161,7 +161,7 @@ public class ScreenTestMmgCfgFileEntryRead extends MmgGameScreen implements Gene
         }
         cfgFileFloatLabel.SetText("Config File Entry Float Value: " + val);
         MmgHelper.CenterHorAndVert(cfgFileFloatLabel);
-        cfgFileFloatLabel.SetY(cfgFileStringLabel.GetY() + 40);
+        cfgFileFloatLabel.SetY(cfgFileStringLabel.GetY() + MmgHelper.ScaleValue(40));
         AddObj(cfgFileFloatLabel);
         
         cfgFileIntLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -173,13 +173,13 @@ public class ScreenTestMmgCfgFileEntryRead extends MmgGameScreen implements Gene
         }
         cfgFileIntLabel.SetText("Config File Entry Int Value: " + val);
         MmgHelper.CenterHorAndVert(cfgFileIntLabel);
-        cfgFileIntLabel.SetY(cfgFileFloatLabel.GetY() + 40);
+        cfgFileIntLabel.SetY(cfgFileFloatLabel.GetY() + MmgHelper.ScaleValue(40));
         AddObj(cfgFileIntLabel);
         
         infoLabel = MmgFontData.CreateDefaultBoldMmgFontLg(); 
         infoLabel.SetText("Class config loaded from: screen_test_mmg_cfg_file_entry.txt");
         MmgHelper.CenterHorAndVert(infoLabel);
-        infoLabel.SetY(cfgFileIntLabel.GetY() + 40);
+        infoLabel.SetY(cfgFileIntLabel.GetY() + MmgHelper.ScaleValue(40));
         AddObj(infoLabel);        
         
         ready = true;

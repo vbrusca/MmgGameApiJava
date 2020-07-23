@@ -155,12 +155,12 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Screen Data (1 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                 
-        int yDiff = 40;
-        int yStrt = GetY() + 140;
-        int xLeft = 200;
+        int yDiff = MmgHelper.ScaleValue(40);
+        int yStrt = GetY() + MmgHelper.ScaleValue(140);
+        int xLeft = MmgHelper.ScaleValue(200);
         int i = 0;
         
         defaultHeightLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -198,7 +198,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
         AddObj(gameLeftLabel);
         i++;        
                 
-        xLeft = GetWidth()/2 + 70;
+        xLeft = GetWidth()/2 + MmgHelper.ScaleValue(70);
         i = 0;
         
         gameTopLabel = MmgFontData.CreateDefaultBoldMmgFontLg();

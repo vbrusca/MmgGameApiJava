@@ -95,11 +95,23 @@ public class MmgScreenData {
     private static MmgVector2 posVec;
 
     /**
+     * A class helper variable for tracking the original value of the game width;
+     */
+    private static int origGameWidth;
+
+    /**
+     * A class helper variable for tracking the original value of the game height;
+     */    
+    private static int origGameHeight;    
+    
+    /**
      * Constructor for this class that sets all default values.
      */
     public MmgScreenData() {
         MmgScreenData.gameWidth = DEFAULT_WIDTH;
         MmgScreenData.gameHeight = DEFAULT_HEIGHT;
+        MmgScreenData.origGameWidth = MmgScreenData.gameWidth;
+        MmgScreenData.origGameHeight = MmgScreenData.gameHeight;        
         MmgScreenData.gameLeft = 0;
         MmgScreenData.gameTop = 0;
         MmgScreenData.screenWidth = DEFAULT_WIDTH;
@@ -120,6 +132,8 @@ public class MmgScreenData {
     public MmgScreenData(int w, int h) {
         MmgScreenData.gameWidth = w;
         MmgScreenData.gameHeight = h;
+        MmgScreenData.origGameWidth = MmgScreenData.gameWidth;
+        MmgScreenData.origGameHeight = MmgScreenData.gameHeight;                
         MmgScreenData.gameLeft = 0;
         MmgScreenData.gameTop = 0;
         MmgScreenData.screenWidth = w;
@@ -145,6 +159,8 @@ public class MmgScreenData {
         MmgScreenData.screenHeight = ScreenHeight;
         MmgScreenData.gameWidth = GameWidth;
         MmgScreenData.gameHeight = GameHeight;
+        MmgScreenData.origGameWidth = MmgScreenData.gameWidth;
+        MmgScreenData.origGameHeight = MmgScreenData.gameHeight;                
         MmgScreenData.CalculateScaleAndOffset();
         MmgScreenData.scaleVec = new MmgVector2(MmgScreenData.scaleX, MmgScreenData.scaleY);
         MmgScreenData.posVec = new MmgVector2(MmgScreenData.gameLeft, MmgScreenData.gameTop);
@@ -403,7 +419,7 @@ public class MmgScreenData {
      * Based on the screen dimensions and the default game width and height.
      */
     @SuppressWarnings("UnusedAssignment")
-    private static void CalculateScaleX() {
+    private static void CalculateScaleX(boolean agg) {
         double test = 32.0f;
         double resF;
         double resI;
@@ -413,6 +429,8 @@ public class MmgScreenData {
         int resIi = 0;
         double dir = -1;
         double diff = 0;
+        double diffSm = 1000000;
+        double prctDiffXSm = 1.0d;        
 
         prctDiffX = ((double) MmgScreenData.screenWidth / (double) MmgScreenData.gameWidth);
         dir = -1;
@@ -429,17 +447,34 @@ public class MmgScreenData {
             resIi = (int) resI;
             count++;
             diff = Math.abs((resF - resI));
+            
+            if(diff < diffSm) {
+                diffSm = diff;
+                prctDiffXSm = prctDiffX;
+            }
         }
 
+        if(count >= panic) {
+            prctDiffX = prctDiffXSm;
+            diff = diffSm;
+        }
+        
         MmgScreenData.scaleXOn = true;
         MmgScreenData.scaleYOn = true;
-        MmgScreenData.scaleX = prctDiffX;
-        MmgScreenData.scaleY = prctDiffX;
-        MmgScreenData.gameWidth *= MmgScreenData.scaleX;
-        MmgScreenData.gameHeight *= MmgScreenData.scaleY;
+        if(agg) {
+            MmgScreenData.scaleX += prctDiffX;
+            MmgScreenData.scaleY += prctDiffX;
+        } else {
+            MmgScreenData.scaleX = prctDiffX;
+            MmgScreenData.scaleY = prctDiffX;
+        }
+        MmgScreenData.gameWidth *= prctDiffX;
+        MmgScreenData.gameHeight *= prctDiffX;
         CalculateTop();
         CalculateLeft();
-        MmgHelper.wr("CalculateScaleX: Found X,Y Scale: " + prctDiffX + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
+        MmgScreenData.scaleVec = new MmgVector2(MmgScreenData.scaleX, MmgScreenData.scaleY);
+        MmgScreenData.posVec = new MmgVector2(MmgScreenData.gameLeft, MmgScreenData.gameTop);        
+        MmgHelper.wr("Calculate Scale X: Found X,Y Scale: " + prctDiffX + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
     }
 
     /**
@@ -447,7 +482,7 @@ public class MmgScreenData {
      * Based on the screen dimensions and the default game width and height.
      */
     @SuppressWarnings("UnusedAssignment")
-    private static void CalculateScaleY() {
+    private static void CalculateScaleY(boolean agg) {
         double test = 32.0f;
         double resF;
         double resI;
@@ -457,6 +492,8 @@ public class MmgScreenData {
         int resIi = 0;
         double dir = -1;
         double diff = 0;
+        double diffSm = 1000000;
+        double prctDiffYSm = 1.0d;
 
         prctDiffY = ((double) MmgScreenData.screenHeight / (double) MmgScreenData.gameHeight);
         dir = -1;
@@ -473,17 +510,34 @@ public class MmgScreenData {
             resIi = (int) resI;
             count++;
             diff = Math.abs((resF - resI));
+            
+            if(diff < diffSm) {
+                diffSm = diff;
+                prctDiffYSm = prctDiffY;
+            }
         }
 
+        if(count >= panic) {
+            prctDiffY = prctDiffYSm;
+            diff = diffSm;
+        }
+            
         MmgScreenData.scaleXOn = true;
         MmgScreenData.scaleYOn = true;
-        MmgScreenData.scaleX = prctDiffY;
-        MmgScreenData.scaleY = prctDiffY;
-        MmgScreenData.gameWidth *= MmgScreenData.scaleX;
-        MmgScreenData.gameHeight *= MmgScreenData.scaleY;
+        if(agg) {
+            MmgScreenData.scaleX += prctDiffY;
+            MmgScreenData.scaleY += prctDiffY;
+        } else {
+            MmgScreenData.scaleX = prctDiffY;
+            MmgScreenData.scaleY = prctDiffY;
+        }
+        MmgScreenData.gameWidth *= prctDiffY;
+        MmgScreenData.gameHeight *= prctDiffY;
         CalculateTop();
         CalculateLeft();
-        MmgHelper.wr("CalculateScaley: Found Updated X, Y Scale: " + prctDiffY + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
+        MmgScreenData.scaleVec = new MmgVector2(MmgScreenData.scaleX, MmgScreenData.scaleY);
+        MmgScreenData.posVec = new MmgVector2(MmgScreenData.gameLeft, MmgScreenData.gameTop);        
+        MmgHelper.wr("Calculate Scale Y: Found Updated X, Y Scale: " + prctDiffY + ", ResF: " + resF + ", ResI: " + resI + ", Diff: " + diff + ", Count: " + count);
     }
 
     /**
@@ -491,6 +545,9 @@ public class MmgScreenData {
      * the screen dimensions.
      */
     public static void CalculateScaleAndOffset() {
+        MmgScreenData.gameWidth = MmgScreenData.origGameWidth;
+        MmgScreenData.gameHeight = MmgScreenData.origGameHeight;
+        
         if (MmgScreenData.screenHeight == MmgScreenData.gameHeight && MmgScreenData.screenWidth == MmgScreenData.gameWidth) {
             MmgScreenData.scaleX = 1.0f;
             MmgScreenData.scaleY = 1.0f;
@@ -500,15 +557,15 @@ public class MmgScreenData {
             MmgScreenData.scaleYOn = false;
         } else {
             if(MmgScreenData.scalingMode == ScalingMode.AXIS_X) {
-                CalculateScaleX();
+                CalculateScaleX(false);
 
             } else if(MmgScreenData.scalingMode == ScalingMode.AXIS_Y) {
-                CalculateScaleY();
+                CalculateScaleY(false);
 
             } else if(MmgScreenData.scalingMode == ScalingMode.AXIS_X_AND_Y) {
-                CalculateScaleX();
+                CalculateScaleX(false);
                 if (MmgScreenData.gameHeight > MmgScreenData.screenHeight) {
-                    CalculateScaleY();
+                    CalculateScaleY(true);
                 }
             } else {
                 MmgScreenData.scaleX = 1.0f;

@@ -140,7 +140,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Text Field (4 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);        
         
         bground = Helper.GetBasicCachedBmp("popup_window_base.png");
@@ -149,31 +149,31 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         MmgHelper.CenterHorAndVert(txtField);
         txtField.SetMaxLengthOn(true);
         txtField.SetEventHandler(this);
-        txtField.SetY(txtField.GetY() - 30);
+        txtField.SetY(txtField.GetY() - MmgHelper.ScaleValue(30));
         AddObj(txtField);
         
         txtFieldLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         txtFieldLabel.SetText("MmgTextField Example");
         MmgHelper.CenterHorAndVert(txtFieldLabel);
-        txtFieldLabel.SetY(txtFieldLabel.GetY() - 55);
+        txtFieldLabel.SetY(txtFieldLabel.GetY() - MmgHelper.ScaleValue(55));
         AddObj(txtFieldLabel);
         
         txtFieldText = MmgFontData.CreateDefaultBoldMmgFontLg();
         txtFieldText.SetText("Text Field Text: ");
         MmgHelper.CenterHorAndVert(txtFieldText);
-        txtFieldText.SetY(txtFieldText.GetY() + 40);
+        txtFieldText.SetY(txtFieldText.GetY() + MmgHelper.ScaleValue(40));
         AddObj(txtFieldText);
         
         maxLenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         maxLenLabel.SetText("Max Len Error On: " + txtField.IsMaxLengthOn() + " Max Len: " + MmgTextField.DEFAULT_MAX_LENGTH);
         MmgHelper.CenterHorAndVert(maxLenLabel);
-        maxLenLabel.SetY(maxLenLabel.GetY() + 70);
+        maxLenLabel.SetY(maxLenLabel.GetY() + MmgHelper.ScaleValue(70));
         AddObj(maxLenLabel);
         
         txtFieldMaxLenError = MmgFontData.CreateDefaultBoldMmgFontLg();
         txtFieldMaxLenError.SetText("Max Len Error Current Time MS: ");
         MmgHelper.CenterHorAndVert(txtFieldMaxLenError);
-        txtFieldMaxLenError.SetY(txtFieldMaxLenError.GetY() + 100);
+        txtFieldMaxLenError.SetY(txtFieldMaxLenError.GetY() + MmgHelper.ScaleValue(100));
         AddObj(txtFieldMaxLenError);
         
         ready = true;

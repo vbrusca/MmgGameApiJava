@@ -144,14 +144,14 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Container and Mmg Pulse (12 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
-        title.SetY(title.GetY() + 30);
+        title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
                 
         frame1 = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
         frame1 = MmgBmpScaler.ScaleMmgBmp(frame1, 2.0f, true);
         MmgHelper.CenterHorAndVert(frame1);
-        frame1.SetY(frame1.GetY() - 80);
-        frame1.SetX(frame1.GetX() - 110);
+        frame1.SetY(frame1.GetY() - MmgHelper.ScaleValue(80));
+        frame1.SetX(frame1.GetX() - MmgHelper.ScaleValue(110));
         AddObj(frame1);
         
         frame2 = MmgHelper.GetBasicCachedBmp("soldier_frame_2.png");    
@@ -162,13 +162,13 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
         frame3 = MmgHelper.GetBasicCachedBmp("soldier_frame_3.png");
         frame3 = MmgBmpScaler.ScaleMmgBmp(frame3, 2.0f, true);
         MmgHelper.CenterHorAndVert(frame3);
-        frame3.SetY(frame2.GetY() + 80);
+        frame3.SetY(frame2.GetY() + MmgHelper.ScaleValue(80));
 
         holder = new MmgContainer();
         holder.Add(frame2);
         holder.Add(frame3);
         holder.SetWidth(frame1.GetWidth());
-        holder.SetHeight(160);
+        holder.SetHeight(MmgHelper.ScaleValue(160));
         MmgHelper.CenterHorAndVert(holder);
         AddObj(holder);
         
