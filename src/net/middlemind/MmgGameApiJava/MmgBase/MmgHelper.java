@@ -343,7 +343,6 @@ public class MmgHelper {
      * @return          True if there is a collision of the two rectangles.
      */
     public static boolean RectCollision(int r1x, int r1y, int r1w, int r1h, int r2x, int r2y, int r2w, int r2h) {
-
         if (r1x >= r2x && r1x <= (r2x + r2w) && r1y >= r2y && r1y <= (r2y + r2h)) {
             return true;
 

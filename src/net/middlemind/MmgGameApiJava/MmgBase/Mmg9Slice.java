@@ -307,10 +307,10 @@ public class Mmg9Slice extends MmgObj {
      * @param w 
      */
     @Override
-    public void SetHeight(int w) {
-        super.SetHeight(w);
-        if(this.dest != null) {
-            this.dest.SetHeight(w);
+    public void SetHeight(int h) {
+        super.SetHeight(h);
+        if(dest != null) {
+            dest.SetHeight(h);
         }
     }    
 }
