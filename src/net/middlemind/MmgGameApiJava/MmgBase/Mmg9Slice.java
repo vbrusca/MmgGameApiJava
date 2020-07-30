@@ -51,10 +51,10 @@ public class Mmg9Slice extends MmgObj {
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
-        SetHeight(h);
-        SetPosition(null);
-        SetIsVisible(true);
+        SetHeight(h);        
         DrawDest();
+        SetPosition(MmgVector2.GetOriginVec());
+        SetIsVisible(true);        
     }
 
     /**
@@ -73,9 +73,9 @@ public class Mmg9Slice extends MmgObj {
         SetSrc(Src);
         SetWidth(w);
         SetHeight(h);
+        DrawDest();        
         SetPosition(Pos);
         SetIsVisible(true);
-        DrawDest();
     }
 
     /**
@@ -89,6 +89,7 @@ public class Mmg9Slice extends MmgObj {
         SetSrc(obj.GetSrc().CloneTyped());
         SetWidth(obj.GetWidth());
         SetHeight(obj.GetHeight());
+        DrawDest();
         
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
@@ -97,7 +98,6 @@ public class Mmg9Slice extends MmgObj {
         }
         
         SetIsVisible(obj.GetIsVisible());
-        DrawDest();
     }
 
     /**
