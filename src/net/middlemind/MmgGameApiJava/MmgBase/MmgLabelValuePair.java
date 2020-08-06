@@ -33,7 +33,7 @@ public class MmgLabelValuePair extends MmgObj {
     /**
      * A static class field that holds the default X axis padding.
      */
-    public static int DEFAULT_PADDING_X = 8;
+    public static int DEFAULT_PADDING_X = MmgHelper.ScaleValue(8);
     
     /**
      * Constructor for this class.
@@ -231,7 +231,7 @@ public class MmgLabelValuePair extends MmgObj {
      * 
      * @param p     The X axis padding to use for this object. 
      */
-    public void SetPaddingX(int p ) {
+    public void SetPaddingX(int p) {
         paddingX = p;
         Reset();
     }
@@ -285,6 +285,24 @@ public class MmgLabelValuePair extends MmgObj {
             val.SetX(val.GetX() + lbl.GetWidth() + paddingX);
         }
     }
+
+    /**
+     * A get method that returns the value of the skipReset field.
+     * 
+     * @return The value of the skipReset field.
+     */
+    public boolean GetSkipReset() {
+        return skipReset;
+    }
+
+    /**
+     * A set method that sets the skipReset field's value.
+     * 
+     * @param b     The value to set the skipReset field to.
+     */
+    public void SetSkipReset(boolean b) {
+        skipReset = b;
+    }  
     
     /**
      * Sets the size of the font.

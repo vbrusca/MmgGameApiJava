@@ -53,8 +53,8 @@ public class MmgLoadingBar extends MmgObj {
         SetLoadingBarFront(null);
         SetPaddingX(0);
         SetPaddingY(0);
-        SetFillHeight(10);
-        SetFillWidth(100);
+        SetFillHeight(MmgHelper.ScaleValue(10));
+        SetFillWidth(MmgHelper.ScaleValue(100));
     }
 
     /**
@@ -91,8 +91,8 @@ public class MmgLoadingBar extends MmgObj {
             SetWidth(loadingBarFront.GetWidth());
             SetHeight(loadingBarFront.GetHeight());
         } else {
-            SetWidth(100);
-            SetHeight(50);
+            SetWidth(MmgHelper.ScaleValue(100));
+            SetHeight(MmgHelper.ScaleValue(50));
         }
 
         SetFillHeight(GetHeight());
@@ -120,8 +120,8 @@ public class MmgLoadingBar extends MmgObj {
             SetWidth(loadingBarFront.GetWidth());
             SetHeight(loadingBarFront.GetHeight());
         } else {
-            SetWidth(100);
-            SetHeight(50);
+            SetWidth(MmgHelper.ScaleValue(100));
+            SetHeight(MmgHelper.ScaleValue(50));
         }
 
         SetFillHeight(GetHeight());

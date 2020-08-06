@@ -130,12 +130,7 @@ public class MmgSprite extends MmgObj {
         SetSrcRect(Src);
         SetDstRect(Dst);
         SetBmpArray(t);
-
         SetPosition(null);
-        if(t != null && t.length >= 1) {
-            SetWidth(t[0].GetWidth());
-            SetHeight(t[0].GetHeight());
-        }
         SetIsVisible(true);
         SetSimpleRendering(true);
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
@@ -162,12 +157,7 @@ public class MmgSprite extends MmgObj {
         SetSrcRect(r);
         SetDstRect(null);
         SetBmpArray(t);
-
         SetPosition(Position);
-        if(t != null && t.length >= 1) {
-            SetWidth(t[0].GetWidth());
-            SetHeight(t[0].GetHeight());
-        }
         SetIsVisible(true);
         SetSimpleRendering(true);
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
@@ -190,12 +180,7 @@ public class MmgSprite extends MmgObj {
         SetSrcRect(null);
         SetDstRect(null);
         SetBmpArray(t);
-
         SetPosition(Position);
-        if(t != null && t.length >= 1) {
-            SetWidth(t[0].GetWidth());
-            SetHeight(t[0].GetHeight());
-        }
         SetIsVisible(true);
         SetSimpleRendering(true);
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
@@ -217,12 +202,7 @@ public class MmgSprite extends MmgObj {
         SetSrcRect(null);
         SetDstRect(null);
         SetBmpArray(t);
-
         SetPosition(MmgVector2.GetOriginVec());
-        if(t != null && t.length >= 1) {
-            SetWidth(t[0].GetWidth());
-            SetHeight(t[0].GetHeight());
-        }
         SetIsVisible(true);
         SetSimpleRendering(true);
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
@@ -373,7 +353,7 @@ public class MmgSprite extends MmgObj {
      * 
      * @return      A boolean indicating if this class is timer only.
      */
-    public boolean IsTimerOnly() {
+    public boolean GetTimerOnly() {
         return timerOnly;
     }
 
@@ -414,6 +394,15 @@ public class MmgSprite extends MmgObj {
      */
     public MmgBmp GetCurrentFrame() {
         return b[frameIdx];
+    }
+    
+    /**
+     * Sets the current frame of this MmgSrpite object.
+     * 
+     * @param bmp   The MmgBmp to set the current frame.
+     */
+    public void SetCurrentFrame(MmgBmp bmp) {
+        b[frameIdx] = bmp;
     }
     
     /**
@@ -557,7 +546,7 @@ public class MmgSprite extends MmgObj {
      */
     public boolean IsFrameNull(int i) {
         if(i >= 0 && i < b.length) {
-            if(b!= null && b[i] != null) {
+            if(b != null && b[i] != null) {
                 return false;
             }
         }
@@ -627,12 +616,12 @@ public class MmgSprite extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             if (b[frameIdx] != null) {
-                if(GetSimpleRendering() == true) {
+                if(simpleRendering == true) {
                     p.DrawBmp(b[frameIdx], GetPosition());
                 } else {
-                    if(GetSrcRect() == null || GetDstRect() == null) {
-                        if(GetOrigin() == null) {
-                            if(GetRotation() == 0.0) {
+                    if(srcRect == null || dstRect == null) {
+                        if(origin == null) {
+                            if(rotation == 0.0) {
                                 p.DrawBmp(b[frameIdx], GetPosition());
                             } else {
                                 p.DrawBmp(b[frameIdx], GetPosition(), GetRotation());

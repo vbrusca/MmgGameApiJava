@@ -186,6 +186,7 @@ public class MmgContainer extends MmgObj {
     public void AddAt(int idx, MmgObj obj) {
         if (obj != null) {
             container.add(idx, obj);
+            StampChild(obj);
         }
     }
 
@@ -253,6 +254,13 @@ public class MmgContainer extends MmgObj {
     }
 
     /**
+     * Resets the container object.
+     */
+    public void Reset() {
+        container = new ArrayList(MmgContainer.INITIAL_SIZE);
+    }
+    
+    /**
      * Gets the ArrayList container that holds all child objects.
      *
      * @return          The ArrayList container of this MmgContainer object.
@@ -271,7 +279,7 @@ public class MmgContainer extends MmgObj {
             container = aTmp;
             UpdateAllChildren(ChildAction.STAMP);
         } else {
-            container = new ArrayList(MmgContainer.INITIAL_SIZE);
+            container = null;
         }
     }
 
