@@ -148,15 +148,14 @@ public class MmgSprite extends MmgObj {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
         super();
-        frameTime = -1;
-        prevFrameTime = -1;        
+        SetFrameTime(-1);
+        SetPrevFrameTime(-1);
         SetRotation(Rotation);
         SetOrigin(Origin);
         SetScaling(Scaling);
-        MmgRect r = new MmgRect(Position, t[0].GetWidth(), t[0].GetHeight());
-        SetSrcRect(r);
-        SetDstRect(null);
         SetBmpArray(t);
+        SetSrcRect(new MmgRect(Position, GetWidth(), GetHeight()));
+        SetDstRect(null);        
         SetPosition(Position);
         SetIsVisible(true);
         SetSimpleRendering(true);

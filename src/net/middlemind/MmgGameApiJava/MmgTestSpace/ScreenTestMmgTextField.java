@@ -165,7 +165,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         AddObj(txtFieldText);
         
         maxLenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        maxLenLabel.SetText("Max Len Error On: " + txtField.IsMaxLengthOn() + " Max Len: " + MmgTextField.DEFAULT_MAX_LENGTH);
+        maxLenLabel.SetText("Max Len Error On: " + txtField.GetMaxLengthOn() + " Max Len: " + MmgTextField.DEFAULT_MAX_LENGTH);
         MmgHelper.CenterHorAndVert(maxLenLabel);
         maxLenLabel.SetY(maxLenLabel.GetY() + MmgHelper.ScaleValue(70));
         AddObj(maxLenLabel);

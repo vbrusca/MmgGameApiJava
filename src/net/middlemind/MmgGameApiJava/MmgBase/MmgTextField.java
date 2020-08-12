@@ -86,7 +86,7 @@ public class MmgTextField extends MmgObj {
     /**
      * A static class field that control how the background MmgBmp is sliced using the 9 slice technique.
      */
-    public static int TEXT_FIELD_9_SLICE_OFFSET = 16;
+    public static int TEXT_FIELD_9_SLICE_OFFSET = MmgHelper.ScaleValue(16);
     
     /**
      * A static field that determines what character is used for the cursor.
@@ -287,7 +287,7 @@ public class MmgTextField extends MmgObj {
      * 
      * @return      A boolean flag indicating if the max length limitation is on.
      */
-    public boolean IsMaxLengthOn() {
+    public boolean GetMaxLengthOn() {
         return maxLengthOn;
     }
 

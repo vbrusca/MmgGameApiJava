@@ -110,12 +110,11 @@ public class MmgTextBlock extends MmgObj {
      */
     @SuppressWarnings({"OverridableMethodCallInConstructor", "Convert2Diamond"})
     public MmgTextBlock() {
-        SetPaddingX(4);
-        SetPaddingY(4);
-        SetLineHeight(16);
-        SetHeight(100);
-        SetWidth(100);
-        
+        SetPaddingX(MmgHelper.ScaleValue(4));
+        SetPaddingY(MmgHelper.ScaleValue(4));
+        SetLineHeight(MmgHelper.ScaleValue(16));
+        SetHeight(MmgHelper.ScaleValue(100));
+        SetWidth(MmgHelper.ScaleValue(100));        
         lines = new ArrayList<MmgFont>(STARTING_LINE_COUNT);
         txt = new ArrayList<MmgFont>(STARTING_TXT_COUNT);
         SetColor(MmgColor.GetBlack());
@@ -541,11 +540,9 @@ public class MmgTextBlock extends MmgObj {
         int len = GetLineCount();
 
         if (page >= pages) {
-            //do nothing
             for (int i = 0; i < len; i++) {
                 txt.get(i).SetText("");
             }
-
         } else {
             if (lines != null) {
                 int i = 0;
@@ -557,15 +554,16 @@ public class MmgTextBlock extends MmgObj {
                         tmp = (MmgFont) lines.get(i);
                         if (tmp != null) {
                             txt.set(j, (MmgFont) tmp.Clone());
-
                         } else {
                             txt.get(j).SetText("");
-
                         }
                     } else {
                         txt.get(j).SetText("");
-
                     }
+                }
+            } else {
+                for (int i = 0; i < len; i++) {
+                    txt.get(i).SetText("");
                 }
             }
         }
