@@ -219,10 +219,7 @@ public class MmgScrollHor extends MmgObj {
         scrollBarHorSliderWidth = ScrollBarSliderWidth;
         scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
         PrepDimensions();
-
-        if(IntervalX != 0) {
-            SetIntervalX(IntervalX);
-        }        
+        SetIntervalX(IntervalX);
     }
     
     /**
@@ -246,10 +243,7 @@ public class MmgScrollHor extends MmgObj {
         scrollBarHorSliderWidth = MmgHelper.ScaleValue(30);
         scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
         PrepDimensions();
-        
-        if(IntervalX != 0) {
-            SetIntervalX(IntervalX);
-        }
+        SetIntervalX(IntervalX);
     }    
     
     /**
@@ -320,8 +314,8 @@ public class MmgScrollHor extends MmgObj {
         }
         
         SetWidthDiff(obj.GetWidthDiff());
-        SetScrollBarHorVisible(obj.IsScrollBarHorVisible());
-        SetScrollBarHorVisible(obj.IsScrollBarHorVisible());
+        SetScrollBarHorVisible(obj.GetScrollBarHorVisible());
+        SetScrollBarHorVisible(obj.GetScrollBarHorVisible());
         
         if(obj.GetScrollBarColor() == null) {
             SetScrollBarColor(obj.GetScrollBarColor());
@@ -437,9 +431,22 @@ public class MmgScrollHor extends MmgObj {
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();
     }    
-
+    
     /**
-     * Sets event handlers for all this object's event.
+     * Returns the target event handler of the clickScreen MmgEvent class field.
+     * 
+     * @return      The MmgEventHandler to use to handle events.
+     */
+    public MmgEventHandler GetEventHandler() {
+        if(clickScreen != null) {
+            return clickScreen.GetTargetEventHandler();
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Sets event handlers for all this object's events.
      * 
      * @param e     The MmgEventHandler to use to handle events.
      */
@@ -545,6 +552,16 @@ public class MmgScrollHor extends MmgObj {
         }
     }
     
+    /**
+     * Sets the position of the scroll view.
+     * 
+     * @param x     The X coordinate of the position.
+     * @param y     The Y coordinate of the position.
+     */
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }
+     
     /**
      * Sets the position of the scroll view.
      * 
@@ -900,7 +917,7 @@ public class MmgScrollHor extends MmgObj {
      * 
      * @return  A boolean indicating if the horizontal scroll bar is visible.
      */    
-    public boolean IsScrollBarHorVisible() {
+    public boolean GetScrollBarHorVisible() {
         return scrollBarHorVisible;
     }
 
@@ -1021,6 +1038,9 @@ public class MmgScrollHor extends MmgObj {
         if(IntervalX != 0) {
             intervalX = IntervalX;
             intervalPrctX = (double)intervalX / (viewPort.GetWidth() - (scrollBarSliderButtonWidth * 2) - scrollBarHorSliderWidth);
+        } else {
+            intervalX = 0;
+            intervalPrctX = 0.0;
         }
     }
 
@@ -1029,7 +1049,7 @@ public class MmgScrollHor extends MmgObj {
      * 
      * @return      A boolean indicating if the scroll view needs to be redrawn.
      */    
-    public boolean IsIsDirty() {
+    public boolean GetIsDirty() {
         return isDirty;
     }
 

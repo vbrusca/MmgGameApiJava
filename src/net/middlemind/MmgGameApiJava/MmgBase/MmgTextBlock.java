@@ -450,6 +450,17 @@ public class MmgTextBlock extends MmgObj {
     }
 
     /**
+     * Prepares the lines that represent the display box with blank text objects, MmgFont.
+     *
+     */
+    public void PrepLinesInBox() {
+        int len = GetLinesInBox();
+        for (int i = 0; i < len; i++) {
+            txt.add(new MmgFont());
+        }
+    }    
+    
+    /**
      * Sets the position of this object in its owner's display space.
      *
      * @param vec   A position coordinate, MmgVector2.
