@@ -1,4 +1,4 @@
-package net.middlemind.MmgApiTests;
+package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import java.awt.Color;
 import org.junit.Assert;
@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Victor G. Brusca
+ * @author Victor G. Brusca, Middlemind Games
  */
 public class MmgColorUnitTest {
     
@@ -106,7 +106,9 @@ public class MmgColorUnitTest {
         c2 = c1.Clone();
         
         Assert.assertNotSame(c1, c2);
-        Assert.assertEquals(c1.GetColor(), c2.GetColor());        
+        Assert.assertNotEquals(c1, c2);
+        Assert.assertEquals(c1.GetColor(), c2.GetColor());
+        Assert.assertTrue(c1.Equals(c2));               
     }
     
     @Test

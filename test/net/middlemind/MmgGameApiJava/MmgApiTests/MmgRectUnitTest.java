@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package net.middlemind.MmgApiTests;
+package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import java.awt.Rectangle;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
@@ -14,11 +9,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
- * @author Victor G. Brusca
+ * @author Victor G. Brusca, Middlemind Games
  */
 public class MmgRectUnitTest {
     

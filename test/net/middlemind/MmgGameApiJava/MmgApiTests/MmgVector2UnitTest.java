@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package net.middlemind.MmgApiTests;
+package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import org.junit.Assert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
@@ -12,11 +7,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
- * @author Victor G. Brusca
+ * @author Victor G. Brusca, Middlemind Games
  */
 public class MmgVector2UnitTest {
     

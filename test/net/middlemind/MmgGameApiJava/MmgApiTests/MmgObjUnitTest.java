@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package net.middlemind.MmgApiTests;
+package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import org.junit.Assert;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
@@ -14,11 +9,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-//import static org.junit.Assert.*;
 
 /**
  *
- * @author Victor G. Brusca
+ * @author Victor G. Brusca, Middlemind Games
  */
 public class MmgObjUnitTest {
     
@@ -126,7 +120,7 @@ public class MmgObjUnitTest {
         hp = true;
         p = null;
         obj1 = new MmgObj();
-        ver = "1.0.1";
+        ver = "1.0.6";
         
         //TEST 1 - Has Parent        
         obj1.SetHasParent(hp);
@@ -211,7 +205,9 @@ public class MmgObjUnitTest {
         Assert.assertEquals(pos.GetY() + 5, obj1.GetPosition().GetY());
         
         //TEST 12 - ToString
-        String tmp = "Name: " + obj1.GetName() + " Id: " + obj1.GetId() + " - " + obj1.GetPosition();
+        String tmp = "Name: " + obj1.GetName() + " Id: " + obj1.GetId() + " - " + obj1.GetPosition().ToString();
+        //System.err.println(tmp);
+        //System.err.println(obj1.ToString());
         Assert.assertEquals(tmp, obj1.ToString());
     }
     
