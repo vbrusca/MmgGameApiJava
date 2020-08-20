@@ -13,12 +13,12 @@ public class MmgMenuContainer extends MmgObj {
     /**
      * The ArrayList that holds the MmgMenuItem objects.
      */
-    private ArrayList<Object> container;
+    private ArrayList<MmgObj> container;
     
     /**
      * A class helper variable.
      */
-    private Object[] a;
+    private MmgObj[] a;
     
     /**
      * A class helper variable.
@@ -36,7 +36,7 @@ public class MmgMenuContainer extends MmgObj {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer() {
         super();
-        SetContainer(new ArrayList<Object>(50));
+        SetContainer(new ArrayList<MmgObj>(50));
     }
 
     /**
@@ -47,6 +47,7 @@ public class MmgMenuContainer extends MmgObj {
      */
     public MmgMenuContainer(MmgObj obj) {
         super(obj);
+        SetContainer(new ArrayList<MmgObj>(50));
     }
 
     /**
@@ -55,7 +56,7 @@ public class MmgMenuContainer extends MmgObj {
      * @param objects       The ArrayList to use for the menu items. 
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgMenuContainer(ArrayList<Object> objects) {
+    public MmgMenuContainer(ArrayList<MmgObj> objects) {
         super();
         SetContainer(objects);
     }
@@ -64,22 +65,35 @@ public class MmgMenuContainer extends MmgObj {
      * Constructor for this class that sets the attributes of this class to the values 
      * from the given argument.
      * 
-     * @param cont      The MmgMenuContainer class to use for attribute values. 
+     * @param obj      The MmgMenuContainer class to use for attribute values. 
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgMenuContainer(MmgMenuContainer cont) {
+    public MmgMenuContainer(MmgMenuContainer obj) {
         super();
-        SetContainer(cont.GetContainer());
-
-        SetPosition(MmgVector2.GetOriginVec());
-        SetWidth(cont.GetWidth());
-        SetHeight(cont.GetHeight());
-        SetIsVisible(cont.GetIsVisible());
-
-        if (cont.GetMmgColor() != null) {
-            SetMmgColor(cont.GetMmgColor().Clone());
+        if(obj.GetContainer() == null) {
+            SetContainer(obj.GetContainer());
         } else {
-            SetMmgColor(cont.GetMmgColor());
+            a = obj.GetContainer().toArray(a);
+            SetContainer(new ArrayList<MmgObj>(a.length));
+            for(i = 0; i < a.length; i++) {
+                Add((MmgMenuItem)a[i].Clone());
+            }
+        }
+
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            SetPosition(obj.GetPosition().Clone());
+        }
+        
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
+
+        if (obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());            
         }
     }
 
@@ -136,8 +150,8 @@ public class MmgMenuContainer extends MmgObj {
      * 
      * @return      The menu item objects stored by this container. 
      */
-    public Object[] GetArray() {
-        return container.toArray();
+    public MmgObj[] GetArray() {
+        return container.toArray(a);
     }
 
     /**
@@ -152,7 +166,7 @@ public class MmgMenuContainer extends MmgObj {
      * 
      * @return      The menu items contained by this class. 
      */
-    public ArrayList<Object> GetContainer() {
+    public ArrayList<MmgObj> GetContainer() {
         return container;
     }
 
@@ -161,7 +175,7 @@ public class MmgMenuContainer extends MmgObj {
      * 
      * @param aTmp  The menu items to hold.
      */
-    public void SetContainer(ArrayList<Object> aTmp) {
+    public void SetContainer(ArrayList<MmgObj> aTmp) {
         container = aTmp;
     }
 
@@ -174,7 +188,7 @@ public class MmgMenuContainer extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             if (container != null) {
-                a = container.toArray();
+                a = container.toArray(a);
                 for (i = 0; i < a.length; i++) {
                     mo = (MmgObj) a[i];
                     if (mo != null && mo.GetIsVisible() == true) {
