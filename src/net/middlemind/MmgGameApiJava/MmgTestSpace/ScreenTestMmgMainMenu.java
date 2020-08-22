@@ -93,7 +93,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
         
         p = new MmgPen();
         p.SetCacheOn(false);
-        handleMenuEvent = new HandleMainMenuEvent(this, owner);
+        handleMenuEvent = null;//new HandleMainMenuEvent(this, owner);
         
         key = "soundMenuSelect";
         if(classConfig.containsKey(key)) {
@@ -452,6 +452,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
         
         if (mmi != null) {
             ProcessMenuItemSel(mmi);
+            isDirty = true;
             return true;
         }
         
@@ -468,9 +469,11 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     public boolean ProcessDpadRelease(int dir) {
         if (dir == GameSettings.UP_KEYBOARD || dir == GameSettings.UP_GAMEPAD_1) {            
             MoveMenuSelUp();
+            isDirty = true;
             
         } else if (dir == GameSettings.DOWN_KEYBOARD || dir == GameSettings.DOWN_GAMEPAD_1) {
             MoveMenuSelDown();
+            isDirty = true;
             
         } else if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_08);
@@ -489,37 +492,37 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
      * prepares the screen for display.
      */
     public void DrawScreen() {
-        //int mainY;
         pause = true;
-        menu = new MmgMenuContainer();
-        menu.SetMmgColor(null);
-        isDirty = false;
+        if(menu == null) {
+            menu = new MmgMenuContainer();
+            menu.SetMmgColor(null);
+            MmgMenuItem mItm = null;
 
-        MmgMenuItem mItm = null;
-        
-        if (menuStartGame1P != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 1P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_1P, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame1P);
-            mItm.SetSound(menuSound);
-            menu.Add(mItm);
-        }
+            if (menuStartGame1P != null) {
+                mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 1P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_1P, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame1P);
+                mItm.SetSound(menuSound);
+                menu.Add(mItm);
+                mItm = new MmgMenuItem(mItm);
+            }
 
-        if (menuStartGame2P != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 2P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_2P, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame2P);
-            mItm.SetSound(menuSound);
-            menu.Add(mItm);
-        }        
-        
-        if (menuExitGame != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame);
-            mItm.SetSound(menuSound);
-            menu.Add(mItm);
+            if (menuStartGame2P != null) {
+                mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game 2P", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME_2P, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame2P);
+                mItm.SetSound(menuSound);
+                menu.Add(mItm);
+            }
+
+            if (menuExitGame != null) {
+                mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame);
+                mItm.SetSound(menuSound);
+                menu.Add(mItm);
+            }
+
+            SetMenuStart(0);
+            SetMenuStop(menu.GetCount() - 1);        
+            SetMenu(menu);
+            SetMenuOn(true);
         }
-        
-        SetMenuStart(0);
-        SetMenuStop(menu.GetCount() - 1);
-        
-        SetMenu(menu);
-        SetMenuOn(true);
+        isDirty = false;        
         pause = false;
     }
 
@@ -617,6 +620,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
             if (isDirty == true) {
                 lret = true;
                 DrawScreen();
+                isDirty = false;
             }
 
         } else {

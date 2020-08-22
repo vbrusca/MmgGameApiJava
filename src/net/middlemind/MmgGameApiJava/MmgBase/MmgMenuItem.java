@@ -66,9 +66,19 @@ public class MmgMenuItem extends MmgObj {
     private int state;
 
     /**
+     * A class helper variable indicating if the state has been set for this class instance.
+     */
+    private boolean stateSet = false;
+    
+    /**
      * A static class field that is used to show a bounding box around the object.
      */
     public static boolean SHOW_MENU_ITEM_BOUNDING_BOX = false;
+    
+    /**
+     * A helper variable used in the MmgDraw method.
+     */
+    private Color c;
     
     /**
      * Constructor for this class.
@@ -109,16 +119,33 @@ public class MmgMenuItem extends MmgObj {
     public MmgMenuItem(MmgMenuItem m) {
         super();
         SetEventPress(m.GetEventPress());
-        SetNormal(m.GetNormal());
-        SetSelected(m.GetSelected());
-        SetInactive(m.GetInactive());
-        SetState(m.GetState());
-
-        if(m.GetPosition() != null) {
-            SetPosition(m.GetPosition().Clone());
-        }else{
-            SetPosition(m.GetPosition());
+        
+        if(m.GetNormal() == null) {
+            SetNormal(m.GetNormal());
+        } else {
+            SetNormal(m.GetNormal().Clone());
         }
+        
+        if(m.GetSelected() == null) {
+            SetSelected(m.GetSelected());
+        } else {
+            SetSelected(m.GetSelected().Clone());
+        }
+        
+        if(m.GetInactive() == null) {
+            SetInactive(m.GetInactive());
+        } else {
+            SetInactive(m.GetInactive().Clone());            
+        }
+        
+        SetState(m.GetState());
+        
+        if(m.GetPosition() == null) {
+            SetPosition(m.GetPosition());
+        } else {
+            SetPosition(m.GetPosition().Clone());
+        }
+        
         SetWidth(m.GetWidth());
         SetHeight(m.GetHeight());
         SetIsVisible(m.GetIsVisible());
@@ -286,9 +313,21 @@ public class MmgMenuItem extends MmgObj {
             }else if (i == STATE_INACTIVE) {
                 current = inactive;
                 
+            } else {
+                current = normal;
             }
 
+            stateSet = true;
+            super.SetWidth(current.GetWidth());
+            super.SetHeight(current.GetHeight());            
             state = i;            
+        }
+        
+        if(!stateSet) {
+            stateSet = true;
+            current = normal;
+            super.SetWidth(current.GetWidth());
+            super.SetHeight(current.GetHeight());                        
         }
     }
 
@@ -320,6 +359,7 @@ public class MmgMenuItem extends MmgObj {
      */
     @Override
     public void SetHeight(int h) {
+        super.SetHeight(h);
         current.SetHeight(h);
     }
 
@@ -342,6 +382,7 @@ public class MmgMenuItem extends MmgObj {
      */
     @Override
     public void SetWidth(int w) {
+        super.SetWidth(w);        
         current.SetWidth(w);
     }
 
@@ -354,7 +395,7 @@ public class MmgMenuItem extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             if (MmgMenuItem.SHOW_MENU_ITEM_BOUNDING_BOX == true) {
-                Color c = p.GetGraphics().getColor();
+                c = p.GetGraphics().getColor();
                 p.GetGraphics().setColor(Color.red);
                 p.DrawRect(this);
                 p.GetGraphics().setColor(c);

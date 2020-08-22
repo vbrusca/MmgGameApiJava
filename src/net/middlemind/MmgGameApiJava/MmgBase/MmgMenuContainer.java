@@ -73,6 +73,7 @@ public class MmgMenuContainer extends MmgObj {
         if(obj.GetContainer() == null) {
             SetContainer(obj.GetContainer());
         } else {
+            a = new MmgObj[obj.GetCount()];
             a = obj.GetContainer().toArray(a);
             SetContainer(new ArrayList<MmgObj>(a.length));
             for(i = 0; i < a.length; i++) {
@@ -151,6 +152,7 @@ public class MmgMenuContainer extends MmgObj {
      * @return      The menu item objects stored by this container. 
      */
     public MmgObj[] GetArray() {
+        a = new MmgObj[container.size()];
         return container.toArray(a);
     }
 
