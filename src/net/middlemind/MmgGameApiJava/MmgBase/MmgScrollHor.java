@@ -210,7 +210,6 @@ public class MmgScrollHor extends MmgObj {
      * @param GameState                     The game state to use when firing events from the scroll view.
      */
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int ScrollBarHeight, int ScrollBarCenterButtonWidth, int IntervalX) {
-        super();        
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHeight = ScrollBarHeight;
@@ -234,7 +233,6 @@ public class MmgScrollHor extends MmgObj {
      * @param GameState                     The game state to use when firing events from the scroll view.
      */
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int IntervalX) {
-        super();
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHeight = MmgHelper.ScaleValue(10);
@@ -252,7 +250,6 @@ public class MmgScrollHor extends MmgObj {
      * @param obj       An MmgScrollHor instance. 
      */
     public MmgScrollHor(MmgScrollHor obj) {
-        super();
         if(obj.GetViewPort() == null) {
             SetViewPort(obj.GetViewPort());
         } else {
@@ -341,8 +338,7 @@ public class MmgScrollHor extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgScrollHor ret = new MmgScrollHor(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgScrollHor(this);
     }
     
     /**
@@ -434,7 +430,7 @@ public class MmgScrollHor extends MmgObj {
             scrollBarVisible = false;
         }
        
-        MmgHelper.wr("scrollBarHorVisible: " + scrollBarVisible);        
+        //MmgHelper.wr("scrollBarHorVisible: " + scrollBarVisible);        
         
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();
@@ -1185,5 +1181,47 @@ public class MmgScrollHor extends MmgObj {
             
             p.DrawBmp(viewPort, GetPosition());            
         }
-    }    
+    }
+
+    /**
+     * A method used to check the equality of this MmgScrollHor when compared to another MmgScrollHor.
+     * Compares object fields to determine equality.
+     * 
+     * @param obj     The MmgScrollHor object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */    
+    public boolean Equals(MmgScrollHor obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && obj.GetScrollBarVisible() == GetScrollBarVisible()
+            && obj.GetIntervalX() == GetIntervalX()
+            && obj.GetOffsetX() == GetOffsetX()
+            && ((obj.GetScrollBarCenterButton() == null && GetScrollBarCenterButton() == null) || (obj.GetScrollBarCenterButton() != null && GetScrollBarCenterButton() != null && obj.GetScrollBarCenterButton().Equals(GetScrollBarCenterButton())))
+            && ((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().Equals(GetScrollBarCenterButtonColor())))
+            && ((obj.GetScrollBarCenterButtonRect() == null && GetScrollBarCenterButtonRect() == null) || (obj.GetScrollBarCenterButtonRect() != null && GetScrollBarCenterButtonRect() != null && obj.GetScrollBarCenterButtonRect().Equals(GetScrollBarCenterButtonRect())))
+            && obj.GetScrollBarCenterButtonWidth() == GetScrollBarCenterButtonWidth()
+            && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().Equals(GetScrollBarColor())))
+            && obj.GetScrollBarHeight() == GetScrollBarHeight()
+            && ((obj.GetScrollBarLeftButton() == null && GetScrollBarLeftButton() == null) || (obj.GetScrollBarLeftButton() != null && GetScrollBarLeftButton() != null && obj.GetScrollBarLeftButton().Equals(GetScrollBarLeftButton())))
+            && ((obj.GetScrollBarLeftButtonRect() == null && GetScrollBarLeftButtonRect() == null) || (obj.GetScrollBarLeftButtonRect() != null && GetScrollBarLeftButtonRect() != null && obj.GetScrollBarLeftButtonRect().Equals(GetScrollBarLeftButtonRect())))                
+            && obj.GetScrollBarLeftRightButtonWidth() == GetScrollBarLeftRightButtonWidth()
+            && ((obj.GetScrollBarRightButton() == null && GetScrollBarRightButton() == null) || (obj.GetScrollBarRightButton() != null && GetScrollBarRightButton() != null && obj.GetScrollBarRightButton().Equals(GetScrollBarRightButton())))
+            && ((obj.GetScrollBarRightButtonRect() == null && GetScrollBarRightButtonRect() == null) || (obj.GetScrollBarRightButtonRect() != null && GetScrollBarRightButtonRect() != null && obj.GetScrollBarRightButtonRect().Equals(GetScrollBarRightButtonRect())))                
+            && obj.GetScrollBarVisible() == GetScrollBarVisible()
+            && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().Equals(GetScrollPane())))
+            && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().Equals(GetScrollPaneRect())))               
+            && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().Equals(GetViewPort())))
+            && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().Equals(GetViewPortRect())))               
+            && obj.GetWidthDiff() == GetWidthDiff()
+            && obj.GetWidthDiffPrct() == GetWidthDiffPrct()
+        ) {
+            ret = true;
+        }
+        return ret;
+    }
 }

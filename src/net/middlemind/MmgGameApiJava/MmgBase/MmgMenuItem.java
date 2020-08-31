@@ -84,82 +84,63 @@ public class MmgMenuItem extends MmgObj {
      * Constructor for this class.
      */
     public MmgMenuItem() {
-    	super();
-        eventPress = null;
-        normal = null;
-        selected = null;
-        inactive = null;
-        current = null;
-        state = STATE_NONE;
-    }
-
-    /**
-     * Constructor for this class that sets the value of base attributes
-     * from the given argument.
-     * 
-     * @param m     The MmgObj to use to set the attributes of this object. 
-     */
-    public MmgMenuItem(MmgObj m) {
-    	super(m);
-        eventPress = null;
-        normal = null;
-        selected = null;
-        inactive = null;
-        current = null;
-        state = STATE_NONE;
+        SetEventPress(null);
+        SetNormal(null);
+        SetSelected(null);
+        SetInactive(null);
+        SetState(STATE_NONE);        
     }
 
     /**
      * Constructor for this class that sets the value of certain attributes based
      * on the value of attributes in the given argument.
      * 
-     * @param m     An MmgMenuItem object to get attribute values from. 
+     * @param obj     An MmgMenuItem object to get attribute values from. 
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgMenuItem(MmgMenuItem m) {
-        super();
-        SetEventPress(m.GetEventPress());
+    public MmgMenuItem(MmgMenuItem obj) {
+        SetEventPress(obj.GetEventPress());
         
-        if(m.GetNormal() == null) {
-            SetNormal(m.GetNormal());
+        if(obj.GetNormal() == null) {
+            SetNormal(obj.GetNormal());
         } else {
-            SetNormal(m.GetNormal().Clone());
+            SetNormal(obj.GetNormal().Clone());
         }
         
-        if(m.GetSelected() == null) {
-            SetSelected(m.GetSelected());
+        if(obj.GetSelected() == null) {
+            SetSelected(obj.GetSelected());
         } else {
-            SetSelected(m.GetSelected().Clone());
+            SetSelected(obj.GetSelected().Clone());
         }
         
-        if(m.GetInactive() == null) {
-            SetInactive(m.GetInactive());
+        if(obj.GetInactive() == null) {
+            SetInactive(obj.GetInactive());
         } else {
-            SetInactive(m.GetInactive().Clone());            
+            SetInactive(obj.GetInactive().Clone());            
         }
         
-        SetState(m.GetState());
+        SetState(obj.GetState());
         
-        if(m.GetPosition() == null) {
-            SetPosition(m.GetPosition());
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
         } else {
-            SetPosition(m.GetPosition().Clone());
+            SetPosition(obj.GetPosition().Clone());
         }
         
-        SetWidth(m.GetWidth());
-        SetHeight(m.GetHeight());
-        SetIsVisible(m.GetIsVisible());
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
         
-        if(m.GetMmgColor() != null) {
-            SetMmgColor(m.GetMmgColor().Clone());
+        if(obj.GetMmgColor() != null) {
+            SetMmgColor(obj.GetMmgColor().Clone());
         }else{
-            SetMmgColor(m.GetMmgColor());
+            SetMmgColor(obj.GetMmgColor());
         }
         
-        if(m.GetSound() != null) {
-            SetSound(m.GetSound().Clone());
+        if(obj.GetSound() != null) {
+            SetSound(obj.GetSound().Clone());
         }else {
-            SetSound(m.GetSound());
+            SetSound(obj.GetSound());
         }
     }
 
@@ -175,11 +156,11 @@ public class MmgMenuItem extends MmgObj {
      */
     public MmgMenuItem(MmgEvent me, MmgObj Normal, MmgObj Selected, MmgObj Inactive, int State) {
     	super();
-        eventPress = me;
-        normal = Normal;
-        selected = Selected;
-        inactive = Inactive;
-        state = State;
+        SetEventPress(me);
+        SetNormal(Normal);
+        SetSelected(Selected);
+        SetInactive(Inactive);
+        SetState(State);
     }
 
     /**
@@ -189,8 +170,7 @@ public class MmgMenuItem extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgMenuItem ret = new MmgMenuItem(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgMenuItem(this);
     }
     
     /**
@@ -318,16 +298,26 @@ public class MmgMenuItem extends MmgObj {
             }
 
             stateSet = true;
-            super.SetWidth(current.GetWidth());
-            super.SetHeight(current.GetHeight());            
-            state = i;            
+            if(current != null) {
+                super.SetWidth(current.GetWidth());
+                super.SetHeight(current.GetHeight());            
+            } else {
+                super.SetWidth(0);
+                super.SetHeight(0);
+            }
+            state = i;
         }
         
         if(!stateSet) {
             stateSet = true;
             current = normal;
-            super.SetWidth(current.GetWidth());
-            super.SetHeight(current.GetHeight());                        
+            if(current != null) {
+                super.SetWidth(current.GetWidth());
+                super.SetHeight(current.GetHeight());            
+            } else {
+                super.SetWidth(0);
+                super.SetHeight(0);
+            }
         }
     }
 
@@ -406,4 +396,31 @@ public class MmgMenuItem extends MmgObj {
             current.MmgDraw(p);
         }
     }
+    
+    /**
+     * A method that checks to see if this MmgMenuContainer is equal to the passed in MmgMenuContainer.
+     * 
+     * @param c     The MmgMenuContainer object instance to test for equality.
+     * @return      Returns true if both MmgMenuContainer objects are the same.
+     */
+     public boolean Equals(MmgMenuItem obj) {
+        if(obj == null) {
+            return false;
+        }
+                 
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && obj.GetHeight() == GetHeight()
+            && ((obj.GetInactive() == null && GetInactive() == null) || (obj.GetInactive() != null && GetInactive() != null && obj.GetInactive().Equals(GetInactive())))
+            && ((obj.GetNormal() == null && GetNormal() == null) || (obj.GetNormal() != null && GetNormal() != null && obj.GetNormal().Equals(GetNormal())))
+            && ((obj.GetSelected() == null && GetSelected() == null) || (obj.GetSelected() != null && GetSelected() != null && obj.GetSelected().Equals(GetSelected())))
+            && ((obj.GetSound() == null && GetSound() == null) || (obj.GetSound() != null && GetSound() != null && obj.GetSound().Equals(GetSound())))
+            && obj.GetState() == GetState()
+            && obj.GetWidth() == GetWidth()
+        ) {
+            ret = true;
+        }
+        return ret;
+     }
 }

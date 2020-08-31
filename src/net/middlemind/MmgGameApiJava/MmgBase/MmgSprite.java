@@ -121,7 +121,6 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgRect Src, MmgRect Dst, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
-        super();
         frameTime = -1;
         prevFrameTime = -1;
         SetRotation(Rotation);
@@ -147,7 +146,6 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
-        super();
         SetFrameTime(-1);
         SetPrevFrameTime(-1);
         SetRotation(Rotation);
@@ -170,7 +168,6 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position) {
-        super();
         SetFrameTime(-1);
         SetPrevFrameTime(-1);
         SetRotation(0);
@@ -192,7 +189,6 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t) {
-        super();
         SetFrameTime(-1);
         SetPrevFrameTime(-1);
         SetRotation(0);
@@ -211,55 +207,54 @@ public class MmgSprite extends MmgObj {
      * Constructor that sets the value of the class attributes based on the attributes
      * of the given argument.
      * 
-     * @param spr       The MmgSprite object to base our class off of.
+     * @param obj       The MmgSprite object to base our class off of.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgSprite(MmgSprite spr) {
-        super();
-        SetFrameTime(spr.GetFrameTime());
-        SetPrevFrameTime(spr.GetPrevFrameTime());
-        SetRotation(spr.GetRotation());
+    public MmgSprite(MmgSprite obj) {
+        SetFrameTime(obj.GetFrameTime());
+        SetPrevFrameTime(obj.GetPrevFrameTime());
+        SetRotation(obj.GetRotation());
 
-        if (spr.GetOrigin() == null) {
-            SetOrigin(spr.GetOrigin());
+        if (obj.GetOrigin() == null) {
+            SetOrigin(obj.GetOrigin());
         } else {
-            SetOrigin(spr.GetOrigin().Clone());
+            SetOrigin(obj.GetOrigin().Clone());
         }
 
-        if (spr.GetScaling() == null) {
-            SetScaling(spr.GetScaling());
+        if (obj.GetScaling() == null) {
+            SetScaling(obj.GetScaling());
         } else {
-            SetScaling(spr.GetScaling().Clone());
+            SetScaling(obj.GetScaling().Clone());
         }
 
-        if (spr.GetSrcRect() == null) {
-            SetSrcRect(spr.GetSrcRect());
+        if (obj.GetSrcRect() == null) {
+            SetSrcRect(obj.GetSrcRect());
         } else {
-            SetSrcRect(spr.GetSrcRect().Clone());
+            SetSrcRect(obj.GetSrcRect().Clone());
         }
 
-        if (spr.GetDstRect() == null) {
-            SetDstRect(spr.GetDstRect());
+        if (obj.GetDstRect() == null) {
+            SetDstRect(obj.GetDstRect());
         } else {
-            SetDstRect(spr.GetDstRect().Clone());
+            SetDstRect(obj.GetDstRect().Clone());
         }
 
-        SetBmpArray(spr.GetBmpArray());
+        SetBmpArray(obj.GetBmpArray());
 
-        if (spr.GetPosition() == null) {
-            SetPosition(spr.GetPosition());
+        if (obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
         } else {
-            SetPosition(spr.GetPosition().Clone());
+            SetPosition(obj.GetPosition().Clone());
         }
 
-        SetFrameIdx(spr.GetFrameIdx());
-        SetFrameStart(spr.GetFrameStart());
-        SetFrameStop(spr.GetFrameStop());        
-        SetWidth(spr.GetWidth());
-        SetHeight(spr.GetHeight());
-        SetIsVisible(spr.GetIsVisible());
-        SetSimpleRendering(spr.GetSimpleRendering());
-        SetMsPerFrame(spr.GetMsPerFrame());
+        SetFrameIdx(obj.GetFrameIdx());
+        SetFrameStart(obj.GetFrameStart());
+        SetFrameStop(obj.GetFrameStop());        
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
+        SetSimpleRendering(obj.GetSimpleRendering());
+        SetMsPerFrame(obj.GetMsPerFrame());
     }
 
     /**
@@ -372,8 +367,7 @@ public class MmgSprite extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgSprite ret = new MmgSprite(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgSprite(this);
     }
 
     /**
@@ -673,5 +667,55 @@ public class MmgSprite extends MmgObj {
         }
         
         return lret;
+    }
+    
+    /**
+     * A method used to check the equality of this MmgSprite when compared to another MmgSprite.
+     * Compares object fields to determine equality.
+     * 
+     * @param obj     The MmgSprite object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */    
+    public boolean Equals(MmgSprite obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)                
+            && obj.GetSimpleRendering() == GetSimpleRendering()
+            && obj.GetTimerOnly() == GetTimerOnly()
+            && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().Equals(GetDstRect())))
+            && obj.GetFrameStart() == GetFrameStart()
+            && obj.GetFrameStop() == GetFrameStop()
+            && obj.GetFrameTime() == GetFrameTime()
+            && obj.GetMsPerFrame() == GetMsPerFrame()
+            && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().Equals(GetOrigin())))
+            && obj.GetRotation() == GetRotation()
+            && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().Equals(GetScaling())))
+            && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().Equals(GetSrcRect())))                
+        ) {
+            ret = true;            
+            if(obj.GetBmpArray() == null && GetBmpArray() == null) {
+                ret = true;
+            } else if(obj.GetBmpArray() != null && GetBmpArray() != null) {
+                int len1 = obj.GetBmpArray().length;
+                int len2 = GetBmpArray().length;
+                if(len1 != len2) {
+                    ret = false;
+                } else {
+                    for(int i = 0; i < len1; i++) {
+                        if(!obj.GetBmpArray()[i].Equals(GetBmpArray()[i])) {
+                            ret = false;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                ret = false;
+            }
+        }
+        return ret;        
     }
 }

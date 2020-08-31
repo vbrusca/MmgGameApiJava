@@ -118,7 +118,6 @@ public class MmgGameScreen extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen() {
-        super();
         pause = false;
         ready = false;
         objects = new MmgContainer();
@@ -142,33 +141,32 @@ public class MmgGameScreen extends MmgObj {
     /**
      * Constructor that sets attributes based on the given argument.
      *
-     * @param gm        The MmgGameScreen to use for attribute settings.
+     * @param obj        The MmgGameScreen to use for attribute settings.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgGameScreen(MmgGameScreen gm) {
-        super();
-        SetObjects(gm.GetObjects());
-        SetMenu(gm.GetMenu());
-        SetBackground(gm.GetBackground());
-        SetForeground(gm.GetForeground());
-        SetHeader(gm.GetHeader());
-        SetFooter(gm.GetFooter());
-        SetLeftCursor(gm.GetLeftCursor());
-        SetRightCursor(gm.GetRightCursor());
-        SetMessage(gm.GetMessage());
-        SetMenuOn(gm.GetMenuOn());
-        SetMenuIdx(gm.GetMenuIdx());
-        SetMenuStart(gm.GetMenuStart());
-        SetMenuStop(gm.GetMenuStop());
+    public MmgGameScreen(MmgGameScreen obj) {
+        SetObjects(obj.GetObjects());
+        SetMenu(obj.GetMenu());
+        SetBackground(obj.GetBackground());
+        SetForeground(obj.GetForeground());
+        SetHeader(obj.GetHeader());
+        SetFooter(obj.GetFooter());
+        SetLeftCursor(obj.GetLeftCursor());
+        SetRightCursor(obj.GetRightCursor());
+        SetMessage(obj.GetMessage());
+        SetMenuOn(obj.GetMenuOn());
+        SetMenuIdx(obj.GetMenuIdx());
+        SetMenuStart(obj.GetMenuStart());
+        SetMenuStop(obj.GetMenuStop());
 
-        if (gm.GetPosition() != null) {
-            SetPosition(gm.GetPosition().Clone());
+        if (obj.GetPosition() != null) {
+            SetPosition(obj.GetPosition().Clone());
         } else {
-            SetPosition(gm.GetPosition());
+            SetPosition(obj.GetPosition());
         }
-        SetWidth(gm.GetWidth());
-        SetHeight(gm.GetHeight());
-        SetMmgColor(gm.GetMmgColor());
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        SetMmgColor(obj.GetMmgColor());
     }
 
     /**
@@ -178,8 +176,7 @@ public class MmgGameScreen extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgGameScreen ret = new MmgGameScreen(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgGameScreen(this);
     }
 
     /**

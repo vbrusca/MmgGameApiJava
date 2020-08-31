@@ -123,7 +123,6 @@ public class MmgTextField extends MmgObj {
      * @param Padding           The padding value to use in slight font positioning calculations.
      */
     public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, int DisplayChars) {
-        super();
         bgroundSrc = BgroundSrc;
         font = Font;
         padding = Padding;
@@ -141,7 +140,6 @@ public class MmgTextField extends MmgObj {
      * @param obj       The class used to create a new MmgTextField from.
      */
     public MmgTextField(MmgTextField obj) {
-        super();
         if(obj.GetBgroundSrc() != null) {
             SetBgroundSrc(obj.GetBgroundSrc());
         } else {
@@ -167,8 +165,7 @@ public class MmgTextField extends MmgObj {
      */
     @Override    
     public MmgObj Clone() {
-        MmgTextField ret = new MmgTextField(this);
-        return (MmgObj)ret;
+        return (MmgObj) new MmgTextField(this);
     }
     
     /**
@@ -335,25 +332,7 @@ public class MmgTextField extends MmgObj {
     public void SetDisplayChars(int i) {
         displayChars = i;
     }
-
-    /**
-     * Gets the font maximum width for text dis
-     * 
-     * @return 
-     */
-    //public int GetFontWidth() {
-    //    return fontWidth;
-    //}
-
-    /**
-     * 
-     * 
-     * @param i 
-     */
-    //public void SetFontWidth(int i) {
-    //    fontWidth = i;
-    //}
-
+    
     /**
      * Gets the height of the MmgFont used to render text.
      * 
@@ -421,6 +400,26 @@ public class MmgTextField extends MmgObj {
     }
     
     /**
+     * Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
+     * 
+     * @param x     The X position to use when setting the position of the text field.
+     * @param y     The Y position to use when setting the position of the text field.
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        super.SetPosition(x, y);
+        bground.SetPosition(x, y);
+        font.SetPosition(new MmgVector2(x + padding, y + GetHeight() - padding));
+    }
+    
+    /*
+    @Override
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }    
+    */    
+    
+    /**
      * A method for handling intake of characters to append to the text field string value.
      * 
      * @param c         A character to append to the text field string value.
@@ -451,17 +450,6 @@ public class MmgTextField extends MmgObj {
         }
         isDirty = true;
     }
-    
-    /**
-     * Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
-     * 
-     * @param x     The X position to use when setting the position of the text field.
-     * @param y     The Y position to use when setting the position of the text field.
-     */
-    @Override
-    public void SetPosition(int x, int y) {
-        SetPosition(new MmgVector2(x, y));
-    }    
     
     /**
      * Sets the X position of the text field.
@@ -544,5 +532,35 @@ public class MmgTextField extends MmgObj {
      */
     public void SetEventHandler(MmgEventHandler h) {
         errorMaxLength.SetTargetEventHandler(h);
+    }
+    
+    /**
+     * A method used to check the equality of this MmgTextField when compared to another MmgTextField.
+     * Compares object fields to determine equality.
+     * 
+     * @param obj     The MmgTextField object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */   
+    public boolean Equals(MmgTextField obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && ((obj.GetBground() == null && GetBground() == null) || (obj.GetBground() != null && GetBground() != null && obj.GetBground().Equals(GetBground())))
+            && ((obj.GetBgroundSrc() == null && GetBgroundSrc() == null) || (obj.GetBgroundSrc() != null && GetBgroundSrc() != null && obj.GetBgroundSrc().Equals(GetBgroundSrc())))
+            && obj.GetDisplayChars() == GetDisplayChars()
+            && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().Equals(GetFont())))
+            && obj.GetFontHeight() == GetFontHeight()
+            && obj.GetMaxLength() == GetMaxLength()
+            && obj.GetMaxLengthOn() == GetMaxLengthOn()
+            && obj.GetPadding() == GetPadding()
+            && ((obj.GetTextFieldString() == null && GetTextFieldString() == null) || (obj.GetTextFieldString() != null && GetTextFieldString() != null && obj.GetTextFieldString().equals(GetTextFieldString())))
+        ) {
+            ret = true;
+        }
+        return ret;        
     }
 }

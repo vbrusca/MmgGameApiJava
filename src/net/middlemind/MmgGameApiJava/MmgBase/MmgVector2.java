@@ -288,14 +288,20 @@ public class MmgVector2 {
     /**
      * A method that tests equality with another MmgVector2 object by comparing the coordinates.
      * 
-     * @param o     An MmgVector2 object to compare for equality.
+     * @param obj     An MmgVector2 object to compare for equality.
      * @return      A boolean indicating if this object is equal to the comparison object.
      */
-    public boolean Equals(MmgVector2 o) {
-        if (o != null && o.GetXDouble() == GetXDouble() && o.GetYDouble() == GetYDouble()) {
-            return true;
-        } else {
+    public boolean Equals(MmgVector2 obj) {
+        if(obj == null) {
             return false;
         }
+
+        boolean ret = false;
+        if (obj.GetXDouble() == GetXDouble() 
+            && obj.GetYDouble() == GetYDouble()
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

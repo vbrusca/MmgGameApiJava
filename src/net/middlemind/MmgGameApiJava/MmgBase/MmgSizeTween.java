@@ -128,11 +128,6 @@ public class MmgSizeTween extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
-        super();
-
-        MmgHelper.wr("MmgSizeTween Found start pos: " + startSize.ToString() + ", " + msTimeToChange);
-        MmgHelper.wr("MmgSizeTween Found end pos: " + finishSize.ToString());
-
         SetSubj(subj);
         SetPixelSizeToChange(new MmgVector2((finishSize.GetX() - startSize.GetX()), (finishSize.GetY() - startSize.GetY())));
         SetMsTimeToChange(msTimeToChange);
@@ -151,45 +146,11 @@ public class MmgSizeTween extends MmgObj {
     }
 
     /**
-     * A constructor for the MmgPositionTween object that doesn't set the MmgObj subject.
-     * You'll have to specify this object before starting the tween scaling.
-     * 
-     * @param msTimeToChange        The number of milliseconds to scale the object.
-     * @param startSize             The start size of the tween.
-     * @param finishSize            The finish size of the tween.
-     */
-    @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgSizeTween(float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
-        super();
-
-        MmgHelper.wr("MmgSizeTween Found start pos: " + startSize.ToString() + ", " + msTimeToChange);
-        MmgHelper.wr("MmgSizeTween Found end pos: " + finishSize.ToString());
-
-        SetSubj(subj);
-        SetPixelSizeToChange(new MmgVector2((finishSize.GetX() - startSize.GetX()), (finishSize.GetY() - startSize.GetY())));
-        SetMsTimeToChange(msTimeToChange);
-        SetPixelsPerMsToChangeX((GetPixelSizeToChange().GetX() / (float) msTimeToChange));
-        SetPixelsPerMsToChangeY((GetPixelSizeToChange().GetY() / (float) msTimeToChange));
-        SetStartSize(startSize);
-        SetFinishSize(finishSize);
-        SetWidth(startSize.GetX());
-        SetHeight(startSize.GetY());
-        SetDirStartToFinish(true);
-        SetAtStart(true);
-        SetAtFinish(false);
-        SetChanging(false);
-        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToChangeX);        
-        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
-    }
-
-    /**
      * A constructor that is based on the an instance of the MmgSizeTween object.
      * 
      * @param obj       An MmgSizeTween object used to create an new instance of the MmgSizeTween class.
      */
-    public MmgSizeTween(MmgSizeTween obj) {
-        super();
-        
+    public MmgSizeTween(MmgSizeTween obj) {        
         if(obj.GetSubj() == null) {
             SetSubj(obj.GetSubj());
         } else {
@@ -509,8 +470,7 @@ public class MmgSizeTween extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgSizeTween ret = new MmgSizeTween(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgSizeTween(this);
     }
 
     /**
@@ -610,6 +570,7 @@ public class MmgSizeTween extends MmgObj {
      */    
     @Override
     public void SetWidth(int w) {
+        super.SetWidth(w);
         subj.SetWidth(w);
     }
 
@@ -630,6 +591,7 @@ public class MmgSizeTween extends MmgObj {
      */    
     @Override
     public void SetHeight(int h) {
+        super.SetHeight(h);
         subj.SetHeight(h);
     }
 
@@ -651,7 +613,8 @@ public class MmgSizeTween extends MmgObj {
      */
     @Override
     public void SetPosition(int x, int y) {
-        SetPosition(new MmgVector2(x, y));
+        super.SetPosition(x, y);
+        subj.SetPosition(x, y);
     }    
     
     /**
@@ -678,25 +641,35 @@ public class MmgSizeTween extends MmgObj {
      * A method used to check the equality of this MmgPositionTween when compared to another MmgPositionTween.
      * Compares object fields to determine equality.
      * 
-     * @param r     The MmgPositionTween object to compare to.
+     * @param obj     The MmgPositionTween object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */    
-    public boolean Equals(MmgSizeTween r) {
-        if (GetSubj().Equals(r.GetSubj()) == true
-                && GetAtStart() == r.GetAtStart()
-                && GetAtFinish() == r.GetAtFinish()
-                && GetPixelSizeToChange().Equals(r.GetPixelSizeToChange()) == true
-                && GetMsTimeToChange() == r.GetMsTimeToChange()
-                && GetPixelsPerMsToChangeX() == r.GetPixelsPerMsToChangeX()
-                && GetPixelsPerMsToChangeY() == r.GetPixelsPerMsToChangeY()
-                && GetStartSize().Equals(r.GetStartSize()) == true
-                && GetFinishSize().Equals(r.GetFinishSize()) == true
-                && GetDirStartToFinish() == r.GetDirStartToFinish()
-                && GetChanging() == r.GetChanging()
-        ) {
-            return true;
-        } else {
+    public boolean Equals(MmgSizeTween obj) {
+        if(obj == null) {
             return false;
         }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && GetAtStart() == obj.GetAtStart()
+            && GetAtFinish() == obj.GetAtFinish()
+            && GetDirStartToFinish() == obj.GetDirStartToFinish()
+            && ((obj.GetFinishSize() == null && GetFinishSize() == null) || (obj.GetFinishSize() != null && GetFinishSize() != null && obj.GetFinishSize().Equals(GetFinishSize())))
+            && obj.GetHeight() == GetHeight()
+            && obj.GetChanging() == GetChanging()
+            && obj.GetMsStartChange() == GetMsStartChange()
+            && obj.GetMsTimeToChange() == GetMsTimeToChange()
+            && ((obj.GetPixelSizeToChange() == null && GetPixelSizeToChange() == null) || (obj.GetPixelSizeToChange() != null && GetPixelSizeToChange() != null && obj.GetPixelSizeToChange().Equals(GetPixelSizeToChange())))
+            && obj.GetPixelsPerMsToChangeX() == GetPixelsPerMsToChangeX()
+            && obj.GetPixelsPerMsToChangeY() == GetPixelsPerMsToChangeX()
+            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
+            && ((obj.GetStartSize() == null && GetStartSize() == null) || (obj.GetStartSize() != null && GetStartSize() != null && obj.GetStartSize().Equals(GetStartSize())))
+            && ((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().Equals(GetSubj())))                
+            && obj.GetWidth() == GetWidth()
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

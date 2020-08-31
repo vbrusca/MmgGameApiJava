@@ -486,22 +486,55 @@ public class MmgObj {
      * A class method that checks equality of this class with another MmgObj class by comparing
      * some key class fields.
      * 
-     * @param o     A MmgObj to compare this class to.
+     * @param obj     A MmgObj to compare this class to.
      * @return      A boolean indicating if this class instance is equal to the comparison class instance.
      */
-    public boolean Equals(MmgObj o) {
-        if(o != null 
-                && o.GetHasParent() == GetHasParent() 
-                && o.GetIsVisible() == GetIsVisible()
-                && o.GetHeight() == GetHeight()
-                && ((o.GetId() == null && GetId() == null) || (o.GetId() != null && GetId() != null && o.GetId().equals(GetId())))
-                && ((o.GetName() == null && GetName() == null) || (o.GetName() != null && GetName() != null && o.GetName().equals(GetName())))
-                && ((o.GetParent() == null && GetParent() == null) || (o.GetParent() != null && GetParent() != null && o.GetParent().Equals(GetParent())))
-                && ((o.GetPosition() == null && GetPosition() == null) || (o.GetPosition() != null && GetPosition() != null && o.GetPosition().Equals(GetPosition())))
-                ) {
-            return true;
-        }else {
+    public boolean Equals(MmgObj obj) {
+        if(obj == null) {
             return false;
         }
+        
+        boolean ret = false;
+        if(
+            obj.GetHasParent() == GetHasParent() 
+            && obj.GetIsVisible() == GetIsVisible()
+            && obj.GetHeight() == GetHeight()
+            && obj.GetWidth() == GetWidth()
+            && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))                
+            && ((obj.GetId() == null && GetId() == null) || (obj.GetId() != null && GetId() != null && obj.GetId().equals(GetId())))
+            && ((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().equals(GetName())))
+            && ((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))
+            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
+        ) {
+            ret = true;
+        }
+        /*
+        if(obj.GetHasParent() == GetHasParent() && obj.GetIsVisible() == GetIsVisible() && obj.GetHeight() == GetHeight() && obj.GetWidth() == GetWidth()) {
+            MmgHelper.wr("AAA");
+        }
+        
+        if(obj.GetMmgColor().Equals(GetMmgColor())) {
+            MmgHelper.wr("BBB");
+        }
+        
+        if(obj.GetId().equals(GetId())) {
+            MmgHelper.wr("CCC");
+        }        
+        
+        if(obj.GetId().equals(GetId())) {
+            MmgHelper.wr("DDD");
+        }        
+        
+        if(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))) {
+            MmgHelper.wr("EEE");
+        }        
+        
+        if(obj.GetPosition().Equals(GetPosition())) {
+            MmgHelper.wr("FFF");
+        }                
+        
+        MmgHelper.wr("Return: " + ret);
+        */
+        return ret;
     }
 }

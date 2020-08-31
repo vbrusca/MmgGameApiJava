@@ -73,26 +73,105 @@ public class MmgPulse {
      * @param blS           A baseline scaling value.
      */
     public MmgPulse(int startDir, long totalMs, double chng, MmgVector2 blS) {
-        direction = startDir;
-        timeTotal = totalMs;
-        timeFlip = totalMs / 2;
-        timeStart = 0;
-        change = chng;
-        baseLineScaling = blS;
-        adjScaling = new MmgVector2(baseLineScaling.GetXDouble() + (baseLineScaling.GetXDouble() * change * direction), baseLineScaling.GetYDouble() + (baseLineScaling.GetYDouble() * change * direction));
+        SetDirection(startDir);
+        SetTimeTotal(totalMs);
+        SetTimeFlip(totalMs / 2);
+        SetTimeStart(0);
+        SetChange(chng);
+        SetBaseLineScaling(blS);
+        SetAdjScaling(new MmgVector2(baseLineScaling.GetXDouble() + (baseLineScaling.GetXDouble() * change * direction), baseLineScaling.GetYDouble() + (baseLineScaling.GetYDouble() * change * direction)));
+        SetChangePerMs((adjScaling.GetXDouble() - baseLineScaling.GetXDouble()) / timeFlip);
+    }
 
-        changePerMs = (adjScaling.GetXDouble() - baseLineScaling.GetXDouble()) / timeFlip;
+    /**
+     * A specialized constructor that takes an MmgPulse object as an argument and creates a new unique MmgPulse object from it with no shared references.
+     * 
+     * @param obj       The MmgPulse object to use in the creation of a new unique MmgPulse object.
+     */
+    public MmgPulse(MmgPulse obj) {
+        SetDirection(obj.GetDirection());
+        SetTimeTotal(obj.GetTimeTotal());
+        SetTimeFlip(obj.GetTimeFlip());
+        SetTimeStart(obj.GetTimeStart());
+        SetChange(obj.GetChange());
+        
+        if(obj.GetBaseLineScaling() == null) {
+            SetBaseLineScaling(obj.GetBaseLineScaling());
+        } else {
+            SetBaseLineScaling(obj.GetBaseLineScaling().Clone());
+        }        
+        
+        if(obj.GetAdjScaling() == null) {
+            SetAdjScaling(obj.GetAdjScaling());
+        } else {
+            SetAdjScaling(obj.GetAdjScaling().Clone());
+        }
+                
+        SetChangePerMs(obj.GetChangePerMs());
+    }
+    
+    /**
+     * Creates a typed clone of this class.
+     *
+     * @return      A typed clone of this class.
+     */    
+    public MmgPulse Clone() {
+        return new MmgPulse(this);
+    }
+    
+    /**
+     * Get the change per millisecond value.
+     * 
+     * @return      The change per millisecond value.
+     */
+    public double GetChangePerMs() {
+        return changePerMs;
+    }
 
-        MmgHelper.wr("Direction: " + direction);
-        MmgHelper.wr("TimeTotal: " + timeTotal);
-        MmgHelper.wr("TimeFlip: " + timeFlip);
-        MmgHelper.wr("TimeStart: " + timeStart);
-        MmgHelper.wr("Change: " + change);
-        MmgHelper.wr("Change/MS: " + changePerMs);
-        MmgHelper.wr("MaxX: " + adjScaling.GetXDouble());
-        MmgHelper.wr("MaxY: " + adjScaling.GetYDouble());
-        MmgHelper.wr("BaseX: " + baseLineScaling.GetXDouble());
-        MmgHelper.wr("BaseY: " + baseLineScaling.GetYDouble());
+    /**
+     * Set the change per millisecond value.
+     * 
+     * @param d     The change per millisecond value.
+     */
+    public void SetChangePerMs(double d) {
+        changePerMs = d;
+    }
+
+    /**
+     * Get the base line MmgVector2 object for this animation.
+     * 
+     * @return      The base line MmgVector2 object that represents the base line for this animation.
+     * 
+     */
+    public MmgVector2 GetBaseLineScaling() {
+        return baseLineScaling;
+    }
+
+    /**
+     * Set the base line MmgVector2 object for this animation.
+     * 
+     * @param v     The base line MmgVector2 object that represents the base line for this animation.
+     */
+    public void SetBaseLineScaling(MmgVector2 v) {
+        baseLineScaling = v;
+    }
+
+    /**
+     * Get the adjusted MmgVector2 object for this animation.
+     * 
+     * @return      The adjusted MmgVector2 object that represents the base line for this animation.
+     */
+    public MmgVector2 GetAdjScaling() {
+        return adjScaling;
+    }
+
+    /**
+     * Set the adjusted MmgVector2 object for this animation.
+     * 
+     * @param v     The adjusted MmgVector2 object that represents the base line for this animation.
+     */
+    public void SetAdjScaling(MmgVector2 v) {
+        adjScaling = v;
     }
 
     /**
@@ -215,5 +294,51 @@ public class MmgPulse {
             timeStart = 0;
             direction *= -1;
         }
+    }
+    
+    /**
+     * Returns a string representation of this class.
+     * 
+     * @return      A string representation of this class.
+     */
+    public String ToString() {
+        String ret = "";
+        ret += "Direction: " + direction + System.lineSeparator();
+        ret += "TimeTotal: " + timeTotal + System.lineSeparator();
+        ret += "TimeFlip: " + timeFlip + System.lineSeparator();
+        ret += "TimeStart: " + timeStart + System.lineSeparator();
+        ret += "Change: " + change + System.lineSeparator();
+        ret += "Change/MS: " + changePerMs + System.lineSeparator();
+        ret += "MaxX: " + adjScaling.GetXDouble() + System.lineSeparator();
+        ret += "MaxY: " + adjScaling.GetYDouble() + System.lineSeparator();
+        ret += "BaseX: " + baseLineScaling.GetXDouble() + System.lineSeparator();
+        ret += "BaseY: " + baseLineScaling.GetYDouble() + System.lineSeparator();
+        return ret;
+    }
+    
+    /**
+     * The base drawing method for this object.
+     * 
+     * @param p     The MmgPen object used to draw this object.
+     */    
+    public boolean Equals(MmgPulse obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            ((obj.GetAdjScaling() == null && GetAdjScaling() == null) || (obj.GetAdjScaling() != null && GetAdjScaling() != null && obj.GetAdjScaling().Equals(GetAdjScaling())))
+            && ((obj.GetBaseLineScaling() == null && GetBaseLineScaling() == null) || (obj.GetBaseLineScaling() != null && GetBaseLineScaling() != null && obj.GetBaseLineScaling().Equals(GetBaseLineScaling())))
+            && obj.GetChange() == GetChange()
+            && obj.GetChangePerMs() == GetChangePerMs()
+            && obj.GetDirection() == GetDirection()
+            && obj.GetTimeFlip() == GetTimeFlip()
+            && obj.GetTimeStart() == GetTimeStart()
+            && obj.GetTimeTotal() == GetTimeTotal()                
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

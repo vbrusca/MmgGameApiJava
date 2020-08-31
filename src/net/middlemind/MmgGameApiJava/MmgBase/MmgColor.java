@@ -25,10 +25,10 @@ public class MmgColor {
     /**
      * Constructor that sets its properties from an input MmgColor object.
      *
-     * @param m     Input MmgColor object.
+     * @param obj     Input MmgColor object.
      */
-    public MmgColor(MmgColor m) {
-        Color tmpC = m.GetColor();
+    public MmgColor(MmgColor obj) {
+        Color tmpC = obj.GetColor();
         c = new Color(tmpC.getRed(), tmpC.getGreen(), tmpC.getBlue(), tmpC.getAlpha());
     }
 
@@ -528,14 +528,20 @@ public class MmgColor {
     /**
      * A method that checks to see if this MmgColor is equal to the passed in MmgColor.
      * 
-     * @param c     The MmgColor object instance to test for equality.
+     * @param obj     The MmgColor object instance to test for equality.
      * @return      Returns true if both MmgColor objects have the same color.
      */
-    public boolean Equals(MmgColor c) {
-        if (c != null && c.GetColor().equals(GetColor()) == true) {
-            return true;
-        } else {
+    public boolean Equals(MmgColor obj) {
+        if(obj == null) {
             return false;
         }
+                 
+        boolean ret = false;
+        if (
+            ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().equals(GetColor())))
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

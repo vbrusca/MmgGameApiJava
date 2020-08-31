@@ -26,10 +26,10 @@ public class MmgRect {
      * Constructor for this class that is created from an existing MmgRect
      * class.
      *
-     * @param r     The MmgRect to use as a basis for this class.
+     * @param obj     The MmgRect to use as a basis for this class.
      */
-    public MmgRect(MmgRect r) {
-        rect = new Rectangle(r.GetLeft(), r.GetTop(), r.GetWidth(), r.GetHeight());
+    public MmgRect(MmgRect obj) {
+        rect = new Rectangle(obj.GetLeft(), obj.GetTop(), obj.GetWidth(), obj.GetHeight());
     }
 
     /**
@@ -350,14 +350,14 @@ public class MmgRect {
     /**
      * A method that test equality between two rectangles based on the coordinate of the left, right, top, bottom.
      * 
-     * @param r     A MmgRect to compare with this class instance.
+     * @param obj     A MmgRect to compare with this class instance.
      * @return      A boolean indicating if the two class instances are equal.
      */
-    public boolean Equals(MmgRect r) {
-        if (GetLeft() == r.GetLeft() && GetRight() == r.GetRight() && GetTop() == r.GetTop() && GetBottom() == r.GetBottom()) {
-            return true;
-        } else {
-            return false;
+    public boolean Equals(MmgRect obj) {
+        boolean ret = false;
+        if (GetLeft() == obj.GetLeft() && GetRight() == obj.GetRight() && GetTop() == obj.GetTop() && GetBottom() == obj.GetBottom()) {
+            ret = true;
         }
+        return ret;
     }
 }

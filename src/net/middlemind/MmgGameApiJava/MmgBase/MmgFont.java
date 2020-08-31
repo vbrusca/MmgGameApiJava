@@ -31,7 +31,6 @@ public class MmgFont extends MmgObj {
      * Constructor for this class.
      */
     public MmgFont() {
-        super();
         frc = new FontRenderContext(null, true, true);
         text = "";
         font = null;
@@ -45,7 +44,6 @@ public class MmgFont extends MmgObj {
      * @param tf    Font to use for text drawing.
      */
     public MmgFont(Font tf) {
-        super();
         frc = new FontRenderContext(null, true, true);
         text = "";
         font = tf;
@@ -54,42 +52,26 @@ public class MmgFont extends MmgObj {
     }
 
     /**
-     * Constructor that sets the lower level attributes based on the given
-     * argument.
-     *
-     * @param obj   The MmgObj to use.
-     */
-    public MmgFont(MmgObj obj) {
-        super(obj);
-        frc = new FontRenderContext(null, true, true);
-        text = "";
-        font = null;
-        SetWidth(0);
-        SetHeight(0);
-    }
-
-    /**
      * Constructor that sets attributes based on the given argument.
      *
-     * @param fnt   The MmgFont class instance to use to set all the class fields.
+     * @param obj   The MmgFont class instance to use to set all the class fields.
      */
-    public MmgFont(MmgFont fnt) {
-        super();
+    public MmgFont(MmgFont obj) {
         frc = new FontRenderContext(null, true, true);
-        SetFont(fnt.GetFont());
-        SetText(fnt.GetText());
+        SetFont(obj.GetFont());
+        SetText(obj.GetText());
 
-        if (fnt.GetPosition() == null) {
-            SetPosition(fnt.GetPosition());
+        if (obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
         } else {
-            SetPosition(fnt.GetPosition().Clone());
+            SetPosition(obj.GetPosition().Clone());
         }
-        SetIsVisible(fnt.GetIsVisible());
+        SetIsVisible(obj.GetIsVisible());
 
-        if (fnt.GetMmgColor() == null) {
-            SetMmgColor(fnt.GetMmgColor());
+        if (obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
         } else {
-            SetMmgColor(fnt.GetMmgColor().Clone());
+            SetMmgColor(obj.GetMmgColor().Clone());
         }       
     }
 
@@ -238,14 +220,22 @@ public class MmgFont extends MmgObj {
      * A class method that tests for equality based on the font and text of the
      * comparison object.
      * 
-     * @param r     The MmgFont object to compare
+     * @param obj     The MmgFont object to compare
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
-    public boolean Equals(MmgFont r) {
-        if (GetFont().equals(r.GetFont()) == true && GetText().equals(r.GetText()) == true) {
-            return true;
-        } else {
+    public boolean Equals(MmgFont obj) {
+        if(obj == null) {
             return false;
         }
+                  
+        boolean ret = false;
+        if (
+            super.Equals((MmgObj)obj)
+            && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().equals(GetFont()))) 
+            && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().equals(GetText())))
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

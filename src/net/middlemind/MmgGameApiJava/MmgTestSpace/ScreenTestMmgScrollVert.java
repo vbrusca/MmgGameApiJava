@@ -197,7 +197,7 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
         
         scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval);
         scrollVert.SetIsVisible(true);
-        scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarVertWidth());
+        scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
         scrollVert.SetHeight(sHeight);
         scrollVert.SetEventHandler(this);    
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;

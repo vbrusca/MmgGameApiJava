@@ -189,7 +189,6 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         posTween = new MmgPositionTween(sprite, 10000, start, stop);
         posTween.SetOnReachStart(this);
         posTween.SetOnReachFinish(this);
-        posTween.SetMsStartMove(2000);
         posTween.SetMsStartMove(System.currentTimeMillis());
         posTween.SetMoving(true);
         
@@ -456,13 +455,11 @@ public class ScreenTestMmgPositionTween extends MmgGameScreen implements Generic
         MmgHelper.CenterHor(eventLabel);
         if(e.GetEventId() == MmgPositionTween.MMG_POSITION_TWEEN_REACH_FINISH) {
             posTween.SetDirStartToFinish(false);
-            posTween.SetMsStartMove(2000);
             posTween.SetMsStartMove(System.currentTimeMillis());
             posTween.SetMoving(true);
             
         } else {
             posTween.SetDirStartToFinish(true);
-            posTween.SetMsStartMove(2000);
             posTween.SetMsStartMove(System.currentTimeMillis());        
             posTween.SetMoving(true);            
         

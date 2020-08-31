@@ -208,13 +208,28 @@ public class MmgSpriteSheet {
      */
     public boolean Equals(MmgSpriteSheet obj) {
         boolean ret = true;
-        if(obj.GetSrc().Equals(GetSrc()) && GetWidth() == obj.GetWidth() && GetHeight() == obj.GetHeight() && GetFrameCount() == obj.GetFrameCount()) {
-            int len = obj.GetFrameCount();
-            for(int i = 0; i < len; i++) {
-                if(!obj.GetFrame(i).Equals(GetFrame(i))) {
-                    ret = false;
-                    break;
+        if(
+            ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))
+            && GetWidth() == obj.GetWidth() 
+            && GetHeight() == obj.GetHeight()
+        ) {
+            int len1 = obj.GetFrameCount();
+            int len2 = GetFrameCount();
+            if(len1 == len2) {
+                MmgObj m1;
+                MmgObj m2;
+                for(int i = 0; i < len1; i++) {
+                    m1 = obj.GetFrame(i);
+                    m2 = GetFrame(i);
+                    if(
+                        !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
+                    ) {
+                        ret = false;
+                        break;
+                    }
                 }
+            } else {
+                ret = false;
             }
         } else {
             ret = false;

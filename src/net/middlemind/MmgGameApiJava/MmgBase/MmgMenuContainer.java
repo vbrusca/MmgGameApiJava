@@ -35,18 +35,6 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer() {
-        super();
-        SetContainer(new ArrayList<MmgObj>(50));
-    }
-
-    /**
-     * Constructor for this class that sets some default attributes to the same value as the attributes
-     * of the given object.
-     * 
-     * @param obj       The object to use for default attribute values.
-     */
-    public MmgMenuContainer(MmgObj obj) {
-        super(obj);
         SetContainer(new ArrayList<MmgObj>(50));
     }
 
@@ -57,7 +45,6 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer(ArrayList<MmgObj> objects) {
-        super();
         SetContainer(objects);
     }
 
@@ -69,7 +56,6 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer(MmgMenuContainer obj) {
-        super();
         if(obj.GetContainer() == null) {
             SetContainer(obj.GetContainer());
         } else {
@@ -105,8 +91,7 @@ public class MmgMenuContainer extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgMenuContainer ret = new MmgMenuContainer(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgMenuContainer(this);
     }
     
     /**
@@ -118,7 +103,7 @@ public class MmgMenuContainer extends MmgObj {
     public MmgMenuContainer CloneTyped() {
         return new MmgMenuContainer(this);
     }    
-
+    
     /**
      * Adds a MmgMenuItem object to the menu item ArrayList.
      * 
@@ -200,4 +185,48 @@ public class MmgMenuContainer extends MmgObj {
             }
         }
     }
+    
+    /**
+     * A method that checks to see if this MmgMenuContainer is equal to the passed in MmgMenuContainer.
+     * 
+     * @param c     The MmgMenuContainer object instance to test for equality.
+     * @return      Returns true if both MmgMenuContainer objects are the same.
+     */
+    public boolean Equals(MmgMenuContainer obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = true;
+        if(super.Equals((MmgObj)obj)) {
+            if(obj.container == null && container == null) {
+                ret = true;
+            } else if(obj.container != null && container != null) {
+                int len1 = obj.GetCount();
+                int len2 = GetCount();
+                if(len1 == len2) {
+                    MmgObj m1;
+                    MmgObj m2;
+
+                    for(int i = 0; i < len1; i++) {
+                        m1 = obj.container.get(i);
+                        m2 = container.get(i);
+                        if(
+                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
+                        ){
+                            ret = false;
+                            break;
+                        }
+                    }
+                } else {
+                    ret = false;
+                }
+            } else {
+                ret = false;
+            }
+        } else {
+            ret = false;
+        }
+        return ret;
+    }    
 }

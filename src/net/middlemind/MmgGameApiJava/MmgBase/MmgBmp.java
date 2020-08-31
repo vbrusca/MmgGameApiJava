@@ -83,7 +83,6 @@ public class MmgBmp extends MmgObj {
      * Generic constructor.
      */
     public MmgBmp() {
-        super();
         origin = new MmgVector2(0, 0);
         scaling = new MmgVector2(1, 1);
         srcRect = new MmgRect(0, 0, 0, 0);
@@ -116,7 +115,6 @@ public class MmgBmp extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(MmgBmp obj) {
-        super();
         SetRotation(obj.GetRotation());
 
         if (obj.GetOrigin() == null) {
@@ -606,94 +604,36 @@ public class MmgBmp extends MmgObj {
      * Takes into account the MmgObj Equals method if nothing different is
      * found in the MmgBmp comparison.
      * 
-     * @param b     An MmgBmp object to check equality with.
+     * @param obj     An MmgBmp object to check equality with.
      * @return      Returns true if the determination is made that the two objects are the same, false otherwise.
      */
-    public boolean Equals(MmgBmp b) {
-        if (b != null) {
-            //ORIGIN
-            if (GetOrigin() == null && b.GetOrigin() != null) {
-                return false;
-            }
-
-            if (GetOrigin() != null && b.GetOrigin() == null) {
-                return false;
-            }
-
-            if (GetOrigin() != null && b.GetOrigin() != null && GetOrigin().Equals(b.GetOrigin()) == false) {
-                return false;
-            }
-
-            //SCALING
-            if (GetScaling() == null && b.GetScaling() != null) {
-                return false;
-            }
-
-            if (GetScaling() != null && b.GetScaling() == null) {
-                return false;
-            }
-
-            if (GetScaling() != null && b.GetScaling() != null && GetScaling().Equals(b.GetScaling()) == false) {
-                return false;
-            }
-
-            //SRC RECT
-            if (GetSrcRect() == null && b.GetSrcRect() != null) {
-                return false;
-            }
-
-            if (GetSrcRect() != null && b.GetSrcRect() == null) {
-                return false;
-            }
-
-            if (GetSrcRect() != null && b.GetSrcRect() != null && GetSrcRect().Equals(b.GetSrcRect()) == false) {
-                return false;
-            }
-
-            //DST RECT
-            if (GetDstRect() == null && b.GetDstRect() != null) {
-                return false;
-            }
-
-            if (GetDstRect() != null && b.GetDstRect() == null) {
-                return false;
-            }
-
-            if (GetDstRect() != null && b.GetDstRect() != null && GetDstRect().Equals(b.GetDstRect()) == false) {
-                return false;
-            }
-
-            //IMAGE
-            if (GetImage() == null && b.GetImage() != null) {
-                return false;
-            }
-
-            if (GetImage() != null && b.GetImage() == null) {
-                return false;
-            }
-
-            if (GetImage() != null && b.GetImage() != null && GetImage().equals(b.GetImage()) == false) {
-                return false;
-            }
-
-            //OTHER VARS
-            if (GetRotation() != b.GetRotation()) {
-                return false;
-            }
-
-            if (DRAW_MODE != b.DRAW_MODE) {
-                return false;
-            }
-
-            o1 = (MmgObj) this;
-            o2 = (MmgObj) b;
-            if (o1 != null && o2 != null && o1.Equals(o2) == false) {
-                return false;
-            }
-        } else {
+    public boolean Equals(MmgBmp obj) {
+        if(obj == null) {
             return false;
         }
-
-        return true;
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().Equals(GetDstRect())))
+            && obj.GetHeight() == GetHeight()
+            && obj.GetHeightFloat() == GetHeightFloat()
+            && ((obj.GetImage() == null && GetImage() == null) || (obj.GetImage() != null && GetImage() != null && obj.GetImage().equals(GetImage())))
+            && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().Equals(GetOrigin())))
+            && obj.GetRotation() == GetRotation()
+            && obj.GetScaledHeight() == GetScaledHeight()
+            && obj.GetScaledWidth() == GetScaledWidth()
+            && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().Equals(GetScaling())))
+            && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().Equals(GetSrcRect())))
+            && ((obj.GetTexture2D() == null && GetTexture2D() == null) || (obj.GetTexture2D() != null && GetTexture2D() != null && obj.GetTexture2D().equals(GetTexture2D())))
+            && obj.GetUnscaledHeight() == GetUnscaledHeight()
+            && obj.GetUnscaledWidth() == GetUnscaledWidth()
+            && obj.GetWidth() == GetWidth()
+            && obj.GetWidthFloat() == GetWidthFloat()
+            && obj.DRAW_MODE == DRAW_MODE
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

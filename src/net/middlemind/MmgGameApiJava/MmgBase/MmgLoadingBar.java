@@ -48,7 +48,6 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar() {
-        super();
         SetLoadingBarBack(null);
         SetLoadingBarFront(null);
         SetPaddingX(0);
@@ -61,30 +60,29 @@ public class MmgLoadingBar extends MmgObj {
      * Constructor for this loading bar that sets all the class attributes based
      * on the given argument.
      * 
-     * @param mlb       The class to use to set all the attributes of this class.
+     * @param obj       The class to use to set all the attributes of this class.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgLoadingBar(MmgLoadingBar mlb) {
-        super();
-        if (mlb.GetLoadingBarBack() != null) {
-            SetLoadingBarBack((MmgBmp) mlb.GetLoadingBarBack().Clone());
+    public MmgLoadingBar(MmgLoadingBar obj) {
+        if (obj.GetLoadingBarBack() != null) {
+            SetLoadingBarBack((MmgBmp) obj.GetLoadingBarBack().Clone());
         } else {
-            SetLoadingBarBack(mlb.GetLoadingBarBack());
+            SetLoadingBarBack(obj.GetLoadingBarBack());
         }
 
-        if (mlb.GetLoadingBarFront() != null) {
-            SetLoadingBarFront((MmgBmp) mlb.GetLoadingBarFront().Clone());
+        if (obj.GetLoadingBarFront() != null) {
+            SetLoadingBarFront((MmgBmp) obj.GetLoadingBarFront().Clone());
         } else {
-            SetLoadingBarFront(mlb.GetLoadingBarFront());
+            SetLoadingBarFront(obj.GetLoadingBarFront());
         }
 
         SetPaddingX(0);
         SetPaddingY(0);
 
-        if (mlb.GetPosition() != null) {
-            SetPosition(mlb.GetPosition().Clone());
+        if (obj.GetPosition() != null) {
+            SetPosition(obj.GetPosition().Clone());
         } else {
-            SetPosition(mlb.GetPosition());
+            SetPosition(obj.GetPosition());
         }
 
         if (loadingBarFront != null) {
@@ -109,7 +107,6 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar(MmgBmp LoadingBarBack, MmgBmp LoadingBarFront) {
-        super();
         SetLoadingBarBack(LoadingBarBack);
         SetLoadingBarFront(LoadingBarFront);
         SetPaddingX(0);
@@ -213,7 +210,9 @@ public class MmgLoadingBar extends MmgObj {
      */
     @Override
     public void SetPosition(int x, int y) {
-        SetPosition(new MmgVector2(x, y));
+        super.SetPosition(x, y);
+        loadingBarFront.SetPosition(x, y);
+        loadingBarBack.SetPosition(x, y);
     }    
     
     /**
@@ -256,8 +255,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgLoadingBar ret = new MmgLoadingBar(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgLoadingBar(this);
     }
 
     /**
@@ -352,4 +350,31 @@ public class MmgLoadingBar extends MmgObj {
             }
         }
     }
+    
+    /**
+     * A class method that tests for equality based on the font and text of the
+     * comparison object.
+     * 
+     * @param obj     The MmgFont object to compare
+     * @return      A boolean indicating if the object instance is equal to the argument object instance. 
+     */
+    public boolean Equals(MmgLoadingBar obj) {
+        if(obj == null) {
+            return false;
+        }
+                  
+        boolean ret = false;
+        if (
+            super.Equals((MmgObj)obj) 
+            && obj.GetFillHeight() == GetFillHeight()
+            && obj.GetFillWidth() == GetFillWidth()
+            && ((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().Equals(GetLoadingBarBack()))) 
+            && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().equals(GetLoadingBarFront())))
+            && obj.GetPaddingX() == GetPaddingX()
+            && obj.GetPaddingY() == GetPaddingY()
+        ) {
+            ret = true;
+        }
+        return ret;
+    }    
 }

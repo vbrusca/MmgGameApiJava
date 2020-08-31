@@ -177,8 +177,7 @@ public class MmgTextBlock extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgTextBlock ret = new MmgTextBlock(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgTextBlock(this);
     }
     
     /**
@@ -302,7 +301,6 @@ public class MmgTextBlock extends MmgObj {
         paint = p;
         int len = txt.size();
         for (int i = 0; i < len; i++) {
-            //txt.get(i).SetSpriteFont(paint);
             txt.get(i).SetFont(paint);
         }
     }
@@ -487,7 +485,27 @@ public class MmgTextBlock extends MmgObj {
     public void SetPosition(int x, int y) {
         SetPosition(new MmgVector2(x, y));
     }    
+
+    /**
+     * 
+     * 
+     * @param i 
+     */    
+    @Override
+    public void SetX(int i) {
+        SetPosition(new MmgVector2(i, GetY()));
+    }
     
+    /**
+     * 
+     * 
+     * @param i 
+     */
+    @Override
+    public void SetY(int i) {
+        SetPosition(new MmgVector2(GetX(), i));
+    }    
+
     /**
      * Gets the number of pages needed to display the background story text.
      *
@@ -673,5 +691,56 @@ public class MmgTextBlock extends MmgObj {
                 }
             }
         }
+    }
+    
+    /**
+     * A method that checks the equality of this MmgTextBlock object and the given argument.
+     * 
+     * @param obj       The MmgTextBlock object to compare this object to.
+     * @return          Returns true if the two objects are equal and false otherwise.
+     */    
+    public boolean Equals(MmgTextBlock obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().Equals(GetColor())))
+            && obj.GetHeight() == GetHeight()
+            && obj.GetLineCount() == GetLineCount()
+            && obj.GetLineHeight() == GetLineHeight() 
+            && obj.GetLinesInBox() == GetLinesInBox()
+            && obj.GetPaddingX() == GetPaddingX()
+            && obj.GetPaddingY() == GetPaddingY()
+            && obj.GetPageCount() == GetPageCount()
+            && obj.GetPages() == GetPages()
+            && ((obj.GetSpriteFont() == null && GetSpriteFont() == null) || (obj.GetSpriteFont() != null && GetSpriteFont() != null && obj.GetSpriteFont().equals(GetSpriteFont())))
+            && obj.GetUsedLineCount() == GetUsedLineCount()
+            && obj.GetWidth() == GetWidth()
+            && obj.GetWordCount() == GetWordCount()
+        ) {
+            ret = true;            
+            if(obj.GetLines() == null && GetLines() == null) {
+                ret = true;
+            } else if(obj.GetLines() != null && GetLines() != null) {
+                int len1 = obj.GetLines().size();
+                int len2 = GetLines().size();
+                if(len1 != len2) {
+                    ret = false;
+                } else {
+                    for(int i = 0; i < len1; i++) {
+                        if(!obj.GetLines().get(i).Equals(GetLines().get(i))) {
+                            ret = false;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                ret = false;
+            }
+        }
+        return ret; 
     }
 }

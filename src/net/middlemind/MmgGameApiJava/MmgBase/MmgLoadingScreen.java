@@ -27,7 +27,6 @@ public class MmgLoadingScreen extends MmgGameScreen {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingScreen(MmgLoadingBar LoadingBar, float lBarOff) {
-        super();
         SetLoadingBar(LoadingBar, lBarOff);
     }
 
@@ -35,20 +34,56 @@ public class MmgLoadingScreen extends MmgGameScreen {
      * Constructor for this class that sets the value of local attributes based on the attributes
      * of the given argument.
      * 
-     * @param mls   The MmgLoadingScreen to use to set local attributes.
+     * @param obj   The MmgLoadingScreen to use to set local attributes.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgLoadingScreen(MmgLoadingScreen mls) {
-        super(mls);
-        SetLoadingBar(mls.GetLoadingBar(), mls.GetLoadingBarOffsetBottom());
-        SetBackground(mls.GetBackground());
-        SetFooter(mls.GetFooter());
-        SetHeader(mls.GetHeader());
-        SetHeight(mls.GetHeight());
-        SetIsVisible(mls.GetIsVisible());
-        SetLeftCursor(mls.GetLeftCursor());
-        SetRightCursor(mls.GetRightCursor());
-        SetWidth(mls.GetWidth());
+    public MmgLoadingScreen(MmgLoadingScreen obj) {        
+        if(obj.GetLoadingBar() == null) {
+            SetLoadingBar(obj.GetLoadingBar(), obj.GetLoadingBarOffsetBottom());
+        } else {
+            SetLoadingBar(obj.GetLoadingBar().CloneTyped(), obj.GetLoadingBarOffsetBottom());            
+        }
+        
+        if(obj.GetBackground() == null) {
+            SetBackground(obj.GetBackground());
+        } else {
+            SetBackground(obj.GetBackground().Clone());
+        }
+        
+        if(obj.GetFooter() == null) {
+            SetFooter(obj.GetFooter());            
+        } else {
+            SetFooter(obj.GetFooter().Clone());
+        }
+        
+        if(obj.GetHeader() == null) {
+            SetHeader(obj.GetHeader());
+        } else {
+            SetHeader(obj.GetHeader().Clone());            
+        }
+        
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
+        
+        if(obj.GetLeftCursor() == null) {
+            SetLeftCursor(obj.GetLeftCursor());
+        } else {
+            SetLeftCursor(obj.GetLeftCursor().Clone());
+        }
+
+        if(obj.GetRightCursor() == null) {
+            SetRightCursor(obj.GetRightCursor());
+        } else {
+            SetRightCursor(obj.GetRightCursor().Clone());            
+        }
+        
+        SetWidth(obj.GetWidth());
+    
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            SetPosition(obj.GetPosition().Clone());
+        }
     }
 
     /**
@@ -65,8 +100,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
      */
     @Override
     public MmgObj Clone() {
-        MmgLoadingScreen ret = new MmgLoadingScreen(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgLoadingScreen(this);
     }
 
     /**
@@ -139,5 +173,28 @@ public class MmgLoadingScreen extends MmgGameScreen {
                 loadingBar.MmgDraw(p);
             }
         }
+    }
+    
+    /**
+     * 
+     * 
+     * @param obj
+     * @return 
+     */
+    public boolean Equals(MmgLoadingScreen obj) {
+        if(obj == null) {
+            return false;
+        }
+                  
+        boolean ret = false;
+        if (
+            super.Equals((MmgGameScreen)obj)
+            && obj.GetLoadingBarOffsetBottom() == GetLoadingBarOffsetBottom()
+            && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().Equals(GetLoadingBar()))) 
+
+        ) {
+            ret = true;
+        }
+        return ret;        
     }
 }

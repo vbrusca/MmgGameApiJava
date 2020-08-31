@@ -72,10 +72,10 @@ public class MmgSound {
      * Constructor that sets the value of this class based on the attributes of
      * the given argument.
      *
-     * @param se    The sound object to use as a basis for a new sound object.
+     * @param obj    The sound object to use as a basis for a new sound object.
      */
-    public MmgSound(MmgSound se) {
-        sound = se.GetSound();
+    public MmgSound(MmgSound obj) {
+        sound = obj.GetSound();
         ApplyVolume();
         SetId();
     }
@@ -242,14 +242,20 @@ public class MmgSound {
      * A class method that tests for equality based on the contained sound clip and the sound clip of the
      * comparison object.
      * 
-     * @param r     The MmgSound object to compare
+     * @param obj     The MmgSound object to compare
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
-    public boolean Equals(MmgSound r) {
-        if (GetSound().equals(r.GetSound()) == true) {
-            return true;
-        } else {
+    public boolean Equals(MmgSound obj) {
+        if(obj == null) {
             return false;
         }
+        
+        boolean ret = false;
+        if (
+            ((obj.GetSound() == null && GetSound() == null) || (obj.GetSound() != null && GetSound() != null && obj.GetSound().equals(GetSound())))
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

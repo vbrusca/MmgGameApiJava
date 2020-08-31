@@ -242,15 +242,16 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
                 tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
             }            
         }
-
+                
         key = "imgLoadingBar";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).string;
         } else {
             file = "loading_bar.png";
-        }        
+        }
         
         tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
+
         
         key = "imgLoadingBarFill";
         if(classConfig.containsKey(key)) {
@@ -263,7 +264,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         if (tB1 != null) {
             tB1.DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_FULL;
         }
-
+        
         if (tB != null && tB1 != null) {
             lb = new MmgLoadingBar(tB1, tB);
             lb.SetMmgColor(null);
@@ -276,7 +277,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             lb.SetFillWidth(tB.GetWidth() - MmgHelper.ScaleValue(12));
             loadingBar = lb;
             super.SetLoadingBar(lb, lbOffSet);
-            
+                        
             MmgHelper.CenterHorAndVert(lb);
             
             key = "loadingBarPosY";
@@ -303,7 +304,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
                 loadingBar.GetPosition().SetX(loadingBar.GetX() + MmgHelper.ScaleValue(tmp));                
             }                 
         }
-
+        
         ready = true;
         pause = false;
     }

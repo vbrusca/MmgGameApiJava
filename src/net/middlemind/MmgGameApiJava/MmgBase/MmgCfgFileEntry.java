@@ -40,6 +40,34 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
     public String name;
     
     /**
+     * The base constructor for this class.
+     */
+    public MmgCfgFileEntry() {
+        
+    }
+    
+    /**
+     * A specialized constructor that creates a new object based on the fields of the constructor argument.
+     * 
+     * @param obj       The object to use to create a new MmgCfgFileEntry instance.
+     */
+    public MmgCfgFileEntry(MmgCfgFileEntry obj) {
+        number = obj.number;
+        string = obj.string;
+        name = obj.name;
+        cfgType = obj.cfgType;
+    }
+    
+    /**
+     * Creates a typed clone of this class.
+     * 
+     * @return      A typed clone of this class.
+     */
+    public MmgCfgFileEntry Clone() {
+        return new MmgCfgFileEntry(this);
+    }
+        
+    /**
      * A standard method that prints the contents of this MmgCfgFileEntry.
      * 
      * @return      A string representation of this class.
@@ -63,5 +91,27 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
     @Override
     public int compare(MmgCfgFileEntry o1, MmgCfgFileEntry o2) {
         return o1.name.compareToIgnoreCase(o2.name);
+    }
+
+    /**
+     * A method that checks to see if this MmgCfgFileEntry is equal to the passed in MmgCfgFileEntry.
+     * 
+     * @param c     The MmgCfgFileEntry object instance to test for equality.
+     * @return      Returns true if both MmgCfgFileEntry objects are the same.
+     */
+    public boolean Equals(MmgCfgFileEntry obj) {
+        if(obj == null) {
+            return false;
+        }
+                
+        boolean ret = false;
+        if(obj.cfgType == cfgType 
+            && ((obj.name == null && name == null) || (obj.name != null && name != null && obj.name.equals(name)))
+            && obj.number == number 
+            && ((obj.string == null && string == null) || (obj.string != null && string != null && obj.string.equals(string)))
+        ) {
+            ret = true;
+        }
+        return ret;
     }    
 }

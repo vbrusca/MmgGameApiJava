@@ -61,18 +61,7 @@ public class MmgContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer() {
-        super();        
         SetContainer(new ArrayList(INITIAL_SIZE));
-    }
-
-    /**
-     * Constructor that sets the base objects properties equal to the given
-     * arguments properties.
-     *
-     * @param obj       The object to get MmgObj properties from.
-     */
-    public MmgContainer(MmgObj obj) {
-        super(obj);
     }
 
     /**
@@ -83,7 +72,6 @@ public class MmgContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer(ArrayList<MmgObj> objects) {
-        super();
         SetContainer(objects);
     }
 
@@ -91,12 +79,11 @@ public class MmgContainer extends MmgObj {
      * Constructor that initializes this class based on the attributes of a
      * given argument.
      *
-     * @param cont          An MmgContainer class to use to set all the attributes of this class.
+     * @param obj          An MmgContainer class to use to set all the attributes of this class.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgContainer(MmgContainer cont) {
-        super();
-        ArrayList<MmgObj> tmp1 = cont.GetContainer();
+    public MmgContainer(MmgContainer obj) {
+        ArrayList<MmgObj> tmp1 = obj.GetContainer();
         if (tmp1 != null) {
             int len = tmp1.size();
             ArrayList<MmgObj> tmp2 = new ArrayList(len);
@@ -108,23 +95,23 @@ public class MmgContainer extends MmgObj {
             SetContainer(tmp1);
         }
 
-        if (cont.GetPosition() != null) {
-            SetPosition(cont.GetPosition().Clone());
+        if (obj.GetPosition() != null) {
+            SetPosition(obj.GetPosition().Clone());
         } else {
-            SetPosition(cont.GetPosition());
+            SetPosition(obj.GetPosition());
         }
 
-        SetWidth(cont.GetWidth());
-        SetHeight(cont.GetHeight());
-        SetIsVisible(cont.GetIsVisible());
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
 
-        if (cont.GetMmgColor() != null) {
-            SetMmgColor(cont.GetMmgColor().Clone());
+        if (obj.GetMmgColor() != null) {
+            SetMmgColor(obj.GetMmgColor().Clone());
         } else {
-            SetMmgColor(cont.GetMmgColor());
+            SetMmgColor(obj.GetMmgColor());
         }
     }
-
+    
     /**
      * A setter method that sets the isDirty flag.
      * 
@@ -408,4 +395,44 @@ public class MmgContainer extends MmgObj {
 
         return lret;
     }
+    
+    /**
+     * A method that checks to see if this MmgContainer is equal to the passed in MmgContainer.
+     * 
+     * @param c     The MmgContainer object instance to test for equality.
+     * @return      Returns true if both MmgContainer objects are the same.
+     */
+    public boolean Equals(MmgContainer obj) {
+        if(obj == null) {
+            return false;
+        }
+                  
+        boolean ret = true;
+        if(obj.container == null && container == null) {
+            ret = true;
+        } else if(obj.container != null && container != null) {
+            int len1 = obj.GetCount();
+            int len2 = GetCount();
+            if(len1 == len2) {
+                MmgObj m1;
+                MmgObj m2;
+
+                for(int i = 0; i < len1; i++) {
+                    m1 = obj.container.get(i);
+                    m2 = container.get(i);
+                    if(
+                        !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
+                    ){
+                        ret = false;
+                        break;
+                    }
+                }
+            } else {
+                ret = false;
+            }
+        } else {
+            ret = false;
+        }
+        return ret;
+    }    
 }

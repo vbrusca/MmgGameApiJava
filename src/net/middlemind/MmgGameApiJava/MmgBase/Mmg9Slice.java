@@ -47,12 +47,11 @@ public class Mmg9Slice extends MmgObj {
      * @param h         The desired height of the resulting expanded source MmgBmp object.
      */
     public Mmg9Slice(int Offset, MmgBmp Src, int w, int h) {
-        super();
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
-        SetHeight(h);        
-        DrawDest();
+        SetHeight(h);
+        DrawDest();        
         SetPosition(MmgVector2.GetOriginVec());
         SetIsVisible(true);        
     }
@@ -68,12 +67,11 @@ public class Mmg9Slice extends MmgObj {
      * @param Pos       The desired position to set for the expanded MmgBmp object.
      */
     public Mmg9Slice(int Offset, MmgBmp Src, int w, int h, MmgVector2 Pos) {
-        super();
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
-        SetHeight(h);
-        DrawDest();        
+        SetHeight(h);        
+        DrawDest();
         SetPosition(Pos);
         SetIsVisible(true);
     }
@@ -84,11 +82,11 @@ public class Mmg9Slice extends MmgObj {
      * @param obj     The Mmg9Slice object to create a clean instance from.
      */
     public Mmg9Slice(Mmg9Slice obj) {
-        super();
         SetOffset(obj.GetOffset());
         SetSrc(obj.GetSrc().CloneTyped());
         SetWidth(obj.GetWidth());
         SetHeight(obj.GetHeight());
+
         DrawDest();
         
         if(obj.GetPosition() == null) {
@@ -217,8 +215,7 @@ public class Mmg9Slice extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        Mmg9Slice ret = new Mmg9Slice(this);
-        return (MmgObj) ret;
+        return (MmgObj) new Mmg9Slice(this);
     }
 
     /**
@@ -239,50 +236,95 @@ public class Mmg9Slice extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
-            p.DrawBmp(dest);
+            p.DrawBmp(dest, GetPosition());
         }
     }
 
     /**
      * Tests if this object is equal to another Mmg9Slice object.
      * 
-     * @param r     An Mmg9Slice object instance to compare to.
+     * @param obj     An Mmg9Slice object instance to compare to.
      * @return      Returns true if the objects are considered equal and false otherwise.
      */
-    public boolean Equals(Mmg9Slice r) {
-        if (GetOffset() == r.GetOffset() && GetSrc().Equals(r.GetSrc()) == true && GetDest().Equals(r.GetDest()) == true) {
-            return true;
-        } else {
-            if(super.Equals(r)) {
-                return true;
-            }
-            
+    public boolean Equals(Mmg9Slice obj) {
+        if(obj == null) {
             return false;
         }
-    }
-    
-    /**
-     * Sets the position of the Mmg9Slice object.
-     * 
-     * @param pos       The desired position to set for this Mmg9Slice object.
-     */
-    @Override
-    public void SetPosition(MmgVector2 pos) {
-        super.SetPosition(pos);
-        if(dest != null) {
-            dest.SetPosition(pos);
+        
+        boolean ret = false;
+        if (
+            super.Equals((MmgObj)obj)
+            && GetOffset() == obj.GetOffset() 
+            && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))
+            && ((obj.GetDest() == null && GetDest() == null) || (obj.GetDest() != null && GetDest() != null && obj.GetDest().Equals(GetDest())))
+        ) {
+            ret = true;
         }
+        return ret;
     }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    //@Override
+    //public MmgVector2 GetPosition() {
+    //    return dest.GetPosition();
+    //}
     
     /**
      * Sets the position of the Mmg9Slice object.
      * 
      * @param pos       The desired position to set for this Mmg9Slice object.
      */
+    //@Override
+    //public void SetPosition(MmgVector2 pos) {
+    //    super.SetPosition(pos);
+    //    dest.SetPosition(pos);
+    //}
+    
+    /**
+     * Sets the position of the Mmg9Slice object.
+     * 
+     * @param pos       The desired position to set for this Mmg9Slice object.
+     */
+    //@Override
+    //public void SetPosition(int x, int y) {
+    //    super.SetPosition(x, y);
+    //    dest.SetPosition(x, y);
+    //}
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
     @Override
-    public void SetPosition(int x, int y) {
-        SetPosition(new MmgVector2(x, y));
-    }    
+    public MmgColor GetMmgColor() {
+        return dest.GetMmgColor();
+    }
+    
+    /**
+     * 
+     * 
+     * @param c 
+     */
+    //@Override
+    //public void SetMmgColor(MmgColor c) {
+    //    super.SetMmgColor(c);
+    //    dest.SetMmgColor(c);
+    //}
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    //@Override
+    //public int GetWidth() {
+    //    return dest.GetWidth();
+    //}    
     
     /**
      * Sets the width of the Mmg9Slice object.
@@ -291,13 +333,21 @@ public class Mmg9Slice extends MmgObj {
      * 
      * @param w     The desired width to set for this Mmg9Slice object.
      */
-    @Override
-    public void SetWidth(int w) {
-        super.SetWidth(w);
-        if(dest != null) {
-            dest.SetWidth(w);
-        }
-    }
+    //@Override
+    //public void SetWidth(int w) {
+    //    super.SetWidth(w);
+    //    dest.SetWidth(w);
+    //}
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    //@Override
+    //public int GetHeight() {
+    //    return dest.GetHeight();
+    //}
     
     /**
      * Sets the height of the Mmg9Slice object.
@@ -306,11 +356,31 @@ public class Mmg9Slice extends MmgObj {
      * 
      * @param w 
      */
-    @Override
-    public void SetHeight(int h) {
-        super.SetHeight(h);
-        if(dest != null) {
-            dest.SetHeight(h);
-        }
-    }    
+    //@Override
+    //public void SetHeight(int h) {
+    //    super.SetHeight(h);
+    //    dest.SetHeight(h);
+    //}
+    
+    /**
+     * 
+     * 
+     * @param x 
+     */
+    //@Override
+    //public void SetX(int x) {
+    //    super.SetX(x);
+    //    dest.SetX(x);
+    //}
+    
+    /**
+     * 
+     * 
+     * @param y 
+     */
+    //@Override
+    //public void SetY(int y) {
+    //    super.SetX(y);
+    //    dest.SetX(y);
+    //}    
 }

@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgApiUtils;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
@@ -224,15 +225,22 @@ public class MmgBmpUnitTest {
         int t = 25;
         f = 25.0f;
         b1.SetWidth(t);
-        Assert.assertTrue(t == b1.GetWidth());
-        Assert.assertTrue(f == b1.GetWidthFloat());        
+
+        Assert.assertTrue(t == b1.GetUnscaledWidth());
+        Assert.assertFalse(t == b1.GetWidth());
+        Assert.assertTrue(f * v.GetX() == b1.GetWidth());                
+        Assert.assertFalse(f == b1.GetWidthFloat());        
+        Assert.assertTrue(f * v.GetXFloat() == b1.GetWidthFloat());
         
         t = 50;
         f = 50.0f;
         b1.SetHeight(t);
-        Assert.assertTrue(t == b1.GetHeight());        
-        Assert.assertTrue(f == b1.GetHeightFloat());        
-
+        Assert.assertTrue(t == b1.GetUnscaledHeight());
+        Assert.assertFalse(t == b1.GetHeight());
+        Assert.assertTrue(f * v.GetY() == b1.GetHeight());                        
+        Assert.assertFalse(f == b1.GetHeightFloat());        
+        Assert.assertTrue(f * v.GetYFloat() == b1.GetHeightFloat());
+        
         t = 100;
         Assert.assertTrue(t == b1.GetScaledHeight());        
         

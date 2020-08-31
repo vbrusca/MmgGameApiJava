@@ -54,6 +54,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
                 Thread.sleep(displayTime);
 
                 if (update != null) {
+                    MmgHelper.wr("MmgHandleUpdate");
                     update.MmgHandleUpdate(null);
                 }
             } catch (Exception e) {
@@ -75,7 +76,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * The default display time.
      */
-    public int DEFAULT_DISPLAY_TIME_MS = 3000;
+    public static int DEFAULT_DISPLAY_TIME_MS = 3000;
 
     /**
      * Constructor that sets the splash screen display time.
@@ -84,27 +85,57 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSplashScreen(int DisplayTime) {
-        super();
-        displayTime = DisplayTime;
+        SetDisplayTime(DisplayTime);
     }
 
     /**
      * Constructor that sets the splash screen attributes based on the values of the given argument.
      *
-     * @param mls       The display time in milliseconds.
+     * @param obj       The display time in milliseconds.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgSplashScreen(MmgSplashScreen mls) {
-        super(mls);
-        SetBackground(mls.GetBackground());
-        SetFooter(mls.GetFooter());
-        SetHeader(mls.GetHeader());
-        SetHeight(mls.GetHeight());
-        SetIsVisible(mls.GetIsVisible());
-        SetLeftCursor(mls.GetLeftCursor());
-        SetRightCursor(mls.GetRightCursor());
-        SetWidth(mls.GetWidth());
-        displayTime = DEFAULT_DISPLAY_TIME_MS;
+    public MmgSplashScreen(MmgSplashScreen obj) {        
+        if(obj.GetBackground() == null) {
+            SetBackground(obj.GetBackground());            
+        } else {
+            SetBackground(obj.GetBackground().Clone());
+        }
+        
+        if(obj.GetFooter() == null) {        
+            SetFooter(obj.GetFooter());
+        } else {
+            SetFooter(obj.GetFooter().Clone());            
+        }
+        
+        if(obj.GetHeader() == null) {
+            SetHeader(obj.GetHeader());
+        } else {
+            SetHeader(obj.GetHeader().Clone());            
+        }
+        
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
+        
+        if(obj.GetLeftCursor() == null) {
+            SetLeftCursor(obj.GetLeftCursor());
+        } else {
+            SetLeftCursor(obj.GetLeftCursor().Clone());            
+        }
+        
+        if(obj.GetRightCursor() == null) {
+            SetRightCursor(obj.GetRightCursor());
+        } else {
+            SetRightCursor(obj.GetRightCursor().Clone());            
+        }
+        
+        SetWidth(obj.GetWidth());
+        SetDisplayTime(obj.GetDisplayTime());
+        
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            SetPosition(obj.GetPosition().Clone());
+        }
     }
 
     /**
@@ -112,7 +143,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      */
     public MmgSplashScreen() {
         super();
-        displayTime = DEFAULT_DISPLAY_TIME_MS;
+        SetDisplayTime(DEFAULT_DISPLAY_TIME_MS);
     }
 
     /**
@@ -134,6 +165,15 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     public void SetUpdateHandler(MmgUpdateHandler Update) {
         update = Update;
     }
+    
+    /**
+     * Gets the update event handler.
+     * 
+     * @return      The update event handler.
+     */
+    public MmgUpdateHandler GetUpdateHandler() {
+        return update;
+    }
 
     /**
      * Handles update events.
@@ -154,8 +194,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      */
     @Override
     public MmgObj Clone() {
-        MmgSplashScreen ret = new MmgSplashScreen(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgSplashScreen(this);
     }
 
     /**
@@ -178,7 +217,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
         MmgHelper.CenterHorAndVert(b);
         super.SetBackground(b);
     }
-
+    
     /**
      * Gets the current display time.
      *
@@ -191,10 +230,10 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     /**
      * Sets the current display time.
      *
-     * @param DisplayTime   The current display time.
+     * @param i   The current display time.
      */
-    public void SetDisplayTime(int DisplayTime) {
-        displayTime = DisplayTime;
+    public void SetDisplayTime(int i) {
+        displayTime = i;
     }
 
     /**
@@ -206,7 +245,31 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             super.MmgDraw(p);
-
         }
+    }
+    
+    /**
+     * Tests if this object is equal to another MmgSplashScreen object.
+     * 
+     * @param obj   An MmgSplashScreen object instance to compare to.
+     * @return      Returns true if the objects are considered equal and false otherwise.
+     */
+    public boolean Equals(MmgSplashScreen obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if (
+            super.Equals((MmgGameScreen)obj)
+            && obj.GetDisplayTime() == GetDisplayTime()
+            && obj.GetWidth() == GetWidth()
+            && obj.GetHeight() == GetHeight()
+            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))                
+            && ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().Equals(GetBackground())))
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

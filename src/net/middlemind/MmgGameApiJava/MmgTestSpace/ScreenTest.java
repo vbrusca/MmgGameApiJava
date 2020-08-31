@@ -194,7 +194,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
         scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval);
         //scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, interval, state);        
         scrollVert.SetIsVisible(true);
-        scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarVertWidth());
+        scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
         scrollVert.SetHeight(sHeight);
         //scrollVert.SetHandler(this);    
         MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;

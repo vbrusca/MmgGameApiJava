@@ -39,7 +39,6 @@ public class MmgLabelValuePair extends MmgObj {
      * Constructor for this class.
      */
     public MmgLabelValuePair() {
-        super();
         skipReset = true;
         SetLabel(new MmgFont(MmgFontData.GetFontBold()));
         SetValue(new MmgFont(MmgFontData.GetFontNorm()));
@@ -57,7 +56,6 @@ public class MmgLabelValuePair extends MmgObj {
      * @param fontVal       The Font to use for the value.
      */
     public MmgLabelValuePair(Font fontLbl, Font fontVal) {
-        super();
         skipReset = true;
         SetLabel(new MmgFont(fontLbl));
         SetValue(new MmgFont(fontVal));
@@ -75,7 +73,6 @@ public class MmgLabelValuePair extends MmgObj {
      * @param fontVal       The MmgFont to use for the value.
      */
     public MmgLabelValuePair(MmgFont fontLbl, MmgFont fontVal) {
-        super();
         skipReset = true;
         SetLabel(fontLbl);
         SetValue(fontVal);
@@ -87,60 +84,41 @@ public class MmgLabelValuePair extends MmgObj {
     }        
     
     /**
-     * Constructor that sets the lower level attributes based
-     * on the given argument.
-     * 
-     * @param obj       The MmgObj to use. 
-     */
-    public MmgLabelValuePair(MmgObj obj) {
-        super(obj);
-        skipReset = true;
-        SetLabel(new MmgFont());
-        SetValue(new MmgFont());
-        SetPaddingX(DEFAULT_PADDING_X);
-        SetWidth(0);
-        SetHeight(0);    
-        skipReset = false;
-        Reset();
-    }
-
-    /**
      * Constructor that sets attributes based on the 
      * given argument.
      * 
-     * @param lvp       The MmgLabelValuePair to use to initialize this class instance.
+     * @param obj       The MmgLabelValuePair to use to initialize this class instance.
      */
-    public MmgLabelValuePair(MmgLabelValuePair lvp) {
-        super();
+    public MmgLabelValuePair(MmgLabelValuePair obj) {
         skipReset = true;
-        if(lvp.GetLabel() == null) {
-            SetLabel(lvp.GetLabel());
+        if(obj.GetLabel() == null) {
+            SetLabel(obj.GetLabel());
         }else {
-            SetLabel(lvp.GetLabel().CloneTyped());
+            SetLabel(obj.GetLabel().CloneTyped());
         }
         
-        if(lvp.GetValue() == null) {
-            SetValue(lvp.GetValue());
+        if(obj.GetValue() == null) {
+            SetValue(obj.GetValue());
         }else {
-            SetValue(lvp.GetValue().CloneTyped());
+            SetValue(obj.GetValue().CloneTyped());
         }
         
-        if(lvp.GetPosition() == null) {
-            SetPosition(lvp.GetPosition());
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
         }else {
-            SetPosition(lvp.GetPosition().Clone());
+            SetPosition(obj.GetPosition().Clone());
         }
-        SetIsVisible(lvp.GetIsVisible());
+        SetIsVisible(obj.GetIsVisible());
 
-        if(lvp.GetMmgColor() == null) {
-            SetMmgColor(lvp.GetMmgColor());
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
         }else {
-            SetMmgColor(lvp.GetMmgColor().Clone());
+            SetMmgColor(obj.GetMmgColor().Clone());
         }
         
-        SetPaddingX(lvp.GetPaddingX());
-        SetWidth(lvp.GetWidth());
-        SetHeight(lvp.GetHeight());
+        SetPaddingX(obj.GetPaddingX());
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
         skipReset = false;
         Reset();
     }
@@ -203,8 +181,7 @@ public class MmgLabelValuePair extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgLabelValuePair ret = new MmgLabelValuePair(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgLabelValuePair(this);
     }
 
     /**
@@ -429,7 +406,9 @@ public class MmgLabelValuePair extends MmgObj {
      */
     @Override
     public void SetPosition(int x, int y) {
-        SetPosition(new MmgVector2(x, y));
+        super.SetPosition(x, y);
+        lbl.SetPosition(x, y);
+        Reset();
     }    
     
     /**
@@ -486,17 +465,23 @@ public class MmgLabelValuePair extends MmgObj {
      * A method used to determine equality for MmgLabelValuePair objects.
      * Equality is based on having the same label, value, and padding.
      * 
-     * @param r     The MmgLabelValuePair to compare to.
+     * @param obj     The MmgLabelValuePair to compare to.
      * @return      A boolean value indicating if the two objects are equal.
      */
-    public boolean Equals(MmgLabelValuePair r) {
-        if(GetLabel().Equals(r.GetLabel()) == true
-            && GetValue().Equals(r.GetValue()) == true
-            && GetPaddingX() == r.GetPaddingX()
-        ) {
-            return true;
-        }else {
+    public boolean Equals(MmgLabelValuePair obj) {
+        if(obj == null) {
             return false;
         }
+                   
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && ((obj.GetLabel() == null && GetLabel() == null) || (obj.GetLabel() != null && GetLabel() != null && obj.GetLabel().Equals(GetLabel())))
+            && ((obj.GetValue() == null && GetValue() == null) || (obj.GetValue() != null && GetValue() != null && obj.GetValue().Equals(GetValue())))
+            && GetPaddingX() == obj.GetPaddingX()                
+        ) {
+            ret = true;
+        }
+        return ret;
     }
 }

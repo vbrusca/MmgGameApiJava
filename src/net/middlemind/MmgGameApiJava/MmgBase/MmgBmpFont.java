@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.PixelGrabber;
 
+//TODO: Add method documentation
+
 /**
  *
  * @author Victor G. Brusca, Middlemind Games
@@ -20,17 +22,33 @@ public class MmgBmpFont extends MmgObj {
     public static int DEFAULT_NULL_WIDTH = MmgHelper.ScaleValue(20);
     public static int DEFAULT_NULL_HEIGHT = MmgHelper.ScaleValue(20);    
     
+    /**
+     * 
+     * 
+     * @param Src
+     * @param Text 
+     */
     public MmgBmpFont(MmgBmp Src, String Text) {
         SetSrc(Src);        
         Prep();
         SetText(Text);
     }
     
+    /**
+     * 
+     * 
+     * @param Src 
+     */
     public MmgBmpFont(MmgBmp Src) {
         SetSrc(Src);
         Prep();
     }
             
+    /**
+     * 
+     * 
+     * @param obj 
+     */
     public MmgBmpFont(MmgBmpFont obj) {
         if(obj.GetSrc() == null) {
             SetSrc(obj.GetSrc());
@@ -70,14 +88,27 @@ public class MmgBmpFont extends MmgObj {
         }
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgObj Clone() {
         return (MmgObj) new MmgBmpFont(this);
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgBmpFont CloneTyped() {
         return new MmgBmpFont(this);
     }
     
+    /**
+     * 
+     */
     public void Prep() {        
         Image img = src.GetImage();
         int width = src.GetWidth();
@@ -111,6 +142,12 @@ public class MmgBmpFont extends MmgObj {
         }        
     }
     
+    /**
+     * 
+     * 
+     * @param c
+     * @return 
+     */
     public int GetIndexOf(char c) {
         // !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~
         switch(c) {
@@ -309,15 +346,33 @@ public class MmgBmpFont extends MmgObj {
         }
     }
     
+    /**
+     * 
+     * 
+     * @param s
+     * @return 
+     */
     public int GetIndexOf(String s) {
         char c = s.charAt(0);
         return GetIndexOf(c);
     }
     
+    /**
+     * 
+     * 
+     * @param i
+     * @return 
+     */
     public String GetStrAt(int i) {
         return GetCharAt(i) + "";
     }
     
+    /**
+     * 
+     * 
+     * @param i
+     * @return 
+     */
     public Character GetCharAt(int i) {
         switch(i) {
             case 0:
@@ -515,10 +570,20 @@ public class MmgBmpFont extends MmgObj {
         }
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public String GetText() {
         return text;
     }
     
+    /**
+     * 
+     * 
+     * @param s 
+     */
     public void SetText(String s) {
         if(s != null) {
             int len = s.length();
@@ -550,46 +615,231 @@ public class MmgBmpFont extends MmgObj {
         }
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override
+    public MmgColor GetMmgColor() {
+        return dst.GetMmgColor();
+    }
+    
+    /**
+     * 
+     * 
+     * @param c 
+     */
+    @Override
+    public void SetMmgColor(MmgColor c) {
+        super.SetMmgColor(c);
+        dst.SetMmgColor(c);
+    }
+    
+    @Override
+    public int GetX() {
+        return dst.GetX();
+    }
+    
+    /**
+     * 
+     * 
+     * @param x 
+     */
+    @Override
+    public void SetX(int x) {
+        super.SetX(x);
+        dst.SetX(x);
+    }
+       
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override
+    public int GetY() {
+        return dst.GetY();
+    }
+    
+    /**
+     * 
+     * 
+     * @param y 
+     */
+    @Override
+    public void SetY(int y) {
+        super.SetY(y);
+        dst.SetY(y);
+    }    
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override 
+    public MmgVector2 GetPosition() {
+        return dst.GetPosition();
+    }    
+    
+    /**
+     * 
+     * 
+     * @param x
+     * @param y 
+     */
+    @Override
+    public void SetPosition(int x, int y) {
+        super.SetPosition(x, y);
+        dst.SetPosition(x, y);
+    }
+        
+    /**
+     * 
+     * 
+     * @param v 
+     */
+    @Override
+    public void SetPosition(MmgVector2 v) {
+        super.SetPosition(v);
+        dst.SetPosition(v);
+    }
+          
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override
+    public int GetWidth() {
+        return dst.GetWidth();
+    }
+    
+    /**
+     * 
+     * 
+     * @param w 
+     */
+    @Override 
+    public void SetWidth(int w) {
+        super.SetWidth(w);
+        dst.SetWidth(w);
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    @Override 
+    public int GetHeight() {
+        return dst.GetHeight();
+    }
+    
+    @Override 
+    public void SetHeight(int h) {
+        super.SetHeight(h);
+        dst.SetHeight(h);
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
     public int[] GetWidths() {
         return widths;
     }
 
+    /**
+     * 
+     * 
+     * @param ws 
+     */
     public void SetWidths(int[] ws) {
         widths = ws;
     }
-        
+       
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgBmp GetSrc() {
         return src;
     }
 
+    /**
+     * 
+     * 
+     * @param b 
+     */
     public void SetSrc(MmgBmp b) {
         src = b;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgBmp GetDst() {
         return dst;
     }
 
+    /**
+     * 
+     * 
+     * @param b 
+     */
     public void SetDst(MmgBmp b) {
         dst = b;
     }    
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public MmgBmp[] GetChars() {
         return chars;
     }
 
+    /**
+     * 
+     * 
+     * @param c 
+     */
     public void SetChars(MmgBmp[] c) {
         chars = c;
     }
     
+    /**
+     * 
+     * 
+     * @return 
+     */
     public int GetCharCount() {
         return chars.length;
     }
     
+    /**
+     * 
+     * 
+     * @param i
+     * @return 
+     */
     public MmgBmp GetChar(int i) {
         return chars[i];
     }
     
+    /**
+     * 
+     * 
+     * @param b
+     * @param i 
+     */
     public void SetChar(MmgBmp b, int i) {
         chars[i] = b;
     }
@@ -608,16 +858,27 @@ public class MmgBmpFont extends MmgObj {
     }    
 
     /**
+     * A method used to check the equality of this MmgBmpFont when compared to another MmgBmpFont.
+     * Compares object fields to determine equality.
      * 
-     * 
-     * @param obj
-     * @return 
-     */
+     * @param obj     The MmgBmpFont object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */ 
     public boolean Equals(MmgBmpFont obj) {
+        if(obj == null) {
+            return false;
+        }
+        
         boolean ret = true;
-        if(obj.GetSrc().Equals(GetSrc()) && obj.GetDst().Equals(GetDst())) {
+        if(
+            super.Equals((MmgObj)obj)
+            && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))
+            && ((obj.GetDst() == null && GetDst() == null) || (obj.GetDst() != null && GetDst() != null && obj.GetDst().Equals(GetDst())))
+            && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().equals(GetText())))
+        ) {
             int len = obj.GetCharCount();
-            for(int i = 0; i < len; i++) {
+            int i = 0;
+            for(i = 0; i < len; i++) {
                 if(!obj.GetChar(i).Equals(GetChar(i))) {
                     ret = false;
                     break;
@@ -625,7 +886,7 @@ public class MmgBmpFont extends MmgObj {
             }
             
             len = obj.GetWidths().length;
-            for(int i = 0; i < len; i++) {
+            for(i = 0; i < len; i++) {
                 if(!(obj.GetWidths()[i] == GetWidths()[i])) {
                     ret = false;
                     break;
