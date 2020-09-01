@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
@@ -111,7 +110,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
             SetCenteredBackground(tB);
         }
 
-        Helper.wr("Background Image Position: " + GetBackground().GetPosition().ToString());
+        MmgHelper.wr("Background Image Position: " + GetBackground().GetPosition().ToString());
 
         
         key = "bmpGameTitle";

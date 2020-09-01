@@ -12,6 +12,7 @@ import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
@@ -385,10 +386,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         sWinWidth = (int) (winWidth * scale);
         sWinHeight = (int) (winHeight * scale);
 
-        Helper.wr("GamePanel: WinWidth: " + WinWidth);
-        Helper.wr("GamePanel: WinHeight: " + WinHeight);
-        Helper.wr("GamePanel: GameWidth: " + GameWidth);
-        Helper.wr("GamePanel: GameHeight: " + GameHeight);        
+        MmgHelper.wr("GamePanel: WinWidth: " + WinWidth);
+        MmgHelper.wr("GamePanel: WinHeight: " + WinHeight);
+        MmgHelper.wr("GamePanel: GameWidth: " + GameWidth);
+        MmgHelper.wr("GamePanel: GameHeight: " + GameHeight);        
         
         myX = X;
         myY = Y;
@@ -401,21 +402,21 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas = new Canvas(MmgBmpScaler.GRAPHICS_CONFIG);
         canvas.setSize(winWidth, winHeight);
 
-        Helper.wr("");        
-        Helper.wr("GamePanel Window Width: " + winWidth);
-        Helper.wr("GamePanel Window Height: " + winHeight);
-        Helper.wr("GamePanel Offset X: " + myX);
-        Helper.wr("GamePanel Offset Y: " + myY);
+        MmgHelper.wr("");        
+        MmgHelper.wr("GamePanel Window Width: " + winWidth);
+        MmgHelper.wr("GamePanel Window Height: " + winHeight);
+        MmgHelper.wr("GamePanel Offset X: " + myX);
+        MmgHelper.wr("GamePanel Offset Y: " + myY);
 
         screenData = new MmgScreenData(winWidth, winHeight, GamePanel.GAME_WIDTH, GamePanel.GAME_HEIGHT);
-        Helper.wr("");
-        Helper.wr("--- MmgScreenData ---");
-        Helper.wr(MmgScreenData.ToString());
+        MmgHelper.wr("");
+        MmgHelper.wr("--- MmgScreenData ---");
+        MmgHelper.wr(MmgScreenData.ToString());
 
         fontData = new MmgFontData();
-        Helper.wr("");
-        Helper.wr("--- MmgFontData ---");
-        Helper.wr(MmgFontData.ToString());
+        MmgHelper.wr("");
+        MmgHelper.wr("--- MmgFontData ---");
+        MmgHelper.wr(MmgFontData.ToString());
         debugFont = MmgFontData.CreateDefaultFontSm();
 
         p = new MmgPen();
@@ -836,7 +837,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param g         The game state to switch to.
      */
     public void SwitchGameState(GameStates g) {
-        Helper.wr("Switching Game State To: " + g);
+        MmgHelper.wr("Switching Game State To: " + g);
 
         if (gameState != prevGameState) {
             prevGameState = gameState;
@@ -850,47 +851,47 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
         //unload
         if (prevGameState == GameStates.BLANK) {
-            Helper.wr("Hiding BLANK screen.");
+            MmgHelper.wr("Hiding BLANK screen.");
 
         } else if (prevGameState == GameStates.LOADING) {
-            Helper.wr("Hiding LOADING screen.");
+            MmgHelper.wr("Hiding LOADING screen.");
             screenLoading.Pause();
             screenLoading.SetIsVisible(false);
             screenLoading.UnloadResources();
-            Helper.wr("Hiding LOADING screen DONE.");
+            MmgHelper.wr("Hiding LOADING screen DONE.");
 
         } else if (prevGameState == GameStates.SPLASH) {
-            Helper.wr("Hiding SPLASH screen.");
+            MmgHelper.wr("Hiding SPLASH screen.");
             screenSplash.Pause();
             screenSplash.SetIsVisible(false);
             screenSplash.UnloadResources();
 
         } else if (prevGameState == GameStates.MAIN_MENU) {
-            Helper.wr("Hiding MAIN_MENU screen.");
+            MmgHelper.wr("Hiding MAIN_MENU screen.");
             //mainMenuScreen.Pause();
             //mainMenuScreen.SetIsVisible(false);
             //mainMenuScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.ABOUT) {
-            Helper.wr("Hiding ABOUT screen.");
+            MmgHelper.wr("Hiding ABOUT screen.");
             //aboutScreen.Pause();
             //aboutScreen.SetIsVisible(false);
             //aboutScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.HELP_MENU) {
-            Helper.wr("Hiding HELP screen.");
+            MmgHelper.wr("Hiding HELP screen.");
             //helpScreen.Pause();
             //helpScreen.SetIsVisible(false);
             //helpScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.MAIN_GAME) {
-            Helper.wr("Hiding MAIN GAME screen.");
+            MmgHelper.wr("Hiding MAIN GAME screen.");
             screenMainMenu.Pause();
             screenMainMenu.SetIsVisible(false);
             screenMainMenu.UnloadResources();
 
         } else if (prevGameState == GameStates.SETTINGS) {
-            Helper.wr("Hiding SETTINGS screen.");
+            MmgHelper.wr("Hiding SETTINGS screen.");
             //settingsScreen.Pause();
             //settingsScreen.SetIsVisible(false);
             //settingsScreen.UnloadResources();
@@ -898,12 +899,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         }
 
         //load
-        Helper.wr("Switching Game State To: " + gameState);
+        MmgHelper.wr("Switching Game State To: " + gameState);
         if (gameState == GameStates.BLANK) {
-            Helper.wr("Showing BLANK screen.");
+            MmgHelper.wr("Showing BLANK screen.");
 
         } else if (gameState == GameStates.LOADING) {
-            Helper.wr("Showing LOADING screen.");
+            MmgHelper.wr("Showing LOADING screen.");
             screenLoading.LoadResources();
             screenLoading.UnPause();
             screenLoading.SetIsVisible(true);
@@ -911,7 +912,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             currentScreen = screenLoading;
 
         } else if (gameState == GameStates.SPLASH) {
-            Helper.wr("Showing SPLASH screen.");
+            MmgHelper.wr("Showing SPLASH screen.");
             screenSplash.LoadResources();
             screenSplash.UnPause();
             screenSplash.SetIsVisible(true);
@@ -919,35 +920,35 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             currentScreen = screenSplash;
 
         } else if (gameState == GameStates.MAIN_MENU) {
-            Helper.wr("Showing MAIN_MENU screen.");
+            MmgHelper.wr("Showing MAIN_MENU screen.");
             screenMainMenu.LoadResources();
             screenMainMenu.UnPause();
             screenMainMenu.SetIsVisible(true);
             currentScreen = screenMainMenu;
 
         } else if (gameState == GameStates.ABOUT) {
-            Helper.wr("Showing ABOUT screen.");
+            MmgHelper.wr("Showing ABOUT screen.");
             //aboutScreen.LoadResources();
             //aboutScreen.UnPause();
             //aboutScreen.SetIsVisible(true);
             //currentScreen = aboutScreen;
 
         } else if (gameState == GameStates.HELP_MENU) {
-            Helper.wr("Showing HELP screen.");
+            MmgHelper.wr("Showing HELP screen.");
             //helpScreen.LoadResources();
             //helpScreen.UnPause();
             //helpScreen.SetIsVisible(true);
             //currentScreen = helpScreen;
 
         } else if (gameState == GameStates.MAIN_GAME) {
-            Helper.wr("Showing MAIN GAME screen.");
+            MmgHelper.wr("Showing MAIN GAME screen.");
             //mainGameScreen.LoadResources();
             //mainGameScreen.UnPause();
             //mainGameScreen.SetIsVisible(true);
             //currentScreen = mainGameScreen;
 
         } else if (gameState == GameStates.SETTINGS) {
-            Helper.wr("Showing SETTINGS screen.");
+            MmgHelper.wr("Showing SETTINGS screen.");
             //settingsScreen.LoadResources();
             //settingsScreen.UnPause();
             //settingsScreen.SetIsVisible(true);
@@ -964,7 +965,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("HandleGenericEvent");
+        MmgHelper.wr("HandleGenericEvent");
         if (obj != null) {
             if (obj.GetGameState() == GameStates.LOADING) {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
@@ -1111,7 +1112,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             p.SetAdvRenderHints();
             currentScreen.MmgDraw(p);
 
-            if (Helper.LOGGING == true) {
+            if (MmgHelper.LOGGING == true) {
                 tmpF = g.getFont();
                 g.setFont(debugFont);
                 g.setColor(debugColor);

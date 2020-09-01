@@ -14,7 +14,7 @@ public class MmgContainer extends MmgObj {
      * The initial size of the collection object.
      */
     public static int INITIAL_SIZE = 10;
-
+    
     /**
      * Private enumeration that lists the stamp, un-stamp actions that can be
      * performed on a child. Stamping marks the child as being associated with the
@@ -25,6 +25,13 @@ public class MmgContainer extends MmgObj {
         UNSTAMP
     }
 
+    private enum RenderMode {
+        RENDER_ALWAYS,
+        RENDER_ONLY_WHEN_DIRTY
+    }
+    
+    private RenderMode mode = RenderMode.RENDER_ALWAYS;
+    
     /**
      * The ArrayList that holds the MmgObj objects.
      */
@@ -63,6 +70,7 @@ public class MmgContainer extends MmgObj {
     public MmgContainer() {
         super();
         SetContainer(new ArrayList(INITIAL_SIZE));
+        SetIsDirty(true);
     }
 
     /**
@@ -73,6 +81,7 @@ public class MmgContainer extends MmgObj {
      */
     public MmgContainer(MmgObj obj) {
         super(obj);
+        SetIsDirty(true);        
     }    
     
     /**
@@ -85,6 +94,7 @@ public class MmgContainer extends MmgObj {
     public MmgContainer(ArrayList<MmgObj> objects) {
         super();
         SetContainer(objects);
+        SetIsDirty(true);        
     }
 
     /**
@@ -393,9 +403,11 @@ public class MmgContainer extends MmgObj {
         lret = false;
 
         if (isVisible == true && isDirty == true) {
-            isDirty = false;
+            if(mode == RenderMode.RENDER_ONLY_WHEN_DIRTY) {
+                isDirty = false;
+            }
+            
             a = container.toArray();
-
             for (i = 0; i < a.length; i++) {
                 mo = (MmgObj) a[i];
                 if (mo != null && mo.isVisible == true) {
@@ -405,7 +417,6 @@ public class MmgContainer extends MmgObj {
                 }
             }
         }
-
         return lret;
     }
     

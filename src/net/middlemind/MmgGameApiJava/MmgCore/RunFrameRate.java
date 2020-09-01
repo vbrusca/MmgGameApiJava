@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
+
 /**
  * The frame rate worker thread, runs the main loop while tracking frame rate information. 
  * Created by Middlemind Games 08/01/2015
@@ -77,8 +79,8 @@ public class RunFrameRate implements Runnable {
         mf = Mf;
         tFps = Fps;
         tFrameTime = (1000 / tFps);
-        Helper.wr("Target Frame Rate: " + tFps);
-        Helper.wr("Target Frame Time: " + tFrameTime);
+        MmgHelper.wr("Target Frame Rate: " + tFps);
+        MmgHelper.wr("Target Frame Time: " + tFrameTime);
     }
 
     /**
@@ -168,7 +170,7 @@ public class RunFrameRate implements Runnable {
                 try {
                     Thread.sleep((int) frameTimeDiff);
                 } catch (Exception e) {
-                    Helper.wrErr(e);
+                    MmgHelper.wrErr(e);
                 }
             }
 

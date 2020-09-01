@@ -6,6 +6,7 @@ import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.ControllerEvent;
 import net.java.games.input.ControllerListener;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePadInput.GamePadButton;
 
 /**
@@ -329,7 +330,7 @@ public class GamePadHub {
 
         } catch(Exception e) {
             prepped = true;
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
             
         }        
     }

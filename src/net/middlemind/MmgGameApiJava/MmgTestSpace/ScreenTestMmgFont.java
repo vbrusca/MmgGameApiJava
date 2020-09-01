@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -128,7 +127,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgFont.Constructor");
+        MmgHelper.wr("ScreenTestMmgFont.Constructor");
     }
 
     /**
@@ -137,7 +136,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgFont.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTestMmgFont.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -155,7 +154,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgFont.LoadResources");
+        MmgHelper.wr("ScreenTestMmgFont.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -258,7 +257,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
      */  
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgFont.ProcessDpadRelease: " + dir);
+        MmgHelper.wr("ScreenTestMmgFont.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_04);
             
@@ -320,7 +319,7 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgFont.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgHelper.wr("ScreenTestMmgFont.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -330,6 +329,6 @@ public class ScreenTestMmgFont extends MmgGameScreen implements GenericEventHand
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgFont.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());        
+        MmgHelper.wr("ScreenTestMmgFont.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());        
     }
 }

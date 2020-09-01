@@ -1,8 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.MainFrame;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenLoading;
 import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
@@ -140,7 +140,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
      */
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
-        Helper.wr("TestSpace.GamePanel.Constructor");
+        MmgHelper.wr("TestSpace.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
 
@@ -241,7 +241,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
      */
     @Override
     public void SwitchGameState(GameStates g) {
-        Helper.wr("TestSpace.Switching Game State To: " + g);
+        MmgHelper.wr("TestSpace.Switching Game State To: " + g);
 
         if (gameState != prevGameState) {
             prevGameState = gameState;
@@ -255,173 +255,173 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
 
         //unload
         if (prevGameState == GameStates.BLANK) {
-            Helper.wr("Hiding BLANK screen.");
+            MmgHelper.wr("Hiding BLANK screen.");
 
         } else if (prevGameState == GameStates.SPLASH) {
-            Helper.wr("Hiding SPLASH screen.");
+            MmgHelper.wr("Hiding SPLASH screen.");
             screenSplash.Pause();
             screenSplash.SetIsVisible(false);
             screenSplash.UnloadResources();
             
         } else if (prevGameState == GameStates.LOADING) {
-            Helper.wr("Hiding LOADING screen.");
+            MmgHelper.wr("Hiding LOADING screen.");
             screenLoading.Pause();
             screenLoading.SetIsVisible(false);
             screenLoading.UnloadResources();
-            Helper.wr("Hiding LOADING screen DONE.");
+            MmgHelper.wr("Hiding LOADING screen DONE.");
 
         } else if (prevGameState == GameStates.GAME_SCREEN_01) {
-            Helper.wr("Hiding GAME_SCREEN_01 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_01 screen.");
             screenTestMmgScreenData.Pause();
             screenTestMmgScreenData.SetIsVisible(false);
             screenTestMmgScreenData.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_02) {
-            Helper.wr("Hiding GAME_SCREEN_02 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_02 screen.");
             screenTestMmg9Slice.Pause();
             screenTestMmg9Slice.SetIsVisible(false);
             screenTestMmg9Slice.UnloadResources();            
                         
         } else if (prevGameState == GameStates.GAME_SCREEN_03) {
-            Helper.wr("Hiding GAME_SCREEN_03 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_03 screen.");
             screenTestMmgFont.Pause();
             screenTestMmgFont.SetIsVisible(false);
             screenTestMmgFont.UnloadResources();                        
             
         } else if (prevGameState == GameStates.GAME_SCREEN_04) {
-            Helper.wr("Hiding GAME_SCREEN_04 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_04 screen.");
             screenTestMmgTextField.Pause();
             screenTestMmgTextField.SetIsVisible(false);
             screenTestMmgTextField.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_05) {
-            Helper.wr("Hiding GAME_SCREEN_05 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_05 screen.");
             screenTestMmgBmp.Pause();
             screenTestMmgBmp.SetIsVisible(false);
             screenTestMmgBmp.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_06) {
-            Helper.wr("Hiding GAME_SCREEN_06 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_06 screen.");
             screenTestMmgSound.Pause();
             screenTestMmgSound.SetIsVisible(false);
             screenTestMmgSound.UnloadResources();            
             
         } else if (prevGameState == GameStates.GAME_SCREEN_07) {
-            Helper.wr("Hiding GAME_SCREEN_07 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_07 screen.");
             screenTestMmgMainMenu.Pause();
             screenTestMmgMainMenu.SetIsVisible(false);
             screenTestMmgMainMenu.UnloadResources();                        
 
         } else if (prevGameState == GameStates.GAME_SCREEN_08) {
-            Helper.wr("Hiding GAME_SCREEN_08 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_08 screen.");
             screenTestMmgSprite.Pause();
             screenTestMmgSprite.SetIsVisible(false);
             screenTestMmgSprite.UnloadResources();
 
         } else if (prevGameState == GameStates.GAME_SCREEN_09) {
-            Helper.wr("Hiding GAME_SCREEN_09 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_09 screen.");
             screenTestMmgBasicInput.Pause();
             screenTestMmgBasicInput.SetIsVisible(false);
             screenTestMmgBasicInput.UnloadResources();            
             
         } else if (prevGameState == GameStates.GAME_SCREEN_10) {
-            Helper.wr("Hiding GAME_SCREEN_10 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_10 screen.");
             screenTestMmgCfgFileEntryRead.Pause();
             screenTestMmgCfgFileEntryRead.SetIsVisible(false);
             screenTestMmgCfgFileEntryRead.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_11) {
-            Helper.wr("Hiding GAME_SCREEN_11 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_11 screen.");
             screenTestMmgColor.Pause();
             screenTestMmgColor.SetIsVisible(false);
             screenTestMmgColor.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_12) {
-            Helper.wr("Hiding GAME_SCREEN_12 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_12 screen.");
             screenTestMmgContainer.Pause();
             screenTestMmgContainer.SetIsVisible(false);
             screenTestMmgContainer.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_13) {
-            Helper.wr("Hiding GAME_SCREEN_13 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_13 screen.");
             screenTestMmgLabelValuePair.Pause();
             screenTestMmgLabelValuePair.SetIsVisible(false);
             screenTestMmgLabelValuePair.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_14) {
-            Helper.wr("Hiding GAME_SCREEN_14 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_14 screen.");
             screenTestMmgScrollHor.Pause();
             screenTestMmgScrollHor.SetIsVisible(false);
             screenTestMmgScrollHor.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_15) {
-            Helper.wr("Hiding GAME_SCREEN_15 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_15 screen.");
             screenTestMmgScrollVert.Pause();
             screenTestMmgScrollVert.SetIsVisible(false);
             screenTestMmgScrollVert.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_16) {
-            Helper.wr("Hiding GAME_SCREEN_16 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_16 screen.");
             screenTestMmgScrollHorVert.Pause();
             screenTestMmgScrollHorVert.SetIsVisible(false);
             screenTestMmgScrollHorVert.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_17) {
-            Helper.wr("Hiding GAME_SCREEN_17 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_17 screen.");
             screenTestMmgRect.Pause();
             screenTestMmgRect.SetIsVisible(false);
             screenTestMmgRect.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_18) {
-            Helper.wr("Hiding GAME_SCREEN_18 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_18 screen.");
             screenTestMmgPositionTween.Pause();
             screenTestMmgPositionTween.SetIsVisible(false);
             screenTestMmgPositionTween.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_19) {
-            Helper.wr("Hiding GAME_SCREEN_19 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_19 screen.");
             screenTestMmgTextBlock.Pause();
             screenTestMmgTextBlock.SetIsVisible(false);
             screenTestMmgTextBlock.UnloadResources();
             
         } else if (prevGameState == GameStates.GAME_SCREEN_20) {
-            Helper.wr("Hiding GAME_SCREEN_20 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_20 screen.");
             screenTestMmgCfgFileEntryWrite.Pause();
             screenTestMmgCfgFileEntryWrite.SetIsVisible(false);
             screenTestMmgCfgFileEntryWrite.UnloadResources();            
             
         } else if (prevGameState == GameStates.GAME_SCREEN_21) {
-            Helper.wr("Hiding GAME_SCREEN_21 screen.");
+            MmgHelper.wr("Hiding GAME_SCREEN_21 screen.");
             screenTestMmgObj.Pause();
             screenTestMmgObj.SetIsVisible(false);
             screenTestMmgObj.UnloadResources();
             
         } else if (prevGameState == GameStates.MAIN_MENU) {
-            Helper.wr("Hiding MAIN_MENU screen.");
+            MmgHelper.wr("Hiding MAIN_MENU screen.");
             //mainMenuScreen.Pause();
             //mainMenuScreen.SetIsVisible(false);
             //mainMenuScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.ABOUT) {
-            Helper.wr("Hiding ABOUT screen.");
+            MmgHelper.wr("Hiding ABOUT screen.");
             //aboutScreen.Pause();
             //aboutScreen.SetIsVisible(false);
             //aboutScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.HELP_MENU) {
-            Helper.wr("Hiding HELP screen.");
+            MmgHelper.wr("Hiding HELP screen.");
             //helpScreen.Pause();
             //helpScreen.SetIsVisible(false);
             //helpScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.MAIN_GAME) {
-            Helper.wr("Hiding MAIN GAME screen.");
+            MmgHelper.wr("Hiding MAIN GAME screen.");
             //mainGameScreen.Pause();
             //mainGameScreen.SetIsVisible(false);
             //mainGameScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.SETTINGS) {
-            Helper.wr("Hiding SETTINGS screen.");
+            MmgHelper.wr("Hiding SETTINGS screen.");
             //settingsScreen.Pause();
             //settingsScreen.SetIsVisible(false);
             //settingsScreen.UnloadResources();
@@ -429,12 +429,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         }
 
         //load
-        Helper.wr("Switching Game State To: " + gameState);
+        MmgHelper.wr("Switching Game State To: " + gameState);
         if (gameState == GameStates.BLANK) {
-            Helper.wr("Showing BLANK screen.");
+            MmgHelper.wr("Showing BLANK screen.");
 
         } else if (gameState == GameStates.SPLASH) {
-            Helper.wr("Showing SPLASH screen.");
+            MmgHelper.wr("Showing SPLASH screen.");
             screenSplash.LoadResources();
             screenSplash.UnPause();
             screenSplash.SetIsVisible(true);
@@ -442,7 +442,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             currentScreen = screenSplash;
                         
         } else if (gameState == GameStates.LOADING) {
-            Helper.wr("Showing LOADING screen.");
+            MmgHelper.wr("Showing LOADING screen.");
             screenLoading.LoadResources();
             screenLoading.UnPause();
             screenLoading.SetIsVisible(true);
@@ -450,182 +450,182 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             currentScreen = screenLoading;
 
         } else if (gameState == GameStates.GAME_SCREEN_01) {
-            Helper.wr("Showing GAME_SCREEN_01 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_01 screen.");
             screenTestMmgScreenData.LoadResources();
             screenTestMmgScreenData.UnPause();
             screenTestMmgScreenData.SetIsVisible(true);
             currentScreen = screenTestMmgScreenData;
                         
         } else if (gameState == GameStates.GAME_SCREEN_02) {
-            Helper.wr("Showing GAME_SCREEN_02 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_02 screen.");
             screenTestMmg9Slice.LoadResources();
             screenTestMmg9Slice.UnPause();
             screenTestMmg9Slice.SetIsVisible(true);
             currentScreen = screenTestMmg9Slice;            
             
         } else if (gameState == GameStates.GAME_SCREEN_03) {
-            Helper.wr("Showing GAME_SCREEN_03 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_03 screen.");
             screenTestMmgFont.LoadResources();
             screenTestMmgFont.UnPause();
             screenTestMmgFont.SetIsVisible(true);
             currentScreen = screenTestMmgFont;                        
             
         } else if (gameState == GameStates.GAME_SCREEN_04) {
-            Helper.wr("Showing GAME_SCREEN_04 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_04 screen.");
             screenTestMmgTextField.LoadResources();
             screenTestMmgTextField.UnPause();
             screenTestMmgTextField.SetIsVisible(true);
             currentScreen = screenTestMmgTextField;
             
         } else if (gameState == GameStates.GAME_SCREEN_05) {
-            Helper.wr("Showing GAME_SCREEN_05 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_05 screen.");
             screenTestMmgBmp.LoadResources();
             screenTestMmgBmp.UnPause();
             screenTestMmgBmp.SetIsVisible(true);
             currentScreen = screenTestMmgBmp;
             
         } else if (gameState == GameStates.GAME_SCREEN_06) {
-            Helper.wr("Showing GAME_SCREEN_06 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_06 screen.");
             screenTestMmgSound.LoadResources();
             screenTestMmgSound.UnPause();
             screenTestMmgSound.SetIsVisible(true);
             currentScreen = screenTestMmgSound;            
             
         } else if (gameState == GameStates.GAME_SCREEN_07) {
-            Helper.wr("Showing GAME_SCREEN_07 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_07 screen.");
             screenTestMmgMainMenu.LoadResources();
             screenTestMmgMainMenu.UnPause();
             screenTestMmgMainMenu.SetIsVisible(true);
             currentScreen = screenTestMmgMainMenu;
             
         } else if (gameState == GameStates.GAME_SCREEN_08) {
-            Helper.wr("Showing GAME_SCREEN_08 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_08 screen.");
             screenTestMmgSprite.LoadResources();
             screenTestMmgSprite.UnPause();
             screenTestMmgSprite.SetIsVisible(true);
             currentScreen = screenTestMmgSprite;
             
         } else if (gameState == GameStates.GAME_SCREEN_09) {
-            Helper.wr("Showing GAME_SCREEN_09 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_09 screen.");
             screenTestMmgBasicInput.LoadResources();
             screenTestMmgBasicInput.UnPause();
             screenTestMmgBasicInput.SetIsVisible(true);
             currentScreen = screenTestMmgBasicInput;
             
         } else if (gameState == GameStates.GAME_SCREEN_10) {
-            Helper.wr("Showing GAME_SCREEN_10 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_10 screen.");
             screenTestMmgCfgFileEntryRead.LoadResources();
             screenTestMmgCfgFileEntryRead.UnPause();
             screenTestMmgCfgFileEntryRead.SetIsVisible(true);
             currentScreen = screenTestMmgCfgFileEntryRead;
             
         } else if (gameState == GameStates.GAME_SCREEN_11) {
-            Helper.wr("Showing GAME_SCREEN_11 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_11 screen.");
             screenTestMmgColor.LoadResources();
             screenTestMmgColor.UnPause();
             screenTestMmgColor.SetIsVisible(true);
             currentScreen = screenTestMmgColor;            
             
         } else if (gameState == GameStates.GAME_SCREEN_12) {
-            Helper.wr("Showing GAME_SCREEN_12 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_12 screen.");
             screenTestMmgContainer.LoadResources();
             screenTestMmgContainer.UnPause();
             screenTestMmgContainer.SetIsVisible(true);
             currentScreen = screenTestMmgContainer;
             
         } else if (gameState == GameStates.GAME_SCREEN_13) {
-            Helper.wr("Showing GAME_SCREEN_13 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_13 screen.");
             screenTestMmgLabelValuePair.LoadResources();
             screenTestMmgLabelValuePair.UnPause();
             screenTestMmgLabelValuePair.SetIsVisible(true);
             currentScreen = screenTestMmgLabelValuePair;                        
             
         } else if (gameState == GameStates.GAME_SCREEN_14) {
-            Helper.wr("Showing GAME_SCREEN_14 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_14 screen.");
             screenTestMmgScrollHor.LoadResources();
             screenTestMmgScrollHor.UnPause();
             screenTestMmgScrollHor.SetIsVisible(true);
             currentScreen = screenTestMmgScrollHor;
             
         } else if (gameState == GameStates.GAME_SCREEN_15) {
-            Helper.wr("Showing GAME_SCREEN_15 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_15 screen.");
             screenTestMmgScrollVert.LoadResources();
             screenTestMmgScrollVert.UnPause();
             screenTestMmgScrollVert.SetIsVisible(true);
             currentScreen = screenTestMmgScrollVert;
             
         } else if (gameState == GameStates.GAME_SCREEN_16) {
-            Helper.wr("Showing GAME_SCREEN_16 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_16 screen.");
             screenTestMmgScrollHorVert.LoadResources();
             screenTestMmgScrollHorVert.UnPause();
             screenTestMmgScrollHorVert.SetIsVisible(true);
             currentScreen = screenTestMmgScrollHorVert;
             
         } else if (gameState == GameStates.GAME_SCREEN_17) {
-            Helper.wr("Showing GAME_SCREEN_17 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_17 screen.");
             screenTestMmgRect.LoadResources();
             screenTestMmgRect.UnPause();
             screenTestMmgRect.SetIsVisible(true);
             currentScreen = screenTestMmgRect;
 
         } else if (gameState == GameStates.GAME_SCREEN_18) {
-            Helper.wr("Showing GAME_SCREEN_18 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_18 screen.");
             screenTestMmgPositionTween.LoadResources();
             screenTestMmgPositionTween.UnPause();
             screenTestMmgPositionTween.SetIsVisible(true);
             currentScreen = screenTestMmgPositionTween;
 
         } else if (gameState == GameStates.GAME_SCREEN_19) {
-            Helper.wr("Showing GAME_SCREEN_19 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_19 screen.");
             screenTestMmgTextBlock.LoadResources();
             screenTestMmgTextBlock.UnPause();
             screenTestMmgTextBlock.SetIsVisible(true);
             currentScreen = screenTestMmgTextBlock;
             
         } else if (gameState == GameStates.GAME_SCREEN_20) {
-            Helper.wr("Showing GAME_SCREEN_20 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_20 screen.");
             screenTestMmgCfgFileEntryWrite.LoadResources();
             screenTestMmgCfgFileEntryWrite.UnPause();
             screenTestMmgCfgFileEntryWrite.SetIsVisible(true);
             currentScreen = screenTestMmgCfgFileEntryWrite;
             
         } else if (gameState == GameStates.GAME_SCREEN_21) {
-            Helper.wr("Showing GAME_SCREEN_21 screen.");
+            MmgHelper.wr("Showing GAME_SCREEN_21 screen.");
             screenTestMmgObj.LoadResources();
             screenTestMmgObj.UnPause();
             screenTestMmgObj.SetIsVisible(true);
             currentScreen = screenTestMmgObj;            
             
         } else if (gameState == GameStates.MAIN_MENU) {
-            Helper.wr("Showing MAIN_MENU screen.");
+            MmgHelper.wr("Showing MAIN_MENU screen.");
             //mainMenuScreen.LoadResources();
             //mainMenuScreen.UnPause();
             //mainMenuScreen.SetIsVisible(true);
             //currentScreen = mainMenuScreen;
 
         } else if (gameState == GameStates.ABOUT) {
-            Helper.wr("Showing ABOUT screen.");
+            MmgHelper.wr("Showing ABOUT screen.");
             //aboutScreen.LoadResources();
             //aboutScreen.UnPause();
             //aboutScreen.SetIsVisible(true);
             //currentScreen = aboutScreen;
 
         } else if (gameState == GameStates.HELP_MENU) {
-            Helper.wr("Showing HELP screen.");
+            MmgHelper.wr("Showing HELP screen.");
             //helpScreen.LoadResources();
             //helpScreen.UnPause();
             //helpScreen.SetIsVisible(true);
             //currentScreen = helpScreen;
 
         } else if (gameState == GameStates.MAIN_GAME) {
-            Helper.wr("Showing MAIN GAME screen.");
+            MmgHelper.wr("Showing MAIN GAME screen.");
             //mainGameScreen.LoadResources();
             //mainGameScreen.UnPause();
             //mainGameScreen.SetIsVisible(true);
             //currentScreen = mainGameScreen;
 
         } else if (gameState == GameStates.SETTINGS) {
-            Helper.wr("Showing SETTINGS screen.");
+            MmgHelper.wr("Showing SETTINGS screen.");
             //settingsScreen.LoadResources();
             //settingsScreen.UnPause();
             //settingsScreen.SetIsVisible(true);
@@ -643,7 +643,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
         if (obj != null) {
-            Helper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
+            MmgHelper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
             if (obj.GetGameState() == GameStates.LOADING) {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps

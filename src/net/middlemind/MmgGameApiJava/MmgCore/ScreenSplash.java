@@ -1,7 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
@@ -128,7 +127,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
             file = "logo_large.jpg";
         }
             
-        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);        
+        tB = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);        
         if (tB != null) {
             key = "splashLogoScale";
             if(classConfig.containsKey(key)) {

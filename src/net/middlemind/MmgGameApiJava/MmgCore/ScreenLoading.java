@@ -205,7 +205,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             file = "odroid_logo2.png";
         }        
         
-        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
+        tB = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
         tB = MmgBmpScaler.ScaleMmgBmp(tB, 0.5, true);        
         if (tB != null) {
             key = "loadingLogoScale";
@@ -250,7 +250,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             file = "loading_bar.png";
         }
         
-        tB = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
+        tB = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
 
         
         key = "imgLoadingBarFill";
@@ -260,7 +260,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             file = "blue_square.png";
         }                
         
-        tB1 = Helper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
+        tB1 = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
         if (tB1 != null) {
             tB1.DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_FULL;
         }
@@ -359,7 +359,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             }
             
         } catch (Exception e) {
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
         }
 
         return false;
@@ -378,7 +378,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             Thread t = new Thread(r);
             t.start();
         } else {
-            Helper.wr("No data found to load.");
+            MmgHelper.wr("No data found to load.");
         }
     }
 
@@ -412,7 +412,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
                 }
             }
             
-            Helper.wr("LoadingScreen POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
+            MmgHelper.wr("LoadingScreen POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
         }
     }
 
@@ -425,7 +425,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         if (datLoad != null) {
             return datLoad.GetReadResult();
         } else {
-            Helper.wr("datLoad is NULL");
+            MmgHelper.wr("datLoad is NULL");
             return false;
         }
     }
@@ -439,7 +439,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         if (datLoad != null) {
             return datLoad.GetReadComplete();
         } else {
-            Helper.wr("datLoad is NULL");
+            MmgHelper.wr("datLoad is NULL");
             return false;
         }
     }

@@ -5,7 +5,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettingsImporter;
 import java.lang.reflect.Field;
 import javax.swing.JFrame;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
@@ -116,13 +116,13 @@ public final class MmgTestSpace {
     public static void RunOsSpecificCode() {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
-            Helper.wr("Found platform: " + OS);
+            MmgHelper.wr("Found platform: " + OS);
             
             if (isWindows(OS)) {
-                Helper.wr("This is Windows");
+                MmgHelper.wr("This is Windows");
                 
             } else if (isMac(OS)) {
-                Helper.wr("This is Mac");
+                MmgHelper.wr("This is Mac");
                 GameSettings.LOAD_NATIVE_LIBRARIES = true;
                 GameSettings.GAMEPAD_1_ON = true;
                 GameSettings.GAMEPAD_1_THREADED_POLLING = false;
@@ -130,7 +130,7 @@ public final class MmgTestSpace {
                 GameSettings.GPIO_GAMEPAD_ON = false;
                 
             } else if (isUnix(OS)) {
-                Helper.wr("This is Unix or Linux");
+                MmgHelper.wr("This is Unix or Linux");
                 GameSettings.LOAD_NATIVE_LIBRARIES = false;
                 GameSettings.GAMEPAD_1_ON = false;
                 GameSettings.GAMEPAD_2_ON = false;
@@ -138,15 +138,15 @@ public final class MmgTestSpace {
                 GameSettings.GPIO_GAMEPAD_THREADED_POLLING = true;
                 
             } else if (isSolaris(OS)) {
-                Helper.wr("This is Solaris");
+                MmgHelper.wr("This is Solaris");
                 
             } else {
-                Helper.wr("Your OS is not supported!!");
+                MmgHelper.wr("Your OS is not supported!!");
 
             }
             
         } catch(Exception e) {
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
         }
     }    
     
@@ -156,33 +156,33 @@ public final class MmgTestSpace {
     public static void LoadNativeLibraries() {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
-            Helper.wr("Found platform: " + OS);
-            Helper.wr("LibPath: " + System.getProperty("java.library.path"));
+            MmgHelper.wr("Found platform: " + OS);
+            MmgHelper.wr("LibPath: " + System.getProperty("java.library.path"));
             //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
             
             if (isWindows(OS)) {
-                Helper.wr("This is Windows");
+                MmgHelper.wr("This is Windows");
                 System.loadLibrary("jinput-dx8_64");
                 
             } else if (isMac(OS)) {
-                Helper.wr("This is Mac");
+                MmgHelper.wr("This is Mac");
                 System.loadLibrary("jinput-osx");
 
             } else if (isUnix(OS)) {
-                Helper.wr("This is Unix or Linux");
+                MmgHelper.wr("This is Unix or Linux");
                 System.loadLibrary("jinput-linux64");
                 
             } else if (isSolaris(OS)) {
-                Helper.wr("This is Solaris");
+                MmgHelper.wr("This is Solaris");
                 System.loadLibrary("jinput-linux");
                 
             } else {
-                Helper.wr("Your OS is not supported!!");
+                MmgHelper.wr("Your OS is not supported!!");
 
             }
             
         } catch(Exception e) {
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
         }            
     }
     
@@ -277,7 +277,7 @@ public final class MmgTestSpace {
         //Store program arguments for future reference
         ARGS = args;        
         if (args != null && args.length > 0) {
-            Helper.wr("Found command line arguments!");
+            MmgHelper.wr("Found command line arguments!");
             String res = null;
 
             res = ArrayHasEntryLike("WIN_WIDTH=", args);
@@ -356,7 +356,7 @@ public final class MmgTestSpace {
                                 SetField(ent, f);
                             }
                         } else if(ent.from != null && ent.from.equals("Helper") == true) {
-                            f = Helper.class.getField(ent.key);
+                            f = MmgHelper.class.getField(ent.key);
                             if (f != null) {
                                 System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
@@ -370,24 +370,24 @@ public final class MmgTestSpace {
                         }                        
                     } catch (Exception e) {
                         System.out.println("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
-                        Helper.wrErr(e);
+                        MmgHelper.wrErr(e);
                     }
                 }
             }
         } catch (Exception e) {
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
         }
 
         //Set program specific resource loading directories
         GameSettings.PROGRAM_IMAGE_LOAD_DIR += GameSettings.NAME;
         GameSettings.PROGRAM_SOUND_LOAD_DIR += GameSettings.NAME;        
         
-        Helper.wr("Window Width: " + WIN_WIDTH);
-        Helper.wr("Window Height: " + WIN_HEIGHT);
-        Helper.wr("Panel Width: " + PANEL_WIDTH);
-        Helper.wr("Panel Height: " + PANEL_HEIGHT);
-        Helper.wr("Game Width: " + GAME_WIDTH);
-        Helper.wr("Game Height: " + GAME_HEIGHT);
+        MmgHelper.wr("Window Width: " + WIN_WIDTH);
+        MmgHelper.wr("Window Height: " + WIN_HEIGHT);
+        MmgHelper.wr("Panel Width: " + PANEL_WIDTH);
+        MmgHelper.wr("Panel Height: " + PANEL_HEIGHT);
+        MmgHelper.wr("Game Width: " + GAME_WIDTH);
+        MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
         mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
         pnlGame = new GamePanel(mf, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, (MmgTestSpace.WIN_WIDTH - MmgTestSpace.PANEL_WIDTH) / 2, (MmgTestSpace.WIN_HEIGHT - MmgTestSpace.PANEL_HEIGHT) / 2, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);

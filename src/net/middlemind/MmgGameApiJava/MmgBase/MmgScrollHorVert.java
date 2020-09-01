@@ -54,62 +54,62 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * An MmgBmp object that is the horizontal slider.
      */
-    private MmgBmp sliderHor;
+    private MmgBmp scrollBarHorCenterButton;
     
     /**
      * A rectangle with the dimensions of the horizontal slider.
      */
-    private MmgRect sliderHorRect;
+    private MmgRect scrollBarHorCenterButtonRect;
     
     /**
      * An MmgBmp object that is the vertical slider.
      */
-    private MmgBmp sliderVert;
+    private MmgBmp scrollBarVertCenterButton;
     
     /**
      * A rectangle with the dimensions of the vertical slider.
      */
-    private MmgRect sliderVertRect;    
+    private MmgRect scrollBarVertCenterButtonRect;    
     
     /**
      * An MmgBmp that is the horizontal slider's left button.
      */
-    private MmgBmp sliderLeftButton;
+    private MmgBmp scrollBarHorLeftButton;
     
     /**
      * A rectangle with the dimensions of the horizontal slider's left button.
      */
-    private MmgRect sliderLeftButtonRect;
+    private MmgRect scrollBarHorLeftButtonRect;
     
     /**
      * An MmgBmp that is the horizontal slider's right button.
      */    
-    private MmgBmp sliderRightButton;
+    private MmgBmp scrollBarHorRightButton;
     
     /**
      * A rectangle with the dimensions of the horizontal slider's right button.
      */    
-    private MmgRect sliderRightButtonRect;
+    private MmgRect scrollBarHorRightButtonRect;
     
     /**
      * An MmgBmp that is the vertical slider's top button.
      */    
-    private MmgBmp sliderUpButton;
+    private MmgBmp scrollBarVertUpButton;
     
     /**
      * A rectangle with the dimensions of the horizontal slider's top button.
      */    
-    private MmgRect sliderUpButtonRect;
+    private MmgRect scrollBarVertUpButtonRect;
     
     /**
      * An MmgBmp that is the vertical slider's bottom button.
      */    
-    private MmgBmp sliderDownButton;
+    private MmgBmp scrollBarVertDownButton;
 
     /**
      * A rectangle with the dimensions of the horizontal slider's bottom button.
      */    
-    private MmgRect sliderDownButtonRect;    
+    private MmgRect scrollBarVertDownButtonRect;    
     
     /**
      * The width difference between the view port and the scroll pane.
@@ -149,7 +149,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * An MmgColor for the horizontal scroll bar slider's color.
      */    
-    private MmgColor scrollBarSliderColor;    
+    private MmgColor scrollBarCenterButtonColor;    
     
     /**
      * The horizontal scroll bar height.
@@ -164,22 +164,22 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * The width of the horizontal scroll bar slider.
      */    
-    private int scrollBarHorSliderWidth;
+    private int scrollBarHorCenterButtonWidth;
     
     /**
      * The height of the vertical scroll bar slider.
      */
-    private int scrollBarVertSliderHeight;
+    private int scrollBarVertCenterButtonHeight;
     
     /**
      * The width of the scroll bar slider button.
      */
-    private int scrollBarSliderButtonWidth;
+    private int scrollBarLeftRightButtonWidth;
     
     /**
      * The height of the scroll bar slider button.
      */
-    private int scrollBarSliderButtonHeight;    
+    private int scrollBarUpDownButtonHeight;    
     
     /**
      * The scroll interval of the horizontal slider.
@@ -209,12 +209,12 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * The current offset of the horizontal scroll bar's slider.
      */
-    private int offsetXScrollBarSlider;
+    private int offsetXScrollBarCenterButton;
     
     /**
      * The current offset of the vertical scroll bar's slider.
      */
-    private int offsetYScrollBarSlider;
+    private int offsetYScrollBarCenterButton;
     
     /**
      * The current offset of the horizontal scroll pane.
@@ -225,6 +225,11 @@ public class MmgScrollHorVert extends MmgObj {
      * The current offset of the vertical scroll pane.
      */    
     private int offsetYScrollPane;    
+    
+    /**
+     * A boolean flag indicating if a bounding box should be drawn around the elements of the scroll pane.
+     */    
+    public static boolean SHOW_CONTROL_BOUNDING_BOX = false;    
     
     /**
      * The MmgEvent to fire when a screen click occurs.
@@ -250,12 +255,7 @@ public class MmgScrollHorVert extends MmgObj {
      * The MmgEvent to fire when a scroll right event occurs.
      */
     private MmgEvent clickRight = new MmgEvent(null, "both_click_right", MmgScrollHorVert.SCROLL_BOTH_SCROLL_RIGHT_EVENT_ID, MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_TYPE, null, null);
-            
-    /**
-     * A boolean flag indicating if a bounding box should be drawn around the elements of the scroll pane.
-     */    
-    public static boolean SHOW_CONTROL_BOUNDING_BOX = false;
-    
+                
     /**
      * An event type id for this object's events.
      */
@@ -322,31 +322,21 @@ public class MmgScrollHorVert extends MmgObj {
      * @param IntervalY                 The interval to use when moving the scroll bar.
      * @param GameState                 The game state to use when firing events from the scroll view.
      */    
-    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarSliderHeight, int ScrollBarSliderWidth, int IntervalX, int IntervalY) {
+    public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarVertCenterButtonHeight, int ScrollBarHorCenterButtonWidth, int IntervalX, int IntervalY) {
         super();
-        
-        scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
-        scrollBarSliderButtonHeight = MmgHelper.ScaleValue(15);         
-        
+        scrollBarLeftRightButtonWidth = MmgHelper.ScaleValue(15);
+        scrollBarUpDownButtonHeight = MmgHelper.ScaleValue(15);
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHorHeight = ScrollBarHeight;
         scrollBarVertWidth = ScrollBarWidth;
-        
         scrollBarColor = ScrollBarColor;
-        scrollBarSliderColor = ScrollBarSliderColor;
-        scrollBarHorSliderWidth = ScrollBarSliderWidth;
-        scrollBarVertSliderHeight = ScrollBarSliderHeight;
-        
+        scrollBarCenterButtonColor = ScrollBarSliderColor;
+        scrollBarHorCenterButtonWidth = ScrollBarHorCenterButtonWidth;
+        scrollBarVertCenterButtonHeight = ScrollBarVertCenterButtonHeight;
         PrepDimensions();
-
-        if(IntervalX != 0) {
-            SetIntervalX(IntervalX);
-        }
-        
-        if(IntervalY != 0) {        
-            SetIntervalY(IntervalY);            
-        }
+        SetIntervalX(IntervalX);
+        SetIntervalY(IntervalY);
     }
 
     /**
@@ -363,28 +353,19 @@ public class MmgScrollHorVert extends MmgObj {
      */    
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY) {
         super();
-        
         scrollBarHorHeight = MmgHelper.ScaleValue(10);
         scrollBarVertWidth = MmgHelper.ScaleValue(10);
-        scrollBarHorSliderWidth = MmgHelper.ScaleValue(30);
-        scrollBarVertSliderHeight = MmgHelper.ScaleValue(30);
-        scrollBarSliderButtonWidth = MmgHelper.ScaleValue(15);
-        scrollBarSliderButtonHeight = MmgHelper.ScaleValue(15);        
-        
+        scrollBarHorCenterButtonWidth = MmgHelper.ScaleValue(30);
+        scrollBarVertCenterButtonHeight = MmgHelper.ScaleValue(30);
+        scrollBarLeftRightButtonWidth = MmgHelper.ScaleValue(15);
+        scrollBarUpDownButtonHeight = MmgHelper.ScaleValue(15);
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarColor = ScrollBarColor;
-        scrollBarSliderColor = ScrollBarSliderColor;        
-        
+        scrollBarCenterButtonColor = ScrollBarSliderColor;
         PrepDimensions();
-        
-        if(IntervalX != 0) {
-            SetIntervalX(IntervalX);
-        }
-        
-        if(IntervalY != 0) {        
-            SetIntervalY(IntervalY);            
-        }
+        SetIntervalX(IntervalX);
+        SetIntervalY(IntervalY);
     }    
     
     /**
@@ -418,82 +399,82 @@ public class MmgScrollHorVert extends MmgObj {
             SetScrollPaneRect(obj.GetScrollPaneRect().Clone());
         }
         
-        if(obj.GetSliderHor() == null) {
-            SetSliderHor(obj.GetSliderHor());
+        if(obj.GetScrollBarHorCenterButton() == null) {
+            SetScrollBarHorCenterButton(obj.GetScrollBarHorCenterButton());
         } else {
-            SetSliderHor(obj.GetSliderHor().CloneTyped());
+            SetScrollBarHorCenterButton(obj.GetScrollBarHorCenterButton().CloneTyped());
         }        
         
-        if(obj.GetSliderHorRect() == null) {
-            SetSliderHorRect(obj.GetSliderHorRect());
+        if(obj.GetScrollBarHorCenterButtonRect() == null) {
+            SetScrollBarHorCenterButtonRect(obj.GetScrollBarHorCenterButtonRect());
         } else {
-            SetSliderHorRect(obj.GetSliderHorRect().Clone());
+            SetScrollBarHorCenterButtonRect(obj.GetScrollBarHorCenterButtonRect().Clone());
         }
         
-        if(obj.GetSliderVert() == null) {
-            SetSliderVert(obj.GetSliderVert());
+        if(obj.GetScrollBarVertCenterButton() == null) {
+            SetScrollBarVertCenterButton(obj.GetScrollBarVertCenterButton());
         } else {
-            SetSliderVert(obj.GetSliderVert().CloneTyped());
+            SetScrollBarVertCenterButton(obj.GetScrollBarVertCenterButton().CloneTyped());
         }        
         
-        if(obj.GetSliderVertRect() == null) {
-            SetSliderVertRect(obj.GetSliderVertRect());
+        if(obj.GetScrollBarVertCenterButtonRect() == null) {
+            SetScrollBarVertCenterButtonRect(obj.GetScrollBarVertCenterButtonRect());
         } else {
-            SetSliderVertRect(obj.GetSliderVertRect().Clone());
+            SetScrollBarVertCenterButtonRect(obj.GetScrollBarVertCenterButtonRect().Clone());
         }
         
-        if(obj.GetSliderLeftButton() == null) {
-            SetSliderLeftButton(obj.GetSliderLeftButton());
+        if(obj.GetScrollBarHorLeftButton() == null) {
+            SetScrollBarHorLeftButton(obj.GetScrollBarHorLeftButton());
         } else {
-            SetSliderLeftButton(obj.GetSliderLeftButton().CloneTyped());
+            SetScrollBarHorLeftButton(obj.GetScrollBarHorLeftButton().CloneTyped());
         }        
         
-        if(obj.GetSliderLeftButtonRect() == null) {
-            SetSliderLeftButtonRect(obj.GetSliderLeftButtonRect());
+        if(obj.GetScrollBarHorLeftButtonRect() == null) {
+            SetScrollBarHorLeftButtonRect(obj.GetScrollBarHorLeftButtonRect());
         } else {
-            SetSliderLeftButtonRect(obj.GetSliderLeftButtonRect().Clone());
-        }
-
-        if(obj.GetSliderRightButton() == null) {
-            SetSliderRightButton(obj.GetSliderRightButton());
-        } else {
-            SetSliderRightButton(obj.GetSliderRightButton().CloneTyped());
-        }        
-        
-        if(obj.GetSliderRightButtonRect() == null) {
-            SetSliderRightButtonRect(obj.GetSliderRightButtonRect());
-        } else {
-            SetSliderRightButtonRect(obj.GetSliderRightButtonRect().Clone());
+            SetScrollBarHorLeftButtonRect(obj.GetScrollBarHorLeftButtonRect().Clone());
         }
 
-        if(obj.GetSliderUpButton() == null) {
-            SetSliderUpButton(obj.GetSliderUpButton());
+        if(obj.GetScrollBarHorRightButton() == null) {
+            SetScrollBarHorRightButton(obj.GetScrollBarHorRightButton());
         } else {
-            SetSliderUpButton(obj.GetSliderUpButton().CloneTyped());
+            SetScrollBarHorRightButton(obj.GetScrollBarHorRightButton().CloneTyped());
         }        
         
-        if(obj.GetSliderUpButtonRect() == null) {
-            SetSliderUpButtonRect(obj.GetSliderUpButtonRect());
+        if(obj.GetScrollBarHorRightButtonRect() == null) {
+            SetScrollBarHorRightButtonRect(obj.GetScrollBarHorRightButtonRect());
         } else {
-            SetSliderUpButtonRect(obj.GetSliderUpButtonRect().Clone());
+            SetScrollBarHorRightButtonRect(obj.GetScrollBarHorRightButtonRect().Clone());
+        }
+
+        if(obj.GetScrollBarVertUpButton() == null) {
+            SetScrollBarVertUpButton(obj.GetScrollBarVertUpButton());
+        } else {
+            SetScrollBarVertUpButton(obj.GetScrollBarVertUpButton().CloneTyped());
+        }        
+        
+        if(obj.GetScrollBarVertUpButtonRect() == null) {
+            SetScrollBarVertUpButtonRect(obj.GetScrollBarVertUpButtonRect());
+        } else {
+            SetScrollBarVertUpButtonRect(obj.GetScrollBarVertUpButtonRect().Clone());
         }
         
-        if(obj.GetSliderDownButton() == null) {
-            SetSliderDownButton(obj.GetSliderDownButton());
+        if(obj.GetScrollBarVertDownButton() == null) {
+            SetScrollBarVertDownButton(obj.GetScrollBarVertDownButton());
         } else {
-            SetSliderDownButton(obj.GetSliderDownButton().CloneTyped());
+            SetScrollBarVertDownButton(obj.GetScrollBarVertDownButton().CloneTyped());
         }        
         
-        if(obj.GetSliderDownButtonRect() == null) {
-            SetSliderDownButtonRect(obj.GetSliderDownButtonRect());
+        if(obj.GetScrollBarVertDownButtonRect() == null) {
+            SetScrollBarVertDownButtonRect(obj.GetScrollBarVertDownButtonRect());
         } else {
-            SetSliderDownButtonRect(obj.GetSliderDownButtonRect().Clone());
+            SetScrollBarVertDownButtonRect(obj.GetScrollBarVertDownButtonRect().Clone());
         } 
         
         SetWidthDiff(obj.GetWidthDiff());
         SetHeightDiff(obj.GetHeightDiff());
-        SetScrollBarHorVisible(obj.IsScrollBarHorVisible());
-        SetScrollBarVertVisible(obj.IsScrollBarVertVisible());
+        SetScrollBarHorVisible(obj.GetScrollBarHorVisible());
+        SetScrollBarVertVisible(obj.GetScrollBarVertVisible());
         
         if(obj.GetScrollBarColor() == null) {
             SetScrollBarColor(obj.GetScrollBarColor());
@@ -501,16 +482,16 @@ public class MmgScrollHorVert extends MmgObj {
             SetScrollBarColor(obj.GetScrollBarColor().Clone());
         }
         
-        if(obj.GetScrollBarSliderColor() == null) {
-            SetScrollBarSliderColor(obj.GetScrollBarSliderColor());
+        if(obj.GetScrollBarCenterButtonColor() == null) {
+            SetScrollBarCenterButtonColor(obj.GetScrollBarCenterButtonColor());
         } else {
-            SetScrollBarSliderColor(obj.GetScrollBarSliderColor().Clone());
+            SetScrollBarCenterButtonColor(obj.GetScrollBarCenterButtonColor().Clone());
         }
         
         SetScrollBarHorHeight(obj.GetScrollBarHorHeight());
         SetScrollBarVertWidth(obj.GetScrollBarVertWidth());
-        SetScrollBarHorSliderWidth(obj.GetScrollBarHorSliderWidth());
-        SetScrollBarVertSliderHeight(obj.GetScrollBarVertSliderHeight());        
+        SetScrollBarHorCenterButtonWidth(obj.GetScrollBarHorCenterButtonWidth());
+        SetScrollBarVertCenterButtonHeight(obj.GetScrollBarVertCenterButtonHeight());        
         SetIntervalX(obj.GetIntervalX());
         SetIntervalY(obj.GetIntervalY());
         SetOffsetX(obj.GetOffsetX());
@@ -524,8 +505,7 @@ public class MmgScrollHorVert extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgScrollHorVert ret = new MmgScrollHorVert(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgScrollHorVert(this);
     }
     
     /**
@@ -550,23 +530,23 @@ public class MmgScrollHorVert extends MmgObj {
         viewPortWidth = viewPortRect.GetWidth();
         viewPortHeight = viewPortRect.GetHeight();
         
-        sliderLeftButton = MmgHelper.GetBasicCachedBmp("scroll_bar_left_sm.png");
-        sliderRightButton = MmgHelper.GetBasicCachedBmp("scroll_bar_right_sm.png");
-        sliderDownButton = MmgHelper.GetBasicCachedBmp("scroll_bar_down_sm.png");
-        sliderUpButton = MmgHelper.GetBasicCachedBmp("scroll_bar_up_sm.png");
+        scrollBarHorLeftButton = MmgHelper.GetBasicCachedBmp("scroll_bar_left_sm.png");
+        scrollBarHorRightButton = MmgHelper.GetBasicCachedBmp("scroll_bar_right_sm.png");
+        scrollBarVertDownButton = MmgHelper.GetBasicCachedBmp("scroll_bar_down_sm.png");
+        scrollBarVertUpButton = MmgHelper.GetBasicCachedBmp("scroll_bar_up_sm.png");
         
-        sliderHor = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
-        if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
-            scrollBarSliderButtonWidth = sliderLeftButton.GetWidth();
-            scrollBarHorHeight = sliderLeftButton.GetHeight();
-            scrollBarHorSliderWidth = sliderHor.GetWidth();            
+        scrollBarHorCenterButton = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
+        if(scrollBarHorLeftButton != null && scrollBarHorRightButton != null && scrollBarHorCenterButton != null) {
+            scrollBarLeftRightButtonWidth = scrollBarHorLeftButton.GetWidth();
+            scrollBarHorHeight = scrollBarHorLeftButton.GetHeight();
+            scrollBarHorCenterButtonWidth = scrollBarHorCenterButton.GetWidth();            
         }
         
-        sliderVert = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
-        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
-            scrollBarSliderButtonHeight = sliderUpButton.GetHeight();
-            scrollBarVertWidth = sliderUpButton.GetWidth();
-            scrollBarVertSliderHeight = sliderHor.GetHeight();            
+        scrollBarVertCenterButton = MmgHelper.GetBasicCachedBmp("scroll_bar_slider_sm.png");        
+        if(scrollBarVertUpButton != null && scrollBarVertDownButton != null && scrollBarVertCenterButton != null) {
+            scrollBarUpDownButtonHeight = scrollBarVertUpButton.GetHeight();
+            scrollBarVertWidth = scrollBarVertUpButton.GetWidth();
+            scrollBarVertCenterButtonHeight = scrollBarHorCenterButton.GetHeight();            
         }        
         
         left = 0;
@@ -578,57 +558,57 @@ public class MmgScrollHorVert extends MmgObj {
         scrollPaneHeight = scrollPaneRect.GetHeight();        
         
         //slider hor
-        left = scrollBarSliderButtonWidth;
+        left = scrollBarLeftRightButtonWidth;
         top = viewPort.GetHeight();
         bottom = viewPort.GetHeight() + scrollBarHorHeight;
-        right = scrollBarSliderButtonWidth + scrollBarHorSliderWidth;
-        sliderHorRect = new MmgRect(left, top, bottom, right);
+        right = scrollBarLeftRightButtonWidth + scrollBarHorCenterButtonWidth;
+        scrollBarHorCenterButtonRect = new MmgRect(left, top, bottom, right);
         
         //slider vert
         left = viewPort.GetWidth();
-        top = scrollBarSliderButtonHeight;
-        bottom = scrollBarSliderButtonHeight + scrollBarVertSliderHeight;
+        top = scrollBarUpDownButtonHeight;
+        bottom = scrollBarUpDownButtonHeight + scrollBarVertCenterButtonHeight;
         right = viewPort.GetWidth() + scrollBarVertWidth;
-        sliderVertRect = new MmgRect(left, top, bottom, right);
+        scrollBarVertCenterButtonRect = new MmgRect(left, top, bottom, right);
         
         //button left
         left = 0;
         top = viewPort.GetHeight();
         bottom = viewPort.GetHeight() + scrollBarHorHeight;
-        right = scrollBarSliderButtonWidth;
-        sliderLeftButtonRect = new MmgRect(left, top, bottom, right);        
+        right = scrollBarLeftRightButtonWidth;
+        scrollBarHorLeftButtonRect = new MmgRect(left, top, bottom, right);        
           
         //button right
-        left = viewPort.GetWidth() - scrollBarSliderButtonWidth;
+        left = viewPort.GetWidth() - scrollBarLeftRightButtonWidth;
         top = viewPort.GetHeight();
         bottom = viewPort.GetHeight() + scrollBarHorHeight;        
         right = viewPort.GetWidth();
-        sliderRightButtonRect = new MmgRect(left, top, bottom, right);   
+        scrollBarHorRightButtonRect = new MmgRect(left, top, bottom, right);   
           
         //button top
         left = viewPort.GetWidth();
         top = 0;
-        bottom = scrollBarSliderButtonHeight;
+        bottom = scrollBarUpDownButtonHeight;
         right = viewPort.GetWidth() + scrollBarVertWidth;
-        sliderUpButtonRect = new MmgRect(left, top, bottom, right);        
+        scrollBarVertUpButtonRect = new MmgRect(left, top, bottom, right);        
         
         //button bottom
         left = viewPort.GetWidth();
-        top = viewPort.GetHeight() - scrollBarSliderButtonHeight;
+        top = viewPort.GetHeight() - scrollBarUpDownButtonHeight;
         bottom = viewPort.GetHeight();
         right = viewPort.GetWidth() + scrollBarVertWidth;
-        sliderDownButtonRect = new MmgRect(left, top, bottom, right);           
+        scrollBarVertDownButtonRect = new MmgRect(left, top, bottom, right);           
         
-        if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
-            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
-            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
-            sliderHor.SetPosition(sliderHorRect.GetPosition());
+        if(scrollBarHorLeftButton != null && scrollBarHorRightButton != null && scrollBarHorCenterButton != null) {
+            scrollBarHorLeftButton.SetPosition(scrollBarHorLeftButtonRect.GetPosition());
+            scrollBarHorRightButton.SetPosition(scrollBarHorRightButtonRect.GetPosition());            
+            scrollBarHorCenterButton.SetPosition(scrollBarHorCenterButtonRect.GetPosition());
         }
         
-        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
-            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
-            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition());            
-            sliderVert.SetPosition(sliderVertRect.GetPosition());
+        if(scrollBarVertUpButton != null && scrollBarVertDownButton != null && scrollBarVertCenterButton != null) {
+            scrollBarVertUpButton.SetPosition(scrollBarVertUpButtonRect.GetPosition());
+            scrollBarVertDownButton.SetPosition(scrollBarVertDownButtonRect.GetPosition());            
+            scrollBarVertCenterButton.SetPosition(scrollBarVertCenterButtonRect.GetPosition());
         }        
         
         PrepScrollPane();        
@@ -649,7 +629,7 @@ public class MmgScrollHorVert extends MmgObj {
             widthDiffPrct = 0.0;
             scrollBarHorVisible = false;
         }
-        MmgHelper.wr("scrollBarHorVisible: " + scrollBarHorVisible);
+        //MmgHelper.wr("scrollBarHorVisible: " + scrollBarHorVisible);
         
         if(scrollPaneHeight - viewPortHeight > 0) {
             heightDiff = scrollPaneHeight - viewPortHeight;
@@ -660,12 +640,25 @@ public class MmgScrollHorVert extends MmgObj {
             heightDiffPrct = 0.0;
             scrollBarVertVisible = false;
         }
-        MmgHelper.wr("scrollBarVertVisible: " + scrollBarVertVisible);
+        //MmgHelper.wr("scrollBarVertVisible: " + scrollBarVertVisible);
         
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();        
     }    
 
+    /**
+     * Returns the target event handler of the clickScreen MmgEvent class field.
+     * 
+     * @return      The MmgEventHandler to use to handle events.
+     */
+    public MmgEventHandler GetEventHandler() {
+        if(clickScreen != null) {
+            return clickScreen.GetTargetEventHandler();
+        }
+        
+        return null;
+    }    
+    
     /**
      * Sets event handlers for all this object's event.
      * 
@@ -780,24 +773,24 @@ public class MmgScrollHorVert extends MmgObj {
         viewPortRect.SetPosition(new MmgVector2(inX, viewPortRect.GetTop()));
         scrollPaneRect.SetPosition(new MmgVector2(inX, scrollPaneRect.GetTop()));
         
-        sliderHorRect.SetPosition(new MmgVector2(inX + scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderHorRect.GetTop()));
-        sliderLeftButtonRect.SetPosition(new MmgVector2(inX, sliderLeftButtonRect.GetTop()));
-        sliderRightButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth() - scrollBarSliderButtonWidth, sliderRightButtonRect.GetTop()));        
+        scrollBarHorCenterButtonRect.SetPosition(new MmgVector2(inX + scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton, scrollBarHorCenterButtonRect.GetTop()));
+        scrollBarHorLeftButtonRect.SetPosition(new MmgVector2(inX, scrollBarHorLeftButtonRect.GetTop()));
+        scrollBarHorRightButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth() - scrollBarLeftRightButtonWidth, scrollBarHorRightButtonRect.GetTop()));        
 
-        if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
-            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
-            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
-            sliderHor.SetPosition(sliderHorRect.GetPosition());
+        if(scrollBarHorLeftButton != null && scrollBarHorRightButton != null && scrollBarHorCenterButton != null) {
+            scrollBarHorLeftButton.SetPosition(scrollBarHorLeftButtonRect.GetPosition());
+            scrollBarHorRightButton.SetPosition(scrollBarHorRightButtonRect.GetPosition());            
+            scrollBarHorCenterButton.SetPosition(scrollBarHorCenterButtonRect.GetPosition());
         }
         
-        sliderVertRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderVertRect.GetTop()));
-        sliderUpButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderUpButtonRect.GetTop()));
-        sliderDownButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), sliderDownButtonRect.GetTop()));        
+        scrollBarVertCenterButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), scrollBarVertCenterButtonRect.GetTop()));
+        scrollBarVertUpButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), scrollBarVertUpButtonRect.GetTop()));
+        scrollBarVertDownButtonRect.SetPosition(new MmgVector2(inX + viewPort.GetWidth(), scrollBarVertDownButtonRect.GetTop()));        
         
-        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
-            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
-            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition());            
-            sliderVert.SetPosition(sliderVertRect.GetPosition());
+        if(scrollBarVertUpButton != null && scrollBarVertDownButton != null && scrollBarVertCenterButton != null) {
+            scrollBarVertUpButton.SetPosition(scrollBarVertUpButtonRect.GetPosition());
+            scrollBarVertDownButton.SetPosition(scrollBarVertDownButtonRect.GetPosition());            
+            scrollBarVertCenterButton.SetPosition(scrollBarVertCenterButtonRect.GetPosition());
         }
     }
     
@@ -812,26 +805,36 @@ public class MmgScrollHorVert extends MmgObj {
         viewPortRect.SetPosition(new MmgVector2(viewPortRect.GetLeft(), inY));
         scrollPaneRect.SetPosition(new MmgVector2(scrollPaneRect.GetLeft(), inY));
         
-        sliderHorRect.SetPosition(new MmgVector2(sliderHorRect.GetLeft(), inY + viewPort.GetHeight()));
-        sliderLeftButtonRect.SetPosition(new MmgVector2(sliderLeftButtonRect.GetLeft(), inY + viewPortRect.GetHeight()));
-        sliderRightButtonRect.SetPosition(new MmgVector2(sliderRightButtonRect.GetLeft(), inY + viewPortRect.GetHeight()));
+        scrollBarHorCenterButtonRect.SetPosition(new MmgVector2(scrollBarHorCenterButtonRect.GetLeft(), inY + viewPort.GetHeight()));
+        scrollBarHorLeftButtonRect.SetPosition(new MmgVector2(scrollBarHorLeftButtonRect.GetLeft(), inY + viewPortRect.GetHeight()));
+        scrollBarHorRightButtonRect.SetPosition(new MmgVector2(scrollBarHorRightButtonRect.GetLeft(), inY + viewPortRect.GetHeight()));
 
-        if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
-            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
-            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
-            sliderHor.SetPosition(sliderHorRect.GetPosition());
+        if(scrollBarHorLeftButton != null && scrollBarHorRightButton != null && scrollBarHorCenterButton != null) {
+            scrollBarHorLeftButton.SetPosition(scrollBarHorLeftButtonRect.GetPosition());
+            scrollBarHorRightButton.SetPosition(scrollBarHorRightButtonRect.GetPosition());            
+            scrollBarHorCenterButton.SetPosition(scrollBarHorCenterButtonRect.GetPosition());
         }
         
-        sliderVertRect.SetPosition(new MmgVector2(sliderVertRect.GetLeft(), inY + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
-        sliderUpButtonRect.SetPosition(new MmgVector2(sliderUpButtonRect.GetLeft(), inY));
-        sliderDownButtonRect.SetPosition(new MmgVector2(sliderDownButtonRect.GetLeft(), inY + viewPortRect.GetHeight() - scrollBarSliderButtonHeight));
+        scrollBarVertCenterButtonRect.SetPosition(new MmgVector2(scrollBarVertCenterButtonRect.GetLeft(), inY + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
+        scrollBarVertUpButtonRect.SetPosition(new MmgVector2(scrollBarVertUpButtonRect.GetLeft(), inY));
+        scrollBarVertDownButtonRect.SetPosition(new MmgVector2(scrollBarVertDownButtonRect.GetLeft(), inY + viewPortRect.GetHeight() - scrollBarUpDownButtonHeight));
         
-        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
-            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
-            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition()); 
-            sliderVert.SetPosition(sliderVertRect.GetPosition());
+        if(scrollBarVertUpButton != null && scrollBarVertDownButton != null && scrollBarVertCenterButton != null) {
+            scrollBarVertUpButton.SetPosition(scrollBarVertUpButtonRect.GetPosition());
+            scrollBarVertDownButton.SetPosition(scrollBarVertDownButtonRect.GetPosition()); 
+            scrollBarVertCenterButton.SetPosition(scrollBarVertCenterButtonRect.GetPosition());
         }        
     }
+    
+    /**
+     * Sets the position of the scroll view.
+     * 
+     * @param x     The X coordinate of the position.
+     * @param y     The Y coordinate of the position.
+     */
+    public void SetPosition(int x, int y) {
+        SetPosition(new MmgVector2(x, y));
+    }    
     
     /**
      * Sets the position of the scroll view.
@@ -844,24 +847,24 @@ public class MmgScrollHorVert extends MmgObj {
         viewPortRect.SetPosition(inPos);
         scrollPaneRect.SetPosition(inPos);
         
-        sliderHorRect.SetPosition(new MmgVector2(inPos.GetX() + scrollBarSliderButtonWidth + offsetXScrollBarSlider, inPos.GetY() + viewPort.GetHeight()));
-        sliderLeftButtonRect.SetPosition(new MmgVector2(inPos.GetX(), inPos.GetY() + viewPort.GetHeight()));
-        sliderRightButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth() - scrollBarSliderButtonWidth, inPos.GetY() + viewPortRect.GetHeight()));        
+        scrollBarHorCenterButtonRect.SetPosition(new MmgVector2(inPos.GetX() + scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton, inPos.GetY() + viewPort.GetHeight()));
+        scrollBarHorLeftButtonRect.SetPosition(new MmgVector2(inPos.GetX(), inPos.GetY() + viewPort.GetHeight()));
+        scrollBarHorRightButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth() - scrollBarLeftRightButtonWidth, inPos.GetY() + viewPortRect.GetHeight()));        
 
-        if(sliderLeftButton != null && sliderRightButton != null && sliderHor != null) {
-            sliderLeftButton.SetPosition(sliderLeftButtonRect.GetPosition());
-            sliderRightButton.SetPosition(sliderRightButtonRect.GetPosition());            
-            sliderHor.SetPosition(sliderHorRect.GetPosition());
+        if(scrollBarHorLeftButton != null && scrollBarHorRightButton != null && scrollBarHorCenterButton != null) {
+            scrollBarHorLeftButton.SetPosition(scrollBarHorLeftButtonRect.GetPosition());
+            scrollBarHorRightButton.SetPosition(scrollBarHorRightButtonRect.GetPosition());            
+            scrollBarHorCenterButton.SetPosition(scrollBarHorCenterButtonRect.GetPosition());
         }
         
-        sliderVertRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
-        sliderUpButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY()));
-        sliderDownButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + viewPortRect.GetHeight() - scrollBarSliderButtonHeight));
+        scrollBarVertCenterButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
+        scrollBarVertUpButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY()));
+        scrollBarVertDownButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + viewPortRect.GetHeight() - scrollBarUpDownButtonHeight));
         
-        if(sliderUpButton != null && sliderDownButton != null && sliderVert != null) {
-            sliderUpButton.SetPosition(sliderUpButtonRect.GetPosition());
-            sliderDownButton.SetPosition(sliderDownButtonRect.GetPosition());            
-            sliderVert.SetPosition(sliderVertRect.GetPosition());
+        if(scrollBarVertUpButton != null && scrollBarVertDownButton != null && scrollBarVertCenterButton != null) {
+            scrollBarVertUpButton.SetPosition(scrollBarVertUpButtonRect.GetPosition());
+            scrollBarVertDownButton.SetPosition(scrollBarVertDownButtonRect.GetPosition());            
+            scrollBarVertCenterButton.SetPosition(scrollBarVertCenterButtonRect.GetPosition());
         }         
     }
         
@@ -874,11 +877,11 @@ public class MmgScrollHorVert extends MmgObj {
     public boolean ProcessDpadRelease(int dir) {
         if(scrollBarHorVisible && dir == MmgDir.DIR_LEFT) {
             MmgHelper.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
-            if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
-                offsetXScrollBarSlider -= intervalX;
+            if(offsetXScrollBarCenterButton - intervalX > viewPort.GetX() + scrollBarLeftRightButtonWidth) {
+                offsetXScrollBarCenterButton -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
             } else {
-                offsetXScrollBarSlider = 0;
+                offsetXScrollBarCenterButton = 0;
                 offsetXScrollPane = 0; 
             }
             
@@ -891,11 +894,11 @@ public class MmgScrollHorVert extends MmgObj {
             
         } else if(scrollBarHorVisible && dir == MmgDir.DIR_RIGHT) {
             MmgHelper.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
-            if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
-                offsetXScrollBarSlider += intervalX;
+            if(scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton + intervalX < viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth) {
+                offsetXScrollBarCenterButton += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
             } else {
-                offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
+                offsetXScrollBarCenterButton = (viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth);
                 offsetXScrollPane = widthDiff;  
             }
             
@@ -908,11 +911,11 @@ public class MmgScrollHorVert extends MmgObj {
             
         } else if(scrollBarVertVisible && dir == MmgDir.DIR_BACK) {
             MmgHelper.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
-            if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
-                offsetYScrollBarSlider -= intervalY;
+            if(offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight) {
+                offsetYScrollBarCenterButton -= intervalY;
                 offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = 0;
+                offsetYScrollBarCenterButton = 0;
                 offsetYScrollPane = 0; 
             }
             
@@ -925,11 +928,11 @@ public class MmgScrollHorVert extends MmgObj {
             
         } else if(scrollBarVertVisible && dir == MmgDir.DIR_FRONT) {
             MmgHelper.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
-            if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
-                offsetYScrollBarSlider += intervalY;
+            if(scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight) {
+                offsetYScrollBarCenterButton += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
+                offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight);
                 offsetYScrollPane = heightDiff;  
             }
             
@@ -963,14 +966,14 @@ public class MmgScrollHorVert extends MmgObj {
             }
             ret = true;
                                     
-        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderLeftButtonRect)) {
+        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarHorLeftButtonRect)) {
             MmgHelper.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
-            if(offsetXScrollBarSlider - intervalX > viewPort.GetX() + scrollBarSliderButtonWidth) {
+            if(offsetXScrollBarCenterButton - intervalX > viewPort.GetX() + scrollBarLeftRightButtonWidth) {
                 MmgHelper.wr("AAA");
-                offsetXScrollBarSlider -= intervalX;
+                offsetXScrollBarCenterButton -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
             } else {
-                offsetXScrollBarSlider = 0;
+                offsetXScrollBarCenterButton = 0;
                 offsetXScrollPane = 0; 
             }
             
@@ -981,14 +984,14 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             ret = true;
             
-        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderRightButtonRect)) {            
+        }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarHorRightButtonRect)) {            
             MmgHelper.wr("Both: ProcessScreenClick.sliderRightButtonRect click");
-            if(scrollBarSliderButtonWidth + offsetXScrollBarSlider + intervalX < viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarHorSliderWidth) {
+            if(scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton + intervalX < viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth) {
                 MmgHelper.wr("AAA");
-                offsetXScrollBarSlider += intervalX;
+                offsetXScrollBarCenterButton += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
             } else {
-                offsetXScrollBarSlider = (viewPort.GetWidth() - scrollBarSliderButtonWidth - scrollBarSliderButtonWidth - scrollBarHorSliderWidth);
+                offsetXScrollBarCenterButton = (viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth);
                 offsetXScrollPane = widthDiff;  
             }
             
@@ -999,13 +1002,13 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;            
             ret = true;
             
-        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderUpButtonRect)) {
+        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarVertUpButtonRect)) {
             MmgHelper.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
-            if(offsetYScrollBarSlider - intervalY > viewPort.GetY() + scrollBarSliderButtonHeight) {
-                offsetYScrollBarSlider -= intervalY;
+            if(offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight) {
+                offsetYScrollBarCenterButton -= intervalY;
                 offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = 0;
+                offsetYScrollBarCenterButton = 0;
                 offsetYScrollPane = 0; 
             }
             
@@ -1016,13 +1019,13 @@ public class MmgScrollHorVert extends MmgObj {
             isDirty = true;
             ret = true;
             
-        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, sliderDownButtonRect)) {            
+        }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarVertDownButtonRect)) {            
             MmgHelper.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
-            if(scrollBarSliderButtonHeight + offsetYScrollBarSlider + intervalY < viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarVertSliderHeight) {
-                offsetYScrollBarSlider += intervalY;
+            if(scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight) {
+                offsetYScrollBarCenterButton += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
             } else {
-                offsetYScrollBarSlider = (viewPort.GetHeight() - scrollBarSliderButtonHeight - scrollBarSliderButtonHeight - scrollBarVertSliderHeight);
+                offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight);
                 offsetYScrollPane = heightDiff;  
             }
             
@@ -1119,8 +1122,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgBmp used for the horizontal slider.
      */    
-    public MmgBmp GetSliderHor() {
-        return sliderHor;
+    public MmgBmp GetScrollBarHorCenterButton() {
+        return scrollBarHorCenterButton;
     }
     
     /**
@@ -1129,8 +1132,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param b     The MmgBmp used for the horizontal slider.
      */    
-    public void SetSliderHor(MmgBmp b) {
-        sliderHor = b;
+    public void SetScrollBarHorCenterButton(MmgBmp b) {
+        scrollBarHorCenterButton = b;
     }
     
     /**
@@ -1138,8 +1141,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgBmp used for the vertical slider.
      */    
-    public MmgBmp GetSliderVert() {
-        return sliderVert;
+    public MmgBmp GetScrollBarVertCenterButton() {
+        return scrollBarVertCenterButton;
     }
     
     /**
@@ -1148,8 +1151,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param b     The MmgBmp used for the horizontal slider.
      */    
-    public void SetSliderVert(MmgBmp b) {
-        sliderVert = b;
+    public void SetScrollBarVertCenterButton(MmgBmp b) {
+        scrollBarVertCenterButton = b;
     }
     
     /**
@@ -1157,8 +1160,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgRect dimensions for the horizontal slider.
      */    
-    public MmgRect GetSliderHorRect() {
-        return sliderHorRect;
+    public MmgRect GetScrollBarHorCenterButtonRect() {
+        return scrollBarHorCenterButtonRect;
     }
     
     /**
@@ -1167,8 +1170,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param r     The MmgRect dimensions for the horizontal slider.
      */    
-    public void SetSliderHorRect(MmgRect r) {
-        sliderHorRect = r;
+    public void SetScrollBarHorCenterButtonRect(MmgRect r) {
+        scrollBarHorCenterButtonRect = r;
     }
     
     /**
@@ -1176,8 +1179,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgRect dimensions for the vertical slider.
      */    
-    public MmgRect GetSliderVertRect() {
-        return sliderVertRect;
+    public MmgRect GetScrollBarVertCenterButtonRect() {
+        return scrollBarVertCenterButtonRect;
     }
     
     /**
@@ -1186,8 +1189,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param r     The MmgRect dimensions for the vertical slider.
      */    
-    public void SetSliderVertRect(MmgRect r) {
-        sliderVertRect = r;
+    public void SetScrollBarVertCenterButtonRect(MmgRect r) {
+        scrollBarVertCenterButtonRect = r;
     }    
        
     /**
@@ -1195,8 +1198,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgBmp used for the slider up button.
      */    
-    public MmgBmp GetSliderLeftButton() {
-        return sliderLeftButton;
+    public MmgBmp GetScrollBarHorLeftButton() {
+        return scrollBarHorLeftButton;
     }
     
     /**
@@ -1205,8 +1208,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param b     The MmgBmp used for the slider up button.
      */    
-    public void SetSliderLeftButton(MmgBmp b) {
-        sliderLeftButton = b;
+    public void SetScrollBarHorLeftButton(MmgBmp b) {
+        scrollBarHorLeftButton = b;
     }    
     
     /**
@@ -1214,8 +1217,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgRect used for the left button.
      */    
-    public MmgRect GetSliderLeftButtonRect() {
-        return sliderLeftButtonRect;
+    public MmgRect GetScrollBarHorLeftButtonRect() {
+        return scrollBarHorLeftButtonRect;
     }
         
     /**
@@ -1224,8 +1227,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param r     The MmgRect used for the left button.
      */    
-    public void SetSliderLeftButtonRect(MmgRect r) {
-        sliderLeftButtonRect = r;
+    public void SetScrollBarHorLeftButtonRect(MmgRect r) {
+        scrollBarHorLeftButtonRect = r;
     }    
     
     /**
@@ -1233,8 +1236,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgBmp for the right button.
      */    
-    public MmgBmp GetSliderRightButton() {
-        return sliderRightButton;
+    public MmgBmp GetScrollBarHorRightButton() {
+        return scrollBarHorRightButton;
     }
     
     /**
@@ -1243,8 +1246,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param b     The MmgBmp for the right button.
      */    
-    public void SetSliderRightButton(MmgBmp b) {
-        sliderRightButton = b;
+    public void SetScrollBarHorRightButton(MmgBmp b) {
+        scrollBarHorRightButton = b;
     }
     
     /**
@@ -1252,8 +1255,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgRect used for the right button.
      */    
-    public MmgRect GetSliderRightButtonRect() {
-        return sliderRightButtonRect;
+    public MmgRect GetScrollBarHorRightButtonRect() {
+        return scrollBarHorRightButtonRect;
     }
     
     /**
@@ -1262,8 +1265,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param r     The MmgRect used for the right button.
      */    
-    public void SetSliderRightButtonRect(MmgRect r) {
-        sliderRightButtonRect = r;
+    public void SetScrollBarHorRightButtonRect(MmgRect r) {
+        scrollBarHorRightButtonRect = r;
     }    
     
     /**
@@ -1271,8 +1274,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgBmp used for the slider up button.
      */    
-    public MmgBmp GetSliderUpButton() {
-        return sliderUpButton;
+    public MmgBmp GetScrollBarVertUpButton() {
+        return scrollBarVertUpButton;
     }
     
     /**
@@ -1281,8 +1284,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param b     The MmgBmp used for the slider up button.
      */    
-    public void SetSliderUpButton(MmgBmp b) {
-        sliderUpButton = b;
+    public void SetScrollBarVertUpButton(MmgBmp b) {
+        scrollBarVertUpButton = b;
     }    
 
     /**
@@ -1290,8 +1293,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgRect used for the up button.
      */    
-    public MmgRect GetSliderUpButtonRect() {
-        return sliderUpButtonRect;
+    public MmgRect GetScrollBarVertUpButtonRect() {
+        return scrollBarVertUpButtonRect;
     }
     
     /**
@@ -1300,8 +1303,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param r     The MmgRect used for the up button.
      */    
-    public void SetSliderUpButtonRect(MmgRect r) {
-        sliderUpButtonRect = r;
+    public void SetScrollBarVertUpButtonRect(MmgRect r) {
+        scrollBarVertUpButtonRect = r;
     }    
     
     /**
@@ -1309,8 +1312,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgBmp for the down button.
      */     
-    public MmgBmp GetSliderDownButton() {
-        return sliderDownButton;
+    public MmgBmp GetScrollBarVertDownButton() {
+        return scrollBarVertDownButton;
     }
     
     /**
@@ -1319,8 +1322,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param b     The MmgBmp for the down button.
      */     
-    public void SetSliderDownButton(MmgBmp b) {
-        sliderDownButton = b;
+    public void SetScrollBarVertDownButton(MmgBmp b) {
+        scrollBarVertDownButton = b;
     }    
     
     /**
@@ -1328,8 +1331,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgRect used for the down button.
      */     
-    public MmgRect GetSliderDownButtonRect() {
-        return sliderDownButtonRect;
+    public MmgRect GetScrollBarVertDownButtonRect() {
+        return scrollBarVertDownButtonRect;
     }
     
     /**
@@ -1338,8 +1341,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param r     The MmgRect used for the down button.
      */    
-    public void SetSliderDownButtonRect(MmgRect r) {
-        sliderDownButtonRect = r;
+    public void SetScrollBarVertDownButtonRect(MmgRect r) {
+        scrollBarVertDownButtonRect = r;
     }        
     
     /**
@@ -1419,17 +1422,17 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return  A boolean indicating if the horizontal scroll bar is visible.
      */      
-    public boolean IsScrollBarHorVisible() {
+    public boolean GetScrollBarHorVisible() {
         return scrollBarHorVisible;
     }
 
     /**
      * Sets a boolean value indicating if the horizontal scroll bar is visible.
      * 
-     * @param ScrollBarHorVisible       A boolean indicating if the horizontal scroll bar is visible.
+     * @param b       A boolean indicating if the horizontal scroll bar is visible.
      */    
-    public void SetScrollBarHorVisible(boolean ScrollBarHorVisible) {
-        scrollBarHorVisible = ScrollBarHorVisible;
+    public void SetScrollBarHorVisible(boolean b) {
+        scrollBarHorVisible = b;
     }
 
     /**
@@ -1437,17 +1440,17 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return  A boolean indicating if the vertical scroll bar is visible.
      */    
-    public boolean IsScrollBarVertVisible() {
+    public boolean GetScrollBarVertVisible() {
         return scrollBarVertVisible;
     }
 
     /**
      * Sets a boolean value indicating if the vertical scroll bar is visible.
      * 
-     * @param ScrollBarVertVisible      A boolean indicating if the vertical scroll bar is visible.
+     * @param b      A boolean indicating if the vertical scroll bar is visible.
      */    
-    public void SetScrollBarVertVisible(boolean ScrollBarVertVisible) {
-        scrollBarVertVisible = ScrollBarVertVisible;
+    public void SetScrollBarVertVisible(boolean b) {
+        scrollBarVertVisible = b;
     }    
     
     /**
@@ -1462,10 +1465,10 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets the MmgColor of the scroll bar.
      * 
-     * @param ScrollBarColor    The MmgColor of the scroll bar.
+     * @param c    The MmgColor of the scroll bar.
      */    
-    public void SetScrollBarColor(MmgColor ScrollBarColor) {
-        scrollBarColor = ScrollBarColor;
+    public void SetScrollBarColor(MmgColor c) {
+        scrollBarColor = c;
     }
 
     /**
@@ -1473,17 +1476,17 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The MmgColor of the scroll bar slider.
      */    
-    public MmgColor GetScrollBarSliderColor() {
-        return scrollBarSliderColor;
+    public MmgColor GetScrollBarCenterButtonColor() {
+        return scrollBarCenterButtonColor;
     }
 
     /**
      * Sets the MmgColor of the scroll bar slider.
      * 
-     * @param ScrollBarSliderColor      The MmgColor of the scroll bar.
+     * @param c      The MmgColor of the scroll bar.
      */     
-    public void SetScrollBarSliderColor(MmgColor ScrollBarSliderColor) {
-        scrollBarSliderColor = ScrollBarSliderColor;
+    public void SetScrollBarCenterButtonColor(MmgColor c) {
+        scrollBarCenterButtonColor = c;
     }
 
     /**
@@ -1500,8 +1503,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param ScrollBarVertWidth    The vertical scroll bar height.
      */     
-    public void SetScrollBarHorHeight(int ScrollBarHeight) {
-        scrollBarHorHeight = ScrollBarHeight;
+    public void SetScrollBarHorHeight(int h) {
+        scrollBarHorHeight = h;
     }
 
     /**
@@ -1518,8 +1521,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param ScrollBarVertWidth    The vertical scroll bar height.
      */    
-    public void SetScrollBarVertWidth(int ScrollBarWidth) {
-        scrollBarVertWidth = ScrollBarWidth;
+    public void SetScrollBarVertWidth(int w) {
+        scrollBarVertWidth = w;
     }    
     
     /**
@@ -1527,17 +1530,17 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The scroll bar slider button width.
      */    
-    public int GetScrollBarSliderButtonWidth() {
-        return scrollBarSliderButtonWidth;
+    public int GetScrollBarLeftRightButtonWidth() {
+        return scrollBarLeftRightButtonWidth;
     }
 
     /**
      * Sets the scroll bar slider button width.
      * 
-     * @param ScrollBarSliderButtonWidth        The scroll bar slider button width.
+     * @param w        The scroll bar slider button width.
      */    
-    public void SetScrollBarSliderButtonWidth(int ScrollBarSliderButtonWidth) {
-        scrollBarSliderButtonWidth = ScrollBarSliderButtonWidth;
+    public void SetScrollBarLeftRightButtonWidth(int w) {
+        scrollBarLeftRightButtonWidth = w;
     }
     
     /**
@@ -1545,8 +1548,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The scroll bar slider button height.
      */    
-    public int GetScrollBarSliderButtonHeight() {
-        return scrollBarSliderButtonHeight;
+    public int GetScrollBarUpDownButtonHeight() {
+        return scrollBarUpDownButtonHeight;
     }
 
     /**
@@ -1554,8 +1557,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param ScrollBarSliderButtonWidth        The scroll bar slider button height.
      */    
-    public void SetScrollBarSliderButtonHeight(int ScrollBarSliderButtonHeight) {
-        scrollBarSliderButtonHeight = ScrollBarSliderButtonHeight;
+    public void SetScrollBarUpDownButtonHeight(int h) {
+        scrollBarUpDownButtonHeight = h;
     }    
     
     /**
@@ -1563,8 +1566,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The scroll bar horizontal slider width.
      */    
-    public int GetScrollBarHorSliderWidth() {
-        return scrollBarHorSliderWidth;
+    public int GetScrollBarHorCenterButtonWidth() {
+        return scrollBarHorCenterButtonWidth;
     }
 
     /**
@@ -1572,8 +1575,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param ScrollBarHorSliderWidth       The scroll bar horizontal slider width.
      */    
-    public void SetScrollBarHorSliderWidth(int ScrollBarSliderWidth) {
-        scrollBarHorSliderWidth = ScrollBarSliderWidth;
+    public void SetScrollBarHorCenterButtonWidth(int w) {
+        scrollBarHorCenterButtonWidth = w;
     }
 
     /**
@@ -1581,8 +1584,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      The scroll bar vertical slider height.
      */    
-    public int GetScrollBarVertSliderHeight() {
-        return scrollBarVertSliderHeight;
+    public int GetScrollBarVertCenterButtonHeight() {
+        return scrollBarVertCenterButtonHeight;
     }
 
     /**
@@ -1590,8 +1593,8 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @param ScrollBarHorSliderWidth       The scroll bar vertical slider width.
      */     
-    public void SetScrollBarVertSliderHeight(int ScrollBarSliderHeight) {
-        scrollBarVertSliderHeight = ScrollBarSliderHeight;
+    public void SetScrollBarVertCenterButtonHeight(int h) {
+        scrollBarVertCenterButtonHeight = h;
     }    
     
     /**
@@ -1611,7 +1614,7 @@ public class MmgScrollHorVert extends MmgObj {
     public void SetIntervalX(int IntervalX) {
         if(IntervalX != 0) {
             intervalX = IntervalX;
-            intervalPrctX = (double)intervalX / (viewPort.GetWidth() - (scrollBarSliderButtonWidth * 2) - scrollBarHorSliderWidth);
+            intervalPrctX = (double)intervalX / (viewPort.GetWidth() - (scrollBarLeftRightButtonWidth * 2) - scrollBarHorCenterButtonWidth);
         }
     }
 
@@ -1632,7 +1635,7 @@ public class MmgScrollHorVert extends MmgObj {
     public void SetIntervalY(int IntervalY) {
         if(IntervalY != 0) {
             intervalY = IntervalY;
-            intervalPrctY = (double)intervalY / (viewPort.GetHeight() - (scrollBarSliderButtonHeight * 2) - scrollBarVertSliderHeight);
+            intervalPrctY = (double)intervalY / (viewPort.GetHeight() - (scrollBarUpDownButtonHeight * 2) - scrollBarVertCenterButtonHeight);
         }
     }    
     
@@ -1660,7 +1663,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @return      The X offset.
      */      
     public int GetOffsetX() {
-        return offsetXScrollBarSlider;
+        return offsetXScrollBarCenterButton;
     }
 
     /**
@@ -1669,7 +1672,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @param OffsetX       The X offset.
      */    
     public void SetOffsetX(int OffsetX) {
-        offsetXScrollBarSlider = OffsetX;
+        offsetXScrollBarCenterButton = OffsetX;
     }
        
     /**
@@ -1678,7 +1681,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @return      The Y offset.
      */      
     public int GetOffsetY() {
-        return offsetYScrollBarSlider;
+        return offsetYScrollBarCenterButton;
     }
 
     /**
@@ -1687,7 +1690,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @param OffsetX       The Y offset.
      */    
     public void SetOffsetY(int OffsetY) {
-        offsetYScrollBarSlider = OffsetY;
+        offsetYScrollBarCenterButton = OffsetY;
     }    
     
     /**
@@ -1702,17 +1705,17 @@ public class MmgScrollHorVert extends MmgObj {
         if(isVisible == true && isDirty == true) {
             scrollPaneRect.SetPosition(new MmgVector2(GetX() - offsetXScrollPane, GetY() - offsetYScrollPane));
 
-            sliderHorRect.SetPosition(new MmgVector2(GetX() + scrollBarSliderButtonWidth + offsetXScrollBarSlider, sliderHorRect.GetTop()));            
-            if(sliderHor != null) {
-                sliderHor.SetPosition(sliderHorRect.GetPosition());                    
+            scrollBarHorCenterButtonRect.SetPosition(new MmgVector2(GetX() + scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton, scrollBarHorCenterButtonRect.GetTop()));            
+            if(scrollBarHorCenterButton != null) {
+                scrollBarHorCenterButton.SetPosition(scrollBarHorCenterButtonRect.GetPosition());                    
             }
 
-            sliderVertRect.SetPosition(new MmgVector2(sliderVertRect.GetLeft(), GetY() + scrollBarSliderButtonHeight + offsetYScrollBarSlider));
-            if(sliderVert != null) {
-                sliderVert.SetPosition(sliderVertRect.GetPosition());                    
+            scrollBarVertCenterButtonRect.SetPosition(new MmgVector2(scrollBarVertCenterButtonRect.GetLeft(), GetY() + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
+            if(scrollBarVertCenterButton != null) {
+                scrollBarVertCenterButton.SetPosition(scrollBarVertCenterButtonRect.GetPosition());                    
             }
 
-            updSrcRect = new MmgRect(offsetXScrollBarSlider, offsetYScrollBarSlider, offsetYScrollBarSlider + viewPortRect.GetHeight(), offsetXScrollBarSlider + viewPortRect.GetWidth());
+            updSrcRect = new MmgRect(offsetXScrollBarCenterButton, offsetYScrollBarCenterButton, offsetYScrollBarCenterButton + viewPortRect.GetHeight(), offsetXScrollBarCenterButton + viewPortRect.GetWidth());
             updDestRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
             p.DrawBmp(scrollPane, updSrcRect, updDestRect);                
             
@@ -1750,64 +1753,152 @@ public class MmgScrollHorVert extends MmgObj {
                 if(scrollBarHorVisible) {
                     //slider
                     p.SetGraphicsColor(Color.ORANGE);
-                    p.DrawRect(sliderHorRect);
+                    p.DrawRect(scrollBarHorCenterButtonRect);
 
                     //slider button bottom
                     p.SetGraphicsColor(Color.CYAN);
-                    p.DrawRect(sliderRightButtonRect);
+                    p.DrawRect(scrollBarHorRightButtonRect);
 
                     //slider button top
                     p.SetGraphicsColor(Color.PINK);
-                    p.DrawRect(sliderLeftButtonRect);
+                    p.DrawRect(scrollBarHorLeftButtonRect);
                 }
                 
                 if(scrollBarVertVisible) {
                     //slider
                     p.SetGraphicsColor(Color.ORANGE);
-                    p.DrawRect(sliderVertRect);
+                    p.DrawRect(scrollBarVertCenterButtonRect);
 
                     //slider button bottom
                     p.SetGraphicsColor(Color.CYAN);
-                    p.DrawRect(sliderDownButtonRect);
+                    p.DrawRect(scrollBarVertDownButtonRect);
 
                     //slider button top
                     p.SetGraphicsColor(Color.PINK);
-                    p.DrawRect(sliderUpButtonRect);
+                    p.DrawRect(scrollBarVertUpButtonRect);
                 }                
                 
                 p.SetGraphicsColor(c);
             }
                         
-            if(scrollBarHorVisible) {            
-                if(sliderLeftButton != null) {
-                    p.DrawBmp(sliderLeftButton);
+            if(scrollBarHorVisible) {
+                c = p.GetGraphicsColor();
+                if(scrollBarColor != null) {
+                    p.SetGraphicsColor(scrollBarColor.GetColor());
+                    p.DrawRect(new MmgRect(scrollBarHorLeftButtonRect.GetLeft(), scrollBarHorLeftButtonRect.GetTop(), scrollBarHorRightButtonRect.GetBottom(), scrollBarHorRightButtonRect.GetRight()));
+                }                
+                
+                if(scrollBarHorLeftButton != null) {
+                    p.DrawBmp(scrollBarHorLeftButton);
                 }
                 
-                if(sliderRightButton != null) {
-                    p.DrawBmp(sliderRightButton);
+                if(scrollBarHorRightButton != null) {
+                    p.DrawBmp(scrollBarHorRightButton);
                 }
                 
-                if(sliderHor != null) {
-                    p.DrawBmp(sliderHor);
-                }                       
+                if(scrollBarHorCenterButton != null) {
+                    if(scrollBarCenterButtonColor != null) {
+                        p.SetGraphicsColor(scrollBarCenterButtonColor.GetColor());
+                        p.DrawRect(scrollBarHorCenterButtonRect);                        
+                    }                    
+                    p.DrawBmp(scrollBarHorCenterButton);
+                } 
+                
+                p.SetGraphicsColor(c);                
             }
             
-            if(scrollBarVertVisible) {            
-                if(sliderUpButton != null) {
-                    p.DrawBmp(sliderUpButton);
+            if(scrollBarVertVisible) {
+                c = p.GetGraphicsColor();                
+                if(scrollBarColor != null) {
+                    p.SetGraphicsColor(scrollBarColor.GetColor());
+                    p.DrawRect(new MmgRect(scrollBarVertUpButtonRect.GetLeft(), scrollBarVertUpButtonRect.GetTop(), scrollBarVertDownButtonRect.GetBottom(), scrollBarVertDownButtonRect.GetRight()));                    
                 }
                 
-                if(sliderDownButton != null) {
-                    p.DrawBmp(sliderDownButton);
+                if(scrollBarVertUpButton != null) {
+                    p.DrawBmp(scrollBarVertUpButton);
                 }
                 
-                if(sliderVert != null) {
-                    p.DrawBmp(sliderVert);
-                }                       
+                if(scrollBarVertDownButton != null) {
+                    p.DrawBmp(scrollBarVertDownButton);
+                }
+                
+                if(scrollBarVertCenterButton != null) {
+                    if(scrollBarCenterButtonColor != null) {
+                        p.SetGraphicsColor(scrollBarCenterButtonColor.GetColor());
+                        p.DrawRect(scrollBarVertCenterButtonRect);                        
+                    }                    
+                    p.DrawBmp(scrollBarVertCenterButton);
+                }
+                
+                p.SetGraphicsColor(c);                
             }
 
             p.DrawBmp(viewPort, GetPosition());
             
         }
+    }
+    
+    /**
+     * A method used to check the equality of this MmgScrollHorVert when compared to another MmgScrollHorVert.
+     * Compares object fields to determine equality.
+     * 
+     * @param obj     The MmgScrollHorVert object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */    
+    public boolean Equals(MmgScrollHorVert obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && obj.GetScrollBarHorVisible() == GetScrollBarHorVisible()
+            && obj.GetScrollBarVertVisible() == GetScrollBarVertVisible()                
+            && obj.GetIntervalX() == GetIntervalX()
+            && obj.GetIntervalY() == GetIntervalY()                
+            && obj.GetOffsetX() == GetOffsetX()
+            && obj.GetOffsetY() == GetOffsetY()                
+            && ((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().Equals(GetScrollBarCenterButtonColor())))
+            && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().Equals(GetScrollBarColor())))
+                
+            && ((obj.GetScrollBarHorCenterButton() == null && GetScrollBarHorCenterButton() == null) || (obj.GetScrollBarHorCenterButton() != null && GetScrollBarHorCenterButton() != null && obj.GetScrollBarHorCenterButton().Equals(GetScrollBarHorCenterButton())))
+            && ((obj.GetScrollBarHorCenterButtonRect() == null && GetScrollBarHorCenterButtonRect() == null) || (obj.GetScrollBarHorCenterButtonRect() != null && GetScrollBarHorCenterButtonRect() != null && obj.GetScrollBarHorCenterButtonRect().Equals(GetScrollBarHorCenterButtonRect())))            
+            && obj.GetScrollBarHorCenterButtonWidth() == GetScrollBarHorCenterButtonWidth()
+                
+            && ((obj.GetScrollBarVertCenterButton() == null && GetScrollBarVertCenterButton() == null) || (obj.GetScrollBarVertCenterButton() != null && GetScrollBarVertCenterButton() != null && obj.GetScrollBarVertCenterButton().Equals(GetScrollBarVertCenterButton())))
+            && ((obj.GetScrollBarVertCenterButtonRect() == null && GetScrollBarVertCenterButtonRect() == null) || (obj.GetScrollBarVertCenterButtonRect() != null && GetScrollBarVertCenterButtonRect() != null && obj.GetScrollBarVertCenterButtonRect().Equals(GetScrollBarVertCenterButtonRect())))            
+            && obj.GetScrollBarVertCenterButtonHeight() == GetScrollBarVertCenterButtonHeight()                
+                
+            && obj.GetScrollBarHorHeight() == GetScrollBarHorHeight()
+            && obj.GetScrollBarVertWidth() == GetScrollBarVertWidth()                
+            && obj.GetScrollBarLeftRightButtonWidth() == GetScrollBarLeftRightButtonWidth()
+            && obj.GetScrollBarUpDownButtonHeight() == GetScrollBarUpDownButtonHeight()
+                
+            && ((obj.GetScrollBarHorLeftButton() == null && GetScrollBarHorLeftButton() == null) || (obj.GetScrollBarHorLeftButton() != null && GetScrollBarHorLeftButton() != null && obj.GetScrollBarHorLeftButton().Equals(GetScrollBarHorLeftButton())))
+            && ((obj.GetScrollBarHorLeftButtonRect() == null && GetScrollBarHorLeftButtonRect() == null) || (obj.GetScrollBarHorLeftButtonRect() != null && GetScrollBarHorLeftButtonRect() != null && obj.GetScrollBarHorLeftButtonRect().Equals(GetScrollBarHorLeftButtonRect())))                
+
+            && ((obj.GetScrollBarHorRightButton() == null && GetScrollBarHorRightButton() == null) || (obj.GetScrollBarHorRightButton() != null && GetScrollBarHorRightButton() != null && obj.GetScrollBarHorRightButton().Equals(GetScrollBarHorRightButton())))
+            && ((obj.GetScrollBarHorRightButtonRect() == null && GetScrollBarHorRightButtonRect() == null) || (obj.GetScrollBarHorRightButtonRect() != null && GetScrollBarHorRightButtonRect() != null && obj.GetScrollBarHorRightButtonRect().Equals(GetScrollBarHorRightButtonRect())))                
+
+            && ((obj.GetScrollBarVertUpButton() == null && GetScrollBarVertUpButton() == null) || (obj.GetScrollBarVertUpButton() != null && GetScrollBarVertUpButton() != null && obj.GetScrollBarVertUpButton().Equals(GetScrollBarVertUpButton())))
+            && ((obj.GetScrollBarVertUpButtonRect() == null && GetScrollBarVertUpButtonRect() == null) || (obj.GetScrollBarVertUpButtonRect() != null && GetScrollBarVertUpButtonRect() != null && obj.GetScrollBarVertUpButtonRect().Equals(GetScrollBarVertUpButtonRect())))                
+                
+            && ((obj.GetScrollBarVertDownButton() == null && GetScrollBarVertDownButton() == null) || (obj.GetScrollBarVertDownButton() != null && GetScrollBarVertDownButton() != null && obj.GetScrollBarVertDownButton().Equals(GetScrollBarVertDownButton())))
+            && ((obj.GetScrollBarVertDownButtonRect() == null && GetScrollBarVertDownButtonRect() == null) || (obj.GetScrollBarVertDownButtonRect() != null && GetScrollBarVertDownButtonRect() != null && obj.GetScrollBarVertDownButtonRect().Equals(GetScrollBarVertDownButtonRect())))                                
+                
+            && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().Equals(GetScrollPane())))
+            && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().Equals(GetScrollPaneRect())))               
+            && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().Equals(GetViewPort())))
+            && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().Equals(GetViewPortRect())))               
+            
+            && obj.GetWidthDiff() == GetWidthDiff()
+            && obj.GetWidthDiffPrct() == GetWidthDiffPrct()
+            && obj.GetHeightDiff() == GetHeightDiff()
+            && obj.GetHeightDiffPrct() == GetHeightDiffPrct()                
+        ) {
+            ret = true;
+        }
+        return ret;
     }    
 }

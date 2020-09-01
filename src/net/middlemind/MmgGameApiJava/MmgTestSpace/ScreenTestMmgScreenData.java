@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -119,7 +118,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgScreenData.Constructor");
+        MmgHelper.wr("ScreenTestMmgScreenData.Constructor");
     }
 
     /**
@@ -128,7 +127,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgScreenData.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTestMmgScreenData.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -146,7 +145,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgScreenData.LoadResources");
+        MmgHelper.wr("ScreenTestMmgScreenData.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -249,7 +248,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */ 
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -263,7 +262,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenPress");
         return true;
     }
 
@@ -276,7 +275,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -289,7 +288,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenRelease");
         return true;
     }
     
@@ -301,7 +300,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessAClick");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessAClick");
         return true;
     }
     
@@ -313,7 +312,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessBClick");        
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessBClick");        
         return true;
     }
     
@@ -322,7 +321,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgScreenData.ProcessDebugClick");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDebugClick");
     }
 
     /**
@@ -333,7 +332,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessDpadPress: " + dir);
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -345,7 +344,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessDpadRelease: " + dir);
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_02);
         
@@ -364,7 +363,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessDpadClick: " + dir);        
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -377,7 +376,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessScreenClick");        
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -391,7 +390,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessScreenClick");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenClick");
         return true;
     }    
     
@@ -404,7 +403,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgScreenData.ProcessKeyClick");
+        MmgHelper.wr("ScreenTestMmgScreenData.ProcessKeyClick");
         return true;
     }
     
@@ -455,7 +454,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgScreenData.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgHelper.wr("ScreenTestMmgScreenData.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -465,6 +464,6 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgScreenData.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        MmgHelper.wr("ScreenTestMmgScreenData.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

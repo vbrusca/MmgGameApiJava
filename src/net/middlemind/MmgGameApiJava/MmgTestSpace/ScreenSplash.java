@@ -1,8 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
 
 /**
@@ -29,7 +29,7 @@ public class ScreenSplash extends net.middlemind.MmgGameApiJava.MmgCore.ScreenSp
      * @param Handler       The GenericEventHandler for this class.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenSplash.SetGenericEventHandler");
+        MmgHelper.wr("ScreenSplash.SetGenericEventHandler");
         handler = Handler;
     }    
     
@@ -40,7 +40,7 @@ public class ScreenSplash extends net.middlemind.MmgGameApiJava.MmgCore.ScreenSp
      */
     @Override
     public void MmgHandleUpdate(Object obj) {
-        Helper.wr("ScreenSplash.MmgHandleUpdate");
+        MmgHelper.wr("ScreenSplash.MmgHandleUpdate");
         if (handler != null) {
             handler.HandleGenericEvent(new GenericEventMessage(net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash.EVENT_DISPLAY_COMPLETE, null, GetGameState()));
         }

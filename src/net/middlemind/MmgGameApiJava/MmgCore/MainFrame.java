@@ -3,6 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.*;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
  * The main frame of the game, extends the JFrame class. 
@@ -87,12 +88,12 @@ public class MainFrame extends JFrame {
      * @param GameHeight    The desired game height.
      */
     public MainFrame(int WinWidth, int WinHeight, int PanWidth, int PanHeight, int GameWidth, int GameHeight) {
-        Helper.wr("MainFrame: WinWidth: " + WinWidth);
-        Helper.wr("MainFrame: WinHeight: " + WinHeight);
-        Helper.wr("MainFrame: PanelWidth: " + PanWidth);
-        Helper.wr("MainFrame: PanelHeight: " + PanHeight);
-        Helper.wr("MainFrame: GameWidth: " + GameWidth);
-        Helper.wr("MainFrame: GameHeight: " + GameHeight);        
+        MmgHelper.wr("MainFrame: WinWidth: " + WinWidth);
+        MmgHelper.wr("MainFrame: WinHeight: " + WinHeight);
+        MmgHelper.wr("MainFrame: PanelWidth: " + PanWidth);
+        MmgHelper.wr("MainFrame: PanelHeight: " + PanHeight);
+        MmgHelper.wr("MainFrame: GameWidth: " + GameWidth);
+        MmgHelper.wr("MainFrame: GameHeight: " + GameHeight);        
         winWidth = WinWidth;
         winHeight = WinHeight;
         panelWidth = PanWidth;
@@ -209,8 +210,8 @@ public class MainFrame extends JFrame {
      * Initializes the components used by this JFrame.
      */
     public void InitComponents() {
-        Helper.wr("MainFrame: Found Screen Dimen: " + winWidth + "x" + winHeight);
-        Helper.wr("MainFrame: Found Position: " + myX + "x" + myY);
+        MmgHelper.wr("MainFrame: Found Screen Dimen: " + winWidth + "x" + winHeight);
+        MmgHelper.wr("MainFrame: Found Position: " + myX + "x" + myY);
         add(pnlGame.GetCanvas());
                 
         pnlGame.GetCanvas().setFocusable(true);
@@ -228,7 +229,7 @@ public class MainFrame extends JFrame {
             @SuppressWarnings("CallToPrintStackTrace")
             public void windowClosing(WindowEvent e) {
                 try {
-                    Helper.wr("WindowClosing");
+                    MmgHelper.wr("WindowClosing");
 
                     GamePanel.PAUSE = true;
                     GamePanel.EXIT = true;

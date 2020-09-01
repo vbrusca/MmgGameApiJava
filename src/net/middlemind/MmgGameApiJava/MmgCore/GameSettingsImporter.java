@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -74,7 +75,7 @@ public class GameSettingsImporter {
                     }
                     
                     DatConstantsEntry ent = new DatConstantsEntry(key, val, type, from);
-                    Helper.wr("Found Key: " + key + " Value: " + val + " Type: " + type + " From: " + from);
+                    MmgHelper.wr("Found Key: " + key + " Value: " + val + " Type: " + type + " From: " + from);
                     values.put(from + "." + key, ent);
                 }
             }

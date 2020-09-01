@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -106,7 +105,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.Constructor");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.Constructor");
     }
 
     /**
@@ -115,7 +114,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -133,7 +132,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.LoadResources");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -217,7 +216,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -231,7 +230,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
         return true;
     }
 
@@ -244,7 +243,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -257,7 +256,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
         return true;
     }
     
@@ -269,7 +268,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessAClick");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessAClick");
         return true;
     }
     
@@ -281,7 +280,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessBClick");        
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessBClick");        
         return true;
     }
     
@@ -290,7 +289,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDebugClick");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDebugClick");
     }
 
     /**
@@ -301,7 +300,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadPress: " + dir);
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -313,7 +312,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadRelease: " + dir);
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_21);
         
@@ -332,7 +331,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadClick: " + dir);        
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -345,7 +344,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");        
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -359,7 +358,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");
         return true;
     }    
     
@@ -372,7 +371,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessKeyClick");
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessKeyClick");
         if(c == 'w' || c == 'W') {
             MmgHelper.WriteClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry_output.txt", classConfig);
             infoLabel1.SetText("Class config written to: screen_test_mmg_cfg_file_entry_output.txt on: " + System.currentTimeMillis());
@@ -429,7 +428,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
    /**
@@ -439,6 +438,6 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgCfgFileEntryWrite.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

@@ -191,8 +191,8 @@ public class RunResourceLoad implements Runnable {
                 tlen = asFiles.size();
                 
                 for(i = 0; i < tlen; i++) {
-                    Helper.wr("Found auto_load file: " + asFiles.get(i).getName() + " Path: " + asFiles.get(i).getPath());
-                    Helper.GetBasicCachedSound(asFiles.get(i).getPath(), asFiles.get(i).getName());
+                    MmgHelper.wr("Found auto_load file: " + asFiles.get(i).getName() + " Path: " + asFiles.get(i).getPath());
+                    MmgHelper.GetBasicCachedSound(asFiles.get(i).getPath(), asFiles.get(i).getName());
                     readPos = i * loadMultiplier;
                     
                     if (update != null) {                        
@@ -223,8 +223,8 @@ public class RunResourceLoad implements Runnable {
                 tlen = adFiles.size();
                 
                 for(i = 0; i < tlen; i++) {
-                    Helper.wr("Found auto_load file: " + adFiles.get(i).getName() + " Path: " + adFiles.get(i).getPath());
-                    Helper.GetBasicCachedBmp(adFiles.get(i).getPath(), adFiles.get(i).getName());
+                    MmgHelper.wr("Found auto_load file: " + adFiles.get(i).getName() + " Path: " + adFiles.get(i).getPath());
+                    MmgHelper.GetBasicCachedBmp(adFiles.get(i).getPath(), adFiles.get(i).getName());
                     readPos = i * loadMultiplier;
                     
                     if (update != null) {                        

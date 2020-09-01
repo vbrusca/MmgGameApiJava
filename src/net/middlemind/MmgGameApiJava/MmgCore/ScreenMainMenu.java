@@ -127,9 +127,9 @@ public class ScreenMainMenu extends MmgGameScreen {
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        Helper.wr("ScreenMainMenu: LoadResources: Position: " + GetPosition().ToString());
-        Helper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
-        Helper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
+        MmgHelper.wr("ScreenMainMenu: LoadResources: Position: " + GetPosition().ToString());
+        MmgHelper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
+        MmgHelper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
 
         classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_main_menu.txt");
         
@@ -492,13 +492,13 @@ public class ScreenMainMenu extends MmgGameScreen {
         MmgMenuItem mItm = null;
         
         if (menuStartGame != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame);
+            mItm = MmgHelper.GetBasicMenuItem(handleMenuEvent, "Main Menu Start Game", HandleMainMenuEvent.MAIN_MENU_EVENT_START_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuStartGame);
             mItm.SetSound(menuSound);
             menu.Add(mItm);
         }
 
         if (menuExitGame != null) {
-            mItm = Helper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame);
+            mItm = MmgHelper.GetBasicMenuItem(handleMenuEvent, "Main Menu Exit Game", HandleMainMenuEvent.MAIN_MENU_EVENT_EXIT_GAME, HandleMainMenuEvent.MAIN_MENU_EVENT_TYPE, menuExitGame);
             mItm.SetSound(menuSound);
             menu.Add(mItm);
         }

@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -204,7 +203,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMmgBasicInput.Constructor");
+        MmgHelper.wr("ScreenTestMmgBasicInput.Constructor");
     }
 
     /**
@@ -213,7 +212,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMmgBasicInput.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTestMmgBasicInput.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -231,7 +230,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMmgBasicInput.LoadResources");
+        MmgHelper.wr("ScreenTestMmgBasicInput.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -451,7 +450,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */  
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -465,7 +464,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessScreenPress");
         processMousePress.SetText("ProcessMousePress: X: " + x + " Y: " + y);
         return true;
     }
@@ -479,7 +478,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -492,7 +491,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessScreenRelease");
         processMouseRelease.SetText("ProcessMouseRelease: X: " + x + " Y: " + y);        
         return true;
     }
@@ -506,7 +505,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessMouseClick");        
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessMouseClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -520,7 +519,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessMouseClick");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessMouseClick");
         processMouseClick.SetText("ProcessMouseClick: X: " + x + " Y: " + y);
         return true;
     }    
@@ -534,7 +533,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseMove(int x, int y) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessMouseMove");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessMouseMove");
         processMouseMove.SetText("ProcessMouseMove: X: " + x + " Y: " + y);
         return true;
     }         
@@ -547,7 +546,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessAPress(int src) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessAPress");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessAPress");
         processABtnPress.SetText("ProcessABtnPress (A): " + System.currentTimeMillis());
         return true;
     }
@@ -560,7 +559,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessARelease(int src) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessARelease");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessARelease");
         processABtnRelease.SetText("ProcessABtnRelease (A): " + System.currentTimeMillis());
         return true;
     }    
@@ -573,7 +572,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessAClick");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessAClick");
         processABtnClick.SetText("ProcessABtnClick (A): " + System.currentTimeMillis());
         return true;
     }
@@ -586,7 +585,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessBPress(int src) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessBPress");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessBPress");
         processBBtnPress.SetText("ProcessBBtnPress (A): " + System.currentTimeMillis());
         return true;
     }
@@ -599,7 +598,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessBRelease(int src) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessBRelease");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessBRelease");
         processBBtnRelease.SetText("ProcessBBtnRelease (A): " + System.currentTimeMillis());
         return true;
     }    
@@ -612,7 +611,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */ 
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessBClick");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessBClick");
         processBBtnClick.SetText("ProcessBBtnClick (B): " + System.currentTimeMillis());       
         return true;
     }
@@ -622,7 +621,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessDebugClick");
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessDebugClick");
         processDebugClick.SetText("ProcessDebugClick (D): " + System.currentTimeMillis()); 
     }
 
@@ -634,7 +633,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessDpadPress: " + dir);
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessDpadPress: " + dir);
         if(dir == GameSettings.UP_KEYBOARD) {
             processUpBtnPress.SetText("ProcessUpBtnPress: " + System.currentTimeMillis());
         
@@ -659,7 +658,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessDpadRelease: " + dir);
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.UP_KEYBOARD) {
             processUpBtnRelease.SetText("ProcessUpBtnRelease: " + System.currentTimeMillis());
         
@@ -684,7 +683,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessDpadClick: " + dir);
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessDpadClick: " + dir);
         if(dir == GameSettings.UP_KEYBOARD) {
             processUpBtnClick.SetText("ProcessUpBtnClick: " + System.currentTimeMillis());
         
@@ -710,7 +709,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessKeyPress(char c, int code) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessKeyPress: " + code);
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessKeyPress: " + code);
         processKeyPress.SetText(("ProcessKeyPress: " + System.currentTimeMillis()));
         return true;
     }
@@ -724,7 +723,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessKeyRelease(char c, int code) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessKeyRelease: " + code);
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessKeyRelease: " + code);
         processKeyRelease.SetText(("ProcessKeyRelease: " + System.currentTimeMillis()));
         if(c == 'l' || c == 'L') {
             owner.SwitchGameState(GameStates.GAME_SCREEN_08);
@@ -743,7 +742,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        Helper.wr("ScreenTestMmgBasicInput.ProcessKeyClick: " + code);
+        MmgHelper.wr("ScreenTestMmgBasicInput.ProcessKeyClick: " + code);
         processKeyClick.SetText(("ProcessKeyClick: " + System.currentTimeMillis()));
         return true;
     }
@@ -806,7 +805,7 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMmgBasicInput.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgHelper.wr("ScreenTestMmgBasicInput.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -816,6 +815,6 @@ public class ScreenTestMmgBasicInput extends MmgGameScreen implements GenericEve
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMmgBasicInput.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        MmgHelper.wr("ScreenTestMmgBasicInput.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
-import net.middlemind.MmgGameApiJava.MmgCore.Helper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
@@ -101,7 +100,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         ready = false;
         gameState = State;
         owner = Owner;
-        Helper.wr("ScreenTestMsgTextField.Constructor");
+        MmgHelper.wr("ScreenTestMsgTextField.Constructor");
     }
 
     /**
@@ -110,7 +109,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        Helper.wr("ScreenTestMsgTextField.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTestMsgTextField.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -128,7 +127,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        Helper.wr("ScreenTestMsgTextField.LoadResources");
+        MmgHelper.wr("ScreenTestMsgTextField.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
@@ -143,7 +142,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);        
         
-        bground = Helper.GetBasicCachedBmp("popup_window_base.png");
+        bground = MmgHelper.GetBasicCachedBmp("popup_window_base.png");
         
         txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), width, height, 12, 15);
         MmgHelper.CenterHorAndVert(txtField);
@@ -189,7 +188,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -203,7 +202,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenPress");
         return true;
     }
 
@@ -216,7 +215,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -229,7 +228,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
         return true;
     }
     
@@ -241,7 +240,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessAClick(int src) {
-        Helper.wr("ScreenTestMsgTextField.ProcessAClick");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessAClick");
         return true;
     }
     
@@ -253,7 +252,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessBClick(int src) {
-        Helper.wr("ScreenTestMsgTextField.ProcessBClick");        
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessBClick");        
         return true;
     }
     
@@ -262,7 +261,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void ProcessDebugClick() {
-        Helper.wr("ScreenTestMsgTextField.ProcessDebugClick");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessDebugClick");
     }
 
     /**
@@ -273,7 +272,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadPress: " + dir);
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -285,7 +284,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */ 
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadRelease: " + dir);
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_05);
         
@@ -304,7 +303,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        Helper.wr("ScreenTestMsgTextField.ProcessDpadClick: " + dir);        
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -317,7 +316,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenClick");        
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -331,7 +330,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        Helper.wr("ScreenTestMsgTextField.ProcessScreenClick");
+        MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenClick");
         return true;
     }    
     
@@ -428,7 +427,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        Helper.wr("ScreenTestMsgTextField.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgHelper.wr("ScreenTestMsgTextField.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -438,7 +437,7 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        Helper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());   
+        MmgHelper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());   
         if(e.GetMessage() != null && e.GetMessage().equals("error_max_length") == true) {
             txtFieldMaxLenError.SetText("Max Len Error Current Time MS: " + System.currentTimeMillis());
             MmgHelper.CenterHor(txtFieldMaxLenError);

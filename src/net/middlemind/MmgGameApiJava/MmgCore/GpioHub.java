@@ -3,6 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
 import net.middlemind.MmgGameApiJava.MmgCore.GpioPin.GpioButton;
 import java.io.File;
 import java.io.IOException;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
  * The GpioHub class is used to provide access to up to 6 GPIO pins, most likely on a Linux system.
@@ -133,7 +134,7 @@ public class GpioHub {
             }
             
         }catch(Exception e) {
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
         }
                
         buttons = new GpioPin[6];
@@ -165,7 +166,7 @@ public class GpioHub {
             }
             
         }catch(Exception e) {
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
         }        
         
         buttons = Buttons;
@@ -519,7 +520,7 @@ public class GpioHub {
             }
         }catch(Exception e) {
             prepped = false;
-            Helper.wrErr(e);
+            MmgHelper.wrErr(e);
             
         }
     }
