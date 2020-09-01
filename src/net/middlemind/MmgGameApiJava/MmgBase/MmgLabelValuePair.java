@@ -39,6 +39,7 @@ public class MmgLabelValuePair extends MmgObj {
      * Constructor for this class.
      */
     public MmgLabelValuePair() {
+        super();
         skipReset = true;
         SetLabel(new MmgFont(MmgFontData.GetFontBold()));
         SetValue(new MmgFont(MmgFontData.GetFontNorm()));
@@ -56,6 +57,7 @@ public class MmgLabelValuePair extends MmgObj {
      * @param fontVal       The Font to use for the value.
      */
     public MmgLabelValuePair(Font fontLbl, Font fontVal) {
+        super();
         skipReset = true;
         SetLabel(new MmgFont(fontLbl));
         SetValue(new MmgFont(fontVal));
@@ -73,6 +75,7 @@ public class MmgLabelValuePair extends MmgObj {
      * @param fontVal       The MmgFont to use for the value.
      */
     public MmgLabelValuePair(MmgFont fontLbl, MmgFont fontVal) {
+        super();
         skipReset = true;
         SetLabel(fontLbl);
         SetValue(fontVal);
@@ -84,12 +87,31 @@ public class MmgLabelValuePair extends MmgObj {
     }        
     
     /**
+     * Constructor that sets the lower level attributes based
+     * on the given argument.
+     * 
+     * @param obj       The MmgObj to use. 
+     */
+    public MmgLabelValuePair(MmgObj obj) {
+        super(obj);
+        skipReset = true;
+        SetLabel(new MmgFont());
+        SetValue(new MmgFont());
+        SetPaddingX(DEFAULT_PADDING_X);
+        SetWidth(0);
+        SetHeight(0);    
+        skipReset = false;
+        Reset();
+    }    
+    
+    /**
      * Constructor that sets attributes based on the 
      * given argument.
      * 
      * @param obj       The MmgLabelValuePair to use to initialize this class instance.
      */
     public MmgLabelValuePair(MmgLabelValuePair obj) {
+        super();
         skipReset = true;
         if(obj.GetLabel() == null) {
             SetLabel(obj.GetLabel());

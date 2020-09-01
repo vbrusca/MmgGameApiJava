@@ -47,6 +47,7 @@ public class Mmg9Slice extends MmgObj {
      * @param h         The desired height of the resulting expanded source MmgBmp object.
      */
     public Mmg9Slice(int Offset, MmgBmp Src, int w, int h) {
+        super();
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
@@ -67,6 +68,7 @@ public class Mmg9Slice extends MmgObj {
      * @param Pos       The desired position to set for the expanded MmgBmp object.
      */
     public Mmg9Slice(int Offset, MmgBmp Src, int w, int h, MmgVector2 Pos) {
+        super();        
         SetOffset(Offset);
         SetSrc(Src);
         SetWidth(w);
@@ -82,6 +84,7 @@ public class Mmg9Slice extends MmgObj {
      * @param obj     The Mmg9Slice object to create a clean instance from.
      */
     public Mmg9Slice(Mmg9Slice obj) {
+        super();        
         SetOffset(obj.GetOffset());
         SetSrc(obj.GetSrc().CloneTyped());
         SetWidth(obj.GetWidth());

@@ -27,6 +27,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingScreen(MmgLoadingBar LoadingBar, float lBarOff) {
+        super();
         SetLoadingBar(LoadingBar, lBarOff);
     }
 
@@ -37,7 +38,8 @@ public class MmgLoadingScreen extends MmgGameScreen {
      * @param obj   The MmgLoadingScreen to use to set local attributes.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgLoadingScreen(MmgLoadingScreen obj) {        
+    public MmgLoadingScreen(MmgLoadingScreen obj) {
+        super();
         if(obj.GetLoadingBar() == null) {
             SetLoadingBar(obj.GetLoadingBar(), obj.GetLoadingBarOffsetBottom());
         } else {

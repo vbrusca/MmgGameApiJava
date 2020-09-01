@@ -85,6 +85,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSplashScreen(int DisplayTime) {
+        super();
         SetDisplayTime(DisplayTime);
     }
 
@@ -94,7 +95,8 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      * @param obj       The display time in milliseconds.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgSplashScreen(MmgSplashScreen obj) {        
+    public MmgSplashScreen(MmgSplashScreen obj) { 
+        super(obj);
         if(obj.GetBackground() == null) {
             SetBackground(obj.GetBackground());            
         } else {

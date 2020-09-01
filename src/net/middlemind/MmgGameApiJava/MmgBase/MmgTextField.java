@@ -123,6 +123,7 @@ public class MmgTextField extends MmgObj {
      * @param Padding           The padding value to use in slight font positioning calculations.
      */
     public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, int DisplayChars) {
+        super();
         bgroundSrc = BgroundSrc;
         font = Font;
         padding = Padding;
@@ -140,6 +141,7 @@ public class MmgTextField extends MmgObj {
      * @param obj       The class used to create a new MmgTextField from.
      */
     public MmgTextField(MmgTextField obj) {
+        super();
         if(obj.GetBgroundSrc() != null) {
             SetBgroundSrc(obj.GetBgroundSrc());
         } else {

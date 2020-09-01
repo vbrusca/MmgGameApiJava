@@ -35,9 +35,20 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer() {
+        super();
         SetContainer(new ArrayList<MmgObj>(50));
     }
 
+   /**
+     * Constructor for this class that sets some default attributes to the same value as the attributes
+     * of the given object.
+     * 
+     * @param obj       The object to use for default attribute values.
+     */
+    public MmgMenuContainer(MmgObj obj) {
+        super(obj);
+    }    
+    
     /**
      * Constructor for this class that sets the MmgMenuItem ArrayList.
      * 
@@ -45,6 +56,7 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer(ArrayList<MmgObj> objects) {
+        super();
         SetContainer(objects);
     }
 
@@ -56,6 +68,7 @@ public class MmgMenuContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer(MmgMenuContainer obj) {
+        super();
         if(obj.GetContainer() == null) {
             SetContainer(obj.GetContainer());
         } else {
@@ -175,9 +188,10 @@ public class MmgMenuContainer extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             if (container != null) {
+                a = new MmgObj[container.size()];
                 a = container.toArray(a);
                 for (i = 0; i < a.length; i++) {
-                    mo = (MmgObj) a[i];
+                    mo = a[i];
                     if (mo != null && mo.GetIsVisible() == true) {
                         mo.MmgDraw(p);
                     }

@@ -48,6 +48,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar() {
+        super();
         SetLoadingBarBack(null);
         SetLoadingBarFront(null);
         SetPaddingX(0);
@@ -64,6 +65,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar(MmgLoadingBar obj) {
+        super();
         if (obj.GetLoadingBarBack() != null) {
             SetLoadingBarBack((MmgBmp) obj.GetLoadingBarBack().Clone());
         } else {
@@ -107,6 +109,7 @@ public class MmgLoadingBar extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgLoadingBar(MmgBmp LoadingBarBack, MmgBmp LoadingBarFront) {
+        super();
         SetLoadingBarBack(LoadingBarBack);
         SetLoadingBarFront(LoadingBarFront);
         SetPaddingX(0);

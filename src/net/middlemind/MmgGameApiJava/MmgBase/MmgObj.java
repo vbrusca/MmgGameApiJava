@@ -260,7 +260,6 @@ public class MmgObj {
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         if(isVisible == true) {
             
-            return true;
         }
         return false;
     }

@@ -128,6 +128,7 @@ public class MmgSizeTween extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
+        super();
         SetSubj(subj);
         SetPixelSizeToChange(new MmgVector2((finishSize.GetX() - startSize.GetX()), (finishSize.GetY() - startSize.GetY())));
         SetMsTimeToChange(msTimeToChange);
@@ -151,6 +152,7 @@ public class MmgSizeTween extends MmgObj {
      * @param obj       An MmgSizeTween object used to create an new instance of the MmgSizeTween class.
      */
     public MmgSizeTween(MmgSizeTween obj) {        
+        super();
         if(obj.GetSubj() == null) {
             SetSubj(obj.GetSubj());
         } else {

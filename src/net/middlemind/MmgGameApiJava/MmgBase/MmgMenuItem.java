@@ -84,6 +84,7 @@ public class MmgMenuItem extends MmgObj {
      * Constructor for this class.
      */
     public MmgMenuItem() {
+        super();
         SetEventPress(null);
         SetNormal(null);
         SetSelected(null);
@@ -92,6 +93,22 @@ public class MmgMenuItem extends MmgObj {
     }
 
     /**
+     * Constructor for this class that sets the value of base attributes
+     * from the given argument.
+     * 
+     * @param m     The MmgObj to use to set the attributes of this object. 
+     */
+    public MmgMenuItem(MmgObj m) {
+    	super(m);
+        eventPress = null;
+        normal = null;
+        selected = null;
+        inactive = null;
+        current = null;
+        state = STATE_NONE;
+    }    
+    
+    /**
      * Constructor for this class that sets the value of certain attributes based
      * on the value of attributes in the given argument.
      * 
@@ -99,6 +116,7 @@ public class MmgMenuItem extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuItem(MmgMenuItem obj) {
+        super();
         SetEventPress(obj.GetEventPress());
         
         if(obj.GetNormal() == null) {

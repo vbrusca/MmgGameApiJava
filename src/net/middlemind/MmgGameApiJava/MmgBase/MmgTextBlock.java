@@ -110,6 +110,7 @@ public class MmgTextBlock extends MmgObj {
      */
     @SuppressWarnings({"OverridableMethodCallInConstructor", "Convert2Diamond"})
     public MmgTextBlock() {
+        super();
         SetPaddingX(MmgHelper.ScaleValue(4));
         SetPaddingY(MmgHelper.ScaleValue(4));
         SetLineHeight(MmgHelper.ScaleValue(16));
@@ -126,6 +127,7 @@ public class MmgTextBlock extends MmgObj {
      * @param obj       A class instance used to create a new class instance.
      */
     public MmgTextBlock(MmgTextBlock obj) {
+        super();
         SetPaddingX(obj.GetPaddingX());
         SetPaddingY(obj.GetPaddingY());
         SetHeight(obj.GetHeight());

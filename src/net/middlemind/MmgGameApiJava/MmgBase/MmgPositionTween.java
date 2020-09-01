@@ -127,7 +127,8 @@ public class MmgPositionTween extends MmgObj {
      * @param finishPos         The finish position of the tween.
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgPositionTween(MmgObj subj, float msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {  
+    public MmgPositionTween(MmgObj subj, float msTimeToMove, MmgVector2 startPos, MmgVector2 finishPos) {
+        super();
         SetSubj(subj);
         SetPixelDistToMove(new MmgVector2((finishPos.GetX() - startPos.GetX()), (finishPos.GetY() - startPos.GetY())));
         SetMsTimeToMove(msTimeToMove);
@@ -149,7 +150,8 @@ public class MmgPositionTween extends MmgObj {
      * 
      * @param obj       An MmgPositionTween object used to create an new instance of the MmgPositionTween class.
      */
-    public MmgPositionTween(MmgPositionTween obj) {        
+    public MmgPositionTween(MmgPositionTween obj) {   
+        super();
         if(obj.GetSubj() == null) {
             SetSubj(obj.GetSubj());
         } else {

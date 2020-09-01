@@ -29,6 +29,7 @@ public class MmgBmpFont extends MmgObj {
      * @param Text 
      */
     public MmgBmpFont(MmgBmp Src, String Text) {
+        super();
         SetSrc(Src);        
         Prep();
         SetText(Text);
@@ -40,6 +41,7 @@ public class MmgBmpFont extends MmgObj {
      * @param Src 
      */
     public MmgBmpFont(MmgBmp Src) {
+        super();        
         SetSrc(Src);
         Prep();
     }
@@ -50,6 +52,7 @@ public class MmgBmpFont extends MmgObj {
      * @param obj 
      */
     public MmgBmpFont(MmgBmpFont obj) {
+        super();        
         if(obj.GetSrc() == null) {
             SetSrc(obj.GetSrc());
         } else {

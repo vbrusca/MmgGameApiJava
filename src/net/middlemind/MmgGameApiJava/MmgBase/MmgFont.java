@@ -31,6 +31,7 @@ public class MmgFont extends MmgObj {
      * Constructor for this class.
      */
     public MmgFont() {
+        super();
         frc = new FontRenderContext(null, true, true);
         text = "";
         font = null;
@@ -38,12 +39,28 @@ public class MmgFont extends MmgObj {
         SetHeight(0);
     }
 
+   /**
+     * Constructor that sets the lower level attributes based on the given
+     * argument.
+     *
+     * @param obj   The MmgObj to use.
+     */
+    public MmgFont(MmgObj obj) {
+        super(obj);
+        frc = new FontRenderContext(null, true, true);
+        text = "";
+        font = null;
+        SetWidth(0);
+        SetHeight(0);
+    }    
+    
     /**
      * Constructor that sets the lower level font class.
      *
      * @param tf    Font to use for text drawing.
      */
     public MmgFont(Font tf) {
+        super();
         frc = new FontRenderContext(null, true, true);
         text = "";
         font = tf;
@@ -57,6 +74,7 @@ public class MmgFont extends MmgObj {
      * @param obj   The MmgFont class instance to use to set all the class fields.
      */
     public MmgFont(MmgFont obj) {
+        super();
         frc = new FontRenderContext(null, true, true);
         SetFont(obj.GetFont());
         SetText(obj.GetText());

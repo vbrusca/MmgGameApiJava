@@ -118,6 +118,7 @@ public class MmgGameScreen extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen() {
+        super();
         pause = false;
         ready = false;
         objects = new MmgContainer();
@@ -145,6 +146,7 @@ public class MmgGameScreen extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen(MmgGameScreen obj) {
+        super();
         SetObjects(obj.GetObjects());
         SetMenu(obj.GetMenu());
         SetBackground(obj.GetBackground());

@@ -115,6 +115,7 @@ public class MmgBmp extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgBmp(MmgBmp obj) {
+        super();        
         SetRotation(obj.GetRotation());
 
         if (obj.GetOrigin() == null) {

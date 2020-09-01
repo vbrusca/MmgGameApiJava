@@ -121,6 +121,7 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgRect Src, MmgRect Dst, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
+        super();
         frameTime = -1;
         prevFrameTime = -1;
         SetRotation(Rotation);
@@ -146,13 +147,15 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation) {
-        SetFrameTime(-1);
-        SetPrevFrameTime(-1);
+        super();
+        frameTime = -1;
+        prevFrameTime = -1;
         SetRotation(Rotation);
         SetOrigin(Origin);
         SetScaling(Scaling);
         SetBmpArray(t);
-        SetSrcRect(new MmgRect(Position, GetWidth(), GetHeight()));
+        MmgRect r = new MmgRect(Position, t[0].GetWidth(), t[0].GetHeight());
+        SetSrcRect(r);
         SetDstRect(null);        
         SetPosition(Position);
         SetIsVisible(true);
@@ -168,8 +171,9 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t, MmgVector2 Position) {
-        SetFrameTime(-1);
-        SetPrevFrameTime(-1);
+        super();
+        frameTime = -1;
+        prevFrameTime = -1;
         SetRotation(0);
         SetOrigin(MmgVector2.GetOriginVec());
         SetScaling(MmgVector2.GetUnitVec());
@@ -189,8 +193,9 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgBmp[] t) {
-        SetFrameTime(-1);
-        SetPrevFrameTime(-1);
+        super();
+        frameTime = -1;
+        prevFrameTime = -1;
         SetRotation(0);
         SetOrigin(MmgVector2.GetOriginVec());
         SetScaling(MmgVector2.GetUnitVec());
@@ -211,6 +216,7 @@ public class MmgSprite extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSprite(MmgSprite obj) {
+        super();
         SetFrameTime(obj.GetFrameTime());
         SetPrevFrameTime(obj.GetPrevFrameTime());
         SetRotation(obj.GetRotation());

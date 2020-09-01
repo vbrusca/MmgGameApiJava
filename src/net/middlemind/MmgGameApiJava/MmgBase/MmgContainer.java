@@ -61,9 +61,20 @@ public class MmgContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer() {
+        super();
         SetContainer(new ArrayList(INITIAL_SIZE));
     }
 
+    /**
+     * Constructor that sets the base objects properties equal to the given
+     * arguments properties.
+     *
+     * @param obj       The object to get MmgObj properties from.
+     */
+    public MmgContainer(MmgObj obj) {
+        super(obj);
+    }    
+    
     /**
      * Constructor that initializes an ArrayList of objects contained by this
      * container object.
@@ -72,6 +83,7 @@ public class MmgContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer(ArrayList<MmgObj> objects) {
+        super();
         SetContainer(objects);
     }
 
@@ -83,6 +95,7 @@ public class MmgContainer extends MmgObj {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgContainer(MmgContainer obj) {
+        super();
         ArrayList<MmgObj> tmp1 = obj.GetContainer();
         if (tmp1 != null) {
             int len = tmp1.size();

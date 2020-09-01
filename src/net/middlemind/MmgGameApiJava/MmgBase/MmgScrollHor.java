@@ -210,6 +210,7 @@ public class MmgScrollHor extends MmgObj {
      * @param GameState                     The game state to use when firing events from the scroll view.
      */
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int ScrollBarHeight, int ScrollBarCenterButtonWidth, int IntervalX) {
+        super();
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHeight = ScrollBarHeight;
@@ -233,6 +234,7 @@ public class MmgScrollHor extends MmgObj {
      * @param GameState                     The game state to use when firing events from the scroll view.
      */
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int IntervalX) {
+        super();
         viewPort = ViewPort;
         scrollPane = ScrollPane;
         scrollBarHeight = MmgHelper.ScaleValue(10);
@@ -250,6 +252,7 @@ public class MmgScrollHor extends MmgObj {
      * @param obj       An MmgScrollHor instance. 
      */
     public MmgScrollHor(MmgScrollHor obj) {
+        super();
         if(obj.GetViewPort() == null) {
             SetViewPort(obj.GetViewPort());
         } else {
