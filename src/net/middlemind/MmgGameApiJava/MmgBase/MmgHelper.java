@@ -48,6 +48,121 @@ public class MmgHelper {
      */
     private static Random rando = new Random(System.currentTimeMillis());    
 
+    public static int ContainsKeyInt(String key, int defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
+        int ret = defaultValue;
+        if(classConfig.containsKey(key)) {
+            ret = classConfig.get(key).number.intValue();
+        }
+        return ret;
+    }
+    
+    public static float ContainsKeyFloat(String key, float defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
+        float ret = defaultValue;
+        if(classConfig.containsKey(key)) {
+            ret = classConfig.get(key).number.floatValue();
+        }
+        return ret;
+    }    
+    
+    public static double ContainsKeyDouble(String key, double defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
+        double ret = defaultValue;
+        if(classConfig.containsKey(key)) {
+            ret = classConfig.get(key).number.doubleValue();
+        }
+        return ret;
+    }
+
+    public static String ContainsKeyString(String key, String defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
+        String ret = defaultValue;
+        if(classConfig.containsKey(key)) {
+            ret = classConfig.get(key).string;
+        }
+        return ret;
+    }
+
+    public static void ContainsKeyMmgBmpScaleAndPosition(String keyRoot, MmgBmp tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
+        String key = "";
+        double scale = 1.0;
+        int tmp = 0;
+        int tmp1 = 0;
+        
+        if (tB != null) {
+            key = keyRoot + "Scale";
+            scale = ContainsKeyDouble(key, 1.0, classConfig);
+            if(scale != 1.0) {
+                tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
+            }
+
+            MmgHelper.CenterHorAndVert(tB);
+                        
+            key = keyRoot + "OffsetX";           
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            tmp1 = 0;
+            if(tmp != tmp1) {
+                tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = keyRoot + "OffsetY";            
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            tmp1 = 0;
+            if(tmp != tmp1) {
+                tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = keyRoot + "PosY";
+            tmp1 = tB.GetPosition().GetY();
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            if(tmp != tmp1) {
+                tB.GetPosition().SetY(pos.GetY() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = keyRoot + "PosX";
+            tmp1 = tB.GetPosition().GetX();            
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            if(tmp != tmp1) {
+                tB.GetPosition().SetX(pos.GetX() + MmgHelper.ScaleValue(tmp));                
+            }            
+        }
+    }    
+    
+    public static void ContainsKeyMmgObjPosition(String keyRoot, MmgObj tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
+        String key = "";
+        int tmp = 0;
+        int tmp1 = 0;
+        
+        if (tB != null) {
+            MmgHelper.CenterHorAndVert(tB);
+                        
+            key = keyRoot + "OffsetX";           
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            tmp1 = 0;
+            if(tmp != tmp1) {
+                tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = keyRoot + "OffsetY";            
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            tmp1 = 0;
+            if(tmp != tmp1) {
+                tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = keyRoot + "PosY";
+            tmp1 = tB.GetPosition().GetY();
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            if(tmp != tmp1) {
+                tB.GetPosition().SetY(pos.GetY() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = keyRoot + "PosX";
+            tmp1 = tB.GetPosition().GetX();            
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            if(tmp != tmp1) {
+                tB.GetPosition().SetX(pos.GetX() + MmgHelper.ScaleValue(tmp));                
+            }            
+        }
+    }      
+    
     /**
      * A static class method that writes MmgCfgFileEntry objects to a target file.
      * 

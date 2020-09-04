@@ -106,7 +106,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
         classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
         
         MmgBmp tB = null;
-        MmgPen p;
+        //MmgPen p;
         String key = "";
         double scale = 1.0;
         int tmp = 0;
@@ -117,8 +117,8 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
             super.SetDisplayTime(classConfig.get(key).number.intValue());        
         }
         
-        p = new MmgPen();
-        p.SetCacheOn(false);
+        //p = new MmgPen();
+        //p.SetCacheOn(false);
 
         key = "bmpLogo";
         if(classConfig.containsKey(key)) {

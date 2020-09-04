@@ -35,7 +35,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     /**
      * Helper class for displaying a loading bar.
      */
-    public MmgLoadingBar loadingBar;
+    //public MmgLoadingBar loadingBar;
 
     /**
      * The game state this screen has.
@@ -150,24 +150,6 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     }
 
     /**
-     * Gets the loading bar used to display the loading progress.
-     * 
-     * @return      The loading bar.
-     */
-    public MmgLoadingBar GetLoadingBar() {
-        return loadingBar;
-    }
-
-    /**
-     * Sets the loading bar used to display the loading progress.
-     * 
-     * @param LoadingBar    The loading bar.
-     */
-    public void SetLoadingBar(MmgLoadingBar LoadingBar) {
-        loadingBar = LoadingBar;
-    }
-    
-    /**
      * Loads all the resources needed to display this game screen.
      */
     @SuppressWarnings("UnusedAssignment")
@@ -180,23 +162,18 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_loading.txt");        
         
         MmgBmp tB = null;
-        MmgBmp tB1 = null;
-        MmgPen p;
-        
+        MmgBmp tB1 = null;        
         MmgLoadingBar lb = null;
-        int lbOffSet = 5;
+        int lbOffSet = MmgHelper.ScaleValue(5);
         String key = "";
         double scale = 1.0;
         int tmp = 0;
         String file = "";
         
-        p = new MmgPen();
-        p.SetCacheOn(false);
-
         key = "loadingLogoSlowDown";
         if(classConfig.containsKey(key)) {
             slowDown = classConfig.get(key).number.intValue();
-        }
+        }        
         
         key = "bmpLogo";
         if(classConfig.containsKey(key)) {
@@ -206,8 +183,9 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         }        
         
         tB = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
-        tB = MmgBmpScaler.ScaleMmgBmp(tB, 0.5, true);        
         if (tB != null) {
+            tB = MmgBmpScaler.ScaleMmgBmp(tB, 0.5, true);                    
+            
             key = "loadingLogoScale";
             if(classConfig.containsKey(key)) {
                 scale = classConfig.get(key).number.doubleValue();
@@ -218,29 +196,29 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             
             SetCenteredBackground(tB);
             
-            key = "loadingLogoOffsetY";
+            key = "loadingLogoPosY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
             }
             
-            key = "loadingLogoOffsetX";
+            key = "loadingLogoPosX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
-            }
-
-            key = "loadingLogoPosY";
+            }            
+            
+            key = "loadingLogoOffsetY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
             }
             
-            key = "loadingLogoPosX";
+            key = "loadingLogoOffsetX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
                 tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
-            }            
+            }
         }
                 
         key = "imgLoadingBar";
@@ -251,7 +229,6 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         }
         
         tB = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
-
         
         key = "imgLoadingBarFill";
         if(classConfig.containsKey(key)) {
@@ -275,7 +252,6 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             lb.SetPaddingY(MmgHelper.ScaleValue(4));
             lb.SetFillHeight(tB.GetHeight() - MmgHelper.ScaleValue(10));
             lb.SetFillWidth(tB.GetWidth() - MmgHelper.ScaleValue(12));
-            loadingBar = lb;
             super.SetLoadingBar(lb, lbOffSet);
                         
             MmgHelper.CenterHorAndVert(lb);
@@ -283,25 +259,25 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             key = "loadingBarPosY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();
-                loadingBar.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));                
+                GetLoadingBar().GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "loadingBarPosX";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();                
-                loadingBar.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
+                GetLoadingBar().GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "loadingBarOffsetY";
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();                
-                loadingBar.GetPosition().SetY(loadingBar.GetY() + MmgHelper.ScaleValue(tmp));                
+                GetLoadingBar().GetPosition().SetY(GetLoadingBar().GetY() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = "loadingBarOffsetX";            
             if(classConfig.containsKey(key)) {
                 tmp = classConfig.get(key).number.intValue();                
-                loadingBar.GetPosition().SetX(loadingBar.GetX() + MmgHelper.ScaleValue(tmp));                
+                GetLoadingBar().GetPosition().SetX(GetLoadingBar().GetX() + MmgHelper.ScaleValue(tmp));                
             }                 
         }
         
@@ -314,11 +290,9 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
      */
     public void UnloadResources() {
         pause = true;
-        SetLoadingBar(null, 0);
+        SetLoadingBar(null, 0f);
         SetBackground(null);
         ClearObjs();
-
-        loadingBar = null;
         datLoad = null;
         ready = false;
     }
@@ -356,8 +330,28 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             
             if(files != null && files.length > 0) {
                 return true;
-            }
-            
+            } else {
+                ald = new File(GameSettings.AUTO_SOUND_LOAD_DIR);
+                files = ald.listFiles();
+                
+                if(files != null && files.length > 0) {
+                    return true;
+                } else {
+                    ald = new File(GameSettings.PROGRAM_IMAGE_LOAD_DIR);
+                    files = ald.listFiles();
+                    
+                    if(files != null && files.length > 0) {
+                        return true;
+                    } else {
+                        ald = new File(GameSettings.PROGRAM_SOUND_LOAD_DIR);
+                        files = ald.listFiles();
+
+                        if(files != null && files.length > 0) {
+                            return true;
+                        }
+                    }
+                }
+            }            
         } catch (Exception e) {
             MmgHelper.wrErr(e);
         }
@@ -378,7 +372,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
             Thread t = new Thread(r);
             t.start();
         } else {
-            MmgHelper.wr("No data found to load.");
+            MmgHelper.wr("ScreenLoading: StartDatLoad: No data found to load!!");
         }
     }
 
@@ -402,8 +396,8 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         if (obj != null) {
             float prct = (float) obj.GetPos() / (float) obj.GetLen();
 
-            if (loadingBar != null) {
-                loadingBar.SetFillAmt(prct);
+            if (GetLoadingBar() != null) {
+                GetLoadingBar().SetFillAmt(prct);
             }
 
             if (GetLoadComplete() == true) {
@@ -425,7 +419,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         if (datLoad != null) {
             return datLoad.GetReadResult();
         } else {
-            MmgHelper.wr("datLoad is NULL");
+            MmgHelper.wr("ScreenLoading: GetLoadResult: The datLoad field is NULL!!");
             return false;
         }
     }
@@ -439,7 +433,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         if (datLoad != null) {
             return datLoad.GetReadComplete();
         } else {
-            MmgHelper.wr("datLoad is NULL");
+            MmgHelper.wr("ScreenLoading: GetLoadComplete: The datLoad field is NULL!!");
             return false;
         }
     }

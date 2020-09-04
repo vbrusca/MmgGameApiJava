@@ -147,28 +147,90 @@ public class MmgGameScreen extends MmgObj {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgGameScreen(MmgGameScreen obj) {
         super();
-        SetObjects(obj.GetObjects());
-        SetMenu(obj.GetMenu());
-        SetBackground(obj.GetBackground());
-        SetForeground(obj.GetForeground());
-        SetHeader(obj.GetHeader());
-        SetFooter(obj.GetFooter());
-        SetLeftCursor(obj.GetLeftCursor());
-        SetRightCursor(obj.GetRightCursor());
-        SetMessage(obj.GetMessage());
-        SetMenuOn(obj.GetMenuOn());
+        if(obj.GetBackground() == null) {
+            SetBackground(obj.GetBackground());
+        } else {
+            SetBackground(obj.GetBackground().Clone());
+        }
+        
+        if(obj.GetFooter() == null) {
+            SetFooter(obj.GetFooter());            
+        } else {
+            SetFooter(obj.GetFooter().Clone());
+        }
+        
+        SetHasParent(obj.GetHasParent());
+        SetIsVisible(obj.GetIsVisible());
+                
+        if(obj.GetHeader() == null) {
+            SetHeader(obj.GetHeader());
+        } else {
+            SetHeader(obj.GetHeader().Clone());            
+        }
+        
+        SetHeight(obj.GetHeight());
+        SetIsVisible(obj.GetIsVisible());
+        
+        if(obj.GetLeftCursor() == null) {
+            SetLeftCursor(obj.GetLeftCursor());
+        } else {
+            SetLeftCursor(obj.GetLeftCursor().Clone());
+        }
+
+        if(obj.GetMenu() == null) {
+            SetMenu(obj.GetMenu());
+        } else {
+            SetMenu(obj.GetMenu().CloneTyped());
+        }
+        
+        SetMenuCursorLeftOffsetX(obj.GetMenuCursorLeftOffsetX());
+        SetMenuCursorLeftOffsetY(obj.GetMenuCursorLeftOffsetY());
+        SetMenuCursorRightOffsetX(obj.GetMenuCursorRightOffsetX());
+        SetMenuCursorRightOffsetY(obj.GetMenuCursorRightOffsetY());                
         SetMenuIdx(obj.GetMenuIdx());
+        SetMenuOn(obj.GetMenuOn());
         SetMenuStart(obj.GetMenuStart());
         SetMenuStop(obj.GetMenuStop());
-
-        if (obj.GetPosition() != null) {
-            SetPosition(obj.GetPosition().Clone());
+        
+        if(obj.GetMessage() == null) {
+            SetMessage(obj.GetMessage());
         } else {
-            SetPosition(obj.GetPosition());
+            SetMessage(obj.GetMessage().Clone());
         }
+
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
+        
+        SetName(obj.GetName());
+        
+        if(obj.GetObjects() == null) {
+            SetObjects(obj.GetObjects());
+        } else {
+            SetObjects(obj.GetObjects().CloneTyped());
+        }
+        
+        if(obj.GetParent() == null) {
+            SetParent(obj.GetParent());
+        } else {
+            SetParent(obj.GetParent().Clone());
+        }
+        
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            SetPosition(obj.GetPosition().Clone());
+        }
+                        
+        if(obj.GetRightCursor() == null) {
+            SetRightCursor(obj.GetRightCursor());
+        } else {
+            SetRightCursor(obj.GetRightCursor().Clone());            
+        }
+                                
         SetWidth(obj.GetWidth());
-        SetHeight(obj.GetHeight());
-        SetMmgColor(obj.GetMmgColor());
     }
 
     /**
@@ -1053,5 +1115,49 @@ public class MmgGameScreen extends MmgObj {
                 }
             }
         }
+    }
+    
+    /**
+     * Tests if this object is equal to another MmgGameScreen object.
+     * 
+     * @param obj   An MmgGameScreen object instance to compare to.
+     * @return      Returns true if the objects are considered equal and false otherwise.
+     */    
+    public boolean Equals(MmgGameScreen obj) {
+        if(obj == null) {
+            return false;
+        }
+        
+        boolean ret = false;
+        if(
+            super.Equals((MmgObj)obj)
+            && ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().Equals(GetBackground())))
+            && ((obj.GetFooter() == null && GetFooter() == null) || (obj.GetFooter() != null && GetFooter() != null && obj.GetFooter().Equals(GetFooter())))
+            && obj.GetHasParent() == GetHasParent()
+            && ((obj.GetHeader() == null && GetHeader() == null) || (obj.GetHeader() != null && GetHeader() != null && obj.GetHeader().Equals(GetHeader())))
+            && obj.GetHeight() == GetHeight()
+            && ((obj.GetLeftCursor() == null && GetLeftCursor() == null) || (obj.GetLeftCursor() != null && GetLeftCursor() != null && obj.GetLeftCursor().Equals(GetLeftCursor())))
+            && ((obj.GetMenu() == null && GetMenu() == null) || (obj.GetMenu() != null && GetMenu() != null && obj.GetMenu().Equals(GetMenu())))
+            && obj.GetMenuCursorLeftOffsetX() == GetMenuCursorLeftOffsetX()
+            && obj.GetMenuCursorLeftOffsetY() == GetMenuCursorLeftOffsetY()
+            && obj.GetMenuCursorRightOffsetX() == GetMenuCursorRightOffsetX()
+            && obj.GetMenuCursorRightOffsetY() == GetMenuCursorRightOffsetY()
+            && obj.GetMenuIdx() == GetMenuIdx()
+            && obj.GetMenuOn() == GetMenuOn()
+            && obj.GetMenuStart() == GetMenuStart()
+            && obj.GetMenuStop() == GetMenuStop()
+            && ((obj.GetMessage() == null && GetMessage() == null) || (obj.GetMessage() != null && GetMessage() != null && obj.GetMessage().Equals(GetMessage())))
+            && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))
+            && obj.GetName() == GetName()
+            && ((obj.GetObjects() == null && GetObjects() == null) || (obj.GetObjects() != null && GetObjects() != null && obj.GetObjects().Equals(GetObjects())))
+            && ((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))
+            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
+            && ((obj.GetRightCursor() == null && GetRightCursor() == null) || (obj.GetRightCursor() != null && GetRightCursor() != null && obj.GetRightCursor().Equals(GetRightCursor())))
+            && obj.GetWidth() == GetWidth()
+        ) {
+            ret = true;
+        }
+    
+        return ret;
     }
 }

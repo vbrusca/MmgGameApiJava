@@ -496,7 +496,6 @@ public class MmgObj {
         boolean ret = false;
         if(
             obj.GetHasParent() == GetHasParent() 
-            && obj.GetIsVisible() == GetIsVisible()
             && obj.GetHeight() == GetHeight()
             && obj.GetWidth() == GetWidth()
             && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))                
@@ -507,33 +506,7 @@ public class MmgObj {
         ) {
             ret = true;
         }
-        /*
-        if(obj.GetHasParent() == GetHasParent() && obj.GetIsVisible() == GetIsVisible() && obj.GetHeight() == GetHeight() && obj.GetWidth() == GetWidth()) {
-            MmgHelper.wr("AAA");
-        }
-        
-        if(obj.GetMmgColor().Equals(GetMmgColor())) {
-            MmgHelper.wr("BBB");
-        }
-        
-        if(obj.GetId().equals(GetId())) {
-            MmgHelper.wr("CCC");
-        }        
-        
-        if(obj.GetId().equals(GetId())) {
-            MmgHelper.wr("DDD");
-        }        
-        
-        if(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))) {
-            MmgHelper.wr("EEE");
-        }        
-        
-        if(obj.GetPosition().Equals(GetPosition())) {
-            MmgHelper.wr("FFF");
-        }                
-        
-        MmgHelper.wr("Return: " + ret);
-        */
+
         return ret;
     }
 }

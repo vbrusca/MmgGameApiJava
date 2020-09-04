@@ -19,6 +19,13 @@ public class MmgLoadingScreen extends MmgGameScreen {
     private float loadingBarOffsetBottom = 0.10f;
 
     /**
+     * Constructor for this class.
+     */
+    public MmgLoadingScreen() {
+        super();
+    }    
+    
+    /**
      * Constructor for this class that sets the loading bar and the loading bar's
      * vertical offset.
      * 
@@ -45,7 +52,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
         } else {
             SetLoadingBar(obj.GetLoadingBar().CloneTyped(), obj.GetLoadingBarOffsetBottom());            
         }
-        
+                
         if(obj.GetBackground() == null) {
             SetBackground(obj.GetBackground());
         } else {
@@ -58,6 +65,8 @@ public class MmgLoadingScreen extends MmgGameScreen {
             SetFooter(obj.GetFooter().Clone());
         }
         
+        SetHasParent(obj.GetHasParent());
+                
         if(obj.GetHeader() == null) {
             SetHeader(obj.GetHeader());
         } else {
@@ -73,26 +82,56 @@ public class MmgLoadingScreen extends MmgGameScreen {
             SetLeftCursor(obj.GetLeftCursor().Clone());
         }
 
-        if(obj.GetRightCursor() == null) {
-            SetRightCursor(obj.GetRightCursor());
+        if(obj.GetMenu() == null) {
+            SetMenu(obj.GetMenu());
         } else {
-            SetRightCursor(obj.GetRightCursor().Clone());            
+            SetMenu(obj.GetMenu().CloneTyped());
         }
         
-        SetWidth(obj.GetWidth());
-    
+        SetMenuCursorLeftOffsetX(obj.GetMenuCursorLeftOffsetX());
+        SetMenuCursorLeftOffsetY(obj.GetMenuCursorLeftOffsetY());
+        SetMenuCursorRightOffsetX(obj.GetMenuCursorRightOffsetX());
+        SetMenuCursorRightOffsetY(obj.GetMenuCursorRightOffsetY());                
+        SetMenuIdx(obj.GetMenuIdx());
+        SetMenuOn(obj.GetMenuOn());
+        SetMenuStart(obj.GetMenuStart());
+        SetMenuStop(obj.GetMenuStop());
+        
+        if(obj.GetMessage() == null) {
+            SetMessage(obj.GetMessage());
+        } else {
+            SetMessage(obj.GetMessage().Clone());
+        }
+
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
+        
+        SetName(obj.GetName());
+        
+        if(obj.GetObjects() == null) {
+            SetObjects(obj.GetObjects());
+        } else {
+            SetObjects(obj.GetObjects().CloneTyped());
+        }
+        
+        SetParent(obj.GetParent());
+        
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
         } else {
             SetPosition(obj.GetPosition().Clone());
         }
-    }
-
-    /**
-     * Constructor for this class.
-     */
-    public MmgLoadingScreen() {
-        super();
+                        
+        if(obj.GetRightCursor() == null) {
+            SetRightCursor(obj.GetRightCursor());
+        } else {
+            SetRightCursor(obj.GetRightCursor().Clone());            
+        }
+                                
+        SetWidth(obj.GetWidth());
     }
     
     /**
@@ -153,6 +192,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
      */
     public void SetLoadingBar(MmgLoadingBar lb, float lBarOff) {
         loadingBar = lb;
+        loadingBarOffsetBottom = lBarOff;
         if(loadingBar != null) {
             MmgHelper.CenterHorAndBot(loadingBar);
             loadingBar.GetPosition().SetY(GetPosition().GetY() + GetHeight() - loadingBar.GetHeight() - ((float) GetHeight() * (float) loadingBarOffsetBottom));
@@ -178,10 +218,10 @@ public class MmgLoadingScreen extends MmgGameScreen {
     }
     
     /**
+     * Tests if this object is equal to another MmgLoadingScreen object.
      * 
-     * 
-     * @param obj
-     * @return 
+     * @param obj   An MmgLoadingScreen object instance to compare to.
+     * @return      Returns true if the objects are considered equal and false otherwise.
      */
     public boolean Equals(MmgLoadingScreen obj) {
         if(obj == null) {
@@ -193,7 +233,9 @@ public class MmgLoadingScreen extends MmgGameScreen {
             super.Equals((MmgGameScreen)obj)
             && obj.GetLoadingBarOffsetBottom() == GetLoadingBarOffsetBottom()
             && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().Equals(GetLoadingBar()))) 
-
+            && obj.GetWidth() == GetWidth()
+            && obj.GetHeight() == GetHeight()
+            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
         ) {
             ret = true;
         }

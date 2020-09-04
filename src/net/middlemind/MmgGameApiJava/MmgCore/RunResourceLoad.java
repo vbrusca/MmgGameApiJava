@@ -202,7 +202,6 @@ public class RunResourceLoad implements Runnable {
                     try {
                         Thread.sleep(slowDown);
                     } catch (Exception e) {
-                        
                     }
                     
                     if(exitLoad) {

@@ -1,6 +1,6 @@
 bmpLogo->logo_large2.png
 
-loadingLogoSlowDown=0
+loadingLogoSlowDown=50
 
 loadingLogoScale=1.5
 #loadingLogoOffsetY=0

@@ -442,7 +442,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             currentScreen = screenSplash;
                         
         } else if (gameState == GameStates.LOADING) {
-            MmgHelper.wr("Showing LOADING screen.");
+            MmgHelper.wr("Showing LOADING screen.");            
             screenLoading.LoadResources();
             screenLoading.UnPause();
             screenLoading.SetIsVisible(true);

@@ -79,6 +79,14 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     public static int DEFAULT_DISPLAY_TIME_MS = 3000;
 
     /**
+     * Constructor that sets the display time to the default display time.
+     */
+    public MmgSplashScreen() {
+        super();
+        SetDisplayTime(DEFAULT_DISPLAY_TIME_MS);
+    }    
+    
+    /**
      * Constructor that sets the splash screen display time.
      *
      * @param DisplayTime       The display time for this splash screen, in milliseconds.
@@ -97,18 +105,22 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgSplashScreen(MmgSplashScreen obj) { 
         super(obj);
+        SetDisplayTime(obj.GetDisplayTime());
+        
         if(obj.GetBackground() == null) {
-            SetBackground(obj.GetBackground());            
+            SetBackground(obj.GetBackground());
         } else {
             SetBackground(obj.GetBackground().Clone());
         }
         
-        if(obj.GetFooter() == null) {        
-            SetFooter(obj.GetFooter());
+        if(obj.GetFooter() == null) {
+            SetFooter(obj.GetFooter());            
         } else {
-            SetFooter(obj.GetFooter().Clone());            
+            SetFooter(obj.GetFooter().Clone());
         }
         
+        SetHasParent(obj.GetHasParent());
+                
         if(obj.GetHeader() == null) {
             SetHeader(obj.GetHeader());
         } else {
@@ -121,31 +133,63 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
         if(obj.GetLeftCursor() == null) {
             SetLeftCursor(obj.GetLeftCursor());
         } else {
-            SetLeftCursor(obj.GetLeftCursor().Clone());            
+            SetLeftCursor(obj.GetLeftCursor().Clone());
         }
-        
-        if(obj.GetRightCursor() == null) {
-            SetRightCursor(obj.GetRightCursor());
+
+        if(obj.GetMenu() == null) {
+            SetMenu(obj.GetMenu());
         } else {
-            SetRightCursor(obj.GetRightCursor().Clone());            
+            SetMenu(obj.GetMenu().CloneTyped());
         }
         
-        SetWidth(obj.GetWidth());
-        SetDisplayTime(obj.GetDisplayTime());
+        SetMenuCursorLeftOffsetX(obj.GetMenuCursorLeftOffsetX());
+        SetMenuCursorLeftOffsetY(obj.GetMenuCursorLeftOffsetY());
+        SetMenuCursorRightOffsetX(obj.GetMenuCursorRightOffsetX());
+        SetMenuCursorRightOffsetY(obj.GetMenuCursorRightOffsetY());                
+        SetMenuIdx(obj.GetMenuIdx());
+        SetMenuOn(obj.GetMenuOn());
+        SetMenuStart(obj.GetMenuStart());
+        SetMenuStop(obj.GetMenuStop());
+        
+        if(obj.GetMessage() == null) {
+            SetMessage(obj.GetMessage());
+        } else {
+            SetMessage(obj.GetMessage().Clone());
+        }
+
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
+        
+        SetName(obj.GetName());
+        
+        if(obj.GetObjects() == null) {
+            SetObjects(obj.GetObjects());
+        } else {
+            SetObjects(obj.GetObjects().CloneTyped());
+        }
+        
+        if(obj.GetParent() == null) {
+            SetParent(obj.GetParent());
+        } else {
+            SetParent(obj.GetParent().Clone());
+        }
         
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
         } else {
             SetPosition(obj.GetPosition().Clone());
         }
-    }
-
-    /**
-     * Constructor that sets the display time to the default display time.
-     */
-    public MmgSplashScreen() {
-        super();
-        SetDisplayTime(DEFAULT_DISPLAY_TIME_MS);
+                        
+        if(obj.GetRightCursor() == null) {
+            SetRightCursor(obj.GetRightCursor());
+        } else {
+            SetRightCursor(obj.GetRightCursor().Clone());            
+        }
+                                
+        SetWidth(obj.GetWidth());
     }
 
     /**
@@ -267,8 +311,8 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
             && obj.GetDisplayTime() == GetDisplayTime()
             && obj.GetWidth() == GetWidth()
             && obj.GetHeight() == GetHeight()
-            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))                
-            && ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().Equals(GetBackground())))
+            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
+            //&& ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().Equals(GetBackground())))
         ) {
             ret = true;
         }
