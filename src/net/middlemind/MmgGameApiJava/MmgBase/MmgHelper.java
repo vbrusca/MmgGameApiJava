@@ -80,32 +80,42 @@ public class MmgHelper {
         return ret;
     }
 
-    public static void ContainsKeyMmgBmpScaleAndPosition(String keyRoot, MmgBmp tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
+    public static MmgBmp ContainsKeyMmgBmpScaleAndPosition(String keyRoot, MmgBmp tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
         String key = "";
         double scale = 1.0;
         int tmp = 0;
         int tmp1 = 0;
+        MmgVector2 tpos;
+        int w1, w2;
+        int h1, h2;
         
         if (tB != null) {
             key = keyRoot + "Scale";
             scale = ContainsKeyDouble(key, 1.0, classConfig);
             if(scale != 1.0) {
+                MmgHelper.wr(key + " Scale: " + scale);
+                tpos = tB.GetPosition();
+                w1 = tB.GetWidth();
+                h1 = tB.GetHeight();
                 tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
+                w2 = tB.GetWidth();
+                h2 = tB.GetHeight();             
+                tB.SetPosition(new MmgVector2(tpos.GetX() - ((w2 - w1) / 2), tpos.GetY()));
             }
-
-            MmgHelper.CenterHorAndVert(tB);
                         
-            key = keyRoot + "OffsetX";           
+            key = keyRoot + "OffsetX";
+            tmp1 = 0;            
             tmp = ContainsKeyInt(key, tmp1, classConfig);
-            tmp1 = 0;
             if(tmp != tmp1) {
+                MmgHelper.wr(key + " OffsetX: " + tmp + " - " + tmp1);
                 tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
             }
             
             key = keyRoot + "OffsetY";            
+            tmp1 = 0;            
             tmp = ContainsKeyInt(key, tmp1, classConfig);
-            tmp1 = 0;
             if(tmp != tmp1) {
+                MmgHelper.wr(key + " OffsetY: " + tmp + " - " + tmp1);                            
                 tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
             }
             
@@ -113,6 +123,7 @@ public class MmgHelper {
             tmp1 = tB.GetPosition().GetY();
             tmp = ContainsKeyInt(key, tmp1, classConfig);
             if(tmp != tmp1) {
+                MmgHelper.wr(key + " PosY: " + tmp + " - " + tmp1);                            
                 tB.GetPosition().SetY(pos.GetY() + MmgHelper.ScaleValue(tmp));                
             }
             
@@ -120,29 +131,31 @@ public class MmgHelper {
             tmp1 = tB.GetPosition().GetX();            
             tmp = ContainsKeyInt(key, tmp1, classConfig);
             if(tmp != tmp1) {
+                MmgHelper.wr(key + " PosX: " + tmp + " - " + tmp1);                
                 tB.GetPosition().SetX(pos.GetX() + MmgHelper.ScaleValue(tmp));                
             }            
+            return tB;
+        } else {
+            return null;
         }
     }    
     
-    public static void ContainsKeyMmgObjPosition(String keyRoot, MmgObj tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
+    public static MmgObj ContainsKeyMmgObjPosition(String keyRoot, MmgObj tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
         String key = "";
         int tmp = 0;
         int tmp1 = 0;
         
-        if (tB != null) {
-            MmgHelper.CenterHorAndVert(tB);
-                        
-            key = keyRoot + "OffsetX";           
-            tmp = ContainsKeyInt(key, tmp1, classConfig);
+        if (tB != null) {                        
+            key = keyRoot + "OffsetX";  
             tmp1 = 0;
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
             if(tmp != tmp1) {
                 tB.GetPosition().SetX(tB.GetX() + MmgHelper.ScaleValue(tmp));                
             }
             
-            key = keyRoot + "OffsetY";            
-            tmp = ContainsKeyInt(key, tmp1, classConfig);
+            key = keyRoot + "OffsetY";
             tmp1 = 0;
+            tmp = ContainsKeyInt(key, tmp1, classConfig);
             if(tmp != tmp1) {
                 tB.GetPosition().SetY(tB.GetY() + MmgHelper.ScaleValue(tmp));
             }
@@ -159,7 +172,10 @@ public class MmgHelper {
             tmp = ContainsKeyInt(key, tmp1, classConfig);
             if(tmp != tmp1) {
                 tB.GetPosition().SetX(pos.GetX() + MmgHelper.ScaleValue(tmp));                
-            }            
+            }  
+            return tB;
+        } else {
+            return null;
         }
     }      
     

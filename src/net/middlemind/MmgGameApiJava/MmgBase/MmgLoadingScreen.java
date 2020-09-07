@@ -155,18 +155,6 @@ public class MmgLoadingScreen extends MmgGameScreen {
     }    
     
     /**
-     * Sets the background object of this game screen
-     * centered horizontally and vertically.
-     * 
-     * @param b     The object to use as the background.
-     */
-    @Override
-    public void SetCenteredBackground(MmgObj b) {
-        MmgHelper.CenterHorAndVert(b);
-        super.SetBackground(b);
-    }
-
-    /**
      * Gets the loading bar object of this class.
      * 
      * @return      A loading bar. 
@@ -208,7 +196,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if(isVisible == true) {
+        if(isVisible == true && pause == false) {
             super.MmgDraw(p);
             
             if(loadingBar != null) {
@@ -233,9 +221,6 @@ public class MmgLoadingScreen extends MmgGameScreen {
             super.Equals((MmgGameScreen)obj)
             && obj.GetLoadingBarOffsetBottom() == GetLoadingBarOffsetBottom()
             && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().Equals(GetLoadingBar()))) 
-            && obj.GetWidth() == GetWidth()
-            && obj.GetHeight() == GetHeight()
-            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
         ) {
             ret = true;
         }

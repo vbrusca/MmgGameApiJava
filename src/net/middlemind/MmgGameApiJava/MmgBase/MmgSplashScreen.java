@@ -171,11 +171,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
             SetObjects(obj.GetObjects().CloneTyped());
         }
         
-        if(obj.GetParent() == null) {
-            SetParent(obj.GetParent());
-        } else {
-            SetParent(obj.GetParent().Clone());
-        }
+        SetParent(obj.GetParent());
         
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
@@ -254,17 +250,6 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     }    
     
     /**
-     * Sets the background centered.
-     *
-     * @param b     The object to set as a centered background.
-     */
-    @Override
-    public void SetCenteredBackground(MmgObj b) {
-        MmgHelper.CenterHorAndVert(b);
-        super.SetBackground(b);
-    }
-    
-    /**
      * Gets the current display time.
      *
      * @return      The current display time.
@@ -289,7 +274,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (isVisible == true) {
+        if (isVisible == true && pause == false) {
             super.MmgDraw(p);
         }
     }
@@ -309,10 +294,6 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
         if (
             super.Equals((MmgGameScreen)obj)
             && obj.GetDisplayTime() == GetDisplayTime()
-            && obj.GetWidth() == GetWidth()
-            && obj.GetHeight() == GetHeight()
-            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
-            //&& ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().Equals(GetBackground())))
         ) {
             ret = true;
         }

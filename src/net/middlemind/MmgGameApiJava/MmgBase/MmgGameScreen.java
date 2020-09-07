@@ -212,11 +212,7 @@ public class MmgGameScreen extends MmgObj {
             SetObjects(obj.GetObjects().CloneTyped());
         }
         
-        if(obj.GetParent() == null) {
-            SetParent(obj.GetParent());
-        } else {
-            SetParent(obj.GetParent().Clone());
-        }
+        SetParent(obj.GetParent());
         
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
@@ -349,7 +345,7 @@ public class MmgGameScreen extends MmgObj {
      */
     public void Pause() {
         pause = true;
-        SetIsVisible(false);
+        //SetIsVisible(false);
     }
 
     /**
@@ -358,7 +354,7 @@ public class MmgGameScreen extends MmgObj {
      */
     public void UnPause() {
         pause = false;
-        SetIsVisible(true);
+        //SetIsVisible(true);
     }
 
     /**
@@ -367,11 +363,14 @@ public class MmgGameScreen extends MmgObj {
      * @return      True if this object was paused, false otherwise.
      */
     public boolean IsPaused() {
+        return pause;
+        /*
         if (pause == true) {
             return true;
         } else {
             return false;
         }
+        */
     }
 
     /**
@@ -398,9 +397,7 @@ public class MmgGameScreen extends MmgObj {
      * @param obj   The object to add.
      */
     public void AddObj(MmgObj obj) {
-        if (objects != null) {
-            objects.Add(obj);
-        }
+        objects.Add(obj);
     }
 
     /**
@@ -409,18 +406,14 @@ public class MmgGameScreen extends MmgObj {
      * @param obj   The object to remove.
      */
     public void RemoveObj(MmgObj obj) {
-        if (objects != null) {
-            objects.Remove(obj);
-        }
+        objects.Remove(obj);
     }
 
     /**
      * Clears the objects on this screen.
      */
     public void ClearObjs() {
-        if (objects != null) {
-            objects.Clear();
-        }
+        objects.Clear();
     }
 
     /**
@@ -532,7 +525,7 @@ public class MmgGameScreen extends MmgObj {
      */
     public void SetHeader(MmgObj m) {
         header = m;
-        MmgHelper.CenterHorAndTop(header);
+        //MmgHelper.CenterHorAndTop(header);
     }
 
     /**
@@ -551,7 +544,7 @@ public class MmgGameScreen extends MmgObj {
      */
     public void SetFooter(MmgObj m) {
         footer = m;
-        MmgHelper.CenterHorAndBot(footer);
+        //MmgHelper.CenterHorAndBot(footer);
     }
 
     /**
@@ -820,6 +813,17 @@ public class MmgGameScreen extends MmgObj {
     }    
     
     /**
+     * Expects a relative X, Y coordinate that takes into account the game's offset and the current panel's
+     * offset.
+     * 
+     * @param v     The X,Y coordinates of the mouse in MmgVector2 form.
+     * @return      A boolean indicating if the event was handled or not.
+     */
+    public boolean ProcessMouseMove(MmgVector2 v) {
+        return true;
+    }        
+    
+    /**
      * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
      * offset.
      * 
@@ -1074,8 +1078,8 @@ public class MmgGameScreen extends MmgObj {
      */
     private void DrawMenu(MmgPen p) {
         if (menu != null) {
-            int padPosY = 5;
-            int padPosX = 5;
+            int padPosY = MmgHelper.ScaleValue(5);
+            int padPosX = MmgHelper.ScaleValue(5);
             Object[] objs = menu.GetArray();
 
             for (int i = 0; i < objs.length; i++) {
@@ -1135,7 +1139,6 @@ public class MmgGameScreen extends MmgObj {
             && ((obj.GetFooter() == null && GetFooter() == null) || (obj.GetFooter() != null && GetFooter() != null && obj.GetFooter().Equals(GetFooter())))
             && obj.GetHasParent() == GetHasParent()
             && ((obj.GetHeader() == null && GetHeader() == null) || (obj.GetHeader() != null && GetHeader() != null && obj.GetHeader().Equals(GetHeader())))
-            && obj.GetHeight() == GetHeight()
             && ((obj.GetLeftCursor() == null && GetLeftCursor() == null) || (obj.GetLeftCursor() != null && GetLeftCursor() != null && obj.GetLeftCursor().Equals(GetLeftCursor())))
             && ((obj.GetMenu() == null && GetMenu() == null) || (obj.GetMenu() != null && GetMenu() != null && obj.GetMenu().Equals(GetMenu())))
             && obj.GetMenuCursorLeftOffsetX() == GetMenuCursorLeftOffsetX()
@@ -1148,12 +1151,9 @@ public class MmgGameScreen extends MmgObj {
             && obj.GetMenuStop() == GetMenuStop()
             && ((obj.GetMessage() == null && GetMessage() == null) || (obj.GetMessage() != null && GetMessage() != null && obj.GetMessage().Equals(GetMessage())))
             && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))
-            && obj.GetName() == GetName()
+            && ((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().equals(GetName())))
             && ((obj.GetObjects() == null && GetObjects() == null) || (obj.GetObjects() != null && GetObjects() != null && obj.GetObjects().Equals(GetObjects())))
-            && ((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))
-            && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
             && ((obj.GetRightCursor() == null && GetRightCursor() == null) || (obj.GetRightCursor() != null && GetRightCursor() != null && obj.GetRightCursor().Equals(GetRightCursor())))
-            && obj.GetWidth() == GetWidth()
         ) {
             ret = true;
         }

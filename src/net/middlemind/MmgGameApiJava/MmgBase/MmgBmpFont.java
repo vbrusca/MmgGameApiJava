@@ -12,14 +12,44 @@ import java.awt.image.PixelGrabber;
  * @author Victor G. Brusca, Middlemind Games
  */
 public class MmgBmpFont extends MmgObj {
+    /**
+     * 
+     */
     private MmgBmp src;
+    
+    /**
+     * 
+     */
     private MmgBmp dst;
+    
+    /**
+     * 
+     */
     private MmgBmp[] chars;
+    
+    /**
+     * 
+     */
     private String text;
+    
+    /**
+     * 
+     */
     private int[] widths;
     
+    /**
+     * 
+     */
     public static int EXPECTED_CHAR_LENGTH = 94;
+    
+    /**
+     * 
+     */
     public static int DEFAULT_NULL_WIDTH = MmgHelper.ScaleValue(20);
+    
+    /**
+     * 
+     */
     public static int DEFAULT_NULL_HEIGHT = MmgHelper.ScaleValue(20);    
     
     /**

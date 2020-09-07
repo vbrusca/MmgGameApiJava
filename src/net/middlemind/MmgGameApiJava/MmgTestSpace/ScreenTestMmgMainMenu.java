@@ -4,7 +4,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
@@ -74,34 +73,21 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
         classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_main_menu.txt");
         
         MmgBmp tB = null;
-        MmgPen p;
         String key = "";
-        double scale = 1.0;
         String imgId = "";
         String sndId = "";
         MmgBmp lval = null;
         MmgSound sval = null;
-        String file = "";
-        int tmp = 0;
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Main Menu (7 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
-        AddObj(title);        
-        
-        p = new MmgPen();
-        p.SetCacheOn(false);
-        handleMenuEvent = null;//new HandleMainMenuEvent(this, owner);
+        AddObj(title);
+        handleMenuEvent = null;         //handleMenuEvent = new HandleMainMenuEvent(this, owner); 
         
         key = "soundMenuSelect";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "jump1.wav";
-        }          
-        
-        sndId = file;
+        sndId = MmgHelper.ContainsKeyString(key, "jump1.wav", classConfig);        
         sval = MmgHelper.GetBasicCachedSound(sndId);
         menuSound = sval;
         
@@ -109,327 +95,80 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
         if (tB != null) {
             SetCenteredBackground(tB);
         }
-
-        MmgHelper.wr("Background Image Position: " + GetBackground().GetPosition().ToString());
-
         
         key = "bmpGameTitle";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "game_title.png";
-        }        
-        
-        imgId = file;
+        imgId = MmgHelper.ContainsKeyString(key, "game_title.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuTitle = lval;
         if (menuTitle != null) {
-            key = "menuTitleScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    menuTitle = MmgBmpScaler.ScaleMmgBmp(menuTitle, scale, false);
-                }
-            }
-            
             MmgHelper.CenterHor(menuTitle);
             menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(40));
-                
-            key = "menuTitlePosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuTitlePosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                menuTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuTitleOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                menuTitle.GetPosition().SetY(menuTitle.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuTitleOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                menuTitle.GetPosition().SetX(menuTitle.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
+            menuTitle = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuTitle", menuTitle, classConfig, GetPosition());
             AddObj(menuTitle);
         }
 
-        
         key = "bmpGameSubTitle";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "game_sub_title.png";
-        }       
-        
-        imgId = file;
+        imgId = MmgHelper.ContainsKeyString(key, "game_sub_title.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuSubTitle = lval;
         if (menuSubTitle != null) {
-            key = "menuSubTitleScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    menuSubTitle = MmgBmpScaler.ScaleMmgBmp(menuTitle, scale, false);
-                }
-            }
-            
             MmgHelper.CenterHor(menuSubTitle);
-            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(10));            
-            
-            key = "menuSubTitlePosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuSubTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuSubTitlePosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuSubTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
-            key = "menuSubTitleOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuSubTitle.GetPosition().SetY(menuSubTitle.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuSubTitleOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuSubTitle.GetPosition().SetX(menuSubTitle.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
+            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(10));
+            menuSubTitle = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuSubTitle", menuSubTitle, classConfig, GetPosition());
             AddObj(menuSubTitle);
         }        
         
-        
         key = "bmpMenuItemStartGame1p";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "start_game_1p.png";
-        }        
-        
-        imgId = file;
+        imgId = MmgHelper.ContainsKeyString(key, "start_game_1p.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuStartGame1P = lval;
         if (menuStartGame1P != null) {
-            key = "menuStartGame1pScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    menuStartGame1P = MmgBmpScaler.ScaleMmgBmp(menuStartGame1P, scale, false);
-                }
-            }
-            
             MmgHelper.CenterHor(menuStartGame1P);
-            menuStartGame1P.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));            
-            
-            key = "menuStartGame1pPosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame1P.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuStartGame1pPosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame1P.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }  
-            
-            key = "menuStartGame1pOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame1P.GetPosition().SetY(menuStartGame1P.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuStartGame1pOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame1P.GetPosition().SetX(menuStartGame1P.GetX() + MmgHelper.ScaleValue(tmp));
-            }         
+            menuStartGame1P.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));
+            menuStartGame1P = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuStartGame1p", menuStartGame1P, classConfig, GetPosition());
         }
-        
-        
-                
+               
         key = "bmpMenuItemStartGame2p";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "start_game_2p.png";
-        }        
-        
-        imgId = file;
+        imgId = MmgHelper.ContainsKeyString(key, "start_game_2p.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuStartGame2P = lval;
         if (menuStartGame2P != null) {
-            key = "menuStartGame2pScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    menuStartGame2P = MmgBmpScaler.ScaleMmgBmp(menuStartGame2P, scale, false);
-                }
-            }
-            
             MmgHelper.CenterHor(menuStartGame2P);
-            menuStartGame2P.GetPosition().SetY(menuStartGame1P.GetY() + menuStartGame1P.GetHeight() + MmgHelper.ScaleValue(10));            
-            
-            key = "menuStartGame2pPosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame2P.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuStartGame2pPosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame2P.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }  
-            
-            key = "menuStartGame2pOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame2P.GetPosition().SetY(menuStartGame2P.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuStartGame2pOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                menuStartGame2P.GetPosition().SetX(menuStartGame2P.GetX() + MmgHelper.ScaleValue(tmp));
-            }
+            menuStartGame2P.GetPosition().SetY(menuStartGame1P.GetY() + menuStartGame1P.GetHeight() + MmgHelper.ScaleValue(10));
+            menuStartGame2P = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuStartGame2p", menuStartGame2P, classConfig, GetPosition());
         }
         
-        
         key = "bmpMenuItemExitGame";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "exit_game.png";
-        }        
-                
-        imgId = file;
+        imgId = MmgHelper.ContainsKeyString(key, "exit_game.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuExitGame = lval;
         if (menuExitGame != null) {
-            key = "menuExitGameScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    menuExitGame = MmgBmpScaler.ScaleMmgBmp(menuExitGame, scale, false);
-                }
-            }
-            
             MmgHelper.CenterHor(menuExitGame);
             menuExitGame.GetPosition().SetY(menuStartGame2P.GetY() + menuStartGame2P.GetHeight() + MmgHelper.ScaleValue(10));
-                
-            key = "menuExitGamePosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                menuExitGame.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));                
-            }
-            
-            key = "menuExitGamePosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();    
-                menuExitGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "menuExitGameOffsetY";
-            if(classConfig.containsKey(key)) { 
-                tmp = classConfig.get(key).number.intValue();    
-                menuExitGame.GetPosition().SetY(menuExitGame.GetY() + MmgHelper.ScaleValue(tmp));                
-            }
-            
-            key = "menuExitGameOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();    
-                menuExitGame.GetPosition().SetX(menuExitGame.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-        }        
-        
-        
-        key = "bmpFooterUrl";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "footer_url.png";
+            menuExitGame = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuExitGame", menuExitGame, classConfig, GetPosition());
         }
         
-        imgId = file;
+        key = "bmpFooterUrl";
+        imgId = MmgHelper.ContainsKeyString(key, "footer_url.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuFooterUrl = lval;
         if (menuFooterUrl != null) {
-            key = "menuFooterUrlScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    menuFooterUrl = MmgBmpScaler.ScaleMmgBmp(menuFooterUrl, scale, false);
-                }
-            }
-            
             MmgHelper.CenterHor(menuFooterUrl);
-            menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));
-                
-            key = "menuFooterUrlPosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue(); 
-                menuFooterUrl.GetPosition().SetY(GetPosition().GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(tmp));                
-            }
-            
-            key = "menuFooterUrlPosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue(); 
-                menuFooterUrl.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
-            key = "menuFooterUrlOffsetY";
-            if(classConfig.containsKey(key)) {        
-                tmp = classConfig.get(key).number.intValue(); 
-                menuFooterUrl.GetPosition().SetY(menuFooterUrl.GetY() + MmgHelper.ScaleValue(tmp));                
-            }
-            
-            key = "menuFooterUrlOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue(); 
-                menuFooterUrl.GetPosition().SetX(menuFooterUrl.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
+            menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));            
+            menuFooterUrl = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuFooterUrl", menuFooterUrl, classConfig, GetPosition());            
             AddObj(menuFooterUrl);
         }          
-        
-        
+                
         key = "bmpMenuCursorLeft";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "cursor_hand_sm_right.png";
-        }        
-        
-        imgId = file;
+        imgId = MmgHelper.ContainsKeyString(key, "cursor_hand_sm_right.png", classConfig);
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuCursor = lval;
         SetLeftCursor(menuCursor);        
 
-        
         key = "version";
-        if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
-        } else {
-            file = "version0.0.1";
-        }
-        
+        imgId = MmgHelper.ContainsKeyString(key, "version0.0.1", classConfig);                
         version = MmgFontData.CreateDefaultBoldMmgFontSm();
-        version.SetText(file);
+        version.SetText(imgId);
         version.SetPosition(MmgHelper.ScaleValue(10), GetY() + (h - version.GetHeight() + MmgHelper.ScaleValue(10)));
         AddObj(version);
         
@@ -550,51 +289,14 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     }
 
     /**
-     * Returns the game state of this game screen.
-     *
-     * @return      The game state of this game screen.
-     */
-    public GameStates GetGameState() {
-        return state;
-    }
-
-    /**
-     * Returns the dirty state of the Screen.
-     * If a Screen is dirty it will be redrawn via the DrawScreen method on the next update call.
-     * 
-     * @return      A boolean indicating the state of the class' dirty flag.
-     */
-    public boolean GetIsDirty() {
-        return isDirty;
-    }
-
-    /**
-     * Sets the state of the Screen's dirty flag.
-     * 
-     * @param b     A boolean used to set the Screen class' dirty flag.
-     */
-    public void SetIsDirty(boolean b) {
-        isDirty = b;
-    }
-
-    /**
-     * A method that sets the Screen's dirty flag to true forcing a redraw on the next update call.
-     */
-    public void MakeDirty() {
-        isDirty = true;
-    }
-
-    /**
      * Base draw method, handles drawing this class.
      *
      * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 
@@ -620,11 +322,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
                 DrawScreen();
                 isDirty = false;
             }
-
-        } else {
-            //do nothing
         }
-
         return lret;
     }
 }
