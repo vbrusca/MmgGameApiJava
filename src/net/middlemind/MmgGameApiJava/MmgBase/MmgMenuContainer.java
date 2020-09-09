@@ -209,6 +209,8 @@ public class MmgMenuContainer extends MmgObj {
     public boolean Equals(MmgMenuContainer obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = true;

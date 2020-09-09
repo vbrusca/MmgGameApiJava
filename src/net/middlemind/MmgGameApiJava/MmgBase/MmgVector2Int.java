@@ -323,6 +323,8 @@ public class MmgVector2Int extends MmgVector2 {
     public boolean Equals(MmgVector2 obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
 
         boolean ret = false;
@@ -343,6 +345,8 @@ public class MmgVector2Int extends MmgVector2 {
     public boolean Equals(MmgVector2Int obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
 
         boolean ret = false;

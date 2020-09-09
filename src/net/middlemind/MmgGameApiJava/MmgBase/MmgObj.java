@@ -491,6 +491,8 @@ public class MmgObj {
     public boolean Equals(MmgObj obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

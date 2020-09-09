@@ -288,6 +288,8 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
     public boolean Equals(MmgSplashScreen obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

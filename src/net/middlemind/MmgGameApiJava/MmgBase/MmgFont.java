@@ -244,6 +244,8 @@ public class MmgFont extends MmgObj {
     public boolean Equals(MmgFont obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
                   
         boolean ret = false;

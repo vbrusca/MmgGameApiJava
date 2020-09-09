@@ -1848,6 +1848,8 @@ public class MmgScrollHorVert extends MmgObj {
     public boolean Equals(MmgScrollHorVert obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

@@ -75,7 +75,7 @@ public class MmgRect {
      * @return                  A new rectangle shifted in the X, Y directions by the specified amount.
      */
     public MmgRect ToShiftedRect(int shiftLeftRight, int shiftUpDown) {
-        return new MmgRect(rect.x + shiftLeftRight, rect.y + shiftUpDown, rect.width, rect.height);
+        return new MmgRect(rect.x + shiftLeftRight, rect.y + shiftUpDown, rect.x + shiftLeftRight + rect.width, rect.y + shiftUpDown + rect.height);
     }
 
     /**
@@ -187,25 +187,25 @@ public class MmgRect {
      */
     public int GetDiffX(MmgRect inRect, int direction, boolean opposite, boolean left2right) {
         if (MmgDir.DIR_LEFT == direction && opposite == false && left2right == true) {
-            return (GetLeft() - inRect.GetLeft());
+            return (GetLeft() - inRect.GetRight());
             
         } else if (MmgDir.DIR_LEFT == direction && opposite == false && left2right == false) {
-            return (inRect.GetLeft() - GetLeft());            
+            return (GetLeft() - inRect.GetLeft());            
         
         } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == true) {
-            return (GetLeft() - inRect.GetRight());
-        
-        } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == false) {
             return (inRect.GetLeft() - GetRight());
         
+        } else if (MmgDir.DIR_LEFT == direction && opposite == true && left2right == false) {
+            return (inRect.GetLeft() - GetLeft());
+        
         } else if (MmgDir.DIR_RIGHT == direction && opposite == false && left2right == true) {
-            return (GetRight() - inRect.GetRight());
+            return (GetRight() - inRect.GetLeft());
         
         } else if (MmgDir.DIR_RIGHT == direction && opposite == false && left2right == false) {
-            return (inRect.GetRight() - GetRight());            
+            return (GetRight() - inRect.GetRight());            
         
         } else if (MmgDir.DIR_RIGHT == direction && opposite == true && left2right == true) {
-            return (GetRight() - inRect.GetLeft());
+            return (inRect.GetRight() - GetLeft());
         
         } else if (MmgDir.DIR_RIGHT == direction && opposite == true && left2right == false) {
             return (inRect.GetRight() - GetRight());
@@ -233,11 +233,8 @@ public class MmgRect {
                 
         } else if (MmgDir.DIR_RIGHT == direction && opposite == false) {
             return (GetRight() - x);
-                
+                        
         } else if (MmgDir.DIR_RIGHT == direction && opposite == true) {
-            return (GetRight() - x);
-        
-        } else if (MmgDir.DIR_RIGHT == direction && opposite == false) {
             return (x - GetRight());
         
         } else {
@@ -256,28 +253,28 @@ public class MmgRect {
      */
     public int GetDiffY(MmgRect inRect, int direction, boolean opposite, boolean left2right) {
         if (MmgDir.DIR_TOP == direction && opposite == false && left2right == true) {
-            return (GetTop() - inRect.GetTop());
-            
-        } else if (MmgDir.DIR_TOP == direction && opposite == false && left2right == false) {            
-            return (inRect.GetTop() - GetTop());  
-            
-        } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == true) {
-            return (GetBottom() - inRect.GetTop());
-            
-        } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == false) {
-            return (inRect.GetTop() - GetBottom());
-            
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false && left2right == true) {
-            return (GetBottom() - inRect.GetBottom());
-            
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false && left2right == false) {
-            return (inRect.GetBottom() - GetBottom());
-            
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == true) {
             return (GetTop() - inRect.GetBottom());
             
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == false) {
+        } else if (MmgDir.DIR_TOP == direction && opposite == false && left2right == false) {            
+            return (GetTop() - inRect.GetTop());  
+            
+        } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == true) {
+            return (inRect.GetTop() - GetBottom());
+            
+        } else if (MmgDir.DIR_TOP == direction && opposite == true && left2right == false) {
+            return (inRect.GetTop() - GetTop());
+            
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false && left2right == true) {
+            return (GetBottom() - inRect.GetTop());
+            
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false && left2right == false) {
+            return (GetBottom() - inRect.GetBottom());
+            
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == true) {
             return (inRect.GetBottom() - GetTop());
+            
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true && left2right == false) {
+            return (inRect.GetBottom() - GetBottom());
             
         } else {
             return 0;
@@ -296,13 +293,13 @@ public class MmgRect {
         if (MmgDir.DIR_TOP == direction && opposite == false) {
             return (GetTop() - y);
             
-        } else if (MmgDir.DIR_TOP == direction && opposite == false) {
+        } else if (MmgDir.DIR_TOP == direction && opposite == true) {
             return (y - GetTop());
                         
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true) {
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false) {
             return (GetBottom() - y);
             
-        } else if (MmgDir.DIR_BOTTOM == direction && opposite == false) {
+        } else if (MmgDir.DIR_BOTTOM == direction && opposite == true) {
             return (y - GetBottom());
             
         } else {
@@ -354,6 +351,12 @@ public class MmgRect {
      * @return      A boolean indicating if the two class instances are equal.
      */
     public boolean Equals(MmgRect obj) {
+        if(obj == null) {
+            return false;
+        } else if(obj.equals(this)) {
+            return true;
+        }
+        
         boolean ret = false;
         if (GetLeft() == obj.GetLeft() && GetRight() == obj.GetRight() && GetTop() == obj.GetTop() && GetBottom() == obj.GetBottom()) {
             ret = true;

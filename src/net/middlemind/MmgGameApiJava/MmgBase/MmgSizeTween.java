@@ -649,6 +649,8 @@ public class MmgSizeTween extends MmgObj {
     public boolean Equals(MmgSizeTween obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

@@ -704,6 +704,8 @@ public class MmgTextBlock extends MmgObj {
     public boolean Equals(MmgTextBlock obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

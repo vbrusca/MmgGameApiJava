@@ -685,6 +685,8 @@ public class MmgSprite extends MmgObj {
     public boolean Equals(MmgSprite obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

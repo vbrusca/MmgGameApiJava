@@ -252,6 +252,8 @@ public class Mmg9Slice extends MmgObj {
     public boolean Equals(Mmg9Slice obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

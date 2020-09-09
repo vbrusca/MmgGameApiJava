@@ -546,6 +546,8 @@ public class MmgTextField extends MmgObj {
     public boolean Equals(MmgTextField obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

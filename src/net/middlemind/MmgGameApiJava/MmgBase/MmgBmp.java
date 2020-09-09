@@ -611,6 +611,8 @@ public class MmgBmp extends MmgObj {
     public boolean Equals(MmgBmp obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

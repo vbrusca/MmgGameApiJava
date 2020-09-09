@@ -1171,6 +1171,8 @@ public class MmgScrollVert extends MmgObj {
     public boolean Equals(MmgScrollVert obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

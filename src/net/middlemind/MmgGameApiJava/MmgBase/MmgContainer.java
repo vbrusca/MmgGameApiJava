@@ -429,6 +429,8 @@ public class MmgContainer extends MmgObj {
     public boolean Equals(MmgContainer obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
                   
         boolean ret = true;

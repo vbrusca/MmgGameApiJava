@@ -14,11 +14,19 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
     {
-        MmgObjUnitTest.class
-        ,MmgColorUnitTest.class
-        ,MmgVector2UnitTest.class
-        ,MmgRectUnitTest.class
+        Mmg9SliceUnitTest.class
         ,MmgBmpUnitTest.class
+        ,MmgCfgFileEntryUnitTest_2.class
+        ,MmgColorUnitTest.class
+        ,MmgContainerUnitTest.class
+        ,MmgDirUnitTest_2.class
+        ,MmgFontUnitTest_2.class
+        ,MmgObjUnitTest.class
+        ,MmgRectUnitTest.class
+        ,MmgRectUnitTest_2.class            
+        ,MmgVector2UnitTest.class
+        ,MmgVector2UnitTest_2.class
+        ,MmgVector2IntUnitTest_2.class            
     }
 )
 

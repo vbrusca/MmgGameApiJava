@@ -1,6 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import java.awt.Rectangle;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgDir;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import org.junit.Assert;
@@ -37,237 +38,745 @@ public class MmgRectUnitTest_2 {
 
     @Test
     @SuppressWarnings("UnusedAssignment")
-    public void testStaticMembers() {
-        //VARS
-        MmgRect r1;
-        
-        //PREP TEST 1
-        r1 = new MmgRect(0, 0, 1, 1);
-        
-        //TEST 1
-        Assert.assertEquals(true, r1.Equals(MmgRect.GetUnitRect()));
-    }
-    
-    @Test
-    @SuppressWarnings("UnusedAssignment")
-    public void testEquals() {
-        //VARS
-        int x;
-        int y;
-        int w;
-        int h;
+    public void test1() {
         MmgRect r1;
         MmgRect r2;
+        Rectangle r3;
+        int i1, i2, i3, i4, i5, i6;
+        String s1;
         
-        //PREP TEST 1
-        x = 10;
-        y = 12;
-        w = 25;
-        h = 20;
-        r1 = new MmgRect(x, y, w, h);
-        r2 = new MmgRect(x, y, w, h);
-        
-        //TEST 1
-        Assert.assertEquals(true, r1.Equals(r2));
-        Assert.assertNotSame(r1, r2);
-    }
-    
-    @Test
-    @SuppressWarnings("UnusedAssignment")
-    public void testGettersSetters() {
-        //VARS
-        int l;
-        int t;
-        int r;
-        int b;
-        int w;
-        int h;
-        MmgRect r1;
-        Rectangle rc;
-        MmgVector2 v1;
-        String s;
-        
-        //PREP TEST 1
-        l = 5;
-        t = 5;
-        r = 23;
-        b = 47;
-        w = r - l;
-        h = b - t;
-        r1 = new MmgRect();
-        rc = new Rectangle(l, t, w, h);
-        
-        //TEST - Rect
-        r1.SetRect(rc);
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
-        
-        //PREP TEST 2
-        l = 1;
-        t = 1;
-        r = l + w;
-        b = t + h;
-        v1 = new MmgVector2(l, t);
-        
-        //TEST - Position
-        r1.SetPosition(v1);
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
-        
-        //PREP TEST 3
-        w = 12;
-        r = l + w;
-        
-        //TEST - Width
-        r1.SetWidth(w);
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
-        
-        //PREP TEST 4
-        h = 15;
-        b = t + h;
-        
-        //TEST - Height
-        r1.SetHeight(h);
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
-        
-        //PREP TEST 5
-        s = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();
-        Assert.assertEquals(s, r1.ToString());
-    }
-    
-    @Test
-    @SuppressWarnings("UnusedAssignment")
-    public void testCloning() {
-        //VARS
-        int l;
-        int t;
-        int r;
-        int b;
-        int w;
-        int h;
-        MmgRect r1;
-        MmgRect r2;
-        
-        //PREP TEST 1
-        l = 5;
-        t = 5;
-        r = 23;
-        b = 47;
-        w = r - l;
-        h = b - t;
-        r1 = new MmgRect(l, t, b, r);
+        r1 = new MmgRect();        
         r2 = r1.Clone();
         
-        Assert.assertEquals(r1.GetLeft(), r2.GetLeft());
-        Assert.assertEquals(r1.GetTop(), r2.GetTop());
-        Assert.assertEquals(r1.GetBottom(), r2.GetBottom());
-        Assert.assertEquals(r1.GetRight(), r2.GetRight());
-        Assert.assertEquals(r1.GetWidth(), r2.GetWidth());
-        Assert.assertEquals(r1.GetHeight(), r2.GetHeight());
         Assert.assertEquals(true, r1.Equals(r2));
-        Assert.assertNotSame(r1, r2);
+        Assert.assertEquals(true, r2.Equals(r1));
+        Assert.assertEquals(true, r1.Equals(r1));
+        
+        Assert.assertEquals(0, r1.GetBottom());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(0, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        
+        Assert.assertEquals(0, r1.GetHeight());
+        Assert.assertEquals(0, r1.GetWidth());        
+
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        
+        r3 = r1.GetRect();
+        Assert.assertEquals(0, r3.x);
+        Assert.assertEquals(0, r3.y);
+        Assert.assertEquals(0, r3.width);
+        Assert.assertEquals(0, r3.height);
+
+        r1.SetHeight(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(0, r1.GetRight());
+        
+        r1.SetWidth(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetRight());
+        
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+
+        r1.SetPosition(MmgVector2.GetUnitVec());
+        Assert.assertEquals(1, r1.GetTop());
+        Assert.assertEquals(1, r1.GetLeft());
+        Assert.assertEquals(11, r1.GetBottom());
+        Assert.assertEquals(11, r1.GetRight());
+        
+        r1.SetPosition(2, 2);
+        Assert.assertEquals(2, r1.GetTop());
+        Assert.assertEquals(2, r1.GetLeft());
+        Assert.assertEquals(12, r1.GetBottom());
+        Assert.assertEquals(12, r1.GetRight());
+        
+        i1 = r1.GetDiffX(0, MmgDir.DIR_LEFT, true);     //-2
+        i2 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, true);    //-12
+        i3 = r1.GetDiffX(0, MmgDir.DIR_LEFT, false);    //2
+        i4 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, false);   //12
+        i5 = r1.GetDiffX(0, MmgDir.DIR_TOP, false);     //0 
+        i6 = r1.GetDiffX(0, MmgDir.DIR_BOTTOM, false);     //0         
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        i1 = r1.GetDiffY(0, MmgDir.DIR_TOP, true);      //-2
+        i2 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, true);   //-12
+        i3 = r1.GetDiffY(0, MmgDir.DIR_TOP, false);     //2
+        i4 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, false);  //12
+        i5 = r1.GetDiffY(0, MmgDir.DIR_LEFT, false);    //0
+        i6 = r1.GetDiffY(0, MmgDir.DIR_RIGHT, false);   //0
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        r3 = new Rectangle(4, 4, 20, 20);
+        r1.SetRect(r3);
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(24, r1.GetBottom());
+        Assert.assertEquals(24, r1.GetRight());
+        Assert.assertEquals(20, r1.GetWidth());
+        Assert.assertEquals(20, r1.GetHeight());
+        
+        r2 = new MmgRect(0, 0, 10, 10);
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, false);      //-4
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, false);     //4        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, true);       //-24
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, true);      //-6
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, false, true);     //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, true, false);    //0                
+
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, false);   //-14
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, false);  //14        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, true);    //6
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, true);   //24
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, false, true);    //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, true, false);     //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        //r1 = 4, 4, 24, 24
+        //r2 = 0, 0, 10, 10
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, false);     //-4
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, false);    //4        
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, true);      //-24
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, true);     //-6
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_TOP, false, true);      //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, true, false);   //0        
+        
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, false);    //-14
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, false);   //14      
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, true);     //6
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, true);    //24
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, false, true);   //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_TOP, true, false);      //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+
+        Assert.assertEquals(s1, r1.ToString());
+        
+        r2.ShiftRect(2, 2);
+        
+        Assert.assertEquals(2, r2.GetLeft());
+        Assert.assertEquals(12, r2.GetRight());
+        Assert.assertEquals(2, r2.GetTop());
+        Assert.assertEquals(12, r2.GetBottom());
+        Assert.assertEquals(10, r2.GetWidth());
+        Assert.assertEquals(10, r2.GetHeight());
+    
+        r1 = r2.ToShiftedRect(2, 2);
+         
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(14, r1.GetRight());
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(14, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetWidth());
+        Assert.assertEquals(10, r1.GetHeight());
+        
+        r1 = MmgRect.GetUnitRect();
+         
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(1, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(1, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetWidth());
+        Assert.assertEquals(1, r1.GetHeight());        
     }
     
     @Test
     @SuppressWarnings("UnusedAssignment")
-    public void testConstructors() {
-        //VARS
-        int l;
-        int t;
-        int r;
-        int b;
-        int w;
-        int h;
+    public void test2() {
         MmgRect r1;
         MmgRect r2;
-        MmgVector2 v1;
+        Rectangle r3;
+        int i1, i2, i3, i4, i5, i6;
+        String s1;
         
-        //PREP TEST 1
-        l = 0;
-        t = 0;
-        r = 0;
-        b = 0;
-        w = 0;
-        h = 0;
-        r1 = new MmgRect();
+        r1 = new MmgRect(new MmgRect());        
+        r2 = r1.Clone();
         
-        //TEST 1
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
+        Assert.assertEquals(true, r1.Equals(r2));
+        Assert.assertEquals(true, r2.Equals(r1));
+        Assert.assertEquals(true, r1.Equals(r1));
         
-        //PREP TEST 2
-        l = 5; 
-        t = 6;
-        r = 10;
-        b = 12;
-        w = r - l;
-        h = b - t;
-        r1 = new MmgRect(l, t, b, r);
-        r2 = new MmgRect(r1);
+        Assert.assertEquals(0, r1.GetBottom());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(0, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
         
-        //TEST 2
-        Assert.assertEquals(l, r2.GetLeft());
-        Assert.assertEquals(t, r2.GetTop());
-        Assert.assertEquals(b, r2.GetBottom());
-        Assert.assertEquals(r, r2.GetRight());
-        Assert.assertEquals(w, r2.GetWidth());
-        Assert.assertEquals(h, r2.GetHeight());
+        Assert.assertEquals(0, r1.GetHeight());
+        Assert.assertEquals(0, r1.GetWidth());        
+
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
         
-        //PREP TEST 3
-        l = 0;
-        t = 0;
-        r = 15;
-        b = 24;
-        w = r - l;
-        h = b - t;
-        r1 = new MmgRect(l, t, b, r);
+        r3 = r1.GetRect();
+        Assert.assertEquals(0, r3.x);
+        Assert.assertEquals(0, r3.y);
+        Assert.assertEquals(0, r3.width);
+        Assert.assertEquals(0, r3.height);
+
+        r1.SetHeight(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(0, r1.GetRight());
         
-        //TEST 3
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
+        r1.SetWidth(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetRight());
         
-        //PREP TEST 4
-        l = -5;
-        t = -5;
-        r = 15;
-        b = 20;
-        w = r - l;
-        h = b - t;
-        v1 = new MmgVector2(l, t);
-        r1 = new MmgRect(v1, w, h);
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+
+        r1.SetPosition(MmgVector2.GetUnitVec());
+        Assert.assertEquals(1, r1.GetTop());
+        Assert.assertEquals(1, r1.GetLeft());
+        Assert.assertEquals(11, r1.GetBottom());
+        Assert.assertEquals(11, r1.GetRight());
         
-        //TEST 4
-        Assert.assertEquals(l, r1.GetLeft());
-        Assert.assertEquals(t, r1.GetTop());
-        Assert.assertEquals(b, r1.GetBottom());
-        Assert.assertEquals(r, r1.GetRight());
-        Assert.assertEquals(w, r1.GetWidth());
-        Assert.assertEquals(h, r1.GetHeight());
+        r1.SetPosition(2, 2);
+        Assert.assertEquals(2, r1.GetTop());
+        Assert.assertEquals(2, r1.GetLeft());
+        Assert.assertEquals(12, r1.GetBottom());
+        Assert.assertEquals(12, r1.GetRight());
+        
+        i1 = r1.GetDiffX(0, MmgDir.DIR_LEFT, true);     //-2
+        i2 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, true);    //-12
+        i3 = r1.GetDiffX(0, MmgDir.DIR_LEFT, false);    //2
+        i4 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, false);   //12
+        i5 = r1.GetDiffX(0, MmgDir.DIR_TOP, false);     //0 
+        i6 = r1.GetDiffX(0, MmgDir.DIR_BOTTOM, false);     //0         
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        i1 = r1.GetDiffY(0, MmgDir.DIR_TOP, true);      //-2
+        i2 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, true);   //-12
+        i3 = r1.GetDiffY(0, MmgDir.DIR_TOP, false);     //2
+        i4 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, false);  //12
+        i5 = r1.GetDiffY(0, MmgDir.DIR_LEFT, false);    //0
+        i6 = r1.GetDiffY(0, MmgDir.DIR_RIGHT, false);   //0
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        r3 = new Rectangle(4, 4, 20, 20);
+        r1.SetRect(r3);
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(24, r1.GetBottom());
+        Assert.assertEquals(24, r1.GetRight());
+        Assert.assertEquals(20, r1.GetWidth());
+        Assert.assertEquals(20, r1.GetHeight());
+        
+        r2 = new MmgRect(0, 0, 10, 10);
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, false);      //-4
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, false);     //4        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, true);       //-24
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, true);      //-6
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, false, true);     //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, true, false);    //0                
+
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, false);   //-14
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, false);  //14        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, true);    //6
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, true);   //24
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, false, true);    //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, true, false);     //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        //r1 = 4, 4, 24, 24
+        //r2 = 0, 0, 10, 10
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, false);     //-4
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, false);    //4        
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, true);      //-24
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, true);     //-6
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_TOP, false, true);      //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, true, false);   //0        
+        
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, false);    //-14
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, false);   //14      
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, true);     //6
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, true);    //24
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, false, true);   //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_TOP, true, false);      //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+
+        Assert.assertEquals(s1, r1.ToString());
+        
+        r2.ShiftRect(2, 2);
+        
+        Assert.assertEquals(2, r2.GetLeft());
+        Assert.assertEquals(12, r2.GetRight());
+        Assert.assertEquals(2, r2.GetTop());
+        Assert.assertEquals(12, r2.GetBottom());
+        Assert.assertEquals(10, r2.GetWidth());
+        Assert.assertEquals(10, r2.GetHeight());
+    
+        r1 = r2.ToShiftedRect(2, 2);
+         
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(14, r1.GetRight());
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(14, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetWidth());
+        Assert.assertEquals(10, r1.GetHeight());
+        
+        r1 = MmgRect.GetUnitRect();
+         
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(1, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(1, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetWidth());
+        Assert.assertEquals(1, r1.GetHeight());        
+    }    
+
+   @Test
+    @SuppressWarnings("UnusedAssignment")
+    public void test3() {
+        MmgRect r1;
+        MmgRect r2;
+        Rectangle r3;
+        int i1, i2, i3, i4, i5, i6;
+        String s1;
+        
+        r1 = new MmgRect(0, 0, 1, 1);        
+        r2 = r1.Clone();
+        
+        Assert.assertEquals(true, r1.Equals(r2));
+        Assert.assertEquals(true, r2.Equals(r1));
+        Assert.assertEquals(true, r1.Equals(r1));
+        
+        Assert.assertEquals(1, r1.GetBottom());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(1, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        
+        Assert.assertEquals(1, r1.GetHeight());
+        Assert.assertEquals(1, r1.GetWidth());        
+
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        
+        r3 = r1.GetRect();
+        Assert.assertEquals(0, r3.x);
+        Assert.assertEquals(0, r3.y);
+        Assert.assertEquals(1, r3.width);
+        Assert.assertEquals(1, r3.height);
+
+        r1.SetHeight(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetRight());
+        
+        r1.SetWidth(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetRight());
+        
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+
+        r1.SetPosition(MmgVector2.GetUnitVec());
+        Assert.assertEquals(1, r1.GetTop());
+        Assert.assertEquals(1, r1.GetLeft());
+        Assert.assertEquals(11, r1.GetBottom());
+        Assert.assertEquals(11, r1.GetRight());
+        
+        r1.SetPosition(2, 2);
+        Assert.assertEquals(2, r1.GetTop());
+        Assert.assertEquals(2, r1.GetLeft());
+        Assert.assertEquals(12, r1.GetBottom());
+        Assert.assertEquals(12, r1.GetRight());
+        
+        i1 = r1.GetDiffX(0, MmgDir.DIR_LEFT, true);     //-2
+        i2 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, true);    //-12
+        i3 = r1.GetDiffX(0, MmgDir.DIR_LEFT, false);    //2
+        i4 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, false);   //12
+        i5 = r1.GetDiffX(0, MmgDir.DIR_TOP, false);     //0 
+        i6 = r1.GetDiffX(0, MmgDir.DIR_BOTTOM, false);     //0         
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        i1 = r1.GetDiffY(0, MmgDir.DIR_TOP, true);      //-2
+        i2 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, true);   //-12
+        i3 = r1.GetDiffY(0, MmgDir.DIR_TOP, false);     //2
+        i4 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, false);  //12
+        i5 = r1.GetDiffY(0, MmgDir.DIR_LEFT, false);    //0
+        i6 = r1.GetDiffY(0, MmgDir.DIR_RIGHT, false);   //0
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        r3 = new Rectangle(4, 4, 20, 20);
+        r1.SetRect(r3);
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(24, r1.GetBottom());
+        Assert.assertEquals(24, r1.GetRight());
+        Assert.assertEquals(20, r1.GetWidth());
+        Assert.assertEquals(20, r1.GetHeight());
+        
+        r2 = new MmgRect(0, 0, 10, 10);
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, false);      //-4
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, false);     //4        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, true);       //-24
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, true);      //-6
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, false, true);     //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, true, false);    //0                
+
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, false);   //-14
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, false);  //14        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, true);    //6
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, true);   //24
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, false, true);    //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, true, false);     //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        //r1 = 4, 4, 24, 24
+        //r2 = 0, 0, 10, 10
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, false);     //-4
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, false);    //4        
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, true);      //-24
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, true);     //-6
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_TOP, false, true);      //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, true, false);   //0        
+        
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, false);    //-14
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, false);   //14      
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, true);     //6
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, true);    //24
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, false, true);   //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_TOP, true, false);      //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+
+        Assert.assertEquals(s1, r1.ToString());
+        
+        r2.ShiftRect(2, 2);
+        
+        Assert.assertEquals(2, r2.GetLeft());
+        Assert.assertEquals(12, r2.GetRight());
+        Assert.assertEquals(2, r2.GetTop());
+        Assert.assertEquals(12, r2.GetBottom());
+        Assert.assertEquals(10, r2.GetWidth());
+        Assert.assertEquals(10, r2.GetHeight());
+    
+        r1 = r2.ToShiftedRect(2, 2);
+         
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(14, r1.GetRight());
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(14, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetWidth());
+        Assert.assertEquals(10, r1.GetHeight());
+        
+        r1 = MmgRect.GetUnitRect();
+         
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(1, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(1, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetWidth());
+        Assert.assertEquals(1, r1.GetHeight());
     }
+    
+   @Test
+    @SuppressWarnings("UnusedAssignment")
+    public void test4() {
+        MmgRect r1;
+        MmgRect r2;
+        Rectangle r3;
+        int i1, i2, i3, i4, i5, i6;
+        String s1;
+        
+        r1 = new MmgRect(MmgVector2.GetOriginVec(), 1, 1);        
+        r2 = r1.Clone();
+        
+        Assert.assertEquals(true, r1.Equals(r2));
+        Assert.assertEquals(true, r2.Equals(r1));
+        Assert.assertEquals(true, r1.Equals(r1));
+        
+        Assert.assertEquals(1, r1.GetBottom());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(1, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        
+        Assert.assertEquals(1, r1.GetHeight());
+        Assert.assertEquals(1, r1.GetWidth());        
+
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        
+        r3 = r1.GetRect();
+        Assert.assertEquals(0, r3.x);
+        Assert.assertEquals(0, r3.y);
+        Assert.assertEquals(1, r3.width);
+        Assert.assertEquals(1, r3.height);
+
+        r1.SetHeight(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetRight());
+        
+        r1.SetWidth(10);
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(10, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetRight());
+        
+        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+
+        r1.SetPosition(MmgVector2.GetUnitVec());
+        Assert.assertEquals(1, r1.GetTop());
+        Assert.assertEquals(1, r1.GetLeft());
+        Assert.assertEquals(11, r1.GetBottom());
+        Assert.assertEquals(11, r1.GetRight());
+        
+        r1.SetPosition(2, 2);
+        Assert.assertEquals(2, r1.GetTop());
+        Assert.assertEquals(2, r1.GetLeft());
+        Assert.assertEquals(12, r1.GetBottom());
+        Assert.assertEquals(12, r1.GetRight());
+        
+        i1 = r1.GetDiffX(0, MmgDir.DIR_LEFT, true);     //-2
+        i2 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, true);    //-12
+        i3 = r1.GetDiffX(0, MmgDir.DIR_LEFT, false);    //2
+        i4 = r1.GetDiffX(0, MmgDir.DIR_RIGHT, false);   //12
+        i5 = r1.GetDiffX(0, MmgDir.DIR_TOP, false);     //0 
+        i6 = r1.GetDiffX(0, MmgDir.DIR_BOTTOM, false);     //0         
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        i1 = r1.GetDiffY(0, MmgDir.DIR_TOP, true);      //-2
+        i2 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, true);   //-12
+        i3 = r1.GetDiffY(0, MmgDir.DIR_TOP, false);     //2
+        i4 = r1.GetDiffY(0, MmgDir.DIR_BOTTOM, false);  //12
+        i5 = r1.GetDiffY(0, MmgDir.DIR_LEFT, false);    //0
+        i6 = r1.GetDiffY(0, MmgDir.DIR_RIGHT, false);   //0
+        
+        Assert.assertEquals(i1, -2);
+        Assert.assertEquals(i2, -12);
+        Assert.assertEquals(i3, 2);
+        Assert.assertEquals(i4, 12);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);  
+        
+        r3 = new Rectangle(4, 4, 20, 20);
+        r1.SetRect(r3);
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(24, r1.GetBottom());
+        Assert.assertEquals(24, r1.GetRight());
+        Assert.assertEquals(20, r1.GetWidth());
+        Assert.assertEquals(20, r1.GetHeight());
+        
+        r2 = new MmgRect(0, 0, 10, 10);
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, false);      //-4
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, false);     //4        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_TOP, true, true);       //-24
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_TOP, false, true);      //-6
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, false, true);     //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, true, false);    //0                
+
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, false);   //-14
+        i2 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, false);  //14        
+        i3 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, true, true);    //6
+        i4 = r1.GetDiffY(r2, MmgDir.DIR_BOTTOM, false, true);   //24
+        i5 = r1.GetDiffY(r2, MmgDir.DIR_RIGHT, false, true);    //0
+        i6 = r1.GetDiffY(r2, MmgDir.DIR_LEFT, true, false);     //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        //r1 = 4, 4, 24, 24
+        //r2 = 0, 0, 10, 10
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, false);     //-4
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, false);    //4        
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, true, true);      //-24
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_LEFT, false, true);     //-6
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_TOP, false, true);      //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, true, false);   //0        
+        
+        Assert.assertEquals(i1, -4);
+        Assert.assertEquals(i2, 4);
+        Assert.assertEquals(i3, -24);
+        Assert.assertEquals(i4, -6);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);
+        
+        i1 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, false);    //-14
+        i2 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, false);   //14      
+        i3 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, true, true);     //6
+        i4 = r1.GetDiffX(r2, MmgDir.DIR_RIGHT, false, true);    //24
+        i5 = r1.GetDiffX(r2, MmgDir.DIR_BOTTOM, false, true);   //0
+        i6 = r1.GetDiffX(r2, MmgDir.DIR_TOP, true, false);      //0
+        
+        Assert.assertEquals(i1, -14);
+        Assert.assertEquals(i2, 14);
+        Assert.assertEquals(i3, 6);
+        Assert.assertEquals(i4, 24);
+        Assert.assertEquals(i5, 0);
+        Assert.assertEquals(i6, 0);        
+        
+        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+
+        Assert.assertEquals(s1, r1.ToString());
+        
+        r2.ShiftRect(2, 2);
+        
+        Assert.assertEquals(2, r2.GetLeft());
+        Assert.assertEquals(12, r2.GetRight());
+        Assert.assertEquals(2, r2.GetTop());
+        Assert.assertEquals(12, r2.GetBottom());
+        Assert.assertEquals(10, r2.GetWidth());
+        Assert.assertEquals(10, r2.GetHeight());
+    
+        r1 = r2.ToShiftedRect(2, 2);
+         
+        Assert.assertEquals(4, r1.GetLeft());
+        Assert.assertEquals(14, r1.GetRight());
+        Assert.assertEquals(4, r1.GetTop());
+        Assert.assertEquals(14, r1.GetBottom());
+        Assert.assertEquals(10, r1.GetWidth());
+        Assert.assertEquals(10, r1.GetHeight());
+        
+        r1 = MmgRect.GetUnitRect();
+         
+        Assert.assertEquals(0, r1.GetLeft());
+        Assert.assertEquals(1, r1.GetRight());
+        Assert.assertEquals(0, r1.GetTop());
+        Assert.assertEquals(1, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetWidth());
+        Assert.assertEquals(1, r1.GetHeight());
+    }    
 }

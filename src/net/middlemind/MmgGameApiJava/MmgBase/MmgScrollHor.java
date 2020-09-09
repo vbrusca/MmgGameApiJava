@@ -1196,6 +1196,8 @@ public class MmgScrollHor extends MmgObj {
     public boolean Equals(MmgScrollHor obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

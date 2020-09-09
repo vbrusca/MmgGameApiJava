@@ -493,6 +493,8 @@ public class MmgLabelValuePair extends MmgObj {
     public boolean Equals(MmgLabelValuePair obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
                    
         boolean ret = false;

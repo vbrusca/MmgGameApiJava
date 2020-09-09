@@ -1130,6 +1130,8 @@ public class MmgGameScreen extends MmgObj {
     public boolean Equals(MmgGameScreen obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

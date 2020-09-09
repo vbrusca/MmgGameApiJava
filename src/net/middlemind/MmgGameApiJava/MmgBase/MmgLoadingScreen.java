@@ -214,6 +214,8 @@ public class MmgLoadingScreen extends MmgGameScreen {
     public boolean Equals(MmgLoadingScreen obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
                   
         boolean ret = false;

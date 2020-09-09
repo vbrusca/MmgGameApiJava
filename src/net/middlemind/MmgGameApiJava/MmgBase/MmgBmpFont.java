@@ -900,6 +900,8 @@ public class MmgBmpFont extends MmgObj {
     public boolean Equals(MmgBmpFont obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = true;

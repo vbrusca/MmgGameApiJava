@@ -102,6 +102,8 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
     public boolean Equals(MmgCfgFileEntry obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
                 
         boolean ret = false;

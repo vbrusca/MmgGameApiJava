@@ -324,6 +324,8 @@ public class MmgPulse {
     public boolean Equals(MmgPulse obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
         
         boolean ret = false;

@@ -424,6 +424,8 @@ public class MmgMenuItem extends MmgObj {
      public boolean Equals(MmgMenuItem obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
                  
         boolean ret = false;

@@ -294,6 +294,8 @@ public class MmgVector2 {
     public boolean Equals(MmgVector2 obj) {
         if(obj == null) {
             return false;
+        } else if(obj.equals(this)) {
+            return true;
         }
 
         boolean ret = false;

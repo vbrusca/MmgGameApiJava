@@ -207,6 +207,12 @@ public class MmgSpriteSheet {
      * @return          Returns true if the two objects are equal and false otherwise.
      */
     public boolean Equals(MmgSpriteSheet obj) {
+        if(obj == null) {
+            return false;
+        } else if(obj.equals(this)) {
+            return true;
+        }
+        
         boolean ret = true;
         if(
             ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))

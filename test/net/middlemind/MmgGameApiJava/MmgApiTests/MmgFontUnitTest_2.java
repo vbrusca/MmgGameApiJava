@@ -11,9 +11,9 @@ import org.junit.Test;
  *
  * @author Victor G. Brusca, Middlemind Games
  */
-public class MmgFontUnitTest {
+public class MmgFontUnitTest_2 {
     
-    public MmgFontUnitTest() {
+    public MmgFontUnitTest_2() {
     }
     
     @BeforeClass
@@ -32,9 +32,6 @@ public class MmgFontUnitTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void test1() {}
 }
