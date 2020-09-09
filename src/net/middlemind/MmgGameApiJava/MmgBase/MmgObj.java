@@ -206,7 +206,7 @@ public class MmgObj {
         }
         
         SetHasParent(obj.GetHasParent());
-        SetParent(obj.GetParent());
+        SetParent(obj.GetParent());        
         SetName(obj.GetName());
         SetId(obj.GetId());
     }
@@ -217,6 +217,7 @@ public class MmgObj {
      * @return      A clone of this object.
      */
     public MmgObj Clone() {
+        //MmgHelper.wr("MmgObj: Clone");        
         return new MmgObj(this);
     }
 
@@ -226,6 +227,7 @@ public class MmgObj {
      * @return      A typed clone of this class.
      */
     public MmgObj CloneTyped() {
+        //MmgHelper.wr("MmgObj: CloneTyped");
         return new MmgObj(this);
     }    
     
@@ -478,7 +480,7 @@ public class MmgObj {
      * @return      A string representation of this class.
      */
     public String ToString() {
-        return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString();
+        return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString() + " HasParent: " + GetHasParent();
     }
     
     /**
@@ -495,12 +497,26 @@ public class MmgObj {
             return true;
         }
         
+        /*
+        MmgHelper.wr("P1: " + obj.GetHasParent());
+        MmgHelper.wr("P2: " + GetHasParent());        
+        
+        if(obj.GetHasParent() == GetHasParent()) { MmgHelper.wr("HasParent equal"); } else { MmgHelper.wr("HasParent NOT equal"); }
+        if(obj.GetHeight() == GetHeight()) { MmgHelper.wr("Height equal"); } else { MmgHelper.wr("Height NOT equal"); }        
+        if(obj.GetWidth() == GetWidth()) { MmgHelper.wr("Width equal"); } else { MmgHelper.wr("Width NOT equal"); }        
+        //if(obj.GetWidth() == GetWidth()) { MmgHelper.wr("Width equal"); } else { MmgHelper.wr("Width NOT equal"); }        
+        if(((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))) { MmgHelper.wr("MmgColor equal"); } else { MmgHelper.wr("MmgColor NOT equal"); }
+        if(((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().equals(GetName())))) { MmgHelper.wr("Name equal"); } else { MmgHelper.wr("Name NOT equal"); }
+        if(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))) { MmgHelper.wr("Parent equal"); } else { MmgHelper.wr("Parent NOT equal"); }
+        if(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))) { MmgHelper.wr("Position equal"); } else { MmgHelper.wr("Position NOT equal"); }      
+        */
+        
         boolean ret = false;
         if(
             obj.GetHasParent() == GetHasParent() 
             && obj.GetHeight() == GetHeight()
             && obj.GetWidth() == GetWidth()
-            && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))                
+            && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor())))
             && ((obj.GetId() == null && GetId() == null) || (obj.GetId() != null && GetId() != null && obj.GetId().equals(GetId())))
             && ((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().equals(GetName())))
             && ((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent())))

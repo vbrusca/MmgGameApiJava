@@ -11,6 +11,8 @@ import javax.sound.sampled.FloatControl;
  */
 public class MmgSound {
 
+    //TODO: Fill in missing comments
+    
     /**
      * Centralized, unique sound id.
      */
@@ -19,7 +21,7 @@ public class MmgSound {
     /**
      * Volume for all sounds.
      */
-    public static float volume = 0.65f;
+    public static float MMG_SOUND_GLOBAL_VOLUME = 0.65f;
 
     /**
      * Unique sound id, integer form.
@@ -57,6 +59,16 @@ public class MmgSound {
     private FloatControl vol;
     
     /**
+     * 
+     */
+    private float currentVolume;
+    
+    /**
+     * 
+     */
+    private float currentRate;
+    
+    /**
      * Constructor that sets the sound Clip value.
      *
      * @param se        The sound clip for this sounds object.
@@ -65,6 +77,7 @@ public class MmgSound {
     public MmgSound(Clip se) {
         sound = se;        
         ApplyVolume();
+        currentRate = 1.0f;        
         SetId();
     }
 
@@ -77,6 +90,7 @@ public class MmgSound {
     public MmgSound(MmgSound obj) {
         sound = obj.GetSound();
         ApplyVolume();
+        currentRate = 1.0f;
         SetId();
     }
 
@@ -84,11 +98,12 @@ public class MmgSound {
      * Applies the current static volume to this sound clip.
      */
     public void ApplyVolume() {
-        usedVolume = MmgSound.volume;        
+        usedVolume = MmgSound.MMG_SOUND_GLOBAL_VOLUME;        
         vol = (FloatControl) sound.getControl(FloatControl.Type.MASTER_GAIN);        
         range = vol.getMaximum() - vol.getMinimum();
         gain = (range * usedVolume) + vol.getMinimum();
-        vol.setValue(gain);        
+        vol.setValue(gain);
+        currentVolume = gain;
     }
     
     /**
@@ -98,11 +113,20 @@ public class MmgSound {
      */
     public void ApplyRate(float rate) {
         vol = (FloatControl) sound.getControl(FloatControl.Type.SAMPLE_RATE);        
-        float range = vol.getMaximum() - vol.getMinimum();
-        float gain = (range * rate) + vol.getMinimum();
-        vol.setValue(gain);        
-    }    
+        range = vol.getMaximum() - vol.getMinimum();
+        gain = (range * rate) + vol.getMinimum();
+        vol.setValue(gain);  
+        currentRate = gain;
+    }
     
+    public float GetCurrentRate() {
+        return currentRate;
+    }
+    
+    public float GetCurrentVolume() {
+        return currentVolume;
+    }
+        
     /**
      * Sets the volume of the sound system.
      *
@@ -110,15 +134,15 @@ public class MmgSound {
      * @return      The current volume.
      */
     public static float SetVolume(float f) {
-        volume = f;
-        if (volume > 1.0f) {
-            volume = 1.0f;
+        MMG_SOUND_GLOBAL_VOLUME = f;
+        if (MMG_SOUND_GLOBAL_VOLUME > 1.0f) {
+            MMG_SOUND_GLOBAL_VOLUME = 1.0f;
         }
 
-        if (volume < 0.1f) {
-            volume = 0f;
+        if (MMG_SOUND_GLOBAL_VOLUME < 0.1f) {
+            MMG_SOUND_GLOBAL_VOLUME = 0f;
         }
-        return volume;
+        return MMG_SOUND_GLOBAL_VOLUME;
     }
 
     /**
@@ -185,7 +209,7 @@ public class MmgSound {
             sound.stop();
         }
 
-        if(usedVolume != MmgSound.volume) {
+        if(usedVolume != MmgSound.MMG_SOUND_GLOBAL_VOLUME) {
             ApplyVolume();
         }        
 
@@ -205,7 +229,7 @@ public class MmgSound {
             sound.stop();
         }
         
-        if(usedVolume != MmgSound.volume) {
+        if(usedVolume != MmgSound.MMG_SOUND_GLOBAL_VOLUME) {
             ApplyVolume();
         }
         
@@ -224,7 +248,7 @@ public class MmgSound {
     public void Stop() {
         sound.stop();
         
-        if(usedVolume != MmgSound.volume) {
+        if(usedVolume != MmgSound.MMG_SOUND_GLOBAL_VOLUME) {
             ApplyVolume();
         }        
     }

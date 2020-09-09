@@ -40,7 +40,10 @@ public class MmgCfgFileEntryUnitTest_2 {
     public void test1() {
         MmgCfgFileEntry m1;
         MmgCfgFileEntry m2;        
+        MmgCfgFileEntry m3;                
         
+        m3 = new MmgCfgFileEntry();
+        m3.cfgType = CfgEntryType.TYPE_DOUBLE;
         m1 = new MmgCfgFileEntry();
         
         Assert.assertEquals(m1.name, null);
@@ -52,7 +55,7 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(true, m1.Equals(m2));
         Assert.assertEquals(true, m2.Equals(m1));
         Assert.assertEquals(true, m1.Equals(m1));
-        
+        Assert.assertEquals(false, m3.Equals(m1));
         Assert.assertEquals(m1.ToString(), "");        
     }
 
@@ -60,8 +63,11 @@ public class MmgCfgFileEntryUnitTest_2 {
     @SuppressWarnings("UnusedAssignment")
     public void test2() {
         MmgCfgFileEntry m1;
-        MmgCfgFileEntry m2;        
+        MmgCfgFileEntry m2;
+        MmgCfgFileEntry m3;                
         
+        m3 = new MmgCfgFileEntry();     
+        m3.cfgType = CfgEntryType.TYPE_DOUBLE;        
         m1 = new MmgCfgFileEntry(new MmgCfgFileEntry());
         
         Assert.assertEquals(m1.name, null);
@@ -73,7 +79,7 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(true, m1.Equals(m2));
         Assert.assertEquals(true, m2.Equals(m1));
         Assert.assertEquals(true, m1.Equals(m1));
-        
+        Assert.assertEquals(false, m3.Equals(m1));        
         Assert.assertEquals(m1.ToString(), "");
     }
 
@@ -82,7 +88,10 @@ public class MmgCfgFileEntryUnitTest_2 {
     public void test3() {
         MmgCfgFileEntry m1;
         MmgCfgFileEntry m2;        
+        MmgCfgFileEntry m3;                
         
+        m3 = new MmgCfgFileEntry();  
+        m3.cfgType = CfgEntryType.TYPE_DOUBLE;        
         m1 = new MmgCfgFileEntry();
         m1.name = "Test";
         m1.cfgType = CfgEntryType.TYPE_STRING;
@@ -97,7 +106,7 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(true, m1.Equals(m2));
         Assert.assertEquals(true, m2.Equals(m1));
         Assert.assertEquals(true, m1.Equals(m1));  
-        
+        Assert.assertEquals(false, m3.Equals(m1));        
         Assert.assertEquals(m1.ToString(), "Test->test_string");        
     }
     
@@ -106,7 +115,10 @@ public class MmgCfgFileEntryUnitTest_2 {
     public void test4() {
         MmgCfgFileEntry m1;
         MmgCfgFileEntry m2;        
+        MmgCfgFileEntry m3;                
         
+        m3 = new MmgCfgFileEntry();  
+        m3.cfgType = CfgEntryType.TYPE_DOUBLE;        
         m1 = new MmgCfgFileEntry();
         m1.name = "Test";
         m1.cfgType = CfgEntryType.TYPE_DOUBLE;
@@ -124,7 +136,7 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(true, m1.Equals(m2));
         Assert.assertEquals(true, m2.Equals(m1));
         Assert.assertEquals(true, m1.Equals(m1));  
-        
+        Assert.assertEquals(false, m3.Equals(m1));        
         Assert.assertEquals(m1.ToString(), "Test=1.234");        
     }    
 }

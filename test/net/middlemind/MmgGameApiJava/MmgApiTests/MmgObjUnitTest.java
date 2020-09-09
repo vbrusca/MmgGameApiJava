@@ -205,7 +205,7 @@ public class MmgObjUnitTest {
         Assert.assertEquals(pos.GetY() + 5, obj1.GetPosition().GetY());
         
         //TEST 12 - ToString
-        String tmp = "Name: " + obj1.GetName() + " Id: " + obj1.GetId() + " - " + obj1.GetPosition().ToString();
+        String tmp = "Name: " + obj1.GetName() + " Id: " + obj1.GetId() + " - " + obj1.GetPosition().ToString() + " HasParent: " + obj1.GetHasParent();
         //System.err.println(tmp);
         //System.err.println(obj1.ToString());
         Assert.assertEquals(tmp, obj1.ToString());

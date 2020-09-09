@@ -39,12 +39,16 @@ public class MmgColorUnitTest_2 {
     public void test1() {
         MmgColor c1;
         MmgColor c2;
+        MmgColor c3;
         
+        c3 = new MmgColor(Color.YELLOW);
         c1 = new MmgColor();
         Assert.assertEquals(c1.GetColor(), Color.WHITE);
         
         c2 = c1.Clone();
         Assert.assertEquals(true, c1.Equals(c2));
+        Assert.assertEquals(true, c1.Equals(c1));
+        Assert.assertEquals(false, c1.Equals(c3));        
 
         c1.SetColor(Color.red);
         Assert.assertEquals(c1.GetColor(), Color.red);        
@@ -55,13 +59,17 @@ public class MmgColorUnitTest_2 {
     public void test2() {
         MmgColor c1;
         MmgColor c2;
+        MmgColor c3;
         
+        c3 = new MmgColor(Color.YELLOW);        
         c1 = new MmgColor(new MmgColor());
         Assert.assertEquals(c1.GetColor(), Color.WHITE);
         
         c2 = c1.Clone();
         Assert.assertEquals(true, c1.Equals(c2));
-
+        Assert.assertEquals(true, c1.Equals(c1));
+        Assert.assertEquals(false, c1.Equals(c3));        
+        
         c1.SetColor(Color.red);
         Assert.assertEquals(c1.GetColor(), Color.red);        
     }
@@ -71,13 +79,17 @@ public class MmgColorUnitTest_2 {
     public void test3() {
         MmgColor c1;
         MmgColor c2;
+        MmgColor c3;
         
+        c3 = new MmgColor();        
         c1 = new MmgColor(Color.BLUE);
         Assert.assertEquals(c1.GetColor(), Color.BLUE);
         
         c2 = c1.Clone();
         Assert.assertEquals(true, c1.Equals(c2));
-
+        Assert.assertEquals(true, c1.Equals(c1));
+        Assert.assertEquals(false, c1.Equals(c3));        
+        
         c1.SetColor(Color.red);
         Assert.assertEquals(c1.GetColor(), Color.red);        
     }    

@@ -18,15 +18,19 @@ import org.junit.runners.Suite;
         ,MmgBmpUnitTest.class
         ,MmgCfgFileEntryUnitTest_2.class
         ,MmgColorUnitTest.class
+        ,MmgColorUnitTest_2.class
         ,MmgContainerUnitTest.class
+        ,MmgContainerUnitTest_2.class
         ,MmgDirUnitTest_2.class
+        ,MmgEventUnitTest_2.class
         ,MmgFontUnitTest_2.class
         ,MmgObjUnitTest.class
         ,MmgRectUnitTest.class
-        ,MmgRectUnitTest_2.class            
+        ,MmgRectUnitTest_2.class
+        ,MmgSoundUnitTest_2.class            
         ,MmgVector2UnitTest.class
         ,MmgVector2UnitTest_2.class
-        ,MmgVector2IntUnitTest_2.class            
+        ,MmgVector2IntUnitTest_2.class
     }
 )
 

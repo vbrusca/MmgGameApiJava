@@ -81,6 +81,7 @@ public class MmgContainer extends MmgObj {
      */
     public MmgContainer(MmgObj obj) {
         super(obj);
+        SetContainer(new ArrayList(INITIAL_SIZE));        
         SetIsDirty(true);        
     }    
     
@@ -111,7 +112,7 @@ public class MmgContainer extends MmgObj {
             int len = tmp1.size();
             ArrayList<MmgObj> tmp2 = new ArrayList(len);
             for (int j = 0; j < len; j++) {
-                tmp2.add(j, tmp1.get(j).Clone());
+                tmp2.add(j, tmp1.get(j).CloneTyped());
             }
             SetContainer(tmp2);
         } else {
@@ -133,6 +134,7 @@ public class MmgContainer extends MmgObj {
         } else {
             SetMmgColor(obj.GetMmgColor());
         }
+        SetIsDirty(true);
     }
     
     /**
@@ -160,8 +162,7 @@ public class MmgContainer extends MmgObj {
      */
     @Override
     public MmgObj Clone() {
-        MmgContainer ret = new MmgContainer(this);
-        return (MmgObj) ret;
+        return (MmgObj) new MmgContainer(this);
     }
 
     /**
@@ -446,7 +447,7 @@ public class MmgContainer extends MmgObj {
                 for(int i = 0; i < len1; i++) {
                     m1 = obj.container.get(i);
                     m2 = container.get(i);
-                    if(
+                                        if(
                         !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
                     ){
                         ret = false;
