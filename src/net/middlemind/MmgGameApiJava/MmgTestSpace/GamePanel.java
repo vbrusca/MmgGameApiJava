@@ -15,6 +15,8 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
  */
 public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
+    //TODO: Complete class comments
+    
     /**
      * A reference to a game screen used for testing.
      */
@@ -120,12 +122,20 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
      */
     public ScreenTestMmgCfgFileEntryWrite screenTestMmgCfgFileEntryWrite;    
     
+    /**
+     * 
+     */
     public ScreenTestMmgObj screenTestMmgObj;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgSpriteSheet screenTestMmgSpriteSheet;
     
     /**
      * A static class field that contains the total number of test game screens.
      */
-    public static int TOTAL_TESTS = 21;
+    public static int TOTAL_TESTS = 22;
     
     /**
      * The basic constructor for this GamePanel extended class.
@@ -231,7 +241,11 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
 
         screenTestMmgObj = new ScreenTestMmgObj(GameStates.GAME_SCREEN_21, this);
         screenTestMmgObj.Pause();
-        screenTestMmgObj.SetIsVisible(false);        
+        screenTestMmgObj.SetIsVisible(false);
+        
+        screenTestMmgSpriteSheet = new ScreenTestMmgSpriteSheet(GameStates.GAME_SCREEN_22, this);
+        screenTestMmgSpriteSheet.Pause();
+        screenTestMmgSpriteSheet.SetIsVisible(false);       
     }
         
     /**
@@ -395,6 +409,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgObj.Pause();
             screenTestMmgObj.SetIsVisible(false);
             screenTestMmgObj.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_22) {
+            MmgHelper.wr("Hiding GAME_SCREEN_22 screen.");
+            screenTestMmgSpriteSheet.Pause();
+            screenTestMmgSpriteSheet.SetIsVisible(false);
+            screenTestMmgSpriteSheet.UnloadResources();            
             
         } else if (prevGameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Hiding MAIN_MENU screen.");
@@ -596,6 +616,13 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgObj.SetIsVisible(true);
             currentScreen = screenTestMmgObj;            
             
+        } else if (gameState == GameStates.GAME_SCREEN_22) {
+            MmgHelper.wr("Showing GAME_SCREEN_22 screen.");
+            screenTestMmgSpriteSheet.LoadResources();
+            screenTestMmgSpriteSheet.UnPause();
+            screenTestMmgSpriteSheet.SetIsVisible(true);
+            currentScreen = screenTestMmgSpriteSheet;                        
+            
         } else if (gameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Showing MAIN_MENU screen.");
             //mainMenuScreen.LoadResources();
@@ -648,7 +675,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps
                     DatExternalStrings.LOAD_EXT_STRINGS();
-                    if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("0")) {
+                    if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("1")) {
                         //Test MmgScreenData
                         SwitchGameState(GameStates.GAME_SCREEN_01);
                         
@@ -731,6 +758,10 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("21")) {
                         //Test MmgObj
                         SwitchGameState(GameStates.GAME_SCREEN_21);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("22")) {
+                        //Test MmgSpriteSheet
+                        SwitchGameState(GameStates.GAME_SCREEN_22);
                         
                     }
                 }

@@ -27,7 +27,8 @@ import org.junit.runners.Suite;
         ,MmgObjUnitTest.class
         ,MmgRectUnitTest.class
         ,MmgRectUnitTest_2.class
-        ,MmgSoundUnitTest_2.class            
+        ,MmgSoundUnitTest_2.class
+        ,MmgSpriteUnitTest_2.class            
         ,MmgVector2UnitTest.class
         ,MmgVector2UnitTest_2.class
         ,MmgVector2IntUnitTest_2.class

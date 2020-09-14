@@ -9,6 +9,8 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgScreenData {
 
+    //TODO: Complete field and method comments
+    
     /**
      * An enumeration used to track the scaling mode used by this class.
      */
@@ -391,6 +393,14 @@ public class MmgScreenData {
         return MmgScreenData.scaleVec;
     }
 
+    /**
+     * 
+     * @param v 
+     */
+    public static void SetScale(MmgVector2 v) {
+        MmgScreenData.scaleVec = v;
+    }
+    
     /**
      * Gets the position vector.
      *

@@ -447,7 +447,7 @@ public class MmgContainer extends MmgObj {
                 for(int i = 0; i < len1; i++) {
                     m1 = obj.container.get(i);
                     m2 = container.get(i);
-                                        if(
+                    if(
                         !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
                     ){
                         ret = false;

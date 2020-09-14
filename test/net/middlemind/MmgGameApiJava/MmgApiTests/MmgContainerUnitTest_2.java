@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgContainer;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2Int;
 import org.junit.Assert;

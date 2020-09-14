@@ -349,7 +349,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
             owner.SwitchGameState(GameStates.GAME_SCREEN_02);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_21);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_22);
             
         }
         return true;

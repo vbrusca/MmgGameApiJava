@@ -130,7 +130,7 @@ public class MmgSprite extends MmgObj {
         SetSrcRect(Src);
         SetDstRect(Dst);
         SetBmpArray(t);
-        SetPosition(null);
+        SetPosition(MmgVector2.GetOriginVec());
         SetIsVisible(true);
         SetSimpleRendering(true);
         SetMsPerFrame(DEFAULT_MS_PER_FRAME);
@@ -629,7 +629,19 @@ public class MmgSprite extends MmgObj {
                             p.DrawBmp(b[frameIdx], GetPosition(), GetOrigin(), GetRotation());
                         }
                     } else{
-                        p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), GetOrigin(), GetRotation());
+                        if(origin == null) {
+                            if(scaling == null) {
+                                p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), MmgVector2.GetUnitVec(), MmgVector2.GetOriginVec(), GetRotation());
+                            } else {
+                                p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), MmgVector2.GetOriginVec(), GetRotation());                                
+                            }
+                        } else {
+                            if(scaling == null) {
+                                p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), MmgVector2.GetUnitVec(), GetOrigin(), GetRotation());
+                            } else {
+                                p.DrawBmp(b[frameIdx], GetPosition(), GetSrcRect(), GetDstRect(), GetScaling(), GetOrigin(), GetRotation());                                
+                            }
+                        }
                     }
                 }
             }
@@ -710,11 +722,12 @@ public class MmgSprite extends MmgObj {
             } else if(obj.GetBmpArray() != null && GetBmpArray() != null) {
                 int len1 = obj.GetBmpArray().length;
                 int len2 = GetBmpArray().length;
+                                
                 if(len1 != len2) {
                     ret = false;
                 } else {
-                    for(int i = 0; i < len1; i++) {
-                        if(!obj.GetBmpArray()[i].Equals(GetBmpArray()[i])) {
+                    for(int i = 0; i < len1; i++) {                        
+                        if(!((obj.GetBmpArray()[i] == null && GetBmpArray()[i] == null) || (obj.GetBmpArray()[i] != null && GetBmpArray()[i] != null && obj.GetBmpArray()[i].Equals(GetBmpArray()[i])))) {
                             ret = false;
                             break;
                         }

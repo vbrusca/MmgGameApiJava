@@ -12,6 +12,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
@@ -46,8 +47,13 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
     /**
      * An MmgFont class instance used to provide information about the MmgSprite test on this test game screen.
      */
-    private MmgFont spriteLabel;
+    private MmgFont spriteLabel1;
         
+    /**
+     * An MmgFont class instance used to provide information about the MmgSprite test on this test game screen.
+     */
+    private MmgFont spriteLabel2;    
+    
     /**
      * An MmgBmp class instance that is the first frame in an animated series of MmgBmp frames.
      */
@@ -66,12 +72,22 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
     /**
      * An array used to store the MmgBmp frames used in the animation.
      */
-    private MmgBmp[] frames;
+    private MmgBmp[] frames1;
+    
+    /**
+     * An array used to store the MmgBmp frames used in the animation.
+     */
+    private MmgBmp[] frames2;    
     
     /**
      * An MmgSprite class instance used to demonstrate multi-frame image in this test game screen.
      */
-    private MmgSprite sprite;
+    private MmgSprite sprite1;
+    
+    /**
+     * An MmgSprite class instance used to demonstrate multi-frame image in this test game screen.
+     */
+    private MmgSprite sprite2;    
     
     /**
      * An MmgFont class instance used as the title for the test game screen.
@@ -152,23 +168,43 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         frame3 = MmgBmpScaler.ScaleMmgBmp(frame3, 2.0f, true);
         MmgHelper.CenterHorAndVert(frame3);
         
-        frames = new MmgBmp[4];
-        frames[0] = frame1;
-        frames[1] = frame2;
-        frames[2] = frame3;
-        frames[3] = frame2;        
+        frames1 = new MmgBmp[4];
+        frames1[0] = frame1;
+        frames1[1] = frame2;
+        frames1[2] = frame3;
+        frames1[3] = frame2;
+        
+        frames2 = new MmgBmp[4];
+        frames2[0] = frame1.CloneTyped();
+        frames2[1] = frame2.CloneTyped();
+        frames2[2] = frame3.CloneTyped();
+        frames2[3] = frame2.CloneTyped();     
         
         MmgVector2 tmpPos = frame1.GetPosition().Clone();
-        tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(15));
-        sprite = new MmgSprite(frames, tmpPos);
-        sprite.SetFrameTime(200l);
-        AddObj(sprite);
+        tmpPos.SetY(tmpPos.GetY() - MmgHelper.ScaleValue(30));
+        sprite1 = new MmgSprite(frames1, tmpPos);
+        sprite1.SetFrameTime(200l);
+        AddObj(sprite1);
         
-        spriteLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        spriteLabel.SetText("MmgSprite Example with 4 Frames");
-        MmgHelper.CenterHorAndVert(spriteLabel);
-        spriteLabel.SetY(spriteLabel.GetY() - MmgHelper.ScaleValue(20));
-        AddObj(spriteLabel);
+        spriteLabel1 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        spriteLabel1.SetText("MmgSprite Example with 4 Frames");
+        MmgHelper.CenterHorAndVert(spriteLabel1);
+        spriteLabel1.SetY(sprite1.GetY() - MmgHelper.ScaleValue(20));
+        AddObj(spriteLabel1);
+        
+        tmpPos = frame1.GetPosition().Clone();
+        tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(90));
+        sprite2 = new MmgSprite(frames2,  new MmgRect(0, 0, frame1.GetHeight()/2, frame1.GetWidth()/2), new MmgRect(tmpPos.GetX(), tmpPos.GetY(), tmpPos.GetY() + frame1.GetHeight()/2, tmpPos.GetX() + frame1.GetWidth()/2), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 0.0f);
+        sprite2.SetFrameTime(200l);
+        sprite2.SetPosition(tmpPos);
+        sprite2.SetSimpleRendering(false);
+        AddObj(sprite2);
+        
+        spriteLabel2 = MmgFontData.CreateDefaultBoldMmgFontLg();
+        spriteLabel2.SetText("MmgSprite Example with 4 Frames and Source/Destination Rectangles");        
+        MmgHelper.CenterHorAndVert(spriteLabel2);
+        spriteLabel2.SetY(sprite2.GetY() - MmgHelper.ScaleValue(20));
+        AddObj(spriteLabel2);        
         
         ready = true;
         pause = false;
@@ -349,11 +385,15 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         pause = true;
         SetBackground(null);
         
+        spriteLabel1 = null;
+        spriteLabel2 = null;
         frame1 = null;
         frame2 = null;
         frame3 = null;
-        frames = null;
-        sprite = null;
+        frames1 = null;
+        sprite1 = null;
+        frames2 = null;
+        sprite2 = null;        
         title = null;
         
         ClearObjs();
@@ -383,7 +423,8 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
 
         if (pause == false && isVisible == true) {
             //always run this update
-            sprite.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);            
+            sprite1.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+            sprite2.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);            
         }
 
         return lret;
