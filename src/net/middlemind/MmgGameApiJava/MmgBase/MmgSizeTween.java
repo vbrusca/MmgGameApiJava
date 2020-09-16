@@ -34,6 +34,11 @@ public class MmgSizeTween extends MmgObj {
     private MmgObj subj;
     
     /**
+     * 
+     */
+    private MmgObj subjOrig;
+    
+    /**
      * A boolean indicating the tween is at the start position.
      */
     private boolean atStart;
@@ -104,6 +109,11 @@ public class MmgSizeTween extends MmgObj {
     private MmgEventHandler onReachStart;
         
     /**
+     * 
+     */
+    private MmgScaleHandler onSubjScale;
+    
+    /**
      * An event template for the reach finish event.
      */
     private MmgEvent reachFinish = new MmgEvent(null, "reach_finish", MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH, MmgSizeTween.MMG_SIZE_TWEEN_REACH_FINISH_TYPE, null, null);
@@ -130,6 +140,7 @@ public class MmgSizeTween extends MmgObj {
     public MmgSizeTween(MmgObj subj, float msTimeToChange, MmgVector2 startSize, MmgVector2 finishSize) {
         super();
         SetSubj(subj);
+        SetSubjOrig(subj);
         SetPixelSizeToChange(new MmgVector2((finishSize.GetX() - startSize.GetX()), (finishSize.GetY() - startSize.GetY())));
         SetMsTimeToChange(msTimeToChange);
         SetPixelsPerMsToChangeX((GetPixelSizeToChange().GetX() / (float) msTimeToChange));
@@ -158,6 +169,12 @@ public class MmgSizeTween extends MmgObj {
         } else {
             SetSubj(obj.GetSubj().Clone());
         }
+        
+        if(obj.GetSubjOrig() == null) {
+            SetSubj(obj.GetSubjOrig());
+        } else {
+            SetSubj(obj.GetSubjOrig().Clone());
+        }        
         
         SetAtStart(obj.GetAtStart());
         SetAtFinish(obj.GetAtStart());
@@ -213,6 +230,40 @@ public class MmgSizeTween extends MmgObj {
         }
     }
 
+    /**
+     * 
+     * 
+     * @param o 
+     */
+    public void SetOnSubjScale(MmgScaleHandler o) {
+        onSubjScale = o;
+    }
+    
+    /**
+     *
+     * 
+     * @return 
+     */
+    public MmgScaleHandler GetOnSubjScale() {
+        return onSubjScale;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public MmgObj GetSubjOrig() {
+        return subjOrig;
+    }
+    
+    /**
+     * 
+     * @param o 
+     */
+    public void SetSubjOrig(MmgObj o) {
+        subjOrig = o;
+    }
+    
     /**
      * Gets the on reach finish event handler.
      * 
@@ -518,15 +569,26 @@ public class MmgSizeTween extends MmgObj {
                         SetAtStart(false);
                         SetChanging(false);
                         SetWidth(finishSize.GetX());
-                        SetHeight(finishSize.GetY());                        
+                        SetHeight(finishSize.GetY()); 
+                        
+                        if(onSubjScale != null) {
+                            onSubjScale.MmgHandleScale(finishSize, subjOrig);
+                        }
+                        
                         if (onReachFinish != null) {
                             onReachFinish.MmgHandleEvent(reachFinish);
                         }
+                        
                         lret = true;
                     } else {
                         tmpV = new MmgVector2(startSize.GetX() + (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), startSize.GetY() + (pixelsPerMsToChangeY * (currentTimeMs - msStartChange)));
                         SetWidth(tmpV.GetX());
                         SetHeight(tmpV.GetY());
+                        
+                        if(onSubjScale != null) {
+                            onSubjScale.MmgHandleScale(tmpV, subjOrig);
+                        }                        
+                        
                         lret = true;
                     }
 
@@ -537,15 +599,26 @@ public class MmgSizeTween extends MmgObj {
                         SetAtStart(true);
                         SetChanging(false);
                         SetWidth(startSize.GetX());
-                        SetHeight(startSize.GetY());                        
+                        SetHeight(startSize.GetY());
+                        
+                        if(onSubjScale != null) {
+                            onSubjScale.MmgHandleScale(startSize, subjOrig);
+                        }                         
+                        
                         if (onReachStart != null) {
                             onReachStart.MmgHandleEvent(reachStart);
                         }
+                        
                         lret = true;
                     } else {
                         tmpV = new MmgVector2(finishSize.GetX() - (pixelsPerMsToChangeX * (currentTimeMs - msStartChange)), finishSize.GetY() - (pixelsPerMsToChangeY * (currentTimeMs - msStartChange)));
                         SetWidth(tmpV.GetX());
-                        SetHeight(tmpV.GetY());                        
+                        SetHeight(tmpV.GetY());
+                        
+                        if(onSubjScale != null) {
+                            onSubjScale.MmgHandleScale(tmpV, subjOrig);
+                        }                                                
+                        
                         lret = true;
                     }
                 }

@@ -78,8 +78,8 @@ public class MmgLoadingBar extends MmgObj {
             SetLoadingBarFront(obj.GetLoadingBarFront());
         }
 
-        SetPaddingX(0);
-        SetPaddingY(0);
+        SetPaddingX(obj.GetPaddingX());
+        SetPaddingY(obj.GetPaddingY());
 
         if (obj.GetPosition() != null) {
             SetPosition(obj.GetPosition().Clone());
@@ -87,18 +87,16 @@ public class MmgLoadingBar extends MmgObj {
             SetPosition(obj.GetPosition());
         }
 
-        if (loadingBarFront != null) {
-            SetWidth(loadingBarFront.GetWidth());
-            SetHeight(loadingBarFront.GetHeight());
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        SetFillHeight(obj.GetFillHeight());
+        SetFillWidth(obj.GetFillWidth());
+        
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
         } else {
-            SetWidth(MmgHelper.ScaleValue(100));
-            SetHeight(MmgHelper.ScaleValue(50));
+            SetMmgColor(obj.GetMmgColor().Clone());
         }
-
-        SetFillHeight(GetHeight());
-        SetFillWidth(GetWidth());
-        SetIsVisible(true);
-        SetMmgColor(MmgColor.GetWhite());
     }
 
     /**
@@ -287,7 +285,9 @@ public class MmgLoadingBar extends MmgObj {
      */
     public void SetLoadingBarBack(MmgBmp b) {
         loadingBarBack = b;
-        loadingBarBack.SetScaling(null);
+        if(loadingBarBack != null) {
+            loadingBarBack.SetScaling(null);
+        }
     }
 
     /**
@@ -335,20 +335,20 @@ public class MmgLoadingBar extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if(isVisible == true) {
             if(loadingBarBack != null) {
-                loadingBarBack.SetMmgColor(GetMmgColor());
+                //loadingBarBack.SetMmgColor(GetMmgColor());
                 loadingBarBack.SetSrcRect(new MmgRect(MmgVector2.GetOriginVec(), loadingBarBack.GetWidth(), loadingBarBack.GetHeight()));
                 loadingBarBack.SetDstRect(new MmgRect(new MmgVector2(GetPosition().GetX() + GetPaddingX(), GetPosition().GetY() + GetPaddingY()), (int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt), GetFillHeight() - GetPaddingY()));
                 
                 //MmgRect r = loadingBarBack.GetSrcRect();
                 //MmgHelper.wr("Src L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight());
-                
+                MmgHelper.wr("Dst: " + loadingBarBack.GetDstRect().ToString());
                 //r = loadingBarBack.GetDstRect();
                 //MmgHelper.wr("Dst L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight() + " C1:" + ((int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt)) + " C2:" + (GetFillHeight() - GetPaddingY()));
                 loadingBarBack.MmgDraw(p);
             }
 
             if(loadingBarFront != null) {
-                loadingBarFront.SetMmgColor(GetMmgColor());
+                //loadingBarFront.SetMmgColor(GetMmgColor());
                 loadingBarFront.MmgDraw(p);
             }
         }
@@ -367,14 +367,14 @@ public class MmgLoadingBar extends MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
-                  
+
         boolean ret = false;
         if (
             super.Equals((MmgObj)obj) 
             && obj.GetFillHeight() == GetFillHeight()
             && obj.GetFillWidth() == GetFillWidth()
             && ((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().Equals(GetLoadingBarBack()))) 
-            && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().equals(GetLoadingBarFront())))
+            && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().Equals(GetLoadingBarFront())))
             && obj.GetPaddingX() == GetPaddingX()
             && obj.GetPaddingY() == GetPaddingY()
         ) {

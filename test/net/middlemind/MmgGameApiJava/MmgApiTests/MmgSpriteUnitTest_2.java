@@ -42,7 +42,7 @@ public class MmgSpriteUnitTest_2 {
 
     @Test
     @SuppressWarnings("UnusedAssignment")
-    public void test1() {
+    public void test1() {                
         MmgBmp frame1, frame2, frame3 = null;
         MmgBmp[] frames1, frames2 = null;
         MmgSprite sprite1, sprite2, sprite3 = null;

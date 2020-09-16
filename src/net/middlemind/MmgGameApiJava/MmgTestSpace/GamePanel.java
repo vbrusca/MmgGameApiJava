@@ -133,9 +133,24 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     public ScreenTestMmgSpriteSheet screenTestMmgSpriteSheet;
     
     /**
+     * 
+     */
+    public ScreenTestMmgBmpFont screenTestMmgBmpFont;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgLoadingBar screenTestMmgLoadingBar;
+    
+    /**
+     * 
+     */
+    public ScreenTestMmgSizeTween screenTestMmgSizeTween;
+    
+    /**
      * A static class field that contains the total number of test game screens.
      */
-    public static int TOTAL_TESTS = 22;
+    public static int TOTAL_TESTS = 25;
     
     /**
      * The basic constructor for this GamePanel extended class.
@@ -152,9 +167,10 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         MmgHelper.wr("TestSpace.GamePanel.Constructor");
         screenSplash.SetGenericEventHandler(this);
+        
         screenLoading.SetGenericEventHandler(this);
-
         screenLoading.SetSlowDown(500);
+        
         screenTest = new ScreenTest(GameStates.GAME_SCREEN_01, this);
         screenTest.Pause();
         screenTest.SetIsVisible(false);
@@ -245,7 +261,19 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         
         screenTestMmgSpriteSheet = new ScreenTestMmgSpriteSheet(GameStates.GAME_SCREEN_22, this);
         screenTestMmgSpriteSheet.Pause();
-        screenTestMmgSpriteSheet.SetIsVisible(false);       
+        screenTestMmgSpriteSheet.SetIsVisible(false);
+        
+        screenTestMmgBmpFont = new ScreenTestMmgBmpFont(GameStates.GAME_SCREEN_23, this);
+        screenTestMmgBmpFont.Pause();
+        screenTestMmgBmpFont.SetIsVisible(false);
+        
+        screenTestMmgLoadingBar = new ScreenTestMmgLoadingBar(GameStates.GAME_SCREEN_24, this);
+        screenTestMmgLoadingBar.Pause();
+        screenTestMmgLoadingBar.SetIsVisible(false);
+        
+        screenTestMmgSizeTween = new ScreenTestMmgSizeTween(GameStates.GAME_SCREEN_25, this);
+        screenTestMmgSizeTween.Pause();
+        screenTestMmgSizeTween.SetIsVisible(false);                
     }
         
     /**
@@ -414,7 +442,25 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             MmgHelper.wr("Hiding GAME_SCREEN_22 screen.");
             screenTestMmgSpriteSheet.Pause();
             screenTestMmgSpriteSheet.SetIsVisible(false);
-            screenTestMmgSpriteSheet.UnloadResources();            
+            screenTestMmgSpriteSheet.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_23) {
+            MmgHelper.wr("Hiding GAME_SCREEN_23 screen.");
+            screenTestMmgBmpFont.Pause();
+            screenTestMmgBmpFont.SetIsVisible(false);
+            screenTestMmgBmpFont.UnloadResources();
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_24) {
+            MmgHelper.wr("Hiding GAME_SCREEN_24 screen.");
+            screenTestMmgLoadingBar.Pause();
+            screenTestMmgLoadingBar.SetIsVisible(false);
+            screenTestMmgLoadingBar.UnloadResources();            
+            
+        } else if (prevGameState == GameStates.GAME_SCREEN_25) {
+            MmgHelper.wr("Hiding GAME_SCREEN_25 screen.");
+            screenTestMmgSizeTween.Pause();
+            screenTestMmgSizeTween.SetIsVisible(false);
+            screenTestMmgSizeTween.UnloadResources();                        
             
         } else if (prevGameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Hiding MAIN_MENU screen.");
@@ -621,7 +667,28 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenTestMmgSpriteSheet.LoadResources();
             screenTestMmgSpriteSheet.UnPause();
             screenTestMmgSpriteSheet.SetIsVisible(true);
-            currentScreen = screenTestMmgSpriteSheet;                        
+            currentScreen = screenTestMmgSpriteSheet;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_23) {
+            MmgHelper.wr("Showing GAME_SCREEN_23 screen.");
+            screenTestMmgBmpFont.LoadResources();
+            screenTestMmgBmpFont.UnPause();
+            screenTestMmgBmpFont.SetIsVisible(true);
+            currentScreen = screenTestMmgBmpFont;
+            
+        } else if (gameState == GameStates.GAME_SCREEN_24) {
+            MmgHelper.wr("Showing GAME_SCREEN_24 screen.");
+            screenTestMmgLoadingBar.LoadResources();
+            screenTestMmgLoadingBar.UnPause();
+            screenTestMmgLoadingBar.SetIsVisible(true);
+            currentScreen = screenTestMmgLoadingBar;            
+            
+        } else if (gameState == GameStates.GAME_SCREEN_25) {
+            MmgHelper.wr("Showing GAME_SCREEN_25 screen.");
+            screenTestMmgSizeTween.LoadResources();
+            screenTestMmgSizeTween.UnPause();
+            screenTestMmgSizeTween.SetIsVisible(true);
+            currentScreen = screenTestMmgSizeTween;                        
             
         } else if (gameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Showing MAIN_MENU screen.");
@@ -762,6 +829,18 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                     } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("22")) {
                         //Test MmgSpriteSheet
                         SwitchGameState(GameStates.GAME_SCREEN_22);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("23")) {
+                        //Test MmgBmpFont
+                        SwitchGameState(GameStates.GAME_SCREEN_23);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("24")) {
+                        //Test MmgLoadingBar
+                        SwitchGameState(GameStates.GAME_SCREEN_24);
+                        
+                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("25")) {
+                        //Test MmgSizeTween
+                        SwitchGameState(GameStates.GAME_SCREEN_25);
                         
                     }
                 }

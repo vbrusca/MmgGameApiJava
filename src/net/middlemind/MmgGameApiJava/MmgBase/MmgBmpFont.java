@@ -3,7 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.PixelGrabber;
+import java.awt.image.BufferedImage;
 
 //TODO: Add method documentation
 
@@ -40,7 +40,7 @@ public class MmgBmpFont extends MmgObj {
     /**
      * 
      */
-    public static int EXPECTED_CHAR_LENGTH = 94;
+    public static int EXPECTED_CHAR_LENGTH = 95;
     
     /**
      * 
@@ -74,6 +74,7 @@ public class MmgBmpFont extends MmgObj {
         super();        
         SetSrc(Src);
         Prep();
+        SetText(" ");
     }
             
     /**
@@ -88,9 +89,13 @@ public class MmgBmpFont extends MmgObj {
         } else {
             SetSrc(obj.GetSrc().CloneTyped());
         }
-                 
+            
+        Prep();
+        
         if(obj.GetText() != null && obj.GetText().equals("") == false) {
             SetText(obj.GetText());
+        } else {
+            SetText(" ");
         }
         
         if(obj.GetDst() == null) {
@@ -142,25 +147,30 @@ public class MmgBmpFont extends MmgObj {
     /**
      * 
      */
-    public void Prep() {        
-        Image img = src.GetImage();
+    public void Prep() {
+        Image imgT = src.GetImage();
+        BufferedImage img = null;
+        
+        img = new BufferedImage(imgT.getWidth(null), imgT.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g = img.createGraphics();
+        g.drawImage(imgT, 0, 0, null);
+        g.dispose();        
+                
         int width = src.GetWidth();
         int height = src.GetHeight();
         MmgDrawableBmpSet bmpSet;
-        Graphics2D g = (Graphics2D) img.getGraphics();
-        PixelGrabber grabber = new PixelGrabber(img, 0, 0, width, height, false);
         
-        int[] data = (int[]) grabber.getPixels();
         int i = 1;
         int start = i;
         int found = 0;
         int pos;
         int w;
-        chars = new MmgBmp[94];
-        widths = new int[94];
-        
+        chars = new MmgBmp[MmgBmpFont.EXPECTED_CHAR_LENGTH];
+        widths = new int[MmgBmpFont.EXPECTED_CHAR_LENGTH];
+                
         for(i = 1; i < width; i++) {
-            Color ct = new Color(data[i]);
+            Color ct = new Color(img.getRGB(i, 0));
             if(ct.getRed() == 255 && ct.getGreen() == 0 && ct.getBlue() == 255) {
                 pos = start;
                 w = (i - start);
@@ -628,6 +638,7 @@ public class MmgBmpFont extends MmgObj {
             for(i = 0; i < len; i++) {
                 c = s.charAt(i);
                 idx = GetIndexOf(c);
+                w = GetWidthAt(idx);
                 totalWidth += w;
             }
 
@@ -643,6 +654,7 @@ public class MmgBmpFont extends MmgObj {
             }            
             
             dst = bmpSet.img;
+            text = s;
         } else {
             dst = MmgHelper.CreateFilledBmp(DEFAULT_NULL_WIDTH, DEFAULT_NULL_HEIGHT, MmgColor.GetDarkRed());
         }
@@ -785,6 +797,16 @@ public class MmgBmpFont extends MmgObj {
         return widths;
     }
 
+    /**
+     * 
+     * 
+     * @param i
+     * @return 
+     */
+    public int GetWidthAt(int i) {
+        return widths[i];
+    }
+    
     /**
      * 
      * 

@@ -2,6 +2,10 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp.MmgBmpDrawMode;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
@@ -10,6 +14,10 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgLoadingBar;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgSpriteSheet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -21,74 +29,31 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * 
  * @author Victor G. Brusca
  */
-public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
+public class ScreenTestMmgLoadingBar extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
 
+    //TODO: Complete class documentation
+    
     /**
      * The game state this screen has.
      */
     protected final GameStates gameState;
 
     /**
-     * Event handler for firing generic events. Events would fire when the
-     * screen has non UI actions to broadcast.
+     * Event handler for firing generic events. 
+     * Events would fire when the screen has non UI actions to broadcast.
      */
     protected GenericEventHandler handler;
 
     /**
-     * The GamePanel that owns this game screen. Usually a JPanel instance that
-     * holds a reference to this game screen object.
+     * The GamePanel that owns this game screen. 
+     * Usually a JPanel instance that holds a reference to this game screen object.
      */
     protected final GamePanel owner;
             
     /**
-     * An MmgFont class instance used to display the MmgScreenData's default height.
+     * An MmgFont class instance used to provide information about the MmgSprite test on this test game screen.
      */
-    private MmgFont defaultHeightLabel;
-    
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's default width.
-     */
-    private MmgFont defaultWidthLabel;
-       
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's game height.
-     */
-    private MmgFont gameHeightLabel;
-    
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's game width.
-     */
-    private MmgFont gameWidthLabel;
-    
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's left coordinate.
-     */
-    private MmgFont gameLeftLabel;
-    
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's top coordinate.
-     */
-    private MmgFont gameTopLabel;    
-
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's screen height.
-     */
-    private MmgFont screenHeightLabel;
-    
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's screen width.
-     */
-    private MmgFont screenWidthLabel;
-
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's X scale value.
-     */
-    private MmgFont scaleXLabel;
-    
-    /**
-     * An MmgFont class instance used to display the MmgScreenData's Y scale value.
-     */
-    private MmgFont scaleYLabel;
+    private MmgFont loadingBarLabel;
     
     /**
      * An MmgFont class instance used as the title for the test game screen.
@@ -96,10 +61,35 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
     private MmgFont title;
     
     /**
+     * 
+     */
+    private MmgLoadingBar loadingBar;
+
+    /**
+     * 
+     */
+    private MmgBmp loadingBarBack;
+    
+    /**
+     * 
+     */
+    private MmgBmp loadingBarFront;
+    
+    /**
+     * 
+     */
+    private long time = 0l;
+    
+    /**
+     * 
+     */
+    private long timingAmt = 500l;
+    
+    /**
      * A boolean flag indicating if there is work to do in the next MmgUpdate call.
      */
     private boolean isDirty = false;
-    
+        
     /**
      * A private boolean flag used in the MmgUpdate method during the update process.
      */
@@ -112,13 +102,13 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      * @param Owner         The owner of this game screen.
      */
     @SuppressWarnings("LeakingThisInConstructor")
-    public ScreenTestMmgScreenData(GameStates State, GamePanel Owner) {
+    public ScreenTestMmgLoadingBar(GameStates State, GamePanel Owner) {
         super();
         pause = false;
         ready = false;
         gameState = State;
         owner = Owner;
-        MmgHelper.wr("ScreenTestMmgScreenData.Constructor");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.Constructor");
     }
 
     /**
@@ -127,7 +117,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        MmgHelper.wr("ScreenTestMmgScreenData.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -145,95 +135,40 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        MmgHelper.wr("ScreenTestMmgScreenData.LoadResources");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
-        title.SetText("<  Screen Test Mmg Screen Data (1 / " + GamePanel.TOTAL_TESTS + ")  >");
+        title.SetText("<  Screen Test Mmg Loading Bar (24 / " + GamePanel.TOTAL_TESTS + ")  >");
         MmgHelper.CenterHorAndTop(title);
         title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
         AddObj(title);
-                
-        int yDiff = MmgHelper.ScaleValue(40);
-        int yStrt = GetY() + MmgHelper.ScaleValue(140);
-        int xLeft = MmgHelper.ScaleValue(200);
-        int i = 0;
+                       
+        loadingBarBack = MmgHelper.CreateFilledBmp(MmgHelper.ScaleValue(12), MmgHelper.ScaleValue(12), MmgColor.GetLightBlue());
+        //This is needed to ensure the source/destination rectangle is used in rendering the loading bar background image.
+        loadingBarBack.DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_FULL;
+        loadingBarFront = MmgHelper.GetBasicCachedBmp("loading_bar.png");        
         
-        defaultHeightLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        defaultHeightLabel.SetText("DefaultHeight: " + MmgScreenData.DEFAULT_HEIGHT);
-        defaultHeightLabel.SetX(xLeft);
-        defaultHeightLabel.SetY(yStrt + (yDiff * i));
-        AddObj(defaultHeightLabel);
-        i++;
+        loadingBar = new MmgLoadingBar(loadingBarBack, loadingBarFront);
+        loadingBar.SetMmgColor(null);        
+        loadingBar.SetWidth(loadingBarFront.GetWidth() - MmgHelper.ScaleValue(10));
+        loadingBar.SetHeight(loadingBarFront.GetHeight() - MmgHelper.ScaleValue(12));
+        loadingBar.SetFillAmt(0.0f);
+        loadingBar.SetPaddingX(MmgHelper.ScaleValue(8));
+        loadingBar.SetPaddingY(MmgHelper.ScaleValue(4));
+        loadingBar.SetFillHeight(loadingBarFront.GetHeight() - MmgHelper.ScaleValue(10));
+        loadingBar.SetFillWidth(loadingBarFront.GetWidth() - MmgHelper.ScaleValue(12));
+        MmgHelper.CenterHorAndVert(loadingBar);
+        AddObj(loadingBar);
         
-        defaultWidthLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        defaultWidthLabel.SetText("DefaultWidth: " + MmgScreenData.DEFAULT_WIDTH);
-        defaultWidthLabel.SetX(xLeft);
-        defaultWidthLabel.SetY(yStrt + (yDiff * i));
-        AddObj(defaultWidthLabel);
-        i++;
-        
-        gameHeightLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        gameHeightLabel.SetText("GameHeight: " + MmgScreenData.GetGameHeight());
-        gameHeightLabel.SetX(xLeft);
-        gameHeightLabel.SetY(yStrt + (yDiff * i));
-        AddObj(gameHeightLabel);
-        i++;
-                
-        gameWidthLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        gameWidthLabel.SetText("GameWidth: " + MmgScreenData.GetGameWidth());
-        gameWidthLabel.SetX(xLeft);
-        gameWidthLabel.SetY(yStrt + (yDiff * i));
-        AddObj(gameWidthLabel);
-        i++;
-        
-        gameLeftLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        gameLeftLabel.SetText("GameLeft: " + MmgScreenData.GetGameLeft());
-        gameLeftLabel.SetX(xLeft);
-        gameLeftLabel.SetY(yStrt + (yDiff * i));
-        AddObj(gameLeftLabel);
-        i++;        
-                
-        xLeft = GetWidth()/2 + MmgHelper.ScaleValue(70);
-        i = 0;
-        
-        gameTopLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        gameTopLabel.SetText("GameTop: " + MmgScreenData.GetGameTop());
-        gameTopLabel.SetX(xLeft);
-        gameTopLabel.SetY(yStrt + (yDiff * i));
-        AddObj(gameTopLabel);
-        i++;
-        
-        screenHeightLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        screenHeightLabel.SetText("ScreenHeight: " + MmgScreenData.GetScreenHeight());
-        screenHeightLabel.SetX(xLeft);
-        screenHeightLabel.SetY(yStrt + (yDiff * i));
-        AddObj(screenHeightLabel);
-        i++;
-        
-        screenWidthLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        screenWidthLabel.SetText("ScreenWidth: " + MmgScreenData.GetScreenWidth());
-        screenWidthLabel.SetX(xLeft);
-        screenWidthLabel.SetY(yStrt + (yDiff * i));
-        AddObj(screenWidthLabel);
-        i++;
-        
-        scaleXLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        scaleXLabel.SetText("ScaleX: " + MmgScreenData.GetScaleX());
-        scaleXLabel.SetX(xLeft);
-        scaleXLabel.SetY(yStrt + (yDiff * i));
-        AddObj(scaleXLabel);
-        i++;
-        
-        scaleYLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-        scaleYLabel.SetText("ScaleY: " + MmgScreenData.GetScaleY());
-        scaleYLabel.SetX(xLeft);
-        scaleYLabel.SetY(yStrt + (yDiff * i));
-        AddObj(scaleYLabel);
-        i++;
+        loadingBarLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+        loadingBarLabel.SetText("MmgLoadingBar Example with 500ms Fill Increase");
+        MmgHelper.CenterHorAndVert(loadingBarLabel);
+        loadingBarLabel.SetY(loadingBarLabel.GetY() - MmgHelper.ScaleValue(20));
+        AddObj(loadingBarLabel);
         
         ready = true;
         pause = false;
@@ -245,10 +180,10 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      * 
      * @param v     The coordinates of the mouse event.
      * @return      A boolean indicating if the event was handled or not.
-     */ 
+     */
     @Override
     public boolean ProcessMousePress(MmgVector2 v) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessScreenPress");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -262,7 +197,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMousePress(int x, int y) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenPress");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessScreenPress");
         return true;
     }
 
@@ -275,7 +210,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseRelease(MmgVector2 v) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessScreenRelease");
         return ProcessMousePress(v.GetX(), v.GetY());
     }
 
@@ -288,7 +223,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseRelease(int x, int y) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenRelease");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessScreenRelease");
         return true;
     }
     
@@ -300,7 +235,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessAClick(int src) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessAClick");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessAClick");
         return true;
     }
     
@@ -312,7 +247,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessBClick(int src) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessBClick");        
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessBClick");        
         return true;
     }
     
@@ -321,7 +256,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public void ProcessDebugClick() {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDebugClick");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessDebugClick");
     }
 
     /**
@@ -332,7 +267,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadPress(int dir) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDpadPress: " + dir);
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessDpadPress: " + dir);
         return true;
     }
 
@@ -344,12 +279,12 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadRelease(int dir) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDpadRelease: " + dir);
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_02);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_25);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_25);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_23);
             
         }
         return true;
@@ -363,7 +298,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessDpadClick(int dir) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessDpadClick: " + dir);        
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessDpadClick: " + dir);        
         return true;
     }
     
@@ -376,7 +311,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenClick");        
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessScreenClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -390,7 +325,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessScreenClick");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessScreenClick");
         return true;
     }    
     
@@ -403,7 +338,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public boolean ProcessKeyClick(char c, int code) {
-        MmgHelper.wr("ScreenTestMmgScreenData.ProcessKeyClick");
+        MmgHelper.wr("ScreenTestMmgLoadingBar.ProcessKeyClick");
         return true;
     }
     
@@ -414,13 +349,11 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
         pause = true;
         SetBackground(null);
         
+        loadingBarLabel = null;
+        loadingBar = null;
+        loadingBarBack = null;
+        loadingBarFront = null;
         title = null;
-        defaultHeightLabel = null;
-        defaultWidthLabel = null;
-        gameHeightLabel = null;
-        gameLeftLabel = null;
-        gameTopLabel = null;
-        gameWidthLabel = null;
         
         ClearObjs();
         ready = false;
@@ -436,9 +369,44 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
     }
     
     /**
-     * The main drawing routine.
+     * The MmgUpdate method used to call the update method of the child objects.
+     * 
+     * @param updateTicks           The update tick number. 
+     * @param currentTimeMs         The current time in the game in milliseconds.
+     * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
+     * @return                      A boolean indicating if any work was done this game frame.
+     */
+    @Override
+    public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        lret = false;
+
+        if (pause == false && isVisible == true) {
+            if(loadingBar != null) {
+                if(loadingBar.GetFillAmt() < 1.0f) {
+                    time += msSinceLastFrame;
+                    if(time >= timingAmt) {
+                        time = 0;
+                        loadingBar.SetFillAmt(loadingBar.GetFillAmt() + 0.10f);
+                    }
+                } else {
+                    time += msSinceLastFrame;
+                    if(time >= timingAmt) {
+                        time = 0;
+                        loadingBar.SetFillAmt(0.0f);
+                    } else {
+                        loadingBar.SetFillAmt(1.0f);
+                    }
+                }
+            }
+        }
+
+        return lret;
+    }    
+    
+    /**
+     * Base draw method, handles drawing this class.
      *
-     * @param p     An MmgPen object to use for drawing this game screen.
+     * @param p     The MmgPen used to draw this object.
      */
     @Override
     public void MmgDraw(MmgPen p) {
@@ -454,7 +422,7 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        MmgHelper.wr("ScreenTestMmgScreenData.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+        MmgHelper.wr("ScreenTestMmgLoadingBar.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
     }
 
     /**
@@ -464,6 +432,6 @@ public class ScreenTestMmgScreenData extends MmgGameScreen implements GenericEve
      */
     @Override
     public void MmgHandleEvent(MmgEvent e) {
-        MmgHelper.wr("ScreenTestMmgScreenData.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+        MmgHelper.wr("ScreenTestMmgLoadingBar.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
     }
 }

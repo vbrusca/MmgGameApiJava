@@ -245,7 +245,13 @@ public class MmgSprite extends MmgObj {
             SetDstRect(obj.GetDstRect().Clone());
         }
 
-        SetBmpArray(obj.GetBmpArray());
+        MmgBmp[] a = obj.GetBmpArray();
+        int len = a.length;        
+        MmgBmp[] b = new MmgBmp[len];
+        for(int i = 0; i < len; i ++) {
+            b[i] = a[i].CloneTyped();
+        }
+        SetBmpArray(b);
 
         if (obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());

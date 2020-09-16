@@ -143,27 +143,7 @@ public class ScreenTestMmgSpriteSheet extends MmgGameScreen implements GenericEv
         spriteSheetSrc.SetPosition(new MmgVector2(spriteSheetSrc.GetX(), MmgHelper.ScaleValue(160)));
         AddObj(spriteSheetSrc);
         
-        spriteSheet = new MmgSpriteSheet(spriteSheetSrc.CloneTyped(), 64, 64);
-        
-        /*
-        frame1 = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
-        frame1 = MmgBmpScaler.ScaleMmgBmp(frame1, 2.0f, true);
-        MmgHelper.CenterHorAndVert(frame1);
-        
-        frame2 = MmgHelper.GetBasicCachedBmp("soldier_frame_2.png");    
-        frame2 = MmgBmpScaler.ScaleMmgBmp(frame2, 2.0f, true);
-        MmgHelper.CenterHorAndVert(frame2);
-        
-        frame3 = MmgHelper.GetBasicCachedBmp("soldier_frame_3.png");
-        frame3 = MmgBmpScaler.ScaleMmgBmp(frame3, 2.0f, true);
-        MmgHelper.CenterHorAndVert(frame3);
-        
-        frames = new MmgBmp[4];
-        frames[0] = frame1;
-        frames[1] = frame2;
-        frames[2] = frame3;
-        frames[3] = frame2;        
-        */
+        spriteSheet = new MmgSpriteSheet(spriteSheetSrc.CloneTyped(), 64, 64);        
         MmgObj tmpObj = new MmgObj();
         tmpObj.SetHeight(64);
         tmpObj.SetWidth(64);
@@ -292,7 +272,7 @@ public class ScreenTestMmgSpriteSheet extends MmgGameScreen implements GenericEv
     public boolean ProcessDpadRelease(int dir) {
         MmgHelper.wr("ScreenTestMmgSpriteSheet.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_23);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_21);
@@ -360,6 +340,7 @@ public class ScreenTestMmgSpriteSheet extends MmgGameScreen implements GenericEv
         pause = true;
         SetBackground(null);
         
+        spriteLabel = null;
         spriteSheetSrc = null;
         spriteSheet = null;
         sprite = null;

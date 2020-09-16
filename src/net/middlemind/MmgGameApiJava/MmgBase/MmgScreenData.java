@@ -89,7 +89,7 @@ public class MmgScreenData {
     /**
      * A class helper variable for the scaling vector.
      */
-    private static MmgVector2 scaleVec;
+    private static MmgVector2 scaleVec = MmgVector2.GetUnitVec();
 
     /**
      * A class helper variable for the position vector.
