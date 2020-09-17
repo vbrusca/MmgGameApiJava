@@ -106,7 +106,7 @@ public class MmgMenuItem extends MmgObj {
         inactive = null;
         current = null;
         state = STATE_NONE;
-    }    
+    }
     
     /**
      * Constructor for this class that sets the value of certain attributes based
@@ -354,10 +354,10 @@ public class MmgMenuItem extends MmgObj {
      * 
      * @return      The current height of the menu item based on its state.
      */
-    @Override
-    public int GetHeight() {
-        return current.GetHeight();
-    }
+    //@Override
+    //public int GetHeight() {
+    //    return current.GetHeight();
+    //}
 
     /**
      * Sets the height of the menu item object based on the menu item's
@@ -365,11 +365,11 @@ public class MmgMenuItem extends MmgObj {
      * 
      * @param h     The current height of the menu item based on its state.
      */
-    @Override
-    public void SetHeight(int h) {
-        super.SetHeight(h);
-        current.SetHeight(h);
-    }
+    //@Override
+    //public void SetHeight(int h) {
+    //    super.SetHeight(h);
+    //    current.SetHeight(h);
+    //}
 
     /**
      * Gets the width of the menu item object based on the menu item's
@@ -377,10 +377,10 @@ public class MmgMenuItem extends MmgObj {
      * 
      * @return      The current width of the menu item based on its state.
      */
-    @Override
-    public int GetWidth() {
-        return current.GetWidth();
-    }
+    //@Override
+    //public int GetWidth() {
+    //    return current.GetWidth();
+    //}
 
     /**
      * Sets the width of the menu item object based on the menu item's 
@@ -388,11 +388,11 @@ public class MmgMenuItem extends MmgObj {
      * 
      * @param w     The current width of the menu item based on its state.
      */
-    @Override
-    public void SetWidth(int w) {
-        super.SetWidth(w);        
-        current.SetWidth(w);
-    }
+    //@Override
+    //public void SetWidth(int w) {
+    //    super.SetWidth(w);        
+    //    current.SetWidth(w);
+    //}
 
     /**
      * The base drawing method for this object.

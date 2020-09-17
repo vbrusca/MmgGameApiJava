@@ -40,6 +40,11 @@ public class MmgBmpFont extends MmgObj {
     /**
      * 
      */
+    private boolean verbose;
+    
+    /**
+     * 
+     */
     public static int EXPECTED_CHAR_LENGTH = 95;
     
     /**
@@ -146,6 +151,24 @@ public class MmgBmpFont extends MmgObj {
     
     /**
      * 
+     * 
+     * @return 
+     */
+    public boolean GetVerbose() {
+        return verbose;
+    }
+    
+    /**
+     * 
+     * 
+     * @param b 
+     */
+    public void SetVerbose(boolean b) {
+        verbose = b;
+    }
+    
+    /**
+     * 
      */
     public void Prep() {
         Image imgT = src.GetImage();
@@ -178,7 +201,11 @@ public class MmgBmpFont extends MmgObj {
                 bmpSet.p.DrawBmp(src, new MmgRect(start, 0, height, start + w), new MmgRect(0, 0, height, w));
                 chars[found] = bmpSet.img;
                 widths[found] = w;
-                MmgHelper.wr("Index: " + found + ", Found char at " + pos + " with width " + w);
+                
+                if(verbose) {
+                    MmgHelper.wr("Index: " + found + ", Found char at " + pos + " with width " + w);
+                }
+                
                 start = i + 1;
                 found++;
             }

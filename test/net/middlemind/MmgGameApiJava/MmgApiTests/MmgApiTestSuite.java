@@ -15,6 +15,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
     {
         Mmg9SliceUnitTest.class
+        ,Mmg9SliceUnitTest_2.class
         ,MmgBmpUnitTest.class
         ,MmgBmpFontUnitTest_2.class            
         ,MmgCfgFileEntryUnitTest_2.class
@@ -26,11 +27,15 @@ import org.junit.runners.Suite;
         ,MmgEventUnitTest_2.class
         ,MmgFontUnitTest_2.class
         ,MmgLoadingBarUnitTest_2.class
+        ,MmgLoadingScreenUnitTest_2.class
+        ,MmgMenuItemUnitTest_2.class
         ,MmgObjUnitTest.class
+        ,MmgPulseUnitTest_2.class
         ,MmgRectUnitTest.class
         ,MmgRectUnitTest_2.class
         ,MmgSoundUnitTest_2.class
         ,MmgSplashScreenUnitTest_2.class
+        ,MmgSpriteSheetUnitTest_2.class
         ,MmgSpriteUnitTest_2.class            
         ,MmgVector2UnitTest.class
         ,MmgVector2UnitTest_2.class

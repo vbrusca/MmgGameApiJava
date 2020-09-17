@@ -615,6 +615,12 @@ public class MmgBmp extends MmgObj {
             return true;
         }
         
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("mmg bmp: mmg obj is not equals! obj pos: " + obj.GetPosition().ToString() + " this pos: " + GetPosition().ToString());
+        }
+        */
+        
         boolean ret = false;
         if(
             super.Equals((MmgObj)obj)

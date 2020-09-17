@@ -130,8 +130,26 @@ public class MmgLoadingScreen extends MmgGameScreen {
         } else {
             SetRightCursor(obj.GetRightCursor().Clone());            
         }
-                                
+            
+        if(obj.GetLoadingBar() != null && obj.GetLoadingBar().GetLoadingBarBack() != null) {
+            if(GetLoadingBar() != null && GetLoadingBar().GetLoadingBarBack() != null) {
+                if(obj.GetLoadingBar().GetLoadingBarBack().GetPosition() != null) {
+                    GetLoadingBar().GetLoadingBarBack().SetPosition(obj.GetLoadingBar().GetLoadingBarBack().GetPosition().Clone());
+                }
+            }
+        }
+        
+        if(obj.GetLoadingBar() != null && obj.GetLoadingBar().GetLoadingBarFront() != null) {
+            if(GetLoadingBar() != null && GetLoadingBar().GetLoadingBarFront() != null) {
+                if(obj.GetLoadingBar().GetLoadingBarFront().GetPosition() != null) {
+                    GetLoadingBar().GetLoadingBarFront().SetPosition(obj.GetLoadingBar().GetLoadingBarFront().GetPosition().Clone());
+                }
+            }
+        }        
+        
         SetWidth(obj.GetWidth());
+        //MmgHelper.wr("MmgLoadingScreen obj lb back pos: " + obj.GetLoadingBar().GetLoadingBarBack().GetPosition().ToString());
+        //MmgHelper.wr("MmgLoadingScreen lb back pos: " + GetLoadingBar().GetLoadingBarBack().GetPosition().ToString());        
     }
     
     /**
@@ -217,7 +235,21 @@ public class MmgLoadingScreen extends MmgGameScreen {
         } else if(obj.equals(this)) {
             return true;
         }
-                  
+             
+        /*
+        if(!(super.Equals((MmgGameScreen)obj))) {
+            MmgHelper.wr("MmgGameScreen is not equal!");
+        }
+        
+        if(!(obj.GetLoadingBarOffsetBottom() == GetLoadingBarOffsetBottom())) {
+            MmgHelper.wr("Offset Botton is not equal!");
+        }
+        
+        if(!(((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().Equals(GetLoadingBar()))))) {
+            MmgHelper.wr("loading bar is not equal!");
+        }
+        */
+        
         boolean ret = false;
         if (
             super.Equals((MmgGameScreen)obj)

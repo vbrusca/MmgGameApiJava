@@ -114,6 +114,24 @@ public class MmgObj {
     }
 
     /**
+     * 
+     * 
+     * @param W
+     * @param H 
+     */
+    public MmgObj(int W, int H) {
+        pos = MmgVector2.GetOriginVec();
+        w = W;
+        h = H;
+        isVisible = true;
+        color = null;
+        hasParent = false;
+        parent = null;
+        name = "";
+        mmgUid = "";
+    }    
+    
+    /**
      * Constructor for this class that sets the position, dimensions, visibility, and color of this object.
      * 
      * @param X         The X coordinate of this object's position.
@@ -480,7 +498,7 @@ public class MmgObj {
      * @return      A string representation of this class.
      */
     public String ToString() {
-        return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString() + " HasParent: " + GetHasParent();
+        return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString() + " HasParent: " + GetHasParent() + " Width: " + w + " Height: " + h;
     }
     
     /**

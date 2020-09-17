@@ -85,6 +85,7 @@ public class MmgLoadingBarUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
+        Assert.assertEquals(true, l1.Equals(l1));                        
         Assert.assertEquals(true, l1.Equals(l2));
         Assert.assertEquals(true, l2.Equals(l1));
         Assert.assertEquals(true, l2.Equals(l1));
@@ -139,6 +140,7 @@ public class MmgLoadingBarUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
+        Assert.assertEquals(true, l1.Equals(l1));                        
         Assert.assertEquals(true, l1.Equals(l2));
         Assert.assertEquals(true, l2.Equals(l1));
         Assert.assertEquals(true, l2.Equals(l1));
@@ -194,6 +196,7 @@ public class MmgLoadingBarUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
+        Assert.assertEquals(true, l1.Equals(l1));                
         Assert.assertEquals(true, l1.Equals(l2));
         Assert.assertEquals(true, l2.Equals(l1));
         Assert.assertEquals(true, l2.Equals(l1));

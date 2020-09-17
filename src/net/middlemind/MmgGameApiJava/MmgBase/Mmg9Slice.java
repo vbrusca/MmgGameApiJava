@@ -86,11 +86,23 @@ public class Mmg9Slice extends MmgObj {
     public Mmg9Slice(Mmg9Slice obj) {
         super();        
         SetOffset(obj.GetOffset());
-        SetSrc(obj.GetSrc().CloneTyped());
+        
+        if(obj.GetSrc() == null) {
+            SetSrc(obj.GetSrc());
+        } else {    
+            SetSrc(obj.GetSrc().CloneTyped());
+        }
+        
         SetWidth(obj.GetWidth());
         SetHeight(obj.GetHeight());
 
         DrawDest();
+        
+        if(obj.GetDest() == null) {
+            SetDest(obj.GetDest());
+        } else {    
+            SetDest(obj.GetDest().CloneTyped());
+        }        
         
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
@@ -255,6 +267,24 @@ public class Mmg9Slice extends MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
+        
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("Mmg9Slice MmgObj is not equals!");
+        }
+        
+        if(!(GetOffset() == obj.GetOffset())) {
+            MmgHelper.wr("Mmg9Slice Offset is not equals!");            
+        }
+        
+        if(!(((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc()))))) {
+            MmgHelper.wr("Mmg9Slice Src is not equals!");                        
+        }
+        
+        if(!(((obj.GetDest() == null && GetDest() == null) || (obj.GetDest() != null && GetDest() != null && obj.GetDest().Equals(GetDest()))))) {
+            MmgHelper.wr("Mmg9Slice Dst is not equals!");                                    
+        }
+        */
         
         boolean ret = false;
         if (

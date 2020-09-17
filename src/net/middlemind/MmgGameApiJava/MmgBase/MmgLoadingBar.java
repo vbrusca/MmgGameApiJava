@@ -96,7 +96,7 @@ public class MmgLoadingBar extends MmgObj {
             SetMmgColor(obj.GetMmgColor());
         } else {
             SetMmgColor(obj.GetMmgColor().Clone());
-        }
+        }       
     }
 
     /**
@@ -367,7 +367,29 @@ public class MmgLoadingBar extends MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
-
+        
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("mmg loading bar: mmgobj is not equals!");
+        }
+        
+        if(!(obj.GetFillHeight() == GetFillHeight())) {
+            MmgHelper.wr("mmg loading bar: fill height is not equals!");
+        }
+        
+        if(!(obj.GetFillWidth() == GetFillWidth())) {
+            MmgHelper.wr("mmg loading bar: fill width is not equals!");            
+        }
+        
+        if(!(((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().Equals(GetLoadingBarBack()))))) {
+            MmgHelper.wr("mmg loading bar: loading bar back is not equals!");                        
+        }
+        
+        if(!(((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().Equals(GetLoadingBarFront()))))) {
+            MmgHelper.wr("mmg loading bar: loading bar front is not equals!");                        
+        }        
+        */
+        
         boolean ret = false;
         if (
             super.Equals((MmgObj)obj) 

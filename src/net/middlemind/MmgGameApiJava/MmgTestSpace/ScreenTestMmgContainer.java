@@ -174,6 +174,10 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
         pos = frame1.GetPosition().Clone();
         pulse = new MmgPulse(1, 2000l, 0.75d, frame1.GetPosition().Clone());
 
+        MmgHelper.wr("BlsScaling: " + pulse.GetBaseLineScaling().ToString() + " Change: " + pulse.GetChange());
+        MmgHelper.wr("AdjScaling: " + pulse.GetAdjScaling().ToString());
+        MmgHelper.wr("ChangePerMs: " + pulse.GetChangePerMs());         
+        
         ready = true;
         pause = false;
     }

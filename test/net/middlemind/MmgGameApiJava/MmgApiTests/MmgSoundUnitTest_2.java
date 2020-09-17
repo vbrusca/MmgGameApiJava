@@ -48,9 +48,11 @@ public class MmgSoundUnitTest_2 {
         
         s2 = s1.Clone();
         
+        Assert.assertEquals(true, s1.Equals(s1));         
         Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s2));        
+        Assert.assertEquals(true, s2.Equals(s2));
         Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(false, s3.Equals(s1));        
         
         Assert.assertEquals(1.0f, s1.GetCurrentRate(), 0.001);
         Assert.assertEquals(-24.0866f, s1.GetCurrentVolume(), 0.001);
@@ -83,9 +85,11 @@ public class MmgSoundUnitTest_2 {
         
         s2 = s1.Clone();
         
+        Assert.assertEquals(true, s1.Equals(s1));         
         Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s2));        
+        Assert.assertEquals(true, s2.Equals(s2));
         Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(false, s3.Equals(s1));        
         
         Assert.assertEquals(1.0f, s1.GetCurrentRate(), 0.001);
         Assert.assertEquals(-24.0866f, s1.GetCurrentVolume(), 0.001);

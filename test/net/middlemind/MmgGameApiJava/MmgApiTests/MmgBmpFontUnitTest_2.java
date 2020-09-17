@@ -70,7 +70,8 @@ public class MmgBmpFontUnitTest_2 {
         Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
 
         f2 = f1.CloneTyped();
-
+        
+        Assert.assertEquals(true, f1.Equals(f1));        
         Assert.assertEquals(true, f1.Equals(f2));
         Assert.assertEquals(true, f2.Equals(f1));
         Assert.assertEquals(true, f2.Equals(f1));
@@ -95,7 +96,6 @@ public class MmgBmpFontUnitTest_2 {
         MmgScreenData.SetScale(MmgVector2.GetUnitVec());       
        
         b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.RESOURCE_ROOT_DIR + "drawable/auto_load/Caeldera_22pt_black.png");
-        //MmgHelper.wr("File: " + MmgUnitTestSettings.RESOURCE_ROOT_DIR + "drawable/auto_load/Caeldera_22pt_black.png");
         b2 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.RESOURCE_ROOT_DIR + "drawable/auto_load/Caeldera_22pt_white.png");       
         f1 = new MmgBmpFont(b1, "Test 1");
         f3 = new MmgBmpFont(b2, "Test 2");
@@ -119,6 +119,7 @@ public class MmgBmpFontUnitTest_2 {
 
         f2 = f1.CloneTyped();
 
+        Assert.assertEquals(true, f1.Equals(f1));                
         Assert.assertEquals(true, f1.Equals(f2));
         Assert.assertEquals(true, f2.Equals(f1));
         Assert.assertEquals(true, f2.Equals(f1));
@@ -143,7 +144,6 @@ public class MmgBmpFontUnitTest_2 {
         MmgScreenData.SetScale(MmgVector2.GetUnitVec());       
        
         b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.RESOURCE_ROOT_DIR + "drawable/auto_load/Caeldera_22pt_black.png");
-        //MmgHelper.wr("File: " + MmgUnitTestSettings.RESOURCE_ROOT_DIR + "drawable/auto_load/Caeldera_22pt_black.png");
         b2 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.RESOURCE_ROOT_DIR + "drawable/auto_load/Caeldera_22pt_white.png");       
         f4 = new MmgBmpFont(b1, "Test 1");
         f1 = new MmgBmpFont(f4);
@@ -168,6 +168,7 @@ public class MmgBmpFontUnitTest_2 {
 
         f2 = f1.CloneTyped();
 
+        Assert.assertEquals(true, f1.Equals(f1));                
         Assert.assertEquals(true, f1.Equals(f2));
         Assert.assertEquals(true, f2.Equals(f1));
         Assert.assertEquals(true, f2.Equals(f1));

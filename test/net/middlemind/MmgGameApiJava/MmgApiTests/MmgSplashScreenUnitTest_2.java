@@ -62,6 +62,7 @@ public class MmgSplashScreenUnitTest_2 {
         
         s2 = s1.CloneTyped();
         
+        Assert.assertEquals(true, s1.Equals(s1));        
         Assert.assertEquals(true, s1.Equals(s2));
         Assert.assertEquals(true, s2.Equals(s1));
         Assert.assertEquals(true, s2.Equals(s1));
@@ -96,6 +97,7 @@ public class MmgSplashScreenUnitTest_2 {
         
         s2 = s1.CloneTyped();
         
+        Assert.assertEquals(true, s1.Equals(s1));                
         Assert.assertEquals(true, s1.Equals(s2));
         Assert.assertEquals(true, s2.Equals(s1));
         Assert.assertEquals(true, s2.Equals(s1));
@@ -131,6 +133,7 @@ public class MmgSplashScreenUnitTest_2 {
         
         s2 = s1.CloneTyped();
         
+        Assert.assertEquals(true, s1.Equals(s1));                
         Assert.assertEquals(true, s1.Equals(s2));
         Assert.assertEquals(true, s2.Equals(s1));
         Assert.assertEquals(true, s2.Equals(s1));
