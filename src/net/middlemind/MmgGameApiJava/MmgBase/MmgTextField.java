@@ -142,7 +142,7 @@ public class MmgTextField extends MmgObj {
      */
     public MmgTextField(MmgTextField obj) {
         super();
-        if(obj.GetBgroundSrc() != null) {
+        if(obj.GetBgroundSrc() == null) {
             SetBgroundSrc(obj.GetBgroundSrc());
         } else {
             SetBgroundSrc(obj.GetBgroundSrc().CloneTyped());
@@ -154,10 +154,29 @@ public class MmgTextField extends MmgObj {
             SetFont(obj.GetFont().CloneTyped());            
         }
         
+        SetHeight(obj.GetHeight());
+        SetWidth(obj.GetWidth());
         SetPadding(obj.GetPadding());
         SetDisplayChars(obj.GetDisplayChars());
         SetMaxLength(obj.GetMaxLength());
+        SetMaxLengthOn(obj.GetMaxLengthOn());  
+        
         Prep();
+        
+        if(obj.GetBground() == null) {
+            SetBground(obj.GetBground());
+        } else {
+            SetBground(obj.GetBground().CloneTyped());
+        }
+        
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            SetPosition(obj.GetPosition().Clone());
+        }
+        
+        SetFontHeight(obj.GetFontHeight());
+        SetTextFieldString(obj.GetTextFieldString());        
     }
     
     /**
@@ -550,6 +569,44 @@ public class MmgTextField extends MmgObj {
             return true;
         }
         
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("MmgTextField MmgObj not equals!");
+        }
+        
+        if(!(((obj.GetBground() == null && GetBground() == null) || (obj.GetBground() != null && GetBground() != null && obj.GetBground().Equals(GetBground()))))) {
+            MmgHelper.wr("MmgTextField Bground not equals!");
+        }        
+        
+        if(!(((obj.GetBgroundSrc() == null && GetBgroundSrc() == null) || (obj.GetBgroundSrc() != null && GetBgroundSrc() != null && obj.GetBgroundSrc().Equals(GetBgroundSrc()))))) {
+            MmgHelper.wr("MmgTextField BgroundSrc not equals!");
+        }        
+        
+        if(!(obj.GetDisplayChars() == GetDisplayChars())) {
+            MmgHelper.wr("MmgTextField DisplayChars not equals!");
+        }        
+
+        if(!(obj.GetFontHeight() == GetFontHeight())) {
+            MmgHelper.wr("MmgTextField FontHeight not equals!");
+        }                
+        
+        if(!(obj.GetMaxLength() == GetMaxLength())) {
+            MmgHelper.wr("MmgTextField MaxLength not equals!");
+        }
+        
+        if(!(obj.GetMaxLengthOn() == GetMaxLengthOn())) {
+            MmgHelper.wr("MmgTextField MaxLengthOn not equals!");
+        }
+        
+        if(!(obj.GetPadding() == GetPadding())) {
+            MmgHelper.wr("MmgTextField Padding not equals!");
+        }
+        
+        if(!(((obj.GetTextFieldString() == null && GetTextFieldString() == null) || (obj.GetTextFieldString() != null && GetTextFieldString() != null && obj.GetTextFieldString().equals(GetTextFieldString()))))) {
+            MmgHelper.wr("MmgTextField TextFieldString not equals! " + obj.GetTextFieldString() + ", " + GetTextFieldString());    
+        }
+        */
+                
         boolean ret = false;
         if(
             super.Equals((MmgObj)obj)

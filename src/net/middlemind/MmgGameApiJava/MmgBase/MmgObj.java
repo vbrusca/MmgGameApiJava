@@ -235,7 +235,6 @@ public class MmgObj {
      * @return      A clone of this object.
      */
     public MmgObj Clone() {
-        //MmgHelper.wr("MmgObj: Clone");        
         return new MmgObj(this);
     }
 
@@ -245,7 +244,6 @@ public class MmgObj {
      * @return      A typed clone of this class.
      */
     public MmgObj CloneTyped() {
-        //MmgHelper.wr("MmgObj: CloneTyped");
         return new MmgObj(this);
     }    
     
