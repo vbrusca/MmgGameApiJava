@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgLoadingBar extends MmgObj {
-
+    
     /**
      * The bitmap image of the back of the loading bar.
      */
@@ -335,20 +335,12 @@ public class MmgLoadingBar extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if(isVisible == true) {
             if(loadingBarBack != null) {
-                //loadingBarBack.SetMmgColor(GetMmgColor());
                 loadingBarBack.SetSrcRect(new MmgRect(MmgVector2.GetOriginVec(), loadingBarBack.GetWidth(), loadingBarBack.GetHeight()));
                 loadingBarBack.SetDstRect(new MmgRect(new MmgVector2(GetPosition().GetX() + GetPaddingX(), GetPosition().GetY() + GetPaddingY()), (int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt), GetFillHeight() - GetPaddingY()));
-                
-                //MmgRect r = loadingBarBack.GetSrcRect();
-                //MmgHelper.wr("Src L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight());
-                MmgHelper.wr("Dst: " + loadingBarBack.GetDstRect().ToString());
-                //r = loadingBarBack.GetDstRect();
-                //MmgHelper.wr("Dst L:" + r.GetLeft() + " T:" + r.GetTop() + " R:" + r.GetRight() + " B:" + r.GetBottom() + " W:" + r.GetWidth() + " H:" + r.GetHeight() + " C1:" + ((int) ((float) (GetFillWidth() - GetPaddingX()) * fillAmt)) + " C2:" + (GetFillHeight() - GetPaddingY()));
                 loadingBarBack.MmgDraw(p);
             }
 
             if(loadingBarFront != null) {
-                //loadingBarFront.SetMmgColor(GetMmgColor());
                 loadingBarFront.MmgDraw(p);
             }
         }

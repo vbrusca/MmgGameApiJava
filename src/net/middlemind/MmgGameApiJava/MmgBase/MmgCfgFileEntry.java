@@ -88,6 +88,13 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
         return ret;
     }
     
+    /**
+     * A comparison method used when sorting MmgCfgFileEntry objects.
+     * 
+     * @param o1        The first object to compare. 
+     * @param o2        The second object to compare.
+     * @return          An integer indicating the order of the objects.
+     */
     @Override
     public int compare(MmgCfgFileEntry o1, MmgCfgFileEntry o2) {
         return o1.name.compareToIgnoreCase(o2.name);

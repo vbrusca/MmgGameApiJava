@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgObj {
-
+    
     /**
      * The screen position to draw this object.
      */
@@ -114,10 +114,10 @@ public class MmgObj {
     }
 
     /**
+     * Constructor for this class that takes a width adn height as arguments.
      * 
-     * 
-     * @param W
-     * @param H 
+     * @param W     The width of the MmgObj.
+     * @param H     The height of the MmgObj.
      */
     public MmgObj(int W, int H) {
         pos = MmgVector2.GetOriginVec();
@@ -388,7 +388,7 @@ public class MmgObj {
      * @param inX   The X coordinate of this object. 
      */
     public void SetX(int inX) {
-        this.GetPosition().SetX(inX);
+        GetPosition().SetX(inX);
     }
 
     /**
@@ -397,7 +397,7 @@ public class MmgObj {
      * @return      The X coordinate of this object. 
      */
     public int GetX() {
-        return this.GetPosition().GetX();
+        return GetPosition().GetX();
     }
 
     /**
@@ -406,7 +406,7 @@ public class MmgObj {
      * @param inY       The Y coordinate of this object.
      */
     public void SetY(int inY) {
-        this.GetPosition().SetY(inY);
+        GetPosition().SetY(inY);
     }
 
     /**
@@ -415,7 +415,7 @@ public class MmgObj {
      * @return      The Y coordinate of this object. 
      */
     public int GetY() {
-        return this.GetPosition().GetY();
+        return GetPosition().GetY();
     }
     
     /**

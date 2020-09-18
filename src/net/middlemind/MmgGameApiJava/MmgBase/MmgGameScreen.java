@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgGameScreen extends MmgObj {
-
+    
     /**
      * Pause this screen.
      */
@@ -345,7 +345,6 @@ public class MmgGameScreen extends MmgObj {
      */
     public void Pause() {
         pause = true;
-        //SetIsVisible(false);
     }
 
     /**
@@ -354,7 +353,6 @@ public class MmgGameScreen extends MmgObj {
      */
     public void UnPause() {
         pause = false;
-        //SetIsVisible(true);
     }
 
     /**
@@ -364,13 +362,6 @@ public class MmgGameScreen extends MmgObj {
      */
     public boolean IsPaused() {
         return pause;
-        /*
-        if (pause == true) {
-            return true;
-        } else {
-            return false;
-        }
-        */
     }
 
     /**

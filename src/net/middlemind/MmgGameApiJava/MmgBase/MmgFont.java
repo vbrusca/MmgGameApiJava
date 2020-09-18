@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
  * @author Victor G. Brusca
  */
 public class MmgFont extends MmgObj {
-
+    
     /**
      * Font of this class.
      */

@@ -12,7 +12,7 @@ import javax.sound.sampled.Clip;
  */
 @SuppressWarnings("UseOfObsoleteCollectionType")
 public class MmgMediaTracker {
-        
+    
     /**
      * Hashtable used to track loading of image resources, in a central place.
      */
@@ -35,7 +35,6 @@ public class MmgMediaTracker {
      * @param val       The image object to cache.
      */
     public static void CacheImage(String key, Image val) {
-        //MmgHelper.wr("+++++++++ Cache image with key: " + key);
         if(MmgMediaTracker.HasBmpKey(key) == false) {
             MmgMediaTracker.cacheBmp.put(key, val);
         }else {
@@ -53,7 +52,6 @@ public class MmgMediaTracker {
      * @param val       The sound object to cache.
      */
     public static void CacheSound(String key, Clip val) {
-        //MmgHelper.wr("+++++++++ Cache sound with key: " + key);
         if(MmgMediaTracker.HasSoundKey(key) == false) {
             MmgMediaTracker.cacheSound.put(key, val);
         }else {
@@ -70,7 +68,6 @@ public class MmgMediaTracker {
      * @return      The size of the image object cache.
      */
     public static int GetBmpCacheSize() {
-        //MmgHelper.wr("+++++++++ Cache Image Size: " + cacheBmp.size());
         return cacheBmp.size();
     }
     
@@ -80,7 +77,6 @@ public class MmgMediaTracker {
      * @return      The size of the sound object cache.
      */
     public static int GetSoundCacheSize() {
-        //MmgHelper.wr("+++++++++ Cache Sound Size: " + cacheBmp.size());
         return cacheSound.size();
     }    
     

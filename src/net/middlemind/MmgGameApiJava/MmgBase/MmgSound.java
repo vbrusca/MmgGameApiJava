@@ -10,8 +10,6 @@ import javax.sound.sampled.FloatControl;
  * @author Victor G. Brusca
  */
 public class MmgSound {
-
-    //TODO: Fill in missing comments
     
     /**
      * Centralized, unique sound id.
@@ -59,12 +57,12 @@ public class MmgSound {
     private FloatControl vol;
     
     /**
-     * 
+     * The current set volume for this MmgSound object.
      */
     private float currentVolume;
     
     /**
-     * 
+     * The current rate for this MmgSound object.
      */
     private float currentRate;
     
@@ -119,10 +117,20 @@ public class MmgSound {
         currentRate = gain;
     }
     
+    /**
+     * Gets the current rate for this MmgSound object.
+     * 
+     * @return      The current rate for this MmgSound object. 
+     */
     public float GetCurrentRate() {
         return currentRate;
     }
     
+    /**
+     * Gets the current volume for this MmgSound object.
+     * 
+     * @return      The current volume for this MmgSound object. 
+     */
     public float GetCurrentVolume() {
         return currentVolume;
     }

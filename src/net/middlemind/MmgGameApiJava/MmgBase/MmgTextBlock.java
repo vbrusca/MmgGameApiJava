@@ -505,9 +505,9 @@ public class MmgTextBlock extends MmgObj {
     }    
 
     /**
+     * Sets the X coordinate of the MmgTextBlock object.
      * 
-     * 
-     * @param i 
+     * @param i     The X coordinate of the position.
      */    
     @Override
     public void SetX(int i) {
@@ -515,9 +515,9 @@ public class MmgTextBlock extends MmgObj {
     }
     
     /**
+     * Sets the Y coordinate of the MmgTextBlock object.
      * 
-     * 
-     * @param i 
+     * @param i     The Y coordinate of the position.
      */
     @Override
     public void SetY(int i) {

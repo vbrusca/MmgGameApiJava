@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  * @author Victor G. Brusca
  */
 public class MmgPen {
-
+    
     /**
      * The lower level drawing class.
      */
@@ -194,8 +194,7 @@ public class MmgPen {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bi.createGraphics();
         
-        if(MmgPen.ADV_RENDER_HINTS == true)
-        {
+        if(MmgPen.ADV_RENDER_HINTS == true) {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -253,8 +252,7 @@ public class MmgPen {
         BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = rImage.createGraphics();
         
-        if(MmgPen.ADV_RENDER_HINTS == true)
-        {
+        if(MmgPen.ADV_RENDER_HINTS == true) {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

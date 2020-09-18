@@ -9,10 +9,6 @@ import java.awt.*;
  * @author Victor G. Brusca
  */
 public class MmgColor {
-
-    /**
-     * TODO: Complete comments
-     */
     
     /**
      * The color of this object.
@@ -529,12 +525,12 @@ public class MmgColor {
     }
     
     /**
+     * Gets a string representation of the current MmgColor object.
      * 
-     * 
-     * @return 
+     * @return      A string representation of the MmgColor object.
      */
     public String ToString() {
-        return "R: " + GetColor().getRed() + " G: " + GetColor().getGreen() + " B: " + GetColor().getBlue();
+        return "R: " + GetColor().getRed() + " G: " + GetColor().getGreen() + " B: " + GetColor().getBlue() + " A: " + GetColor().getAlpha();
     }
     
     /**

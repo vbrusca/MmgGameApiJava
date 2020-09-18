@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgLoadingScreen extends MmgGameScreen {
-
+    
     /**
      * A loading bar to use with this loading screen.
      */
@@ -148,8 +148,6 @@ public class MmgLoadingScreen extends MmgGameScreen {
         }        
         
         SetWidth(obj.GetWidth());
-        //MmgHelper.wr("MmgLoadingScreen obj lb back pos: " + obj.GetLoadingBar().GetLoadingBarBack().GetPosition().ToString());
-        //MmgHelper.wr("MmgLoadingScreen lb back pos: " + GetLoadingBar().GetLoadingBarBack().GetPosition().ToString());        
     }
     
     /**

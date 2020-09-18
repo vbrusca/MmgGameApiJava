@@ -9,7 +9,7 @@ import java.util.*;
  * @author Victor G. Brusca
  */
 public class MmgContainer extends MmgObj {
-
+    
     /**
      * The initial size of the collection object.
      */
@@ -25,11 +25,17 @@ public class MmgContainer extends MmgObj {
         UNSTAMP
     }
 
+    /**
+     * An enumeration that controls the render mode allowing you to either control the rendering via the isDirty flag or to render every game frame.
+     */
     private enum RenderMode {
         RENDER_ALWAYS,
         RENDER_ONLY_WHEN_DIRTY
     }
     
+    /**
+     * A private field that holds the current RenderMode value.
+     */
     private RenderMode mode = RenderMode.RENDER_ALWAYS;
     
     /**

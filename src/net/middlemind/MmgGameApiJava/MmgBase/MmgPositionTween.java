@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgPositionTween extends MmgObj {
-
+    
     /**
      * The event id for a position tween finish event. 
      */
@@ -141,8 +141,6 @@ public class MmgPositionTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetMoving(false);
-        //MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToMoveX);        
-        //MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
     }
     
     /**
@@ -645,22 +643,42 @@ public class MmgPositionTween extends MmgObj {
         subj.SetPosition(v);
     }
 
+    /**
+     * Gets the X coordinate of the subject.
+     * 
+     * @return      The X coordinate of the subject.
+     */
     @Override
     public int GetX() {
         return subj.GetX();
     }
 
+    /**
+     * Sets the X coordinate of the subject.
+     * 
+     * @param i     The X coordinate of the subject. 
+     */
     @Override
     public void SetX(int i) {
         super.SetX(i);
         subj.SetX(i);
     }
 
+    /**
+     * Gets the Y coordinate of the subject.
+     * 
+     * @return      The Y coordinate of the subject.
+     */    
     @Override
     public int GetY() {
         return subj.GetY();
     }
 
+    /**
+     * Sets the y coordinate of the subject.
+     * 
+     * @param i     The Y coordinate of the subject. 
+     */    
     @Override
     public void SetY(int i) {
         super.SetY(i);

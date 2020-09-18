@@ -7,10 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  *
  * @author Victor G. Brusca
  */
-public class MmgScreenData {
-
-    //TODO: Complete field and method comments
-    
+public class MmgScreenData {    
     /**
      * An enumeration used to track the scaling mode used by this class.
      */

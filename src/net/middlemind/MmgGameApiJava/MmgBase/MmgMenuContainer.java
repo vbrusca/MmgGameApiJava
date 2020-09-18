@@ -9,7 +9,7 @@ import java.util.*;
  * @author Victor G. Brusca
  */
 public class MmgMenuContainer extends MmgObj {
-
+    
     /**
      * The ArrayList that holds the MmgMenuItem objects.
      */
@@ -39,7 +39,7 @@ public class MmgMenuContainer extends MmgObj {
         SetContainer(new ArrayList<MmgMenuItem>(50));
     }
 
-   /**
+    /**
      * Constructor for this class that sets some default attributes to the same value as the attributes
      * of the given object.
      * 

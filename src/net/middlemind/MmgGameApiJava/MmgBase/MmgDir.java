@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgDir {
-
+    
     /**
      * A static integer that can be used to map the bottom, down direction, or the front of an RPG character.
      */

@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgApiUtils {
-
+    
     /**
      * Turns logging on or off for this utility class.
      */

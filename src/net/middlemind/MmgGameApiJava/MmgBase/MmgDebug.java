@@ -8,7 +8,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgDebug {
-
+    
     /**
      * Flag that turns logging on or off.
      */

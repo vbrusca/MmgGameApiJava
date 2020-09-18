@@ -153,8 +153,6 @@ public class MmgSizeTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetChanging(false);
-        //MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToChangeX);
-        //MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
     /**

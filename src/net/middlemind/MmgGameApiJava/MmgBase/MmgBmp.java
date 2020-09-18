@@ -9,7 +9,7 @@ import java.awt.*;
  * @author Victor G. Brusca
  */
 public class MmgBmp extends MmgObj {
-
+    
     /**
      * Drawing mode to determine the best way to handle drawing a bitmap.
      */

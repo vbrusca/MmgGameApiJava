@@ -42,12 +42,7 @@ public class MmgTextField extends MmgObj {
      * The number of characters to display in this text field, should be adjusted based on the text field's width.
      */
     private int displayChars;
-    
-    /**
-     * An integer value indicating how wide the font should be, not currently used in display calculations.
-     */
-    //private int fontWidth;
-    
+        
     /**
      * An integer value indicating how tall the font is, not currently used in display calculations.
      */
@@ -205,7 +200,6 @@ public class MmgTextField extends MmgObj {
     public void Prep() {
         cursorBlinkStart = System.currentTimeMillis();
         fontHeight = font.GetHeight();
-        //fontWidth = GetWidth() - (padding * 2);
         textFieldString = "";
         bground = new Mmg9Slice(TEXT_FIELD_9_SLICE_OFFSET, bgroundSrc, GetWidth(), GetHeight());        
     }
@@ -432,14 +426,7 @@ public class MmgTextField extends MmgObj {
         bground.SetPosition(x, y);
         font.SetPosition(new MmgVector2(x + padding, y + GetHeight() - padding));
     }
-    
-    /*
-    @Override
-    public void SetPosition(int x, int y) {
-        SetPosition(new MmgVector2(x, y));
-    }    
-    */    
-    
+      
     /**
      * A method for handling intake of characters to append to the text field string value.
      * 

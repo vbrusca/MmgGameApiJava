@@ -5,63 +5,64 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-//TODO: Add method documentation
-
 /**
- *
- * @author Victor G. Brusca, Middlemind Games
+ * Class that can display text as images using an image source.
+ * Created by Middlemind Games 09/10/2020
+ * 
+ * @author Victor G. Brusca
  */
 public class MmgBmpFont extends MmgObj {
+    
     /**
-     * 
+     * The source image to use as the basis for the font.
      */
     private MmgBmp src;
     
     /**
-     * 
+     * The destination image used to store the rendered text.
      */
     private MmgBmp dst;
     
     /**
-     * 
+     * The individual images for each character of the font.
      */
     private MmgBmp[] chars;
     
     /**
-     * 
+     * The text to render using the loaded font.
      */
     private String text;
     
     /**
-     * 
+     * An array of widths for the loaded font characters.
      */
     private int[] widths;
     
     /**
-     * 
+     * A boolean flag that turns on more logging when set to true.
      */
     private boolean verbose;
     
     /**
-     * 
+     * A static value for the expected length, in characters, of the loaded font.
      */
     public static int EXPECTED_CHAR_LENGTH = 95;
     
     /**
-     * 
+     * A static value for the default width to use for null values.
      */
     public static int DEFAULT_NULL_WIDTH = MmgHelper.ScaleValue(20);
     
     /**
-     * 
+     * A static value for the default height to use for null values.
      */
     public static int DEFAULT_NULL_HEIGHT = MmgHelper.ScaleValue(20);    
     
     /**
+     * A constructor for the MmgBmpFont class that takes a font source image and a string of text to render using the font as arguments.
      * 
-     * 
-     * @param Src
-     * @param Text 
+     * @param Src       A source MmgBmp object that holds the font as individual images of characters in a series.
+     * @param Text      The test to render using the loaded font.
      */
     public MmgBmpFont(MmgBmp Src, String Text) {
         super();
@@ -71,9 +72,9 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * A constructor for the MmgBmpFont class that takes a font source image as an argument
      * 
-     * 
-     * @param Src 
+     * @param Src       A source MmgBmp object that holds the font as individual images of characters in a series.
      */
     public MmgBmpFont(MmgBmp Src) {
         super();        
@@ -83,9 +84,9 @@ public class MmgBmpFont extends MmgObj {
     }
             
     /**
+     * A constructor that creates a new MmgBmpFont object instance from an existing one.
      * 
-     * 
-     * @param obj 
+     * @param obj       The MmgBmpFont object to use as the basis for a new MmgBmpFont object instance.
      */
     public MmgBmpFont(MmgBmpFont obj) {
         super();        
@@ -132,43 +133,43 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Clones the current object instance and returns an MmgObj object.
      * 
-     * 
-     * @return 
+     * @return      An MmgObj that is a clone of the current object.
      */
     public MmgObj Clone() {
         return (MmgObj) new MmgBmpFont(this);
     }
     
     /**
+     * Clones the current object instance and returns an MmgBmpFont object.
      * 
-     * 
-     * @return 
+     * @return      An MmgBmpFont that is a clone of the current object.
      */
     public MmgBmpFont CloneTyped() {
         return new MmgBmpFont(this);
     }
     
     /**
+     * Gets the value of the boolean flag controlling verbose logging.
      * 
-     * 
-     * @return 
+     * @return      A boolean indicating if verbose logging is on.
      */
     public boolean GetVerbose() {
         return verbose;
     }
     
     /**
+     * Sets the value of the boolean flag controlling verbose logging.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean indicating if verbose logging is on.
      */
     public void SetVerbose(boolean b) {
         verbose = b;
     }
     
     /**
-     * 
+     * A method that is needed to prep the font from the source image.
      */
     public void Prep() {
         Image imgT = src.GetImage();
@@ -213,10 +214,10 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Returns the index for a given character.
      * 
-     * 
-     * @param c
-     * @return 
+     * @param c     The character to look up the index for.
+     * @return      The index of the given character.
      */
     public int GetIndexOf(char c) {
         // !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~
@@ -417,10 +418,10 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Returns the index of the given character represented as a single character string.
      * 
-     * 
-     * @param s
-     * @return 
+     * @param s     The string to use to determine the character index for.
+     * @return      The index of the given character.
      */
     public int GetIndexOf(String s) {
         char c = s.charAt(0);
@@ -428,20 +429,20 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Returns the character at the given index but casts the character to a string.
      * 
-     * 
-     * @param i
-     * @return 
+     * @param i     The index used to lookup the character.
+     * @return      The character associated with the given index converted to a string.
      */
     public String GetStrAt(int i) {
         return GetCharAt(i) + "";
     }
     
     /**
+     * Returns the character for the given index.
      * 
-     * 
-     * @param i
-     * @return 
+     * @param i     The index used to lookup the character.
+     * @return      The character associated with the given index.
      */
     public Character GetCharAt(int i) {
         switch(i) {
@@ -641,18 +642,18 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Gets the text associated with this MmgBmpFont instance.
      * 
-     * 
-     * @return 
+     * @return      The text associated with this MmgBmpFont instance.
      */
     public String GetText() {
         return text;
     }
     
     /**
+     * Sets the text associated with the MmgBmpFont instance.
      * 
-     * 
-     * @param s 
+     * @param s     The string used to render using the loaded font.
      */
     public void SetText(String s) {
         if(s != null) {
@@ -688,9 +689,9 @@ public class MmgBmpFont extends MmgObj {
     }
 
     /**
+     * Gets the MmgColor of the rendered font image.
      * 
-     * 
-     * @return 
+     * @return      The MmgColor of the rendered font MmgBmp.
      */
     @Override
     public MmgColor GetMmgColor() {
@@ -698,9 +699,9 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Sets the MmgColor of the rendered font image.
      * 
-     * 
-     * @param c 
+     * @param c     The MmgColor of the rendered font MmgBmp.
      */
     @Override
     public void SetMmgColor(MmgColor c) {
@@ -708,15 +709,20 @@ public class MmgBmpFont extends MmgObj {
         dst.SetMmgColor(c);
     }
     
+    /**
+     * Gets the X coordinate of the destination MmgBmp.
+     * 
+     * @return      The X coordinate of the destination MmgBmp.
+     */
     @Override
     public int GetX() {
         return dst.GetX();
     }
     
     /**
+     * Sets the X coordinate of the destination MmgBmp.
      * 
-     * 
-     * @param x 
+     * @param x     The X coordinate of the destination MmgBmp.
      */
     @Override
     public void SetX(int x) {
@@ -725,9 +731,9 @@ public class MmgBmpFont extends MmgObj {
     }
        
     /**
+     * Gets the Y coordinate of the destination MmgBmp.
      * 
-     * 
-     * @return 
+     * @return      The Y coordinate of the destination MmgBmp.
      */
     @Override
     public int GetY() {
@@ -735,9 +741,9 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Sets the Y coordinate of the destination MmgBmp.
      * 
-     * 
-     * @param y 
+     * @param y     The Y coordinate of the destination MmgBmp.
      */
     @Override
     public void SetY(int y) {
@@ -746,9 +752,9 @@ public class MmgBmpFont extends MmgObj {
     }    
     
     /**
+     * Gets the position of the destination MmgBmp.
      * 
-     * 
-     * @return 
+     * @return      The position of the destination MmgBmp.
      */
     @Override 
     public MmgVector2 GetPosition() {
@@ -756,10 +762,10 @@ public class MmgBmpFont extends MmgObj {
     }    
     
     /**
+     * Sets the position of the destination MmgBmp.
      * 
-     * 
-     * @param x
-     * @param y 
+     * @param x     The X coordinate of the destination MmgBmp.
+     * @param y     The Y coordinate of the destination MmgBmp.
      */
     @Override
     public void SetPosition(int x, int y) {
@@ -768,9 +774,9 @@ public class MmgBmpFont extends MmgObj {
     }
         
     /**
+     * Sets the position of the destination MmgBmp.
      * 
-     * 
-     * @param v 
+     * @param v     The position of the destination MmgBmp. 
      */
     @Override
     public void SetPosition(MmgVector2 v) {
@@ -779,9 +785,9 @@ public class MmgBmpFont extends MmgObj {
     }
           
     /**
+     * Gets the width of the destination MmgBmp.
      * 
-     * 
-     * @return 
+     * @return      The width of the destination MmgBmp.
      */
     @Override
     public int GetWidth() {
@@ -789,9 +795,9 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Sets the width of the destination MmgBmp.
      * 
-     * 
-     * @param w 
+     * @param w     The width of the destination MmgBmp.
      */
     @Override 
     public void SetWidth(int w) {
@@ -800,15 +806,20 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Gets the height of the destination MmgBmp.
      * 
-     * 
-     * @return 
+     * @return      The height of the destination MmgBmp.
      */
     @Override 
     public int GetHeight() {
         return dst.GetHeight();
     }
     
+    /**
+     * Sets the height of the destination MmgBmp.
+     * 
+     * @param h     The height of the destination MmgBmp.
+     */
     @Override 
     public void SetHeight(int h) {
         super.SetHeight(h);
@@ -816,111 +827,111 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
+     * Gets the widths of the characters loaded from the font source image.
      * 
-     * 
-     * @return 
+     * @return      An array of widths of the characters loaded from the font source image.
      */
     public int[] GetWidths() {
         return widths;
     }
 
     /**
+     * Gets the width of the character at the specified index.
      * 
-     * 
-     * @param i
-     * @return 
+     * @param i     The index used to lookup a character's width.
+     * @return      The width of the character at the specified index.
      */
     public int GetWidthAt(int i) {
         return widths[i];
     }
     
     /**
+     * Sets the widths of the characters loaded from the font source image.
      * 
-     * 
-     * @param ws 
+     * @param ws        An array of widths of the characters loaded from the font source image. 
      */
     public void SetWidths(int[] ws) {
         widths = ws;
     }
        
     /**
+     * Gets the source image for the font.
      * 
-     * 
-     * @return 
+     * @return      The source image for the font.
      */
     public MmgBmp GetSrc() {
         return src;
     }
 
     /**
+     * Sets the source image for the font.
      * 
-     * 
-     * @param b 
+     * @param b     The source image for the font.
      */
     public void SetSrc(MmgBmp b) {
         src = b;
     }
 
     /**
+     * Gets the destination image for the font.
      * 
-     * 
-     * @return 
+     * @return      The destination image for the font.
      */
     public MmgBmp GetDst() {
         return dst;
     }
 
     /**
+     * Sets the destination image for the font.
      * 
-     * 
-     * @param b 
+     * @param b     The destination image for the font. 
      */
     public void SetDst(MmgBmp b) {
         dst = b;
     }    
     
     /**
+     * Gets an array of MmgBmp images, one for each character in the loaded font.
      * 
-     * 
-     * @return 
+     * @return      An array of MmgBmp images, one for each character in the loaded font.
      */
     public MmgBmp[] GetChars() {
         return chars;
     }
 
     /**
+     * Sets an array of MmgBmp images, one for each character in the loaded font.
      * 
-     * 
-     * @param c 
+     * @param c     An array of MmgBmp images, one for each character in the loaded font. 
      */
     public void SetChars(MmgBmp[] c) {
         chars = c;
     }
     
     /**
+     * Gets the count of characters in the loaded font.
      * 
-     * 
-     * @return 
+     * @return      The count of characters in the loaded font.
      */
     public int GetCharCount() {
         return chars.length;
     }
     
     /**
+     * Gets the MmgBmp of the character located at the given index.
      * 
-     * 
-     * @param i
-     * @return 
+     * @param i     The index of the character to lookup an MmgBmp object for.
+     * @return      The MmgBmp of the character located at the given index.
      */
     public MmgBmp GetChar(int i) {
         return chars[i];
     }
     
     /**
+     * Sets the MmgBmp of the character located at the given index.
      * 
-     * 
-     * @param b
-     * @param i 
+     * @param b     The MmgBmp of the character located at the given index.
+     * @param i     The index of the character to lookup an MmgBmp object for. 
      */
     public void SetChar(MmgBmp b, int i) {
         chars[i] = b;

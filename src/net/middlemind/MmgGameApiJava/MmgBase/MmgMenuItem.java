@@ -9,7 +9,7 @@ import java.awt.Color;
  * @author Victor G. Brusca
  */
 public class MmgMenuItem extends MmgObj {
-
+    
     /**
      * Used to represent a neutral menu item state.
      */
@@ -347,52 +347,6 @@ public class MmgMenuItem extends MmgObj {
     public int GetState() {
         return state;
     }
-
-    /**
-     * Gets the height of the menu item object based on the menu item's
-     * current state.
-     * 
-     * @return      The current height of the menu item based on its state.
-     */
-    //@Override
-    //public int GetHeight() {
-    //    return current.GetHeight();
-    //}
-
-    /**
-     * Sets the height of the menu item object based on the menu item's
-     * current state.
-     * 
-     * @param h     The current height of the menu item based on its state.
-     */
-    //@Override
-    //public void SetHeight(int h) {
-    //    super.SetHeight(h);
-    //    current.SetHeight(h);
-    //}
-
-    /**
-     * Gets the width of the menu item object based on the menu item's
-     * current state.
-     * 
-     * @return      The current width of the menu item based on its state.
-     */
-    //@Override
-    //public int GetWidth() {
-    //    return current.GetWidth();
-    //}
-
-    /**
-     * Sets the width of the menu item object based on the menu item's 
-     * current state.
-     * 
-     * @param w     The current width of the menu item based on its state.
-     */
-    //@Override
-    //public void SetWidth(int w) {
-    //    super.SetWidth(w);        
-    //    current.SetWidth(w);
-    //}
 
     /**
      * The base drawing method for this object.

@@ -181,20 +181,20 @@ public class MmgSpriteSheet {
     }
     
     /**
+     * Gets the MmgBmp frame at the given index.
      * 
-     * 
-     * @param i
-     * @return 
+     * @param i     The index of the frame at the given index.
+     * @return      The MmgBmp of the frame at the given index.
      */
     public MmgBmp GetFrame(int i) {
         return frames[i];
     }
     
     /**
+     * Sets the MmgBmp frame at the given index.
      * 
-     * 
-     * @param b
-     * @param i 
+     * @param b     The MmgBmp of the frame at the given index.
+     * @param i     The index of the frame at the given index.
      */
     public void SetFrame(MmgBmp b, int i) {
         frames[i] = b;

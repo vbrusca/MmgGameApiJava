@@ -27,7 +27,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry.CfgEntryType;
  * @author Victor G. Brusca
  */
 public class MmgHelper {
-   
+    
     /**
      * Controls if logging is turned on or off.
      */
@@ -48,6 +48,14 @@ public class MmgHelper {
      */
     private static Random rando = new Random(System.currentTimeMillis());    
 
+    /**
+     * Check to see if the class configuration file data contain the specified key with an integer value.
+     * 
+     * @param key               The class configuration key entry to check for.
+     * @param defaultValue      The default value for this class configuration key.
+     * @param classConfig       The set of class configuration entries to search.
+     * @return 
+     */
     public static int ContainsKeyInt(String key, int defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         int ret = defaultValue;
         if(classConfig.containsKey(key)) {
@@ -56,6 +64,14 @@ public class MmgHelper {
         return ret;
     }
     
+    /**
+     * Check to see if the class configuration file data contain the specified key with a float value.
+     * 
+     * @param key               The class configuration key entry to check for.
+     * @param defaultValue      The default value for this class configuration key.
+     * @param classConfig       The set of class configuration entries to search.
+     * @return 
+     */
     public static float ContainsKeyFloat(String key, float defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         float ret = defaultValue;
         if(classConfig.containsKey(key)) {
@@ -64,6 +80,14 @@ public class MmgHelper {
         return ret;
     }    
     
+    /**
+     * Check to see if the class configuration file data contain the specified key with a DOUBLE value.
+     * 
+     * @param key               The class configuration key entry to check for.
+     * @param defaultValue      The default value for this class configuration key.
+     * @param classConfig       The set of class configuration entries to search.
+     * @return 
+     */
     public static double ContainsKeyDouble(String key, double defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         double ret = defaultValue;
         if(classConfig.containsKey(key)) {
@@ -72,6 +96,14 @@ public class MmgHelper {
         return ret;
     }
 
+    /**
+     * Check to see if the class configuration file data contain the specified key with a string value.
+     * 
+     * @param key               The class configuration key entry to check for.
+     * @param defaultValue      The default value for this class configuration key.
+     * @param classConfig       The set of class configuration entries to search.
+     * @return 
+     */
     public static String ContainsKeyString(String key, String defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         String ret = defaultValue;
         if(classConfig.containsKey(key)) {
@@ -80,6 +112,15 @@ public class MmgHelper {
         return ret;
     }
 
+    /**
+     * Performs the MmgBmp scale and position based on the provided class configuration key.
+     * 
+     * @param keyRoot       The root class configuration key to use for processing the MmgBmp scaling and positioning.
+     * @param tB            The MmgBmp to process.
+     * @param classConfig   The set of class configuration entries to search.
+     * @param pos           The default position to use for the MmgBmp object.
+     * @return 
+     */
     public static MmgBmp ContainsKeyMmgBmpScaleAndPosition(String keyRoot, MmgBmp tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
         String key = "";
         double scale = 1.0;
@@ -140,6 +181,15 @@ public class MmgHelper {
         }
     }    
     
+    /**
+     * Performs the MmgObj position based on the provided class configuration key.
+     * 
+     * @param keyRoot       The root class configuration key to use for processing the MmgObj positioning.
+     * @param tB            The MmgObj to process.
+     * @param classConfig   The set of class configuration entries to search.
+     * @param pos           The default position to use for the MmgObj object.
+     * @return 
+     */
     public static MmgObj ContainsKeyMmgObjPosition(String keyRoot, MmgObj tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
         String key = "";
         int tmp = 0;

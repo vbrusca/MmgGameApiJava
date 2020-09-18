@@ -9,7 +9,7 @@ import java.awt.Font;
  * @author Victor G. Brusca
  */
 public class MmgFontData {
-
+    
     /**
      * The default font family.
      */

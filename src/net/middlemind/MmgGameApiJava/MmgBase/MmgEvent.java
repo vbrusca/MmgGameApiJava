@@ -7,7 +7,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgEvent {
-
+    
     /**
      * The parent MmgEventHandler of this event.
      */

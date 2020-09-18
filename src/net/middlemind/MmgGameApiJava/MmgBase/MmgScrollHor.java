@@ -452,8 +452,6 @@ public class MmgScrollHor extends MmgObj {
             widthDiffPrct = 0.0;
             scrollBarVisible = false;
         }
-       
-        //MmgHelper.wr("scrollBarHorVisible: " + scrollBarVisible);        
         
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();
@@ -1237,8 +1235,6 @@ public class MmgScrollHor extends MmgObj {
             MmgHelper.wr("MmgScrollHor: OffsetX is not equals!");
         }        
         
-        MmgHelper.wr("MmgScrollHor: CenterButton");
-        MmgHelper.wr("P1: " + GetScrollBarCenterButton().GetPosition().ToString() + " P2: " + obj.GetScrollBarCenterButton().GetPosition().ToString());
         if(!(((obj.GetScrollBarCenterButton() == null && GetScrollBarCenterButton() == null) || (obj.GetScrollBarCenterButton() != null && GetScrollBarCenterButton() != null && obj.GetScrollBarCenterButton().Equals(GetScrollBarCenterButton()))))) {
             MmgHelper.wr("MmgScrollHor: ScrollBarCenterButton is not equals!");
             

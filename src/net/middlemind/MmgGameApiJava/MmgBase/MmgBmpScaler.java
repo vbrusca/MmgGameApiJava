@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
  * @author Victor G. Brusca
  */
 public class MmgBmpScaler {
-
+    
     /**
      * Environment graphics configuration data to use when creating new bitmaps to draw on.
      */

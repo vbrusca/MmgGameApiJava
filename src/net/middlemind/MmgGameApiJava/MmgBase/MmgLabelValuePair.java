@@ -9,7 +9,7 @@ import java.awt.*;
  * @author Victor G. Brusca
  */
 public class MmgLabelValuePair extends MmgObj {
-
+    
     /**
      * The MmgFont to use to draw the label.
      */

@@ -652,7 +652,6 @@ public class MmgScrollHorVert extends MmgObj {
             widthDiffPrct = 0.0;
             scrollBarHorVisible = false;
         }
-        //MmgHelper.wr("scrollBarHorVisible: " + scrollBarHorVisible);
         
         if(scrollPaneHeight - viewPortHeight > 0) {
             heightDiff = scrollPaneHeight - viewPortHeight;
@@ -663,7 +662,6 @@ public class MmgScrollHorVert extends MmgObj {
             heightDiffPrct = 0.0;
             scrollBarVertVisible = false;
         }
-        //MmgHelper.wr("scrollBarVertVisible: " + scrollBarVertVisible);
         
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();        
@@ -899,7 +897,7 @@ public class MmgScrollHorVert extends MmgObj {
      */    
     public boolean ProcessDpadRelease(int dir) {
         if(scrollBarHorVisible && dir == MmgDir.DIR_LEFT) {
-            MmgHelper.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
+            //MmgHelper.wr("Both: ProcessDpadRelease.sliderLeftButtonRect click");
             if(offsetXScrollBarCenterButton - intervalX > viewPort.GetX() + scrollBarLeftRightButtonWidth) {
                 offsetXScrollBarCenterButton -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
@@ -916,7 +914,7 @@ public class MmgScrollHorVert extends MmgObj {
             return true;
             
         } else if(scrollBarHorVisible && dir == MmgDir.DIR_RIGHT) {
-            MmgHelper.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
+            //MmgHelper.wr("Both: ProcessDpadRelease.sliderRightButtonRect click");
             if(scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton + intervalX < viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth) {
                 offsetXScrollBarCenterButton += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
@@ -933,7 +931,7 @@ public class MmgScrollHorVert extends MmgObj {
             return true;
             
         } else if(scrollBarVertVisible && dir == MmgDir.DIR_BACK) {
-            MmgHelper.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
+            //MmgHelper.wr("Both: ProcessDpadRelease.sliderTopButtonRect click");
             if(offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight) {
                 offsetYScrollBarCenterButton -= intervalY;
                 offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
@@ -950,7 +948,7 @@ public class MmgScrollHorVert extends MmgObj {
             return true;
             
         } else if(scrollBarVertVisible && dir == MmgDir.DIR_FRONT) {
-            MmgHelper.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
+            //MmgHelper.wr("Both: ProcessDpadRelease.sliderBottomButtonRect click");
             if(scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight) {
                 offsetYScrollBarCenterButton += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
@@ -982,7 +980,7 @@ public class MmgScrollHorVert extends MmgObj {
         boolean ret = false;
         
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
-            MmgHelper.wr("Both: viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
+            //MmgHelper.wr("Both: viewPort click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
             if(clickScreen != null) {
                 clickScreen.SetExtra(new MmgVector2(x, y));
                 clickScreen.Fire();
@@ -990,9 +988,8 @@ public class MmgScrollHorVert extends MmgObj {
             ret = true;
                                     
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarHorLeftButtonRect)) {
-            MmgHelper.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
+            //MmgHelper.wr("Both: ProcessScreenClick.sliderLeftButtonRect click");
             if(offsetXScrollBarCenterButton - intervalX > viewPort.GetX() + scrollBarLeftRightButtonWidth) {
-                MmgHelper.wr("AAA");
                 offsetXScrollBarCenterButton -= intervalX;
                 offsetXScrollPane -= (int)(widthDiff * intervalPrctX);
             } else {
@@ -1008,9 +1005,8 @@ public class MmgScrollHorVert extends MmgObj {
             ret = true;
             
         }else if(scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarHorRightButtonRect)) {            
-            MmgHelper.wr("Both: ProcessScreenClick.sliderRightButtonRect click");
+            //MmgHelper.wr("Both: ProcessScreenClick.sliderRightButtonRect click");
             if(scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton + intervalX < viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth) {
-                MmgHelper.wr("AAA");
                 offsetXScrollBarCenterButton += intervalX;
                 offsetXScrollPane += (int)(widthDiff * intervalPrctX);
             } else {
@@ -1026,7 +1022,7 @@ public class MmgScrollHorVert extends MmgObj {
             ret = true;
             
         }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarVertUpButtonRect)) {
-            MmgHelper.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
+            //MmgHelper.wr("Both: ProcessScreenClick.sliderTopButtonRect click");
             if(offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight) {
                 offsetYScrollBarCenterButton -= intervalY;
                 offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
@@ -1043,7 +1039,7 @@ public class MmgScrollHorVert extends MmgObj {
             ret = true;
             
         }else if(scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarVertDownButtonRect)) {            
-            MmgHelper.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
+            //MmgHelper.wr("Both: ProcessScreenClick.sliderBottomButtonRect click");
             if(scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight) {
                 offsetYScrollBarCenterButton += intervalY;
                 offsetYScrollPane += (int)(heightDiff * intervalPrctY);
