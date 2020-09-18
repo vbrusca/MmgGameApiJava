@@ -4,7 +4,6 @@ import java.awt.Font;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import org.junit.Assert;

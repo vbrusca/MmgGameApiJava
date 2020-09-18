@@ -1,6 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgApiTests;
 
-import javafx.scene.paint.Color;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;

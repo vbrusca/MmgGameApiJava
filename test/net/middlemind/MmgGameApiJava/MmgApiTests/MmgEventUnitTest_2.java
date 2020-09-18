@@ -1,6 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgApiTests;
 
-import net.middlemind.MmgGameApiJava.MmgBase.MmgDir;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import org.junit.Assert;

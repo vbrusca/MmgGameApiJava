@@ -375,6 +375,16 @@ public class MmgScrollHorVert extends MmgObj {
      */
     public MmgScrollHorVert(MmgScrollHorVert obj) {
         super();
+
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
+        
         if(obj.GetViewPort() == null) {
             SetViewPort(obj.GetViewPort());
         } else {
@@ -472,7 +482,9 @@ public class MmgScrollHorVert extends MmgObj {
         } 
         
         SetWidthDiff(obj.GetWidthDiff());
+        SetWidthDiffPrct(obj.GetWidthDiffPrct());
         SetHeightDiff(obj.GetHeightDiff());
+        SetHeightDiffPrct(obj.GetHeightDiffPrct());
         SetScrollBarHorVisible(obj.GetScrollBarHorVisible());
         SetScrollBarVertVisible(obj.GetScrollBarVertVisible());
         
@@ -492,10 +504,21 @@ public class MmgScrollHorVert extends MmgObj {
         SetScrollBarVertWidth(obj.GetScrollBarVertWidth());
         SetScrollBarHorCenterButtonWidth(obj.GetScrollBarHorCenterButtonWidth());
         SetScrollBarVertCenterButtonHeight(obj.GetScrollBarVertCenterButtonHeight());        
-        SetIntervalX(obj.GetIntervalX());
-        SetIntervalY(obj.GetIntervalY());
         SetOffsetX(obj.GetOffsetX());
         SetOffsetY(obj.GetOffsetY());
+        
+        SetScrollBarLeftRightButtonWidth(obj.GetScrollBarLeftRightButtonWidth());
+        SetScrollBarUpDownButtonHeight(obj.GetScrollBarUpDownButtonHeight());        
+    
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            GetPosition().SetX(obj.GetPosition().GetX());
+            GetPosition().SetY(obj.GetPosition().GetY());            
+        }
+        
+        SetIntervalX(obj.GetIntervalX());
+        SetIntervalY(obj.GetIntervalY());        
     }
     
     /**
@@ -1644,7 +1667,7 @@ public class MmgScrollHorVert extends MmgObj {
      * 
      * @return      A boolean indicating if the scroll view needs to be redrawn.
      */    
-    public boolean IsIsDirty() {
+    public boolean GetIsDirty() {
         return isDirty;
     }
 

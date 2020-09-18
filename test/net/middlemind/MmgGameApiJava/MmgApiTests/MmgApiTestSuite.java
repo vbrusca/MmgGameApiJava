@@ -27,6 +27,7 @@ import org.junit.runners.Suite;
         ,MmgDirUnitTest_2.class
         ,MmgEventUnitTest_2.class
         ,MmgFontUnitTest_2.class
+        ,MmgGameScreenUnitTest_2.class
         ,MmgLabelValuePairUnitTest_2.class
         ,MmgLoadingBarUnitTest_2.class
         ,MmgLoadingScreenUnitTest_2.class
@@ -34,12 +35,14 @@ import org.junit.runners.Suite;
         ,MmgMenuItemUnitTest_2.class
         ,MmgObjUnitTest.class
         ,MmgObjUnitTest_2.class
+        ,MmgPenUnitTest_2.class
         ,MmgPositionTweenUnitTest_2.class
         ,MmgPulseUnitTest_2.class
         ,MmgRectUnitTest.class
         ,MmgRectUnitTest_2.class
         ,MmgScrollHorUnitTest_2.class
-        ,MmgScrollVertUnitTest_2.class            
+        ,MmgScrollHorVertUnitTest_2.class            
+        ,MmgScrollVertUnitTest_2.class
         ,MmgSizeTweenUnitTest_2.class
         ,MmgSoundUnitTest_2.class
         ,MmgSplashScreenUnitTest_2.class

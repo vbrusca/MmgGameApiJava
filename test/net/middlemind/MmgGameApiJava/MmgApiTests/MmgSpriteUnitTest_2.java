@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgDir;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;

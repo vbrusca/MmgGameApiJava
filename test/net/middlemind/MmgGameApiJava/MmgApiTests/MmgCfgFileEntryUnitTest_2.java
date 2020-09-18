@@ -2,7 +2,6 @@ package net.middlemind.MmgGameApiJava.MmgApiTests;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry.CfgEntryType;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import org.junit.Assert;
 import org.junit.After;
 import org.junit.AfterClass;

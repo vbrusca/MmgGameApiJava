@@ -1,6 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgApiTests;
 
-import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPulse;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import org.junit.Assert;
