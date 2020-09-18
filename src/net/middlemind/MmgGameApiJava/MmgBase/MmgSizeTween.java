@@ -153,8 +153,8 @@ public class MmgSizeTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetChanging(false);
-        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToChangeX);
-        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
+        //MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToChangeX);
+        //MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToChangeY);
     }
 
     /**
@@ -171,13 +171,13 @@ public class MmgSizeTween extends MmgObj {
         }
         
         if(obj.GetSubjOrig() == null) {
-            SetSubj(obj.GetSubjOrig());
+            SetSubjOrig(obj.GetSubjOrig());
         } else {
-            SetSubj(obj.GetSubjOrig().Clone());
+            SetSubjOrig(obj.GetSubjOrig().Clone());
         }        
         
         SetAtStart(obj.GetAtStart());
-        SetAtFinish(obj.GetAtStart());
+        SetAtFinish(obj.GetAtFinish());
         
         if(obj.GetPixelSizeToChange() == null) {
             SetPixelSizeToChange(obj.GetPixelSizeToChange());
@@ -205,8 +205,17 @@ public class MmgSizeTween extends MmgObj {
         SetChanging(obj.GetChanging());
         SetMsStartChange(obj.GetMsStartChange());
         SetOnReachStart(obj.GetOnReachStart());
-        SetOnReachFinish(obj.GetOnReachFinish());
+        SetOnReachFinish(obj.GetOnReachFinish());        
     }    
+    
+    /**
+     * Gets the finish event id.
+     * 
+     * @return      The finish event id.
+     */
+    public int GetFinishEventId() {
+        return reachFinish.GetEventId();
+    }
     
     /**
      * Sets the finish event id.
@@ -230,6 +239,15 @@ public class MmgSizeTween extends MmgObj {
         }
     }
 
+    /**
+     * Gets the finish event id.
+     * 
+     * @return      The finish event id.
+     */
+    public int GetStartEventId() {
+        return reachStart.GetEventId();
+    }
+    
     /**
      * 
      * 
@@ -726,6 +744,72 @@ public class MmgSizeTween extends MmgObj {
             return true;
         }
         
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("MmgSizeTween: MmgObj not equals!");
+        }
+        
+        if(!(GetAtStart() == obj.GetAtStart())) {
+            MmgHelper.wr("MmgSizeTween: AtStart not equals!");
+        }        
+        
+        if(!(GetAtFinish() == obj.GetAtFinish())) {
+            MmgHelper.wr("MmgSizeTween: AtFinish not equals!");
+        }        
+        
+        if(!(GetDirStartToFinish() == obj.GetDirStartToFinish())) {
+            MmgHelper.wr("MmgSizeTween: DirStartToFinish not equals!");
+        }
+        
+        if(!(((obj.GetFinishSize() == null && GetFinishSize() == null) || (obj.GetFinishSize() != null && GetFinishSize() != null && obj.GetFinishSize().Equals(GetFinishSize()))))) {
+            MmgHelper.wr("MmgSizeTween: FinishSize not equals!");
+        }
+                
+        if(!(obj.GetHeight() == GetHeight())) {
+            MmgHelper.wr("MmgSizeTween: Height not equals!");
+        }
+        
+        if(!(obj.GetChanging() == GetChanging())) {
+            MmgHelper.wr("MmgSizeTween: Moving not equals!");
+        }
+        
+        if(!(obj.GetMsStartChange() == GetMsStartChange())) {
+            MmgHelper.wr("MmgSizeTween: MsStartMove not equals!");
+        }
+        
+        if(!(obj.GetMsTimeToChange() == GetMsTimeToChange())) {
+            MmgHelper.wr("MmgSizeTween: MsTimeToMove not equals!");
+        }
+                
+        if(!(obj.GetPixelsPerMsToChangeX() == GetPixelsPerMsToChangeX())) {
+            MmgHelper.wr("MmgSizeTween: PixelsPerMsToMoveX not equals!");
+        }
+        
+        if(!(obj.GetPixelsPerMsToChangeY() == GetPixelsPerMsToChangeY())) {
+            MmgHelper.wr("MmgSizeTween: PixelsPerMsToMoveY not equals!");
+        }        
+        
+        if(!(((obj.GetPixelSizeToChange() == null && GetPixelSizeToChange() == null) || (obj.GetPixelSizeToChange() != null && GetPixelSizeToChange() != null && obj.GetPixelSizeToChange().Equals(GetPixelSizeToChange()))))) {
+            MmgHelper.wr("MmgSizeTween: PixelsDistToMove not equals!");            
+        }
+        
+        if(!(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition()))))) {
+            MmgHelper.wr("MmgSizeTween: Position not equals!");
+        }
+        
+        if(!(((obj.GetStartSize() == null && GetStartSize() == null) || (obj.GetStartSize() != null && GetStartSize() != null && obj.GetStartSize().Equals(GetStartSize()))))) {
+            MmgHelper.wr("MmgSizeTween: StartPosition not equals!");
+        }
+
+        if(!(((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().Equals(GetSubj()))))) {
+            MmgHelper.wr("MmgSizeTween: Subj not equals!");            
+        }
+        
+        if(!(obj.GetWidth() == GetWidth())) {
+            MmgHelper.wr("MmgSizeTween: Width not equals!");
+        }        
+        */
+                
         boolean ret = false;
         if(
             super.Equals((MmgObj)obj)
@@ -739,7 +823,7 @@ public class MmgSizeTween extends MmgObj {
             && obj.GetMsTimeToChange() == GetMsTimeToChange()
             && ((obj.GetPixelSizeToChange() == null && GetPixelSizeToChange() == null) || (obj.GetPixelSizeToChange() != null && GetPixelSizeToChange() != null && obj.GetPixelSizeToChange().Equals(GetPixelSizeToChange())))
             && obj.GetPixelsPerMsToChangeX() == GetPixelsPerMsToChangeX()
-            && obj.GetPixelsPerMsToChangeY() == GetPixelsPerMsToChangeX()
+            && obj.GetPixelsPerMsToChangeY() == GetPixelsPerMsToChangeY()
             && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
             && ((obj.GetStartSize() == null && GetStartSize() == null) || (obj.GetStartSize() != null && GetStartSize() != null && obj.GetStartSize().Equals(GetStartSize())))
             && ((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().Equals(GetSubj())))                

@@ -121,7 +121,14 @@ public class MmgTextFieldUnitTest_2 {
         Assert.assertEquals(true, t2.Equals(t1));
         Assert.assertEquals(true, t2.Equals(t1));
         Assert.assertEquals(false, t3.Equals(t1));
-        Assert.assertEquals(false, t1.Equals(t3));               
+        Assert.assertEquals(false, t1.Equals(t3));
+        
+        Assert.assertEquals(true, MmgTextField.DEFAULT_MAX_LENGTH == 20);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID == 1);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE == 0);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_CURSOR_BLINK_RATE_MS == 350l);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_CURSOR.equals("_"));
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_9_SLICE_OFFSET == MmgHelper.ScaleValue(16));
     }
 
     @Test
@@ -205,6 +212,13 @@ public class MmgTextFieldUnitTest_2 {
         Assert.assertEquals(true, t2.Equals(t1));
         Assert.assertEquals(true, t2.Equals(t1));
         Assert.assertEquals(false, t3.Equals(t1));
-        Assert.assertEquals(false, t1.Equals(t3));               
+        Assert.assertEquals(false, t1.Equals(t3));
+        
+        Assert.assertEquals(true, MmgTextField.DEFAULT_MAX_LENGTH == 20);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID == 1);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE == 0);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_CURSOR_BLINK_RATE_MS == 350l);
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_CURSOR.equals("_"));
+        Assert.assertEquals(true, MmgTextField.TEXT_FIELD_9_SLICE_OFFSET == MmgHelper.ScaleValue(16));        
     }  
 }

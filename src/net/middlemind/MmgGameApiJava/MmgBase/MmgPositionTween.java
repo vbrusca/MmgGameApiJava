@@ -141,8 +141,8 @@ public class MmgPositionTween extends MmgObj {
         SetAtStart(true);
         SetAtFinish(false);
         SetMoving(false);
-        MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToMoveX);        
-        MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
+        //MmgHelper.wr("Found pixels per ms X: " + pixelsPerMsToMoveX);        
+        //MmgHelper.wr("Found pixels per ms Y: " + pixelsPerMsToMoveY);
     }
     
     /**
@@ -159,7 +159,7 @@ public class MmgPositionTween extends MmgObj {
         }
         
         SetAtStart(obj.GetAtStart());
-        SetAtFinish(obj.GetAtStart());
+        SetAtFinish(obj.GetAtFinish());
         
         if(obj.GetPixelDistToMove() == null) {
             SetPixelDistToMove(obj.GetPixelDistToMove());
@@ -681,6 +681,72 @@ public class MmgPositionTween extends MmgObj {
             return true;
         }
         
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("MmgPositionTween: MmgObj not equals!");
+        }
+        
+        if(!(GetAtStart() == obj.GetAtStart())) {
+            MmgHelper.wr("MmgPositionTween: AtStart not equals!");
+        }        
+        
+        if(!(GetAtFinish() == obj.GetAtFinish())) {
+            MmgHelper.wr("MmgPositionTween: AtFinish not equals!");
+        }        
+        
+        if(!(GetDirStartToFinish() == obj.GetDirStartToFinish())) {
+            MmgHelper.wr("MmgPositionTween: DirStartToFinish not equals!");
+        }
+        
+        if(!(((obj.GetFinishPosition() == null && GetFinishPosition() == null) || (obj.GetFinishPosition() != null && GetFinishPosition() != null && obj.GetFinishPosition().Equals(GetFinishPosition()))))) {
+            MmgHelper.wr("MmgPositionTween: FinishPosition not equals!");
+        }
+                
+        if(!(obj.GetHeight() == GetHeight())) {
+            MmgHelper.wr("MmgPositionTween: Height not equals!");
+        }
+        
+        if(!(obj.GetMoving() == GetMoving())) {
+            MmgHelper.wr("MmgPositionTween: Moving not equals!");
+        }
+        
+        if(!(obj.GetMsStartMove() == GetMsStartMove())) {
+            MmgHelper.wr("MmgPositionTween: MsStartMove not equals!");
+        }
+        
+        if(!(obj.GetMsTimeToMove() == GetMsTimeToMove())) {
+            MmgHelper.wr("MmgPositionTween: MsTimeToMove not equals!");
+        }
+                
+        if(!(obj.GetPixelsPerMsToMoveX() == GetPixelsPerMsToMoveX())) {
+            MmgHelper.wr("MmgPositionTween: PixelsPerMsToMoveX not equals!");
+        }
+        
+        if(!(obj.GetPixelsPerMsToMoveY() == GetPixelsPerMsToMoveY())) {
+            MmgHelper.wr("MmgPositionTween: PixelsPerMsToMoveY not equals!");
+        }        
+        
+        if(!(((obj.GetPixelDistToMove() == null && GetPixelDistToMove() == null) || (obj.GetPixelDistToMove() != null && GetPixelDistToMove() != null && obj.GetPixelDistToMove().Equals(GetPixelDistToMove()))))) {
+            MmgHelper.wr("MmgPositionTween: PixelsDistToMove not equals!");            
+        }
+        
+        if(!(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition()))))) {
+            MmgHelper.wr("MmgPositionTween: Position not equals!");
+        }
+        
+        if(!(((obj.GetStartPosition() == null && GetStartPosition() == null) || (obj.GetStartPosition() != null && GetStartPosition() != null && obj.GetStartPosition().Equals(GetStartPosition()))))) {
+            MmgHelper.wr("MmgPositionTween: StartPosition not equals!");
+        }
+
+        if(!(((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().Equals(GetSubj()))))) {
+            MmgHelper.wr("MmgPositionTween: Subj not equals!");            
+        }
+        
+        if(!(obj.GetWidth() == GetWidth())) {
+            MmgHelper.wr("MmgPositionTween: Width not equals!");
+        }        
+        */
+
         boolean ret = false;
         if(
             super.Equals((MmgObj)obj)
@@ -694,7 +760,7 @@ public class MmgPositionTween extends MmgObj {
             && obj.GetMsTimeToMove() == GetMsTimeToMove()
             && ((obj.GetPixelDistToMove() == null && GetPixelDistToMove() == null) || (obj.GetPixelDistToMove() != null && GetPixelDistToMove() != null && obj.GetPixelDistToMove().Equals(GetPixelDistToMove())))
             && obj.GetPixelsPerMsToMoveX() == GetPixelsPerMsToMoveX()
-            && obj.GetPixelsPerMsToMoveY() == GetPixelsPerMsToMoveX()
+            && obj.GetPixelsPerMsToMoveY() == GetPixelsPerMsToMoveY()
             && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition())))
             && ((obj.GetStartPosition() == null && GetStartPosition() == null) || (obj.GetStartPosition() != null && GetStartPosition() != null && obj.GetStartPosition().Equals(GetStartPosition())))
             && ((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().Equals(GetSubj())))                
@@ -702,6 +768,7 @@ public class MmgPositionTween extends MmgObj {
         ) {
             ret = true;
         }
+
         return ret;
     }
 }
