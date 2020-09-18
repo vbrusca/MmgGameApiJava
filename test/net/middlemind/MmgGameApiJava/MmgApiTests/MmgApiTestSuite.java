@@ -42,6 +42,7 @@ import org.junit.runners.Suite;
         ,MmgSplashScreenUnitTest_2.class
         ,MmgSpriteSheetUnitTest_2.class
         ,MmgSpriteUnitTest_2.class
+        ,MmgTextBlockUnitTest_2.class
         ,MmgTextFieldUnitTest_2.class
         ,MmgVector2UnitTest.class
         ,MmgVector2UnitTest_2.class

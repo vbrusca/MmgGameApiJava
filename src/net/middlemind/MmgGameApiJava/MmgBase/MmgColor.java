@@ -11,6 +11,10 @@ import java.awt.*;
 public class MmgColor {
 
     /**
+     * TODO: Complete comments
+     */
+    
+    /**
      * The color of this object.
      */
     private Color c;
@@ -28,8 +32,7 @@ public class MmgColor {
      * @param obj     Input MmgColor object.
      */
     public MmgColor(MmgColor obj) {
-        Color tmpC = obj.GetColor();
-        c = new Color(tmpC.getRed(), tmpC.getGreen(), tmpC.getBlue(), tmpC.getAlpha());
+        SetColor(obj.GetColor());
     }
 
     /**
@@ -47,7 +50,7 @@ public class MmgColor {
      * @return      A typed clone of this class.
      */
     public MmgColor Clone() {
-        return new MmgColor(c);
+        return new MmgColor(this);
     }
 
     /**
@@ -523,6 +526,15 @@ public class MmgColor {
      */
     public void SetColor(Color C) {
         c = C;
+    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public String ToString() {
+        return "R: " + GetColor().getRed() + " G: " + GetColor().getGreen() + " B: " + GetColor().getBlue();
     }
     
     /**

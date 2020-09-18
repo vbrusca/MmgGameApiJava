@@ -84,13 +84,17 @@ public class MmgFont extends MmgObj {
         } else {
             SetPosition(obj.GetPosition().Clone());
         }
+        
         SetIsVisible(obj.GetIsVisible());
 
         if (obj.GetMmgColor() == null) {
             SetMmgColor(obj.GetMmgColor());
         } else {
             SetMmgColor(obj.GetMmgColor().Clone());
-        }       
+        } 
+        
+        SetHeight(obj.GetHeight());
+        SetWidth(obj.GetWidth());
     }
 
     /**
@@ -247,7 +251,21 @@ public class MmgFont extends MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
-                  
+           
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+           MmgHelper.wr("MmgFont: MmgObj is not equals!"); 
+        }
+        
+        if(!(((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().equals(GetFont()))))) {
+           MmgHelper.wr("MmgFont: Font is not equals!");
+        }
+        
+        if(!(((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().equals(GetText()))))) {
+           MmgHelper.wr("MmgFont: Text is not equals!");
+        }
+        */
+                
         boolean ret = false;
         if (
             super.Equals((MmgObj)obj)

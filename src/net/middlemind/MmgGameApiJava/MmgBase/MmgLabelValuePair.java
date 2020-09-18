@@ -124,25 +124,33 @@ public class MmgLabelValuePair extends MmgObj {
         }else {
             SetValue(obj.GetValue().CloneTyped());
         }
+                
+        SetPaddingX(obj.GetPaddingX());         
+        SetFontSize(obj.GetFontSize());
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());        
         
         if(obj.GetPosition() == null) {
             SetPosition(obj.GetPosition());
         }else {
             SetPosition(obj.GetPosition().Clone());
         }
+        
         SetIsVisible(obj.GetIsVisible());
 
         if(obj.GetMmgColor() == null) {
             SetMmgColor(obj.GetMmgColor());
         }else {
             SetMmgColor(obj.GetMmgColor().Clone());
+        }        
+        
+        if(obj.GetValue() != null) {
+            GetValue().SetMmgColor(obj.GetValue().GetMmgColor().Clone());
         }
         
-        SetPaddingX(obj.GetPaddingX());
-        SetWidth(obj.GetWidth());
-        SetHeight(obj.GetHeight());
-        skipReset = false;
-        Reset();
+        if(obj.GetLabel() != null) {
+            GetLabel().SetMmgColor(obj.GetLabel().GetMmgColor().Clone());
+        }        
     }
 
     /**
@@ -496,7 +504,28 @@ public class MmgLabelValuePair extends MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
-                   
+           
+        /*
+        MmgHelper.wr("MmgLabelValuePair: MmgObj");
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("MmgLabelValuePair: MmgObj is not equals!");
+        }
+        
+        MmgHelper.wr("MmgLabelValuePair: Label");        
+        if(!(((obj.GetLabel() == null && GetLabel() == null) || (obj.GetLabel() != null && GetLabel() != null && obj.GetLabel().Equals(GetLabel()))))) {
+            MmgHelper.wr("MmgLabelValuePair: Label is not equals!");
+        }
+        
+        MmgHelper.wr("MmgLabelValuePair: Value");        
+        if(!(((obj.GetValue() == null && GetValue() == null) || (obj.GetValue() != null && GetValue() != null && obj.GetValue().Equals(GetValue()))))) {
+            MmgHelper.wr("MmgLabelValuePair: Value is not equals!");            
+        }
+        
+        if(!(GetPaddingX() == obj.GetPaddingX())) {
+            MmgHelper.wr("MmgLabelValuePair: PaddingX is not equals!");                        
+        }
+        */
+                
         boolean ret = false;
         if(
             super.Equals((MmgObj)obj)
