@@ -250,6 +250,16 @@ public class MmgScrollVert extends MmgObj {
      */
     public MmgScrollVert(MmgScrollVert obj) {
         super();
+
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
+                        
         if(obj.GetViewPort() == null) {
             SetViewPort(obj.GetViewPort());
         } else {
@@ -311,6 +321,7 @@ public class MmgScrollVert extends MmgObj {
         }
         
         SetHeightDiff(obj.GetHeightDiff());
+        SetHeightDiffPrct(obj.GetHeightDiffPrct()); 
         SetScrollBarVisible(obj.GetScrollBarVisible());
         
         if(obj.GetScrollBarColor() == null) {
@@ -327,8 +338,17 @@ public class MmgScrollVert extends MmgObj {
         
         SetScrollBarWidth(obj.GetScrollBarWidth());
         SetScrollBarCenterButtonHeight(obj.GetScrollBarCenterButtonHeight());
-        SetIntervalY(obj.GetIntervalY());
+        SetScrollBarUpDownButtonHeight(obj.GetScrollBarUpDownButtonHeight());
         SetOffsetY(obj.GetOffsetY());
+
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            GetPosition().SetX(obj.GetPosition().GetX());
+            GetPosition().SetY(obj.GetPosition().GetY());            
+        }        
+        
+        SetIntervalY(obj.GetIntervalY());
     }
     
     /**
@@ -420,8 +440,6 @@ public class MmgScrollVert extends MmgObj {
             heightDiffPrct = 0.0;
             scrollBarVisible = false;
         }
-                
-        MmgHelper.wr("scrollBarVertVisible: " + scrollBarVisible);
 
         p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
         p.SetAdvRenderHints();
@@ -890,7 +908,7 @@ public class MmgScrollVert extends MmgObj {
      * 
      * @param d     The height difference percentage between the view port and the scroll pane.
      */
-    public void SetHeightDiffPrect(double d) {
+    public void SetHeightDiffPrct(double d) {
         heightDiffPrct = d;
     }
     
@@ -1031,7 +1049,7 @@ public class MmgScrollVert extends MmgObj {
      * 
      * @return      A boolean indicating if the scroll view needs to be redrawn.
      */
-    public boolean IsIsDirty() {
+    public boolean GetIsDirty() {
         return isDirty;
     }
 

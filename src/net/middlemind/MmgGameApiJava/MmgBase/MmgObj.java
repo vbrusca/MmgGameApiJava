@@ -512,7 +512,7 @@ public class MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
-          
+                
         /*
         if(!(obj.GetHasParent() == GetHasParent())) { 
             MmgHelper.wr("MmgObj: HasParent NOT equal"); 
@@ -542,7 +542,7 @@ public class MmgObj {
             MmgHelper.wr("MmgObj: Position NOT equal"); 
         }
         */
-                
+        
         boolean ret = false;
         if(
             obj.GetHasParent() == GetHasParent() 

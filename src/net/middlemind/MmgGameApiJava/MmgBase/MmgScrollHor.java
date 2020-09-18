@@ -253,6 +253,16 @@ public class MmgScrollHor extends MmgObj {
      */
     public MmgScrollHor(MmgScrollHor obj) {
         super();
+
+        SetWidth(obj.GetWidth());
+        SetHeight(obj.GetHeight());
+        
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
+                
         if(obj.GetViewPort() == null) {
             SetViewPort(obj.GetViewPort());
         } else {
@@ -281,31 +291,31 @@ public class MmgScrollHor extends MmgObj {
             SetScrollBarCenterButton(obj.GetScrollBarCenterButton());
         } else {
             SetScrollBarCenterButton(obj.GetScrollBarCenterButton().CloneTyped());
-        }        
+        }
         
         if(obj.GetScrollBarCenterButtonRect() == null) {
             SetScrollBarCenterButtonRect(obj.GetScrollBarCenterButtonRect());
         } else {
             SetScrollBarCenterButtonRect(obj.GetScrollBarCenterButtonRect().Clone());
         }
-                
+        
         if(obj.GetScrollBarLeftButton() == null) {
             SetScrollBarLeftButton(obj.GetScrollBarLeftButton());
         } else {
             SetScrollBarLeftButton(obj.GetScrollBarLeftButton().CloneTyped());
-        }        
+        }
         
         if(obj.GetScrollBarLeftButtonRect() == null) {
             SetScrollBarLeftButtonRect(obj.GetScrollBarLeftButtonRect());
         } else {
             SetScrollBarLeftButtonRect(obj.GetScrollBarLeftButtonRect().Clone());
         }
-
+        
         if(obj.GetScrollBarRightButton() == null) {
             SetScrollBarRightButton(obj.GetScrollBarRightButton());
         } else {
             SetScrollBarRightButton(obj.GetScrollBarRightButton().CloneTyped());
-        }        
+        }
         
         if(obj.GetScrollBarRightButtonRect() == null) {
             SetScrollBarRightButtonRect(obj.GetScrollBarRightButtonRect());
@@ -314,6 +324,7 @@ public class MmgScrollHor extends MmgObj {
         }
         
         SetWidthDiff(obj.GetWidthDiff());
+        SetWidthDiffPrct(obj.GetWidthDiffPrct());
         SetScrollBarVisible(obj.GetScrollBarVisible());
         
         if(obj.GetScrollBarColor() == null) {
@@ -330,8 +341,17 @@ public class MmgScrollHor extends MmgObj {
         
         SetScrollBarHeight(obj.GetScrollBarHeight());
         SetScrollBarCenterButtonWidth(obj.GetScrollBarCenterButtonWidth());
-        SetIntervalX(obj.GetIntervalX());
+        SetScrollBarLeftRightButtonWidth(obj.GetScrollBarLeftRightButtonWidth());
         SetOffsetX(obj.GetOffsetX());
+
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            GetPosition().SetX(obj.GetPosition().GetX());
+            GetPosition().SetY(obj.GetPosition().GetY());            
+        }        
+        
+        SetIntervalX(obj.GetIntervalX());        
     }    
     
     /**
@@ -1200,6 +1220,95 @@ public class MmgScrollHor extends MmgObj {
             return true;
         }
         
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("MmgScrollHor: MmgObj is not equals!");
+        }
+        
+        if(!(obj.GetScrollBarVisible() == GetScrollBarVisible())) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarVisible is not equals!");
+        }
+
+        if(!(obj.GetIntervalX() == GetIntervalX())) {
+            MmgHelper.wr("MmgScrollHor: IntervalX is not equals!");
+        }        
+        
+        if(!(obj.GetOffsetX() == GetOffsetX())) {
+            MmgHelper.wr("MmgScrollHor: OffsetX is not equals!");
+        }        
+        
+        MmgHelper.wr("MmgScrollHor: CenterButton");
+        MmgHelper.wr("P1: " + GetScrollBarCenterButton().GetPosition().ToString() + " P2: " + obj.GetScrollBarCenterButton().GetPosition().ToString());
+        if(!(((obj.GetScrollBarCenterButton() == null && GetScrollBarCenterButton() == null) || (obj.GetScrollBarCenterButton() != null && GetScrollBarCenterButton() != null && obj.GetScrollBarCenterButton().Equals(GetScrollBarCenterButton()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarCenterButton is not equals!");
+            
+        }
+        
+        if(!(((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().Equals(GetScrollBarCenterButtonColor()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarCenterButtonColor is not equals!"); 
+        }
+        
+        if(!(((obj.GetScrollBarCenterButtonRect() == null && GetScrollBarCenterButtonRect() == null) || (obj.GetScrollBarCenterButtonRect() != null && GetScrollBarCenterButtonRect() != null && obj.GetScrollBarCenterButtonRect().Equals(GetScrollBarCenterButtonRect()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarCenterButtonRect is not equals!");
+        }
+        
+        if(!(obj.GetScrollBarCenterButtonWidth() == GetScrollBarCenterButtonWidth())) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarCenterButtonWidth is not equals!");
+        }
+        
+        if(!(((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().Equals(GetScrollBarColor()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarColor is not equals!");
+        }
+        
+        if(!(obj.GetScrollBarHeight() == GetScrollBarHeight())) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarHeight is not equals!");
+        }
+                
+        if(!(((obj.GetScrollBarLeftButton() == null && GetScrollBarLeftButton() == null) || (obj.GetScrollBarLeftButton() != null && GetScrollBarLeftButton() != null && obj.GetScrollBarLeftButton().Equals(GetScrollBarLeftButton()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarLeftButton is not equals!");
+        }
+        
+        if(!(((obj.GetScrollBarLeftButtonRect() == null && GetScrollBarLeftButtonRect() == null) || (obj.GetScrollBarLeftButtonRect() != null && GetScrollBarLeftButtonRect() != null && obj.GetScrollBarLeftButtonRect().Equals(GetScrollBarLeftButtonRect()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarLeftButtonRect is not equals!");
+        }
+        
+        if(!(obj.GetScrollBarLeftRightButtonWidth() == GetScrollBarLeftRightButtonWidth())) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarLeftRightButtonWidth is not equals!");
+        }
+        
+        if(!(((obj.GetScrollBarRightButton() == null && GetScrollBarRightButton() == null) || (obj.GetScrollBarRightButton() != null && GetScrollBarRightButton() != null && obj.GetScrollBarRightButton().Equals(GetScrollBarRightButton()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarRightButton is not equals!");            
+        }
+        
+        if(!(((obj.GetScrollBarRightButtonRect() == null && GetScrollBarRightButtonRect() == null) || (obj.GetScrollBarRightButtonRect() != null && GetScrollBarRightButtonRect() != null && obj.GetScrollBarRightButtonRect().Equals(GetScrollBarRightButtonRect()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollBarRightButtonRect is not equals!");
+        }
+        
+        if(!(((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().Equals(GetScrollPane()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollPane is not equals!");
+        }
+        
+        if(!(((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().Equals(GetScrollPaneRect()))))) {
+            MmgHelper.wr("MmgScrollHor: ScrollPaneRect is not equals!");
+        }
+        
+        if(!(((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().Equals(GetViewPort()))))) {
+            MmgHelper.wr("MmgScrollHor: ViewPort is not equals!");
+        }
+
+        if(!(((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().Equals(GetViewPortRect()))))) {
+            MmgHelper.wr("MmgScrollHor: ViewPortRect is not equals!");
+        }
+        
+        if(!(obj.GetWidthDiff() == GetWidthDiff())) {
+            MmgHelper.wr("MmgScrollHor: WidthDiff is not equals!");
+        }
+        
+        if(!(obj.GetWidthDiffPrct() == GetWidthDiffPrct())) {
+            MmgHelper.wr("MmgScrollHor: WidthDiffPrct is not equals!");
+        }
+        */
+        
         boolean ret = false;
         if(
             super.Equals((MmgObj)obj)
@@ -1213,14 +1322,14 @@ public class MmgScrollHor extends MmgObj {
             && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().Equals(GetScrollBarColor())))
             && obj.GetScrollBarHeight() == GetScrollBarHeight()
             && ((obj.GetScrollBarLeftButton() == null && GetScrollBarLeftButton() == null) || (obj.GetScrollBarLeftButton() != null && GetScrollBarLeftButton() != null && obj.GetScrollBarLeftButton().Equals(GetScrollBarLeftButton())))
-            && ((obj.GetScrollBarLeftButtonRect() == null && GetScrollBarLeftButtonRect() == null) || (obj.GetScrollBarLeftButtonRect() != null && GetScrollBarLeftButtonRect() != null && obj.GetScrollBarLeftButtonRect().Equals(GetScrollBarLeftButtonRect())))                
+            && ((obj.GetScrollBarLeftButtonRect() == null && GetScrollBarLeftButtonRect() == null) || (obj.GetScrollBarLeftButtonRect() != null && GetScrollBarLeftButtonRect() != null && obj.GetScrollBarLeftButtonRect().Equals(GetScrollBarLeftButtonRect())))
             && obj.GetScrollBarLeftRightButtonWidth() == GetScrollBarLeftRightButtonWidth()
-            && ((obj.GetScrollBarRightButton() == null && GetScrollBarRightButton() == null) || (obj.GetScrollBarRightButton() != null && GetScrollBarRightButton() != null && obj.GetScrollBarRightButton().Equals(GetScrollBarRightButton())))
-            && ((obj.GetScrollBarRightButtonRect() == null && GetScrollBarRightButtonRect() == null) || (obj.GetScrollBarRightButtonRect() != null && GetScrollBarRightButtonRect() != null && obj.GetScrollBarRightButtonRect().Equals(GetScrollBarRightButtonRect())))
-            && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().Equals(GetScrollPane())))
-            && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().Equals(GetScrollPaneRect())))               
+            && ((obj.GetScrollBarRightButton() == null && GetScrollBarRightButton() == null) || (obj.GetScrollBarRightButton() != null && GetScrollBarRightButton() != null && obj.GetScrollBarRightButton().Equals(GetScrollBarRightButton())))                
+            && ((obj.GetScrollBarRightButtonRect() == null && GetScrollBarRightButtonRect() == null) || (obj.GetScrollBarRightButtonRect() != null && GetScrollBarRightButtonRect() != null && obj.GetScrollBarRightButtonRect().Equals(GetScrollBarRightButtonRect())))                
+            && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().Equals(GetScrollPane())))            
+            && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().Equals(GetScrollPaneRect())))    
             && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().Equals(GetViewPort())))
-            && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().Equals(GetViewPortRect())))               
+            && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().Equals(GetViewPortRect())))
             && obj.GetWidthDiff() == GetWidthDiff()
             && obj.GetWidthDiffPrct() == GetWidthDiffPrct()
         ) {

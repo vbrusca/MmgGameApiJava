@@ -13,7 +13,7 @@ public class MmgMenuContainer extends MmgObj {
     /**
      * The ArrayList that holds the MmgMenuItem objects.
      */
-    private ArrayList<MmgObj> container;
+    private ArrayList<MmgMenuItem> container;
     
     /**
      * A class helper variable.
@@ -36,7 +36,7 @@ public class MmgMenuContainer extends MmgObj {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public MmgMenuContainer() {
         super();
-        SetContainer(new ArrayList<MmgObj>(50));
+        SetContainer(new ArrayList<MmgMenuItem>(50));
     }
 
    /**
@@ -47,6 +47,7 @@ public class MmgMenuContainer extends MmgObj {
      */
     public MmgMenuContainer(MmgObj obj) {
         super(obj);
+        SetContainer(new ArrayList<MmgMenuItem>(50));
     }    
     
     /**
@@ -55,7 +56,7 @@ public class MmgMenuContainer extends MmgObj {
      * @param objects       The ArrayList to use for the menu items. 
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public MmgMenuContainer(ArrayList<MmgObj> objects) {
+    public MmgMenuContainer(ArrayList<MmgMenuItem> objects) {
         super();
         SetContainer(objects);
     }
@@ -74,9 +75,9 @@ public class MmgMenuContainer extends MmgObj {
         } else {
             a = new MmgObj[obj.GetCount()];
             a = obj.GetContainer().toArray(a);
-            SetContainer(new ArrayList<MmgObj>(a.length));
+            SetContainer(new ArrayList<MmgMenuItem>(a.length));
             for(i = 0; i < a.length; i++) {
-                Add((MmgMenuItem)a[i].Clone());
+                Add((MmgMenuItem)a[i].Clone());                    
             }
         }
 
@@ -166,7 +167,7 @@ public class MmgMenuContainer extends MmgObj {
      * 
      * @return      The menu items contained by this class. 
      */
-    public ArrayList<MmgObj> GetContainer() {
+    public ArrayList<MmgMenuItem> GetContainer() {
         return container;
     }
 
@@ -175,7 +176,7 @@ public class MmgMenuContainer extends MmgObj {
      * 
      * @param aTmp  The menu items to hold.
      */
-    public void SetContainer(ArrayList<MmgObj> aTmp) {
+    public void SetContainer(ArrayList<MmgMenuItem> aTmp) {
         container = aTmp;
     }
 

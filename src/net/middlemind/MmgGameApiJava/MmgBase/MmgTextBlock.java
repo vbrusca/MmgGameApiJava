@@ -134,15 +134,8 @@ public class MmgTextBlock extends MmgObj {
         SetWidth(obj.GetWidth());
         
         SetPages(obj.GetPages());
-        SetLineHeight(obj.GetLineHeight());        
-        SetSpriteFont(obj.GetSpriteFont());
-        
-        if(obj.GetColor() == null) {
-            SetColor(obj.GetColor());
-        } else {
-            SetColor(obj.GetColor().Clone());
-        }
-        
+        SetLineHeight(obj.GetLineHeight());
+                
         MmgFont tmpF = null;
         ArrayList<MmgFont> tmpL = null;
         if(obj.GetLines() == null) {
@@ -150,7 +143,7 @@ public class MmgTextBlock extends MmgObj {
         } else {
             tmpL = obj.GetLines();
             lines = new ArrayList<MmgFont>(STARTING_LINE_COUNT);
-            for(int i = 0; i < lines.size(); i++) {
+            for(int i = 0; i < obj.GetTxt().size(); i++) {
                 tmpF = tmpL.get(i);
                 lines.add(tmpF.CloneTyped());
             }
@@ -163,13 +156,32 @@ public class MmgTextBlock extends MmgObj {
         } else {
             tmpL = obj.GetTxt();
             txt = new ArrayList<MmgFont>(STARTING_TXT_COUNT);
-            for(int i = 0; i < txt.size(); i++) {
+            for(int i = 0; i < obj.GetTxt().size(); i++) {
                 tmpF = tmpL.get(i);
                 txt.add(tmpF.CloneTyped());
             }
         }
 
         SetWordCount(obj.GetWordCount());
+        SetSpriteFont(obj.GetSpriteFont());
+        
+        if(obj.GetColor() == null) {
+            SetColor(obj.GetColor());
+        } else {
+            SetColor(obj.GetColor().Clone());
+        }
+
+        if(obj.GetPosition() == null) {
+            SetPosition(obj.GetPosition());
+        } else {
+            SetPosition(obj.GetPosition().Clone());
+        }
+
+        if(obj.GetMmgColor() == null) {
+            SetMmgColor(obj.GetMmgColor());
+        } else {
+            SetMmgColor(obj.GetMmgColor().Clone());
+        }
     }
     
     /**
@@ -191,7 +203,7 @@ public class MmgTextBlock extends MmgObj {
     public MmgTextBlock CloneTyped() {
         return new MmgTextBlock(this);
     }
-    
+        
     /**
      * Gets the lines of text created when splitting the input text to fit the width and height of this object.
      * 
@@ -435,7 +447,11 @@ public class MmgTextBlock extends MmgObj {
      * @return      The number of lines that can be displayed in the display box.
      */
     public int GetLinesInBox() {
-        return (GetHeight() / (GetLineHeight()));
+        if(GetLineHeight() != 0) {
+            return (GetHeight() / (GetLineHeight()));
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -707,6 +723,64 @@ public class MmgTextBlock extends MmgObj {
         } else if(obj.equals(this)) {
             return true;
         }
+        
+        /*
+        if(!(super.Equals((MmgObj)obj))) {
+            MmgHelper.wr("MmgTextBlock: MmgObj is not equals!");
+        }
+        
+        if(!(((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().Equals(GetColor()))))) {
+            MmgHelper.wr("MmgTextBlock: Color is not equals!");
+        }
+
+        if(!(obj.GetHeight() == GetHeight())) {
+            MmgHelper.wr("MmgTextBlock: Height is not equals!");            
+        }        
+        
+        if(!(obj.GetLineCount() == GetLineCount())) {
+            MmgHelper.wr("MmgTextBlock: LineCount is not equals!");            
+        }
+        
+        if(!(obj.GetLineHeight() == GetLineHeight())) {
+            MmgHelper.wr("MmgTextBlock: LineHeight is not equals!");            
+        }
+
+        if(!(obj.GetLinesInBox() == GetLinesInBox())) {
+            MmgHelper.wr("MmgTextBlock: LinesInBox is not equals!");            
+        }
+        
+        if(!(obj.GetPaddingX() == GetPaddingX())) {
+            MmgHelper.wr("MmgTextBlock: PaddingX is not equals!");            
+        }
+        
+        if(!(obj.GetPaddingY() == GetPaddingY())) {
+            MmgHelper.wr("MmgTextBlock: PaddingY is not equals!");            
+        }        
+        
+        if(!(obj.GetPageCount() == GetPageCount())) {
+            MmgHelper.wr("MmgTextBlock: PageCount is not equals!");
+        }
+        
+        if(!(obj.GetPages() == GetPages())) {
+            MmgHelper.wr("MmgTextBlock: Pages is not equals!");
+        }
+        
+        if(!(((obj.GetSpriteFont() == null && GetSpriteFont() == null) || (obj.GetSpriteFont() != null && GetSpriteFont() != null && obj.GetSpriteFont().equals(GetSpriteFont()))))) {
+            MmgHelper.wr("MmgTextBlock: SpriteFont is not equals!");            
+        }
+        
+        if(!(obj.GetUsedLineCount() == GetUsedLineCount())) {
+            MmgHelper.wr("MmgTextBlock: UsedLineCount is not equals!"); 
+        }
+        
+        if(!(obj.GetWidth() == GetWidth())) {
+            MmgHelper.wr("MmgTextBlock: Width is not equals!"); 
+        }
+        
+        if(!(obj.GetWordCount() == GetWordCount())) {
+            MmgHelper.wr("MmgTextBlock: WordCount is not equals!"); 
+        }
+        */
         
         boolean ret = false;
         if(

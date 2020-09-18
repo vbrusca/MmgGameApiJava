@@ -159,6 +159,7 @@ public class MmgBmp extends MmgObj {
         } else {
             SetMmgColor(obj.GetMmgColor().Clone());
         }
+        
         SetBmpId();
     }
 
@@ -617,7 +618,7 @@ public class MmgBmp extends MmgObj {
         
         /*
         if(!(super.Equals((MmgObj)obj))) {
-            MmgHelper.wr("mmg bmp: mmg obj is not equals! obj pos: " + obj.GetPosition().ToString() + " this pos: " + GetPosition().ToString());
+            MmgHelper.wr("MmgBmp: MmgObj is not equals!");
         }
         */
         
