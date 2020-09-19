@@ -183,7 +183,7 @@ public class ScreenTestMmgSprite extends MmgGameScreen implements GenericEventHa
         MmgVector2 tmpPos = frame1.GetPosition().Clone();
         tmpPos.SetY(tmpPos.GetY() - MmgHelper.ScaleValue(30));
         sprite1 = new MmgSprite(frames1, tmpPos);
-        sprite1.SetFrameTime(200l);
+        sprite1.SetMsPerFrame(200l);
         AddObj(sprite1);
         
         spriteLabel1 = MmgFontData.CreateDefaultBoldMmgFontLg();

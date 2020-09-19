@@ -138,7 +138,7 @@ public class MmgHelper {
                 tpos = tB.GetPosition();
                 w1 = tB.GetWidth();
                 h1 = tB.GetHeight();
-                tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, false);
+                tB = MmgBmpScaler.ScaleMmgBmp(tB, scale, true);
                 w2 = tB.GetWidth();
                 h2 = tB.GetHeight();             
                 tB.SetPosition(new MmgVector2(tpos.GetX() - ((w2 - w1) / 2), tpos.GetY()));
