@@ -37,4 +37,9 @@ public class MmgDir {
      * A static integer that can be used to map the right direction.
      */
     public static int DIR_RIGHT = 3;
+    
+    /**
+     * TODO
+     */
+    public static int DIR_NONE = -1;
 }

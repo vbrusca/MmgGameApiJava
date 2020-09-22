@@ -319,7 +319,7 @@ public class ScreenTestMmgSizeTween extends MmgGameScreen implements GenericEven
     public boolean ProcessDpadRelease(int dir) {
         MmgHelper.wr("ScreenTestMmgSizeTween.ProcessDpadRelease: " + dir);
         if(dir == GameSettings.RIGHT_KEYBOARD) {
-            owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+            owner.SwitchGameState(GameStates.GAME_SCREEN_26);
         
         } else if(dir == GameSettings.LEFT_KEYBOARD) {
             owner.SwitchGameState(GameStates.GAME_SCREEN_24);
