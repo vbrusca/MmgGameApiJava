@@ -412,7 +412,7 @@ public class MmgColor {
     /**
      * Static helper method returns blue gray.
      * 
-     * @return      The color blue gray
+     * @return      The color blue gray.
      */
     public static MmgColor GetBlueGray() {
         return new MmgColor(Color.decode("#98AFC7"));

@@ -577,7 +577,7 @@ public class MmgBmp extends MmgObj {
     /**
      * Gets the scaled width of the bitmap in float form.
      *
-     * @return
+     * @return      The scaled width of the bitmap.
      */
     public float GetWidthFloat() {
         return (float) GetScaledWidth();
