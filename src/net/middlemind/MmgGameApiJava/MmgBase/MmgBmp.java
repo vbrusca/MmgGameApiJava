@@ -101,8 +101,8 @@ public class MmgBmp extends MmgObj {
         super(obj);
         origin = new MmgVector2(0, 0);
         scaling = new MmgVector2(1, 1);
-        srcRect = new MmgRect(0, 0, 0, 0);
-        dstRect = new MmgRect(0, 0, 0, 0);
+        srcRect = MmgRect.GetUnitRect();
+        dstRect = MmgRect.GetUnitRect();
         b = null;
         rotation = 0f;
         SetBmpId();

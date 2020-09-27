@@ -71,7 +71,7 @@ public class ScreenTestMmgSpriteMatrix extends MmgGameScreen implements GenericE
     /**
      * 
      */
-    private MmgBmp spriteSheetSrc;
+    private MmgBmp spriteMatrixSrc;
     
     /**
      * 
@@ -136,15 +136,15 @@ public class ScreenTestMmgSpriteMatrix extends MmgGameScreen implements GenericE
         AddObj(title);
                
         //64x64
-        spriteSheetSrc = MmgHelper.GetBasicCachedBmp("enemy_banshee_spritematrix_w_shadow.png");
-        spriteSheetSrc = MmgBmpScaler.ScaleMmgBmp(spriteSheetSrc, 2.0f, true);
+        spriteMatrixSrc = MmgHelper.GetBasicCachedBmp("enemy_banshee_spritematrix_w_shadow.png");
+        spriteMatrixSrc = MmgBmpScaler.ScaleMmgBmp(spriteMatrixSrc, 2.0f, true);
         
         //MmgHelper.wr("SpriteSheetSrcHeight: " + spriteSheetSrc.GetHeight());
-        MmgHelper.CenterHor(spriteSheetSrc);
-        spriteSheetSrc.SetPosition(new MmgVector2(25, MmgHelper.ScaleValue(160)));
-        AddObj(spriteSheetSrc);
+        MmgHelper.CenterHor(spriteMatrixSrc);
+        spriteMatrixSrc.SetPosition(new MmgVector2(25, MmgHelper.ScaleValue(160)));
+        AddObj(spriteMatrixSrc);
         
-        spriteMatrix = new MmgSpriteMatrix(spriteSheetSrc.CloneTyped(), 64, 68, 4, 3);        
+        spriteMatrix = new MmgSpriteMatrix(spriteMatrixSrc.CloneTyped(), 64, 68, 4, 3);        
         MmgObj tmpObj = new MmgObj();
         tmpObj.SetHeight(68);
         tmpObj.SetWidth(64);
@@ -344,7 +344,7 @@ public class ScreenTestMmgSpriteMatrix extends MmgGameScreen implements GenericE
         SetBackground(null);
         
         spriteLabel = null;
-        spriteSheetSrc = null;
+        spriteMatrixSrc = null;
         spriteMatrix = null;
         sprite = null;
         title = null;
