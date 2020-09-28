@@ -122,7 +122,7 @@ public class ScreenSplash extends MmgSplashScreen implements MmgUpdateHandler {
 
         key = "bmpLogo";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "logo_large.jpg";
         }

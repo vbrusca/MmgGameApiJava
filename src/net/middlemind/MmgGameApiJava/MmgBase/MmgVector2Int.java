@@ -24,7 +24,7 @@ public class MmgVector2Int extends MmgVector2 {
      * Constructor for this class sets its values based on the attributes of the
      * given argument.
      *
-     * @param v     The MmgVector to base this class off of.
+     * @param v     The MmgVector2Int to base this class off of.
      */
     public MmgVector2Int(MmgVector2Int v) {
         vec = new int[] { v.GetX(), v.GetY() };

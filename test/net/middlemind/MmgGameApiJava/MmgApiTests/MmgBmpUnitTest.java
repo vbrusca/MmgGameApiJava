@@ -366,8 +366,8 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetOrigin().Equals(new MmgVector2(0, 0)));
         Assert.assertTrue(b1.GetScaling().Equals(MmgVector2.GetUnitVec()));        
         Assert.assertTrue(b1.GetScaling().Equals(new MmgVector2(1, 1)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 0, 0)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 0, 0)));
+        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
+        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
         Assert.assertNull(b1.GetImage());
         Assert.assertNull(b1.GetTexture2D());
         Assert.assertTrue(b1.GetRotation() == 0f);

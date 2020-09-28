@@ -47,7 +47,7 @@ public class MmgCfgFileEntryUnitTest_2 {
         
         Assert.assertEquals(m1.name, null);
         Assert.assertEquals(m1.cfgType, CfgEntryType.NONE);
-        Assert.assertEquals(m1.string, null);
+        Assert.assertEquals(m1.str, null);
         Assert.assertEquals(m1.number, null);
         
         m2 = m1.Clone();
@@ -71,7 +71,7 @@ public class MmgCfgFileEntryUnitTest_2 {
         
         Assert.assertEquals(m1.name, null);
         Assert.assertEquals(m1.cfgType, CfgEntryType.NONE);
-        Assert.assertEquals(m1.string, null);
+        Assert.assertEquals(m1.str, null);
         Assert.assertEquals(m1.number, null);
         
         m2 = m1.Clone();
@@ -94,11 +94,11 @@ public class MmgCfgFileEntryUnitTest_2 {
         m1 = new MmgCfgFileEntry();
         m1.name = "Test";
         m1.cfgType = CfgEntryType.TYPE_STRING;
-        m1.string = "test_string";
+        m1.str = "test_string";
         
         Assert.assertEquals(m1.name, "Test");
         Assert.assertEquals(m1.cfgType, CfgEntryType.TYPE_STRING);
-        Assert.assertEquals(m1.string, "test_string");
+        Assert.assertEquals(m1.str, "test_string");
         Assert.assertEquals(m1.number, null);
         
         m2 = m1.Clone();
@@ -121,12 +121,12 @@ public class MmgCfgFileEntryUnitTest_2 {
         m1 = new MmgCfgFileEntry();
         m1.name = "Test";
         m1.cfgType = CfgEntryType.TYPE_DOUBLE;
-        m1.string = null;
+        m1.str = null;
         m1.number = new Double(1.234); 
         
         Assert.assertEquals(m1.name, "Test");
         Assert.assertEquals(m1.cfgType, CfgEntryType.TYPE_DOUBLE);
-        Assert.assertEquals(m1.string, null);
+        Assert.assertEquals(m1.str, null);
         Assert.assertEquals(m1.number, new Double(1.234));
         Assert.assertEquals(m1.number.doubleValue(), 1.234, 0.001);        
         Assert.assertEquals(m1.number.intValue(), 1);

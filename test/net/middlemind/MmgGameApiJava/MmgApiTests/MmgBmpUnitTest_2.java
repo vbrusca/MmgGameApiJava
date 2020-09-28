@@ -114,8 +114,8 @@ public class MmgBmpUnitTest_2 {
         
         Assert.assertEquals(true, b1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
         Assert.assertEquals(true, b1.GetScaling().Equals(MmgVector2.GetUnitVec()));        
-        Assert.assertEquals(false, b1.GetSrcRect().Equals(MmgRect.GetUnitRect()));        
-        Assert.assertEquals(false, b1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, b1.GetSrcRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, b1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
         Assert.assertEquals(true, b1.GetImage() == null);
         Assert.assertEquals(true, b1.GetRotation() == 0f);
 
@@ -178,8 +178,8 @@ public class MmgBmpUnitTest_2 {
         
         Assert.assertEquals(true, b1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
         Assert.assertEquals(true, b1.GetScaling().Equals(MmgVector2.GetUnitVec()));        
-        Assert.assertEquals(false, b1.GetSrcRect().Equals(MmgRect.GetUnitRect()));        
-        Assert.assertEquals(false, b1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, b1.GetSrcRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, b1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
         Assert.assertEquals(true, b1.GetImage() == null);
         Assert.assertEquals(true, b1.GetRotation() == 0f);
 

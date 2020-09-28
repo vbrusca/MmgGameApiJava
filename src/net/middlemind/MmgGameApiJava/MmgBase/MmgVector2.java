@@ -24,7 +24,7 @@ public class MmgVector2 {
      * Constructor for this class sets its values based on the attributes of the
      * given argument.
      *
-     * @param v     The MmgVector to base this class off of.
+     * @param v     The MmgVector2 to base this class off of.
      */
     public MmgVector2(MmgVector2 v) {
         vec = new double[] { v.GetXDouble(), v.GetYDouble() };

@@ -150,7 +150,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "soundMenuSelect";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "jump1.wav";
         }          
@@ -167,7 +167,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "bmpGameTitle";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "game_title.png";
         }        
@@ -217,7 +217,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "bmpGameSubTitle";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "game_sub_title.png";
         }       
@@ -267,7 +267,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "bmpMenuItemStartGame";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "start_game.png";
         }        
@@ -315,7 +315,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "bmpMenuItemExitGame";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "exit_game.png";
         }        
@@ -363,7 +363,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "bmpFooterUrl";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "footer_url.png";
         }
@@ -413,7 +413,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "bmpMenuCursorLeft";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "cursor_hand_sm_right.png";
         }        
@@ -426,7 +426,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         
         key = "version";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "version0.0.1";
         }

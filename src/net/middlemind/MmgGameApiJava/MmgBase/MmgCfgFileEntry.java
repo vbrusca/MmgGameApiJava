@@ -32,7 +32,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
     /**
      * The string value this MmgCfgFileEntry holds, if it holds string data.
      */
-    public String string;
+    public String str;
     
     /**
      * The name or key of this MmgCfgFileEntry.
@@ -53,7 +53,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
      */
     public MmgCfgFileEntry(MmgCfgFileEntry obj) {
         number = obj.number;
-        string = obj.string;
+        str = obj.str;
         name = obj.name;
         cfgType = obj.cfgType;
     }
@@ -80,7 +80,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
                 ret = name.trim() + "=" + number.toString();
 
             } else if(cfgType == CfgEntryType.TYPE_STRING) {
-                ret = name.trim() + "->" + string;
+                ret = name.trim() + "->" + str;
 
             }
         }
@@ -117,7 +117,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
         if(obj.cfgType == cfgType 
             && ((obj.name == null && name == null) || (obj.name != null && name != null && obj.name.equals(name)))
             && obj.number == number 
-            && ((obj.string == null && string == null) || (obj.string != null && string != null && obj.string.equals(string)))
+            && ((obj.str == null && str == null) || (obj.str != null && str != null && obj.str.equals(str)))
         ) {
             ret = true;
         }

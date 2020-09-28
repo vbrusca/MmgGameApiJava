@@ -107,7 +107,7 @@ public class MmgHelper {
     public static String ContainsKeyString(String key, String defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         String ret = defaultValue;
         if(classConfig.containsKey(key)) {
-            ret = classConfig.get(key).string;
+            ret = classConfig.get(key).str;
         }
         return ret;
     }
@@ -364,7 +364,7 @@ public class MmgHelper {
                             data = line.split("->");
                             if(data.length == 2) {
                                 cfe.cfgType = CfgEntryType.TYPE_STRING;                                
-                                cfe.string = data[1];
+                                cfe.str = data[1];
                                 cfe.name = data[0];                                
                                 ret.put(data[0], cfe);
                             }                            

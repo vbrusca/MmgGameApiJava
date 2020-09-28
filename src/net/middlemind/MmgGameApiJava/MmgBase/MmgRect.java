@@ -19,7 +19,7 @@ public class MmgRect {
      * Constructor for this class.
      */
     public MmgRect() {
-        rect = new Rectangle(0, 0, 0, 0);
+        rect = new Rectangle(0, 0, 1, 1);
     }
 
     /**
@@ -141,6 +141,11 @@ public class MmgRect {
         return rect.width;
     }
 
+    /**
+     * Sets the width of the rectangle.
+     * 
+     * @param w     The width of the rectangle.
+     */
     public void SetWidth(int w) {
         rect.setSize(w, rect.height);
     }
@@ -154,6 +159,11 @@ public class MmgRect {
         return rect.height;
     }
 
+    /**
+     * Sets the height of the rectangle.
+     * 
+     * @param h     The height of the rectangle. 
+     */
     public void SetHeight(int h) {
         rect.setSize(rect.width, h);
     }
@@ -221,7 +231,6 @@ public class MmgRect {
      * @param x             The X coordinate to compare with to calculate the X difference.
      * @param direction     The direction to compare the X difference in left or right.
      * @param opposite      A boolean indicating to calculate the X difference in the opposite direction.
-     * @param left2right    A boolean indicating if the calculation should be left to right.
      * @return              The X difference between the two coordinate values.
      */
     public int GetDiffX(int x, int direction, boolean opposite) {

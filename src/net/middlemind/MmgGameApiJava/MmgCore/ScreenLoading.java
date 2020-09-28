@@ -177,7 +177,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         
         key = "bmpLogo";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "odroid_logo2.png";
         }        
@@ -223,7 +223,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
                 
         key = "imgLoadingBar";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "loading_bar.png";
         }
@@ -232,7 +232,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
         
         key = "imgLoadingBarFill";
         if(classConfig.containsKey(key)) {
-            file = classConfig.get(key).string;
+            file = classConfig.get(key).str;
         } else {
             file = "blue_square.png";
         }                

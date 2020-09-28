@@ -152,7 +152,7 @@ public class ScreenTestMmgCfgFileEntryWrite extends MmgGameScreen implements Gen
         
         cfgFileStringLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
         if(classConfig.containsKey("example_string")) {
-            val = classConfig.get("example_string").string;
+            val = classConfig.get("example_string").str;
         } else {
             val = "Unknown Example String";
         }

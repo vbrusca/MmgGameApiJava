@@ -203,10 +203,10 @@ public class MmgRectUnitTest {
         //PREP TEST 1
         l = 0;
         t = 0;
-        r = 0;
-        b = 0;
-        w = 0;
-        h = 0;
+        r = 1;
+        b = 1;
+        w = 1;
+        h = 1;
         r1 = new MmgRect();
         
         //TEST 1

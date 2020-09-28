@@ -52,27 +52,27 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(true, r2.Equals(r1));
         Assert.assertEquals(true, r1.Equals(r1));
         
-        Assert.assertEquals(0, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetBottom());
         Assert.assertEquals(0, r1.GetLeft());
-        Assert.assertEquals(0, r1.GetRight());
+        Assert.assertEquals(1, r1.GetRight());
         Assert.assertEquals(0, r1.GetTop());
         
-        Assert.assertEquals(0, r1.GetHeight());
-        Assert.assertEquals(0, r1.GetWidth());        
+        Assert.assertEquals(1, r1.GetHeight());
+        Assert.assertEquals(1, r1.GetWidth());        
 
         Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
         
         r3 = r1.GetRect();
         Assert.assertEquals(0, r3.x);
         Assert.assertEquals(0, r3.y);
-        Assert.assertEquals(0, r3.width);
-        Assert.assertEquals(0, r3.height);
+        Assert.assertEquals(1, r3.width);
+        Assert.assertEquals(1, r3.height);
 
         r1.SetHeight(10);
         Assert.assertEquals(0, r1.GetTop());
         Assert.assertEquals(0, r1.GetLeft());
         Assert.assertEquals(10, r1.GetBottom());
-        Assert.assertEquals(0, r1.GetRight());
+        Assert.assertEquals(1, r1.GetRight());
         
         r1.SetWidth(10);
         Assert.assertEquals(0, r1.GetTop());
@@ -238,27 +238,27 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(true, r2.Equals(r1));
         Assert.assertEquals(true, r1.Equals(r1));
         
-        Assert.assertEquals(0, r1.GetBottom());
+        Assert.assertEquals(1, r1.GetBottom());
         Assert.assertEquals(0, r1.GetLeft());
-        Assert.assertEquals(0, r1.GetRight());
+        Assert.assertEquals(1, r1.GetRight());
         Assert.assertEquals(0, r1.GetTop());
         
-        Assert.assertEquals(0, r1.GetHeight());
-        Assert.assertEquals(0, r1.GetWidth());        
+        Assert.assertEquals(1, r1.GetHeight());
+        Assert.assertEquals(1, r1.GetWidth());        
 
         Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
         
         r3 = r1.GetRect();
         Assert.assertEquals(0, r3.x);
         Assert.assertEquals(0, r3.y);
-        Assert.assertEquals(0, r3.width);
-        Assert.assertEquals(0, r3.height);
+        Assert.assertEquals(1, r3.width);
+        Assert.assertEquals(1, r3.height);
 
         r1.SetHeight(10);
         Assert.assertEquals(0, r1.GetTop());
         Assert.assertEquals(0, r1.GetLeft());
         Assert.assertEquals(10, r1.GetBottom());
-        Assert.assertEquals(0, r1.GetRight());
+        Assert.assertEquals(1, r1.GetRight());
         
         r1.SetWidth(10);
         Assert.assertEquals(0, r1.GetTop());
