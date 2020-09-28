@@ -203,7 +203,9 @@ public class MmgContainer extends MmgObj {
     public void AddAt(int idx, MmgObj obj) {
         if (obj != null) {
             container.add(idx, obj);
-            StampChild(obj);
+            if(container.contains(obj) == true) {
+                StampChild(obj);
+            }
         }
     }
 
@@ -248,8 +250,10 @@ public class MmgContainer extends MmgObj {
      *
      * @return          An array of the objects in the container.
      */
-    public Object[] GetArray() {
-        return container.toArray();
+    public MmgObj[] GetArray() {
+        MmgObj[] ret = new MmgObj[container.size()];
+        ret = container.toArray(ret);
+        return ret;
     }
 
     /**
@@ -387,11 +391,13 @@ public class MmgContainer extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
-            a = container.toArray();
-            for (i = 0; i < a.length; i++) {
-                mo = (MmgObj) a[i];
-                if (mo != null && mo.isVisible == true) {
-                    mo.MmgDraw(p);
+            if(container != null) {
+                a = container.toArray();
+                for (i = 0; i < a.length; i++) {
+                    mo = (MmgObj) a[i];
+                    if (mo != null && mo.isVisible == true) {
+                        mo.MmgDraw(p);
+                    }
                 }
             }
         }
@@ -414,12 +420,14 @@ public class MmgContainer extends MmgObj {
                 isDirty = false;
             }
             
-            a = container.toArray();
-            for (i = 0; i < a.length; i++) {
-                mo = (MmgObj) a[i];
-                if (mo != null && mo.isVisible == true) {
-                    if (mo.MmgUpdate(updateTicks, currentTimeMs, msSinceLastFrame) == true) {
-                        lret = true;
+            if(container != null) {
+                a = container.toArray();
+                for (i = 0; i < a.length; i++) {
+                    mo = (MmgObj) a[i];
+                    if (mo != null && mo.isVisible == true) {
+                        if (mo.MmgUpdate(updateTicks, currentTimeMs, msSinceLastFrame) == true) {
+                            lret = true;
+                        }
                     }
                 }
             }

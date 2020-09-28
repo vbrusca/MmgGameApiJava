@@ -43,7 +43,7 @@ public class MmgDebug {
     }
 
     /**
-     * A static helper method for logging.
+     * A static helper method for timestamped logging.
      *
      * @param s     The string to log.
      */

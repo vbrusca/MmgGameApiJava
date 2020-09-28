@@ -39,7 +39,7 @@ public class MmgDir {
     public static int DIR_RIGHT = 3;
     
     /**
-     * TODO
+     * A static integer that can be used to map a null direction.
      */
     public static int DIR_NONE = -1;
 }
