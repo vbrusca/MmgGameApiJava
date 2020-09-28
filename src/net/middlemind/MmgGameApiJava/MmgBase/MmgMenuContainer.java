@@ -18,7 +18,7 @@ public class MmgMenuContainer extends MmgObj {
     /**
      * A class helper variable.
      */
-    private MmgObj[] a;
+    private MmgMenuItem[] a;
     
     /**
      * A class helper variable.
@@ -28,7 +28,7 @@ public class MmgMenuContainer extends MmgObj {
     /**
      * A class helper variable.
      */
-    private MmgObj mo;
+    private MmgMenuItem mo;
 
     /**
      * Constructor for this class.
@@ -73,11 +73,11 @@ public class MmgMenuContainer extends MmgObj {
         if(obj.GetContainer() == null) {
             SetContainer(obj.GetContainer());
         } else {
-            a = new MmgObj[obj.GetCount()];
+            a = new MmgMenuItem[obj.GetCount()];
             a = obj.GetContainer().toArray(a);
             SetContainer(new ArrayList<MmgMenuItem>(a.length));
             for(i = 0; i < a.length; i++) {
-                Add((MmgMenuItem)a[i].Clone());                    
+                Add(a[i].CloneTyped());                    
             }
         }
 
@@ -150,8 +150,8 @@ public class MmgMenuContainer extends MmgObj {
      * 
      * @return      The menu item objects stored by this container. 
      */
-    public MmgObj[] GetArray() {
-        a = new MmgObj[container.size()];
+    public MmgMenuItem[] GetArray() {
+        a = new MmgMenuItem[container.size()];
         return container.toArray(a);
     }
 
@@ -189,7 +189,7 @@ public class MmgMenuContainer extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             if (container != null) {
-                a = new MmgObj[container.size()];
+                a = new MmgMenuItem[container.size()];
                 a = container.toArray(a);
                 for (i = 0; i < a.length; i++) {
                     mo = a[i];

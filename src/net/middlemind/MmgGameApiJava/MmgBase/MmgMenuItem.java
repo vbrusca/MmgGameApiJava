@@ -300,17 +300,13 @@ public class MmgMenuItem extends MmgObj {
         if(state != i) {
             if (i == STATE_NORMAL) {
                 current = normal;
-        
-            }else if (i == STATE_SELECTED) {
-                current = selected;
-                
+            } else if (i == STATE_SELECTED) {
+                current = selected;                
                 if(sound != null) {
                     sound.Play();
                 }
-
-            }else if (i == STATE_INACTIVE) {
-                current = inactive;
-                
+            } else if (i == STATE_INACTIVE) {
+                current = inactive;                
             } else {
                 current = normal;
             }
