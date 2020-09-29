@@ -244,6 +244,26 @@ public class Mmg9Slice extends MmgObj {
     }
     
     /**
+     * Gets the MmgColor of the destination object.
+     * 
+     * @return      The MmgColor of the destination object.
+     */
+    @Override
+    public MmgColor GetMmgColor() {
+        return dest.GetMmgColor();
+    }
+    
+    /**
+     * Sets the MmgColor of the destination object.
+     * 
+     * @param c     The MmgColor of the destination object.
+     */
+    @Override
+    public void SetMmgColor(MmgColor c) {
+        dest.SetMmgColor(c);
+    }    
+    
+    /**
      * The base drawing method for this object.
      *
      * @param p     The MmgPen used to draw this object.
@@ -296,15 +316,5 @@ public class Mmg9Slice extends MmgObj {
             ret = true;
         }
         return ret;
-    }
-    
-    /**
-     * 
-     * 
-     * @return 
-     */
-    @Override
-    public MmgColor GetMmgColor() {
-        return dest.GetMmgColor();
     }
 }
