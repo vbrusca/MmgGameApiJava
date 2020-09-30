@@ -317,8 +317,8 @@ public class MmgLabelValuePair extends MmgObj {
      * @param sz        The size of the font. 
      */
     public void SetFontSize(int sz) {
-        val.GetFont().deriveFont(sz);
-        lbl.GetFont().deriveFont(sz);
+        val.SetFontSize(sz);
+        lbl.SetFontSize(sz);
         Reset();
     }
 
@@ -329,10 +329,10 @@ public class MmgLabelValuePair extends MmgObj {
      */
     public int GetFontSize() {
         if(lbl != null) {
-            return (int) lbl.GetFont().getSize();
+            return (int) lbl.GetFontSize();
             
         }else if(val != null) {
-            return (int) val.GetFont().getSize();
+            return (int) val.GetFontSize();
             
         }else {
             return 0;
@@ -409,7 +409,7 @@ public class MmgLabelValuePair extends MmgObj {
     /**
      * Sets the Font object used to draw the value text.
      * 
-     * @param ft    the font used to draw the value text.
+     * @param ft    The font used to draw the value text.
      */
     public void SetValueFont(Font ft) {
         val.SetFont(ft);

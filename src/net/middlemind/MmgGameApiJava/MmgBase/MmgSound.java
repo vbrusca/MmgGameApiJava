@@ -274,7 +274,7 @@ public class MmgSound {
      * A class method that tests for equality based on the contained sound clip and the sound clip of the
      * comparison object.
      * 
-     * @param obj     The MmgSound object to compare
+     * @param obj     The MmgSound object to compare.
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
     public boolean Equals(MmgSound obj) {

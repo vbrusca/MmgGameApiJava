@@ -350,7 +350,7 @@ public class MmgLoadingBar extends MmgObj {
      * A class method that tests for equality based on the font and text of the
      * comparison object.
      * 
-     * @param obj     The MmgFont object to compare
+     * @param obj     The MmgFont object to compare.
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
     public boolean Equals(MmgLoadingBar obj) {

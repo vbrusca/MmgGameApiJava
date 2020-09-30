@@ -391,8 +391,9 @@ public class MmgScreenData {
     }
 
     /**
+     * Sets the scale vector.
      * 
-     * @param v 
+     * @param v     The scale vector.
      */
     public static void SetScale(MmgVector2 v) {
         MmgScreenData.scaleVec = v;
@@ -424,6 +425,8 @@ public class MmgScreenData {
     /**
      * Calculates the scale value on the X axis for the game. 
      * Based on the screen dimensions and the default game width and height.
+     * 
+     * @param agg       A flag indicating if aggregate value are calculated.
      */
     @SuppressWarnings("UnusedAssignment")
     private static void CalculateScaleX(boolean agg) {
@@ -487,6 +490,8 @@ public class MmgScreenData {
     /**
      * Calculates the scale value on the Y axis for the game. 
      * Based on the screen dimensions and the default game width and height.
+     * 
+     * @param agg       A flag indicating if aggregate value are calculated.
      */
     @SuppressWarnings("UnusedAssignment")
     private static void CalculateScaleY(boolean agg) {

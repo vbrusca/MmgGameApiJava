@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
-
+ * TODO: Add comments
  * Created by Middlemind Games 09/14/2020
  *
  * @author Victor G. Brusca
