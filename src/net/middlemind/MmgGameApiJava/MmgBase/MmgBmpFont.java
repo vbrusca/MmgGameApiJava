@@ -72,7 +72,7 @@ public class MmgBmpFont extends MmgObj {
     }
     
     /**
-     * A constructor for the MmgBmpFont class that takes a font source image as an argument
+     * A constructor for the MmgBmpFont class that takes a font source image as an argument.
      * 
      * @param Src       A source MmgBmp object that holds the font as individual images of characters in a series.
      */
