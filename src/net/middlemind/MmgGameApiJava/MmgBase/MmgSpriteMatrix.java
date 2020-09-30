@@ -33,7 +33,7 @@ public class MmgSpriteMatrix {
     private int rowCount;
     
     /**
-     * 
+     * TODO: Add comments.
      */
     private int colCount;
     
@@ -44,6 +44,8 @@ public class MmgSpriteMatrix {
      * @param Src       The source image to split into frames.
      * @param Width     The width of a frame from the source image.
      * @param Height    The height of a frame from the source image.
+     * @param RowCnt
+     * @param ColCnt
      */
     public MmgSpriteMatrix(MmgBmp Src, int Width, int Height, int RowCnt, int ColCnt) {
         src = Src;

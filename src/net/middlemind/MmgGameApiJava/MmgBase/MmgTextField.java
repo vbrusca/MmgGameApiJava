@@ -116,6 +116,7 @@ public class MmgTextField extends MmgObj {
      * @param Width             The width of this object and the width used to resize the BgroundSrc MmgObj.
      * @param Height            The height of this object and the height used to resize the BgroundSrc MmgObj.
      * @param Padding           The padding value to use in slight font positioning calculations.
+     * @param DisplayChars      The number of characters to display in one visible string.
      */
     public MmgTextField(MmgBmp BgroundSrc, MmgFont Font, int Width, int Height, int Padding, int DisplayChars) {
         super();
@@ -306,7 +307,7 @@ public class MmgTextField extends MmgObj {
     /**
      * Sets the boolean flag indicating if the max length limitation is on.
      * 
-     * @param b     A boolean flag indicating if the max length limitation is on
+     * @param b     A boolean flag indicating if the max length limitation is on.
      */
     public void SetMaxLengthOn(boolean b) {
         maxLengthOn = b;
