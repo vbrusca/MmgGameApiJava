@@ -207,7 +207,6 @@ public class MmgScrollHor extends MmgObj {
      * @param ScrollBarHeight               The height of the scroll bar.
      * @param ScrollBarCenterButtonWidth    The width of the scroll bar slider.
      * @param IntervalX                     The interval to use when moving the scroll bar.
-     * @param GameState                     The game state to use when firing events from the scroll view.
      */
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int ScrollBarHeight, int ScrollBarCenterButtonWidth, int IntervalX) {
         super();
@@ -231,7 +230,6 @@ public class MmgScrollHor extends MmgObj {
      * @param ScrollBarColor                The MmgColor to use for the scroll bar.
      * @param ScrollBarCenterButtonColor    The MmgColor to use for the scroll bar slider.
      * @param IntervalX                     The interval to use when moving the scroll bar.
-     * @param GameState                     The game state to use when firing events from the scroll view.
      */
     public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int IntervalX) {
         super();

@@ -47,7 +47,7 @@ public class MmgScrollHorVert extends MmgObj {
     private int scrollPaneWidth;
     
     /**
-     * The height of the scroll pane
+     * The height of the scroll pane.
      */
     private int scrollPaneHeight;
     
@@ -320,7 +320,6 @@ public class MmgScrollHorVert extends MmgObj {
      * @param ScrollBarSliderWidth      The width of the scroll bar slider.
      * @param IntervalX                 The interval to use when moving the scroll bar.
      * @param IntervalY                 The interval to use when moving the scroll bar.
-     * @param GameState                 The game state to use when firing events from the scroll view.
      */    
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int ScrollBarHeight, int ScrollBarWidth, int ScrollBarVertCenterButtonHeight, int ScrollBarHorCenterButtonWidth, int IntervalX, int IntervalY) {
         super();
@@ -349,7 +348,6 @@ public class MmgScrollHorVert extends MmgObj {
      * @param ScrollBarSliderColor      The MmgColor to use for the scroll bar slider.
      * @param IntervalX                 The interval to use when moving the scroll bar.
      * @param IntervalY                 The interval to use when moving the scroll bar.
-     * @param GameState                 The game state to use when firing events from the scroll view.
      */    
     public MmgScrollHorVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarSliderColor, int IntervalX, int IntervalY) {
         super();
@@ -371,7 +369,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Constructor that is based on an instance of this class.
      * 
-     * @param obj       An MmgScrollHor instance.
+     * @param obj       An MmgScrollHorVert instance.
      */
     public MmgScrollHorVert(MmgScrollHorVert obj) {
         super();
@@ -853,6 +851,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @param x     The X coordinate of the position.
      * @param y     The Y coordinate of the position.
      */
+    @Override
     public void SetPosition(int x, int y) {
         SetPosition(new MmgVector2(x, y));
     }    

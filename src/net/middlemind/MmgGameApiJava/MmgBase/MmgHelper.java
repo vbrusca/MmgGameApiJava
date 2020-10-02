@@ -29,6 +29,15 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry.CfgEntryType;
 public class MmgHelper {
     
     /**
+     * TODO: Add comments
+     * @param angle
+     * @return 
+     */
+    public static double ConvertToRadians(double angle) {
+        return (Math.PI / 180) * angle;
+    }    
+    
+    /**
      * Controls if logging is turned on or off.
      */
     public static boolean LOGGING = true;
@@ -768,7 +777,7 @@ public class MmgHelper {
      * A static method used to generate a random integer.
      * 
      * @param exclusiveUpperBound       An exclusive upper bound on the random number generated.
-     * @return                          An integer between 0 not including the exclusiveUpperBound
+     * @return                          An integer between 0 not including the exclusiveUpperBound.
      */
     public static int GetRandomInt(int exclusiveUpperBound) {
         return rando.nextInt(exclusiveUpperBound);
@@ -780,7 +789,7 @@ public class MmgHelper {
      * @param s     The string to be logged.
      */
     public static void wr(String s) {
-        if (LOGGING = true) {
+        if (LOGGING == true) {
             System.out.println(s);
         }
     }
@@ -791,12 +800,12 @@ public class MmgHelper {
      * @param e     The exception to be logged.
      */
     public static void wrErr(Exception e) {
-        if (LOGGING = true) {
-            System.err.println(e.getMessage());
+        if (LOGGING == true) {
+            System.err.println("ErrorLog: " + e.getMessage());
             StackTraceElement[] els = e.getStackTrace();
             int len = els.length;
             for (int i = 0; i < len; i++) {
-                System.err.println(els[i].toString());
+                System.err.println("ErrorLog: " + els[i].toString());
             }
         }
     }
@@ -807,8 +816,8 @@ public class MmgHelper {
      * @param s     The string to be logged.
      */
     public static void wrErr(String s) {
-        if (LOGGING = true) {
-            System.err.println(s);
+        if (LOGGING == true) {
+            System.err.println("ErrorLog: " + s);
         }
     }
 

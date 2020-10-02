@@ -8,6 +8,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgSizeTween extends MmgObj {
 
+    //TODO: Add comments
     /**
      * An event id indicating the MmgSizeTween has reached the finish.
      */
@@ -434,7 +435,7 @@ public class MmgSizeTween extends MmgObj {
     }
 
     /**
-     * Sets the finish size of the size tween
+     * Sets the finish size of the size tween.
      * 
      * @param v     The finish size of the size tween.
      */    
@@ -517,7 +518,7 @@ public class MmgSizeTween extends MmgObj {
     /**
      * Sets the subject of the size tween.
      * 
-     * @param b     The subject of the size tween
+     * @param b     The subject of the size tween.
      */    
     public void SetSubj(MmgObj b) {
         subj = b;

@@ -342,7 +342,7 @@ public class MmgTextBlock extends MmgObj {
     }
 
     /**
-     * Gets the Y axis padding value;
+     * Gets the Y axis padding value.
      *
      * @return      The Y axis padding value.
      */

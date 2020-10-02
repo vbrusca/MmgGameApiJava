@@ -77,6 +77,15 @@ public class MmgPen {
     }
     
     /**
+     * Constructor that sets the local graphics reference from the Image argument.
+     * @param img   The Image from which the graphics context is used to create this MmgPen.
+     */
+    public MmgPen(Image img) {
+        pen = img.getGraphics();
+        cacheOn = false;
+    }    
+    
+    /**
      * Constructor that sets the local Graphics reference and the color
      * of the pen.
      * 

@@ -156,6 +156,9 @@ public class MmgScrollVert extends MmgObj {
      */
     private MmgEvent clickDown = new MmgEvent(null, "vert_click_down", MmgScrollVert.SCROLL_VERT_SCROLL_DOWN_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);
     
+    /**
+     * TODO: Add comments
+     */
     public static int SCROLL_VERT_CLICK_EVENT_TYPE = 1; 
     
     /**
@@ -204,7 +207,6 @@ public class MmgScrollVert extends MmgObj {
      * @param ScrollBarWidth                The width of the scroll bar.
      * @param ScrollBarCenterButtonHeight   The height of the scroll bar slider.
      * @param IntervalY                 The interval to use when moving the scroll bar.
-     * @param GameState                 The game state to use when firing events from the scroll view.
      */
     public MmgScrollVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int ScrollBarWidth, int ScrollBarCenterButtonHeight, int IntervalY) {
         super();
@@ -228,7 +230,6 @@ public class MmgScrollVert extends MmgObj {
      * @param ScrollBarColor            The MmgColor to use for the scroll bar.
      * @param ScrollBarCenterButtonColor      The MmgColor to use for the scroll bar slider.
      * @param IntervalY                 The interval to use when moving the scroll bar.
-     * @param GameState                 The game state to use when firing events from the scroll view.
      */
     public MmgScrollVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int IntervalY) {
         super();
@@ -558,6 +559,7 @@ public class MmgScrollVert extends MmgObj {
      * @param x     The X coordinate of the position.
      * @param y     The Y coordinate of the position.
      */
+    @Override
     public void SetPosition(int x, int y) {
         SetPosition(new MmgVector2(x, y));
     }
