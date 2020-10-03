@@ -378,7 +378,7 @@ public class MmgPositionTween extends MmgObj {
     }
     
     /**
-     * Sets the finish position of the movement tween
+     * Sets the finish position of the movement tween.
      * 
      * @param v     The finish position of the movement tween.
      */
@@ -461,7 +461,7 @@ public class MmgPositionTween extends MmgObj {
     /**
      * Sets the subject of the movement tween.
      * 
-     * @param b     The subject of the movement tween
+     * @param b     The subject of the movement tween.
      */
     public void SetSubj(MmgObj b) {
         subj = b;

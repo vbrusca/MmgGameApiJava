@@ -317,7 +317,7 @@ public class MmgPulse {
     }
     
     /**
-     * The base drawing method for this object.
+     * TODO: Add comments
      * 
      * @param p     The MmgPen object used to draw this object.
      */    

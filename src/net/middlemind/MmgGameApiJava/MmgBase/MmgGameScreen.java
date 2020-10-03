@@ -516,7 +516,6 @@ public class MmgGameScreen extends MmgObj {
      */
     public void SetHeader(MmgObj m) {
         header = m;
-        //MmgHelper.CenterHorAndTop(header);
     }
 
     /**
@@ -535,7 +534,6 @@ public class MmgGameScreen extends MmgObj {
      */
     public void SetFooter(MmgObj m) {
         footer = m;
-        //MmgHelper.CenterHorAndBot(footer);
     }
 
     /**

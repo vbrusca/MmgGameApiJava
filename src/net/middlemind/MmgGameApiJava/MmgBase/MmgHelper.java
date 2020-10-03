@@ -38,6 +38,15 @@ public class MmgHelper {
     }    
     
     /**
+     * 
+     * @param angle
+     * @return 
+     */
+    public static float ConvertToRadians(float angle) {
+        return (float)((Math.PI / 180) * (double)angle);
+    }    
+    
+    /**
      * Controls if logging is turned on or off.
      */
     public static boolean LOGGING = true;
