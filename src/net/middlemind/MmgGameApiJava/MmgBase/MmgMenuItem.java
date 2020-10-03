@@ -352,13 +352,8 @@ public class MmgMenuItem extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
-            if (MmgMenuItem.SHOW_MENU_ITEM_BOUNDING_BOX == true) {
-                //c = p.GetGraphics().getColor();
-                //p.GetGraphics().setColor(Color.red);
-                //p.DrawRect(this);
-                //p.GetGraphics().setColor(c);
-                
-                Color c = p.GetGraphicsColor();
+            if (MmgMenuItem.SHOW_MENU_ITEM_BOUNDING_BOX == true) {                
+                c = p.GetGraphicsColor();
                 p.SetGraphicsColor(Color.RED);
                 p.DrawRect(this);
                 p.SetGraphicsColor(c);                

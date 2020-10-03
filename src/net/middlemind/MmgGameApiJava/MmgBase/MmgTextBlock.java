@@ -105,6 +105,11 @@ public class MmgTextBlock extends MmgObj {
     public static boolean SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
     /**
+     * TODO: Add comments
+     */
+    private Color c;
+    
+    /**
      * Generic constructor. 
      * Sets the color and creates a clean lines, and text data object.
      */
@@ -694,13 +699,8 @@ public class MmgTextBlock extends MmgObj {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
-            if (MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX == true) {
-                //Color c = p.GetGraphics().getColor();
-                //p.GetGraphics().setColor(Color.red);
-                //p.DrawRect(this);
-                //p.GetGraphics().setColor(c);
-                
-                Color c = p.GetGraphicsColor();
+            if (MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX == true) {                
+                c = p.GetGraphicsColor();
                 p.SetGraphicsColor(Color.RED);
                 p.DrawRect(this);
                 p.SetGraphicsColor(c);                
