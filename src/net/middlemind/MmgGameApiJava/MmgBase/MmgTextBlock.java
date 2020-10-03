@@ -695,10 +695,15 @@ public class MmgTextBlock extends MmgObj {
     public void MmgDraw(MmgPen p) {
         if (isVisible == true) {
             if (MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX == true) {
-                Color c = p.GetGraphics().getColor();
-                p.GetGraphics().setColor(Color.red);
+                //Color c = p.GetGraphics().getColor();
+                //p.GetGraphics().setColor(Color.red);
+                //p.DrawRect(this);
+                //p.GetGraphics().setColor(c);
+                
+                Color c = p.GetGraphicsColor();
+                p.SetGraphicsColor(Color.RED);
                 p.DrawRect(this);
-                p.GetGraphics().setColor(c);
+                p.SetGraphicsColor(c);                
             }
 
             dLen = GetLineCount();
