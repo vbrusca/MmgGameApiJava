@@ -126,10 +126,10 @@ public class GpioHub {
         try {
             File f = new File("/sys/class/gpio");
             if(!f.isDirectory() || !f.exists()) {
-                System.out.println("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
+                MmgHelper.wr("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
                 gpioEnabled = false;
             } else {
-                System.out.println("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
+                MmgHelper.wr("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
                 gpioEnabled = true;
             }
             
@@ -158,10 +158,10 @@ public class GpioHub {
        try {
             File f = new File("/sys/class/gpio");
             if(!f.isDirectory() || !f.exists()) {
-                System.out.println("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
+                MmgHelper.wr("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
                 gpioEnabled = false;
             } else {
-                System.out.println("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
+                MmgHelper.wr("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
                 gpioEnabled = true;
             }
             

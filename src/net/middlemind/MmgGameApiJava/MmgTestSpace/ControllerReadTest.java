@@ -283,7 +283,7 @@ public class ControllerReadTest extends JFrame {
             new Thread(new Runnable() {
                 public void run() {
                     Controller[] ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
-                    Hashtable<String, Float> currentData = new Hashtable();                    
+                    Hashtable<String, Float> currentData = new Hashtable<String, Float>();                    
                     int z = 20;                    
 
                     ControllerEnvironment.getDefaultEnvironment().addControllerListener(new ControllerListener() {

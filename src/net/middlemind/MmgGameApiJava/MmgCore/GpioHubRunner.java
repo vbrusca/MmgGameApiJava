@@ -1,6 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
 import java.io.IOException;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
  * The GpioHubRunner class is a threaded class that is used to run a GpioHub and determine the state of each of the GPIO pins at interval.
@@ -121,7 +122,7 @@ public class GpioHubRunner implements Runnable {
             try {
                 gpioHub.GetState();
             } catch (Exception e) {
-                e.printStackTrace();
+                MmgHelper.wrErr(e);
                 running = false;
             }
 
@@ -269,7 +270,7 @@ public class GpioHubRunner implements Runnable {
                 try {
                     Thread.sleep(diff);
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                    MmgHelper.wrErr(ex);
                 }
             }
         }

@@ -241,6 +241,7 @@ public class GamePadHub {
      * 
      * @param Buttons       An array of 6 GpioPin instances used to set the buttons class field.
      */
+    //TODO
     public GamePadHub(GamePadInput[] Buttons, Controller GamePad) {
         gamePad = GamePad;
         buttons = Buttons;
@@ -256,7 +257,7 @@ public class GamePadHub {
         ControllerEnvironment.getDefaultEnvironment().addControllerListener(new ControllerListener() {
             @Override
             public void controllerRemoved(ControllerEvent ev) {
-                System.out.println("Gamepad removed, running scan to see if input is still valid.");
+                MmgHelper.wr("Gamepad removed, running scan to see if input is still valid.");
                 ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
                 if(ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length) {
                     if(ca[gamePadIdx] != null && ca[gamePadIdx].equals(gamePad) == false) {
@@ -276,7 +277,7 @@ public class GamePadHub {
 
             @Override
             public void controllerAdded(ControllerEvent ev) {
-                System.out.println("Gamepad added, running scan to see if input is still valid.");                
+                MmgHelper.wr("Gamepad added, running scan to see if input is still valid.");                
                 ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
                 if(ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length) {
                     if(ca[gamePadIdx] != null && ca[gamePadIdx].equals(gamePad) == false) {
@@ -296,27 +297,27 @@ public class GamePadHub {
         });
     }
     
-    /**
+    /*
      * A preparation method that sets up all the button mappings using the input indexes set in the class fields.
     */
     private void Prep() {
         try {
             prepped = false;
             if(gamePad == null) {
-                System.out.println("Gamepad is null, disabling gamepad.");
+                MmgHelper.wr("Gamepad is null, disabling gamepad.");
                 gamePadEnabled = false;
 
             } else {                
                 components = gamePad.getComponents();
                 if(components == null) {
-                    System.out.println("Gamepad components is null, disabling gamepad.");
+                    MmgHelper.wr("Gamepad components is null, disabling gamepad.");
                     gamePadEnabled = false;
              
                 } else {
                     for(i = 0; i < LEN; i++) {
                         btn1 = buttons[i];
                         if(btn1.btnIdx < 0 || btn1.btnIdx >= components.length) {
-                            System.out.println("Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");                            
+                            MmgHelper.wr("Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");                            
                             gamePadEnabled = false;
                         } 
                     }
@@ -326,12 +327,11 @@ public class GamePadHub {
             }
             
             prepped = true;
-            System.out.println("Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
+            MmgHelper.wr("Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
 
         } catch(Exception e) {
             prepped = true;
             MmgHelper.wrErr(e);
-            
         }        
     }
     

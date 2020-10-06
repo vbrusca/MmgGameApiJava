@@ -36,6 +36,11 @@ public class MmgFontData {
     private static int targetPixelHeightScaled = 22;
 
     /**
+     * TODO: Add comments
+     */
+    public static int MAX_FONT_SIZE = 50;    
+    
+    /**
      * The normal font to use.
      */
     private static Font fontNorm = new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, MmgFontData.fontSize);
@@ -78,6 +83,7 @@ public class MmgFontData {
     public static void CalculateScale() {
         MmgFont fnt = new MmgFont(fontBold);
         int fntSize = 12;
+        int maxFntSize = MAX_FONT_SIZE;
         fnt.SetFontSize(fntSize);
         fnt.SetText("Font Test");
         int max = 50;
@@ -116,9 +122,15 @@ public class MmgFontData {
         }
 
         fontSize = fntSize;
+        
+        if(fontSize > maxFntSize) {
+            fontSize = maxFntSize;
+        }
+                
         fontNorm = new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, MmgFontData.fontSize);
         fontBold = new Font(DEFAULT_FONT_FAMILY, Font.BOLD, MmgFontData.fontSize);
         fontItalic = new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, MmgFontData.fontSize);
+        
         mmgFontNorm = new MmgFont(MmgFontData.fontNorm);
         mmgFontBold = new MmgFont(MmgFontData.fontBold);
         mmgFontItalic = new MmgFont(MmgFontData.fontItalic);
@@ -144,7 +156,12 @@ public class MmgFontData {
      * @return      A new Font instance that is of the default font family, default font type, and specified size.
      */
     public static Font CreateDefaultFont(int sz) {
-        return new Font(DEFAULT_FONT_FAMILY, DEFAULT_FONT_TYPE, sz);
+        if(sz > 0 && sz <= MAX_FONT_SIZE) {
+            return new Font(DEFAULT_FONT_FAMILY, DEFAULT_FONT_TYPE, sz);
+        } else {
+            MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
+            return new Font(DEFAULT_FONT_FAMILY, DEFAULT_FONT_TYPE, MmgFontData.fontSize);
+        }
     }
 
     /**
@@ -154,7 +171,12 @@ public class MmgFontData {
      * @return      A new Font instance that is of the default font family, plain font type, and specified size.
      */
     public static Font CreateDefaultNormalFont(int sz) {
-        return new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, sz);
+        if(sz > 0 && sz <= MAX_FONT_SIZE) {        
+            return new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, sz);
+        } else {
+            MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
+            return new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, MmgFontData.fontSize);
+        }          
     }
 
     /**
@@ -164,7 +186,12 @@ public class MmgFontData {
      * @return      A new Font instance that is of the default font family, bold font type, and specified size.
      */
     public static Font CreateDefaultBoldFont(int sz) {
-        return new Font(DEFAULT_FONT_FAMILY, Font.BOLD, sz);
+        if(sz > 0 && sz <= MAX_FONT_SIZE) {
+            return new Font(DEFAULT_FONT_FAMILY, Font.BOLD, sz);
+        } else {
+            MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
+            return new Font(DEFAULT_FONT_FAMILY, Font.BOLD, MmgFontData.fontSize);
+        }
     }
 
     /**
@@ -174,7 +201,12 @@ public class MmgFontData {
      * @return      A new Font instance that is of the default font family, italic font type, and specified size.
      */
     public static Font CreateDefaultItalicFont(int sz) {
-        return new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, sz);
+        if(sz > 0 && sz <= MAX_FONT_SIZE) {
+            return new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, sz);
+        } else {
+            MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
+            return new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, MmgFontData.fontSize);
+        }
     }
 
     /**

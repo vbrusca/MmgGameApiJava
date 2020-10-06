@@ -18,7 +18,7 @@ public interface GamePadSimple {
     public void ProcessDpadPress(int dir);
     
     /**
-     * The ProcessDpadRelease method is designed to handle dpad release events and takes a  direction code as input.
+     * The ProcessDpadRelease method is designed to handle dpad release events and takes a direction code as input.
      * 
      * @param dir       The dir argument is the code for the dpad direction released.
      */

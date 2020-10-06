@@ -16,12 +16,12 @@ public class MmgMediaTracker {
     /**
      * Hashtable used to track loading of image resources, in a central place.
      */
-    public static Hashtable<String, Image> cacheBmp = new Hashtable();
+    public static Hashtable<String, Image> cacheBmp = new Hashtable<String, Image>();
     
     /**
      * Hashtable used to track loading of sound resources, in a central place.
      */
-    public static Hashtable<String, Clip> cacheSound = new Hashtable();
+    public static Hashtable<String, Clip> cacheSound = new Hashtable<String, Clip>();
     
     /**
      * A static boolean indicating existing cached objects should be removed if they already exist and are being replaced.

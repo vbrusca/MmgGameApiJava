@@ -160,8 +160,7 @@ public class DatExternalStrings {
         if (EXT.contains(EXT_INVESTIGATE_SQUARE_BUSH_SNOWY_1_DEAD) == false) {
             EXT.put(EXT_INVESTIGATE_SQUARE_BUSH_SNOWY_1_DEAD, "You guessed it, it's a dead bush.");
         }        
-        
-        
+                
         if (EXT.contains(EXT_INVESTIGATE_YOU_FOUND_SOMETHING) == false) {
             EXT.put(EXT_INVESTIGATE_YOU_FOUND_SOMETHING, "Looks like you found something. Congrats! Image Idx: ");
         }

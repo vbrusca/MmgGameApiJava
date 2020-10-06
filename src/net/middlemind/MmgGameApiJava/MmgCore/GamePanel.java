@@ -177,7 +177,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * A static Hashtable instance that can be used to store objects for quick, easy access.
      */
-    public static Hashtable<String, Object> VARS = new Hashtable();
+    public static Hashtable<String, Object> VARS = new Hashtable<String, Object>();
 
     /**
      * A string used to store the current frame rate information in the debug header.
@@ -375,6 +375,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param WinHeight     The target window height.
      * @param X             The X coordinate of this Canvas.
      * @param Y             The Y coordinate of this Canvas.
+     * @param GameWidth     TODO: Add comments
+     * @param GameHeight
      */
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) {
@@ -430,7 +432,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         screenLoading.SetGenericEventHandler(this);
         screenLoading.SetSlowDown(500);        
         
-        gameScreens = new Hashtable();
+        gameScreens = new Hashtable<GameStates, MmgGameScreen>();
         gameState = GameStates.BLANK;
 
         canvas.addMouseMotionListener(new MouseMotionListener() {
@@ -627,6 +629,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     /**
      * The ProcessAPress method is used to pass A button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
      */
+    //TODO: Add comments
     @Override
     public void ProcessAPress(int src) {
         currentScreen.ProcessAPress(src);
@@ -1000,7 +1003,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * Returns the application window width;
+     * Returns the application window width.
      * 
      * @return      The application window width.
      */
@@ -1009,7 +1012,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     }
 
     /**
-     * Returns the application window height;
+     * Returns the application window height.
      * 
      * @return      The application window height.
      */    

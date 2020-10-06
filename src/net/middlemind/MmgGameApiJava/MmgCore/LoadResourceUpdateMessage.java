@@ -43,8 +43,8 @@ public class LoadResourceUpdateMessage {
      * 
      * @param pos   Sets the read position.
      */
-    public void SetPos(int pos) {
-        this.pos = pos;
+    public void SetPos(int Pos) {
+        pos = Pos;
     }
 
     /**
@@ -61,7 +61,7 @@ public class LoadResourceUpdateMessage {
      * 
      * @param len   The total data length.
      */
-    public void SetLen(int len) {
-        this.len = len;
+    public void SetLen(int Len) {
+        len = Len;
     }  
 }

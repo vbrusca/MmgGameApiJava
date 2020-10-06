@@ -280,7 +280,7 @@ public class OdroidGame {
             if (OdroidGame.ENGINE_CONFIG_FILE != null && OdroidGame.ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
                 boolean r = dci.ImportGameSettings(OdroidGame.ENGINE_CONFIG_FILE);
-                System.out.println("Engine config load result: " + r);
+                MmgHelper.wr("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
                 String[] keys = dci.GetValues().keySet().toArray(new String[len]);
@@ -296,24 +296,24 @@ public class OdroidGame {
                         if (ent.from != null && ent.from.equals("GameSettings") == true) {
                             f = GameSettings.class.getField(ent.key);
                             if (f != null) {
-                                System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
                             }
                         } else if(ent.from != null && ent.from.equals("Helper") == true) {
                             f = GameSettings.class.getField(ent.key);
                             if (f != null) {
-                                System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
                             }
                         } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
                             f = OdroidGame.class.getField(ent.key);
                             if (f != null) {
-                                System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
                             }             
                         }                        
                     } catch (Exception e) {
-                        System.out.println("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
+                        MmgHelper.wr("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
                         MmgHelper.wrErr(e);
                     }
                 }

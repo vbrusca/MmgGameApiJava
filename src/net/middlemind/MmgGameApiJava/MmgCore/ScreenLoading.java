@@ -33,11 +33,6 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
     public RunResourceLoad datLoad;
 
     /**
-     * Helper class for displaying a loading bar.
-     */
-    //public MmgLoadingBar loadingBar;
-
-    /**
      * The game state this screen has.
      */
     public GameStates state;

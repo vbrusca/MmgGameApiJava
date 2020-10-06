@@ -112,7 +112,6 @@ public class GamePadInput {
         checkClicked = chkClick;
     }
     
-    
     /**
      * A GpioPin constructor that sets all class field values except pinHigh and pinIn. 
      * The pinHigh and pinIn field value are defaulted to false with this constructor.

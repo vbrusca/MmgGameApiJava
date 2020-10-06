@@ -50,7 +50,7 @@ public class GameSettingsImporter {
 
         // Load the input XML document, parse it and return an instance of the document class
         Document document = builder.parse(new File(xmlFile));
-        values = new Hashtable();
+        values = new Hashtable<String, DatConstantsEntry>();
         Node nodeMain = document.getElementsByTagName("engineconfig").item(0);
         version = nodeMain.getAttributes().getNamedItem("version").getNodeValue();
         NodeList nodeList = nodeMain.getChildNodes();
@@ -97,7 +97,7 @@ public class GameSettingsImporter {
             RunImportGameSettings(xmlFile);
             res = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            MmgHelper.wrErr(e);
             res = false;
         }
 

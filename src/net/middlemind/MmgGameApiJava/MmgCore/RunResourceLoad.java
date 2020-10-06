@@ -212,7 +212,7 @@ public class RunResourceLoad implements Runnable {
             readResult = true;
             
         }catch(Exception e) {
-            e.printStackTrace();
+            MmgHelper.wrErr(e);
         }        
         
         try {            
@@ -244,7 +244,7 @@ public class RunResourceLoad implements Runnable {
             readResult = true;
             
         }catch(Exception e) {
-            e.printStackTrace();
+            MmgHelper.wrErr(e);            
         }
                 
         readComplete = true;

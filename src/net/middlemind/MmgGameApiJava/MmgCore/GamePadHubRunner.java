@@ -1,5 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
+
 /**
  * The GamePadRunner class is a threaded class that is used to connect to a USB GamePad via JInput and determine the state of each
  * of the target buttons at interval.
@@ -121,7 +123,7 @@ public class GamePadHubRunner implements Runnable {
             try {
                 gamePadHub.GetState();
             } catch (Exception e) {
-                e.printStackTrace();
+                MmgHelper.wrErr(e);
                 running = false;
             }
             
@@ -269,7 +271,7 @@ public class GamePadHubRunner implements Runnable {
                 try {
                     Thread.sleep(diff);
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                    MmgHelper.wrErr(ex);
                 }
             }
         }

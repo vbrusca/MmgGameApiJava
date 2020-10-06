@@ -90,16 +90,16 @@ public class GpioPin {
      * 
      * @param pinNumber         The GPIO pin number of the host computer system.
      * @param high              The default high/low, 0/1, state to set the GpioPin when prepped by the GpioHub.
-     * @param in                The default in/out state to set the GpioPin when prepped by the GpioHub.
+     * @param In                The default in/out state to set the GpioPin when prepped by the GpioHub.
      * @param buttonType        The GpioButton type to assign to the GpioPin class instance.
      * @param chkPress          A boolean flag indicating if the press GpioPin state should be checked.
      * @param chkRelease        A boolean flag indicating if the release GpioPin state should be checked.
      * @param chkClick          A boolean flag indicating if the click GpioPin state should be checked.
      */
-    public GpioPin(int pinNumber, boolean high, boolean in, GpioButton buttonType, boolean chkPress, boolean chkRelease, boolean chkClick) {
+    public GpioPin(int pinNumber, boolean high, boolean In, GpioButton buttonType, boolean chkPress, boolean chkRelease, boolean chkClick) {
         pinNum = pinNumber;
         pinHigh = high;
-        pinIn = in;
+        pinIn = In;
         button = buttonType;
         stateTmp = false;
         statePrev = false;

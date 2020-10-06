@@ -349,7 +349,7 @@ public class MmgHelper {
      * @return          A Hashtable with key, MmgCfgFileEntry pairs, loading from the class config file.
      */
     public static Hashtable<String, MmgCfgFileEntry> ReadClassConfigFile(String file) {
-        Hashtable<String, MmgCfgFileEntry> ret = new Hashtable();
+        Hashtable<String, MmgCfgFileEntry> ret = new Hashtable<String, MmgCfgFileEntry>();
         
         try {
             MmgCfgFileEntry cfe = null;

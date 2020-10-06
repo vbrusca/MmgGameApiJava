@@ -237,7 +237,7 @@ public class MainFrame extends JFrame {
                     RunFrameRate.RUNNING = false;
                     
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    MmgHelper.wrErr(ex);
                 }
                 dispose();
             }

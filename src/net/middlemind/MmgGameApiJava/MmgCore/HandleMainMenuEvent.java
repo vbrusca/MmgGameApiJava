@@ -59,7 +59,7 @@ public class HandleMainMenuEvent implements MmgEventHandler {
     public static int MAIN_MENU_EVENT_START_GAME_1P = 5;
     
     /**
-     * Supported event id for a start two player game event..
+     * Supported event id for a start two player game event.
      */
     public static int MAIN_MENU_EVENT_START_GAME_2P = 6;    
     
@@ -67,9 +67,8 @@ public class HandleMainMenuEvent implements MmgEventHandler {
      * Constructor that sets the main menu screen object, ScreenMainMenu, owner and the
      * GamePanel that owns the about screen.
      *
-     * @param CApp      The main menu screen object, ScreenMainMenu, that this event handler belongs too.
-     * @param Owner     The game panel, GamePanel, that the main menu screen belongs
-     * too.
+     * @param CApp      The main menu screen object, ScreenMainMenu, that this event handler belongs to.
+     * @param Owner     The game panel, GamePanel, that the main menu screen belongs to.
      */
     public HandleMainMenuEvent(MmgGameScreen CApp, GamePanel Owner) {
         cApp = CApp;

@@ -195,7 +195,11 @@ public class MmgFont extends MmgObj {
      * @param sz    The size of the font.
      */
     public void SetFontSize(int sz) {
-        font = font.deriveFont((float) sz);
+        if(sz > 0 && sz <= MmgFontData.MAX_FONT_SIZE) { 
+            font = font.deriveFont((float) sz);
+        } else {
+            MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
+        }
     }
 
     /**
