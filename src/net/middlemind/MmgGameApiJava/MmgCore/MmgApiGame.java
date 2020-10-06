@@ -11,7 +11,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
  *
  * @author Victor G. Brusca
  */
-public class OdroidGame {
+public class MmgApiGame {
 
     /**
      * The main JPanel that houses the different game screens.
@@ -277,9 +277,9 @@ public class OdroidGame {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (OdroidGame.ENGINE_CONFIG_FILE != null && OdroidGame.ENGINE_CONFIG_FILE.equals("") == false) {
+            if (MmgApiGame.ENGINE_CONFIG_FILE != null && MmgApiGame.ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(OdroidGame.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(MmgApiGame.ENGINE_CONFIG_FILE);
                 MmgHelper.wr("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
@@ -306,7 +306,7 @@ public class OdroidGame {
                                 SetField(ent, f);
                             }
                         } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
-                            f = OdroidGame.class.getField(ent.key);
+                            f = MmgApiGame.class.getField(ent.key);
                             if (f != null) {
                                 MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
@@ -333,13 +333,13 @@ public class OdroidGame {
         MmgHelper.wr("Game Width: " + GAME_WIDTH);
         MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, OdroidGame.GAME_WIDTH, OdroidGame.GAME_HEIGHT);
-        pnlGame = new GamePanel(mf, OdroidGame.PANEL_WIDTH, OdroidGame.PANEL_HEIGHT, (OdroidGame.WIN_WIDTH - OdroidGame.PANEL_WIDTH) / 2, (OdroidGame.WIN_HEIGHT - OdroidGame.PANEL_HEIGHT) / 2, OdroidGame.GAME_WIDTH, OdroidGame.GAME_HEIGHT);
+        mf = new MainFrame(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT, MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, (MmgApiGame.WIN_WIDTH - MmgApiGame.PANEL_WIDTH) / 2, (MmgApiGame.WIN_HEIGHT - MmgApiGame.PANEL_HEIGHT) / 2, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(OdroidGame.WIN_WIDTH, OdroidGame.WIN_HEIGHT);
+        mf.setSize(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
         mf.setName(GameSettings.NAME);

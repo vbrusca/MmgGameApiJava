@@ -1,6 +1,5 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
-import java.io.IOException;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 
 /**
@@ -255,7 +254,7 @@ public class GpioHubRunner implements Runnable {
         try {
             Thread.sleep(1000);
         } catch(Exception e) {
-            
+            MmgHelper.wrErr(e);
         }
         
         while(running == true) {
