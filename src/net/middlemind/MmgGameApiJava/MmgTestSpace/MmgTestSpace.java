@@ -342,7 +342,7 @@ public final class MmgTestSpace {
                 String[] keys = dci.GetValues().keySet().toArray(new String[len]);
                 String key;
                 DatConstantsEntry ent = null;
-                Field f;
+                Field f = null;
 
                 for (int i = 0; i < len; i++) {
                     try {

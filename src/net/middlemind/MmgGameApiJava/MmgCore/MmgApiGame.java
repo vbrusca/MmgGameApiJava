@@ -216,7 +216,7 @@ public class MmgApiGame {
     /**
      * Static main method.
      *
-     * @param args      The command line arguments
+     * @param args      The command line arguments.
      */
     public static final void main(String[] args) {
         if(GameSettings.LOAD_NATIVE_LIBRARIES) {
@@ -286,7 +286,7 @@ public class MmgApiGame {
                 String[] keys = dci.GetValues().keySet().toArray(new String[len]);
                 String key;
                 DatConstantsEntry ent = null;
-                Field f;
+                Field f = null;
 
                 for (int i = 0; i < len; i++) {
                     try {
