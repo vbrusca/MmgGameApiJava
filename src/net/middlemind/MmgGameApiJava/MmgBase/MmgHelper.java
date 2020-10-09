@@ -274,7 +274,7 @@ public class MmgHelper {
                 try {
                     bw.close();
                 }catch(Exception ex) {
-                    
+                    wrErr(ex);
                 }                
                 
                 ret = true;
@@ -323,7 +323,7 @@ public class MmgHelper {
                 try {
                     bw.close();
                 }catch(Exception ex) {
-                    
+                    wrErr(ex);
                 }                
                 
                 ret = true;
@@ -394,7 +394,7 @@ public class MmgHelper {
                 try {
                     br.close();
                 }catch(Exception ex) {
-                    
+                    wrErr(ex);
                 }
             }
         }catch(Exception e) {

@@ -58,7 +58,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
                     update.MmgHandleUpdate(null);
                 }
             } catch (Exception e) {
-
+                MmgHelper.wrErr(e);
             }
         }
     }

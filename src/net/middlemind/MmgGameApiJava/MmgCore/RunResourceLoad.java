@@ -202,6 +202,7 @@ public class RunResourceLoad implements Runnable {
                     try {
                         Thread.sleep(slowDown);
                     } catch (Exception e) {
+                        MmgHelper.wrErr(e);
                     }
                     
                     if(exitLoad) {
@@ -233,7 +234,7 @@ public class RunResourceLoad implements Runnable {
                     try {
                         Thread.sleep(slowDown);
                     } catch (Exception e) {
-                        
+                        MmgHelper.wrErr(e);
                     }
                     
                     if(exitLoad) {

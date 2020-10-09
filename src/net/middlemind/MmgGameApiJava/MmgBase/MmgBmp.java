@@ -67,12 +67,12 @@ public class MmgBmp extends MmgObj {
     /**
      * A temporary MmgObj instance used in the Equals method.
      */
-    private MmgObj o1;
+    //private MmgObj o1;
     
     /**
      * A temporary MmgObj instance used in the Equals method.
      */
-    private MmgObj o2;    
+    //private MmgObj o2;    
     
     /**
      * The strategy to use when drawing bitmaps.
