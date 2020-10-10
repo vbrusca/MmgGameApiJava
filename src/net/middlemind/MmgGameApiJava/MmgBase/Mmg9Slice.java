@@ -1,8 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
@@ -35,7 +33,7 @@ public class Mmg9Slice extends MmgObj {
     /**
      * Environment graphics configuration data to use when creating new bitmaps to draw on.
      */
-    public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+    //public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
     /**
      * Default constructor that takes a source MmgBmp to slice an offset and dimensions for the
@@ -179,7 +177,7 @@ public class Mmg9Slice extends MmgObj {
         boolean alpha = true;
         MmgBmp b = GetSrc();
         Image img = b.GetImage();
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(GetWidth(), GetHeight(), alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        BufferedImage bg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(GetWidth(), GetHeight(), alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         Graphics2D g = (Graphics2D) bg.getGraphics();
 
         if (MmgPen.ADV_RENDER_HINTS == true) {

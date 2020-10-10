@@ -282,7 +282,7 @@ public class MmgVector2 {
      * @return      A string representation of the vector.
      */
     public String ToString() {
-        return "X: " + GetXDouble() + " Y:" + GetYDouble();
+        return "MmgVector2: X: " + GetXDouble() + " Y:" + GetYDouble();
     }
 
     /**

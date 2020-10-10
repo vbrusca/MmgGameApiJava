@@ -63,16 +63,6 @@ public class MmgBmp extends MmgObj {
      * The integer representation of this objects id.
      */
     private int id;
-
-    /**
-     * A temporary MmgObj instance used in the Equals method.
-     */
-    //private MmgObj o1;
-    
-    /**
-     * A temporary MmgObj instance used in the Equals method.
-     */
-    //private MmgObj o2;    
     
     /**
      * The strategy to use when drawing bitmaps.

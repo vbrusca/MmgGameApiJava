@@ -1,5 +1,8 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+
 /**
  * A class that represents the screen data of the game.
  * Also provides helper methods for scaling.
@@ -8,6 +11,12 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  * @author Victor G. Brusca
  */
 public class MmgScreenData {    
+
+    /**
+     * Environment graphics configuration data to use when creating new bitmaps to draw on.
+     */
+    public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+        
     /**
      * An enumeration used to track the scaling mode used by this class.
      */

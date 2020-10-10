@@ -9,7 +9,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
@@ -81,7 +80,17 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         GAME_SCREEN_27,
         GAME_SCREEN_28,
         GAME_SCREEN_29,
-        GAME_SCREEN_30        
+        GAME_SCREEN_30,        
+        GAME_SCREEN_31,
+        GAME_SCREEN_32,
+        GAME_SCREEN_33,
+        GAME_SCREEN_34,
+        GAME_SCREEN_35,
+        GAME_SCREEN_36,
+        GAME_SCREEN_37,
+        GAME_SCREEN_38,
+        GAME_SCREEN_39,
+        GAME_SCREEN_40
     }
 
     /**
@@ -401,7 +410,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         now = System.currentTimeMillis();
         prev = System.currentTimeMillis();
 
-        canvas = new Canvas(MmgBmpScaler.GRAPHICS_CONFIG);
+        canvas = new Canvas(MmgScreenData.GRAPHICS_CONFIG);
         canvas.setSize(winWidth, winHeight);
 
         MmgHelper.wr("");        
@@ -637,7 +646,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
     /**
      * The ProcessARelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
-     */    
+     */
+    //TODO: Add comments    
     @Override
     public void ProcessARelease(int src) {
         currentScreen.ProcessARelease(src);
@@ -645,7 +655,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
     /**
      * The ProcessAClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
-     */    
+     */
+    //TODO: Add comments
     @Override    
     public void ProcessAClick(int src) {
         currentScreen.ProcessAClick(src);
@@ -653,7 +664,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     
     /**
      * The ProcessBPress method is used to pass B button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
-     */    
+     */ 
+    //TODO: Add comments        
     @Override
     public void ProcessBPress(int src) {
         currentScreen.ProcessBPress(src);
@@ -661,7 +673,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
     /**
      * The ProcessBRelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
-     */        
+     */
+    //TODO: Add comments
     @Override
     public void ProcessBRelease(int src) {
         currentScreen.ProcessBRelease(src);
@@ -688,6 +701,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * 
      * @param c     The c argument is the character of the keyboard press event.
      */
+    //TODO: Add comments
     public void ProcessKeyPress(char c, int code) {
         currentScreen.ProcessKeyPress(c, code);
     }
@@ -697,6 +711,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * 
      * @param c     The c argument is the character of the keyboard release event.
      */    
+    //TODO: Add comments
     public void ProcessKeyRelease(char c, int code) {
         currentScreen.ProcessKeyRelease(c, code);
     }    
@@ -706,6 +721,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * 
      * @param c     The c argument is the character of the keyboard click event.
      */    
+    //TODO: Add comments
     public void ProcessKeyClick(char c, int code) {
         currentScreen.ProcessKeyClick(c, code);
     }    
@@ -784,7 +800,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @return          Returns a BufferedImage with the desired coordinates and transparency. 
      */
     public BufferedImage create(int width, int height, boolean alpha) {
-        return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        return MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
     }
 
     /**
@@ -840,7 +856,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param g         The game state to switch to.
      */
     public void SwitchGameState(GameStates g) {
-        MmgHelper.wr("Switching Game State To: " + g);
+        MmgHelper.wr("GamePanel: Switching Game State To: " + g);
 
         if (gameState != prevGameState) {
             prevGameState = gameState;
@@ -968,7 +984,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     @Override
     public void HandleGenericEvent(GenericEventMessage obj) {
-        MmgHelper.wr("HandleGenericEvent");
+        MmgHelper.wr("GamePanel: HandleGenericEvent");
         if (obj != null) {
             if (obj.GetGameState() == GameStates.LOADING) {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {

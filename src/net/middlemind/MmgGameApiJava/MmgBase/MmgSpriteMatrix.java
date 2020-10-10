@@ -28,7 +28,7 @@ public class MmgSpriteMatrix {
     private int height;
     
     /**
-     * 
+     * TODO: Add comment
      */
     private int rowCount;
     
@@ -126,7 +126,8 @@ public class MmgSpriteMatrix {
     }
     
     /**
-     * TODO
+     * TODO: Add comment
+     * 
      * @return 
      */
     public int GetRowCount() {
@@ -134,6 +135,7 @@ public class MmgSpriteMatrix {
     }
     
     /**
+     * TODO: Add comment
      * 
      * @param i 
      */
@@ -142,7 +144,8 @@ public class MmgSpriteMatrix {
     }
     
     /**
-     * TODO
+     * TODO: Add comment
+     * 
      * @return 
      */
     public int GetColCount() {
@@ -150,6 +153,7 @@ public class MmgSpriteMatrix {
     }
     
     /**
+     * TODO: Add comment
      * 
      * @param i 
      */

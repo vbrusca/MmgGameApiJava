@@ -664,7 +664,6 @@ public class MmgPen {
      * @param c     The color of the pen.
      */
     public void SetGraphicsColor(Color c) {
-        //color = c;
         pen.setColor(c);
     }
     

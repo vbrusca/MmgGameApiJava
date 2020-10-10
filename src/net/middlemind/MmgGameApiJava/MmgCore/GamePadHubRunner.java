@@ -62,17 +62,17 @@ public class GamePadHubRunner implements Runnable {
         running = true;
         
         if(gamePadHub == null) {
-            System.err.println("GamePadHub is null! Turning off GamePadHubRunner.");
+            System.err.println("GamePadHub: GamePadHub is null! Turning off GamePadHubRunner.");
             running = false;            
         }
         
         if(gamePadHub != null && gamePadHub.IsPrepped() == false) {
-            System.err.println("GamePadHub has not had its pins prepped! Turning off GamePadHubRunner.");
+            System.err.println("GamePadHub: GamePadHub has not had its pins prepped! Turning off GamePadHubRunner.");
             running = false;
         }
         
         if(gamePad == null) {
-            System.err.println("GamePad is null! Turning off GamePadHubRunner.");
+            System.err.println("GamePadHub: GamePad is null! Turning off GamePadHubRunner.");
         }
     }
 

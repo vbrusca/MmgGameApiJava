@@ -8,7 +8,6 @@ package net.middlemind.MmgGameApiJava.MmgBase;
  */
 public class MmgSizeTween extends MmgObj {
 
-    //TODO: Add comments
     /**
      * An event id indicating the MmgSizeTween has reached the finish.
      */
@@ -35,7 +34,7 @@ public class MmgSizeTween extends MmgObj {
     private MmgObj subj;
     
     /**
-     * 
+     * TODO: Add comment
      */
     private MmgObj subjOrig;
     
@@ -110,7 +109,7 @@ public class MmgSizeTween extends MmgObj {
     private MmgEventHandler onReachStart;
         
     /**
-     * 
+     * TODO: Add comment
      */
     private MmgScaleHandler onSubjScale;
     
@@ -248,7 +247,7 @@ public class MmgSizeTween extends MmgObj {
     }
     
     /**
-     * 
+     * TODO: Add comment
      * 
      * @param o 
      */
@@ -257,7 +256,7 @@ public class MmgSizeTween extends MmgObj {
     }
     
     /**
-     *
+     * TODO: Add comment
      * 
      * @return 
      */
@@ -266,6 +265,7 @@ public class MmgSizeTween extends MmgObj {
     }
     
     /**
+     * TODO: Add comment
      * 
      * @return 
      */
@@ -274,6 +274,7 @@ public class MmgSizeTween extends MmgObj {
     }
     
     /**
+     * TODO: Add comment
      * 
      * @param o 
      */

@@ -689,7 +689,7 @@ public class MmgPositionTween extends MmgObj {
      * A method used to check the equality of this MmgPositionTween when compared to another MmgPositionTween.
      * Compares object fields to determine equality.
      * 
-     * @param obj     The MmgPositionTween object to compare to.
+     * @param obj   The MmgPositionTween object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */
     public boolean Equals(MmgPositionTween obj) {

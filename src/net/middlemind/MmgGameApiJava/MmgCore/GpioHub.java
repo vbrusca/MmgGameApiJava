@@ -126,10 +126,10 @@ public class GpioHub {
         try {
             File f = new File("/sys/class/gpio");
             if(!f.isDirectory() || !f.exists()) {
-                MmgHelper.wr("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
+                MmgHelper.wr("GpioHub: GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
                 gpioEnabled = false;
             } else {
-                MmgHelper.wr("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
+                MmgHelper.wr("GpioHub: GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
                 gpioEnabled = true;
             }
             

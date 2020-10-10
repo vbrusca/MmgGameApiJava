@@ -248,6 +248,6 @@ public class MmgEvent {
      * @return      A string representation of this class.
      */
     public String ToString() {
-        return "Msg: " + message + " Id: " + id + " Type: " + type;
+        return "MmgEvent: Msg: " + message + " Id: " + id + " Type: " + type;
     }
 }

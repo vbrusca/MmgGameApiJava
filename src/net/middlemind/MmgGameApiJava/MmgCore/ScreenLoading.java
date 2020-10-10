@@ -401,7 +401,7 @@ public class ScreenLoading extends MmgLoadingScreen implements LoadResourceUpdat
                 }
             }
             
-            MmgHelper.wr("LoadingScreen POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
+            MmgHelper.wr("LoadingScreen: POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
         }
     }
 

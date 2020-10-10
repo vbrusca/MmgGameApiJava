@@ -74,7 +74,7 @@ public class MmgTextField extends MmgObj {
     private boolean isDirty;
         
     /**
-     * An MmgEvent to fire when the max length error has occured, needs to have its event handler set.
+     * An MmgEvent to fire when the max length error has occurred, needs to have its event handler set.
      */
     private MmgEvent errorMaxLength = new MmgEvent(null, "error_max_length", MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE, null, null);
     

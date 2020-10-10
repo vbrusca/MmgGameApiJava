@@ -267,7 +267,7 @@ public class MmgSound {
      * @return      The string representation of this class.
      */
     public String ToString() {
-        return "Sound: " + idStr + " Clip Length MS: " + (sound.getMicrosecondLength() / 1000);
+        return "MmgSound: " + idStr + " Clip Length MS: " + (sound.getMicrosecondLength() / 1000);
     }
     
     /**

@@ -54,7 +54,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
                 Thread.sleep(displayTime);
 
                 if (update != null) {
-                    MmgHelper.wr("MmgHandleUpdate");
+                    MmgHelper.wr("MmgSplashScreen: run: Calling MmgHandleUpdate");
                     update.MmgHandleUpdate(null);
                 }
             } catch (Exception e) {

@@ -483,7 +483,6 @@ public class ScreenMainMenu extends MmgGameScreen {
      * This is the method that handles displaying different game screen text. Calling draw screen prepares the screen for display.
      */
     public void DrawScreen() {
-        //int mainY;
         pause = true;
         menu = new MmgMenuContainer();
         menu.SetMmgColor(null);

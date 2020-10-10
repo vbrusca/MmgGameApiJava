@@ -79,8 +79,8 @@ public class RunFrameRate implements Runnable {
         mf = Mf;
         tFps = Fps;
         tFrameTime = (1000 / tFps);
-        MmgHelper.wr("Target Frame Rate: " + tFps);
-        MmgHelper.wr("Target Frame Time: " + tFrameTime);
+        MmgHelper.wr("RunFrameRate: Target Frame Rate: " + tFps);
+        MmgHelper.wr("RunFrameRate: Target Frame Time: " + tFrameTime);
     }
 
     /**

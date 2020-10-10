@@ -229,13 +229,11 @@ public class MainFrame extends JFrame {
             @SuppressWarnings("CallToPrintStackTrace")
             public void windowClosing(WindowEvent e) {
                 try {
-                    MmgHelper.wr("WindowClosing");
-
+                    MmgHelper.wr("MainFrame: WindowClosing");
                     GamePanel.PAUSE = true;
                     GamePanel.EXIT = true;
                     RunFrameRate.PAUSE = true;
                     RunFrameRate.RUNNING = false;
-                    
                 } catch (Exception ex) {
                     MmgHelper.wrErr(ex);
                 }

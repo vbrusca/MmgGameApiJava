@@ -157,7 +157,7 @@ public class MmgScrollVert extends MmgObj {
     private MmgEvent clickDown = new MmgEvent(null, "vert_click_down", MmgScrollVert.SCROLL_VERT_SCROLL_DOWN_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);
     
     /**
-     * TODO: Add comments
+     * An event type for a scroll pane click event.
      */
     public static int SCROLL_VERT_CLICK_EVENT_TYPE = 1; 
     
@@ -167,7 +167,7 @@ public class MmgScrollVert extends MmgObj {
     public static int SCROLL_VERT_CLICK_EVENT_ID = 0;
     
     /**
-     * An event id for a scroll pane up click event.
+     * An event id for a scroll pane up event.
      */     
     public static int SCROLL_VERT_SCROLL_UP_EVENT_ID = 1;
     

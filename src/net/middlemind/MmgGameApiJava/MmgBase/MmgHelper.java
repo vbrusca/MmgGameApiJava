@@ -38,7 +38,7 @@ public class MmgHelper {
     }    
     
     /**
-     * 
+     * TODO: Add comments
      * @param angle
      * @return 
      */
@@ -428,7 +428,7 @@ public class MmgHelper {
      */
     public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, boolean alpha) {
         MmgDrawableBmpSet dBmpSet = new MmgDrawableBmpSet();
-        dBmpSet.buffImg = MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        dBmpSet.buffImg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         dBmpSet.graphics = (Graphics2D)dBmpSet.buffImg.getGraphics();
         dBmpSet.p = new MmgPen();
         dBmpSet.p.SetGraphics(dBmpSet.graphics);

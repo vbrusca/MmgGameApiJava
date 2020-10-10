@@ -413,6 +413,7 @@ public class MmgBmpFont extends MmgObj {
             case '~':
                 return 94;
             default:
+                MmgHelper.wr("MmgBmpFont: GetIndexOf: Unknown character, using default value '-1'.");
                 return -1;
         }
     }
@@ -637,7 +638,8 @@ public class MmgBmpFont extends MmgObj {
             case 94:
                 return '~';
             default:
-                return null;
+                MmgHelper.wr("MmgBmpFont: GetCharAt: Unknown character index, using default character '_'.");
+                return '_';
         }
     }
     

@@ -223,7 +223,7 @@ public class RunResourceLoad implements Runnable {
                 tlen = adFiles.size();
                 
                 for(i = 0; i < tlen; i++) {
-                    MmgHelper.wr("Found auto_load file: " + adFiles.get(i).getName() + " Path: " + adFiles.get(i).getPath());
+                    MmgHelper.wr("RunResourceLoad: Found auto_load file: " + adFiles.get(i).getName() + " Path: " + adFiles.get(i).getPath());
                     MmgHelper.GetBasicCachedBmp(adFiles.get(i).getPath(), adFiles.get(i).getName());
                     readPos = i * loadMultiplier;
                     

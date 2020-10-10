@@ -9,7 +9,7 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 public interface MmgScaleHandler {
 
     /**
-     * 
+     * TODO: Add comments
      * 
      * @param v 
      */

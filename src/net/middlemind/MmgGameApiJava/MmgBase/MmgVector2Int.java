@@ -239,9 +239,8 @@ public class MmgVector2Int extends MmgVector2 {
      *
      * @return      The vector values.
      */
-    @Override
-    public double[] GetVector() {
-        return new double[] {GetXDouble(), GetYDouble()};
+    public int[] GetVectorInt() {
+        return new int[] {GetX(), GetY()};
     }
 
     /**
@@ -249,8 +248,7 @@ public class MmgVector2Int extends MmgVector2 {
      *
      * @param v     The vector values.
      */
-    @Override    
-    public void SetVector(double[] v) {
+    public void SetVectorInt(int[] v) {
         SetX(v[0]);
         SetY(v[1]);
     }
@@ -310,7 +308,7 @@ public class MmgVector2Int extends MmgVector2 {
      */
     @Override
     public String ToString() {
-        return "X: " + GetXDouble() + " Y:" + GetYDouble();
+        return "MmgVector2Int: X: " + GetXDouble() + " Y:" + GetYDouble();
     }
 
     /**

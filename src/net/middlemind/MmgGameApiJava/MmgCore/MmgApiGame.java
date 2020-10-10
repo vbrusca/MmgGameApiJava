@@ -313,7 +313,7 @@ public class MmgApiGame {
                             }             
                         }                        
                     } catch (Exception e) {
-                        MmgHelper.wr("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
+                        MmgHelper.wr("Ignoring field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
                         MmgHelper.wrErr(e);
                     }
                 }

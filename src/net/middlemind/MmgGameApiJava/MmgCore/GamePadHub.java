@@ -237,11 +237,11 @@ public class GamePadHub {
     }
     
     /**
-     * A constructor for the GpioHub that takes an array of GpioPin instances which is used to set the buttons class field.
-     * 
-     * @param Buttons       An array of 6 GpioPin instances used to set the buttons class field.
-     */
-    //TODO
+      * A constructor for the GpioHub that takes an array of GpioPin instances which is used to set the buttons class field.
+      * 
+      * @param Buttons      An array of 6 GpioPin instances used to set the buttons class field.
+      * @param GamePad      TODO: Add comments
+      */
     public GamePadHub(GamePadInput[] Buttons, Controller GamePad) {
         gamePad = GamePad;
         buttons = Buttons;
@@ -310,14 +310,14 @@ public class GamePadHub {
             } else {                
                 components = gamePad.getComponents();
                 if(components == null) {
-                    MmgHelper.wr("Gamepad components is null, disabling gamepad.");
+                    MmgHelper.wr("GamePadHub: Gamepad components is null, disabling gamepad.");
                     gamePadEnabled = false;
              
                 } else {
                     for(i = 0; i < LEN; i++) {
                         btn1 = buttons[i];
                         if(btn1.btnIdx < 0 || btn1.btnIdx >= components.length) {
-                            MmgHelper.wr("Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");                            
+                            MmgHelper.wr("GamePadHub: Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");                            
                             gamePadEnabled = false;
                         } 
                     }
@@ -327,7 +327,7 @@ public class GamePadHub {
             }
             
             prepped = true;
-            MmgHelper.wr("Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
+            MmgHelper.wr("GamePadHub: Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
 
         } catch(Exception e) {
             prepped = true;
@@ -691,7 +691,7 @@ public class GamePadHub {
                 
             } else {
                 gamePadEnabled = false;
-                throw new Exception("Gamepad poll failed!");
+                throw new Exception("GamePadHub: Gamepad poll failed!");
             
             }
         }

@@ -18,11 +18,6 @@ import java.awt.image.BufferedImage;
 public class MmgBmpScaler {
     
     /**
-     * Environment graphics configuration data to use when creating new bitmaps to draw on.
-     */
-    public static GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
-    /**
      * A static class method that scales an MmgBmp object to the size of the game screen.
      * 
      * @param subj      The MmgBmp object to scale to the size of the screen.
@@ -36,7 +31,7 @@ public class MmgBmpScaler {
         int nh = MmgScreenData.GetGameHeight();
         Image img = subj.GetImage();
 
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        BufferedImage bg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         Graphics2D g = (Graphics2D) bg.getGraphics();
 
         if (MmgPen.ADV_RENDER_HINTS == true) {
@@ -64,7 +59,7 @@ public class MmgBmpScaler {
         int nh = newSize.GetY();
         Image img = subj.GetImage();
 
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        BufferedImage bg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         Graphics2D g = (Graphics2D) bg.getGraphics();
 
         if (MmgPen.ADV_RENDER_HINTS == true) {
@@ -101,7 +96,7 @@ public class MmgBmpScaler {
         
         Image img = subj.GetImage();
 
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        BufferedImage bg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         Graphics2D g = (Graphics2D) bg.getGraphics();
 
         if (MmgPen.ADV_RENDER_HINTS == true) {
@@ -129,7 +124,7 @@ public class MmgBmpScaler {
         int nh = (int) (h * scale);
         Image img = subj.GetImage();
 
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+        BufferedImage bg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         Graphics2D g = (Graphics2D) bg.getGraphics();
 
         if (MmgPen.ADV_RENDER_HINTS == true) {
@@ -155,7 +150,7 @@ public class MmgBmpScaler {
         int h = subj.GetHeight();
         Image img = subj.GetImage();
 
-        BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(w, h, alpha ? Transparency.BITMASK : Transparency.OPAQUE);
+        BufferedImage bg = MmgScreenData.GRAPHICS_CONFIG.createCompatibleImage(w, h, alpha ? Transparency.BITMASK : Transparency.OPAQUE);
         Graphics2D g = (Graphics2D) bg.getGraphics();
 
         if (MmgPen.ADV_RENDER_HINTS == true) {

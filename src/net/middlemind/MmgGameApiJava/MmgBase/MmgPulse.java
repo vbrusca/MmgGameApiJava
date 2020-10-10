@@ -317,10 +317,16 @@ public class MmgPulse {
     }
     
     /**
-     * TODO: Add comments
+     * A method used to check the equality of this MmgPositionTween when compared to another MmgPositionTween.
+     * Compares object fields to determine equality.
      * 
      * @param p     The MmgPen object used to draw this object.
-     */    
+     */
+    /**
+     * 
+     * @param obj   The MmgPulse object to compare to.
+     * @return      A boolean indicating if the two objects are equal or not.
+     */
     public boolean Equals(MmgPulse obj) {
         if(obj == null) {
             return false;

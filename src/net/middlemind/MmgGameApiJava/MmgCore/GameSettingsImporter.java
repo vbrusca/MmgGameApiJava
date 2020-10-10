@@ -55,7 +55,7 @@ public class GameSettingsImporter {
         version = nodeMain.getAttributes().getNamedItem("version").getNodeValue();
         NodeList nodeList = nodeMain.getChildNodes();
 
-        if (version != null && version.equals("1.0") == true) {
+        if (version != null && version.equals(GameSettings.TARGET_GAME_SETTINGS_XML_VERSION) == true) {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
 
