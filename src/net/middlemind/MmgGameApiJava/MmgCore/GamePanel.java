@@ -9,6 +9,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
@@ -377,6 +379,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     public Thread gpioTr;    
     
     /**
+     * TODO: Add comments
+     */
+    private MmgFont mmgDebugFont = null;    
+    
+    /**
      * Constructor, sets the MainFrame, window dimensions, and position of this Canvas.
      *
      * @param Mf            The MainFrame class this panel belongs to.
@@ -429,7 +436,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         MmgHelper.wr("--- MmgFontData ---");
         MmgHelper.wr(MmgFontData.ToString());
         debugFont = MmgFontData.CreateDefaultFontSm();
+        mmgDebugFont = new MmgFont(debugFont, "Test", 0, 0, MmgColor.GetWhite());
 
+        MmgHelper.wr("FontHeight: " + mmgDebugFont.GetHeight() + ", " + MmgFontData.GetFontSize());        
+        
         p = new MmgPen();
         MmgPen.ADV_RENDER_HINTS = true;
         

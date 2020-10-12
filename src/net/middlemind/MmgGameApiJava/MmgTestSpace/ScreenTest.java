@@ -111,7 +111,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
      * @param Handler       A class that implements the GenericEventHandler interface.
      */
     public void SetGenericEventHandler(GenericEventHandler Handler) {
-        MmgHelper.wr("Odroid.ScreenTest.SetGenericEventHandler");
+        MmgHelper.wr("ScreenTest.SetGenericEventHandler");
         handler = Handler;
     }
 
@@ -129,7 +129,7 @@ public class ScreenTest extends MmgGameScreen implements GenericEventHandler, Mm
      */
     @SuppressWarnings("UnusedAssignment")
     public void LoadResources() {
-        MmgHelper.wr("Odroid.ScreenTest.LoadResources");
+        MmgHelper.wr("ScreenTest.LoadResources");
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
         SetWidth(MmgScreenData.GetGameWidth());
