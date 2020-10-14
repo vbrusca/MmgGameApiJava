@@ -229,6 +229,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
      * This is the method that handles displaying different game screen text. Calling draw screen
      * prepares the screen for display.
      */
+    @Override
     public void DrawScreen() {
         pause = true;
         if(menu == null) {
@@ -266,6 +267,7 @@ public class ScreenTestMmgMainMenu extends net.middlemind.MmgGameApiJava.MmgCore
     /**
      * Unloads resources needed to display this game screen.
      */
+    @Override
     public void UnloadResources() {
         isDirty = false;
         pause = true;

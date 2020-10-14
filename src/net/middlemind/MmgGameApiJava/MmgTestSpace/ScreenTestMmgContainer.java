@@ -72,7 +72,7 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
     /**
      * A private temporary class field used to set the position of certain objects.
      */
-    private MmgVector2 pos;
+    private MmgVector2 posTmp;
     
     /**
      * An MmgFont class instance that is used as the title for this test game screen.
@@ -171,7 +171,7 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
         MmgHelper.CenterHorAndVert(holder);
         AddObj(holder);
         
-        pos = frame1.GetPosition().Clone();
+        posTmp = frame1.GetPosition().Clone();
         pulse = new MmgPulse(1, 2000l, 0.75d, frame1.GetPosition().Clone());
         
         ready = true;
@@ -380,8 +380,8 @@ public class ScreenTestMmgContainer extends MmgGameScreen implements GenericEven
         if (pause == false && isVisible == true) {
             //always run this update
             prevDir = pulse.GetDirection();
-            pulse.Update(pos);
-            frame1.SetX(pos.GetX());
+            pulse.Update(posTmp);
+            frame1.SetX(posTmp.GetX());
             
             if(prevDir != pulse.GetDirection()) {
                 holder.SetIsVisible(!holder.GetIsVisible());

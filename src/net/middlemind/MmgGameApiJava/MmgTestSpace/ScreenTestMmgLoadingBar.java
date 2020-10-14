@@ -4,7 +4,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp.MmgBmpDrawMode;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
@@ -15,9 +14,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgGameScreen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgLoadingBar;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgSpriteSheet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -30,8 +26,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * @author Victor G. Brusca
  */
 public class ScreenTestMmgLoadingBar extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
-
-    //TODO: Complete class documentation
     
     /**
      * The game state this screen has.
@@ -61,27 +55,27 @@ public class ScreenTestMmgLoadingBar extends MmgGameScreen implements GenericEve
     private MmgFont title;
     
     /**
-     * 
+     * TODO: Add comment
      */
     private MmgLoadingBar loadingBar;
 
     /**
-     * 
+     * TODO: Add comment
      */
     private MmgBmp loadingBarBack;
     
     /**
-     * 
+     * TODO: Add comment
      */
     private MmgBmp loadingBarFront;
     
     /**
-     * 
+     * TODO: Add comment
      */
     private long time = 0l;
     
     /**
-     * 
+     * TODO: Add comment
      */
     private long timingAmt = 500l;
     

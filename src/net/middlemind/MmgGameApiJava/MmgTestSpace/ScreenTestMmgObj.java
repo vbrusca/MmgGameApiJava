@@ -44,24 +44,33 @@ public class ScreenTestMmgObj extends MmgGameScreen implements GenericEventHandl
     protected final GamePanel owner;
         
     /**
-     * An MmgRect class instance used as an example of drawing rectangles in this test game screen.
+     * TODO: Add comment
      */
     private MmgObj obj1;
-            
+       
+    /**
+     * TODO: Add comment
+     */    
     private MmgFont font1;
         
     /**
-     * An MmgRect class instance used as an example of drawing rectangles in this test game screen.
+     * TODO: Add comment
      */
     private MmgObj obj2;    
     
+    /**
+     * TODO: Add comment
+     */    
     private MmgFont font2;
     
     /**
-     * An MmgRect class instance used as an example of drawing rectangles in this test game screen.
+     * TODO: Add comment
      */
     private MmgObj obj3;
-            
+       
+    /**
+     * TODO: Add comment
+     */    
     private MmgFont font3;    
     
     /**
