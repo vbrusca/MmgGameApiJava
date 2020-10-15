@@ -56,6 +56,8 @@ public class GameSettingsImporter {
         NodeList nodeList = nodeMain.getChildNodes();
 
         if (version != null && version.equals(GameSettings.TARGET_GAME_SETTINGS_XML_VERSION) == true) {
+            MmgHelper.wr("GameSettingsImporter: Found " + nodeList.getLength() + " nodes.");
+            
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
 

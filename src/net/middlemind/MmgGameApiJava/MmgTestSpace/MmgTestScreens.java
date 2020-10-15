@@ -333,9 +333,10 @@ public final class MmgTestScreens {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (MmgTestScreens.ENGINE_CONFIG_FILE != null && MmgTestScreens.ENGINE_CONFIG_FILE.equals("") == false) {
+            MmgHelper.wr("Found engine config file: " + ENGINE_CONFIG_FILE);
+            if (ENGINE_CONFIG_FILE != null && ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(MmgTestScreens.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(ENGINE_CONFIG_FILE);
                 System.out.println("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
@@ -389,13 +390,13 @@ public final class MmgTestScreens {
         MmgHelper.wr("Game Width: " + GAME_WIDTH);
         MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(MmgTestScreens.WIN_WIDTH, MmgTestScreens.WIN_HEIGHT, MmgTestScreens.PANEL_WIDTH, MmgTestScreens.PANEL_HEIGHT, MmgTestScreens.GAME_WIDTH, MmgTestScreens.GAME_HEIGHT);
-        pnlGame = new GamePanel(mf, MmgTestScreens.PANEL_WIDTH, MmgTestScreens.PANEL_HEIGHT, (MmgTestScreens.WIN_WIDTH - MmgTestScreens.PANEL_WIDTH) / 2, (MmgTestScreens.WIN_HEIGHT - MmgTestScreens.PANEL_HEIGHT) / 2, MmgTestScreens.GAME_WIDTH, MmgTestScreens.GAME_HEIGHT);
+        mf = new MainFrame(WIN_WIDTH, WIN_HEIGHT, PANEL_WIDTH, PANEL_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, PANEL_WIDTH, PANEL_HEIGHT, (WIN_WIDTH - PANEL_WIDTH) / 2, (WIN_HEIGHT - PANEL_HEIGHT) / 2, GAME_WIDTH, GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(MmgTestScreens.WIN_WIDTH, MmgTestScreens.WIN_HEIGHT);
+        mf.setSize(WIN_WIDTH, WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
         mf.setName(GameSettings.NAME);

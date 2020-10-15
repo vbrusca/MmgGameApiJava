@@ -277,9 +277,10 @@ public class MmgApiGame {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (MmgApiGame.ENGINE_CONFIG_FILE != null && MmgApiGame.ENGINE_CONFIG_FILE.equals("") == false) {
+            MmgHelper.wr("Found engine config file: " + ENGINE_CONFIG_FILE);
+            if (ENGINE_CONFIG_FILE != null && ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(MmgApiGame.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(ENGINE_CONFIG_FILE);
                 MmgHelper.wr("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
@@ -333,13 +334,13 @@ public class MmgApiGame {
         MmgHelper.wr("Game Width: " + GAME_WIDTH);
         MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT, MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
-        pnlGame = new GamePanel(mf, MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, (MmgApiGame.WIN_WIDTH - MmgApiGame.PANEL_WIDTH) / 2, (MmgApiGame.WIN_HEIGHT - MmgApiGame.PANEL_HEIGHT) / 2, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
+        mf = new MainFrame(WIN_WIDTH, WIN_HEIGHT, PANEL_WIDTH, PANEL_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, PANEL_WIDTH, PANEL_HEIGHT, (WIN_WIDTH - PANEL_WIDTH) / 2, (WIN_HEIGHT - PANEL_HEIGHT) / 2, GAME_WIDTH, GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT);
+        mf.setSize(WIN_WIDTH, WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
         mf.setName(GameSettings.NAME);
