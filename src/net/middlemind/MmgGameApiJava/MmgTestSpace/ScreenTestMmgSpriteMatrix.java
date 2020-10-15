@@ -15,7 +15,6 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSpriteMatrix;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgSpriteSheet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
@@ -28,8 +27,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * @author Victor G. Brusca
  */
 public class ScreenTestMmgSpriteMatrix extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
-
-    //TODO: Complete class documentation
     
     /**
      * The game state this screen has.

@@ -14,7 +14,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
  *
  * @author Victor G. Brusca
  */
-public final class MmgTestSpace {
+public final class MmgTestScreens {
 
     /**
      * The main JPanel that houses the different game screens.
@@ -333,9 +333,9 @@ public final class MmgTestSpace {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (MmgTestSpace.ENGINE_CONFIG_FILE != null && MmgTestSpace.ENGINE_CONFIG_FILE.equals("") == false) {
+            if (MmgTestScreens.ENGINE_CONFIG_FILE != null && MmgTestScreens.ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(MmgTestSpace.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(MmgTestScreens.ENGINE_CONFIG_FILE);
                 System.out.println("Engine config load result: " + r);
 
                 int len = dci.GetValues().keySet().size();
@@ -362,7 +362,7 @@ public final class MmgTestSpace {
                                 SetField(ent, f);
                             }
                         } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
-                            f = MmgTestSpace.class.getField(ent.key);
+                            f = MmgTestScreens.class.getField(ent.key);
                             if (f != null) {
                                 System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                 SetField(ent, f);
@@ -389,13 +389,13 @@ public final class MmgTestSpace {
         MmgHelper.wr("Game Width: " + GAME_WIDTH);
         MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
-        pnlGame = new GamePanel(mf, MmgTestSpace.PANEL_WIDTH, MmgTestSpace.PANEL_HEIGHT, (MmgTestSpace.WIN_WIDTH - MmgTestSpace.PANEL_WIDTH) / 2, (MmgTestSpace.WIN_HEIGHT - MmgTestSpace.PANEL_HEIGHT) / 2, MmgTestSpace.GAME_WIDTH, MmgTestSpace.GAME_HEIGHT);
+        mf = new MainFrame(MmgTestScreens.WIN_WIDTH, MmgTestScreens.WIN_HEIGHT, MmgTestScreens.PANEL_WIDTH, MmgTestScreens.PANEL_HEIGHT, MmgTestScreens.GAME_WIDTH, MmgTestScreens.GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, MmgTestScreens.PANEL_WIDTH, MmgTestScreens.PANEL_HEIGHT, (MmgTestScreens.WIN_WIDTH - MmgTestScreens.PANEL_WIDTH) / 2, (MmgTestScreens.WIN_HEIGHT - MmgTestScreens.PANEL_HEIGHT) / 2, MmgTestScreens.GAME_WIDTH, MmgTestScreens.GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(MmgTestSpace.WIN_WIDTH, MmgTestSpace.WIN_HEIGHT);
+        mf.setSize(MmgTestScreens.WIN_WIDTH, MmgTestScreens.WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
         mf.setName(GameSettings.NAME);

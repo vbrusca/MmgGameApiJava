@@ -14,9 +14,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
  * @author Victor G. Brusca
  */
 public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
-        
-    //TODO: Complete class comments
-    
+            
     /**
      * A reference to a game screen used for testing.
      */
@@ -123,32 +121,32 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     public ScreenTestMmgCfgFileEntryWrite screenTestMmgCfgFileEntryWrite;    
     
     /**
-     * 
+     * TODO: Add comments
      */
     public ScreenTestMmgObj screenTestMmgObj;
     
     /**
-     * 
+     * TODO: Add comments
      */
     public ScreenTestMmgSpriteSheet screenTestMmgSpriteSheet;
     
     /**
-     * 
+     * TODO: Add comments
      */
     public ScreenTestMmgBmpFont screenTestMmgBmpFont;
     
     /**
-     * 
+     * TODO: Add comments
      */
     public ScreenTestMmgLoadingBar screenTestMmgLoadingBar;
     
     /**
-     * 
+     * TODO: Add comments
      */
     public ScreenTestMmgSizeTween screenTestMmgSizeTween;
     
     /**
-     * 
+     * TODO: Add comments
      */
     public ScreenTestMmgSpriteMatrix screenTestMmgSpriteMatrix;    
     
@@ -763,107 +761,107 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
                 if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE) {
                     //Final loading steps
                     DatExternalStrings.LOAD_EXT_STRINGS();
-                    if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("1")) {
+                    if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("1")) {
                         //Test MmgScreenData
                         SwitchGameState(GameStates.GAME_SCREEN_01);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("2")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("2")) {
                         //Test Mmg9Slice
                         SwitchGameState(GameStates.GAME_SCREEN_02);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("3")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("3")) {
                         //Test MmgFont
                         SwitchGameState(GameStates.GAME_SCREEN_03);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("4")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("4")) {
                         //Test MmgTextField
                         SwitchGameState(GameStates.GAME_SCREEN_04);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("5")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("5")) {
                         //Test MmgBmp
                         SwitchGameState(GameStates.GAME_SCREEN_05);
 
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("6")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("6")) {
                         //Test MmgSound
                         SwitchGameState(GameStates.GAME_SCREEN_06);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("7")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("7")) {
                         //Test MmgMainMenu
                         SwitchGameState(GameStates.GAME_SCREEN_07);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("8")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("8")) {
                         //Test MmgSprite
                         SwitchGameState(GameStates.GAME_SCREEN_08);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("9")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("9")) {
                         //Test MmgBasicInput
                         SwitchGameState(GameStates.GAME_SCREEN_09);                        
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("10")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("10")) {
                         //Test MmgCfgFileEntryRead
                         SwitchGameState(GameStates.GAME_SCREEN_10);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("11")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("11")) {
                         //Test MmgColor
                         SwitchGameState(GameStates.GAME_SCREEN_11);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("12")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("12")) {
                         //Test MmgContainer
                         SwitchGameState(GameStates.GAME_SCREEN_12);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("13")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("13")) {
                         //Test MmgLabelValuePair
                         SwitchGameState(GameStates.GAME_SCREEN_13);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("14")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("14")) {
                         //Test MmgScrollHor
                         SwitchGameState(GameStates.GAME_SCREEN_14);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("15")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("15")) {
                         //Test MmgScrollVert
                         SwitchGameState(GameStates.GAME_SCREEN_15);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("16")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("16")) {
                         //Test MmgScrollHorVert
                         SwitchGameState(GameStates.GAME_SCREEN_16);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("17")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("17")) {
                         //Test MmgRect
                         SwitchGameState(GameStates.GAME_SCREEN_17);                        
 
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("18")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("18")) {
                         //Test MmgPositionTween
                         SwitchGameState(GameStates.GAME_SCREEN_18);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("19")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("19")) {
                         //Test MmgTextBlock
                         SwitchGameState(GameStates.GAME_SCREEN_19);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("20")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("20")) {
                         //Test MmgCfgFileEntryWrite
                         SwitchGameState(GameStates.GAME_SCREEN_20);                        
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("21")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("21")) {
                         //Test MmgObj
                         SwitchGameState(GameStates.GAME_SCREEN_21);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("22")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("22")) {
                         //Test MmgSpriteSheet
                         SwitchGameState(GameStates.GAME_SCREEN_22);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("23")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("23")) {
                         //Test MmgBmpFont
                         SwitchGameState(GameStates.GAME_SCREEN_23);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("24")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("24")) {
                         //Test MmgLoadingBar
                         SwitchGameState(GameStates.GAME_SCREEN_24);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("25")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("25")) {
                         //Test MmgSizeTween
                         SwitchGameState(GameStates.GAME_SCREEN_25);
                         
-                    } else if(MmgTestSpace.TEST_TO_RUN != null && MmgTestSpace.TEST_TO_RUN.equals("26")) {
+                    } else if(MmgTestScreens.TEST_TO_RUN != null && MmgTestScreens.TEST_TO_RUN.equals("26")) {
                         //Test MmgSpriteMatrix
                         SwitchGameState(GameStates.GAME_SCREEN_26);                        
                         

@@ -477,6 +477,11 @@ public class ScreenTestMmgSizeTween extends MmgGameScreen implements GenericEven
         }
     }
 
+    /**
+     * TODO: Add comments
+     * @param v
+     * @param orig 
+     */
     @Override
     public void MmgHandleScale(MmgVector2 v, MmgObj orig) {
         if(orig instanceof MmgBmp) {

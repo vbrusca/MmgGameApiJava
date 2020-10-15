@@ -27,8 +27,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventHandler;
  * @author Victor G. Brusca
  */
 public class ScreenTestMmgSpriteSheet extends MmgGameScreen implements GenericEventHandler, MmgEventHandler {
-
-    //TODO: Complete class documentation
     
     /**
      * The game state this screen has.
