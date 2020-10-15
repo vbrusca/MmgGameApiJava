@@ -32,6 +32,8 @@ public class MmgCentralMain {
         } else if(args[0] != null && args[0].toLowerCase().equals("mmgapigame")) {
             MmgApiGame.main(Arrays.copyOfRange(args, 1, args.length));
                         
+        } else {
+            MmgTestScreens.main(Arrays.copyOfRange(args, 1, args.length));
         }
     }
 }
