@@ -3,37 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgBmpFont.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgScrollVert.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgCfgFileEntryWrite.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgObj.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgScreenData.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgSound.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgLoadingBar.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgCore/MmgCentralMain.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgScrollHorVert.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmg9Slice.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgFont.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgSizeTween.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgSpriteSheet.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTest.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgLabelValuePair.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgBmp.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgRect.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgScrollHor.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgMainMenu.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgSpriteMatrix.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgBasicInput.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgTextBlock.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgTextField.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgCfgFileEntryRead.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgContainer.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/MmgTestScreens.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgCore/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgPositionTween.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgSprite.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/ScreenTestMmgColor.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/MmgContainerUnitTest.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/MmgColorUnitTest.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/MmgContainerUnitTest_2.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/MmgColorUnitTest_2.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/MmgApiTestSuite.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/Mmg9SliceUnitTest.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/test/net/middlemind/MmgGameApiJava/MmgUnitTests/MmgDirUnitTest_2.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgBase/MmgFontData.java</file>
         </group>
     </open-files>
 </project-private>

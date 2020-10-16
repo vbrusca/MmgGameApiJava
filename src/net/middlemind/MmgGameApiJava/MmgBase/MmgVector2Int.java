@@ -252,7 +252,28 @@ public class MmgVector2Int extends MmgVector2 {
         SetX(v[0]);
         SetY(v[1]);
     }
-
+    
+    /**
+     * TODO: Add comments
+     * 
+     * @param d 
+     */
+    @Override
+    public void SetVector(double[] d) {
+        SetX((int)d[0]);
+        SetY((int)d[0]);        
+    }
+    
+    /**
+     * TODO: Add comments
+     * 
+     * @return 
+     */
+    @Override
+    public double[] GetVector() {
+        return new double[] { GetXDouble(), GetYDouble() };
+    }
+    
     /**
      * Clones this object to a float based vector.
      *

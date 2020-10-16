@@ -23,7 +23,7 @@ public class MmgFontData {
     /**
      * Current font size.
      */
-    private static int fontSize = 22;
+    private static int fontSize = 18;
 
     /**
      * The target pixel height of the font.
