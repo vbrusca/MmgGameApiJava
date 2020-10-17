@@ -116,7 +116,7 @@ public class MmgVector2UnitTest {
         v1.SetVector(d);
         Assert.assertEquals(xd, v1.GetXDouble(), MmgApiTestSuite.DELTA_D);
         Assert.assertEquals(yd, v1.GetYDouble(), MmgApiTestSuite.DELTA_D);
-        org.junit.Assert.assertArrayEquals(d, v1.GetVector(), MmgApiTestSuite.DELTA_D);
+        Assert.assertArrayEquals(d, v1.GetVector(), MmgApiTestSuite.DELTA_D);
         
         s = "MmgVector2: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble();
         Assert.assertEquals(s, v1.ApiToString());
