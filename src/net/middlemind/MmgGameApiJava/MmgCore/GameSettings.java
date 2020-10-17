@@ -9,6 +9,7 @@ package net.middlemind.MmgGameApiJava.MmgCore;
  * @author Victor G. Brusca
  */
 public class GameSettings {
+    public static boolean INPUT_NORMALIZE_KEY_CODE = false;
     public static String TARGET_GAME_SETTINGS_XML_VERSION = "1.0";
     
     public static int SRC_KEYBOARD = 0;

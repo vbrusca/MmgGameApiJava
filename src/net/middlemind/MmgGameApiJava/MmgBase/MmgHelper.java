@@ -27,6 +27,46 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry.CfgEntryType;
  * @author Victor G. Brusca
  */
 public class MmgHelper {
+
+    /**
+     * TODO: Add comments
+     * 
+     * @param x
+     * @param f
+     * @return 
+     */
+    public static int NormalizeFontPositionX(int x, MmgFont f)
+    {
+        return x;
+    }
+     
+    /**
+     * TODO: Add comments
+     * 
+     * @param y
+     * @param f
+     * @return 
+     */
+    public static int NormalizeFontPositionY(int y, MmgFont f)
+    {
+        return y;
+    }    
+    
+    /**
+     * TODO: Add comments
+     * 
+     * @param keyCode
+     * @param extKeyCode
+     * @param platform
+     * @return 
+     */
+    public static int NormalizeKeyCode(int keyCode, int extKeyCode, String platform) {
+        if(extKeyCode != -1) {
+            return extKeyCode;
+        } else  {
+            return keyCode;
+        }
+    }
     
     /**
      * TODO: Add comments

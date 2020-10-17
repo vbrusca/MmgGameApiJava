@@ -12,6 +12,10 @@ import java.awt.image.BufferedImage;
  * @author Victor G. Brusca
  */
 public class MmgPen {
+    /**
+     * TODO: Add comments
+     */
+    public static boolean FONT_NORMALIZE_POSITION = false;    
     
     /**
      * The lower level drawing class.
@@ -128,7 +132,11 @@ public class MmgPen {
                 
         pen.setColor(f.GetMmgColor().GetColor());
         pen.setFont(f.GetFont());
-        pen.drawString(f.GetText(), f.GetPosition().GetX(), f.GetPosition().GetY());
+        if (FONT_NORMALIZE_POSITION) {
+            pen.drawString(f.GetText(), MmgHelper.NormalizeFontPositionX(f.GetPosition().GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetPosition().GetY(), f));            
+        } else {
+            pen.drawString(f.GetText(), f.GetPosition().GetX(), f.GetPosition().GetY());
+        }
         
         pen.setFont(tmpF);
         pen.setColor(tmpC);
@@ -148,7 +156,11 @@ public class MmgPen {
                 
         pen.setColor(f.GetMmgColor().GetColor());
         pen.setFont(f.GetFont());
-        pen.drawString(f.GetText(), x, y);
+        if (FONT_NORMALIZE_POSITION) {
+            pen.drawString(f.GetText(), MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f));
+        } else {
+            pen.drawString(f.GetText(), x, y);
+        }
         
         pen.setFont(tmpF);
         pen.setColor(tmpC);
@@ -167,7 +179,11 @@ public class MmgPen {
                 
         pen.setColor(f.GetMmgColor().GetColor());
         pen.setFont(f.GetFont());
-        pen.drawString(f.GetText(), pos.GetX(), pos.GetY());
+        if (FONT_NORMALIZE_POSITION) {
+            pen.drawString(f.GetText(), MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY(), f));
+        } else {
+            pen.drawString(f.GetText(), pos.GetX(), pos.GetY());            
+        }
         
         pen.setFont(tmpF);
         pen.setColor(tmpC);

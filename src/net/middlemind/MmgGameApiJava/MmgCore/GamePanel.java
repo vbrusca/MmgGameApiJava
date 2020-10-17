@@ -500,7 +500,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     
                 }
                 
-                ProcessKeyClick(e.getKeyChar(), e.getExtendedKeyCode());
+                if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
+                    ProcessKeyClick(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
+                } else {
+                    ProcessKeyClick(e.getKeyChar(), e.getExtendedKeyCode());
+                }
             }
 
             @Override
@@ -528,7 +532,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     
                     }
                     
-                    ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
+                    if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
+                        ProcessKeyPress(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
+                    } else {
+                        ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
+                    }
                 }
             }
 
@@ -560,7 +568,11 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                     
                     }                    
                     
-                    ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
+                    if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
+                        ProcessKeyRelease(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
+                    } else {
+                        ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
+                    }
                 }
             }
         });
