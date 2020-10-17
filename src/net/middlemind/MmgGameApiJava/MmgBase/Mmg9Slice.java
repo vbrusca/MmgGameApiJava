@@ -279,7 +279,7 @@ public class Mmg9Slice extends MmgObj {
      * @param obj     An Mmg9Slice object instance to compare to.
      * @return      Returns true if the objects are considered equal and false otherwise.
      */
-    public boolean Equals(Mmg9Slice obj) {
+    public boolean ApiEquals(Mmg9Slice obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -306,10 +306,10 @@ public class Mmg9Slice extends MmgObj {
         
         boolean ret = false;
         if (
-            super.Equals((MmgObj)obj)
+            super.ApiEquals((MmgObj)obj)
             && GetOffset() == obj.GetOffset() 
-            && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))
-            && ((obj.GetDest() == null && GetDest() == null) || (obj.GetDest() != null && GetDest() != null && obj.GetDest().Equals(GetDest())))
+            && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().ApiEquals(GetSrc())))
+            && ((obj.GetDest() == null && GetDest() == null) || (obj.GetDest() != null && GetDest() != null && obj.GetDest().ApiEquals(GetDest())))
         ) {
             ret = true;
         }

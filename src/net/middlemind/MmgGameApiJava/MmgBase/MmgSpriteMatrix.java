@@ -268,7 +268,7 @@ public class MmgSpriteMatrix {
      * @param obj       The MmgSpriteSheet object to compare this object to.
      * @return          Returns true if the two objects are equal and false otherwise.
      */
-    public boolean Equals(MmgSpriteMatrix obj) {
+    public boolean ApiEquals(MmgSpriteMatrix obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -277,7 +277,7 @@ public class MmgSpriteMatrix {
         
         boolean ret = true;
         if(
-            ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))
+            ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().ApiEquals(GetSrc())))
             && GetWidth() == obj.GetWidth() 
             && GetHeight() == obj.GetHeight()
             && GetRowCount() == obj.GetRowCount()
@@ -292,7 +292,7 @@ public class MmgSpriteMatrix {
                     m1 = obj.GetFrame(i);
                     m2 = GetFrame(i);
                     if(
-                        !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
+                        !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                     ) {
                         ret = false;
                         break;

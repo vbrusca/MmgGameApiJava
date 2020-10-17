@@ -349,8 +349,8 @@ public class MmgRect {
      *
      * @return      A string representation of this object.
      */
-    public String ToString() {
-        return "L: " + GetLeft() + " R: " + GetRight() + " T: " + GetTop() + " B: " + GetBottom() + ", W: " + GetWidth() + " H: " + GetHeight();
+    public String ApiToString() {
+        return "MmgRect: L: " + GetLeft() + " R: " + GetRight() + " T: " + GetTop() + " B: " + GetBottom() + ", W: " + GetWidth() + " H: " + GetHeight();
     }
 
     /**
@@ -359,7 +359,7 @@ public class MmgRect {
      * @param obj     A MmgRect to compare with this class instance.
      * @return      A boolean indicating if the two class instances are equal.
      */
-    public boolean Equals(MmgRect obj) {
+    public boolean ApiEquals(MmgRect obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {

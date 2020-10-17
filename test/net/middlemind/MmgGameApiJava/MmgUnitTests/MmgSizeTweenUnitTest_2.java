@@ -64,11 +64,11 @@ public class MmgSizeTweenUnitTest_2 {
         p1 = new MmgSizeTween(o1, f1, vs1, ve1);
         p3 = new MmgSizeTween(o3, f3, vs3, ve3);
         
-        Assert.assertEquals(true, p1.GetSubj().Equals(o1));
+        Assert.assertEquals(true, p1.GetSubj().ApiEquals(o1));
         Assert.assertEquals(true, p1.GetSubj().equals(o1));        
     
         v = new MmgVector2(110 - 10, 110 - 10);        
-        Assert.assertEquals(true, p1.GetPixelSizeToChange().Equals(v));
+        Assert.assertEquals(true, p1.GetPixelSizeToChange().ApiEquals(v));
         Assert.assertEquals(true, p1.GetMsTimeToChange() == f1);
         
         float iX = (100 / f1);
@@ -76,11 +76,11 @@ public class MmgSizeTweenUnitTest_2 {
         
         Assert.assertEquals(true, p1.GetPixelsPerMsToChangeX() == iX);
         Assert.assertEquals(true, p1.GetPixelsPerMsToChangeY() == iY);
-        Assert.assertEquals(true, p1.GetStartSize().Equals(vs1));
+        Assert.assertEquals(true, p1.GetStartSize().ApiEquals(vs1));
         Assert.assertEquals(true, p1.GetStartSize().equals(vs1));
-        Assert.assertEquals(true, p1.GetFinishSize().Equals(ve1));
+        Assert.assertEquals(true, p1.GetFinishSize().ApiEquals(ve1));
         Assert.assertEquals(true, p1.GetFinishSize().equals(ve1));
-        Assert.assertEquals(false, p1.GetPosition().Equals(vs1));
+        Assert.assertEquals(false, p1.GetPosition().ApiEquals(vs1));
         Assert.assertEquals(false, p1.GetPosition().equals(vs1));
         Assert.assertEquals(true, p1.GetDirStartToFinish() == true);
         Assert.assertEquals(true, p1.GetAtStart() == true);
@@ -99,7 +99,7 @@ public class MmgSizeTweenUnitTest_2 {
 
         p1.SetFinishSize(ve2);
         
-        Assert.assertEquals(true, p1.GetFinishSize().Equals(ve2));
+        Assert.assertEquals(true, p1.GetFinishSize().ApiEquals(ve2));
         Assert.assertEquals(true, p1.GetFinishSize().equals(ve2));        
 
         p1.SetHeight(250);
@@ -117,7 +117,7 @@ public class MmgSizeTweenUnitTest_2 {
         p1.SetPixelsPerMsToChangeX(222f);
         p1.SetPixelsPerMsToChangeY(111f);
 
-        Assert.assertEquals(true, p1.GetPixelSizeToChange().Equals(v));
+        Assert.assertEquals(true, p1.GetPixelSizeToChange().ApiEquals(v));
         Assert.assertEquals(true, p1.GetPixelSizeToChange().equals(v));
         Assert.assertEquals(p1.GetPixelsPerMsToChangeX(), 222f, 0.01f);
         Assert.assertEquals(p1.GetPixelsPerMsToChangeY(), 111f, 0.01f);
@@ -125,7 +125,7 @@ public class MmgSizeTweenUnitTest_2 {
         v = new MmgVector2(150, 150);        
         p1.SetPosition(v);
         
-        Assert.assertEquals(true, p1.GetPosition().Equals(v));
+        Assert.assertEquals(true, p1.GetPosition().ApiEquals(v));
         Assert.assertEquals(true, p1.GetPosition().equals(v));        
 
         p1.SetStartEventId(5);
@@ -134,12 +134,12 @@ public class MmgSizeTweenUnitTest_2 {
         
         p1.SetStartSize(v);
         
-        Assert.assertEquals(true, p1.GetStartSize().Equals(v));
+        Assert.assertEquals(true, p1.GetStartSize().ApiEquals(v));
         Assert.assertEquals(true, p1.GetStartSize().equals(v));                
 
         p1.SetSubj(o3);
         
-        Assert.assertEquals(true, p1.GetSubj().Equals(o3));
+        Assert.assertEquals(true, p1.GetSubj().ApiEquals(o3));
         Assert.assertEquals(true, p1.GetSubj().equals(o3));                        
 
         p1.SetWidth(200);
@@ -154,12 +154,12 @@ public class MmgSizeTweenUnitTest_2 {
 
         p2 = p1.CloneTyped();
         
-        Assert.assertEquals(true, p1.Equals(p1));                
-        Assert.assertEquals(true, p1.Equals(p2));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(false, p3.Equals(p1));
-        Assert.assertEquals(false, p1.Equals(p3));              
+        Assert.assertEquals(true, p1.ApiEquals(p1));                
+        Assert.assertEquals(true, p1.ApiEquals(p2));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(false, p3.ApiEquals(p1));
+        Assert.assertEquals(false, p1.ApiEquals(p3));              
     }
     
     @Test
@@ -191,11 +191,11 @@ public class MmgSizeTweenUnitTest_2 {
         p1 = new MmgSizeTween(new MmgSizeTween(o1, f1, vs1, ve1));
         p3 = new MmgSizeTween(o3, f3, vs3, ve3);
         
-        Assert.assertEquals(true, p1.GetSubj().Equals(o1));
+        Assert.assertEquals(true, p1.GetSubj().ApiEquals(o1));
         Assert.assertEquals(false, p1.GetSubj().equals(o1));        
     
         v = new MmgVector2(110 - 10, 110 - 10);        
-        Assert.assertEquals(true, p1.GetPixelSizeToChange().Equals(v));
+        Assert.assertEquals(true, p1.GetPixelSizeToChange().ApiEquals(v));
         Assert.assertEquals(true, p1.GetMsTimeToChange() == f1);
         
         float iX = (100 / f1);
@@ -203,11 +203,11 @@ public class MmgSizeTweenUnitTest_2 {
         
         Assert.assertEquals(true, p1.GetPixelsPerMsToChangeX() == iX);
         Assert.assertEquals(true, p1.GetPixelsPerMsToChangeY() == iY);
-        Assert.assertEquals(true, p1.GetStartSize().Equals(vs1));
+        Assert.assertEquals(true, p1.GetStartSize().ApiEquals(vs1));
         Assert.assertEquals(false, p1.GetStartSize().equals(vs1));
-        Assert.assertEquals(true, p1.GetFinishSize().Equals(ve1));
+        Assert.assertEquals(true, p1.GetFinishSize().ApiEquals(ve1));
         Assert.assertEquals(false, p1.GetFinishSize().equals(ve1));
-        Assert.assertEquals(false, p1.GetPosition().Equals(vs1));
+        Assert.assertEquals(false, p1.GetPosition().ApiEquals(vs1));
         Assert.assertEquals(false, p1.GetPosition().equals(vs1));
         Assert.assertEquals(true, p1.GetDirStartToFinish() == true);
         Assert.assertEquals(true, p1.GetAtStart() == true);
@@ -226,7 +226,7 @@ public class MmgSizeTweenUnitTest_2 {
 
         p1.SetFinishSize(ve2);
         
-        Assert.assertEquals(true, p1.GetFinishSize().Equals(ve2));
+        Assert.assertEquals(true, p1.GetFinishSize().ApiEquals(ve2));
         Assert.assertEquals(true, p1.GetFinishSize().equals(ve2));        
 
         p1.SetHeight(250);
@@ -244,7 +244,7 @@ public class MmgSizeTweenUnitTest_2 {
         p1.SetPixelsPerMsToChangeX(222f);
         p1.SetPixelsPerMsToChangeY(111f);
 
-        Assert.assertEquals(true, p1.GetPixelSizeToChange().Equals(v));
+        Assert.assertEquals(true, p1.GetPixelSizeToChange().ApiEquals(v));
         Assert.assertEquals(true, p1.GetPixelSizeToChange().equals(v));
         Assert.assertEquals(p1.GetPixelsPerMsToChangeX(), 222f, 0.01f);
         Assert.assertEquals(p1.GetPixelsPerMsToChangeY(), 111f, 0.01f);
@@ -252,7 +252,7 @@ public class MmgSizeTweenUnitTest_2 {
         v = new MmgVector2(150, 150);        
         p1.SetPosition(v);
         
-        Assert.assertEquals(true, p1.GetPosition().Equals(v));
+        Assert.assertEquals(true, p1.GetPosition().ApiEquals(v));
         Assert.assertEquals(true, p1.GetPosition().equals(v));        
 
         p1.SetStartEventId(5);
@@ -261,12 +261,12 @@ public class MmgSizeTweenUnitTest_2 {
         
         p1.SetStartSize(v);
         
-        Assert.assertEquals(true, p1.GetStartSize().Equals(v));
+        Assert.assertEquals(true, p1.GetStartSize().ApiEquals(v));
         Assert.assertEquals(true, p1.GetStartSize().equals(v));                
 
         p1.SetSubj(o3);
         
-        Assert.assertEquals(true, p1.GetSubj().Equals(o3));
+        Assert.assertEquals(true, p1.GetSubj().ApiEquals(o3));
         Assert.assertEquals(true, p1.GetSubj().equals(o3));                        
 
         p1.SetWidth(200);
@@ -281,11 +281,11 @@ public class MmgSizeTweenUnitTest_2 {
 
         p2 = p1.CloneTyped();
         
-        Assert.assertEquals(true, p1.Equals(p1));                
-        Assert.assertEquals(true, p1.Equals(p2));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(false, p3.Equals(p1));
-        Assert.assertEquals(false, p1.Equals(p3));             
+        Assert.assertEquals(true, p1.ApiEquals(p1));                
+        Assert.assertEquals(true, p1.ApiEquals(p2));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(false, p3.ApiEquals(p1));
+        Assert.assertEquals(false, p1.ApiEquals(p3));             
     }    
 }

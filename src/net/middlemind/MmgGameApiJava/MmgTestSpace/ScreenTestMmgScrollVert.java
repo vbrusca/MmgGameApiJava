@@ -465,7 +465,7 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
     public void MmgHandleEvent(MmgEvent e) {
         if(e.GetEventId() == MmgScrollVert.SCROLL_VERT_CLICK_EVENT_ID || e.GetEventId() == MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID || e.GetEventId() == MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID) {
             MmgVector2 v2 = (MmgVector2)e.GetExtra();
-            event.SetText("Event: Id: " + e.GetEventId() + " Type: " + e.GetEventType() + " Pos: " + v2.ToString() + " Msg: " + e.GetMessage() + " " + System.currentTimeMillis());
+            event.SetText("Event: Id: " + e.GetEventId() + " Type: " + e.GetEventType() + " Pos: " + v2.ApiToString() + " Msg: " + e.GetMessage() + " " + System.currentTimeMillis());
         
         } else {
             event.SetText("Event: Id: " + e.GetEventId() + " Type: " + e.GetEventType() + " Msg: " + e.GetMessage() + " " + System.currentTimeMillis());

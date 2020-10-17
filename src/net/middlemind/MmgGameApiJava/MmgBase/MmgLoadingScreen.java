@@ -227,7 +227,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
      * @param obj   An MmgLoadingScreen object instance to compare to.
      * @return      Returns true if the objects are considered equal and false otherwise.
      */
-    public boolean Equals(MmgLoadingScreen obj) {
+    public boolean ApiEquals(MmgLoadingScreen obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -250,9 +250,9 @@ public class MmgLoadingScreen extends MmgGameScreen {
         
         boolean ret = false;
         if (
-            super.Equals((MmgGameScreen)obj)
+            super.ApiEquals((MmgGameScreen)obj)
             && obj.GetLoadingBarOffsetBottom() == GetLoadingBarOffsetBottom()
-            && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().Equals(GetLoadingBar()))) 
+            && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().ApiEquals(GetLoadingBar()))) 
         ) {
             ret = true;
         }

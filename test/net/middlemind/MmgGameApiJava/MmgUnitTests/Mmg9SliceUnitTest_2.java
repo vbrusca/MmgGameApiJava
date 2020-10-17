@@ -49,32 +49,32 @@ public class Mmg9SliceUnitTest_2 {
         n3 = new Mmg9Slice(12, b2, 300, 300);        
         
         Assert.assertEquals(n1.GetOffset(), 10);
-        Assert.assertEquals(true, n1.GetSrc().Equals(b1));
+        Assert.assertEquals(true, n1.GetSrc().ApiEquals(b1));
         Assert.assertEquals(true, n1.GetSrc().equals(b1));        
         Assert.assertEquals(n1.GetWidth(), 200);
         Assert.assertEquals(n1.GetHeight(), 200);
         Assert.assertEquals(true, n1.GetIsVisible());
-        Assert.assertEquals(true, n1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, n1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
         n1.SetDest(b2);
         n1.SetOffset(12);
         n1.SetSrc(b2);
         
-        Assert.assertEquals(true, n1.GetDest().Equals(b2));
+        Assert.assertEquals(true, n1.GetDest().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetDest().equals(b2));        
-        Assert.assertEquals(true, n1.GetSrc().Equals(b2));
+        Assert.assertEquals(true, n1.GetSrc().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetSrc().equals(b2));
-        Assert.assertEquals(true, n1.GetDest().Equals(b2));
+        Assert.assertEquals(true, n1.GetDest().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetOffset() == 12);
         
         n2 = n1.CloneTyped();
         
-        Assert.assertEquals(true, n1.Equals(n1));                
-        Assert.assertEquals(true, n1.Equals(n2));
-        Assert.assertEquals(true, n2.Equals(n1));
-        Assert.assertEquals(true, n2.Equals(n1));
-        Assert.assertEquals(false, n3.Equals(n1));
-        Assert.assertEquals(false, n1.Equals(n3));        
+        Assert.assertEquals(true, n1.ApiEquals(n1));                
+        Assert.assertEquals(true, n1.ApiEquals(n2));
+        Assert.assertEquals(true, n2.ApiEquals(n1));
+        Assert.assertEquals(true, n2.ApiEquals(n1));
+        Assert.assertEquals(false, n3.ApiEquals(n1));
+        Assert.assertEquals(false, n1.ApiEquals(n3));        
     }
     
     @Test
@@ -90,32 +90,32 @@ public class Mmg9SliceUnitTest_2 {
         n3 = new Mmg9Slice(12, b2, 300, 300);        
         
         Assert.assertEquals(n1.GetOffset(), 10);
-        Assert.assertEquals(true, n1.GetSrc().Equals(b1));
+        Assert.assertEquals(true, n1.GetSrc().ApiEquals(b1));
         Assert.assertEquals(true, n1.GetSrc().equals(b1));        
         Assert.assertEquals(n1.GetWidth(), 200);
         Assert.assertEquals(n1.GetHeight(), 200);
         Assert.assertEquals(true, n1.GetIsVisible());
-        Assert.assertEquals(true, n1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, n1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
         n1.SetDest(b2);
         n1.SetOffset(12);
         n1.SetSrc(b2);
         
-        Assert.assertEquals(true, n1.GetDest().Equals(b2));
+        Assert.assertEquals(true, n1.GetDest().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetDest().equals(b2));        
-        Assert.assertEquals(true, n1.GetSrc().Equals(b2));
+        Assert.assertEquals(true, n1.GetSrc().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetSrc().equals(b2));
-        Assert.assertEquals(true, n1.GetDest().Equals(b2));
+        Assert.assertEquals(true, n1.GetDest().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetOffset() == 12);
         
         n2 = n1.CloneTyped();
         
-        Assert.assertEquals(true, n1.Equals(n1));                
-        Assert.assertEquals(true, n1.Equals(n2));
-        Assert.assertEquals(true, n2.Equals(n1));
-        Assert.assertEquals(true, n2.Equals(n1));
-        Assert.assertEquals(false, n3.Equals(n1));
-        Assert.assertEquals(false, n1.Equals(n3));        
+        Assert.assertEquals(true, n1.ApiEquals(n1));                
+        Assert.assertEquals(true, n1.ApiEquals(n2));
+        Assert.assertEquals(true, n2.ApiEquals(n1));
+        Assert.assertEquals(true, n2.ApiEquals(n1));
+        Assert.assertEquals(false, n3.ApiEquals(n1));
+        Assert.assertEquals(false, n1.ApiEquals(n3));        
     }
     
     @Test
@@ -131,36 +131,36 @@ public class Mmg9SliceUnitTest_2 {
         n3 = new Mmg9Slice(12, b2, 300, 300);        
         
         Assert.assertEquals(n1.GetOffset(), 10);
-        Assert.assertEquals(true, n1.GetSrc().Equals(b1));
+        Assert.assertEquals(true, n1.GetSrc().ApiEquals(b1));
         Assert.assertEquals(false, n1.GetSrc().equals(b1));        
         Assert.assertEquals(n1.GetWidth(), 200);
         Assert.assertEquals(n1.GetHeight(), 200);
         Assert.assertEquals(true, n1.GetIsVisible());
-        Assert.assertEquals(true, n1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, n1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
         n1.SetDest(b2);
         n1.SetOffset(12);
         n1.SetSrc(b2);
         
-        Assert.assertEquals(true, n1.GetDest().Equals(b2));
+        Assert.assertEquals(true, n1.GetDest().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetDest().equals(b2));        
-        Assert.assertEquals(true, n1.GetSrc().Equals(b2));
+        Assert.assertEquals(true, n1.GetSrc().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetSrc().equals(b2));
-        Assert.assertEquals(true, n1.GetDest().Equals(b2));
+        Assert.assertEquals(true, n1.GetDest().ApiEquals(b2));
         Assert.assertEquals(true, n1.GetOffset() == 12);
         
         n1.SetX(2);
         n1.SetY(2);
 
-        Assert.assertEquals(true, n1.GetPosition().Equals(new MmgVector2(2, 2)));
+        Assert.assertEquals(true, n1.GetPosition().ApiEquals(new MmgVector2(2, 2)));
         
         n2 = n1.CloneTyped();
         
-        Assert.assertEquals(true, n1.Equals(n1));                
-        Assert.assertEquals(true, n1.Equals(n2));
-        Assert.assertEquals(true, n2.Equals(n1));
-        Assert.assertEquals(true, n2.Equals(n1));
-        Assert.assertEquals(false, n3.Equals(n1));
-        Assert.assertEquals(false, n1.Equals(n3));        
+        Assert.assertEquals(true, n1.ApiEquals(n1));                
+        Assert.assertEquals(true, n1.ApiEquals(n2));
+        Assert.assertEquals(true, n2.ApiEquals(n1));
+        Assert.assertEquals(true, n2.ApiEquals(n1));
+        Assert.assertEquals(false, n3.ApiEquals(n1));
+        Assert.assertEquals(false, n1.ApiEquals(n3));        
     }       
 }

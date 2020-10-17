@@ -40,8 +40,8 @@ public class MmgVector2UnitTest {
         MmgVector2 v1 = new MmgVector2(0, 0);
         MmgVector2 v2 = new MmgVector2(1, 1);
         
-        Assert.assertEquals(true, v1.Equals(MmgVector2.GetOriginVec()));
-        Assert.assertEquals(true, v2.Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, v1.ApiEquals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, v2.ApiEquals(MmgVector2.GetUnitVec()));
     }
     
     @Test
@@ -61,7 +61,7 @@ public class MmgVector2UnitTest {
         v2.SetX(xd);
         v2.SetY(yd);
         
-        Assert.assertEquals(true, v1.Equals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
         Assert.assertNotSame(v1, v2);
     }
     
@@ -119,7 +119,7 @@ public class MmgVector2UnitTest {
         org.junit.Assert.assertArrayEquals(d, v1.GetVector(), MmgApiTestSuite.DELTA_D);
         
         s = "MmgVector2: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble();
-        Assert.assertEquals(s, v1.ToString());
+        Assert.assertEquals(s, v1.ApiToString());
     }
     
     @Test
@@ -143,21 +143,21 @@ public class MmgVector2UnitTest {
         //TEST 1
         Assert.assertEquals(v1.GetXDouble(), v2.GetXDouble(), MmgApiTestSuite.DELTA_D);
         Assert.assertEquals(v1.GetYDouble(), v2.GetYDouble(), MmgApiTestSuite.DELTA_D);
-        Assert.assertEquals(true, v1.Equals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
         Assert.assertNotSame(v1, v2);
     
         //TEST 2
         v2 = v1.CloneDouble();
         Assert.assertEquals(v1.GetXDouble(), v2.GetXDouble(), MmgApiTestSuite.DELTA_D);
         Assert.assertEquals(v1.GetYDouble(), v2.GetYDouble(), MmgApiTestSuite.DELTA_D);
-        Assert.assertEquals(true, v1.Equals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
         Assert.assertNotSame(v1, v2);
     
         //TEST 3
         v2 = v1.CloneFloat();
         Assert.assertEquals(v1.GetXFloat(), v2.GetXFloat(), MmgApiTestSuite.DELTA_D);
         Assert.assertEquals(v1.GetYFloat(), v2.GetYFloat(), MmgApiTestSuite.DELTA_D);
-        Assert.assertEquals(false, v1.Equals(v2));
+        Assert.assertEquals(false, v1.ApiEquals(v2));
         Assert.assertNotSame(v1, v2);
     }
     

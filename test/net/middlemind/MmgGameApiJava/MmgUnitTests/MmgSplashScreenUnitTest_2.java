@@ -48,7 +48,7 @@ public class MmgSplashScreenUnitTest_2 {
         
         s1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, s1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
         s1.SetHeight(64);
         s1.SetWidth(64);       
@@ -58,16 +58,16 @@ public class MmgSplashScreenUnitTest_2 {
        
         s1.SetMmgColor(MmgColor.GetBlueGray());
 
-        Assert.assertEquals(true, s1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
+        Assert.assertEquals(true, s1.GetMmgColor().ApiEquals(MmgColor.GetBlueGray()));
         
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
     }
     
     @Test
@@ -83,7 +83,7 @@ public class MmgSplashScreenUnitTest_2 {
         
         s1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, s1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
         s1.SetHeight(64);
         s1.SetWidth(64);       
@@ -93,16 +93,16 @@ public class MmgSplashScreenUnitTest_2 {
        
         s1.SetMmgColor(MmgColor.GetBlueGray());
 
-        Assert.assertEquals(true, s1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
+        Assert.assertEquals(true, s1.GetMmgColor().ApiEquals(MmgColor.GetBlueGray()));
         
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));                
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(true, s1.ApiEquals(s1));                
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
     }
 
     @Test
@@ -119,7 +119,7 @@ public class MmgSplashScreenUnitTest_2 {
         
         s1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, s1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
         s1.SetHeight(64);
         s1.SetWidth(64);       
@@ -129,15 +129,15 @@ public class MmgSplashScreenUnitTest_2 {
        
         s1.SetMmgColor(MmgColor.GetBlueGray());
 
-        Assert.assertEquals(true, s1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
+        Assert.assertEquals(true, s1.GetMmgColor().ApiEquals(MmgColor.GetBlueGray()));
         
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));                
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(true, s1.ApiEquals(s1));                
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
     }    
 }

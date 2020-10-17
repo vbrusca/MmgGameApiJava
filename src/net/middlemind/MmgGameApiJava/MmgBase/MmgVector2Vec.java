@@ -301,8 +301,8 @@ public class MmgVector2Vec extends MmgVector2 {
      * @return      A string representation of the vector.
      */
     @Override
-    public String ToString() {
-        return "X: " + GetXDouble() + " Y:" + GetYDouble();
+    public String ApiToString() {
+        return "MmgVectorVec: X: " + GetXDouble() + " Y:" + GetYDouble();
     }
 
     /**
@@ -311,7 +311,7 @@ public class MmgVector2Vec extends MmgVector2 {
      * @param obj     An MmgVector2 object to compare for equality.
      * @return      A boolean indicating if this object is equal to the comparison object.
      */
-    public boolean Equals(MmgVector2Vec obj) {
+    public boolean ApiEquals(MmgVector2Vec obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {

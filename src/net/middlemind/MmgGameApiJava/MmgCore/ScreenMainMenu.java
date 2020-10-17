@@ -127,7 +127,7 @@ public class ScreenMainMenu extends MmgGameScreen {
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        MmgHelper.wr("ScreenMainMenu: LoadResources: Position: " + GetPosition().ToString());
+        MmgHelper.wr("ScreenMainMenu: LoadResources: Position: " + GetPosition().ApiToString());
         MmgHelper.wr("ScreenMainMenu: LoadResources: Width: " + GetWidth());
         MmgHelper.wr("ScreenMainMenu: LoadResources: Height: " + GetHeight());
 

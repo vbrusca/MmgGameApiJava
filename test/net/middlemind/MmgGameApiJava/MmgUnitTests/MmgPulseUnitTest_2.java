@@ -70,19 +70,19 @@ public class MmgPulseUnitTest_2 {
         Assert.assertEquals(true, p1.GetTimeFlip() == l1 / 2);
         Assert.assertEquals(true, p1.GetTimeStart() == 0);
         Assert.assertEquals(true, p1.GetChange() == d1);
-        Assert.assertEquals(true, p1.GetBaseLineScaling().Equals(v1));
+        Assert.assertEquals(true, p1.GetBaseLineScaling().ApiEquals(v1));
         Assert.assertEquals(true, p1.GetBaseLineScaling().equals(v1));        
-        Assert.assertEquals(true, p1.GetAdjScaling().Equals(new MmgVector2(350.0, 350.0))); 
+        Assert.assertEquals(true, p1.GetAdjScaling().ApiEquals(new MmgVector2(350.0, 350.0))); 
         Assert.assertEquals(true, p1.GetChangePerMs() == 0.06);                
 
         p1.SetAdjScaling(v3);
 
-        Assert.assertEquals(true, p1.GetAdjScaling().Equals(v3));
+        Assert.assertEquals(true, p1.GetAdjScaling().ApiEquals(v3));
         Assert.assertEquals(true, p1.GetAdjScaling().equals(v3));        
 
         p1.SetBaseLineScaling(v3);
         
-        Assert.assertEquals(true, p1.GetBaseLineScaling().Equals(v3));
+        Assert.assertEquals(true, p1.GetBaseLineScaling().ApiEquals(v3));
         Assert.assertEquals(true, p1.GetBaseLineScaling().equals(v3));
         
         p1.SetChange(0.90);
@@ -107,12 +107,12 @@ public class MmgPulseUnitTest_2 {
 
         p2 = p1.Clone();
         
-        Assert.assertEquals(true, p1.Equals(p1));                
-        Assert.assertEquals(true, p1.Equals(p2));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(false, p3.Equals(p1));
-        Assert.assertEquals(false, p1.Equals(p3));             
+        Assert.assertEquals(true, p1.ApiEquals(p1));                
+        Assert.assertEquals(true, p1.ApiEquals(p2));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(false, p3.ApiEquals(p1));
+        Assert.assertEquals(false, p1.ApiEquals(p3));             
     }   
     
     @Test
@@ -151,19 +151,19 @@ public class MmgPulseUnitTest_2 {
         Assert.assertEquals(true, p1.GetTimeFlip() == l1 / 2);
         Assert.assertEquals(true, p1.GetTimeStart() == 0);
         Assert.assertEquals(true, p1.GetChange() == d1);
-        Assert.assertEquals(true, p1.GetBaseLineScaling().Equals(v1));
+        Assert.assertEquals(true, p1.GetBaseLineScaling().ApiEquals(v1));
         Assert.assertEquals(false, p1.GetBaseLineScaling().equals(v1));        
-        Assert.assertEquals(true, p1.GetAdjScaling().Equals(new MmgVector2(350.0, 350.0))); 
+        Assert.assertEquals(true, p1.GetAdjScaling().ApiEquals(new MmgVector2(350.0, 350.0))); 
         Assert.assertEquals(true, p1.GetChangePerMs() == 0.06);                
 
         p1.SetAdjScaling(v3);
 
-        Assert.assertEquals(true, p1.GetAdjScaling().Equals(v3));
+        Assert.assertEquals(true, p1.GetAdjScaling().ApiEquals(v3));
         Assert.assertEquals(true, p1.GetAdjScaling().equals(v3));        
 
         p1.SetBaseLineScaling(v3);
         
-        Assert.assertEquals(true, p1.GetBaseLineScaling().Equals(v3));
+        Assert.assertEquals(true, p1.GetBaseLineScaling().ApiEquals(v3));
         Assert.assertEquals(true, p1.GetBaseLineScaling().equals(v3));
         
         p1.SetChange(0.90);
@@ -188,11 +188,11 @@ public class MmgPulseUnitTest_2 {
 
         p2 = p1.Clone();
         
-        Assert.assertEquals(true, p1.Equals(p1));                
-        Assert.assertEquals(true, p1.Equals(p2));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(true, p2.Equals(p1));
-        Assert.assertEquals(false, p3.Equals(p1));
-        Assert.assertEquals(false, p1.Equals(p3));             
+        Assert.assertEquals(true, p1.ApiEquals(p1));                
+        Assert.assertEquals(true, p1.ApiEquals(p2));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(true, p2.ApiEquals(p1));
+        Assert.assertEquals(false, p3.ApiEquals(p1));
+        Assert.assertEquals(false, p1.ApiEquals(p3));             
     }    
 }

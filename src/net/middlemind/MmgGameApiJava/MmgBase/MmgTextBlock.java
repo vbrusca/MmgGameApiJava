@@ -722,7 +722,7 @@ public class MmgTextBlock extends MmgObj {
      * @param obj       The MmgTextBlock object to compare this object to.
      * @return          Returns true if the two objects are equal and false otherwise.
      */    
-    public boolean Equals(MmgTextBlock obj) {
+    public boolean ApiEquals(MmgTextBlock obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -789,8 +789,8 @@ public class MmgTextBlock extends MmgObj {
         
         boolean ret = false;
         if(
-            super.Equals((MmgObj)obj)
-            && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().Equals(GetColor())))
+            super.ApiEquals((MmgObj)obj)
+            && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().ApiEquals(GetColor())))
             && obj.GetHeight() == GetHeight()
             && obj.GetLineCount() == GetLineCount()
             && obj.GetLineHeight() == GetLineHeight() 
@@ -814,7 +814,7 @@ public class MmgTextBlock extends MmgObj {
                     ret = false;
                 } else {
                     for(int i = 0; i < len1; i++) {
-                        if(!obj.GetLines().get(i).Equals(GetLines().get(i))) {
+                        if(!obj.GetLines().get(i).ApiEquals(GetLines().get(i))) {
                             ret = false;
                             break;
                         }

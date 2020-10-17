@@ -53,7 +53,7 @@ public class MmgContainerUnitTest {
         c1 = new MmgColor(java.awt.Color.ORANGE);
         
         //TEST 1
-        Assert.assertEquals(true, v1.Equals(m1.GetPosition()));
+        Assert.assertEquals(true, v1.ApiEquals(m1.GetPosition()));
         Assert.assertEquals(w, m1.GetWidth());
         Assert.assertEquals(h, m1.GetHeight());
     }

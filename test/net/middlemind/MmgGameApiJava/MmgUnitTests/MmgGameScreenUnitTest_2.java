@@ -67,42 +67,42 @@ public class MmgGameScreenUnitTest_2 {
         Assert.assertEquals(true, s1.GetMenuOn() == false);
         Assert.assertEquals(true, s1.GetWidth() == MmgScreenData.GetGameWidth());
         Assert.assertEquals(true, s1.GetHeight() == MmgScreenData.GetGameHeight());
-        Assert.assertEquals(true, s1.GetPosition().Equals(MmgVector2.GetOriginVec()));        
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));        
 
         b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
         s1.SetBackground(b1);
         
-        Assert.assertEquals(true, s1.GetBackground().Equals(b1));
+        Assert.assertEquals(true, s1.GetBackground().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetBackground().equals(b1));        
         
         b2 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_2.png");        
         s1.SetForeground(b2);
         
-        Assert.assertEquals(true, s1.GetForeground().Equals(b2));
+        Assert.assertEquals(true, s1.GetForeground().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetForeground().equals(b2));        
     
         b3 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_3.png");        
         s1.SetHeader(b3);
         
-        Assert.assertEquals(true, s1.GetHeader().Equals(b3));
+        Assert.assertEquals(true, s1.GetHeader().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetHeader().equals(b3));        
         
         b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
         s1.SetFooter(b1);
         
-        Assert.assertEquals(true, s1.GetFooter().Equals(b1));
+        Assert.assertEquals(true, s1.GetFooter().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetFooter().equals(b1));                
     
         b2 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "loading_bar.png");        
         s1.SetLeftCursor(b2);
 
-        Assert.assertEquals(true, s1.GetLeftCursor().Equals(b2));
+        Assert.assertEquals(true, s1.GetLeftCursor().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetLeftCursor().equals(b2));
 
         mm1 = new MmgMenuContainer();
         s1.SetMenu(mm1);
         
-        Assert.assertEquals(true, s1.GetMenu().Equals(mm1));
+        Assert.assertEquals(true, s1.GetMenu().ApiEquals(mm1));
         Assert.assertEquals(true, s1.GetMenu().equals(mm1));
         
         s1.SetMenuCursorLeftOffsetX(12);
@@ -128,24 +128,24 @@ public class MmgGameScreenUnitTest_2 {
         
         Assert.assertEquals(true, s1.GetMenuStart() == 0);
         Assert.assertEquals(true, s1.GetMenuStop() == 10);
-        Assert.assertEquals(true, s1.GetMessage().Equals(o1));
+        Assert.assertEquals(true, s1.GetMessage().ApiEquals(o1));
         Assert.assertEquals(true, s1.GetMessage().equals(o1));
-        Assert.assertEquals(true, s1.GetObjects().Equals(c1));
+        Assert.assertEquals(true, s1.GetObjects().ApiEquals(c1));
         Assert.assertEquals(true, s1.GetObjects().equals(c1));        
     
         s1.SetX(50);
         s1.SetY(50);
         
-        Assert.assertEquals(true, s1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
 
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));        
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));        
     }
     
     @Test
@@ -175,42 +175,42 @@ public class MmgGameScreenUnitTest_2 {
         Assert.assertEquals(true, s1.GetMenuOn() == false);
         Assert.assertEquals(true, s1.GetWidth() == MmgScreenData.GetGameWidth());
         Assert.assertEquals(true, s1.GetHeight() == MmgScreenData.GetGameHeight());
-        Assert.assertEquals(true, s1.GetPosition().Equals(MmgVector2.GetOriginVec()));        
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));        
 
         b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
         s1.SetBackground(b1);
         
-        Assert.assertEquals(true, s1.GetBackground().Equals(b1));
+        Assert.assertEquals(true, s1.GetBackground().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetBackground().equals(b1));        
         
         b2 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_2.png");        
         s1.SetForeground(b2);
         
-        Assert.assertEquals(true, s1.GetForeground().Equals(b2));
+        Assert.assertEquals(true, s1.GetForeground().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetForeground().equals(b2));        
     
         b3 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_3.png");        
         s1.SetHeader(b3);
         
-        Assert.assertEquals(true, s1.GetHeader().Equals(b3));
+        Assert.assertEquals(true, s1.GetHeader().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetHeader().equals(b3));        
         
         b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
         s1.SetFooter(b1);
         
-        Assert.assertEquals(true, s1.GetFooter().Equals(b1));
+        Assert.assertEquals(true, s1.GetFooter().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetFooter().equals(b1));                
     
         b2 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "loading_bar.png");        
         s1.SetLeftCursor(b2);
 
-        Assert.assertEquals(true, s1.GetLeftCursor().Equals(b2));
+        Assert.assertEquals(true, s1.GetLeftCursor().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetLeftCursor().equals(b2));
 
         mm1 = new MmgMenuContainer();
         s1.SetMenu(mm1);
         
-        Assert.assertEquals(true, s1.GetMenu().Equals(mm1));
+        Assert.assertEquals(true, s1.GetMenu().ApiEquals(mm1));
         Assert.assertEquals(true, s1.GetMenu().equals(mm1));
         
         s1.SetMenuCursorLeftOffsetX(12);
@@ -236,23 +236,23 @@ public class MmgGameScreenUnitTest_2 {
         
         Assert.assertEquals(true, s1.GetMenuStart() == 0);
         Assert.assertEquals(true, s1.GetMenuStop() == 10);
-        Assert.assertEquals(true, s1.GetMessage().Equals(o1));
+        Assert.assertEquals(true, s1.GetMessage().ApiEquals(o1));
         Assert.assertEquals(true, s1.GetMessage().equals(o1));
-        Assert.assertEquals(true, s1.GetObjects().Equals(c1));
+        Assert.assertEquals(true, s1.GetObjects().ApiEquals(c1));
         Assert.assertEquals(true, s1.GetObjects().equals(c1));        
     
         s1.SetX(50);
         s1.SetY(50);
         
-        Assert.assertEquals(true, s1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
 
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));        
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));        
     }    
 }

@@ -429,12 +429,12 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         screenData = new MmgScreenData(winWidth, winHeight, GamePanel.GAME_WIDTH, GamePanel.GAME_HEIGHT);
         MmgHelper.wr("");
         MmgHelper.wr("--- MmgScreenData ---");
-        MmgHelper.wr(MmgScreenData.ToString());
+        MmgHelper.wr(MmgScreenData.ApiToString());
 
         fontData = new MmgFontData();
         MmgHelper.wr("");
         MmgHelper.wr("--- MmgFontData ---");
-        MmgHelper.wr(MmgFontData.ToString());
+        MmgHelper.wr(MmgFontData.ApiToString());
         debugFont = MmgFontData.CreateDefaultFontSm();
         mmgDebugFont = new MmgFont(debugFont, "Test", 0, 0, MmgColor.GetWhite());
 
@@ -620,7 +620,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     @Override    
     public void ProcessDpadPress(int dir) {
-        currentScreen.ProcessDpadPress(dir);
+        if (currentScreen != null) {
+            currentScreen.ProcessDpadPress(dir);
+        }
     }
 
     /**
@@ -631,7 +633,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     @Override    
     public void ProcessDpadRelease(int dir) {
-        currentScreen.ProcessDpadRelease(dir);
+        if (currentScreen != null) {
+            currentScreen.ProcessDpadRelease(dir);
+        }
     }    
     
     /**
@@ -642,7 +646,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     @Override
     public void ProcessDpadClick(int dir) {
-        currentScreen.ProcessDpadClick(dir);
+        if (currentScreen != null) {
+            currentScreen.ProcessDpadClick(dir);
+        }
     }
 
     /**
@@ -651,7 +657,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     //TODO: Add comments
     @Override
     public void ProcessAPress(int src) {
-        currentScreen.ProcessAPress(src);
+        if (currentScreen != null) {
+            currentScreen.ProcessAPress(src);
+        }
     }
 
     /**
@@ -660,7 +668,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     //TODO: Add comments    
     @Override
     public void ProcessARelease(int src) {
-        currentScreen.ProcessARelease(src);
+        if (currentScreen != null) {
+            currentScreen.ProcessARelease(src);
+        }
     }
 
     /**
@@ -669,7 +679,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     //TODO: Add comments
     @Override    
     public void ProcessAClick(int src) {
-        currentScreen.ProcessAClick(src);
+        if (currentScreen != null) {
+            currentScreen.ProcessAClick(src);
+        }
     }    
     
     /**
@@ -678,7 +690,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     //TODO: Add comments        
     @Override
     public void ProcessBPress(int src) {
-        currentScreen.ProcessBPress(src);
+        if (currentScreen != null) {
+            currentScreen.ProcessBPress(src);
+        }
     }
 
     /**
@@ -687,7 +701,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     //TODO: Add comments
     @Override
     public void ProcessBRelease(int src) {
-        currentScreen.ProcessBRelease(src);
+        if (currentScreen != null) {
+            currentScreen.ProcessBRelease(src);
+        }
     }
     
     /**
@@ -695,7 +711,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */    
     @Override    
     public void ProcessBClick(int src) {
-        currentScreen.ProcessBClick(src);
+        if (currentScreen != null) {
+            currentScreen.ProcessBClick(src);
+        }
     }
 
     /**
@@ -703,7 +721,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * The event can be used to print screen specific information in response to the event.
      */
     public void ProcessDebugClick() {
-        currentScreen.ProcessDebugClick();
+        if (currentScreen != null) {
+            currentScreen.ProcessDebugClick();
+        }
     }
 
     /**
@@ -713,7 +733,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     //TODO: Add comments
     public void ProcessKeyPress(char c, int code) {
-        currentScreen.ProcessKeyPress(c, code);
+        if (currentScreen != null) {
+            currentScreen.ProcessKeyPress(c, code);
+        }
     }
     
     /**
@@ -723,7 +745,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */    
     //TODO: Add comments
     public void ProcessKeyRelease(char c, int code) {
-        currentScreen.ProcessKeyRelease(c, code);
+        if (currentScreen != null) {
+            currentScreen.ProcessKeyRelease(c, code);
+        }
     }    
     
     /**
@@ -733,7 +757,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */    
     //TODO: Add comments
     public void ProcessKeyClick(char c, int code) {
-        currentScreen.ProcessKeyClick(c, code);
+        if (currentScreen != null) {
+            currentScreen.ProcessKeyClick(c, code);
+        }
     }    
     
     /**
@@ -745,7 +771,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */
     public void ProcessMouseMove(int x, int y) {
-        currentScreen.ProcessMouseMove((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        if (currentScreen != null) {
+            currentScreen.ProcessMouseMove((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        }
     }
     
     /**
@@ -757,7 +785,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */    
     public void ProcessMousePress(int x, int y) {
-        currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        if (currentScreen != null) {
+            currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        }
     }
 
     /**
@@ -769,7 +799,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */    
     public void ProcessMouseRelease(int x, int y) {
-        currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        if (currentScreen != null) {
+            currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        }
     }
 
     /**
@@ -781,7 +813,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */     
     public void ProcessMouseClick(int x, int y) {
-        currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        if (currentScreen != null) {
+            currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+        }
     }
 
     /**

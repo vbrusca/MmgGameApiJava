@@ -550,7 +550,7 @@ public class MmgTextField extends MmgObj {
      * @param obj     The MmgTextField object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */   
-    public boolean Equals(MmgTextField obj) {
+    public boolean ApiEquals(MmgTextField obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -597,11 +597,11 @@ public class MmgTextField extends MmgObj {
                 
         boolean ret = false;
         if(
-            super.Equals((MmgObj)obj)
-            && ((obj.GetBground() == null && GetBground() == null) || (obj.GetBground() != null && GetBground() != null && obj.GetBground().Equals(GetBground())))
-            && ((obj.GetBgroundSrc() == null && GetBgroundSrc() == null) || (obj.GetBgroundSrc() != null && GetBgroundSrc() != null && obj.GetBgroundSrc().Equals(GetBgroundSrc())))
+            super.ApiEquals((MmgObj)obj)
+            && ((obj.GetBground() == null && GetBground() == null) || (obj.GetBground() != null && GetBground() != null && obj.GetBground().ApiEquals(GetBground())))
+            && ((obj.GetBgroundSrc() == null && GetBgroundSrc() == null) || (obj.GetBgroundSrc() != null && GetBgroundSrc() != null && obj.GetBgroundSrc().ApiEquals(GetBgroundSrc())))
             && obj.GetDisplayChars() == GetDisplayChars()
-            && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().Equals(GetFont())))
+            && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().ApiEquals(GetFont())))
             && obj.GetFontHeight() == GetFontHeight()
             && obj.GetMaxLength() == GetMaxLength()
             && obj.GetMaxLengthOn() == GetMaxLengthOn()

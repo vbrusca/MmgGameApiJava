@@ -51,11 +51,11 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(m1.number, null);
         
         m2 = m1.Clone();
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m1.Equals(m1));
-        Assert.assertEquals(false, m3.Equals(m1));
-        Assert.assertEquals(m1.ToString(), "");        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m1.ApiEquals(m1));
+        Assert.assertEquals(false, m3.ApiEquals(m1));
+        Assert.assertEquals(m1.ApiToString(), "");        
     }
 
     @Test
@@ -75,11 +75,11 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(m1.number, null);
         
         m2 = m1.Clone();
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m1.Equals(m1));
-        Assert.assertEquals(false, m3.Equals(m1));        
-        Assert.assertEquals(m1.ToString(), "");
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m1.ApiEquals(m1));
+        Assert.assertEquals(false, m3.ApiEquals(m1));        
+        Assert.assertEquals(m1.ApiToString(), "");
     }
 
     @Test
@@ -102,11 +102,11 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(m1.number, null);
         
         m2 = m1.Clone();
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m1.Equals(m1));  
-        Assert.assertEquals(false, m3.Equals(m1));        
-        Assert.assertEquals(m1.ToString(), "Test->test_string");        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m1.ApiEquals(m1));  
+        Assert.assertEquals(false, m3.ApiEquals(m1));        
+        Assert.assertEquals(m1.ApiToString(), "Test->test_string");        
     }
     
     @Test
@@ -132,10 +132,10 @@ public class MmgCfgFileEntryUnitTest_2 {
         Assert.assertEquals(m1.number.intValue(), 1);
         
         m2 = m1.Clone();
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m1.Equals(m1));  
-        Assert.assertEquals(false, m3.Equals(m1));        
-        Assert.assertEquals(m1.ToString(), "Test=1.234");        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m1.ApiEquals(m1));  
+        Assert.assertEquals(false, m3.ApiEquals(m1));        
+        Assert.assertEquals(m1.ApiToString(), "Test=1.234");        
     }    
 }

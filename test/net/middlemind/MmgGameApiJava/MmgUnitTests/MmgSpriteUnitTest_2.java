@@ -78,12 +78,12 @@ public class MmgSpriteUnitTest_2 {
         sprite3.SetFrameTime(200l);        
         
         Assert.assertEquals(sprite1.GetRotation(), 0.0f, 0.01);
-        Assert.assertEquals(true, sprite1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
-        Assert.assertEquals(true, sprite1.GetScaling().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));
         Assert.assertEquals(sprite1.GetSrcRect(), null);
         Assert.assertEquals(sprite1.GetDstRect(), null);
         Assert.assertEquals(true, sprite1.GetBmpArray().equals(frames1));
-        Assert.assertEquals(true, sprite1.GetPosition().Equals(frame1.GetPosition()));
+        Assert.assertEquals(true, sprite1.GetPosition().ApiEquals(frame1.GetPosition()));
         Assert.assertEquals(sprite1.GetIsVisible(), true);
         Assert.assertEquals(sprite1.GetSimpleRendering(), true);
         Assert.assertEquals(sprite1.GetMsPerFrame(), 100l);
@@ -91,33 +91,33 @@ public class MmgSpriteUnitTest_2 {
         
         sprite2 = (MmgSprite)sprite1.Clone();
         
-        Assert.assertEquals(true, sprite1.Equals(sprite2));
-        Assert.assertEquals(true, sprite2.Equals(sprite1));        
-        Assert.assertEquals(true, sprite1.Equals(sprite1));
-        Assert.assertEquals(false, sprite1.Equals(null));
-        Assert.assertEquals(false, sprite1.Equals(sprite3));
-        Assert.assertEquals(false, sprite2.Equals(sprite3));
-        Assert.assertEquals(false, sprite3.Equals(sprite2));
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite2));
+        Assert.assertEquals(true, sprite2.ApiEquals(sprite1));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite1));
+        Assert.assertEquals(false, sprite1.ApiEquals(null));
+        Assert.assertEquals(false, sprite1.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite2.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite3.ApiEquals(sprite2));
         
         sprite2 = sprite1.CloneTyped();
         
-        Assert.assertEquals(true, sprite1.Equals(sprite2));
-        Assert.assertEquals(true, sprite2.Equals(sprite1));        
-        Assert.assertEquals(true, sprite1.Equals(sprite1));
-        Assert.assertEquals(false, sprite1.Equals(null));
-        Assert.assertEquals(false, sprite1.Equals(sprite3));
-        Assert.assertEquals(false, sprite2.Equals(sprite3));
-        Assert.assertEquals(false, sprite3.Equals(sprite2));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite2));
+        Assert.assertEquals(true, sprite2.ApiEquals(sprite1));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite1));
+        Assert.assertEquals(false, sprite1.ApiEquals(null));
+        Assert.assertEquals(false, sprite1.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite2.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite3.ApiEquals(sprite2));        
         
         sprite1.SetTimerOnly(true);
         
         sprite1.SetSrcRect(MmgRect.GetUnitRect());
         
-        Assert.assertEquals(true, sprite1.GetSrcRect().Equals(MmgRect.GetUnitRect()));
+        Assert.assertEquals(true, sprite1.GetSrcRect().ApiEquals(MmgRect.GetUnitRect()));
         
         sprite1.SetDstRect(MmgRect.GetUnitRect());
         
-        Assert.assertEquals(true, sprite1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, sprite1.GetDstRect().ApiEquals(MmgRect.GetUnitRect()));        
     
         sprite1.SetPrevFrameTime(300);
         
@@ -125,7 +125,7 @@ public class MmgSpriteUnitTest_2 {
         
         sprite1.SetOrigin(MmgVector2.GetOriginVec());
         
-        Assert.assertEquals(true, sprite1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
     
         sprite1.SetMsPerFrame(500);
         
@@ -191,12 +191,12 @@ public class MmgSpriteUnitTest_2 {
         sprite3.SetFrameTime(200l);        
         
         Assert.assertEquals(sprite1.GetRotation(), 0.0f, 0.01);
-        Assert.assertEquals(true, sprite1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
-        Assert.assertEquals(true, sprite1.GetScaling().Equals(MmgVector2.GetUnitVec()));
-        Assert.assertEquals(true, sprite1.GetSrcRect().Equals(new MmgRect(sprite1.GetPosition(), frame1.GetWidth(), frame1.GetHeight())));
+        Assert.assertEquals(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, sprite1.GetSrcRect().ApiEquals(new MmgRect(sprite1.GetPosition(), frame1.GetWidth(), frame1.GetHeight())));
         Assert.assertEquals(sprite1.GetDstRect(), null);
         Assert.assertEquals(true, sprite1.GetBmpArray().equals(frames1));
-        Assert.assertEquals(true, sprite1.GetPosition().Equals(frame1.GetPosition()));
+        Assert.assertEquals(true, sprite1.GetPosition().ApiEquals(frame1.GetPosition()));
         Assert.assertEquals(sprite1.GetIsVisible(), true);
         Assert.assertEquals(sprite1.GetSimpleRendering(), true);
         Assert.assertEquals(sprite1.GetMsPerFrame(), 100l);
@@ -204,33 +204,33 @@ public class MmgSpriteUnitTest_2 {
         
         sprite2 = (MmgSprite)sprite1.Clone();
         
-        Assert.assertEquals(true, sprite1.Equals(sprite2));
-        Assert.assertEquals(true, sprite2.Equals(sprite1));        
-        Assert.assertEquals(true, sprite1.Equals(sprite1));
-        Assert.assertEquals(false, sprite1.Equals(null));
-        Assert.assertEquals(false, sprite1.Equals(sprite3));
-        Assert.assertEquals(false, sprite2.Equals(sprite3));
-        Assert.assertEquals(false, sprite3.Equals(sprite2));
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite2));
+        Assert.assertEquals(true, sprite2.ApiEquals(sprite1));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite1));
+        Assert.assertEquals(false, sprite1.ApiEquals(null));
+        Assert.assertEquals(false, sprite1.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite2.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite3.ApiEquals(sprite2));
         
         sprite2 = sprite1.CloneTyped();
         
-        Assert.assertEquals(true, sprite1.Equals(sprite2));
-        Assert.assertEquals(true, sprite2.Equals(sprite1));        
-        Assert.assertEquals(true, sprite1.Equals(sprite1));
-        Assert.assertEquals(false, sprite1.Equals(null));
-        Assert.assertEquals(false, sprite1.Equals(sprite3));
-        Assert.assertEquals(false, sprite2.Equals(sprite3));
-        Assert.assertEquals(false, sprite3.Equals(sprite2));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite2));
+        Assert.assertEquals(true, sprite2.ApiEquals(sprite1));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite1));
+        Assert.assertEquals(false, sprite1.ApiEquals(null));
+        Assert.assertEquals(false, sprite1.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite2.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite3.ApiEquals(sprite2));        
         
         sprite1.SetTimerOnly(true);
         
         sprite1.SetSrcRect(MmgRect.GetUnitRect());
         
-        Assert.assertEquals(true, sprite1.GetSrcRect().Equals(MmgRect.GetUnitRect()));
+        Assert.assertEquals(true, sprite1.GetSrcRect().ApiEquals(MmgRect.GetUnitRect()));
         
         sprite1.SetDstRect(MmgRect.GetUnitRect());
         
-        Assert.assertEquals(true, sprite1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, sprite1.GetDstRect().ApiEquals(MmgRect.GetUnitRect()));        
     
         sprite1.SetPrevFrameTime(300);
         
@@ -238,7 +238,7 @@ public class MmgSpriteUnitTest_2 {
         
         sprite1.SetOrigin(MmgVector2.GetOriginVec());
         
-        Assert.assertEquals(true, sprite1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
     
         sprite1.SetMsPerFrame(500);
         
@@ -304,12 +304,12 @@ public class MmgSpriteUnitTest_2 {
         sprite3.SetFrameTime(200l);        
         
         Assert.assertEquals(sprite1.GetRotation(), 0.0f, 0.01);
-        Assert.assertEquals(true, sprite1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
-        Assert.assertEquals(true, sprite1.GetScaling().Equals(MmgVector2.GetUnitVec()));
-        Assert.assertEquals(true, sprite1.GetSrcRect().Equals(new MmgRect(0, 0, frame1.GetHeight(), frame1.GetWidth())));
-        Assert.assertEquals(true, sprite1.GetDstRect().Equals(new MmgRect(0, 0, frame1.GetHeight(), frame1.GetWidth())));
+        Assert.assertEquals(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, sprite1.GetSrcRect().ApiEquals(new MmgRect(0, 0, frame1.GetHeight(), frame1.GetWidth())));
+        Assert.assertEquals(true, sprite1.GetDstRect().ApiEquals(new MmgRect(0, 0, frame1.GetHeight(), frame1.GetWidth())));
         Assert.assertEquals(true, sprite1.GetBmpArray().equals(frames1));
-        Assert.assertEquals(true, sprite1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         Assert.assertEquals(sprite1.GetIsVisible(), true);
         Assert.assertEquals(sprite1.GetSimpleRendering(), true);
         Assert.assertEquals(sprite1.GetMsPerFrame(), 100l);
@@ -317,33 +317,33 @@ public class MmgSpriteUnitTest_2 {
         
         sprite2 = (MmgSprite)sprite1.Clone();
         
-        Assert.assertEquals(true, sprite1.Equals(sprite2));
-        Assert.assertEquals(true, sprite2.Equals(sprite1));        
-        Assert.assertEquals(true, sprite1.Equals(sprite1));
-        Assert.assertEquals(false, sprite1.Equals(null));
-        Assert.assertEquals(false, sprite1.Equals(sprite3));
-        Assert.assertEquals(false, sprite2.Equals(sprite3));
-        Assert.assertEquals(false, sprite3.Equals(sprite2));
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite2));
+        Assert.assertEquals(true, sprite2.ApiEquals(sprite1));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite1));
+        Assert.assertEquals(false, sprite1.ApiEquals(null));
+        Assert.assertEquals(false, sprite1.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite2.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite3.ApiEquals(sprite2));
         
         sprite2 = sprite1.CloneTyped();
         
-        Assert.assertEquals(true, sprite1.Equals(sprite2));
-        Assert.assertEquals(true, sprite2.Equals(sprite1));        
-        Assert.assertEquals(true, sprite1.Equals(sprite1));
-        Assert.assertEquals(false, sprite1.Equals(null));
-        Assert.assertEquals(false, sprite1.Equals(sprite3));
-        Assert.assertEquals(false, sprite2.Equals(sprite3));
-        Assert.assertEquals(false, sprite3.Equals(sprite2));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite2));
+        Assert.assertEquals(true, sprite2.ApiEquals(sprite1));        
+        Assert.assertEquals(true, sprite1.ApiEquals(sprite1));
+        Assert.assertEquals(false, sprite1.ApiEquals(null));
+        Assert.assertEquals(false, sprite1.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite2.ApiEquals(sprite3));
+        Assert.assertEquals(false, sprite3.ApiEquals(sprite2));        
         
         sprite1.SetTimerOnly(true);
         
         sprite1.SetSrcRect(MmgRect.GetUnitRect());
         
-        Assert.assertEquals(true, sprite1.GetSrcRect().Equals(MmgRect.GetUnitRect()));
+        Assert.assertEquals(true, sprite1.GetSrcRect().ApiEquals(MmgRect.GetUnitRect()));
         
         sprite1.SetDstRect(MmgRect.GetUnitRect());
         
-        Assert.assertEquals(true, sprite1.GetDstRect().Equals(MmgRect.GetUnitRect()));        
+        Assert.assertEquals(true, sprite1.GetDstRect().ApiEquals(MmgRect.GetUnitRect()));        
     
         sprite1.SetPrevFrameTime(300);
         
@@ -351,7 +351,7 @@ public class MmgSpriteUnitTest_2 {
         
         sprite1.SetOrigin(MmgVector2.GetOriginVec());
         
-        Assert.assertEquals(true, sprite1.GetOrigin().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
     
         sprite1.SetMsPerFrame(500);
         

@@ -281,7 +281,7 @@ public class MmgVector2 {
      *
      * @return      A string representation of the vector.
      */
-    public String ToString() {
+    public String ApiToString() {
         return "MmgVector2: X: " + GetXDouble() + " Y:" + GetYDouble();
     }
 
@@ -291,7 +291,7 @@ public class MmgVector2 {
      * @param obj     An MmgVector2 object to compare for equality.
      * @return      A boolean indicating if this object is equal to the comparison object.
      */
-    public boolean Equals(MmgVector2 obj) {
+    public boolean ApiEquals(MmgVector2 obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {

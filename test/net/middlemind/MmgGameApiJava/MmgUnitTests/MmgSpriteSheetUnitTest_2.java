@@ -54,12 +54,12 @@ public class MmgSpriteSheetUnitTest_2 {
         ba1[1] = b3;
         ba1[2] = b4;        
         
-        Assert.assertEquals(true, s1.GetSrc().Equals(b1));
+        Assert.assertEquals(true, s1.GetSrc().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetSrc().equals(b1));
 
         s1.SetFrame(b4, 0);
         
-        Assert.assertEquals(true, s1.GetFrame(0).Equals(b4));
+        Assert.assertEquals(true, s1.GetFrame(0).ApiEquals(b4));
         Assert.assertEquals(true, s1.GetFrame(0).equals(b4));
         
         s1.SetFrames(ba1);
@@ -74,17 +74,17 @@ public class MmgSpriteSheetUnitTest_2 {
         
         s1.SetSrc(b2);
         
-        Assert.assertEquals(true, s1.GetSrc().Equals(b2));
+        Assert.assertEquals(true, s1.GetSrc().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetSrc().equals(b2));        
     
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));                
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));                
+        Assert.assertEquals(true, s1.ApiEquals(s1));                
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));                
     }   
     
     @Test
@@ -106,12 +106,12 @@ public class MmgSpriteSheetUnitTest_2 {
         ba1[1] = b3;
         ba1[2] = b4;        
         
-        Assert.assertEquals(true, s1.GetSrc().Equals(b1));
+        Assert.assertEquals(true, s1.GetSrc().ApiEquals(b1));
         Assert.assertEquals(false, s1.GetSrc().equals(b1));
 
         s1.SetFrame(b4, 0);
         
-        Assert.assertEquals(true, s1.GetFrame(0).Equals(b4));
+        Assert.assertEquals(true, s1.GetFrame(0).ApiEquals(b4));
         Assert.assertEquals(true, s1.GetFrame(0).equals(b4));
         
         s1.SetFrames(ba1);
@@ -126,16 +126,16 @@ public class MmgSpriteSheetUnitTest_2 {
         
         s1.SetSrc(b2);
         
-        Assert.assertEquals(true, s1.GetSrc().Equals(b2));
+        Assert.assertEquals(true, s1.GetSrc().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetSrc().equals(b2));        
     
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));                
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));                
+        Assert.assertEquals(true, s1.ApiEquals(s1));                
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));                
     }       
 }

@@ -66,31 +66,31 @@ public class MmgLoadingBarUnitTest_2 {
         l1.SetPaddingY(12);
         
         Assert.assertEquals(true, l1.GetLoadingBarBack().equals(b1));
-        Assert.assertEquals(true, l1.GetLoadingBarBack().Equals(b1));
+        Assert.assertEquals(true, l1.GetLoadingBarBack().ApiEquals(b1));
         Assert.assertEquals(l1.GetPaddingX(), 12);
         Assert.assertEquals(l1.GetPaddingY(), 12);
         
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         Assert.assertEquals(l1.GetX(), 1);
         Assert.assertEquals(l1.GetY(), 1);
         
         l1.SetX(2);
         l1.SetY(2);        
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(new MmgVector2(2, 2)));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(new MmgVector2(2, 2)));
         Assert.assertEquals(l1.GetX(), 2);
         Assert.assertEquals(l1.GetY(), 2);
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1));                        
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));        
+        Assert.assertEquals(true, l1.ApiEquals(l1));                        
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));        
     }
  
     @Test
@@ -121,31 +121,31 @@ public class MmgLoadingBarUnitTest_2 {
         l1.SetPaddingY(12);
         
         Assert.assertEquals(true, l1.GetLoadingBarBack().equals(b1));
-        Assert.assertEquals(true, l1.GetLoadingBarBack().Equals(b1));
+        Assert.assertEquals(true, l1.GetLoadingBarBack().ApiEquals(b1));
         Assert.assertEquals(l1.GetPaddingX(), 12);
         Assert.assertEquals(l1.GetPaddingY(), 12);
         
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         Assert.assertEquals(l1.GetX(), 1);
         Assert.assertEquals(l1.GetY(), 1);
         
         l1.SetX(2);
         l1.SetY(2);        
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(new MmgVector2(2, 2)));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(new MmgVector2(2, 2)));
         Assert.assertEquals(l1.GetX(), 2);
         Assert.assertEquals(l1.GetY(), 2);
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1));                        
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));        
+        Assert.assertEquals(true, l1.ApiEquals(l1));                        
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));        
     }
     
     @Test
@@ -177,30 +177,30 @@ public class MmgLoadingBarUnitTest_2 {
         l1.SetPaddingY(12);
         
         Assert.assertEquals(true, l1.GetLoadingBarBack().equals(b1));
-        Assert.assertEquals(true, l1.GetLoadingBarBack().Equals(b1));
+        Assert.assertEquals(true, l1.GetLoadingBarBack().ApiEquals(b1));
         Assert.assertEquals(l1.GetPaddingX(), 12);
         Assert.assertEquals(l1.GetPaddingY(), 12);
         
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         Assert.assertEquals(l1.GetX(), 1);
         Assert.assertEquals(l1.GetY(), 1);
         
         l1.SetX(2);
         l1.SetY(2);        
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(new MmgVector2(2, 2)));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(new MmgVector2(2, 2)));
         Assert.assertEquals(l1.GetX(), 2);
         Assert.assertEquals(l1.GetY(), 2);
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1));                
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));        
+        Assert.assertEquals(true, l1.ApiEquals(l1));                
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));        
     }    
 }

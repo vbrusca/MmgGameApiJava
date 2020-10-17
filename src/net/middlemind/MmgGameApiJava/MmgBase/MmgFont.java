@@ -249,7 +249,7 @@ public class MmgFont extends MmgObj {
      * @param obj     The MmgFont object to compare
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
-    public boolean Equals(MmgFont obj) {
+    public boolean ApiEquals(MmgFont obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -272,7 +272,7 @@ public class MmgFont extends MmgObj {
                 
         boolean ret = false;
         if (
-            super.Equals((MmgObj)obj)
+            super.ApiEquals((MmgObj)obj)
             && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().equals(GetFont()))) 
             && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().equals(GetText())))
         ) {

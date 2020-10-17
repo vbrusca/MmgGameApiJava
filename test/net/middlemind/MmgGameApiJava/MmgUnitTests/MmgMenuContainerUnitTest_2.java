@@ -49,12 +49,12 @@ public class MmgMenuContainerUnitTest_2 {
         
         m2 = m1.CloneTyped();
         
-        Assert.assertEquals(true, m1.Equals(m1));        
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(false, m3.Equals(m1));
-        Assert.assertEquals(false, m1.Equals(m3));               
+        Assert.assertEquals(true, m1.ApiEquals(m1));        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(false, m3.ApiEquals(m1));
+        Assert.assertEquals(false, m1.ApiEquals(m3));               
     }
 
     @Test
@@ -70,12 +70,12 @@ public class MmgMenuContainerUnitTest_2 {
         
         m2 = m1.CloneTyped();
         
-        Assert.assertEquals(true, m1.Equals(m1));        
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(false, m3.Equals(m1));
-        Assert.assertEquals(false, m1.Equals(m3));               
+        Assert.assertEquals(true, m1.ApiEquals(m1));        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(false, m3.ApiEquals(m1));
+        Assert.assertEquals(false, m1.ApiEquals(m3));               
     }
 
     @Test
@@ -100,12 +100,12 @@ public class MmgMenuContainerUnitTest_2 {
         
         m2 = m1.CloneTyped();
         
-        Assert.assertEquals(true, m1.Equals(m1));        
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(false, m3.Equals(m1));
-        Assert.assertEquals(false, m1.Equals(m3));               
+        Assert.assertEquals(true, m1.ApiEquals(m1));        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(false, m3.ApiEquals(m1));
+        Assert.assertEquals(false, m1.ApiEquals(m3));               
     }
     
     @Test
@@ -130,11 +130,11 @@ public class MmgMenuContainerUnitTest_2 {
         
         m2 = m1.CloneTyped();
         
-        Assert.assertEquals(true, m1.Equals(m1));        
-        Assert.assertEquals(true, m1.Equals(m2));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(true, m2.Equals(m1));
-        Assert.assertEquals(false, m3.Equals(m1));
-        Assert.assertEquals(false, m1.Equals(m3));               
+        Assert.assertEquals(true, m1.ApiEquals(m1));        
+        Assert.assertEquals(true, m1.ApiEquals(m2));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(true, m2.ApiEquals(m1));
+        Assert.assertEquals(false, m3.ApiEquals(m1));
+        Assert.assertEquals(false, m1.ApiEquals(m3));               
     }     
 }

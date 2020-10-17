@@ -72,7 +72,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
      * 
      * @return      A string representation of this class.
      */
-    public String ToString() {
+    public String ApiToString() {
         String ret = "";
 
         if(name != null && name.equals("") == false) {
@@ -106,7 +106,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
      * @param c     The MmgCfgFileEntry object instance to test for equality.
      * @return      Returns true if both MmgCfgFileEntry objects are the same.
      */
-    public boolean Equals(MmgCfgFileEntry obj) {
+    public boolean ApiEquals(MmgCfgFileEntry obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {

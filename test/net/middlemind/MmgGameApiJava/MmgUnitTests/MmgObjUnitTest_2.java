@@ -44,11 +44,11 @@ public class MmgObjUnitTest_2 {
         o1 = new MmgObj();
         o3 = new MmgObj();
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         Assert.assertEquals(true, o1.GetWidth() == 0);
         Assert.assertEquals(true, o1.GetHeight() == 0);
         Assert.assertEquals(true, o1.GetIsVisible() == true);
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetWhite()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetWhite()));
         Assert.assertEquals(true, o1.GetHasParent() == false);
         Assert.assertEquals(true, o1.GetParent() == null);
         Assert.assertEquals(true, o1.GetName().equals(""));
@@ -68,14 +68,14 @@ public class MmgObjUnitTest_2 {
         o1.SetName("Test Name");
         o1.SetParent(new MmgObj());
         
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetBlackCat()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetBlackCat()));
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
-        Assert.assertEquals(true, o1.GetParent().Equals(new MmgObj()));
+        Assert.assertEquals(true, o1.GetParent().ApiEquals(new MmgObj()));
 
         o1.SetPosition(50, 50);
         o1.SetWidth(100);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
         Assert.assertEquals(true, o1.GetWidth() == 100);
         
         o1.SetX(75);
@@ -86,12 +86,12 @@ public class MmgObjUnitTest_2 {
         
         o2 = o1.CloneTyped();
         
-        Assert.assertEquals(true, o1.Equals(o1));                
-        Assert.assertEquals(true, o1.Equals(o2));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(false, o3.Equals(o1));
-        Assert.assertEquals(false, o1.Equals(o3));               
+        Assert.assertEquals(true, o1.ApiEquals(o1));                
+        Assert.assertEquals(true, o1.ApiEquals(o2));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(false, o3.ApiEquals(o1));
+        Assert.assertEquals(false, o1.ApiEquals(o3));               
     }
     
     @Test
@@ -102,11 +102,11 @@ public class MmgObjUnitTest_2 {
         o1 = new MmgObj("Test Name", "Test Id");
         o3 = new MmgObj();
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         Assert.assertEquals(true, o1.GetWidth() == 0);
         Assert.assertEquals(true, o1.GetHeight() == 0);
         Assert.assertEquals(true, o1.GetIsVisible() == true);
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetWhite()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetWhite()));
         Assert.assertEquals(true, o1.GetHasParent() == false);
         Assert.assertEquals(true, o1.GetParent() == null);
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
@@ -126,14 +126,14 @@ public class MmgObjUnitTest_2 {
         o1.SetName("Test Name");
         o1.SetParent(new MmgObj());
         
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetBlackCat()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetBlackCat()));
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
-        Assert.assertEquals(true, o1.GetParent().Equals(new MmgObj()));
+        Assert.assertEquals(true, o1.GetParent().ApiEquals(new MmgObj()));
 
         o1.SetPosition(50, 50);
         o1.SetWidth(100);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
         Assert.assertEquals(true, o1.GetWidth() == 100);
         
         o1.SetX(75);
@@ -144,12 +144,12 @@ public class MmgObjUnitTest_2 {
         
         o2 = o1.CloneTyped();
         
-        Assert.assertEquals(true, o1.Equals(o1));                
-        Assert.assertEquals(true, o1.Equals(o2));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(false, o3.Equals(o1));
-        Assert.assertEquals(false, o1.Equals(o3));               
+        Assert.assertEquals(true, o1.ApiEquals(o1));                
+        Assert.assertEquals(true, o1.ApiEquals(o2));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(false, o3.ApiEquals(o1));
+        Assert.assertEquals(false, o1.ApiEquals(o3));               
     } 
 
     @Test
@@ -160,11 +160,11 @@ public class MmgObjUnitTest_2 {
         o1 = new MmgObj(3, 3, 30, 30, true, MmgColor.GetCyan());
         o3 = new MmgObj();
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(3, 3)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(3, 3)));
         Assert.assertEquals(true, o1.GetWidth() == 30);
         Assert.assertEquals(true, o1.GetHeight() == 30);
         Assert.assertEquals(true, o1.GetIsVisible() == true);
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetCyan()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetCyan()));
         Assert.assertEquals(true, o1.GetHasParent() == false);
         Assert.assertEquals(true, o1.GetParent() == null);
         Assert.assertEquals(true, o1.GetName().equals(""));
@@ -184,14 +184,14 @@ public class MmgObjUnitTest_2 {
         o1.SetName("Test Name");
         o1.SetParent(new MmgObj());
         
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetBlackCat()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetBlackCat()));
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
-        Assert.assertEquals(true, o1.GetParent().Equals(new MmgObj()));
+        Assert.assertEquals(true, o1.GetParent().ApiEquals(new MmgObj()));
 
         o1.SetPosition(50, 50);
         o1.SetWidth(100);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
         Assert.assertEquals(true, o1.GetWidth() == 100);
         
         o1.SetX(75);
@@ -202,12 +202,12 @@ public class MmgObjUnitTest_2 {
         
         o2 = o1.CloneTyped();
         
-        Assert.assertEquals(true, o1.Equals(o1));                
-        Assert.assertEquals(true, o1.Equals(o2));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(false, o3.Equals(o1));
-        Assert.assertEquals(false, o1.Equals(o3));               
+        Assert.assertEquals(true, o1.ApiEquals(o1));                
+        Assert.assertEquals(true, o1.ApiEquals(o2));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(false, o3.ApiEquals(o1));
+        Assert.assertEquals(false, o1.ApiEquals(o3));               
     }   
     
     @Test
@@ -218,7 +218,7 @@ public class MmgObjUnitTest_2 {
         o1 = new MmgObj(25, 25);
         o3 = new MmgObj(15, 15);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         Assert.assertEquals(true, o1.GetWidth() == 25);
         Assert.assertEquals(true, o1.GetHeight() == 25);
         Assert.assertEquals(true, o1.GetIsVisible() == true);
@@ -242,14 +242,14 @@ public class MmgObjUnitTest_2 {
         o1.SetName("Test Name");
         o1.SetParent(new MmgObj());
         
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetBlackCat()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetBlackCat()));
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
-        Assert.assertEquals(true, o1.GetParent().Equals(new MmgObj()));
+        Assert.assertEquals(true, o1.GetParent().ApiEquals(new MmgObj()));
 
         o1.SetPosition(50, 50);
         o1.SetWidth(100);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
         Assert.assertEquals(true, o1.GetWidth() == 100);
         
         o1.SetX(75);
@@ -260,12 +260,12 @@ public class MmgObjUnitTest_2 {
         
         o2 = o1.CloneTyped();
         
-        Assert.assertEquals(true, o1.Equals(o1));                
-        Assert.assertEquals(true, o1.Equals(o2));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(false, o3.Equals(o1));
-        Assert.assertEquals(false, o1.Equals(o3));               
+        Assert.assertEquals(true, o1.ApiEquals(o1));                
+        Assert.assertEquals(true, o1.ApiEquals(o2));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(false, o3.ApiEquals(o1));
+        Assert.assertEquals(false, o1.ApiEquals(o3));               
     }
     
     @Test
@@ -276,11 +276,11 @@ public class MmgObjUnitTest_2 {
         o1 = new MmgObj(4, 4, 25, 25, true, MmgColor.GetGray(), "Test Name", "Test Id");
         o3 = new MmgObj(15, 15);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2Int(4, 4)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2Int(4, 4)));
         Assert.assertEquals(true, o1.GetWidth() == 25);
         Assert.assertEquals(true, o1.GetHeight() == 25);
         Assert.assertEquals(true, o1.GetIsVisible() == true);
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetGray()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetGray()));
         Assert.assertEquals(true, o1.GetHasParent() == false);
         Assert.assertEquals(true, o1.GetParent() == null);
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
@@ -300,14 +300,14 @@ public class MmgObjUnitTest_2 {
         o1.SetName("Test Name");
         o1.SetParent(new MmgObj());
         
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetBlackCat()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetBlackCat()));
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
-        Assert.assertEquals(true, o1.GetParent().Equals(new MmgObj()));
+        Assert.assertEquals(true, o1.GetParent().ApiEquals(new MmgObj()));
 
         o1.SetPosition(50, 50);
         o1.SetWidth(100);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
         Assert.assertEquals(true, o1.GetWidth() == 100);
         
         o1.SetX(75);
@@ -318,12 +318,12 @@ public class MmgObjUnitTest_2 {
         
         o2 = o1.CloneTyped();
         
-        Assert.assertEquals(true, o1.Equals(o1));                
-        Assert.assertEquals(true, o1.Equals(o2));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(false, o3.Equals(o1));
-        Assert.assertEquals(false, o1.Equals(o3));               
+        Assert.assertEquals(true, o1.ApiEquals(o1));                
+        Assert.assertEquals(true, o1.ApiEquals(o2));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(false, o3.ApiEquals(o1));
+        Assert.assertEquals(false, o1.ApiEquals(o3));               
     }     
     
    @Test
@@ -334,11 +334,11 @@ public class MmgObjUnitTest_2 {
         o1 = new MmgObj(new MmgVector2(4, 4), 25, 25, true, MmgColor.GetGray(), "Test Name", "Test Id");
         o3 = new MmgObj(15, 15);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2Int(4, 4)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2Int(4, 4)));
         Assert.assertEquals(true, o1.GetWidth() == 25);
         Assert.assertEquals(true, o1.GetHeight() == 25);
         Assert.assertEquals(true, o1.GetIsVisible() == true);
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetGray()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetGray()));
         Assert.assertEquals(true, o1.GetHasParent() == false);
         Assert.assertEquals(true, o1.GetParent() == null);
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
@@ -358,14 +358,14 @@ public class MmgObjUnitTest_2 {
         o1.SetName("Test Name");
         o1.SetParent(new MmgObj());
         
-        Assert.assertEquals(true, o1.GetMmgColor().Equals(MmgColor.GetBlackCat()));
+        Assert.assertEquals(true, o1.GetMmgColor().ApiEquals(MmgColor.GetBlackCat()));
         Assert.assertEquals(true, o1.GetName().equals("Test Name"));
-        Assert.assertEquals(true, o1.GetParent().Equals(new MmgObj()));
+        Assert.assertEquals(true, o1.GetParent().ApiEquals(new MmgObj()));
 
         o1.SetPosition(50, 50);
         o1.SetWidth(100);
         
-        Assert.assertEquals(true, o1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, o1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
         Assert.assertEquals(true, o1.GetWidth() == 100);
         
         o1.SetX(75);
@@ -376,11 +376,11 @@ public class MmgObjUnitTest_2 {
         
         o2 = o1.CloneTyped();
         
-        Assert.assertEquals(true, o1.Equals(o1));                
-        Assert.assertEquals(true, o1.Equals(o2));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(true, o2.Equals(o1));
-        Assert.assertEquals(false, o3.Equals(o1));
-        Assert.assertEquals(false, o1.Equals(o3));               
+        Assert.assertEquals(true, o1.ApiEquals(o1));                
+        Assert.assertEquals(true, o1.ApiEquals(o2));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(true, o2.ApiEquals(o1));
+        Assert.assertEquals(false, o3.ApiEquals(o1));
+        Assert.assertEquals(false, o1.ApiEquals(o3));               
     }         
 }

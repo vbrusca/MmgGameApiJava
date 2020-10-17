@@ -106,35 +106,35 @@ public class MmgBmpUnitTest {
         float r;
         
         //TEST 1
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
         
         //TEST 2
         o = new MmgVector2(20, 20);
         b1.SetOrigin(o);
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.SetOrigin(o);
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
         
         //TEST 3
         o = new MmgVector2(0.15, 0.15);
         b1.SetScaling(o);
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.SetScaling(o);
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
         
         //TEST 4
         s = new MmgRect(0, 0, 20, 20);
         b1.SetSrcRect(s);
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.SetSrcRect(s);
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
         
         //TEST 5
         d = new MmgRect(0, 0, 30, 30);
         b1.SetDstRect(d);
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.SetDstRect(d);
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
 
         //TEST 6        
         try {
@@ -144,22 +144,22 @@ public class MmgBmpUnitTest {
         }
         
         b1.SetImage(i);
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.SetImage(i);
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
         
         //TEST 7
         r = 90;
         b1.SetRotation(r);
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.SetRotation(r);
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
         
         //TEST 8 
         b1.DRAW_MODE = MmgBmp.MmgBmpDrawMode.DRAW_BMP_BASIC_CACHE;
-        Assert.assertEquals(false, b1.Equals(b2));
+        Assert.assertEquals(false, b1.ApiEquals(b2));
         b2.DRAW_MODE = MmgBmp.MmgBmpDrawMode.DRAW_BMP_BASIC_CACHE;
-        Assert.assertEquals(true, b1.Equals(b2));
+        Assert.assertEquals(true, b1.ApiEquals(b2));
     }
     
     @Test
@@ -183,11 +183,11 @@ public class MmgBmpUnitTest {
         //TEST 2
         d = new MmgRect(0, 0, 50, 50);
         b1.SetDstRect(d);
-        Assert.assertEquals(true, d.Equals(b1.GetDstRect()));
+        Assert.assertEquals(true, d.ApiEquals(b1.GetDstRect()));
         
         d = new MmgRect(0, 0, 100, 100);
         b1.SetSrcRect(d);
-        Assert.assertEquals(true, d.Equals(b1.GetSrcRect()));        
+        Assert.assertEquals(true, d.ApiEquals(b1.GetSrcRect()));        
         
         //TEST 3        
         try {
@@ -206,15 +206,15 @@ public class MmgBmpUnitTest {
         //TEST 4
         v = new MmgVector2(100, 100);
         b1.SetOrigin(v);
-        Assert.assertEquals(true, v.Equals(b1.GetOrigin()));
+        Assert.assertEquals(true, v.ApiEquals(b1.GetOrigin()));
         
         v = new MmgVector2(50, 50);
         b1.SetPosition(v);
-        Assert.assertEquals(true, v.Equals(b1.GetPosition()));        
+        Assert.assertEquals(true, v.ApiEquals(b1.GetPosition()));        
         
         v = new MmgVector2(2, 2);
         b1.SetScaling(v);
-        Assert.assertEquals(true, v.Equals(b1.GetScaling()));                
+        Assert.assertEquals(true, v.ApiEquals(b1.GetScaling()));                
         
         //TEST 5
         f = 32.0f;
@@ -275,19 +275,19 @@ public class MmgBmpUnitTest {
         b1.SetSrcRect(new MmgRect(0, 0, b1.GetHeight(), b1.GetWidth()));        
         
         b2 = b1.CloneTyped();        
-        Assert.assertTrue(b2.Equals(b1));
+        Assert.assertTrue(b2.ApiEquals(b1));
         Assert.assertEquals(b2.GetWidth(), b1.GetWidth());
         Assert.assertEquals(b2.GetHeight(), b1.GetHeight());      
         Assert.assertEquals(b2.GetImage(), b1.GetImage());
         Assert.assertEquals(b2.GetTexture2D(), b1.GetTexture2D());        
-        Assert.assertTrue(b2.GetMmgColor().Equals(b1.GetMmgColor()));
-        Assert.assertTrue(b2.GetPosition().Equals(b1.GetPosition()));
+        Assert.assertTrue(b2.GetMmgColor().ApiEquals(b1.GetMmgColor()));
+        Assert.assertTrue(b2.GetPosition().ApiEquals(b1.GetPosition()));
         Assert.assertFalse((b2.GetBmpId() == b1.GetBmpId()));
         Assert.assertFalse((b2.GetBmpIdStr().equals(b1.GetBmpIdStr())));
         Assert.assertTrue(b2.GetRotation() == b1.GetRotation());
-        Assert.assertTrue(b2.GetOrigin().Equals(b1.GetOrigin()));        
-        Assert.assertTrue(b2.GetSrcRect().Equals(b1.GetSrcRect()));        
-        Assert.assertTrue(b2.GetDstRect().Equals(b1.GetDstRect()));
+        Assert.assertTrue(b2.GetOrigin().ApiEquals(b1.GetOrigin()));        
+        Assert.assertTrue(b2.GetSrcRect().ApiEquals(b1.GetSrcRect()));        
+        Assert.assertTrue(b2.GetDstRect().ApiEquals(b1.GetDstRect()));
         Assert.assertTrue(b1.GetScaledHeight() == b2.GetScaledHeight());
         Assert.assertTrue(b1.GetScaledWidth() == b2.GetScaledWidth());
         Assert.assertTrue(b1.GetUnscaledHeight() == b2.GetUnscaledHeight());
@@ -296,7 +296,7 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetWidthFloat() == b2.GetWidthFloat());        
         Assert.assertNotEquals(b2, b1);        
         b1.SetPosition(new MmgVector2(100, 100));
-        Assert.assertFalse(b1.GetPosition().Equals(b2.GetPosition()));
+        Assert.assertFalse(b1.GetPosition().ApiEquals(b2.GetPosition()));
         
         b1 = new MmgBmp();
         b1.SetImage(i);
@@ -311,19 +311,19 @@ public class MmgBmpUnitTest {
         b1.SetSrcRect(new MmgRect(0, 0, b1.GetHeight(), b1.GetWidth()));                
         
         b2 = (MmgBmp)b1.Clone();
-        Assert.assertTrue(b2.Equals(b1));        
+        Assert.assertTrue(b2.ApiEquals(b1));        
         Assert.assertEquals(b2.GetWidth(), b1.GetWidth());
         Assert.assertEquals(b2.GetWidth(), b1.GetWidth());        
         Assert.assertEquals(b2.GetImage(), b1.GetImage());
         Assert.assertEquals(b2.GetTexture2D(), b1.GetTexture2D());        
-        Assert.assertTrue(b2.GetMmgColor().Equals(b1.GetMmgColor()));
-        Assert.assertTrue(b2.GetPosition().Equals(b1.GetPosition())); 
+        Assert.assertTrue(b2.GetMmgColor().ApiEquals(b1.GetMmgColor()));
+        Assert.assertTrue(b2.GetPosition().ApiEquals(b1.GetPosition())); 
         Assert.assertFalse((b2.GetBmpId() == b1.GetBmpId()));
         Assert.assertFalse((b2.GetBmpIdStr().equals(b1.GetBmpIdStr())));
         Assert.assertTrue(b2.GetRotation() == b1.GetRotation());
-        Assert.assertTrue(b2.GetOrigin().Equals(b1.GetOrigin()));        
-        Assert.assertTrue(b2.GetSrcRect().Equals(b1.GetSrcRect()));        
-        Assert.assertTrue(b2.GetDstRect().Equals(b1.GetDstRect()));
+        Assert.assertTrue(b2.GetOrigin().ApiEquals(b1.GetOrigin()));        
+        Assert.assertTrue(b2.GetSrcRect().ApiEquals(b1.GetSrcRect()));        
+        Assert.assertTrue(b2.GetDstRect().ApiEquals(b1.GetDstRect()));
         Assert.assertTrue(b1.GetScaledHeight() == b2.GetScaledHeight());
         Assert.assertTrue(b1.GetScaledWidth() == b2.GetScaledWidth());
         Assert.assertTrue(b1.GetUnscaledHeight() == b2.GetUnscaledHeight());
@@ -332,7 +332,7 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetWidthFloat() == b2.GetWidthFloat()); 
         Assert.assertNotEquals(b2, b1);        
         b1.SetPosition(new MmgVector2(100, 100));
-        Assert.assertFalse(b1.GetPosition().Equals(b2.GetPosition()));
+        Assert.assertFalse(b1.GetPosition().ApiEquals(b2.GetPosition()));
     }
     
     @Test
@@ -342,10 +342,10 @@ public class MmgBmpUnitTest {
         MmgBmp b2;
         
         b1 = new MmgBmp();
-        Assert.assertTrue(b1.GetOrigin().Equals(new MmgVector2(0, 0)));
-        Assert.assertTrue(b1.GetScaling().Equals(new MmgVector2(1, 1)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
+        Assert.assertTrue(b1.GetOrigin().ApiEquals(new MmgVector2(0, 0)));
+        Assert.assertTrue(b1.GetScaling().ApiEquals(new MmgVector2(1, 1)));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, 1, 1)));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, 1, 1)));
         Assert.assertNull(b1.GetImage());
         Assert.assertNull(b1.GetTexture2D());
         Assert.assertTrue(b1.GetRotation() == 0f);
@@ -355,18 +355,18 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetWidthFloat() == 0.0f);        
         Assert.assertTrue(b1.GetUnscaledHeight() == 0);
         Assert.assertTrue(b1.GetUnscaledWidth() == 0);
-        Assert.assertTrue(b1.GetMmgColor().Equals(MmgColor.GetWhite()));
-        Assert.assertTrue(b1.GetPosition().Equals(MmgVector2.GetOriginVec()));         
+        Assert.assertTrue(b1.GetMmgColor().ApiEquals(MmgColor.GetWhite()));
+        Assert.assertTrue(b1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));         
         
         MmgObj obj = new MmgObj();
         obj.SetWidth(20);
         obj.SetHeight(20);
         b1 = new MmgBmp(obj);
-        Assert.assertTrue(b1.GetOrigin().Equals(new MmgVector2(0, 0)));
-        Assert.assertTrue(b1.GetScaling().Equals(MmgVector2.GetUnitVec()));        
-        Assert.assertTrue(b1.GetScaling().Equals(new MmgVector2(1, 1)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
+        Assert.assertTrue(b1.GetOrigin().ApiEquals(new MmgVector2(0, 0)));
+        Assert.assertTrue(b1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));        
+        Assert.assertTrue(b1.GetScaling().ApiEquals(new MmgVector2(1, 1)));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, 1, 1)));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, 1, 1)));
         Assert.assertNull(b1.GetImage());
         Assert.assertNull(b1.GetTexture2D());
         Assert.assertTrue(b1.GetRotation() == 0f);
@@ -376,23 +376,23 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetWidthFloat() == 20.0f);        
         Assert.assertTrue(b1.GetUnscaledHeight() == 20);
         Assert.assertTrue(b1.GetUnscaledWidth() == 20);
-        Assert.assertTrue(b1.GetMmgColor().Equals(MmgColor.GetWhite()));
-        Assert.assertTrue(b1.GetPosition().Equals(MmgVector2.GetOriginVec())); 
+        Assert.assertTrue(b1.GetMmgColor().ApiEquals(MmgColor.GetWhite()));
+        Assert.assertTrue(b1.GetPosition().ApiEquals(MmgVector2.GetOriginVec())); 
         
         b2 = new MmgBmp(b1);
-        Assert.assertTrue(b2.Equals(b1));        
+        Assert.assertTrue(b2.ApiEquals(b1));        
         Assert.assertEquals(b2.GetWidth(), b1.GetWidth());
         Assert.assertEquals(b2.GetImage(), b1.GetImage());
         Assert.assertNull(b1.GetTexture2D());        
-        Assert.assertTrue(b2.GetMmgColor().Equals(b1.GetMmgColor()));
-        Assert.assertTrue(b2.GetPosition().Equals(b1.GetPosition())); 
+        Assert.assertTrue(b2.GetMmgColor().ApiEquals(b1.GetMmgColor()));
+        Assert.assertTrue(b2.GetPosition().ApiEquals(b1.GetPosition())); 
         Assert.assertFalse((b2.GetBmpId() == b1.GetBmpId()));
         Assert.assertFalse((b2.GetBmpIdStr().equals(b1.GetBmpIdStr())));
         Assert.assertTrue(b2.GetRotation() == b1.GetRotation());
-        Assert.assertTrue(b2.GetOrigin().Equals(b1.GetOrigin()));
-        Assert.assertTrue(b2.GetScaling().Equals(b1.GetScaling()));
-        Assert.assertTrue(b2.GetSrcRect().Equals(b1.GetSrcRect()));        
-        Assert.assertTrue(b2.GetDstRect().Equals(b1.GetDstRect()));
+        Assert.assertTrue(b2.GetOrigin().ApiEquals(b1.GetOrigin()));
+        Assert.assertTrue(b2.GetScaling().ApiEquals(b1.GetScaling()));
+        Assert.assertTrue(b2.GetSrcRect().ApiEquals(b1.GetSrcRect()));        
+        Assert.assertTrue(b2.GetDstRect().ApiEquals(b1.GetDstRect()));
         Assert.assertTrue(b1.GetScaledHeight() == b2.GetScaledHeight());
         Assert.assertTrue(b1.GetScaledWidth() == b2.GetScaledWidth());
         Assert.assertTrue(b1.GetUnscaledHeight() == b2.GetUnscaledHeight());
@@ -401,7 +401,7 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetWidthFloat() == b2.GetWidthFloat()); 
         Assert.assertNotEquals(b2, b1);        
         b1.SetPosition(new MmgVector2(100, 100));
-        Assert.assertFalse(b1.GetPosition().Equals(b2.GetPosition()));
+        Assert.assertFalse(b1.GetPosition().ApiEquals(b2.GetPosition()));
         
         Image i = null;        
         String src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
@@ -412,10 +412,10 @@ public class MmgBmpUnitTest {
             MmgApiUtils.wrErr(e);
         }
         b1 = new MmgBmp(i);
-        Assert.assertTrue(b1.GetOrigin().Equals(new MmgVector2(0, 0)));
-        Assert.assertTrue(b1.GetScaling().Equals(MmgVector2.GetUnitVec()));        
-        Assert.assertTrue(b1.GetScaling().Equals(new MmgVector2(1, 1)));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, b1.GetHeight(), b1.GetWidth())));
+        Assert.assertTrue(b1.GetOrigin().ApiEquals(new MmgVector2(0, 0)));
+        Assert.assertTrue(b1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));        
+        Assert.assertTrue(b1.GetScaling().ApiEquals(new MmgVector2(1, 1)));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, b1.GetHeight(), b1.GetWidth())));
         Assert.assertTrue(b1.GetDstRect() == null);
         Assert.assertNotNull(b1.GetImage());
         Assert.assertTrue(b1.GetRotation() == 0f);
@@ -426,13 +426,13 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetUnscaledHeight() == 64);
         Assert.assertTrue(b1.GetUnscaledWidth() == 64);
         Assert.assertTrue(b1.GetMmgColor() == null);
-        Assert.assertTrue(b1.GetPosition().Equals(MmgVector2.GetOriginVec())); 
+        Assert.assertTrue(b1.GetPosition().ApiEquals(MmgVector2.GetOriginVec())); 
         
         b1 = new MmgBmp(i, MmgRect.GetUnitRect(), new MmgRect(0, 0, 2, 2), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 45.0f);
-        Assert.assertTrue(b1.GetOrigin().Equals(new MmgVector2(0, 0)));
-        Assert.assertTrue(b1.GetScaling().Equals(MmgVector2.GetUnitVec()));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, 1, 1)));
-        Assert.assertTrue(b1.GetDstRect().Equals(new MmgRect(0, 0, 2, 2)));
+        Assert.assertTrue(b1.GetOrigin().ApiEquals(new MmgVector2(0, 0)));
+        Assert.assertTrue(b1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, 1, 1)));
+        Assert.assertTrue(b1.GetDstRect().ApiEquals(new MmgRect(0, 0, 2, 2)));
         Assert.assertNotNull(b1.GetImage());
         Assert.assertTrue(b1.GetRotation() == 45.0f);
         Assert.assertTrue(b1.GetHeight() == 64);
@@ -442,12 +442,12 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetUnscaledHeight() == 64);
         Assert.assertTrue(b1.GetUnscaledWidth() == 64);
         Assert.assertTrue(b1.GetMmgColor() == null);
-        Assert.assertTrue(b1.GetPosition().Equals(MmgVector2.GetOriginVec()));         
+        Assert.assertTrue(b1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));         
     
         b1 = new MmgBmp(i, MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), MmgVector2.GetUnitVec(), 45.0f);
-        Assert.assertTrue(b1.GetOrigin().Equals(MmgVector2.GetUnitVec()));
-        Assert.assertTrue(b1.GetScaling().Equals(MmgVector2.GetUnitVec()));
-        Assert.assertTrue(b1.GetSrcRect().Equals(new MmgRect(0, 0, b1.GetHeight(), b1.GetWidth())));
+        Assert.assertTrue(b1.GetOrigin().ApiEquals(MmgVector2.GetUnitVec()));
+        Assert.assertTrue(b1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));
+        Assert.assertTrue(b1.GetSrcRect().ApiEquals(new MmgRect(0, 0, b1.GetHeight(), b1.GetWidth())));
         Assert.assertTrue(b1.GetDstRect() == null);
         Assert.assertNotNull(b1.GetImage());
         Assert.assertTrue(b1.GetRotation() == 45.0f);
@@ -458,7 +458,7 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetUnscaledHeight() == 64);
         Assert.assertTrue(b1.GetUnscaledWidth() == 64);
         Assert.assertTrue(b1.GetMmgColor() == null);
-        Assert.assertTrue(b1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertTrue(b1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
     }    
     
     @Test
@@ -495,6 +495,6 @@ public class MmgBmpUnitTest {
         Assert.assertTrue(b1.GetHeightFloat() == 128.0f);
         Assert.assertTrue(b1.GetWidthFloat() == 128.0f);
         b1.SetPosition(new MmgVector2(100, 100));
-        Assert.assertTrue(b1.GetPosition().Equals(new MmgVector2(100, 100)));        
+        Assert.assertTrue(b1.GetPosition().ApiEquals(new MmgVector2(100, 100)));        
     }
 }

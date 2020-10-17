@@ -441,7 +441,7 @@ public class MmgContainer extends MmgObj {
      * @param c     The MmgContainer object instance to test for equality.
      * @return      Returns true if both MmgContainer objects are the same.
      */
-    public boolean Equals(MmgContainer obj) {
+    public boolean ApiEquals(MmgContainer obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -462,7 +462,7 @@ public class MmgContainer extends MmgObj {
                     m1 = obj.container.get(i);
                     m2 = container.get(i);
                     if(
-                        !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
+                        !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                     ){
                         ret = false;
                         break;

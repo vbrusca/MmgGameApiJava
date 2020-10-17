@@ -267,7 +267,7 @@ public class MmgHelper {
                 
                 for(int i = 0; i < len; i++) {
                     cfe = data[i];
-                    bw.write(cfe.ToString());
+                    bw.write(cfe.ApiToString());
                     bw.newLine();
                 }
 
@@ -316,7 +316,7 @@ public class MmgHelper {
                 
                 for(int i = 0; i < len; i++) {
                     cfe = data.get(nKeys[i]);
-                    bw.write(cfe.ToString());
+                    bw.write(cfe.ApiToString());
                     bw.newLine();
                 }
 

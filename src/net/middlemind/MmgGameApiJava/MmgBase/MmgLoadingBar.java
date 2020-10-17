@@ -353,7 +353,7 @@ public class MmgLoadingBar extends MmgObj {
      * @param obj     The MmgFont object to compare.
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
-    public boolean Equals(MmgLoadingBar obj) {
+    public boolean ApiEquals(MmgLoadingBar obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -384,11 +384,11 @@ public class MmgLoadingBar extends MmgObj {
         
         boolean ret = false;
         if (
-            super.Equals((MmgObj)obj) 
+            super.ApiEquals((MmgObj)obj) 
             && obj.GetFillHeight() == GetFillHeight()
             && obj.GetFillWidth() == GetFillWidth()
-            && ((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().Equals(GetLoadingBarBack()))) 
-            && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().Equals(GetLoadingBarFront())))
+            && ((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().ApiEquals(GetLoadingBarBack()))) 
+            && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().ApiEquals(GetLoadingBarFront())))
             && obj.GetPaddingX() == GetPaddingX()
             && obj.GetPaddingY() == GetPaddingY()
         ) {

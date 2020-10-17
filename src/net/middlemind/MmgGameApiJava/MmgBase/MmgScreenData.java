@@ -179,7 +179,7 @@ public class MmgScreenData {
      *
      * @return      A string representing the screen data state.
      */
-    public static String ToString() {
+    public static String ApiToString() {
         String ret = "";
         ret += "Screen Width: " + MmgScreenData.GetScreenWidth() + System.lineSeparator();
         ret += "Screen Height: " + MmgScreenData.GetScreenHeight() + System.lineSeparator();

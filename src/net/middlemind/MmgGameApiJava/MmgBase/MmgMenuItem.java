@@ -371,7 +371,7 @@ public class MmgMenuItem extends MmgObj {
      * @param c     The MmgMenuContainer object instance to test for equality.
      * @return      Returns true if both MmgMenuContainer objects are the same.
      */
-     public boolean Equals(MmgMenuItem obj) {
+     public boolean ApiEquals(MmgMenuItem obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -380,12 +380,12 @@ public class MmgMenuItem extends MmgObj {
                  
         boolean ret = false;
         if(
-            super.Equals((MmgObj)obj)
+            super.ApiEquals((MmgObj)obj)
             && obj.GetHeight() == GetHeight()
-            && ((obj.GetInactive() == null && GetInactive() == null) || (obj.GetInactive() != null && GetInactive() != null && obj.GetInactive().Equals(GetInactive())))
-            && ((obj.GetNormal() == null && GetNormal() == null) || (obj.GetNormal() != null && GetNormal() != null && obj.GetNormal().Equals(GetNormal())))
-            && ((obj.GetSelected() == null && GetSelected() == null) || (obj.GetSelected() != null && GetSelected() != null && obj.GetSelected().Equals(GetSelected())))
-            && ((obj.GetSound() == null && GetSound() == null) || (obj.GetSound() != null && GetSound() != null && obj.GetSound().Equals(GetSound())))
+            && ((obj.GetInactive() == null && GetInactive() == null) || (obj.GetInactive() != null && GetInactive() != null && obj.GetInactive().ApiEquals(GetInactive())))
+            && ((obj.GetNormal() == null && GetNormal() == null) || (obj.GetNormal() != null && GetNormal() != null && obj.GetNormal().ApiEquals(GetNormal())))
+            && ((obj.GetSelected() == null && GetSelected() == null) || (obj.GetSelected() != null && GetSelected() != null && obj.GetSelected().ApiEquals(GetSelected())))
+            && ((obj.GetSound() == null && GetSound() == null) || (obj.GetSound() != null && GetSound() != null && obj.GetSound().ApiEquals(GetSound())))
             && obj.GetState() == GetState()
             && obj.GetWidth() == GetWidth()
         ) {

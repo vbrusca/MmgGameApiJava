@@ -207,7 +207,7 @@ public class MmgMenuContainer extends MmgObj {
      * @param c     The MmgMenuContainer object instance to test for equality.
      * @return      Returns true if both MmgMenuContainer objects are the same.
      */
-    public boolean Equals(MmgMenuContainer obj) {
+    public boolean ApiEquals(MmgMenuContainer obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -215,7 +215,7 @@ public class MmgMenuContainer extends MmgObj {
         }
         
         boolean ret = true;
-        if(super.Equals((MmgObj)obj)) {
+        if(super.ApiEquals((MmgObj)obj)) {
             if(obj.container == null && container == null) {
                 ret = true;
             } else if(obj.container != null && container != null) {
@@ -229,7 +229,7 @@ public class MmgMenuContainer extends MmgObj {
                         m1 = obj.container.get(i);
                         m2 = container.get(i);
                         if(
-                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.Equals(m2)))
+                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                         ){
                             ret = false;
                             break;

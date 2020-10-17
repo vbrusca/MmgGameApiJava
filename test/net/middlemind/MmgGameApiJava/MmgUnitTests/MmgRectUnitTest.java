@@ -45,7 +45,7 @@ public class MmgRectUnitTest {
         r1 = new MmgRect(0, 0, 1, 1);
         
         //TEST 1
-        Assert.assertEquals(true, r1.Equals(MmgRect.GetUnitRect()));
+        Assert.assertEquals(true, r1.ApiEquals(MmgRect.GetUnitRect()));
     }
     
     @Test
@@ -68,7 +68,7 @@ public class MmgRectUnitTest {
         r2 = new MmgRect(x, y, w, h);
         
         //TEST 1
-        Assert.assertEquals(true, r1.Equals(r2));
+        Assert.assertEquals(true, r1.ApiEquals(r2));
         Assert.assertNotSame(r1, r2);
     }
     
@@ -149,8 +149,8 @@ public class MmgRectUnitTest {
         Assert.assertEquals(h, r1.GetHeight());
         
         //PREP TEST 5
-        s = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();
-        Assert.assertEquals(s, r1.ToString());
+        s = "MmgRect: L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();
+        Assert.assertEquals(s, r1.ApiToString());
     }
     
     @Test
@@ -182,7 +182,7 @@ public class MmgRectUnitTest {
         Assert.assertEquals(r1.GetRight(), r2.GetRight());
         Assert.assertEquals(r1.GetWidth(), r2.GetWidth());
         Assert.assertEquals(r1.GetHeight(), r2.GetHeight());
-        Assert.assertEquals(true, r1.Equals(r2));
+        Assert.assertEquals(true, r1.ApiEquals(r2));
         Assert.assertNotSame(r1, r2);
     }
     

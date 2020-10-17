@@ -266,7 +266,7 @@ public class MmgSound {
      * 
      * @return      The string representation of this class.
      */
-    public String ToString() {
+    public String ApiToString() {
         return "MmgSound: " + idStr + " Clip Length MS: " + (sound.getMicrosecondLength() / 1000);
     }
     
@@ -277,7 +277,7 @@ public class MmgSound {
      * @param obj     The MmgSound object to compare.
      * @return      A boolean indicating if the object instance is equal to the argument object instance. 
      */
-    public boolean Equals(MmgSound obj) {
+    public boolean ApiEquals(MmgSound obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {

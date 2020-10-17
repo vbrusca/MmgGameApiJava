@@ -285,7 +285,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
      * @param obj   An MmgSplashScreen object instance to compare to.
      * @return      Returns true if the objects are considered equal and false otherwise.
      */
-    public boolean Equals(MmgSplashScreen obj) {
+    public boolean ApiEquals(MmgSplashScreen obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -294,7 +294,7 @@ public class MmgSplashScreen extends MmgGameScreen implements MmgUpdateHandler {
         
         boolean ret = false;
         if (
-            super.Equals((MmgGameScreen)obj)
+            super.ApiEquals((MmgGameScreen)obj)
             && obj.GetDisplayTime() == GetDisplayTime()
         ) {
             ret = true;

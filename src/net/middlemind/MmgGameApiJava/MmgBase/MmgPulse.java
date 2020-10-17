@@ -301,7 +301,7 @@ public class MmgPulse {
      * 
      * @return      A string representation of this class.
      */
-    public String ToString() {
+    public String ApiToString() {
         String ret = "";
         ret += "Direction: " + direction + System.lineSeparator();
         ret += "TimeTotal: " + timeTotal + System.lineSeparator();
@@ -327,7 +327,7 @@ public class MmgPulse {
      * @param obj   The MmgPulse object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */
-    public boolean Equals(MmgPulse obj) {
+    public boolean ApiEquals(MmgPulse obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -336,8 +336,8 @@ public class MmgPulse {
         
         boolean ret = false;
         if(
-            ((obj.GetAdjScaling() == null && GetAdjScaling() == null) || (obj.GetAdjScaling() != null && GetAdjScaling() != null && obj.GetAdjScaling().Equals(GetAdjScaling())))
-            && ((obj.GetBaseLineScaling() == null && GetBaseLineScaling() == null) || (obj.GetBaseLineScaling() != null && GetBaseLineScaling() != null && obj.GetBaseLineScaling().Equals(GetBaseLineScaling())))
+            ((obj.GetAdjScaling() == null && GetAdjScaling() == null) || (obj.GetAdjScaling() != null && GetAdjScaling() != null && obj.GetAdjScaling().ApiEquals(GetAdjScaling())))
+            && ((obj.GetBaseLineScaling() == null && GetBaseLineScaling() == null) || (obj.GetBaseLineScaling() != null && GetBaseLineScaling() != null && obj.GetBaseLineScaling().ApiEquals(GetBaseLineScaling())))
             && obj.GetChange() == GetChange()
             && obj.GetChangePerMs() == GetChangePerMs()
             && obj.GetDirection() == GetDirection()

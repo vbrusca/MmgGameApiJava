@@ -58,19 +58,19 @@ public class MmgLoadingScreenUnitTest_2 {
         s1.SetLoadingBar(l1, 5.0f);
         s3 = new MmgLoadingScreen(l3, 10.0f);        
         
-        Assert.assertEquals(true, s1.GetLoadingBar().Equals(l1));
+        Assert.assertEquals(true, s1.GetLoadingBar().ApiEquals(l1));
         Assert.assertEquals(true, s1.GetLoadingBar().equals(l1));        
-        Assert.assertEquals(false, s1.GetLoadingBar().Equals(l2));
+        Assert.assertEquals(false, s1.GetLoadingBar().ApiEquals(l2));
         Assert.assertEquals(false, s1.GetLoadingBar().equals(l2));                
         
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3)); 
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3)); 
         
         Assert.assertEquals(s1.GetLoadingBarOffsetBottom(), 5.0f, 0.001);
     }
@@ -96,19 +96,19 @@ public class MmgLoadingScreenUnitTest_2 {
         s1.SetLoadingBar(l1, 5);
         s3 = new MmgLoadingScreen(l3, 10.0f);        
         
-        Assert.assertEquals(true, s1.GetLoadingBar().Equals(l1));
+        Assert.assertEquals(true, s1.GetLoadingBar().ApiEquals(l1));
         Assert.assertEquals(true, s1.GetLoadingBar().equals(l1));        
-        Assert.assertEquals(false, s1.GetLoadingBar().Equals(l2));
+        Assert.assertEquals(false, s1.GetLoadingBar().ApiEquals(l2));
         Assert.assertEquals(false, s1.GetLoadingBar().equals(l2));                
         
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3)); 
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3)); 
         
         Assert.assertEquals(s1.GetLoadingBarOffsetBottom(), 5.0f, 0.001);
     }
@@ -134,19 +134,19 @@ public class MmgLoadingScreenUnitTest_2 {
         s1.SetLoadingBar(l1, 5);
         s3 = new MmgLoadingScreen(l3, 10.0f);        
         
-        Assert.assertEquals(true, s1.GetLoadingBar().Equals(l1));
+        Assert.assertEquals(true, s1.GetLoadingBar().ApiEquals(l1));
         Assert.assertEquals(true, s1.GetLoadingBar().equals(l1));        
-        Assert.assertEquals(false, s1.GetLoadingBar().Equals(l2));
+        Assert.assertEquals(false, s1.GetLoadingBar().ApiEquals(l2));
         Assert.assertEquals(false, s1.GetLoadingBar().equals(l2));                
         
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3)); 
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3)); 
         
         Assert.assertEquals(s1.GetLoadingBarOffsetBottom(), 5.0f, 0.001);
     }

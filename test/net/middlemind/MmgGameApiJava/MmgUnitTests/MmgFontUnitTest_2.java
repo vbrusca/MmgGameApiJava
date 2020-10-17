@@ -4,6 +4,7 @@ import java.awt.Font;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import org.junit.Assert;
@@ -66,11 +67,11 @@ public class MmgFontUnitTest_2 {
 
         f1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
     
         f1.SetMmgColor(MmgColor.GetBrown());
         
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBrown()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBrown()));
 
         f1.SetHeight(50);
         f1.SetWidth(100);
@@ -80,12 +81,12 @@ public class MmgFontUnitTest_2 {
         
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));        
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));        
     }
     
     @Test
@@ -116,11 +117,11 @@ public class MmgFontUnitTest_2 {
 
         f1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
     
         f1.SetMmgColor(MmgColor.GetBrown());
         
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBrown()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBrown()));
 
         f1.SetHeight(50);
         f1.SetWidth(100);
@@ -130,12 +131,12 @@ public class MmgFontUnitTest_2 {
         
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));        
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));        
     } 
     
     @Test
@@ -166,11 +167,11 @@ public class MmgFontUnitTest_2 {
 
         f1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
     
         f1.SetMmgColor(MmgColor.GetBrown());
         
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBrown()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBrown()));
 
         f1.SetHeight(50);
         f1.SetWidth(100);
@@ -180,12 +181,12 @@ public class MmgFontUnitTest_2 {
         
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));        
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));        
     }
     
     @Test
@@ -216,11 +217,11 @@ public class MmgFontUnitTest_2 {
 
         f1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
     
         f1.SetMmgColor(MmgColor.GetBrown());
         
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBrown()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBrown()));
 
         f1.SetHeight(50);
         f1.SetWidth(100);
@@ -230,12 +231,12 @@ public class MmgFontUnitTest_2 {
         
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));        
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));        
     } 
     
     @Test
@@ -248,9 +249,9 @@ public class MmgFontUnitTest_2 {
                 
         Assert.assertEquals(true, f1.GetText().equals("Test String"));
         Assert.assertEquals(true, f1.GetFont().equals(MmgFontData.CreateDefaultBoldFontLg()));
-        Assert.assertEquals(true, f1.GetWidth() == 114);
-        Assert.assertEquals(true, f1.GetHeight() == 24);
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetWidth() == 95);
+        Assert.assertEquals(true, f1.GetHeight() == 20);
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         
         bf1 = MmgFontData.CreateDefaultBoldFontLg();
         f1.SetFont(bf1);
@@ -267,11 +268,11 @@ public class MmgFontUnitTest_2 {
 
         f1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
     
         f1.SetMmgColor(MmgColor.GetBrown());
         
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBrown()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBrown()));
 
         f1.SetHeight(50);
         f1.SetWidth(100);
@@ -281,12 +282,12 @@ public class MmgFontUnitTest_2 {
         
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));        
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));        
     }
 
     @Test
@@ -299,9 +300,9 @@ public class MmgFontUnitTest_2 {
                 
         Assert.assertEquals(true, f1.GetText().equals("Test String"));
         Assert.assertEquals(true, f1.GetFont().equals(MmgFontData.CreateDefaultBoldFontLg()));
-        Assert.assertEquals(true, f1.GetWidth() == 114);
-        Assert.assertEquals(true, f1.GetHeight() == 24);
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetWidth() == 95);
+        Assert.assertEquals(true, f1.GetHeight() == 20);
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         
         bf1 = MmgFontData.CreateDefaultBoldFontLg();
         f1.SetFont(bf1);
@@ -318,11 +319,11 @@ public class MmgFontUnitTest_2 {
 
         f1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, f1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
     
         f1.SetMmgColor(MmgColor.GetBrown());
         
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBrown()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBrown()));
 
         f1.SetHeight(50);
         f1.SetWidth(100);
@@ -332,11 +333,11 @@ public class MmgFontUnitTest_2 {
         
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));        
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));        
     }     
 }

@@ -62,7 +62,7 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetScrollBarLeftRightButtonWidth() == MmgHelper.ScaleValue(15));
         Assert.assertEquals(true, s1.GetScrollBarUpDownButtonHeight() == MmgHelper.ScaleValue(15));        
         
-        Assert.assertEquals(true, s1.GetViewPort().Equals(b1));
+        Assert.assertEquals(true, s1.GetViewPort().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetViewPort().equals(b1));
         Assert.assertEquals(true, s1.GetViewPortRect().GetHeight() == 20);
         Assert.assertEquals(true, s1.GetViewPortRect().GetWidth() == 20);
@@ -72,15 +72,15 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetScrollBarHorHeight() == 20);
         Assert.assertEquals(true, s1.GetScrollBarVertWidth() == 20);        
         
-        Assert.assertEquals(true, s1.GetScrollPane().Equals(b2));
+        Assert.assertEquals(true, s1.GetScrollPane().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetScrollPane().equals(b2));
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetHeight() == 100);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetWidth() == 100);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetLeft() == 0);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetTop() == 0);        
 
-        Assert.assertEquals(true, s1.GetScrollBarColor().Equals(MmgColor.GetBlack()));
-        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().Equals(MmgColor.GetBlack()));        
+        Assert.assertEquals(true, s1.GetScrollBarColor().ApiEquals(MmgColor.GetBlack()));
+        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().ApiEquals(MmgColor.GetBlack()));        
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonWidth() == 20);        
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButtonHeight() == 20);
         Assert.assertEquals(true, s1.GetIntervalX() == 10);
@@ -98,7 +98,7 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetIsDirty() == true);
         Assert.assertEquals(true, s1.GetOffsetX() == 8);
         Assert.assertEquals(true, s1.GetOffsetY() == 8);        
-        Assert.assertEquals(true, s1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
     
         s1.SetScrollBarHorCenterButton(b3);
         s1.SetScrollBarVertCenterButton(b3);
@@ -106,22 +106,22 @@ public class MmgScrollHorVertUnitTest_2 {
         s1.SetScrollBarHorCenterButtonWidth(32);
         s1.SetScrollBarVertCenterButtonHeight(32);        
         
-        Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().equals(b3));
-        Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().equals(b3));        
-        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().Equals(MmgColor.GetRed()));
+        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().ApiEquals(MmgColor.GetRed()));
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonWidth() == 32);
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButtonHeight() == 32);        
         
         r1 = new MmgRect(0, 0, 16, 16);
         s1.SetScrollBarHorCenterButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarColor(MmgColor.GetDarkBlue());
         
-        Assert.assertEquals(true, s1.GetScrollBarColor().Equals(MmgColor.GetDarkBlue()));
+        Assert.assertEquals(true, s1.GetScrollBarColor().ApiEquals(MmgColor.GetDarkBlue()));
         
         s1.SetScrollBarHorHeight(32);
         s1.SetScrollBarVertWidth(64);        
@@ -131,40 +131,40 @@ public class MmgScrollHorVertUnitTest_2 {
         
         s1.SetScrollBarHorLeftButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().equals(b1));
 
         s1.SetScrollBarHorLeftButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorLeftButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarHorLeftButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarHorRightButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorRightButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarHorRightButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarHorRightButton().equals(b1));
 
         s1.SetScrollBarHorRightButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorRightButtonRect().Equals(r1));        
+        Assert.assertEquals(true, s1.GetScrollBarHorRightButtonRect().ApiEquals(r1));        
         
         
         s1.SetScrollBarVertUpButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertUpButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarVertUpButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarVertUpButton().equals(b1));
 
         s1.SetScrollBarVertUpButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertUpButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarVertUpButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarVertDownButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertDownButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarVertDownButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarVertDownButton().equals(b1));
 
         s1.SetScrollBarVertDownButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertDownButtonRect().Equals(r1));                
+        Assert.assertEquals(true, s1.GetScrollBarVertDownButtonRect().ApiEquals(r1));                
                 
         s1.SetScrollBarLeftRightButtonWidth(32);
         
@@ -178,22 +178,22 @@ public class MmgScrollHorVertUnitTest_2 {
         
         s1.SetScrollPane(b3);
         
-        Assert.assertEquals(true, s1.GetScrollPane().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollPane().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollPane().equals(b3));
 
         s1.SetScrollPaneRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollPaneRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollPaneRect().ApiEquals(r1));
         Assert.assertEquals(true, s1.GetScrollPaneRect().equals(r1));
 
         s1.SetViewPort(b3);
         
-        Assert.assertEquals(true, s1.GetViewPort().Equals(b3));
+        Assert.assertEquals(true, s1.GetViewPort().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetViewPort().equals(b3));
 
         s1.SetViewPortRect(r1);
         
-        Assert.assertEquals(true, s1.GetViewPortRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetViewPortRect().ApiEquals(r1));
         Assert.assertEquals(true, s1.GetViewPortRect().equals(r1)); 
         
         s1.SetWidthDiff(200);
@@ -212,12 +212,12 @@ public class MmgScrollHorVertUnitTest_2 {
 
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
     }
     
     @Test
@@ -244,7 +244,7 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetScrollBarLeftRightButtonWidth() == MmgHelper.ScaleValue(15));
         Assert.assertEquals(true, s1.GetScrollBarUpDownButtonHeight() == MmgHelper.ScaleValue(15));        
         
-        Assert.assertEquals(true, s1.GetViewPort().Equals(b1));
+        Assert.assertEquals(true, s1.GetViewPort().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetViewPort().equals(b1));
         Assert.assertEquals(true, s1.GetViewPortRect().GetHeight() == 20);
         Assert.assertEquals(true, s1.GetViewPortRect().GetWidth() == 20);
@@ -254,15 +254,15 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetScrollBarHorHeight() == MmgHelper.ScaleValue(10));
         Assert.assertEquals(true, s1.GetScrollBarVertWidth() == MmgHelper.ScaleValue(10));
         
-        Assert.assertEquals(true, s1.GetScrollPane().Equals(b2));
+        Assert.assertEquals(true, s1.GetScrollPane().ApiEquals(b2));
         Assert.assertEquals(true, s1.GetScrollPane().equals(b2));
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetHeight() == 100);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetWidth() == 100);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetLeft() == 0);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetTop() == 0);        
 
-        Assert.assertEquals(true, s1.GetScrollBarColor().Equals(MmgColor.GetBlack()));
-        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().Equals(MmgColor.GetBlack()));        
+        Assert.assertEquals(true, s1.GetScrollBarColor().ApiEquals(MmgColor.GetBlack()));
+        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().ApiEquals(MmgColor.GetBlack()));        
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonWidth() == MmgHelper.ScaleValue(30));        
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButtonHeight() == MmgHelper.ScaleValue(30));
         Assert.assertEquals(true, s1.GetIntervalX() == 10);
@@ -280,7 +280,7 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetIsDirty() == true);
         Assert.assertEquals(true, s1.GetOffsetX() == 8);
         Assert.assertEquals(true, s1.GetOffsetY() == 8);        
-        Assert.assertEquals(true, s1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
     
         s1.SetScrollBarHorCenterButton(b3);
         s1.SetScrollBarVertCenterButton(b3);
@@ -288,22 +288,22 @@ public class MmgScrollHorVertUnitTest_2 {
         s1.SetScrollBarHorCenterButtonWidth(32);
         s1.SetScrollBarVertCenterButtonHeight(32);        
         
-        Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().equals(b3));
-        Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().equals(b3));        
-        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().Equals(MmgColor.GetRed()));
+        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().ApiEquals(MmgColor.GetRed()));
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonWidth() == 32);
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButtonHeight() == 32);        
         
         r1 = new MmgRect(0, 0, 16, 16);
         s1.SetScrollBarHorCenterButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarColor(MmgColor.GetDarkBlue());
         
-        Assert.assertEquals(true, s1.GetScrollBarColor().Equals(MmgColor.GetDarkBlue()));
+        Assert.assertEquals(true, s1.GetScrollBarColor().ApiEquals(MmgColor.GetDarkBlue()));
         
         s1.SetScrollBarHorHeight(32);
         s1.SetScrollBarVertWidth(64);        
@@ -313,40 +313,40 @@ public class MmgScrollHorVertUnitTest_2 {
         
         s1.SetScrollBarHorLeftButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().equals(b1));
 
         s1.SetScrollBarHorLeftButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorLeftButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarHorLeftButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarHorRightButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorRightButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarHorRightButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarHorRightButton().equals(b1));
 
         s1.SetScrollBarHorRightButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorRightButtonRect().Equals(r1));        
+        Assert.assertEquals(true, s1.GetScrollBarHorRightButtonRect().ApiEquals(r1));        
         
         
         s1.SetScrollBarVertUpButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertUpButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarVertUpButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarVertUpButton().equals(b1));
 
         s1.SetScrollBarVertUpButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertUpButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarVertUpButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarVertDownButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertDownButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarVertDownButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarVertDownButton().equals(b1));
 
         s1.SetScrollBarVertDownButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertDownButtonRect().Equals(r1));                
+        Assert.assertEquals(true, s1.GetScrollBarVertDownButtonRect().ApiEquals(r1));                
                 
         s1.SetScrollBarLeftRightButtonWidth(32);
         
@@ -360,22 +360,22 @@ public class MmgScrollHorVertUnitTest_2 {
         
         s1.SetScrollPane(b3);
         
-        Assert.assertEquals(true, s1.GetScrollPane().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollPane().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollPane().equals(b3));
 
         s1.SetScrollPaneRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollPaneRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollPaneRect().ApiEquals(r1));
         Assert.assertEquals(true, s1.GetScrollPaneRect().equals(r1));
 
         s1.SetViewPort(b3);
         
-        Assert.assertEquals(true, s1.GetViewPort().Equals(b3));
+        Assert.assertEquals(true, s1.GetViewPort().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetViewPort().equals(b3));
 
         s1.SetViewPortRect(r1);
         
-        Assert.assertEquals(true, s1.GetViewPortRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetViewPortRect().ApiEquals(r1));
         Assert.assertEquals(true, s1.GetViewPortRect().equals(r1)); 
         
         s1.SetWidthDiff(200);
@@ -394,12 +394,12 @@ public class MmgScrollHorVertUnitTest_2 {
 
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
     }
 
     @Test
@@ -426,7 +426,7 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetScrollBarLeftRightButtonWidth() == MmgHelper.ScaleValue(15));
         Assert.assertEquals(true, s1.GetScrollBarUpDownButtonHeight() == MmgHelper.ScaleValue(15));        
         
-        Assert.assertEquals(true, s1.GetViewPort().Equals(b1));
+        Assert.assertEquals(true, s1.GetViewPort().ApiEquals(b1));
         Assert.assertEquals(false, s1.GetViewPort().equals(b1));
         Assert.assertEquals(true, s1.GetViewPortRect().GetHeight() == 20);
         Assert.assertEquals(true, s1.GetViewPortRect().GetWidth() == 20);
@@ -436,15 +436,15 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetScrollBarHorHeight() == MmgHelper.ScaleValue(10));
         Assert.assertEquals(true, s1.GetScrollBarVertWidth() == MmgHelper.ScaleValue(10));
         
-        Assert.assertEquals(true, s1.GetScrollPane().Equals(b2));
+        Assert.assertEquals(true, s1.GetScrollPane().ApiEquals(b2));
         Assert.assertEquals(false, s1.GetScrollPane().equals(b2));
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetHeight() == 100);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetWidth() == 100);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetLeft() == 0);
         Assert.assertEquals(true, s1.GetScrollPaneRect().GetTop() == 0);        
 
-        Assert.assertEquals(true, s1.GetScrollBarColor().Equals(MmgColor.GetBlack()));
-        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().Equals(MmgColor.GetBlack()));        
+        Assert.assertEquals(true, s1.GetScrollBarColor().ApiEquals(MmgColor.GetBlack()));
+        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().ApiEquals(MmgColor.GetBlack()));        
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonWidth() == MmgHelper.ScaleValue(30));        
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButtonHeight() == MmgHelper.ScaleValue(30));
         Assert.assertEquals(true, s1.GetIntervalX() == 10);
@@ -462,7 +462,7 @@ public class MmgScrollHorVertUnitTest_2 {
         Assert.assertEquals(true, s1.GetIsDirty() == true);
         Assert.assertEquals(true, s1.GetOffsetX() == 8);
         Assert.assertEquals(true, s1.GetOffsetY() == 8);        
-        Assert.assertEquals(true, s1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, s1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
     
         s1.SetScrollBarHorCenterButton(b3);
         s1.SetScrollBarVertCenterButton(b3);
@@ -470,22 +470,22 @@ public class MmgScrollHorVertUnitTest_2 {
         s1.SetScrollBarHorCenterButtonWidth(32);
         s1.SetScrollBarVertCenterButtonHeight(32);        
         
-        Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButton().equals(b3));
-        Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButton().equals(b3));        
-        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().Equals(MmgColor.GetRed()));
+        Assert.assertEquals(true, s1.GetScrollBarCenterButtonColor().ApiEquals(MmgColor.GetRed()));
         Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonWidth() == 32);
         Assert.assertEquals(true, s1.GetScrollBarVertCenterButtonHeight() == 32);        
         
         r1 = new MmgRect(0, 0, 16, 16);
         s1.SetScrollBarHorCenterButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarHorCenterButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarColor(MmgColor.GetDarkBlue());
         
-        Assert.assertEquals(true, s1.GetScrollBarColor().Equals(MmgColor.GetDarkBlue()));
+        Assert.assertEquals(true, s1.GetScrollBarColor().ApiEquals(MmgColor.GetDarkBlue()));
         
         s1.SetScrollBarHorHeight(32);
         s1.SetScrollBarVertWidth(64);        
@@ -495,40 +495,40 @@ public class MmgScrollHorVertUnitTest_2 {
         
         s1.SetScrollBarHorLeftButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarHorLeftButton().equals(b1));
 
         s1.SetScrollBarHorLeftButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorLeftButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarHorLeftButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarHorRightButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorRightButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarHorRightButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarHorRightButton().equals(b1));
 
         s1.SetScrollBarHorRightButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarHorRightButtonRect().Equals(r1));        
+        Assert.assertEquals(true, s1.GetScrollBarHorRightButtonRect().ApiEquals(r1));        
         
         
         s1.SetScrollBarVertUpButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertUpButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarVertUpButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarVertUpButton().equals(b1));
 
         s1.SetScrollBarVertUpButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertUpButtonRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollBarVertUpButtonRect().ApiEquals(r1));
     
         s1.SetScrollBarVertDownButton(b1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertDownButton().Equals(b1));
+        Assert.assertEquals(true, s1.GetScrollBarVertDownButton().ApiEquals(b1));
         Assert.assertEquals(true, s1.GetScrollBarVertDownButton().equals(b1));
 
         s1.SetScrollBarVertDownButtonRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollBarVertDownButtonRect().Equals(r1));                
+        Assert.assertEquals(true, s1.GetScrollBarVertDownButtonRect().ApiEquals(r1));                
                 
         s1.SetScrollBarLeftRightButtonWidth(32);
         
@@ -542,22 +542,22 @@ public class MmgScrollHorVertUnitTest_2 {
         
         s1.SetScrollPane(b3);
         
-        Assert.assertEquals(true, s1.GetScrollPane().Equals(b3));
+        Assert.assertEquals(true, s1.GetScrollPane().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetScrollPane().equals(b3));
 
         s1.SetScrollPaneRect(r1);
         
-        Assert.assertEquals(true, s1.GetScrollPaneRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetScrollPaneRect().ApiEquals(r1));
         Assert.assertEquals(true, s1.GetScrollPaneRect().equals(r1));
 
         s1.SetViewPort(b3);
         
-        Assert.assertEquals(true, s1.GetViewPort().Equals(b3));
+        Assert.assertEquals(true, s1.GetViewPort().ApiEquals(b3));
         Assert.assertEquals(true, s1.GetViewPort().equals(b3));
 
         s1.SetViewPortRect(r1);
         
-        Assert.assertEquals(true, s1.GetViewPortRect().Equals(r1));
+        Assert.assertEquals(true, s1.GetViewPortRect().ApiEquals(r1));
         Assert.assertEquals(true, s1.GetViewPortRect().equals(r1)); 
         
         s1.SetWidthDiff(200);
@@ -576,11 +576,11 @@ public class MmgScrollHorVertUnitTest_2 {
 
         s2 = s1.CloneTyped();
         
-        Assert.assertEquals(true, s1.Equals(s1));        
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(true, s2.Equals(s1));
-        Assert.assertEquals(false, s3.Equals(s1));
-        Assert.assertEquals(false, s1.Equals(s3));
+        Assert.assertEquals(true, s1.ApiEquals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(true, s2.ApiEquals(s1));
+        Assert.assertEquals(false, s3.ApiEquals(s1));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
     }    
 }

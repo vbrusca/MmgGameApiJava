@@ -110,13 +110,13 @@ public class MmgMenuItemUnitTest_2 {
         Assert.assertEquals(true, i1.GetEventPress().GetEventId() == id1);
         Assert.assertEquals(true, i1.GetEventPress().GetEventType() == type1);        
 
-        Assert.assertEquals(true, i1.GetNormal().Equals(b1));
+        Assert.assertEquals(true, i1.GetNormal().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetNormal().equals(b1));        
         
-        Assert.assertEquals(true, i1.GetSelected().Equals(b1));
+        Assert.assertEquals(true, i1.GetSelected().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetSelected().equals(b1));        
         
-        Assert.assertEquals(true, i1.GetInactive().Equals(b1));
+        Assert.assertEquals(true, i1.GetInactive().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetInactive().equals(b1));
         
         Assert.assertEquals(true, i1.GetState() == MmgMenuItem.STATE_NORMAL);
@@ -128,7 +128,7 @@ public class MmgMenuItemUnitTest_2 {
         
         Assert.assertEquals(i1.GetHeight(), 64);
         Assert.assertEquals(i1.GetWidth(), 64);
-        Assert.assertEquals(true, i1.GetSound().Equals(s1));
+        Assert.assertEquals(true, i1.GetSound().ApiEquals(s1));
         Assert.assertEquals(true, i1.GetSound().equals(s1));  
         
         i1.SetX(24);
@@ -139,14 +139,15 @@ public class MmgMenuItemUnitTest_2 {
 
         i2 = i1.CloneTyped();
         
-        Assert.assertEquals(true, i1.Equals(i1));                        
-        Assert.assertEquals(true, i1.Equals(i2));
-        Assert.assertEquals(true, i2.Equals(i1));
-        Assert.assertEquals(true, i2.Equals(i1));
-        Assert.assertEquals(false, i3.Equals(i1));
-        Assert.assertEquals(false, i1.Equals(i3));
+        Assert.assertEquals(true, i1.ApiEquals(i1));                        
+        Assert.assertEquals(true, i1.ApiEquals(i2));
+        Assert.assertEquals(true, i2.ApiEquals(i1));
+        Assert.assertEquals(true, i2.ApiEquals(i1));
+        Assert.assertEquals(false, i3.ApiEquals(i1));
+        Assert.assertEquals(false, i1.ApiEquals(i3));
     }
     
+    @Test
     @SuppressWarnings("UnusedAssignment")
     public void test2() {
         String name1 = "Test Name 1";
@@ -177,13 +178,13 @@ public class MmgMenuItemUnitTest_2 {
         Assert.assertEquals(true, i1.GetEventPress().GetEventId() == id1);
         Assert.assertEquals(true, i1.GetEventPress().GetEventType() == type1);        
 
-        Assert.assertEquals(true, i1.GetNormal().Equals(b1));
+        Assert.assertEquals(true, i1.GetNormal().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetNormal().equals(b1));        
         
-        Assert.assertEquals(true, i1.GetSelected().Equals(b1));
+        Assert.assertEquals(true, i1.GetSelected().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetSelected().equals(b1));        
         
-        Assert.assertEquals(true, i1.GetInactive().Equals(b1));
+        Assert.assertEquals(true, i1.GetInactive().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetInactive().equals(b1));
         
         Assert.assertEquals(true, i1.GetState() == MmgMenuItem.STATE_NORMAL);
@@ -195,7 +196,7 @@ public class MmgMenuItemUnitTest_2 {
         
         Assert.assertEquals(i1.GetHeight(), 64);
         Assert.assertEquals(i1.GetWidth(), 64);
-        Assert.assertEquals(true, i1.GetSound().Equals(s1));
+        Assert.assertEquals(true, i1.GetSound().ApiEquals(s1));
         Assert.assertEquals(true, i1.GetSound().equals(s1));  
         
         i1.SetX(24);
@@ -206,12 +207,12 @@ public class MmgMenuItemUnitTest_2 {
 
         i2 = i1.CloneTyped();
         
-        Assert.assertEquals(true, i1.Equals(i1));                                
-        Assert.assertEquals(true, i1.Equals(i2));
-        Assert.assertEquals(true, i2.Equals(i1));
-        Assert.assertEquals(true, i2.Equals(i1));
-        Assert.assertEquals(false, i3.Equals(i1));
-        Assert.assertEquals(false, i1.Equals(i3));
+        Assert.assertEquals(true, i1.ApiEquals(i1));                                
+        Assert.assertEquals(true, i1.ApiEquals(i2));
+        Assert.assertEquals(true, i2.ApiEquals(i1));
+        Assert.assertEquals(true, i2.ApiEquals(i1));
+        Assert.assertEquals(false, i3.ApiEquals(i1));
+        Assert.assertEquals(false, i1.ApiEquals(i3));
     }    
     
     @Test
@@ -245,13 +246,13 @@ public class MmgMenuItemUnitTest_2 {
         Assert.assertEquals(true, i1.GetEventPress().GetEventId() == id1);
         Assert.assertEquals(true, i1.GetEventPress().GetEventType() == type1);        
 
-        Assert.assertEquals(true, i1.GetNormal().Equals(b1));
+        Assert.assertEquals(true, i1.GetNormal().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetNormal().equals(b1));        
         
-        Assert.assertEquals(true, i1.GetSelected().Equals(b1));
+        Assert.assertEquals(true, i1.GetSelected().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetSelected().equals(b1));        
         
-        Assert.assertEquals(true, i1.GetInactive().Equals(b1));
+        Assert.assertEquals(true, i1.GetInactive().ApiEquals(b1));
         Assert.assertEquals(true, i1.GetInactive().equals(b1));
         
         Assert.assertEquals(true, i1.GetState() == MmgMenuItem.STATE_NORMAL);
@@ -263,7 +264,7 @@ public class MmgMenuItemUnitTest_2 {
         
         Assert.assertEquals(i1.GetHeight(), 64);
         Assert.assertEquals(i1.GetWidth(), 64);
-        Assert.assertEquals(true, i1.GetSound().Equals(s1));
+        Assert.assertEquals(true, i1.GetSound().ApiEquals(s1));
         Assert.assertEquals(true, i1.GetSound().equals(s1));  
         
         i1.SetX(24);
@@ -274,11 +275,11 @@ public class MmgMenuItemUnitTest_2 {
 
         i2 = i1.CloneTyped();
         
-        Assert.assertEquals(true, i1.Equals(i1));                                
-        Assert.assertEquals(true, i1.Equals(i2));
-        Assert.assertEquals(true, i2.Equals(i1));
-        Assert.assertEquals(true, i2.Equals(i1));
-        Assert.assertEquals(false, i3.Equals(i1));
-        Assert.assertEquals(false, i1.Equals(i3));
+        Assert.assertEquals(true, i1.ApiEquals(i1));                                
+        Assert.assertEquals(true, i1.ApiEquals(i2));
+        Assert.assertEquals(true, i2.ApiEquals(i1));
+        Assert.assertEquals(true, i2.ApiEquals(i1));
+        Assert.assertEquals(false, i3.ApiEquals(i1));
+        Assert.assertEquals(false, i1.ApiEquals(i3));
     }     
 }

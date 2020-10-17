@@ -959,7 +959,7 @@ public class MmgBmpFont extends MmgObj {
      * @param obj     The MmgBmpFont object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */ 
-    public boolean Equals(MmgBmpFont obj) {
+    public boolean ApiEquals(MmgBmpFont obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -968,15 +968,15 @@ public class MmgBmpFont extends MmgObj {
         
         boolean ret = true;
         if(
-            super.Equals((MmgObj)obj)
-            && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().Equals(GetSrc())))
-            && ((obj.GetDst() == null && GetDst() == null) || (obj.GetDst() != null && GetDst() != null && obj.GetDst().Equals(GetDst())))
+            super.ApiEquals((MmgObj)obj)
+            && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().ApiEquals(GetSrc())))
+            && ((obj.GetDst() == null && GetDst() == null) || (obj.GetDst() != null && GetDst() != null && obj.GetDst().ApiEquals(GetDst())))
             && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().equals(GetText())))
         ) {
             int len = obj.GetCharCount();
             int i = 0;
             for(i = 0; i < len; i++) {
-                if(!obj.GetChar(i).Equals(GetChar(i))) {
+                if(!obj.GetChar(i).ApiEquals(GetChar(i))) {
                     ret = false;
                     break;
                 }

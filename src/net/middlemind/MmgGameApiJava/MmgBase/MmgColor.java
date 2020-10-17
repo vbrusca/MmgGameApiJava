@@ -529,8 +529,8 @@ public class MmgColor {
      * 
      * @return      A string representation of the MmgColor object.
      */
-    public String ToString() {
-        return "R: " + GetColor().getRed() + " G: " + GetColor().getGreen() + " B: " + GetColor().getBlue() + " A: " + GetColor().getAlpha();
+    public String ApiToString() {
+        return "MmgColor: R: " + GetColor().getRed() + " G: " + GetColor().getGreen() + " B: " + GetColor().getBlue() + " A: " + GetColor().getAlpha();
     }
     
     /**
@@ -539,7 +539,7 @@ public class MmgColor {
      * @param obj     The MmgColor object instance to test for equality.
      * @return      Returns true if both MmgColor objects have the same color.
      */
-    public boolean Equals(MmgColor obj) {
+    public boolean ApiEquals(MmgColor obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {

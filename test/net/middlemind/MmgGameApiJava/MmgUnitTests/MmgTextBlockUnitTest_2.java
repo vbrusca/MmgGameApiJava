@@ -61,11 +61,11 @@ public class MmgTextBlockUnitTest_2 {
         Assert.assertEquals(false, b1.GetLines() == null);
         Assert.assertEquals(0, b1.GetTxt().size());
         Assert.assertEquals(false, b1.GetTxt() == null);           
-        Assert.assertEquals(true, b1.GetColor().Equals(MmgColor.GetBlack()));
+        Assert.assertEquals(true, b1.GetColor().ApiEquals(MmgColor.GetBlack()));
 
         b1.SetColor(MmgColor.GetGrayCloud());
         
-        Assert.assertEquals(true, b1.GetColor().Equals(MmgColor.GetGrayCloud()));
+        Assert.assertEquals(true, b1.GetColor().ApiEquals(MmgColor.GetGrayCloud()));
         
         b1.SetHeight(200);
         b1.SetLineHeight(20);
@@ -95,7 +95,7 @@ public class MmgTextBlockUnitTest_2 {
         v = new MmgVector2(50, 50);
         b1.SetPosition(v);
         
-        Assert.assertEquals(true, b1.GetPosition().Equals(v));
+        Assert.assertEquals(true, b1.GetPosition().ApiEquals(v));
     
         b1.SetPosition(100, 100);
         
@@ -128,7 +128,7 @@ public class MmgTextBlockUnitTest_2 {
         f1 = MmgFontData.CreateDefaultMmgFontSm();
         b1.SetText(0, f1);
         
-        Assert.assertEquals(true, b1.GetText(0).Equals(f1));
+        Assert.assertEquals(true, b1.GetText(0).ApiEquals(f1));
         Assert.assertEquals(true, b1.GetText(0).equals(f1));
         Assert.assertEquals(true, b1.GetLines().equals(a));
         Assert.assertEquals(true, b1.GetLines().size() == 2);
@@ -140,16 +140,16 @@ public class MmgTextBlockUnitTest_2 {
         
         Assert.assertEquals(true, b1.GetWidth() == 200);
         Assert.assertEquals(true, b1.GetWordCount() == 20);
-        Assert.assertEquals(true, b1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, b1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
 
         b2 = b1.CloneTyped();
         
-        Assert.assertEquals(true, b1.Equals(b1));        
-        Assert.assertEquals(true, b1.Equals(b2));
-        Assert.assertEquals(true, b2.Equals(b1));
-        Assert.assertEquals(true, b2.Equals(b1));
-        Assert.assertEquals(false, b3.Equals(b1));
-        Assert.assertEquals(false, b1.Equals(b3));               
+        Assert.assertEquals(true, b1.ApiEquals(b1));        
+        Assert.assertEquals(true, b1.ApiEquals(b2));
+        Assert.assertEquals(true, b2.ApiEquals(b1));
+        Assert.assertEquals(true, b2.ApiEquals(b1));
+        Assert.assertEquals(false, b3.ApiEquals(b1));
+        Assert.assertEquals(false, b1.ApiEquals(b3));               
     }
     
     @Test
@@ -192,11 +192,11 @@ public class MmgTextBlockUnitTest_2 {
         Assert.assertEquals(false, b1.GetLines() == null);
         Assert.assertEquals(2, b1.GetTxt().size());
         Assert.assertEquals(false, b1.GetTxt() == null);           
-        Assert.assertEquals(true, b1.GetColor().Equals(MmgColor.GetBlack()));
+        Assert.assertEquals(true, b1.GetColor().ApiEquals(MmgColor.GetBlack()));
 
         b1.SetColor(MmgColor.GetGrayCloud());
         
-        Assert.assertEquals(true, b1.GetColor().Equals(MmgColor.GetGrayCloud()));
+        Assert.assertEquals(true, b1.GetColor().ApiEquals(MmgColor.GetGrayCloud()));
         
         b1.SetHeight(200);
         b1.SetLineHeight(20);
@@ -226,7 +226,7 @@ public class MmgTextBlockUnitTest_2 {
         v = new MmgVector2(50, 50);
         b1.SetPosition(v);
         
-        Assert.assertEquals(true, b1.GetPosition().Equals(v));
+        Assert.assertEquals(true, b1.GetPosition().ApiEquals(v));
     
         b1.SetPosition(100, 100);
         
@@ -259,7 +259,7 @@ public class MmgTextBlockUnitTest_2 {
         f1 = MmgFontData.CreateDefaultMmgFontSm();
         b1.SetText(0, f1);
         
-        Assert.assertEquals(true, b1.GetText(0).Equals(f1));
+        Assert.assertEquals(true, b1.GetText(0).ApiEquals(f1));
         Assert.assertEquals(true, b1.GetText(0).equals(f1));
         Assert.assertEquals(true, b1.GetLines().equals(a));
         Assert.assertEquals(true, b1.GetLines().size() == 2);
@@ -271,15 +271,15 @@ public class MmgTextBlockUnitTest_2 {
         
         Assert.assertEquals(true, b1.GetWidth() == 200);
         Assert.assertEquals(true, b1.GetWordCount() == 20);
-        Assert.assertEquals(true, b1.GetPosition().Equals(new MmgVector2(50, 50)));
+        Assert.assertEquals(true, b1.GetPosition().ApiEquals(new MmgVector2(50, 50)));
 
         b2 = b1.CloneTyped();
         
-        Assert.assertEquals(true, b1.Equals(b1));        
-        Assert.assertEquals(true, b1.Equals(b2));
-        Assert.assertEquals(true, b2.Equals(b1));
-        Assert.assertEquals(true, b2.Equals(b1));
-        Assert.assertEquals(false, b3.Equals(b1));
-        Assert.assertEquals(false, b1.Equals(b3));               
+        Assert.assertEquals(true, b1.ApiEquals(b1));        
+        Assert.assertEquals(true, b1.ApiEquals(b2));
+        Assert.assertEquals(true, b2.ApiEquals(b1));
+        Assert.assertEquals(true, b2.ApiEquals(b1));
+        Assert.assertEquals(false, b3.ApiEquals(b1));
+        Assert.assertEquals(false, b1.ApiEquals(b3));               
     }    
 }

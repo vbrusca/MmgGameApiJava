@@ -1188,7 +1188,7 @@ public class MmgScrollVert extends MmgObj {
      * @param obj     The MmgScrollVert object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */  
-    public boolean Equals(MmgScrollVert obj) {
+    public boolean ApiEquals(MmgScrollVert obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -1197,25 +1197,25 @@ public class MmgScrollVert extends MmgObj {
         
         boolean ret = false;
         if(
-            super.Equals((MmgObj)obj)
+            super.ApiEquals((MmgObj)obj)
             && obj.GetScrollBarVisible() == GetScrollBarVisible()
             && obj.GetIntervalY() == GetIntervalY()
             && obj.GetOffsetY() == GetOffsetY()
-            && ((obj.GetScrollBarCenterButton() == null && GetScrollBarCenterButton() == null) || (obj.GetScrollBarCenterButton() != null && GetScrollBarCenterButton() != null && obj.GetScrollBarCenterButton().Equals(GetScrollBarCenterButton())))
-            && ((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().Equals(GetScrollBarCenterButtonColor())))
-            && ((obj.GetScrollBarCenterButtonRect() == null && GetScrollBarCenterButtonRect() == null) || (obj.GetScrollBarCenterButtonRect() != null && GetScrollBarCenterButtonRect() != null && obj.GetScrollBarCenterButtonRect().Equals(GetScrollBarCenterButtonRect())))
+            && ((obj.GetScrollBarCenterButton() == null && GetScrollBarCenterButton() == null) || (obj.GetScrollBarCenterButton() != null && GetScrollBarCenterButton() != null && obj.GetScrollBarCenterButton().ApiEquals(GetScrollBarCenterButton())))
+            && ((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().ApiEquals(GetScrollBarCenterButtonColor())))
+            && ((obj.GetScrollBarCenterButtonRect() == null && GetScrollBarCenterButtonRect() == null) || (obj.GetScrollBarCenterButtonRect() != null && GetScrollBarCenterButtonRect() != null && obj.GetScrollBarCenterButtonRect().ApiEquals(GetScrollBarCenterButtonRect())))
             && obj.GetScrollBarCenterButtonHeight() == GetScrollBarCenterButtonHeight()
-            && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().Equals(GetScrollBarColor())))
+            && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().ApiEquals(GetScrollBarColor())))
             && obj.GetScrollBarWidth() == GetScrollBarWidth()
-            && ((obj.GetScrollBarUpButton() == null && GetScrollBarUpButton() == null) || (obj.GetScrollBarUpButton() != null && GetScrollBarUpButton() != null && obj.GetScrollBarUpButton().Equals(GetScrollBarUpButton())))
-            && ((obj.GetScrollBarUpButtonRect() == null && GetScrollBarUpButtonRect() == null) || (obj.GetScrollBarUpButtonRect() != null && GetScrollBarUpButtonRect() != null && obj.GetScrollBarUpButtonRect().Equals(GetScrollBarUpButtonRect())))                
+            && ((obj.GetScrollBarUpButton() == null && GetScrollBarUpButton() == null) || (obj.GetScrollBarUpButton() != null && GetScrollBarUpButton() != null && obj.GetScrollBarUpButton().ApiEquals(GetScrollBarUpButton())))
+            && ((obj.GetScrollBarUpButtonRect() == null && GetScrollBarUpButtonRect() == null) || (obj.GetScrollBarUpButtonRect() != null && GetScrollBarUpButtonRect() != null && obj.GetScrollBarUpButtonRect().ApiEquals(GetScrollBarUpButtonRect())))                
             && obj.GetScrollBarUpDownButtonHeight() == GetScrollBarUpDownButtonHeight()
-            && ((obj.GetScrollBarDownButton() == null && GetScrollBarDownButton() == null) || (obj.GetScrollBarDownButton() != null && GetScrollBarDownButton() != null && obj.GetScrollBarDownButton().Equals(GetScrollBarDownButton())))
-            && ((obj.GetScrollBarDownButtonRect() == null && GetScrollBarDownButtonRect() == null) || (obj.GetScrollBarDownButtonRect() != null && GetScrollBarDownButtonRect() != null && obj.GetScrollBarDownButtonRect().Equals(GetScrollBarDownButtonRect())))
-            && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().Equals(GetScrollPane())))
-            && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().Equals(GetScrollPaneRect())))               
-            && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().Equals(GetViewPort())))
-            && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().Equals(GetViewPortRect())))               
+            && ((obj.GetScrollBarDownButton() == null && GetScrollBarDownButton() == null) || (obj.GetScrollBarDownButton() != null && GetScrollBarDownButton() != null && obj.GetScrollBarDownButton().ApiEquals(GetScrollBarDownButton())))
+            && ((obj.GetScrollBarDownButtonRect() == null && GetScrollBarDownButtonRect() == null) || (obj.GetScrollBarDownButtonRect() != null && GetScrollBarDownButtonRect() != null && obj.GetScrollBarDownButtonRect().ApiEquals(GetScrollBarDownButtonRect())))
+            && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().ApiEquals(GetScrollPane())))
+            && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().ApiEquals(GetScrollPaneRect())))               
+            && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().ApiEquals(GetViewPort())))
+            && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().ApiEquals(GetViewPortRect())))               
             && obj.GetHeightDiff() == GetHeightDiff()
             && obj.GetHeightDiffPrct() == GetHeightDiffPrct()
         ) {

@@ -700,7 +700,7 @@ public class MmgSprite extends MmgObj {
      * @param obj     The MmgSprite object to compare to.
      * @return      A boolean indicating if the two objects are equal or not.
      */    
-    public boolean Equals(MmgSprite obj) {
+    public boolean ApiEquals(MmgSprite obj) {
         if(obj == null) {
             return false;
         } else if(obj.equals(this)) {
@@ -709,18 +709,18 @@ public class MmgSprite extends MmgObj {
         
         boolean ret = false;
         if(
-            super.Equals((MmgObj)obj)                
+            super.ApiEquals((MmgObj)obj)                
             && obj.GetSimpleRendering() == GetSimpleRendering()
             && obj.GetTimerOnly() == GetTimerOnly()
-            && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().Equals(GetDstRect())))
+            && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().ApiEquals(GetDstRect())))
             && obj.GetFrameStart() == GetFrameStart()
             && obj.GetFrameStop() == GetFrameStop()
             && obj.GetFrameTime() == GetFrameTime()
             && obj.GetMsPerFrame() == GetMsPerFrame()
-            && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().Equals(GetOrigin())))
+            && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().ApiEquals(GetOrigin())))
             && obj.GetRotation() == GetRotation()
-            && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().Equals(GetScaling())))
-            && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().Equals(GetSrcRect())))                
+            && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().ApiEquals(GetScaling())))
+            && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().ApiEquals(GetSrcRect())))                
         ) {
             ret = true;            
             if(obj.GetBmpArray() == null && GetBmpArray() == null) {
@@ -733,7 +733,7 @@ public class MmgSprite extends MmgObj {
                     ret = false;
                 } else {
                     for(int i = 0; i < len1; i++) {                        
-                        if(!((obj.GetBmpArray()[i] == null && GetBmpArray()[i] == null) || (obj.GetBmpArray()[i] != null && GetBmpArray()[i] != null && obj.GetBmpArray()[i].Equals(GetBmpArray()[i])))) {
+                        if(!((obj.GetBmpArray()[i] == null && GetBmpArray()[i] == null) || (obj.GetBmpArray()[i] != null && GetBmpArray()[i] != null && obj.GetBmpArray()[i].ApiEquals(GetBmpArray()[i])))) {
                             ret = false;
                             break;
                         }

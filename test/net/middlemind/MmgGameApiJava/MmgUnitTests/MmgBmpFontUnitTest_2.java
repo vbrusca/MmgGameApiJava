@@ -62,20 +62,20 @@ public class MmgBmpFontUnitTest_2 {
        
         f1.SetPosition(MmgVector2.GetUnitVec());
 
-        Assert.assertEquals(true, MmgVector2.GetUnitVec().Equals(f1.GetPosition()));
+        Assert.assertEquals(true, MmgVector2.GetUnitVec().ApiEquals(f1.GetPosition()));
 
         f1.SetMmgColor(MmgColor.GetBlueGray());
 
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBlueGray()));
 
         f2 = f1.CloneTyped();
         
-        Assert.assertEquals(true, f1.Equals(f1));        
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));       
+        Assert.assertEquals(true, f1.ApiEquals(f1));        
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));       
 
         MmgBmp[] crs = f1.GetChars();
         crs[0] = crs[crs.length - 1];
@@ -110,20 +110,20 @@ public class MmgBmpFontUnitTest_2 {
        
         f1.SetPosition(MmgVector2.GetUnitVec());
 
-        Assert.assertEquals(true, MmgVector2.GetUnitVec().Equals(f1.GetPosition()));
+        Assert.assertEquals(true, MmgVector2.GetUnitVec().ApiEquals(f1.GetPosition()));
 
         f1.SetMmgColor(MmgColor.GetBlueGray());
 
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBlueGray()));
 
         f2 = f1.CloneTyped();
 
-        Assert.assertEquals(true, f1.Equals(f1));                
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));       
+        Assert.assertEquals(true, f1.ApiEquals(f1));                
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));       
 
         MmgBmp[] crs = f1.GetChars();
         crs[0] = crs[crs.length - 1];
@@ -148,7 +148,7 @@ public class MmgBmpFontUnitTest_2 {
         f1 = new MmgBmpFont(f4);
         f3 = new MmgBmpFont(b2, "Test 2");
        
-        Assert.assertEquals(true, b1.Equals(f1.GetSrc()));
+        Assert.assertEquals(true, b1.ApiEquals(f1.GetSrc()));
         Assert.assertEquals(true, "Test 1".equals(f1.GetText()));
 
         f1.SetHeight(64);
@@ -159,20 +159,20 @@ public class MmgBmpFontUnitTest_2 {
        
         f1.SetPosition(MmgVector2.GetUnitVec());
 
-        Assert.assertEquals(true, MmgVector2.GetUnitVec().Equals(f1.GetPosition()));
+        Assert.assertEquals(true, MmgVector2.GetUnitVec().ApiEquals(f1.GetPosition()));
 
         f1.SetMmgColor(MmgColor.GetBlueGray());
 
-        Assert.assertEquals(true, f1.GetMmgColor().Equals(MmgColor.GetBlueGray()));
+        Assert.assertEquals(true, f1.GetMmgColor().ApiEquals(MmgColor.GetBlueGray()));
 
         f2 = f1.CloneTyped();
 
-        Assert.assertEquals(true, f1.Equals(f1));                
-        Assert.assertEquals(true, f1.Equals(f2));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(true, f2.Equals(f1));
-        Assert.assertEquals(false, f3.Equals(f1));
-        Assert.assertEquals(false, f1.Equals(f3));       
+        Assert.assertEquals(true, f1.ApiEquals(f1));                
+        Assert.assertEquals(true, f1.ApiEquals(f2));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(true, f2.ApiEquals(f1));
+        Assert.assertEquals(false, f3.ApiEquals(f1));
+        Assert.assertEquals(false, f1.ApiEquals(f3));       
 
         MmgBmp[] crs = f1.GetChars();
         crs[0] = crs[crs.length - 1];

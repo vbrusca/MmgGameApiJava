@@ -525,7 +525,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenLoading.LoadResources();
             screenLoading.UnPause();
             screenLoading.SetIsVisible(true);
-            //screenLoading.StartDatLoad();
+            screenLoading.StartDatLoad();
             currentScreen = screenLoading;
 
         } else if (gameState == GameStates.GAME_SCREEN_01) {

@@ -66,9 +66,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(x ,y, w, h, viz, c);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -78,15 +78,15 @@ public class MmgObjUnitTest {
         Assert.assertNotSame(obj1, obj2);
         Assert.assertEquals(obj1.GetWidth(), obj2.GetWidth());
         Assert.assertEquals(obj1.GetHeight(), obj2.GetHeight());
-        Assert.assertEquals(true, obj1.GetPosition().Equals(obj2.GetPosition()));
+        Assert.assertEquals(true, obj1.GetPosition().ApiEquals(obj2.GetPosition()));
         Assert.assertEquals(obj1.GetIsVisible(), obj2.GetIsVisible());
-        Assert.assertEquals(true, obj1.GetMmgColor().Equals(obj2.GetMmgColor()));
+        Assert.assertEquals(true, obj1.GetMmgColor().ApiEquals(obj2.GetMmgColor()));
         Assert.assertEquals(obj1.GetHasParent(), obj2.GetHasParent());
         Assert.assertEquals(obj1.GetParent(), obj2.GetParent());
         Assert.assertEquals(obj1.GetName(), obj2.GetName());
         Assert.assertEquals(obj1.GetId(), obj2.GetId());
         
-        Assert.assertEquals(true, obj1.Equals(obj2));
+        Assert.assertEquals(true, obj1.ApiEquals(obj2));
     }
     
     @Test
@@ -205,10 +205,10 @@ public class MmgObjUnitTest {
         Assert.assertEquals(pos.GetY() + 5, obj1.GetPosition().GetY());
         
         //TEST 12 - ToString
-        String tmp = "Name: " + obj1.GetName() + " Id: " + obj1.GetId() + " - " + obj1.GetPosition().ToString() + " HasParent: " + obj1.GetHasParent() + " Width: " + w + " Height: " + h;
+        String tmp = "MmgObj: Name: " + obj1.GetName() + " Id: " + obj1.GetId() + " - " + obj1.GetPosition().ApiToString() + " HasParent: " + obj1.GetHasParent() + " Width: " + w + " Height: " + h;
         //System.err.println(tmp);
         //System.err.println(obj1.ToString());
-        Assert.assertEquals(tmp, obj1.ToString());
+        Assert.assertEquals(tmp, obj1.ApiToString());
     }
     
     @Test
@@ -241,9 +241,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(x ,y, w, h, viz, c);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -253,9 +253,9 @@ public class MmgObjUnitTest {
         Assert.assertNotSame(obj1, obj2);
         Assert.assertEquals(obj1.GetWidth(), obj2.GetWidth());
         Assert.assertEquals(obj1.GetHeight(), obj2.GetHeight());
-        Assert.assertEquals(true, obj1.GetPosition().Equals(obj2.GetPosition()));
+        Assert.assertEquals(true, obj1.GetPosition().ApiEquals(obj2.GetPosition()));
         Assert.assertEquals(obj1.GetIsVisible(), obj2.GetIsVisible());
-        Assert.assertEquals(true, obj1.GetMmgColor().Equals(obj2.GetMmgColor()));
+        Assert.assertEquals(true, obj1.GetMmgColor().ApiEquals(obj2.GetMmgColor()));
         Assert.assertEquals(obj1.GetHasParent(), obj2.GetHasParent());
         Assert.assertEquals(obj1.GetParent(), obj2.GetParent());
         Assert.assertEquals(obj1.GetName(), obj2.GetName());
@@ -291,9 +291,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj();
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -314,9 +314,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(x ,y, w, h, viz, c);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -337,9 +337,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(pos, w, h, viz, c);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -360,9 +360,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(n, id);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -383,9 +383,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(x, y, w, h, viz, c, n, id);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -406,9 +406,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(pos, w, h, viz, c, n, id);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());
@@ -435,9 +435,9 @@ public class MmgObjUnitTest {
         obj1 = new MmgObj(obj2);
         Assert.assertEquals(w, obj1.GetWidth());
         Assert.assertEquals(h, obj1.GetHeight());
-        Assert.assertEquals(true, pos.Equals(obj1.GetPosition()));
+        Assert.assertEquals(true, pos.ApiEquals(obj1.GetPosition()));
         Assert.assertEquals(viz, obj1.GetIsVisible());
-        Assert.assertEquals(true, c.Equals(obj1.GetMmgColor()));
+        Assert.assertEquals(true, c.ApiEquals(obj1.GetMmgColor()));
         Assert.assertEquals(false, obj1.GetHasParent());
         Assert.assertEquals(null, obj1.GetParent());
         Assert.assertEquals(n, obj1.GetName());

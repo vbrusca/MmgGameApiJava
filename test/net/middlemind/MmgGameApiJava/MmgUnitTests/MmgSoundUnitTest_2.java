@@ -48,11 +48,11 @@ public class MmgSoundUnitTest_2 {
         
         s2 = s1.Clone();
         
-        Assert.assertEquals(true, s1.Equals(s1));         
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s2));
-        Assert.assertEquals(false, s1.Equals(s3));
-        Assert.assertEquals(false, s3.Equals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s1));         
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s2));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
+        Assert.assertEquals(false, s3.ApiEquals(s1));        
         
         Assert.assertEquals(1.0f, s1.GetCurrentRate(), 0.001);
         Assert.assertEquals(-24.0866f, s1.GetCurrentVolume(), 0.001);
@@ -62,9 +62,9 @@ public class MmgSoundUnitTest_2 {
         Assert.assertEquals(false, s1.GetSound().equals(s3.GetSound())); 
         
         String idStr = "MmgSound: " + s1.GetIdStr() + " Clip Length MS: " + (s1.GetSound().getMicrosecondLength() / 1000);
-        Assert.assertEquals(true, idStr.equals(s1.ToString()));
-        Assert.assertEquals(false, idStr.equals(s2.ToString()));
-        Assert.assertEquals(false, idStr.equals(s3.ToString()));        
+        Assert.assertEquals(true, idStr.equals(s1.ApiToString()));
+        Assert.assertEquals(false, idStr.equals(s2.ApiToString()));
+        Assert.assertEquals(false, idStr.equals(s3.ApiToString()));        
     }
     
     @Test
@@ -84,11 +84,11 @@ public class MmgSoundUnitTest_2 {
         
         s2 = s1.Clone();
         
-        Assert.assertEquals(true, s1.Equals(s1));         
-        Assert.assertEquals(true, s1.Equals(s2));
-        Assert.assertEquals(true, s2.Equals(s2));
-        Assert.assertEquals(false, s1.Equals(s3));
-        Assert.assertEquals(false, s3.Equals(s1));        
+        Assert.assertEquals(true, s1.ApiEquals(s1));         
+        Assert.assertEquals(true, s1.ApiEquals(s2));
+        Assert.assertEquals(true, s2.ApiEquals(s2));
+        Assert.assertEquals(false, s1.ApiEquals(s3));
+        Assert.assertEquals(false, s3.ApiEquals(s1));        
         
         Assert.assertEquals(1.0f, s1.GetCurrentRate(), 0.001);
         Assert.assertEquals(-24.0866f, s1.GetCurrentVolume(), 0.001);
@@ -98,8 +98,8 @@ public class MmgSoundUnitTest_2 {
         Assert.assertEquals(false, s1.GetSound().equals(s3.GetSound())); 
         
         String idStr = "MmgSound: " + s1.GetIdStr() + " Clip Length MS: " + (s1.GetSound().getMicrosecondLength() / 1000);    
-        Assert.assertEquals(true, idStr.equals(s1.ToString()));
-        Assert.assertEquals(false, idStr.equals(s2.ToString()));
-        Assert.assertEquals(false, idStr.equals(s3.ToString()));        
+        Assert.assertEquals(true, idStr.equals(s1.ApiToString()));
+        Assert.assertEquals(false, idStr.equals(s2.ApiToString()));
+        Assert.assertEquals(false, idStr.equals(s3.ApiToString()));        
     }    
 }

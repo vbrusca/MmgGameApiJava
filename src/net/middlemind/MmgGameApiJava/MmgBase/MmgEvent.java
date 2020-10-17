@@ -247,7 +247,7 @@ public class MmgEvent {
      * 
      * @return      A string representation of this class.
      */
-    public String ToString() {
+    public String ApiToString() {
         return "MmgEvent: Msg: " + message + " Id: " + id + " Type: " + type;
     }
 }

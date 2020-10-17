@@ -67,9 +67,9 @@ public class MmgTextFieldUnitTest_2 {
         t1 = new MmgTextField(b1, f1, 100, 100, 4, 20);
         t3 = new MmgTextField(b2, f2, 300, 300, 12, 20);
 
-        Assert.assertEquals(true, t1.GetBgroundSrc().Equals(b1));
+        Assert.assertEquals(true, t1.GetBgroundSrc().ApiEquals(b1));
         Assert.assertEquals(true, t1.GetBgroundSrc().equals(b1));
-        Assert.assertEquals(true, t1.GetFont().Equals(f1));
+        Assert.assertEquals(true, t1.GetFont().ApiEquals(f1));
         Assert.assertEquals(true, t1.GetFont().equals(f1));
         Assert.assertEquals(true, t1.GetPadding() == 4);
         Assert.assertEquals(true, t1.GetDisplayChars() == 20);
@@ -82,9 +82,9 @@ public class MmgTextFieldUnitTest_2 {
         t1.SetBgroundSrc(b3);
         t1.SetDisplayChars(24);
         
-        Assert.assertEquals(true, t1.GetBground().Equals(n1));
+        Assert.assertEquals(true, t1.GetBground().ApiEquals(n1));
         Assert.assertEquals(true, t1.GetBground().equals(n1));
-        Assert.assertEquals(true, t1.GetBgroundSrc().Equals(b3));
+        Assert.assertEquals(true, t1.GetBgroundSrc().ApiEquals(b3));
         Assert.assertEquals(true, t1.GetBgroundSrc().equals(b3));
         Assert.assertEquals(true, t1.GetDisplayChars() == 24);
 
@@ -94,7 +94,7 @@ public class MmgTextFieldUnitTest_2 {
         t1.SetMaxLength(30);
         t1.SetMaxLengthOn(true);
         
-        Assert.assertEquals(true, t1.GetFont().Equals(f3));
+        Assert.assertEquals(true, t1.GetFont().ApiEquals(f3));
         Assert.assertEquals(true, t1.GetFont().equals(f3));
         Assert.assertEquals(true, t1.GetMaxLength() == 30);
         Assert.assertEquals(true, t1.GetMaxLengthOn() == true);
@@ -105,23 +105,23 @@ public class MmgTextFieldUnitTest_2 {
         t1.SetTextFieldString("Test textfield string");
         
         Assert.assertEquals(true, t1.GetPadding() == 8);
-        Assert.assertEquals(true, t1.GetPosition().Equals(v1));
+        Assert.assertEquals(true, t1.GetPosition().ApiEquals(v1));
         Assert.assertEquals(true, t1.GetPosition().equals(v1));
         Assert.assertEquals(true, t1.GetTextFieldString().equals("Test textfield string"));        
 
         t1.SetX(88);
         t1.SetY(88);
         v1 = new MmgVector2Int(88, 88);
-        Assert.assertEquals(true, t1.GetPosition().Equals(v1));
+        Assert.assertEquals(true, t1.GetPosition().ApiEquals(v1));
         
         t2 = t1.CloneTyped();
         
-        Assert.assertEquals(true, t1.Equals(t1));                
-        Assert.assertEquals(true, t1.Equals(t2));
-        Assert.assertEquals(true, t2.Equals(t1));
-        Assert.assertEquals(true, t2.Equals(t1));
-        Assert.assertEquals(false, t3.Equals(t1));
-        Assert.assertEquals(false, t1.Equals(t3));
+        Assert.assertEquals(true, t1.ApiEquals(t1));                
+        Assert.assertEquals(true, t1.ApiEquals(t2));
+        Assert.assertEquals(true, t2.ApiEquals(t1));
+        Assert.assertEquals(true, t2.ApiEquals(t1));
+        Assert.assertEquals(false, t3.ApiEquals(t1));
+        Assert.assertEquals(false, t1.ApiEquals(t3));
         
         Assert.assertEquals(true, MmgTextField.DEFAULT_MAX_LENGTH == 20);
         Assert.assertEquals(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID == 1);
@@ -158,9 +158,9 @@ public class MmgTextFieldUnitTest_2 {
         t1 = new MmgTextField(new MmgTextField(b1, f1, 100, 100, 4, 20));
         t3 = new MmgTextField(b2, f2, 300, 300, 12, 20);
 
-        Assert.assertEquals(true, t1.GetBgroundSrc().Equals(b1));
+        Assert.assertEquals(true, t1.GetBgroundSrc().ApiEquals(b1));
         Assert.assertEquals(false, t1.GetBgroundSrc().equals(b1));
-        Assert.assertEquals(false, t1.GetFont().Equals(f1));
+        Assert.assertEquals(false, t1.GetFont().ApiEquals(f1));
         Assert.assertEquals(false, t1.GetFont().equals(f1));
         Assert.assertEquals(true, t1.GetPadding() == 4);
         Assert.assertEquals(true, t1.GetDisplayChars() == 20);
@@ -173,9 +173,9 @@ public class MmgTextFieldUnitTest_2 {
         t1.SetBgroundSrc(b3);
         t1.SetDisplayChars(24);
         
-        Assert.assertEquals(true, t1.GetBground().Equals(n1));
+        Assert.assertEquals(true, t1.GetBground().ApiEquals(n1));
         Assert.assertEquals(true, t1.GetBground().equals(n1));
-        Assert.assertEquals(true, t1.GetBgroundSrc().Equals(b3));
+        Assert.assertEquals(true, t1.GetBgroundSrc().ApiEquals(b3));
         Assert.assertEquals(true, t1.GetBgroundSrc().equals(b3));
         Assert.assertEquals(true, t1.GetDisplayChars() == 24);
 
@@ -185,7 +185,7 @@ public class MmgTextFieldUnitTest_2 {
         t1.SetMaxLength(30);
         t1.SetMaxLengthOn(true);
         
-        Assert.assertEquals(true, t1.GetFont().Equals(f3));
+        Assert.assertEquals(true, t1.GetFont().ApiEquals(f3));
         Assert.assertEquals(true, t1.GetFont().equals(f3));
         Assert.assertEquals(true, t1.GetMaxLength() == 30);
         Assert.assertEquals(true, t1.GetMaxLengthOn() == true);
@@ -196,23 +196,23 @@ public class MmgTextFieldUnitTest_2 {
         t1.SetTextFieldString("Test textfield string");
         
         Assert.assertEquals(true, t1.GetPadding() == 8);
-        Assert.assertEquals(true, t1.GetPosition().Equals(v1));
+        Assert.assertEquals(true, t1.GetPosition().ApiEquals(v1));
         Assert.assertEquals(true, t1.GetPosition().equals(v1));
         Assert.assertEquals(true, t1.GetTextFieldString().equals("Test textfield string"));        
 
         t1.SetX(88);
         t1.SetY(88);
         v1 = new MmgVector2Int(88, 88);
-        Assert.assertEquals(true, t1.GetPosition().Equals(v1));
+        Assert.assertEquals(true, t1.GetPosition().ApiEquals(v1));
         
         t2 = t1.CloneTyped();
         
-        Assert.assertEquals(true, t1.Equals(t1));                
-        Assert.assertEquals(true, t1.Equals(t2));
-        Assert.assertEquals(true, t2.Equals(t1));
-        Assert.assertEquals(true, t2.Equals(t1));
-        Assert.assertEquals(false, t3.Equals(t1));
-        Assert.assertEquals(false, t1.Equals(t3));
+        Assert.assertEquals(true, t1.ApiEquals(t1));                
+        Assert.assertEquals(true, t1.ApiEquals(t2));
+        Assert.assertEquals(true, t2.ApiEquals(t1));
+        Assert.assertEquals(true, t2.ApiEquals(t1));
+        Assert.assertEquals(false, t3.ApiEquals(t1));
+        Assert.assertEquals(false, t1.ApiEquals(t3));
         
         Assert.assertEquals(true, MmgTextField.DEFAULT_MAX_LENGTH == 20);
         Assert.assertEquals(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID == 1);

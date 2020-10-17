@@ -48,9 +48,9 @@ public class MmgRectUnitTest_2 {
         r1 = new MmgRect();        
         r2 = r1.Clone();
         
-        Assert.assertEquals(true, r1.Equals(r2));
-        Assert.assertEquals(true, r2.Equals(r1));
-        Assert.assertEquals(true, r1.Equals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r2));
+        Assert.assertEquals(true, r2.ApiEquals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r1));
         
         Assert.assertEquals(1, r1.GetBottom());
         Assert.assertEquals(0, r1.GetLeft());
@@ -60,7 +60,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(1, r1.GetHeight());
         Assert.assertEquals(1, r1.GetWidth());        
 
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         
         r3 = r1.GetRect();
         Assert.assertEquals(0, r3.x);
@@ -80,7 +80,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(10, r1.GetBottom());
         Assert.assertEquals(10, r1.GetRight());
         
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
         r1.SetPosition(MmgVector2.GetUnitVec());
         Assert.assertEquals(1, r1.GetTop());
@@ -190,9 +190,9 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(i5, 0);
         Assert.assertEquals(i6, 0);        
         
-        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+        s1 = "MmgRect: L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
 
-        Assert.assertEquals(s1, r1.ToString());
+        Assert.assertEquals(s1, r1.ApiToString());
         
         r2.ShiftRect(2, 2);
         
@@ -234,9 +234,9 @@ public class MmgRectUnitTest_2 {
         r1 = new MmgRect(new MmgRect());        
         r2 = r1.Clone();
         
-        Assert.assertEquals(true, r1.Equals(r2));
-        Assert.assertEquals(true, r2.Equals(r1));
-        Assert.assertEquals(true, r1.Equals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r2));
+        Assert.assertEquals(true, r2.ApiEquals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r1));
         
         Assert.assertEquals(1, r1.GetBottom());
         Assert.assertEquals(0, r1.GetLeft());
@@ -246,7 +246,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(1, r1.GetHeight());
         Assert.assertEquals(1, r1.GetWidth());        
 
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         
         r3 = r1.GetRect();
         Assert.assertEquals(0, r3.x);
@@ -266,7 +266,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(10, r1.GetBottom());
         Assert.assertEquals(10, r1.GetRight());
         
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
         r1.SetPosition(MmgVector2.GetUnitVec());
         Assert.assertEquals(1, r1.GetTop());
@@ -376,9 +376,9 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(i5, 0);
         Assert.assertEquals(i6, 0);        
         
-        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+        s1 = "MmgRect: L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
 
-        Assert.assertEquals(s1, r1.ToString());
+        Assert.assertEquals(s1, r1.ApiToString());
         
         r2.ShiftRect(2, 2);
         
@@ -420,9 +420,9 @@ public class MmgRectUnitTest_2 {
         r1 = new MmgRect(0, 0, 1, 1);        
         r2 = r1.Clone();
         
-        Assert.assertEquals(true, r1.Equals(r2));
-        Assert.assertEquals(true, r2.Equals(r1));
-        Assert.assertEquals(true, r1.Equals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r2));
+        Assert.assertEquals(true, r2.ApiEquals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r1));
         
         Assert.assertEquals(1, r1.GetBottom());
         Assert.assertEquals(0, r1.GetLeft());
@@ -432,7 +432,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(1, r1.GetHeight());
         Assert.assertEquals(1, r1.GetWidth());        
 
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         
         r3 = r1.GetRect();
         Assert.assertEquals(0, r3.x);
@@ -452,7 +452,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(10, r1.GetBottom());
         Assert.assertEquals(10, r1.GetRight());
         
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
         r1.SetPosition(MmgVector2.GetUnitVec());
         Assert.assertEquals(1, r1.GetTop());
@@ -562,9 +562,9 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(i5, 0);
         Assert.assertEquals(i6, 0);        
         
-        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+        s1 = "MmgRect: L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
 
-        Assert.assertEquals(s1, r1.ToString());
+        Assert.assertEquals(s1, r1.ApiToString());
         
         r2.ShiftRect(2, 2);
         
@@ -606,9 +606,9 @@ public class MmgRectUnitTest_2 {
         r1 = new MmgRect(MmgVector2.GetOriginVec(), 1, 1);        
         r2 = r1.Clone();
         
-        Assert.assertEquals(true, r1.Equals(r2));
-        Assert.assertEquals(true, r2.Equals(r1));
-        Assert.assertEquals(true, r1.Equals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r2));
+        Assert.assertEquals(true, r2.ApiEquals(r1));
+        Assert.assertEquals(true, r1.ApiEquals(r1));
         
         Assert.assertEquals(1, r1.GetBottom());
         Assert.assertEquals(0, r1.GetLeft());
@@ -618,7 +618,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(1, r1.GetHeight());
         Assert.assertEquals(1, r1.GetWidth());        
 
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
         
         r3 = r1.GetRect();
         Assert.assertEquals(0, r3.x);
@@ -638,7 +638,7 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(10, r1.GetBottom());
         Assert.assertEquals(10, r1.GetRight());
         
-        Assert.assertEquals(true, r1.GetPosition().Equals(MmgVector2.GetOriginVec()));
+        Assert.assertEquals(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
         r1.SetPosition(MmgVector2.GetUnitVec());
         Assert.assertEquals(1, r1.GetTop());
@@ -748,9 +748,9 @@ public class MmgRectUnitTest_2 {
         Assert.assertEquals(i5, 0);
         Assert.assertEquals(i6, 0);        
         
-        s1 = "L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
+        s1 = "MmgRect: L: " + r1.GetLeft() + " R: " + r1.GetRight() + " T: " + r1.GetTop() + " B: " + r1.GetBottom() + ", W: " + r1.GetWidth() + " H: " + r1.GetHeight();        
 
-        Assert.assertEquals(s1, r1.ToString());
+        Assert.assertEquals(s1, r1.ApiToString());
         
         r2.ShiftRect(2, 2);
         

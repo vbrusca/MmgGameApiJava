@@ -141,7 +141,7 @@ public class MmgFontData {
      *
      * @return      Returns a string representation of the font data.
      */
-    public static String ToString() {
+    public static String ApiToString() {
         String ret = "";
         ret += "Font Size: " + MmgFontData.GetFontSize() + System.lineSeparator();
         ret += "Target Pixel Height (Unscaled): " + MmgFontData.GetTargetPixelHeight() + System.lineSeparator();

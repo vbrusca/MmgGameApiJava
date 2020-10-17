@@ -43,19 +43,19 @@ public class MmgColorUnitTest {
         
         //TEST 1
         cr = Color.WHITE;
-        Assert.assertEquals(true, MmgColor.GetWhite().Equals(new MmgColor(cr)));
+        Assert.assertEquals(true, MmgColor.GetWhite().ApiEquals(new MmgColor(cr)));
     
         //TEST 2
         cr = Color.BLACK;
-        Assert.assertEquals(true, MmgColor.GetBlack().Equals(new MmgColor(cr)));
+        Assert.assertEquals(true, MmgColor.GetBlack().ApiEquals(new MmgColor(cr)));
         
         //TEST 3
         c1 = new MmgColor(Color.WHITE);
-        Assert.assertEquals(true, MmgColor.GetWhite().Equals(new MmgColor(c1)));
+        Assert.assertEquals(true, MmgColor.GetWhite().ApiEquals(new MmgColor(c1)));
     
         //TEST 4
         c1 = new MmgColor(Color.BLACK);
-        Assert.assertEquals(true, MmgColor.GetBlack().Equals(new MmgColor(c1)));
+        Assert.assertEquals(true, MmgColor.GetBlack().ApiEquals(new MmgColor(c1)));
     }
     
     @Test
@@ -70,7 +70,7 @@ public class MmgColorUnitTest {
         cr = Color.GREEN;
         c1 = new MmgColor(cr);
         c2 = new MmgColor(c1);
-        Assert.assertEquals(true, c1.Equals(c2));        
+        Assert.assertEquals(true, c1.ApiEquals(c2));        
     }
     
     @Test
@@ -108,7 +108,7 @@ public class MmgColorUnitTest {
         Assert.assertNotSame(c1, c2);
         Assert.assertNotEquals(c1, c2);
         Assert.assertEquals(c1.GetColor(), c2.GetColor());
-        Assert.assertTrue(c1.Equals(c2));               
+        Assert.assertTrue(c1.ApiEquals(c2));               
     }
     
     @Test

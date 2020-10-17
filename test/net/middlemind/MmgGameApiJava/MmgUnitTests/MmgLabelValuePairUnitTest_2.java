@@ -45,8 +45,8 @@ public class MmgLabelValuePairUnitTest_2 {
         l1 = new MmgLabelValuePair();
         l3 = new MmgLabelValuePair();
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(new MmgFont(MmgFontData.GetFontBold())));
-        Assert.assertEquals(true, l1.GetValue().Equals(new MmgFont(MmgFontData.GetFontNorm())));        
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.GetFontBold())));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.GetFontNorm())));        
         Assert.assertEquals(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
         Assert.assertEquals(true, l1.GetHeight() == 0);
         Assert.assertEquals(true, l1.GetWidth() == 0);
@@ -56,7 +56,7 @@ public class MmgLabelValuePairUnitTest_2 {
 
         l1.SetLabel(MmgFontData.GetMmgFontNorm());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(MmgFontData.GetMmgFontNorm()));
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.GetMmgFontNorm()));
         
         l1.SetLabelFont(MmgFontData.CreateDefaultNormalFontLg());
         
@@ -65,12 +65,12 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetMmgColor(MmgColor.GetBlue());
         l1.SetPaddingX(24);
         
-        Assert.assertEquals(true, l1.GetMmgColor().Equals(MmgColor.GetBlue()));
+        Assert.assertEquals(true, l1.GetMmgColor().ApiEquals(MmgColor.GetBlue()));
         Assert.assertEquals(true, l1.GetPaddingX() == 24);
 
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         
         l1.SetPosition(50, 50);
         
@@ -81,7 +81,7 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetValue(MmgFontData.GetMmgFontItalic());
         
         Assert.assertEquals(true, l1.GetSkipReset() == true);
-        Assert.assertEquals(true, l1.GetValue().Equals(MmgFontData.GetMmgFontItalic()));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.GetMmgFontItalic()));
     
         l1.SetValueFont(MmgFontData.CreateDefaultBoldFontLg());
         
@@ -93,12 +93,12 @@ public class MmgLabelValuePairUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1)); 
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));               
+        Assert.assertEquals(true, l1.ApiEquals(l1)); 
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));               
     }
     
     @Test
@@ -109,8 +109,8 @@ public class MmgLabelValuePairUnitTest_2 {
         l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.CreateDefaultNormalFontLg());
         l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(new MmgFont(MmgFontData.CreateDefaultBoldFontLg())));
-        Assert.assertEquals(true, l1.GetValue().Equals(new MmgFont(MmgFontData.CreateDefaultNormalFontLg())));        
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.CreateDefaultBoldFontLg())));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.CreateDefaultNormalFontLg())));        
         Assert.assertEquals(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
         Assert.assertEquals(true, l1.GetHeight() == 0);
         Assert.assertEquals(true, l1.GetWidth() == 0);
@@ -120,7 +120,7 @@ public class MmgLabelValuePairUnitTest_2 {
 
         l1.SetLabel(MmgFontData.GetMmgFontNorm());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(MmgFontData.GetMmgFontNorm()));
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.GetMmgFontNorm()));
         
         l1.SetLabelFont(MmgFontData.CreateDefaultNormalFontLg());
         
@@ -129,12 +129,12 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetMmgColor(MmgColor.GetBlue());
         l1.SetPaddingX(24);
         
-        Assert.assertEquals(true, l1.GetMmgColor().Equals(MmgColor.GetBlue()));
+        Assert.assertEquals(true, l1.GetMmgColor().ApiEquals(MmgColor.GetBlue()));
         Assert.assertEquals(true, l1.GetPaddingX() == 24);
 
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         
         l1.SetPosition(50, 50);
         
@@ -145,7 +145,7 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetValue(MmgFontData.GetMmgFontItalic());
         
         Assert.assertEquals(true, l1.GetSkipReset() == true);
-        Assert.assertEquals(true, l1.GetValue().Equals(MmgFontData.GetMmgFontItalic()));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.GetMmgFontItalic()));
     
         l1.SetValueFont(MmgFontData.CreateDefaultBoldFontLg());
         
@@ -157,12 +157,12 @@ public class MmgLabelValuePairUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1)); 
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));               
+        Assert.assertEquals(true, l1.ApiEquals(l1)); 
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));               
     }    
     
     @Test
@@ -173,8 +173,8 @@ public class MmgLabelValuePairUnitTest_2 {
         l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldMmgFontLg(), MmgFontData.CreateDefaultNormalMmgFontLg());
         l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(MmgFontData.CreateDefaultBoldMmgFontLg()));
-        Assert.assertEquals(true, l1.GetValue().Equals(MmgFontData.CreateDefaultNormalMmgFontLg()));        
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.CreateDefaultBoldMmgFontLg()));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));        
         Assert.assertEquals(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
         Assert.assertEquals(true, l1.GetHeight() == 0);
         Assert.assertEquals(true, l1.GetWidth() == 0);
@@ -184,7 +184,7 @@ public class MmgLabelValuePairUnitTest_2 {
 
         l1.SetLabel(MmgFontData.GetMmgFontNorm());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(MmgFontData.GetMmgFontNorm()));
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.GetMmgFontNorm()));
         
         l1.SetLabelFont(MmgFontData.CreateDefaultNormalFontLg());
         
@@ -193,12 +193,12 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetMmgColor(MmgColor.GetBlue());
         l1.SetPaddingX(24);
         
-        Assert.assertEquals(true, l1.GetMmgColor().Equals(MmgColor.GetBlue()));
+        Assert.assertEquals(true, l1.GetMmgColor().ApiEquals(MmgColor.GetBlue()));
         Assert.assertEquals(true, l1.GetPaddingX() == 24);
 
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         
         l1.SetPosition(50, 50);
         
@@ -209,7 +209,7 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetValue(MmgFontData.GetMmgFontItalic());
         
         Assert.assertEquals(true, l1.GetSkipReset() == true);
-        Assert.assertEquals(true, l1.GetValue().Equals(MmgFontData.GetMmgFontItalic()));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.GetMmgFontItalic()));
     
         l1.SetValueFont(MmgFontData.CreateDefaultBoldFontLg());
         
@@ -221,12 +221,12 @@ public class MmgLabelValuePairUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1)); 
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));               
+        Assert.assertEquals(true, l1.ApiEquals(l1)); 
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));               
     }
     
     @Test
@@ -237,8 +237,8 @@ public class MmgLabelValuePairUnitTest_2 {
         l1 = new MmgLabelValuePair(new MmgLabelValuePair(MmgFontData.CreateDefaultBoldMmgFontLg(), MmgFontData.CreateDefaultNormalMmgFontLg()));
         l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(MmgFontData.CreateDefaultBoldMmgFontLg()));
-        Assert.assertEquals(true, l1.GetValue().Equals(MmgFontData.CreateDefaultNormalMmgFontLg()));        
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.CreateDefaultBoldMmgFontLg()));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));        
         Assert.assertEquals(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
         Assert.assertEquals(true, l1.GetHeight() == 0);
         Assert.assertEquals(true, l1.GetWidth() == 0);
@@ -248,7 +248,7 @@ public class MmgLabelValuePairUnitTest_2 {
 
         l1.SetLabel(MmgFontData.GetMmgFontNorm());
         
-        Assert.assertEquals(true, l1.GetLabel().Equals(MmgFontData.GetMmgFontNorm()));
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.GetMmgFontNorm()));
         
         l1.SetLabelFont(MmgFontData.CreateDefaultNormalFontLg());
         
@@ -257,12 +257,12 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetMmgColor(MmgColor.GetBlue());
         l1.SetPaddingX(24);
         
-        Assert.assertEquals(true, l1.GetMmgColor().Equals(MmgColor.GetBlue()));
+        Assert.assertEquals(true, l1.GetMmgColor().ApiEquals(MmgColor.GetBlue()));
         Assert.assertEquals(true, l1.GetPaddingX() == 24);
 
         l1.SetPosition(MmgVector2.GetUnitVec());
         
-        Assert.assertEquals(true, l1.GetPosition().Equals(MmgVector2.GetUnitVec()));
+        Assert.assertEquals(true, l1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
         
         l1.SetPosition(50, 50);
         
@@ -273,7 +273,7 @@ public class MmgLabelValuePairUnitTest_2 {
         l1.SetValue(MmgFontData.GetMmgFontItalic());
         
         Assert.assertEquals(true, l1.GetSkipReset() == true);
-        Assert.assertEquals(true, l1.GetValue().Equals(MmgFontData.GetMmgFontItalic()));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.GetMmgFontItalic()));
     
         l1.SetValueFont(MmgFontData.CreateDefaultBoldFontLg());
         
@@ -285,11 +285,11 @@ public class MmgLabelValuePairUnitTest_2 {
         
         l2 = l1.CloneTyped();
         
-        Assert.assertEquals(true, l1.Equals(l1)); 
-        Assert.assertEquals(true, l1.Equals(l2));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(true, l2.Equals(l1));
-        Assert.assertEquals(false, l3.Equals(l1));
-        Assert.assertEquals(false, l1.Equals(l3));               
+        Assert.assertEquals(true, l1.ApiEquals(l1)); 
+        Assert.assertEquals(true, l1.ApiEquals(l2));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(true, l2.ApiEquals(l1));
+        Assert.assertEquals(false, l3.ApiEquals(l1));
+        Assert.assertEquals(false, l1.ApiEquals(l3));               
     }    
 }

@@ -49,24 +49,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -108,26 +108,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());
     }
     
     @Test
@@ -147,24 +147,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -206,26 +206,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());
     } 
     
     @Test
@@ -244,24 +244,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -303,26 +303,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());
     }
     
     @Test
@@ -341,24 +341,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -400,26 +400,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());
     }
     
     @Test
@@ -438,24 +438,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -497,26 +497,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());     
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());     
     }
     
     @Test
@@ -535,24 +535,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -594,26 +594,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());      
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());      
     }
     
     @Test
@@ -632,24 +632,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -691,26 +691,26 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());      
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());      
     }
     
     @Test
@@ -729,24 +729,24 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(v1.GetY(), 0);
 
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v3 = v1.GetVector();
         Assert.assertEquals(0, (int)v3[0]);
@@ -788,25 +788,25 @@ public class MmgVector2IntUnitTest_2 {
         Assert.assertEquals(3, (int)v1.GetYFloat());
         
         v2 = v1.Clone();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneDouble();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
 
         v2 = v1.CloneFloat();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
         v2 = v1.CloneInt();
-        Assert.assertEquals(true, v2.Equals(v1));
-        Assert.assertEquals(true, v1.Equals(v2));
-        Assert.assertEquals(true, v1.Equals(v1));        
+        Assert.assertEquals(true, v2.ApiEquals(v1));
+        Assert.assertEquals(true, v1.ApiEquals(v2));
+        Assert.assertEquals(true, v1.ApiEquals(v1));        
         
-        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ToString());        
+        Assert.assertEquals("MmgVector2Int: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble(), v1.ApiToString());        
     }    
 }
