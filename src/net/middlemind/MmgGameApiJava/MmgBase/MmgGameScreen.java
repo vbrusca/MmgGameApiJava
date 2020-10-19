@@ -820,9 +820,20 @@ public class MmgGameScreen extends MmgObj {
      * @return      A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMousePress(MmgVector2 v) {
-        return ProcessMousePress(v.GetX(), v.GetY());
+        return ProcessMousePress(v.GetX(), v.GetY(), 0);
     }
 
+    /**
+     * TODO: Add comments
+     * 
+     * @param v
+     * @param btnIndex
+     * @return 
+     */
+    public boolean ProcessMousePress(MmgVector2 v, int btnIndex) {
+        return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
+    }    
+    
     /**
      * Expects a relative X, Y values that takes into account the game's offset and the current panel's
      * offset.
@@ -832,9 +843,21 @@ public class MmgGameScreen extends MmgObj {
      * @return      A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMousePress(int x, int y) {
-        return true;
+        return ProcessMousePress(x, y, 0);
     }
 
+    /**
+     * TODO: Add comments
+     * 
+     * @param x
+     * @param y
+     * @param btnIndex
+     * @return 
+     */
+    public boolean ProcessMousePress(int x, int y, int btnIndex) {
+        return true;
+    }    
+    
     /**
      * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
      * offset.
@@ -847,6 +870,17 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
+     * TODO: Add comments
+     * 
+     * @param v
+     * @param btnIndex
+     * @return 
+     */
+    public boolean ProcessMouseRelease(MmgVector2 v, int btnIndex) {
+        return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
+    }    
+    
+    /**
      * Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
      * 
      * @param x     The X coordinate of the event.
@@ -854,9 +888,21 @@ public class MmgGameScreen extends MmgObj {
      * @return      A boolean indicating if the event was handled or not.      
      */
     public boolean ProcessMouseRelease(int x, int y) {
-        return true;
+        return ProcessMouseRelease(x, y, 0);
     }
 
+    /**
+     * TODO: Add comments
+     * 
+     * @param x
+     * @param y
+     * @param btnIndex
+     * @return 
+     */
+    public boolean ProcessMouseRelease(int x, int y, int btnIndex) {
+        return true;
+    }    
+    
     /**
      * Process a screen click. 
      * Expects coordinate that don't take into account the offset of the game and panel.
@@ -865,19 +911,42 @@ public class MmgGameScreen extends MmgObj {
      * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     public boolean ProcessMouseClick(MmgVector2 v) {
-        return ProcessMouseClick(v.GetX(), v.GetY());
+        return ProcessMouseClick(v.GetX(), v.GetY(), 0);
     }
 
+    /**
+     * TODO: Add comments
+     * 
+     * @param v
+     * @param btnIndex
+     * @return 
+     */
+    public boolean ProcessMouseClick(MmgVector2 v, int btnIndex) {
+        return ProcessMouseClick(v.GetX(), v.GetY(), btnIndex);
+    }    
+    
+    /**
+     * TODO: Add comments
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    public boolean ProcessMouseClick(int x, int y) {
+        return ProcessMouseClick(x, y, 0);
+    }    
+    
     /**
      * Process a screen click. 
      * Expects coordinate that don't take into account the offset of the game and panel.
      *
      * @param x     The X axis coordinate of the screen click.
      * @param y     The Y axis coordinate of the screen click.
+     * @param btnIndex TODO: Add comments
      * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     @SuppressWarnings("UnusedAssignment")
-    public boolean ProcessMouseClick(int x, int y) {
+    public boolean ProcessMouseClick(int x, int y, int btnIndex) {
         if (menuOn == true && menu != null) {
             Object[] objs = menu.GetArray();
             MmgMenuItem item = null;

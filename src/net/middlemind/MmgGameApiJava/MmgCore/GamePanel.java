@@ -581,17 +581,18 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ProcessMouseClick(e.getX(), e.getY());
+                MmgHelper.wr("MouseeButton: " + e.getButton());
+                ProcessMouseClick(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                ProcessMousePress(e.getX(), e.getY());
+                ProcessMousePress(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                ProcessMouseRelease(e.getX(), e.getY());
+                ProcessMouseRelease(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
@@ -797,9 +798,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param x     The x argument is the X position of the mouse as received from the mouse listener.
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */    
-    public void ProcessMousePress(int x, int y) {
+    public void ProcessMousePress(int x, int y, int btnIndex) {
         if (currentScreen != null) {
-            currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
         }
     }
 
@@ -811,9 +812,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param x     The x argument is the X position of the mouse as received from the mouse listener.
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */    
-    public void ProcessMouseRelease(int x, int y) {
+    public void ProcessMouseRelease(int x, int y, int btnIndex) {
         if (currentScreen != null) {
-            currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
         }
     }
 
@@ -825,9 +826,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param x     The x argument is the X position of the mouse as received from the mouse listener.
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */     
-    public void ProcessMouseClick(int x, int y) {
+    public void ProcessMouseClick(int x, int y, int btnIndex) {
         if (currentScreen != null) {
-            currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
         }
     }
 
