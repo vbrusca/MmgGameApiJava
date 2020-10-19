@@ -542,7 +542,8 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                //Ignore Enter and Space bar releases, handle them as A and B button clicks.                
+                //Ignore Enter and Space bar releases, handle them as A and B button clicks.
+                //MmgHelper.wr("Key: " + e.getKeyChar() + " Code: " + e.getKeyCode() + " ExtCode: " + e.getExtendedKeyCode());
                 if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
                     if (e.getKeyCode() == 40) {
                         ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
