@@ -121,32 +121,32 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
     public ScreenTestMmgCfgFileEntryWrite screenTestMmgCfgFileEntryWrite;    
     
     /**
-     * TODO: Add comments
+     * A reference to a game screen used for testing the MmgObj class.
      */
     public ScreenTestMmgObj screenTestMmgObj;
     
     /**
-     * TODO: Add comments
+     * A reference to a game screen used for testing the MmgSpriteSheet class.
      */
     public ScreenTestMmgSpriteSheet screenTestMmgSpriteSheet;
     
     /**
-     * TODO: Add comments
+     * A reference to a game screen used for testing the MmgBmpFont class.
      */
     public ScreenTestMmgBmpFont screenTestMmgBmpFont;
     
     /**
-     * TODO: Add comments
+     * A reference to a game screen used for testing the MmgLoadingBar class.
      */
     public ScreenTestMmgLoadingBar screenTestMmgLoadingBar;
     
     /**
-     * TODO: Add comments
+     * A reference to a game screen used for testing the MmgSizeTween class.
      */
     public ScreenTestMmgSizeTween screenTestMmgSizeTween;
     
     /**
-     * TODO: Add comments
+     * A reference to a game screen used for testing the MmgSpriteMatrix class.
      */
     public ScreenTestMmgSpriteMatrix screenTestMmgSpriteMatrix;    
     

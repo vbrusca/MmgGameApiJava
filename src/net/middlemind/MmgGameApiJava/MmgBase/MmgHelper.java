@@ -29,11 +29,11 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgCfgFileEntry.CfgEntryType;
 public class MmgHelper {
 
     /**
-     * TODO: Add comments
+     * A helper method used to adjust font X coordinate on-the-fly to help normalize the behavior of the Monogame version of this API.
      * 
-     * @param x
-     * @param f
-     * @return 
+     * @param x     The X coordinate to take into consideration for font position adjustment.
+     * @param f     The actual font to take into consideration for font position adjustment.
+     * @return      An adjusted X position.
      */
     public static int NormalizeFontPositionX(int x, MmgFont f)
     {
@@ -41,11 +41,11 @@ public class MmgHelper {
     }
      
     /**
-     * TODO: Add comments
+     * A helper method used to adjust font Y coordinate on-the-fly to help normalize the behavior of the Monogame version of this API.
      * 
-     * @param y
-     * @param f
-     * @return 
+     * @param y     The Y coordinate to take into consideration for font position adjustment.
+     * @param f     The actual font to take into consideration for font position adjustment.
+     * @return      An adjusted Y position. 
      */
     public static int NormalizeFontPositionY(int y, MmgFont f)
     {
@@ -53,14 +53,15 @@ public class MmgHelper {
     }    
     
     /**
-     * TODO: Add comments
+     * A helper method used to adjust Keyboard key codes to help normalize the behavior of the Monogame version of this API.
      * 
-     * @param keyCode
-     * @param extKeyCode
-     * @param platform
-     * @return 
+     * @param c             The character representation of the keyboard key.
+     * @param keyCode       The key code of the keyboard key.
+     * @param extKeyCode    The extended code of the keyboard key taking into account the modifier keys.
+     * @param platform      A string representation of the platform, 'c_sharp' or 'java'.
+     * @return              A keycode based on the provided arguments.
      */
-    public static int NormalizeKeyCode(int keyCode, int extKeyCode, String platform) {
+    public static int NormalizeKeyCode(char c, int keyCode, int extKeyCode, String platform) {
         if(extKeyCode != -1) {
             return extKeyCode;
         } else  {
@@ -69,18 +70,20 @@ public class MmgHelper {
     }
     
     /**
-     * TODO: Add comments
-     * @param angle
-     * @return 
+     * Converts the specified angle to radians.
+     * 
+     * @param angle     The angle in degrees to convert to radians.
+     * @return          The radian representation of the provided angle in degrees.
      */
     public static double ConvertToRadians(double angle) {
         return (Math.PI / 180) * angle;
     }    
     
     /**
-     * TODO: Add comments
-     * @param angle
-     * @return 
+     * Converts the specified angle to radians.
+     * 
+     * @param angle     The angle in degrees to convert to radians.
+     * @return          The radian representation of the provided angle in degrees.
      */
     public static float ConvertToRadians(float angle) {
         return (float)((Math.PI / 180) * (double)angle);
@@ -112,7 +115,7 @@ public class MmgHelper {
      * @param key               The class configuration key entry to check for.
      * @param defaultValue      The default value for this class configuration key.
      * @param classConfig       The set of class configuration entries to search.
-     * @return 
+     * @return                  The integer value store in the specified class config key.
      */
     public static int ContainsKeyInt(String key, int defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         int ret = defaultValue;
@@ -128,7 +131,7 @@ public class MmgHelper {
      * @param key               The class configuration key entry to check for.
      * @param defaultValue      The default value for this class configuration key.
      * @param classConfig       The set of class configuration entries to search.
-     * @return 
+     * @return                  The float value store in the specified class config key.
      */
     public static float ContainsKeyFloat(String key, float defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         float ret = defaultValue;
@@ -144,7 +147,7 @@ public class MmgHelper {
      * @param key               The class configuration key entry to check for.
      * @param defaultValue      The default value for this class configuration key.
      * @param classConfig       The set of class configuration entries to search.
-     * @return 
+     * @return                  The double value store in the specified class config key.
      */
     public static double ContainsKeyDouble(String key, double defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         double ret = defaultValue;
@@ -160,7 +163,7 @@ public class MmgHelper {
      * @param key               The class configuration key entry to check for.
      * @param defaultValue      The default value for this class configuration key.
      * @param classConfig       The set of class configuration entries to search.
-     * @return 
+     * @return                  The string value store in the specified class config key.
      */
     public static String ContainsKeyString(String key, String defaultValue, Hashtable<String, MmgCfgFileEntry> classConfig) {
         String ret = defaultValue;

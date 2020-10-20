@@ -472,6 +472,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                MmgHelper.wr("Key Click");
                 if (e.getKeyChar() == ' ' || e.getKeyChar() == '\n') {
                     ProcessAClick(GameSettings.SRC_KEYBOARD);
                     
@@ -510,6 +511,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             @Override
             public void keyPressed(KeyEvent e) {
                 //Ignore Enter and Space bar presses, handle them as A and B button clicks.
+                MmgHelper.wr("Key Pressed");
                 if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
                     lastKeyPressEvent = System.currentTimeMillis();
                     if (e.getKeyCode() == 40) {
@@ -544,6 +546,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             public void keyReleased(KeyEvent e) {
                 //Ignore Enter and Space bar releases, handle them as A and B button clicks.
                 //MmgHelper.wr("Key: " + e.getKeyChar() + " Code: " + e.getKeyCode() + " ExtCode: " + e.getExtendedKeyCode());
+                MmgHelper.wr("Key Released");
                 if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
                     if (e.getKeyCode() == 40) {
                         ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
@@ -581,17 +584,19 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                MmgHelper.wr("MouseeButton: " + e.getButton());
+                MmgHelper.wr("Mouse Click");
                 ProcessMouseClick(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
+                MmgHelper.wr("Mouse Pressed");                
                 ProcessMousePress(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                MmgHelper.wr("Mouse Released");
                 ProcessMouseRelease(e.getX(), e.getY(), e.getButton());
             }
 
