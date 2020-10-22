@@ -317,15 +317,11 @@ public class MmgPulse {
     }
     
     /**
-     * A method used to check the equality of this MmgPositionTween when compared to another MmgPositionTween.
+     * A method used to check the equality of this MmgPulse when compared to another MmgPulse.
      * Compares object fields to determine equality.
      * 
-     * @param p     The MmgPen object used to draw this object.
-     */
-    /**
-     * 
-     * @param obj   The MmgPulse object to compare to.
-     * @return      A boolean indicating if the two objects are equal or not.
+     * @param p     The MmgPulse object to compare too.
+     * @return      A boolean indicating equality.
      */
     public boolean ApiEquals(MmgPulse obj) {
         if(obj == null) {

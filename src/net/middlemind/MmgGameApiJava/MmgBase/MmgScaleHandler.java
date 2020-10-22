@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 /**
- * TODO: Add comments
+ * A class that handles scaling requests from a running MmgSizeTween object.
  * Created by Middlemind Games 09/14/2020
  *
  * @author Victor G. Brusca
@@ -9,9 +9,10 @@ package net.middlemind.MmgGameApiJava.MmgBase;
 public interface MmgScaleHandler {
 
     /**
-     * TODO: Add comments
+     * A method to handle an image scaling request in response to MmgSizeTween events.
      * 
-     * @param v 
+     * @param v     The vector that describes how much to scale the MmgObj in each direction.
+     * @param orig  The MmgObj to be scaled.    
      */
     public void MmgHandleScale(MmgVector2 v, MmgObj orig);
 }

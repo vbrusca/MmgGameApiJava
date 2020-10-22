@@ -36,7 +36,7 @@ public class MmgFontData {
     private static int targetPixelHeightScaled = 22;
 
     /**
-     * TODO: Add comments
+     * The maximum font size supported.
      */
     public static int MAX_FONT_SIZE = 50;    
     
@@ -143,9 +143,9 @@ public class MmgFontData {
      */
     public static String ApiToString() {
         String ret = "";
-        ret += "Font Size: " + MmgFontData.GetFontSize() + System.lineSeparator();
-        ret += "Target Pixel Height (Unscaled): " + MmgFontData.GetTargetPixelHeight() + System.lineSeparator();
-        ret += "Target Pixel Height (Scaled): " + MmgHelper.ScaleValue(MmgFontData.GetTargetPixelHeight()) + System.lineSeparator();
+        ret += "MmgFontData: Font Size: " + MmgFontData.GetFontSize() + System.lineSeparator();
+        ret += "MmgFontData: Target Pixel Height (Unscaled): " + MmgFontData.GetTargetPixelHeight() + System.lineSeparator();
+        ret += "MmgFontData: Target Pixel Height (Scaled): " + MmgHelper.ScaleValue(MmgFontData.GetTargetPixelHeight()) + System.lineSeparator();
         return ret;
     }
 

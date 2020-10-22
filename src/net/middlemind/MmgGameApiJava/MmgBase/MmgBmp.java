@@ -330,8 +330,7 @@ public class MmgBmp extends MmgObj {
     }
 
     /**
-     * Sets the unique id integer and string representations using a common
-     * method.
+     * Sets the unique id integer and string representations using a common method.
      */
     private void SetBmpId() {
         id = MmgBmp.ID_SRC;

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
@@ -59,7 +60,7 @@ public class MmgHelper {
      * @param keyCode       The key code of the keyboard key.
      * @param extKeyCode    The extended code of the keyboard key taking into account the modifier keys.
      * @param platform      A string representation of the platform, 'c_sharp' or 'java'.
-     * @return              A keycode based on the provided arguments.
+     * @return              A key code based on the provided arguments.
      */
     public static int NormalizeKeyCode(char c, int keyCode, int extKeyCode, String platform) {
         if(extKeyCode != -1) {
@@ -180,7 +181,7 @@ public class MmgHelper {
      * @param tB            The MmgBmp to process.
      * @param classConfig   The set of class configuration entries to search.
      * @param pos           The default position to use for the MmgBmp object.
-     * @return 
+     * @return              A reference to a modified MmgBmp based on the tB argument.
      */
     public static MmgBmp ContainsKeyMmgBmpScaleAndPosition(String keyRoot, MmgBmp tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
         String key = "";
@@ -249,7 +250,7 @@ public class MmgHelper {
      * @param tB            The MmgObj to process.
      * @param classConfig   The set of class configuration entries to search.
      * @param pos           The default position to use for the MmgObj object.
-     * @return 
+     * @return              A reference to a modified MmgObj based on the tB argument.
      */
     public static MmgObj ContainsKeyMmgObjPosition(String keyRoot, MmgObj tB, Hashtable<String, MmgCfgFileEntry> classConfig, MmgVector2 pos) {
         String key = "";
@@ -874,6 +875,23 @@ public class MmgHelper {
     }
 
     /**
+     * Fills the specified rectangle region of the buffImg argument with the specified color.
+     * 
+     * @param x         The X coordinate of the rectangle.
+     * @param y         The Y coordinate of the rectangle.
+     * @param w         The width of the rectangle.
+     * @param h         The height of the rectangle.
+     * @param c         The color to fill the rectangle with.
+     * @param buffImg   The image to draw the rectangle on.
+     */
+    public static void FillRectWithColor(int x, int y, int w, int h, Color c, BufferedImage buffImg) {        
+        Graphics2D g = (Graphics2D)buffImg.getGraphics();
+        g.setColor(c);
+        g.fillRect(x, y, w, h);
+        g.dispose();
+    }
+    
+    /**
      * A static method used to create an MmgSound object from a sound resource file.
      * 
      * @param path      The path of the sound resource loaded.
@@ -892,6 +910,29 @@ public class MmgHelper {
             }
         } else {
             lval = MmgHelper.GetBasicSound(path);
+        }
+        return lval;
+    }
+    
+    /**
+     * Loads a cached sound with the provided sound resource ID, the sndId argument or loads a new resource using the provided binary data.
+     * 
+     * @param data      A byte array representation of the sound.
+     * @param sndId     The ID to use when the sound resource is cached.
+     * @return          An MmgSound object instance based on the sound resource.
+     */
+    @SuppressWarnings("UnusedAssignment")
+    public static MmgSound GetBasicCachedSound(byte[] data, String sndId) {
+        MmgSound lval = null;
+        if (SND_CACHE_ON == true) {
+            if (MmgMediaTracker.HasSoundKey(sndId) == true) {
+                lval = new MmgSound(MmgMediaTracker.GetSoundValue(sndId));
+            } else {
+                lval = MmgHelper.GetBinarySound(data);
+                MmgMediaTracker.CacheSound(sndId, lval.GetSound());
+            }
+        } else {
+            lval = MmgHelper.GetBinarySound(data);
         }
         return lval;
     }
@@ -937,6 +978,29 @@ public class MmgHelper {
         return lval;
     }
 
+    /**
+     * Loads a cached sound with the provided sound resource ID, the sndId argument or loads a new resource using the provided binary data.
+     * 
+     * @param data      A byte array representation of the sound.
+     * @param imgId     The ID to use when the sound resource is cached.
+     * @return          An MmgSound object instance based on the sound resource.
+     */
+    public static MmgBmp GetBasicCachedBmp(byte[] data, String imgId) {
+        MmgBmp lval = null;
+        if (BMP_CACHE_ON == true) {
+            if (MmgMediaTracker.HasBmpKey(imgId) == true) {
+                lval = new MmgBmp(MmgMediaTracker.GetBmpValue(imgId));
+                lval.SetMmgColor(null);
+            } else {
+                lval = MmgHelper.GetBinaryBmp(data);
+                MmgMediaTracker.CacheImage(imgId, lval.GetImage());
+            }
+        } else {
+            lval = MmgHelper.GetBinaryBmp(data);
+        }
+        return lval;
+    }    
+    
     /**
      * A static method used to create an MmgBmp object from an image resource file.
      * 
@@ -993,15 +1057,12 @@ public class MmgHelper {
         Clip in = null;
         MmgSound snd = null;
         
-        try
-        {
+        try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(src));
             in = AudioSystem.getClip();
             in.open(audioIn);
             snd = new MmgSound(in);
-        }
-        catch(Exception e)
-        {
+        } catch(Exception e) {
             e.printStackTrace();
         }
 
@@ -1063,6 +1124,29 @@ public class MmgHelper {
 
         return r;
     }
+    
+    /**
+     * A static method for converting binary image data into an MmgSound object.
+     * 
+     * @param d     The array of bytes representing the sound data.
+     * @return      An MmgSound object that is created from the binary sound data.
+     */
+    public static MmgSound GetBinarySound(byte[] d) {
+        Clip in = null;
+        MmgSound snd = null;
+                
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new ByteArrayInputStream(d));
+            in = AudioSystem.getClip();
+            in.open(audioIn);
+            snd = new MmgSound(in);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return snd;
+    }    
+    
 
     /**
      * A static method for converting the lower level Java image into an MmgBmp object.

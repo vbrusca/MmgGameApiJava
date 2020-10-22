@@ -105,7 +105,7 @@ public class MmgTextBlock extends MmgObj {
     public static boolean SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
     /**
-     * TODO: Add comments
+     * A private variable used in the drawing routine.
      */
     private Color c;
     

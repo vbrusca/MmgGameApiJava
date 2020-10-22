@@ -137,6 +137,7 @@ public class MmgBmpFont extends MmgObj {
      * 
      * @return      An MmgObj that is a clone of the current object.
      */
+    @Override
     public MmgObj Clone() {
         return (MmgObj) new MmgBmpFont(this);
     }
@@ -146,6 +147,7 @@ public class MmgBmpFont extends MmgObj {
      * 
      * @return      An MmgBmpFont that is a clone of the current object.
      */
+    @Override
     public MmgBmpFont CloneTyped() {
         return new MmgBmpFont(this);
     }

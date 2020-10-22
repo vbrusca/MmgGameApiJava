@@ -824,11 +824,12 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * TODO: Add comments
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * @param v
-     * @param btnIndex
-     * @return 
+     * @param v         The coordinates of the mouse event.
+     * @param btnIndex  The index of the mouse button.
+     * @return          A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMousePress(MmgVector2 v, int btnIndex) {
         return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
@@ -847,12 +848,13 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * TODO: Add comments
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's
+     * offset.
      * 
-     * @param x
-     * @param y
-     * @param btnIndex
-     * @return 
+     * @param x         The X coordinate of the mouse.
+     * @param y         The Y coordinate of the mouse.
+     * @param btnIndex  The index of the mouse button.
+     * @return          A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMousePress(int x, int y, int btnIndex) {
         return true;
@@ -870,11 +872,11 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * TODO: Add comments
+     * Expects a relative X, Y vector that takes into account the game's offset and the current panel's offset.
      * 
-     * @param v
-     * @param btnIndex
-     * @return 
+     * @param v         The coordinates of the mouse event.
+     * @param btnIndex  The index of the mouse button.
+     * @return          A bool indicating if the event was handled or not.
      */
     public boolean ProcessMouseRelease(MmgVector2 v, int btnIndex) {
         return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
@@ -892,12 +894,12 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * TODO: Add comments
+     * Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
      * 
-     * @param x
-     * @param y
-     * @param btnIndex
-     * @return 
+     * @param x         The X coordinate of the event.
+     * @param y         The Y coordinate of the event.
+     * @param btnIndex  The index of the mouse button.
+     * @return          A boolean indicating if the event was handled or not.
      */
     public boolean ProcessMouseRelease(int x, int y, int btnIndex) {
         return true;
@@ -915,22 +917,24 @@ public class MmgGameScreen extends MmgObj {
     }
 
     /**
-     * TODO: Add comments
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
      * 
-     * @param v
-     * @param btnIndex
-     * @return 
+     * @param v         The coordinates of the click.
+     * @param btnIndex  The index of the mouse button.
+     * @return          Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     public boolean ProcessMouseClick(MmgVector2 v, int btnIndex) {
         return ProcessMouseClick(v.GetX(), v.GetY(), btnIndex);
     }    
     
     /**
-     * TODO: Add comments
+     * Process a screen click. 
+     * Expects coordinate that don't take into account the offset of the game and panel.
      * 
-     * @param x
-     * @param y
-     * @return 
+     * @param x     The X axis coordinate of the screen click.
+     * @param y     The Y axis coordinate of the screen click.
+     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     public boolean ProcessMouseClick(int x, int y) {
         return ProcessMouseClick(x, y, 0);
@@ -940,10 +944,10 @@ public class MmgGameScreen extends MmgObj {
      * Process a screen click. 
      * Expects coordinate that don't take into account the offset of the game and panel.
      *
-     * @param x     The X axis coordinate of the screen click.
-     * @param y     The Y axis coordinate of the screen click.
-     * @param btnIndex TODO: Add comments
-     * @return      Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
+     * @param x         The X axis coordinate of the screen click.
+     * @param y         The Y axis coordinate of the screen click.
+     * @param btnIndex The index of the mouse button.
+     * @return          Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.
      */
     @SuppressWarnings("UnusedAssignment")
     public boolean ProcessMouseClick(int x, int y, int btnIndex) {

@@ -31,11 +31,6 @@ public class Mmg9Slice extends MmgObj {
     private MmgBmp dest;
     
     /**
-     * Environment graphics configuration data to use when creating new bitmaps to draw on.
-     */
-    //public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
-    /**
      * Default constructor that takes a source MmgBmp to slice an offset and dimensions for the
      * expanded source bitmap.
      * 

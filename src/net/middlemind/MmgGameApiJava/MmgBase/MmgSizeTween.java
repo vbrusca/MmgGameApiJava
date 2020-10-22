@@ -34,7 +34,7 @@ public class MmgSizeTween extends MmgObj {
     private MmgObj subj;
     
     /**
-     * TODO: Add comment
+     * A copy of the subj MmgObj in its original state to prevent resizing a resized image.
      */
     private MmgObj subjOrig;
     
@@ -109,7 +109,7 @@ public class MmgSizeTween extends MmgObj {
     private MmgEventHandler onReachStart;
         
     /**
-     * TODO: Add comment
+     * An event handler to resize the MmgObj subject to the specified size.
      */
     private MmgScaleHandler onSubjScale;
     
@@ -247,36 +247,36 @@ public class MmgSizeTween extends MmgObj {
     }
     
     /**
-     * TODO: Add comment
+     * Sets the resizing handler.
      * 
-     * @param o 
+     * @param o     The resizing handler.
      */
     public void SetOnSubjScale(MmgScaleHandler o) {
         onSubjScale = o;
     }
     
     /**
-     * TODO: Add comment
+     * Gets the resizing handler.
      * 
-     * @return 
+     * @return      The resizing handler. 
      */
     public MmgScaleHandler GetOnSubjScale() {
         return onSubjScale;
     }
     
     /**
-     * TODO: Add comment
+     * Gets the original subject.
      * 
-     * @return 
+     * @return      The original subject.
      */
     public MmgObj GetSubjOrig() {
         return subjOrig;
     }
     
     /**
-     * TODO: Add comment
+     * Sets the original subject.
      * 
-     * @param o 
+     * @param o     The original subject.
      */
     public void SetSubjOrig(MmgObj o) {
         subjOrig = o;

@@ -28,6 +28,34 @@ public class MmgFont extends MmgObj {
     private final FontRenderContext frc;
 
     /**
+     * The integer value of the current font size.
+     * This value gets set only when SetFontSize is called, this is extra info not used in font rendering on the Java version of the API.
+     */
+    private int fontSize = -1;
+        
+    /**
+     * An enumeration that is used to describe the style of a particular font.
+     */
+    public enum FontType {
+        NORMAL(0),
+        BOLD(1),
+        ITALIC(2),
+        NONE(-1);
+        
+        private final int val;
+
+        private FontType(int Val) {
+            this.val = Val;
+        }        
+    };    
+    
+    /**
+     * The style of the font.
+     * This value gets set only when SetFontSize is called, this is extra info not used in font rendering on the Java version of the API.
+     */
+    private FontType fontType = FontType.NONE;    
+    
+    /**
      * Constructor for this class.
      */
     public MmgFont() {
@@ -77,6 +105,8 @@ public class MmgFont extends MmgObj {
         super();
         frc = new FontRenderContext(null, true, true);
         SetFont(obj.GetFont());
+        SetFontType(obj.GetFontType());
+        SetFontSize(obj.GetFontSize());        
         SetText(obj.GetText());
 
         if (obj.GetPosition() == null) {
@@ -190,12 +220,33 @@ public class MmgFont extends MmgObj {
     }
 
     /**
+     * Gets the font type for this MmgFont instance.
+     * In the Java API this is only used as extra information and isn't directly tied to font rendering.
+     * 
+     * @return      The font type for this MmgFont instance.
+     */
+    public FontType GetFontType() {
+        return fontType;
+    }
+    
+    /**
+     * Sets the font type for this MmgFont instance.
+     * In the Java API this is only used as extra information and isn't directly tied to font rendering.
+     * 
+     * @param ft    The font type for this MmgFont instance.
+     */
+    public void SetFontType(FontType ft) {
+        fontType = ft;
+    }
+    
+    /**
      * Sets the size of the font.
      *
      * @param sz    The size of the font.
      */
     public void SetFontSize(int sz) {
-        if(sz > 0 && sz <= MmgFontData.MAX_FONT_SIZE) { 
+        if(sz > 0 && sz <= MmgFontData.MAX_FONT_SIZE) {
+            fontSize = sz;
             font = font.deriveFont((float) sz);
         } else {
             MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);

@@ -392,5 +392,5 @@ public class MmgMenuItem extends MmgObj {
             ret = true;
         }
         return ret;
-     }
+    }
 }

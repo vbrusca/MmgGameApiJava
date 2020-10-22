@@ -365,6 +365,20 @@ public class MmgPen {
     }
     
     /**
+     * A method to check if the specified Color is considered to be the empty color.
+     * 
+     * @param c     The Color with which to check equivalence to the empty color.
+     * @return      A boolean indicating if the provided Color is empty or not.
+     */
+    public boolean IsEmptyColor(Color c) {
+        if(c == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Drawing method for drawing bitmap images.
      * 
      * @param b             The MmgBmp object to draw.

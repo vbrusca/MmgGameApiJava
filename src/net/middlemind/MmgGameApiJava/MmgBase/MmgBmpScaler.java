@@ -1,8 +1,6 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Transparency;

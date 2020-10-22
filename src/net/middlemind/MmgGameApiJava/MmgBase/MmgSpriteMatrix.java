@@ -28,12 +28,12 @@ public class MmgSpriteMatrix {
     private int height;
     
     /**
-     * TODO: Add comment
+     * The number of rows in the sprite matrix.
      */
     private int rowCount;
     
     /**
-     * TODO: Add comments.
+     * The number of columns in the sprite matrix.
      */
     private int colCount;
     
@@ -126,36 +126,36 @@ public class MmgSpriteMatrix {
     }
     
     /**
-     * TODO: Add comment
+     * Gets the row count of the sprite matrix.
      * 
-     * @return 
+     * @return      The row count of the sprite matrix.
      */
     public int GetRowCount() {
         return rowCount;
     }
     
     /**
-     * TODO: Add comment
+     * Sets the row count of the sprite matrix.
      * 
-     * @param i 
+     * @param i     The row count of the sprite matrix.
      */
     public void SetRowCount(int i) {
         rowCount = i;
     }
     
     /**
-     * TODO: Add comment
+     * Gets the col count of the sprite matrix.
      * 
-     * @return 
+     * @return      The col count of the sprite matrix. 
      */
     public int GetColCount() {
         return colCount;
     }
     
     /**
-     * TODO: Add comment
+     * Sets the col count of the sprite matrix.
      * 
-     * @param i 
+     * @param i     The col count of the sprite matrix. 
      */
     public void SetColCount(int i) {
         colCount = i;
