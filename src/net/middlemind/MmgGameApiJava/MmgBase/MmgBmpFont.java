@@ -41,7 +41,7 @@ public class MmgBmpFont extends MmgObj {
     /**
      * A boolean flag that turns on more logging when set to true.
      */
-    private boolean verbose;
+    private boolean verbose = true;
     
     /**
      * A static value for the expected length, in characters, of the loaded font.
@@ -661,6 +661,10 @@ public class MmgBmpFont extends MmgObj {
      */
     public void SetText(String s) {
         if(s != null) {
+            if(s.length() == 0) {
+                s = " ";
+            }            
+            
             int len = s.length();
             char c;
             int idx = 0;
@@ -671,9 +675,21 @@ public class MmgBmpFont extends MmgObj {
                 c = s.charAt(i);
                 idx = GetIndexOf(c);
                 w = GetWidthAt(idx);
+                if(w == -1) {
+                    MmgHelper.wr("MmgBmpFont: Could not find index of character: " + c + " With Code: " + (int)((byte)c));
+                }             
                 totalWidth += w;
             }
 
+            if(totalWidth <= 0) {
+                MmgHelper.wr("MmgBmpFont: Error: totalWidth value is incorrect: " + totalWidth);
+                s = " ";
+                c = s.charAt(i);
+                idx = GetIndexOf(c);
+                w = GetWidthAt(idx);
+                totalWidth = w;
+            }            
+            
             int posX = 0;            
             MmgDrawableBmpSet bmpSet = MmgHelper.CreateDrawableBmpSet(totalWidth, src.GetHeight(), true);
             MmgBmp img = null;

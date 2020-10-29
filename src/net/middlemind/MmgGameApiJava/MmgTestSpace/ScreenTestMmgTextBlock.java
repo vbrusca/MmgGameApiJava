@@ -6,6 +6,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEvent;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgEventHandler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont.FontType;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgPen;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
@@ -134,7 +135,7 @@ public class ScreenTestMmgTextBlock extends MmgGameScreen implements GenericEven
         txtBlock.SetPaddingX(MmgHelper.ScaleValue(txtBlock.GetPaddingX()));
         txtBlock.SetPaddingY(MmgHelper.ScaleValue(txtBlock.GetPaddingY()));
         txtBlock.PrepLinesInBox(txtBlock.GetLinesInBox());
-        txtBlock.PrepTextSplit(txt, MmgFontData.GetFontNorm(), MmgFontData.GetFontSize(), MmgHelper.ScaleValue(375));
+        txtBlock.PrepTextSplit(txt, MmgFontData.GetFontNorm(), MmgFontData.GetFontSize(), MmgHelper.ScaleValue(375), FontType.NORMAL);
         txtBlock.SetColor(MmgColor.GetWhite());
         
         MmgHelper.CenterHorAndVert(txtBlock);

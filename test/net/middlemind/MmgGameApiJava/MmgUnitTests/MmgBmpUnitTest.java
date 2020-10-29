@@ -38,7 +38,6 @@ public class MmgBmpUnitTest {
     public void tearDown() {
     }
     
-    @Test
     @SuppressWarnings("UnusedAssignment")
     public void testStaticMembers() {
         //do nothing

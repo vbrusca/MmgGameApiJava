@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import net.middlemind.MmgGameApiJava.MmgBase.*;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont.FontType;
 
 /**
  * A class to control the background story of the game. 
@@ -148,7 +149,7 @@ public class MmgTextBlock extends MmgObj {
         } else {
             tmpL = obj.GetLines();
             lines = new ArrayList<MmgFont>(STARTING_LINE_COUNT);
-            for(int i = 0; i < obj.GetTxt().size(); i++) {
+            for(int i = 0; i < obj.GetLines().size(); i++) {
                 tmpF = tmpL.get(i);
                 lines.add(tmpF.CloneTyped());
             }
@@ -630,7 +631,7 @@ public class MmgTextBlock extends MmgObj {
      * @param width         The width to use as the maximum width for one line.
      */
     @SuppressWarnings("UnusedAssignment")
-    public void PrepTextSplit(String text, Font typeFace, int fontSize, int width) {
+    public void PrepTextSplit(String text, Font typeFace, int fontSize, int width, FontType fontType) {
         text = text.replace(" " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
         text = text.replace("  " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
         text = text.replace(MmgTextBlock.NEW_LINE, " " + MmgTextBlock.NEW_LINE);
@@ -645,7 +646,7 @@ public class MmgTextBlock extends MmgObj {
 
         while (tokenPos < tokens.length) {
             desc = null;
-            desc = new MmgFont(typeFace);
+            desc = new MmgFont(typeFace, fontType);
             desc.SetFontSize(fontSize);
             desc.SetText("");
             str = "";

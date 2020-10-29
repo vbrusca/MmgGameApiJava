@@ -2,7 +2,9 @@ package net.middlemind.MmgGameApiJava.MmgUnitTests;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont.FontType;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgLabelValuePair;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
 import org.junit.Assert;
@@ -45,8 +47,10 @@ public class MmgLabelValuePairUnitTest_2 {
         l1 = new MmgLabelValuePair();
         l3 = new MmgLabelValuePair();
         
-        Assert.assertEquals(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.GetFontBold())));
-        Assert.assertEquals(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.GetFontNorm())));        
+        MmgHelper.wr("l1.GetValue: " + l1.GetValue().ApiToString());
+        
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.GetFontBold(), MmgFontData.GetFontSize(), FontType.BOLD)));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.GetFontNorm(), MmgFontData.GetFontSize(), FontType.NORMAL)));        
         Assert.assertEquals(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
         Assert.assertEquals(true, l1.GetHeight() == 0);
         Assert.assertEquals(true, l1.GetWidth() == 0);
@@ -106,11 +110,11 @@ public class MmgLabelValuePairUnitTest_2 {
     public void test2() {
         MmgLabelValuePair l1, l2, l3 = null;
         
-        l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.CreateDefaultNormalFontLg());
-        l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg());
+        l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.BOLD, FontType.NORMAL);
+        l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.BOLD, FontType.NORMAL);
         
-        Assert.assertEquals(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.CreateDefaultBoldFontLg())));
-        Assert.assertEquals(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.CreateDefaultNormalFontLg())));        
+        Assert.assertEquals(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.GetFontSize() + 2, FontType.BOLD)));
+        Assert.assertEquals(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.GetFontSize() + 2, FontType.NORMAL)));        
         Assert.assertEquals(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
         Assert.assertEquals(true, l1.GetHeight() == 0);
         Assert.assertEquals(true, l1.GetWidth() == 0);
@@ -171,7 +175,7 @@ public class MmgLabelValuePairUnitTest_2 {
         MmgLabelValuePair l1, l2, l3 = null;
         
         l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldMmgFontLg(), MmgFontData.CreateDefaultNormalMmgFontLg());
-        l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg());
+        l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL, FontType.NORMAL);
         
         Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.CreateDefaultBoldMmgFontLg()));
         Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));        
@@ -235,7 +239,7 @@ public class MmgLabelValuePairUnitTest_2 {
         MmgLabelValuePair l1, l2, l3 = null;
         
         l1 = new MmgLabelValuePair(new MmgLabelValuePair(MmgFontData.CreateDefaultBoldMmgFontLg(), MmgFontData.CreateDefaultNormalMmgFontLg()));
-        l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg());
+        l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL, FontType.NORMAL);
         
         Assert.assertEquals(true, l1.GetLabel().ApiEquals(MmgFontData.CreateDefaultBoldMmgFontLg()));
         Assert.assertEquals(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));        

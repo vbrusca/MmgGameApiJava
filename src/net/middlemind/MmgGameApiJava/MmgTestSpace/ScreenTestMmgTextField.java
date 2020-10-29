@@ -133,8 +133,8 @@ public class ScreenTestMmgTextField extends MmgGameScreen implements GenericEven
         SetWidth(MmgScreenData.GetGameWidth());
         SetPosition(MmgScreenData.GetPosition());
 
-        int width = MmgHelper.ScaleValue(200);
-        int height = MmgHelper.ScaleValue(50);
+        int width = MmgHelper.ScaleValue(256);
+        int height = MmgHelper.ScaleValue(64);
         
         title = MmgFontData.CreateDefaultBoldMmgFontLg();
         title.SetText("<  Screen Test Mmg Text Field (4 / " + GamePanel.TOTAL_TESTS + ")  >");

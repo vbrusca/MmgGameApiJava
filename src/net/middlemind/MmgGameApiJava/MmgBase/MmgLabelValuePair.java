@@ -1,6 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgBase;
 
 import java.awt.*;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont.FontType;
 
 /**
  * A class that wraps the MmgFont class and makes a label value pair.
@@ -41,8 +42,8 @@ public class MmgLabelValuePair extends MmgObj {
     public MmgLabelValuePair() {
         super();
         skipReset = true;
-        SetLabel(new MmgFont(MmgFontData.GetFontBold()));
-        SetValue(new MmgFont(MmgFontData.GetFontNorm()));
+        SetLabel(new MmgFont(MmgFontData.GetFontBold(), FontType.BOLD));
+        SetValue(new MmgFont(MmgFontData.GetFontNorm(), FontType.NORMAL));
         SetPaddingX(DEFAULT_PADDING_X);
         SetWidth(0);
         SetHeight(0);
@@ -56,11 +57,11 @@ public class MmgLabelValuePair extends MmgObj {
      * @param fontLbl       The Font to use for the label.
      * @param fontVal       The Font to use for the value.
      */
-    public MmgLabelValuePair(Font fontLbl, Font fontVal) {
+    public MmgLabelValuePair(Font fontLbl, Font fontVal, FontType fontLblType, FontType fontValType) {
         super();
         skipReset = true;
-        SetLabel(new MmgFont(fontLbl));
-        SetValue(new MmgFont(fontVal));
+        SetLabel(new MmgFont(fontLbl, fontLblType));
+        SetValue(new MmgFont(fontVal, fontValType));
         SetPaddingX(DEFAULT_PADDING_X);
         SetWidth(0);
         SetHeight(0);    
@@ -127,6 +128,19 @@ public class MmgLabelValuePair extends MmgObj {
                 
         SetPaddingX(obj.GetPaddingX());         
         SetFontSize(obj.GetFontSize());
+        
+        if(obj.GetLabel() == null) {
+            SetLabel(obj.GetLabel());
+        }else {
+            SetLabel(obj.GetLabel().CloneTyped());
+        }
+        
+        if(obj.GetValue() == null) {
+            SetValue(obj.GetValue());
+        }else {
+            SetValue(obj.GetValue().CloneTyped());
+        }        
+        
         SetWidth(obj.GetWidth());
         SetHeight(obj.GetHeight());        
         
@@ -150,7 +164,9 @@ public class MmgLabelValuePair extends MmgObj {
         
         if(obj.GetLabel() != null) {
             GetLabel().SetMmgColor(obj.GetLabel().GetMmgColor().Clone());
-        }        
+        }     
+        
+        skipReset = false;
     }
 
     /**
@@ -162,12 +178,13 @@ public class MmgLabelValuePair extends MmgObj {
      * @param txtVal        The text to set the value to.
      * @param fontVal       The font to use for the value.
      * @param cl            The color to use to draw the text.
-     */
-    public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, MmgVector2 pos, MmgColor cl) {
+     * TODO: Add comments
+    */
+    public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, MmgVector2 pos, MmgColor cl, FontType fontLblType, FontType fontValType) {
         super();
         skipReset = true;
-        SetLabel(new MmgFont(fontLbl));
-        SetValue(new MmgFont(fontVal));
+        SetLabel(new MmgFont(fontLbl, fontLblType));
+        SetValue(new MmgFont(fontVal, fontValType));
         SetLabelText(txtLbl);
         SetValueText(txtVal);
         SetPosition(pos);
@@ -189,11 +206,11 @@ public class MmgLabelValuePair extends MmgObj {
      * @param y             Position, on the Y axis.
      * @param cl            The color to use to draw the text.
      */
-    public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, int x, int y, MmgColor cl) {
+    public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, int x, int y, MmgColor cl, FontType fontLblType, FontType fontValType) {
         super();
         skipReset = true;
-        SetLabel(new MmgFont(fontLbl));
-        SetValue(new MmgFont(fontVal));
+        SetLabel(new MmgFont(fontLbl, fontLblType));
+        SetValue(new MmgFont(fontVal, fontValType));
         SetLabelText(txtLbl);
         SetValueText(txtVal);
         SetPosition(new MmgVector2(x, y));

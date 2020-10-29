@@ -3,6 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgUnitTests;
 import java.awt.Font;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgFont.FontType;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
@@ -144,7 +145,7 @@ public class MmgFontUnitTest_2 {
         Font bf1 = null;
         MmgFont f1, f2, f3 = null;
         
-        f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg());
+        f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.GetFontSize() + 2, FontType.BOLD);
         f3 = new MmgFont(new MmgObj(20, 20));
         
         Assert.assertEquals(true, f1.GetText().equals(""));
@@ -194,7 +195,7 @@ public class MmgFontUnitTest_2 {
         Font bf1 = null;
         MmgFont f1, f2, f3 = null;
         
-        f1 = new MmgFont(new MmgFont(MmgFontData.CreateDefaultBoldFontLg()));
+        f1 = new MmgFont(new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.GetFontSize() + 2, FontType.BOLD));
         f3 = new MmgFont(new MmgObj(20, 20));
         
         Assert.assertEquals(true, f1.GetText().equals(""));

@@ -39,13 +39,11 @@ public class Mmg9SliceUnitTest {
     public void tearDown() {
     }
     
-    @Test
     @SuppressWarnings("UnusedAssignment")
     public void testStaticMembers() {
         //do nothing
     }
 
-    @Test
     @SuppressWarnings("UnusedAssignment")
     public void testEquals() {
         /*

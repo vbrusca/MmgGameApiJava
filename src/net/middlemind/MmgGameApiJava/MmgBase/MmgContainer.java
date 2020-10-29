@@ -202,7 +202,11 @@ public class MmgContainer extends MmgObj {
      */
     public void AddAt(int idx, MmgObj obj) {
         if (obj != null) {
-            container.add(idx, obj);
+            if(idx >= 0 && idx < container.size()) {
+                container.add(idx, obj);  
+            }else {
+                container.add(obj);
+            }
             if(container.contains(obj) == true) {
                 StampChild(obj);
             }

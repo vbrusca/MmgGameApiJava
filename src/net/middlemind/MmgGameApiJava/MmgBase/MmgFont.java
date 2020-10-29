@@ -87,15 +87,34 @@ public class MmgFont extends MmgObj {
      *
      * @param tf    Font to use for text drawing.
      */
-    public MmgFont(Font tf) {
+    public MmgFont(Font tf, FontType fontType) {
         super();
         frc = new FontRenderContext(null, true, true);
         text = "";
         font = tf;
+        SetFontType(fontType);
         SetWidth(0);
         SetHeight(0);
     }
 
+    /**
+     * TODO: Add comment
+     * 
+     * @param tf
+     * @param fontSize
+     * @param fontType 
+     */
+    public MmgFont(Font tf, int fontSize, FontType fontType) {
+        super();
+        frc = new FontRenderContext(null, true, true);
+        text = "";
+        font = tf;
+        SetFontType(fontType);
+        SetFontSize(fontSize);
+        SetWidth(0);
+        SetHeight(0);    
+    }    
+    
     /**
      * Constructor that sets attributes based on the given argument.
      *
@@ -107,6 +126,7 @@ public class MmgFont extends MmgObj {
         SetFont(obj.GetFont());
         SetFontType(obj.GetFontType());
         SetFontSize(obj.GetFontSize());        
+        SetFont(obj.GetFont());
         SetText(obj.GetText());
 
         if (obj.GetPosition() == null) {
