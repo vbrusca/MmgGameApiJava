@@ -254,9 +254,9 @@ public class MmgVector2Int extends MmgVector2 {
     }
     
     /**
-     * TODO: Add comments
+     * Sets the vector values from a double array.
      * 
-     * @param d 
+     * @param d     An array of vector coordinates.
      */
     @Override
     public void SetVector(double[] d) {
@@ -265,9 +265,9 @@ public class MmgVector2Int extends MmgVector2 {
     }
     
     /**
-     * TODO: Add comments
+     * Gets the vector values as a double array.
      * 
-     * @return 
+     * @return      An array of vector coordinates.
      */
     @Override
     public double[] GetVector() {

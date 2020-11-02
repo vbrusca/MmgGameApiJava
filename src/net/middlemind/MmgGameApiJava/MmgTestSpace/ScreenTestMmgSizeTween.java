@@ -478,9 +478,10 @@ public class ScreenTestMmgSizeTween extends MmgGameScreen implements GenericEven
     }
 
     /**
-     * TODO: Add comments
-     * @param v
-     * @param orig 
+     * An event handler used to handle scaling events.
+     * 
+     * @param v     The scaling parameters for the X and Y axis.
+     * @param orig  An MmgObj object instance that is the original, unscaled object.
      */
     @Override
     public void MmgHandleScale(MmgVector2 v, MmgObj orig) {

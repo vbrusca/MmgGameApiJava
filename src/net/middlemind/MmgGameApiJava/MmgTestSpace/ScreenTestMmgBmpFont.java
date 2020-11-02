@@ -43,12 +43,12 @@ public class ScreenTestMmgBmpFont extends MmgGameScreen implements GenericEventH
     protected final GamePanel owner;
             
     /**
-     * TODO: Add comment
+     * An MmgFont instance used as a label on this screen.
      */
     private MmgFont bmpFontLabel1;
                 
     /**
-     * TODO: Add comment
+     * An MmgFont instance used as a label on this screen.
      */
     private MmgFont bmpFontLabel2;    
     
@@ -63,7 +63,7 @@ public class ScreenTestMmgBmpFont extends MmgGameScreen implements GenericEventH
     private boolean isDirty = false;
         
     /**
-     * TODO: Add comment
+     * The MmgBmp source of the MmgBmpFont.
      */
     private MmgBmp bmpFontSrc;
         
@@ -73,7 +73,7 @@ public class ScreenTestMmgBmpFont extends MmgGameScreen implements GenericEventH
     private boolean lret = false;
     
     /**
-     * TODO: Add comment
+     * An instance of an MmgBmpFont class.
      */
     private MmgBmpFont bmpFont = null;
     

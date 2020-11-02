@@ -56,6 +56,8 @@ public class MmgLabelValuePair extends MmgObj {
      * 
      * @param fontLbl       The Font to use for the label.
      * @param fontVal       The Font to use for the value.
+     * @param fontLblType   The font type of the label font argument.
+     * @param fontValType   The font type of the value font argument.
      */
     public MmgLabelValuePair(Font fontLbl, Font fontVal, FontType fontLblType, FontType fontValType) {
         super();
@@ -178,8 +180,9 @@ public class MmgLabelValuePair extends MmgObj {
      * @param txtVal        The text to set the value to.
      * @param fontVal       The font to use for the value.
      * @param cl            The color to use to draw the text.
-     * TODO: Add comments
-    */
+     * @param fontLblType   The font type of the label font argument.
+     * @param fontValType   The font type of the value font argument.
+     */
     public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, MmgVector2 pos, MmgColor cl, FontType fontLblType, FontType fontValType) {
         super();
         skipReset = true;
@@ -205,6 +208,8 @@ public class MmgLabelValuePair extends MmgObj {
      * @param x             Position, on the X axis.
      * @param y             Position, on the Y axis.
      * @param cl            The color to use to draw the text.
+     * @param fontLblType   The font type of the label font argument.
+     * @param fontValType   The font type of the value font argument.
      */
     public MmgLabelValuePair(Font fontLbl, String txtLbl, Font fontVal, String txtVal, int x, int y, MmgColor cl, FontType fontLblType, FontType fontValType) {
         super();

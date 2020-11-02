@@ -85,7 +85,8 @@ public class MmgFont extends MmgObj {
     /**
      * Constructor that sets the lower level font class.
      *
-     * @param tf    Font to use for text drawing.
+     * @param tf        Font to use for text drawing.
+     * @param fontType  The font type of the given font argument.
      */
     public MmgFont(Font tf, FontType fontType) {
         super();
@@ -98,11 +99,11 @@ public class MmgFont extends MmgObj {
     }
 
     /**
-     * TODO: Add comment
+     * Constructor that sets the lower level font class and descriptive class fields.
      * 
-     * @param tf
-     * @param fontSize
-     * @param fontType 
+     * @param tf        Font to use for text drawing.
+     * @param fontSize  The size of the given font argument.
+     * @param fontType  The font type of the given font argument.
      */
     public MmgFont(Font tf, int fontSize, FontType fontType) {
         super();

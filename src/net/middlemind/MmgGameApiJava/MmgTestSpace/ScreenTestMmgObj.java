@@ -44,32 +44,32 @@ public class ScreenTestMmgObj extends MmgGameScreen implements GenericEventHandl
     protected final GamePanel owner;
         
     /**
-     * TODO: Add comment
+     * An MmgObj object instance used by this game screen.
      */
     private MmgObj obj1;
        
     /**
-     * TODO: Add comment
+     * An MmgFont object instance used as a label by this game screen.
      */    
     private MmgFont font1;
         
     /**
-     * TODO: Add comment
+     * An MmgObj object instance used by this game screen.
      */
     private MmgObj obj2;    
     
     /**
-     * TODO: Add comment
+     * An MmgFont object instance used as a label by this game screen.
      */    
     private MmgFont font2;
     
     /**
-     * TODO: Add comment
+     * An MmgObj object instance used by this game screen.
      */
     private MmgObj obj3;
        
     /**
-     * TODO: Add comment
+     * An MmgFont object instance used as a label by this game screen.
      */    
     private MmgFont font3;    
     
@@ -368,6 +368,9 @@ public class ScreenTestMmgObj extends MmgGameScreen implements GenericEventHandl
         obj1 = null;
         obj2 = null;
         obj3 = null;
+        font1 = null;
+        font2 = null;
+        font3 = null;        
         title = null;
         color = null;
         

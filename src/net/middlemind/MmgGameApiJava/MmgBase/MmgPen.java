@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class MmgPen {
     /**
-     * TODO: Add comments
+     * A boolean flag that indicates if the font position should be run through a normalization method.
      */
     public static boolean FONT_NORMALIZE_POSITION = false;    
     

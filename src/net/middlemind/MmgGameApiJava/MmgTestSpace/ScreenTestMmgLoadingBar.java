@@ -55,27 +55,27 @@ public class ScreenTestMmgLoadingBar extends MmgGameScreen implements GenericEve
     private MmgFont title;
     
     /**
-     * TODO: Add comment
+     * An MmgLoadingBar instance used by this screen.
      */
     private MmgLoadingBar loadingBar;
 
     /**
-     * TODO: Add comment
+     * An MmgBmp object instance used as the background of the loading bar.
      */
     private MmgBmp loadingBarBack;
     
     /**
-     * TODO: Add comment
+     * An MmgBmp object instance used as the front of the loading bar.
      */
     private MmgBmp loadingBarFront;
     
     /**
-     * TODO: Add comment
+     * A local variable used to animate the loading bar fill.
      */
     private long time = 0l;
     
     /**
-     * TODO: Add comment
+     * A local variable used to animated the loading bar fill.
      */
     private long timingAmt = 500l;
     
