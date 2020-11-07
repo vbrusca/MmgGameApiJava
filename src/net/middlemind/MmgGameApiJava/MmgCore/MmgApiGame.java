@@ -103,6 +103,46 @@ public class MmgApiGame {
     }
 
     /**
+     * Run OS specific code on startup before the native libraries are loaded and the game engine config XML file.
+     */
+    public static void RunOsSpecificCode() {
+        try {
+            String OS = System.getProperty("os.name").toLowerCase();
+            MmgHelper.wr("Found platform: " + OS);
+            
+            if (isWindows(OS)) {
+                MmgHelper.wr("This is Windows");
+                
+            } else if (isMac(OS)) {
+                MmgHelper.wr("This is Mac");
+                GameSettings.LOAD_NATIVE_LIBRARIES = true;
+                GameSettings.GAMEPAD_1_ON = true;
+                GameSettings.GAMEPAD_1_THREADED_POLLING = false;
+                GameSettings.GAMEPAD_2_ON = false;
+                GameSettings.GPIO_GAMEPAD_ON = false;
+                
+            } else if (isUnix(OS)) {
+                MmgHelper.wr("This is Unix or Linux");
+                GameSettings.LOAD_NATIVE_LIBRARIES = false;
+                GameSettings.GAMEPAD_1_ON = false;
+                GameSettings.GAMEPAD_2_ON = false;
+                GameSettings.GPIO_GAMEPAD_ON = true;
+                GameSettings.GPIO_GAMEPAD_THREADED_POLLING = true;
+                
+            } else if (isSolaris(OS)) {
+                MmgHelper.wr("This is Solaris");
+                
+            } else {
+                MmgHelper.wr("Your OS is not supported!!");
+
+            }
+            
+        } catch(Exception e) {
+            MmgHelper.wrErr(e);
+        }
+    }   
+    
+    /**
      * A static method that loads native libraries that allow access to gamepads and controllers.
      */
     public static void LoadNativeLibraries() {
@@ -219,6 +259,10 @@ public class MmgApiGame {
      * @param args      The command line arguments.
      */
     public static final void main(String[] args) {
+        if(GameSettings.RUN_OS_SPECIFIC_CODE) {
+            RunOsSpecificCode();
+        }
+        
         if(GameSettings.LOAD_NATIVE_LIBRARIES) {
             LoadNativeLibraries();
         }
