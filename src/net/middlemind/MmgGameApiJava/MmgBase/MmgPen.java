@@ -419,7 +419,7 @@ public class MmgPen {
      * @param rotation      The rotation to apply to the object.
      */
     public void DrawBmp(MmgBmp b, MmgVector2 position, float rotation) {
-        DrawBmp(b, position, new MmgVector2(-1.0, -1.0), rotation);
+        DrawBmp(b, position, new MmgVector2(b.GetWidth() / 2, b.GetHeight() / 2), rotation);
     }
     
     /**
