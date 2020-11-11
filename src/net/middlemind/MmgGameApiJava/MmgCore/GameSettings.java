@@ -35,7 +35,8 @@ public class GameSettings {
     public static int UP_GAMEPAD_2 = 13;
     public static int LEFT_GAMEPAD_2 = 14;
     public static int RIGHT_GAMEPAD_2 = 15;    
-    
+      
+    //Legacy game specific entries that aren't hurting anyone
     public static boolean SND_CACHE_ON = true;
     public static String SND_PREFIX = "sounds_";    
     

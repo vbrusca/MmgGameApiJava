@@ -327,39 +327,41 @@ public class MmgApiGame {
                 boolean r = dci.ImportGameSettings(ENGINE_CONFIG_FILE);
                 MmgHelper.wr("Engine config load result: " + r);
 
-                int len = dci.GetValues().keySet().size();
-                String[] keys = dci.GetValues().keySet().toArray(new String[len]);
-                String key;
-                DatConstantsEntry ent = null;
-                Field f = null;
+                if(r == true) {
+                    int len = dci.GetValues().keySet().size();
+                    String[] keys = dci.GetValues().keySet().toArray(new String[len]);
+                    String key;
+                    DatConstantsEntry ent = null;
+                    Field f = null;
 
-                for (int i = 0; i < len; i++) {
-                    try {
-                        key = keys[i];
-                        ent = dci.GetValues().get(key);
+                    for (int i = 0; i < len; i++) {
+                        try {
+                            key = keys[i];
+                            ent = dci.GetValues().get(key);
 
-                        if (ent.from != null && ent.from.equals("GameSettings") == true) {
-                            f = GameSettings.class.getField(ent.key);
-                            if (f != null) {
-                                MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
-                                SetField(ent, f);
-                            }
-                        } else if(ent.from != null && ent.from.equals("Helper") == true) {
-                            f = GameSettings.class.getField(ent.key);
-                            if (f != null) {
-                                MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
-                                SetField(ent, f);
-                            }
-                        } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
-                            f = MmgApiGame.class.getField(ent.key);
-                            if (f != null) {
-                                MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
-                                SetField(ent, f);
-                            }             
-                        }                        
-                    } catch (Exception e) {
-                        MmgHelper.wr("Ignoring field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
-                        MmgHelper.wrErr(e);
+                            if (ent.from != null && ent.from.equals("GameSettings") == true) {
+                                f = GameSettings.class.getField(ent.key);
+                                if (f != null) {
+                                    MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                    SetField(ent, f);
+                                }
+                            } else if(ent.from != null && ent.from.equals("MmgHelper") == true) {
+                                f = MmgHelper.class.getField(ent.key);
+                                if (f != null) {
+                                    MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                    SetField(ent, f);
+                                }
+                            } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
+                                f = MmgApiGame.class.getField(ent.key);
+                                if (f != null) {
+                                    MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                    SetField(ent, f);
+                                }             
+                            }                        
+                        } catch (Exception e) {
+                            MmgHelper.wr("Ignoring field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
+                            MmgHelper.wrErr(e);
+                        }
                     }
                 }
             }

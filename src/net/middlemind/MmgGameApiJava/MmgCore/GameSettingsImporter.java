@@ -62,7 +62,6 @@ public class GameSettingsImporter {
                 Node node = nodeList.item(i);
 
                 if (node.getNodeType() == Node.ELEMENT_NODE && node.getNodeName().equals("entry")) {
-                    Element elem = (Element) node;
                     String key = node.getAttributes().getNamedItem("key").getNodeValue().toUpperCase();
                     String val = node.getAttributes().getNamedItem("val").getNodeValue();
                     String type = "int";
