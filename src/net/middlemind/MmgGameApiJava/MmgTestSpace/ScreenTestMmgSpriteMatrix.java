@@ -66,12 +66,12 @@ public class ScreenTestMmgSpriteMatrix extends MmgGameScreen implements GenericE
     private boolean isDirty = false;
     
     /**
-     * 
+     * The sprite matrix's source image.
      */
     private MmgBmp spriteMatrixSrc;
     
     /**
-     * 
+     * The sprite matrix class instance.
      */
     private MmgSpriteMatrix spriteMatrix;
     

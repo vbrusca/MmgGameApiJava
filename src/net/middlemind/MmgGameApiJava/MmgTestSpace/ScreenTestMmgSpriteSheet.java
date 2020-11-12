@@ -71,12 +71,12 @@ public class ScreenTestMmgSpriteSheet extends MmgGameScreen implements GenericEv
     private MmgBmp spriteSheetSrc;
     
     /**
-     * 
+     * The sprite sheet source image.
      */
     private MmgSpriteSheet spriteSheet;
     
     /**
-     * A private boolean flag used in the MmgUpdate method during the update process.
+     * The sprite sheet class instance.
      */
     private boolean lret = false;
     
