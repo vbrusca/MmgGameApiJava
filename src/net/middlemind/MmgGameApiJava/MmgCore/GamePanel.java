@@ -472,7 +472,6 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                MmgHelper.wr("Key Click");
                 if (e.getKeyChar() == ' ' || e.getKeyChar() == '\n') {
                     ProcessAClick(GameSettings.SRC_KEYBOARD);
                     
@@ -511,72 +510,82 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             @Override
             public void keyPressed(KeyEvent e) {
                 //Ignore Enter and Space bar presses, handle them as A and B button clicks.
-                MmgHelper.wr("Key Pressed");
-                if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
-                    lastKeyPressEvent = System.currentTimeMillis();
-                    if (e.getKeyCode() == 40) {
-                        ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
-                        
-                    } else if (e.getKeyCode() == 38) {
-                        ProcessDpadPress(GameSettings.UP_KEYBOARD);
-                        
-                    } else if (e.getKeyCode() == 37) {
-                        ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
-                        
-                    } else if (e.getKeyCode() == 39) {
-                        ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
-                        
-                    } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
-                        ProcessAPress(GameSettings.SRC_KEYBOARD);
+                lastKeyPressEvent = System.currentTimeMillis();
+                if (e.getKeyCode() == 40) {
+                    ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
+
+                } else if (e.getKeyCode() == 38) {
+                    ProcessDpadPress(GameSettings.UP_KEYBOARD);
+
+                } else if (e.getKeyCode() == 37) {
+                    ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
+
+                } else if (e.getKeyCode() == 39) {
+                    ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
+
+                } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
+                    ProcessAPress(GameSettings.SRC_KEYBOARD);
+
+                } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
+                    ProcessBPress(GameSettings.SRC_KEYBOARD);
+
+                } else if (e.getKeyCode() == 32) {
+                    ProcessAPress(GameSettings.SRC_KEYBOARD);                
                     
-                    } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
-                        ProcessBPress(GameSettings.SRC_KEYBOARD);
+                } else if (e.getKeyCode() == 10) {
+                    ProcessAPress(GameSettings.SRC_KEYBOARD);
                     
-                    }
-                    
-                    if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
-                        ProcessKeyPress(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyChar(), e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
-                    } else {
-                        ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
-                    }
+                }
+
+                if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
+                    ProcessKeyPress(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyChar(), e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
+                } else {
+                    ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 //Ignore Enter and Space bar releases, handle them as A and B button clicks.
-                //MmgHelper.wr("Key: " + e.getKeyChar() + " Code: " + e.getKeyCode() + " ExtCode: " + e.getExtendedKeyCode());
-                MmgHelper.wr("Key Released");
-                if (e.getKeyCode() != 32 && e.getKeyCode() != 10) {
-                    if (e.getKeyCode() == 40) {
-                        ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
-                        ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
-                        
-                    } else if (e.getKeyCode() == 38) {
-                        ProcessDpadRelease(GameSettings.UP_KEYBOARD);
-                        ProcessDpadClick(GameSettings.UP_KEYBOARD);
-                        
-                    } else if (e.getKeyCode() == 37) {
-                        ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
-                        ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
-                        
-                    } else if (e.getKeyCode() == 39) {
-                        ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
-                        ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
-                        
-                    } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
-                        ProcessARelease(GameSettings.SRC_KEYBOARD);
+                if (e.getKeyCode() == 40) {
+                    ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
+                    ProcessKeyClick(e.getKeyChar(), 40);
+                    ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
+
+
+                } else if (e.getKeyCode() == 38) {
+                    ProcessDpadClick(GameSettings.UP_KEYBOARD);
+                    ProcessKeyClick(e.getKeyChar(), 38);
+                    ProcessDpadRelease(GameSettings.UP_KEYBOARD);
+
+                } else if (e.getKeyCode() == 37) {
+                    ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
+                    ProcessKeyClick(e.getKeyChar(), 37);
+                    ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);                        
+
+                } else if (e.getKeyCode() == 39) {
+                    ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
+                    ProcessKeyClick(e.getKeyChar(), 39);
+                    ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
+
+                } else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
+                    ProcessARelease(GameSettings.SRC_KEYBOARD);
+
+                } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
+                    ProcessBRelease(GameSettings.SRC_KEYBOARD);
+
+                } else if (e.getKeyCode() == 32) {
+                    ProcessARelease(GameSettings.SRC_KEYBOARD);                
                     
-                    } else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
-                        ProcessBRelease(GameSettings.SRC_KEYBOARD);
+                } else if (e.getKeyCode() == 10) {
+                    ProcessARelease(GameSettings.SRC_KEYBOARD);
                     
-                    }                    
-                    
-                    if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
-                        ProcessKeyRelease(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyChar(), e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
-                    } else {
-                        ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
-                    }
+                }                  
+
+                if(GameSettings.INPUT_NORMALIZE_KEY_CODE) {
+                    ProcessKeyRelease(e.getKeyChar(), MmgHelper.NormalizeKeyCode(e.getKeyChar(), e.getKeyCode(), e.getExtendedKeyCode(), "java"));                    
+                } else {
+                    ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
                 }
             }
         });
@@ -584,20 +593,17 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         canvas.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                MmgHelper.wr("Mouse Click");
-                ProcessMouseClick(e.getX(), e.getY(), e.getButton());
+                ProcessMouseRelease(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                MmgHelper.wr("Mouse Pressed");                
                 ProcessMousePress(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                MmgHelper.wr("Mouse Released");
-                ProcessMouseRelease(e.getX(), e.getY(), e.getButton());
+                ProcessMouseClick(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
@@ -640,6 +646,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override    
     public void ProcessDpadPress(int dir) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessDpadPress: " + dir);
             currentScreen.ProcessDpadPress(dir);
         }
     }
@@ -653,6 +660,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override    
     public void ProcessDpadRelease(int dir) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessDpadRelease: " + dir);
             currentScreen.ProcessDpadRelease(dir);
         }
     }    
@@ -666,6 +674,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override
     public void ProcessDpadClick(int dir) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessDpadClick: " + dir);
             currentScreen.ProcessDpadClick(dir);
         }
     }
@@ -678,6 +687,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override
     public void ProcessAPress(int src) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessAPress: " + src);
             currentScreen.ProcessAPress(src);
         }
     }
@@ -690,6 +700,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override
     public void ProcessARelease(int src) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessARelease: " + src);
             currentScreen.ProcessARelease(src);
         }
     }
@@ -702,6 +713,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override    
     public void ProcessAClick(int src) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessAClick: " + src);
             currentScreen.ProcessAClick(src);
         }
     }    
@@ -714,6 +726,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override
     public void ProcessBPress(int src) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessBPress: " + src);
             currentScreen.ProcessBPress(src);
         }
     }
@@ -726,6 +739,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override
     public void ProcessBRelease(int src) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessBRelease: " + src);
             currentScreen.ProcessBRelease(src);
         }
     }
@@ -738,6 +752,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
     @Override    
     public void ProcessBClick(int src) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessBClick: " + src);
             currentScreen.ProcessBClick(src);
         }
     }
@@ -748,6 +763,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public void ProcessDebugClick() {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessDebugClick");
             currentScreen.ProcessDebugClick();
         }
     }
@@ -760,6 +776,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public void ProcessKeyPress(char c, int code) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessKeyPress");
             currentScreen.ProcessKeyPress(c, code);
         }
     }
@@ -772,6 +789,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public void ProcessKeyRelease(char c, int code) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessKeyRelease");
             currentScreen.ProcessKeyRelease(c, code);
         }
     }    
@@ -784,6 +802,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public void ProcessKeyClick(char c, int code) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessKeyClick");
             currentScreen.ProcessKeyClick(c, code);
         }
     }    
@@ -797,7 +816,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * @param y     The y argument is the Y position of the mouse as received from the mouse listener.
      */
     public void ProcessMouseMove(int x, int y) {
-        if (currentScreen != null) {
+        if (currentScreen != null) {            
             currentScreen.ProcessMouseMove((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
         }
     }
@@ -813,6 +832,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public void ProcessMousePress(int x, int y, int btnIndex) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessMousePress: " + btnIndex);
             currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
         }
     }
@@ -828,6 +848,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */
     public void ProcessMouseRelease(int x, int y, int btnIndex) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessMouseRelease: " + btnIndex);
             currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
         }
     }
@@ -842,6 +863,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      */     
     public void ProcessMouseClick(int x, int y, int btnIndex) {
         if (currentScreen != null) {
+            MmgHelper.wr("ProcessMouseClick: " + btnIndex);
             currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
         }
     }
