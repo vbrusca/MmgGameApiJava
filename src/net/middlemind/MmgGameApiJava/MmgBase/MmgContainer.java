@@ -20,7 +20,7 @@ public class MmgContainer extends MmgObj {
      * performed on a child. Stamping marks the child as being associated with the
      * container.
      */
-    private enum ChildAction {
+    public enum ChildAction {
         STAMP,
         UNSTAMP
     }
@@ -28,7 +28,7 @@ public class MmgContainer extends MmgObj {
     /**
      * An enumeration that controls the render mode allowing you to either control the rendering via the isDirty flag or to render every game frame.
      */
-    private enum RenderMode {
+    public enum RenderMode {
         RENDER_ALWAYS,
         RENDER_ONLY_WHEN_DIRTY
     }
@@ -141,6 +141,25 @@ public class MmgContainer extends MmgObj {
             SetMmgColor(obj.GetMmgColor());
         }
         SetIsDirty(true);
+        SetMode(obj.GetMode());
+    }
+
+    /**
+     * Gets the current render mode.
+     * 
+     * @return      The render mode.
+     */
+    public RenderMode GetMode() {
+        return mode;
+    }
+
+    /**
+     * Sets the current render mode.
+     * 
+     * @param m     The render mode.
+     */
+    public void SetMode(RenderMode m) {
+        mode = m;
     }
     
     /**
