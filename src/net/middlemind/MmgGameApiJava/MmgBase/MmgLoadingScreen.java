@@ -199,7 +199,7 @@ public class MmgLoadingScreen extends MmgGameScreen {
         loadingBarOffsetBottom = lBarOff;
         if(loadingBar != null) {
             MmgHelper.CenterHorAndBot(loadingBar);            
-            loadingBar.GetPosition().SetY(GetPosition().GetY() + GetHeight() - loadingBar.GetHeight() - loadingBarOffsetBottom);
+            loadingBar.GetPosition().SetY(GetPosition().GetY() + GetHeight() - loadingBar.GetHeight() - ((float) GetHeight() * (float) loadingBarOffsetBottom));
             loadingBar.GetLoadingBarBack().SetPosition(loadingBar.GetPosition());
             loadingBar.GetLoadingBarFront().SetPosition(loadingBar.GetPosition());
         }
