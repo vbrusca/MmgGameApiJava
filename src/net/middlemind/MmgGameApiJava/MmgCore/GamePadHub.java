@@ -240,7 +240,7 @@ public class GamePadHub {
       * A constructor for the GpioHub that takes an array of GpioPin instances which is used to set the buttons class field.
       * 
       * @param Buttons      An array of 6 GpioPin instances used to set the buttons class field.
-      * @param GamePad      TODO: Add comments
+      * @param GamePad      The controller the buttons belong to.
       */
     public GamePadHub(GamePadInput[] Buttons, Controller GamePad) {
         gamePad = GamePad;

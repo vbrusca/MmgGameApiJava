@@ -981,9 +981,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
         } else if (prevGameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Hiding MAIN_MENU screen.");
-            //mainMenuScreen.Pause();
-            //mainMenuScreen.SetIsVisible(false);
-            //mainMenuScreen.UnloadResources();
+            screenMainMenu.Pause();
+            screenMainMenu.SetIsVisible(false);
+            screenMainMenu.UnloadResources();
 
         } else if (prevGameState == GameStates.ABOUT) {
             MmgHelper.wr("Hiding ABOUT screen.");
@@ -999,9 +999,9 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
 
         } else if (prevGameState == GameStates.MAIN_GAME) {
             MmgHelper.wr("Hiding MAIN GAME screen.");
-            screenMainMenu.Pause();
-            screenMainMenu.SetIsVisible(false);
-            screenMainMenu.UnloadResources();
+            //screenMainMenu.Pause();
+            //screenMainMenu.SetIsVisible(false);
+            //screenMainMenu.UnloadResources();
 
         } else if (prevGameState == GameStates.SETTINGS) {
             MmgHelper.wr("Hiding SETTINGS screen.");
