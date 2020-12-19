@@ -248,9 +248,12 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
      * @return      A boolean indicating if the event was handled or not.
      */    
     @Override
-    public boolean ProcessMouseRelease(MmgVector2 v) {
+    public boolean ProcessMouseRelease(MmgVector2 v, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
-        return ProcessMousePress(v.GetX(), v.GetY());
+        if(scrollVert != null) {
+           return scrollVert.ProcessScreenClick(v.GetX(), v.GetY());
+        }
+        return false;
     }
 
     /**
@@ -261,9 +264,12 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
      * @return      A boolean indicating if the event was handled or not.      
      */    
     @Override
-    public boolean ProcessMouseRelease(int x, int y) {
+    public boolean ProcessMouseRelease(int x, int y, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
-        return true;
+        if(scrollVert != null) {
+           return scrollVert.ProcessScreenClick(x, y);
+        }
+        return false;
     }
     
     /**

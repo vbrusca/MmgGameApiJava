@@ -34,22 +34,22 @@ public final class MmgTestScreens {
     /**
      * The target window width.
      */
-    public static int WIN_WIDTH = 858;
+    public static int WIN_WIDTH = 862;
 
     /**
      * The target window height.
      */
-    public static int WIN_HEIGHT = 600;
+    public static int WIN_HEIGHT = 604;
 
     /**
      * The game panel width.
      */
-    public static int PANEL_WIDTH = 854;
+    public static int PANEL_WIDTH = 858;
 
     /**
      * The game panel height.
      */
-    public static int PANEL_HEIGHT = 596;
+    public static int PANEL_HEIGHT = 598; //416
 
     /**
      * The game width.

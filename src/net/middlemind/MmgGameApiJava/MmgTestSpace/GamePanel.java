@@ -282,7 +282,7 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         screenTestMmgSpriteMatrix.Pause();
         screenTestMmgSpriteMatrix.SetIsVisible(false);        
     }
-        
+
     /**
      * Changes the currently visible game screen and cleans up the previously visible game screen.
      * 
