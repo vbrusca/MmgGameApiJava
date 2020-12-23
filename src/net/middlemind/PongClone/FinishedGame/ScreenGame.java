@@ -8,7 +8,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.Screen;
 import java.util.Random;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFont;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
@@ -206,7 +205,7 @@ public class ScreenGame extends Screen {
     private MmgFont exit;
 
     /**
-     * An MmgBmp image used as the background of the exit prompt.
+     * An MmgBmp image used as the background of the exit text.
      */
     private MmgBmp exitBground;
         
@@ -270,7 +269,6 @@ public class ScreenGame extends Screen {
      */
     private MmgVector2 screenPos;
 
-
     /**
      * The last X value of the mouse input.
      */    
@@ -282,72 +280,72 @@ public class ScreenGame extends Screen {
     private int lastY;
 
     /**
-     * 
+     * A boolean that indicates if the mouse controls a paddle's position.
      */
     private boolean mousePos = true;
 
     /**
-     * 
+     * An MmgBmp image that is used as the source for a 9 sliced popup window.
      */    
     private MmgBmp bgroundPopupSrc;
 
     /**
-     * 
+     * An Mmg9Slice object used as a popup's background window.
      */
     private Mmg9Slice bgroundPopup;
 
     /**
-     * 
+     * Text used in dialogs.
      */
     private MmgFont txtOk;
 
     /**
-     * 
+     * Text used in dialogs.
      */
     private MmgFont txtCancel;
     
     /**
-     * 
+     * Text used in the game's goal.
      */    
     private MmgFont txtGoal;
 
     /**
-     * 
+     * Text used in the game's instructions.
      */    
     private MmgFont txtDirecP1;
 
     /**
-     * 
+     * Text used in the game's instructions.
      */
     private MmgFont txtDirecP2;    
 
     /**
-     * 
+     * Text used on the game over screen.
      */    
     private MmgFont txtGameOver1;
 
     /**
-     * 
+     * Text used on the game over screen.
      */    
     private MmgFont txtGameOver2;
 
     /**
-     * 
+     * Padding used in the UI positioning.
      */    
     private int padding = MmgHelper.ScaleValue(4);
  
     /**
-     * 
+     * Dimension used in the popup dialog display.
      */    
     private int popupTotalWidth = MmgHelper.ScaleValue(300);
 
     /**
-     * 
+     * Dimension used in the popup dialog display.
      */
     private int popupTotalHeight = MmgHelper.ScaleValue(120); 
 
     /**
-     * 
+     * A boolean flag used to test the game that causes the ball to bounce infintely.
      */    
     private boolean infiniteBounce = false;
     
@@ -407,44 +405,7 @@ public class ScreenGame extends Screen {
         bground = lval;
         if (bground != null) {
             MmgHelper.CenterHorAndVert(bground);            
-            bground = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("gameBoard", bground, classConfig, bground.GetPosition());            
-            /*
-            key = "gameBoardScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    bground = MmgBmpScaler.ScaleMmgBmp(bground, scale, false);
-                } else {
-                    bground = MmgBmpScaler.ScaleMmgBmpToGameScreen(bground, false);
-                }
-            }
-            
-            MmgHelper.CenterHorAndVert(bground);
-                
-            key = "gameBoardPosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                bground.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "gameBoardPosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                bground.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "gameBoardOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                bground.GetPosition().SetY(bground.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "gameBoardOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                bground.GetPosition().SetX(bground.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            */
+            bground = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("gameBoard", bground, classConfig, bground.GetPosition());
             AddObj(bground);
         }
         
@@ -482,44 +443,7 @@ public class ScreenGame extends Screen {
         ball = lval;
         if (ball != null) {
             MmgHelper.CenterHorAndVert(ball);            
-            ball = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("pongBall", ball, classConfig, ball.GetPosition());                        
-            
-            /*
-            key = "pongBallScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    ball = MmgBmpScaler.ScaleMmgBmp(ball, scale, false);
-                }
-            }
-            
-            MmgHelper.CenterHorAndVert(ball);
-                
-            key = "pongBallPosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                ball.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "pongBallPosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                ball.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "pongBallOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                ball.GetPosition().SetY(bground.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-            
-            key = "pongBallOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                ball.GetPosition().SetX(bground.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            */
-            
+            ball = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("pongBall", ball, classConfig, ball.GetPosition());
             ball.SetIsVisible(false);
             ballPos = ball.GetPosition();            
             AddObj(ball);
@@ -719,48 +643,10 @@ public class ScreenGame extends Screen {
         number1 = lval;
         if(number1 != null) {
             MmgHelper.CenterHorAndVert(number1);            
-            number1 = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("numberOne", number1, classConfig, number1.GetPosition());                                    
-            
-            /*
-            key = "numberOneScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    number1 = MmgBmpScaler.ScaleMmgBmp(number1, scale, false);
-                }
-            }
-            
-            MmgHelper.CenterHorAndVert(number1);
-
-            key = "numberOnePosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                number1.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberOnePosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number1.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberOneOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number1.GetPosition().SetY(number1.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberOneOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number1.GetPosition().SetX(number1.GetX() + MmgHelper.ScaleValue(tmp));
-            }
-            */
-            
+            number1 = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("numberOne", number1, classConfig, number1.GetPosition());
             number1.SetIsVisible(false);
             AddObj(number1);
         }
-        
         
         //Load number two config
         key = "bmpNumberTwo";
@@ -773,45 +659,12 @@ public class ScreenGame extends Screen {
         lval = MmgHelper.GetBasicCachedBmp(file);
         number2 = lval;
         if(number2 != null) {
-            key = "numberTwoScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    number2 = MmgBmpScaler.ScaleMmgBmp(number2, scale, false);
-                }
-            }            
-            
-            MmgHelper.CenterHorAndVert(number2);
-        
-            key = "numberTwoPosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                number2.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberTwoPosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number2.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberTwoOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number2.GetPosition().SetY(number2.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberTwoOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number2.GetPosition().SetX(number2.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
+            MmgHelper.CenterHorAndVert(number2);            
+            number2 = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("numberTwo", number2, classConfig, number2.GetPosition());
             number2.SetIsVisible(false);
             AddObj(number2);
         }
-        
-        
+                
         //Load number three config
         key = "bmpNumberThree";
         if(classConfig.containsKey(key)) {
@@ -823,45 +676,12 @@ public class ScreenGame extends Screen {
         lval = MmgHelper.GetBasicCachedBmp(file);
         number3 = lval;        
         if(number3 != null) {
-            key = "numberThreeScale";
-            if(classConfig.containsKey(key)) {
-                scale = classConfig.get(key).number.doubleValue();
-                if(scale != 1.0) {
-                    number3 = MmgBmpScaler.ScaleMmgBmp(number3, scale, false);
-                }
-            }
-            
-            MmgHelper.CenterHorAndVert(number3);
-            
-            key = "numberThreePosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                number3.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberThreePosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number3.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberThreeOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number3.GetPosition().SetY(number3.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "numberThreeOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                number3.GetPosition().SetX(number3.GetX() + MmgHelper.ScaleValue(tmp));
-            }            
-            
+            MmgHelper.CenterHorAndVert(number3);            
+            number3 = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("numberThree", number3, classConfig, number3.GetPosition());
             number3.SetIsVisible(false);
             AddObj(number3);
         }
-        
-        
+                
         //Load string game win config
         key = "strGoalText";
         if(classConfig.containsKey(key)) {
@@ -901,8 +721,7 @@ public class ScreenGame extends Screen {
         
         txtGoal.SetIsVisible(false);
         AddObj(txtGoal);        
-        
-        
+                
         //Load string player 1 direction config
         key = "strPlayer1DirectionText";
         if(classConfig.containsKey(key)) {
@@ -942,8 +761,7 @@ public class ScreenGame extends Screen {
         
         txtDirecP1.SetIsVisible(false);
         AddObj(txtDirecP1);
-        
-        
+                
         //Load string player 2 direction config
         key = "strPlayer2DirectionText";
         if(classConfig.containsKey(key)) {
@@ -983,8 +801,7 @@ public class ScreenGame extends Screen {
 
         txtDirecP2.SetIsVisible(false);        
         AddObj(txtDirecP2);
-        
-        
+                
         //Load game over player 1 config
         key = "strTextGameOver1";
         if(classConfig.containsKey(key)) {
@@ -1023,8 +840,7 @@ public class ScreenGame extends Screen {
         
         txtGameOver1.SetIsVisible(false);
         AddObj(txtGameOver1);
-        
-        
+                
         //Load game over player 2 config
         key = "strTextGameOver2";
         if(classConfig.containsKey(key)) {
@@ -1063,8 +879,7 @@ public class ScreenGame extends Screen {
         
         txtGameOver2.SetIsVisible(false);
         AddObj(txtGameOver2);        
-        
-        
+                
         //Load popup base
         key = "bmpPopupWindowBase";
         if(classConfig.containsKey(key)) {
@@ -1075,56 +890,14 @@ public class ScreenGame extends Screen {
         lval = MmgHelper.GetBasicCachedBmp(file);
         bgroundPopupSrc = lval;        
         if(bgroundPopupSrc != null) {
+            MmgHelper.CenterHorAndVert(bgroundPopupSrc);            
+            bgroundPopupSrc = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("popupWindowBase", bgroundPopupSrc, classConfig, bgroundPopupSrc.GetPosition());                        
             bgroundPopup = new Mmg9Slice(16, bgroundPopupSrc, popupTotalWidth, popupTotalHeight);
             bgroundPopup.SetPosition(MmgVector2.GetOriginVec());
-            
-            key = "popupWindowBaseWidth";
-            if(classConfig.containsKey(key)) {
-                tmpW = MmgHelper.ScaleValue(classConfig.get(key).number.intValue());
-            } else {
-                tmpW = popupTotalWidth;
-            }
-            bgroundPopup.SetWidth(tmpW);
-            
-            key = "popupWindowBaseHeight";
-            if(classConfig.containsKey(key)) {
-                tmpH = MmgHelper.ScaleValue(classConfig.get(key).number.intValue());
-            } else {
-                tmpH = popupTotalHeight;
-            }                        
-            bgroundPopup.SetHeight(tmpH);
-            
-            MmgHelper.CenterHorAndVert(bgroundPopup);
-            
-            key = "popupWindowBasePosY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();
-                bgroundPopup.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "popupWindowBasePosX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                bgroundPopup.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "popupWindowBaseOffsetY";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                bgroundPopup.GetPosition().SetY(bgroundPopup.GetY() + MmgHelper.ScaleValue(tmp));
-            }
-
-            key = "popupWindowBaseOffsetX";
-            if(classConfig.containsKey(key)) {
-                tmp = classConfig.get(key).number.intValue();                
-                bgroundPopup.GetPosition().SetX(bgroundPopup.GetX() + MmgHelper.ScaleValue(tmp));
-            }
-            
             AddObj(bgroundPopup);
             bgroundPopup.SetIsVisible(false);
         }
-        
-        
+                
         //Load popup window text exit
         key = "strPopupWindowTextExit";
         if(classConfig.containsKey(key)) {
@@ -1165,8 +938,7 @@ public class ScreenGame extends Screen {
 
         txtOk.SetIsVisible(false);
         AddObj(txtOk);
-        
-        
+                
         //Load popup window text cancel
         key = "strPopupWindowTextCancel";
         if(classConfig.containsKey(key)) {
@@ -1220,18 +992,18 @@ public class ScreenGame extends Screen {
     }
 
     /**
+     * Sets the current game type.
      * 
-     * 
-     * @param gt 
+     * @param gt    The current game type.
      */
     public void SetGameType(GameType gt) {
         gameType = gt;
     }
     
     /**
+     * Gets the current game type.
      * 
-     * 
-     * @return 
+     * @return      The current game type.
      */
     public GameType GetGameType() {
         return gameType;
