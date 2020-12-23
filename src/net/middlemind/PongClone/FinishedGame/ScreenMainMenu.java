@@ -4,7 +4,6 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
-import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
@@ -76,7 +75,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         MmgBmp lval = null;
         MmgSound sval = null;
         String file = "";
-        //int tmp = 0;
         
         p = new MmgPen();
         p.SetCacheOn(false);
@@ -97,8 +95,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         if (tB != null) {
             SetCenteredBackground(tB);
         }
-
-        //MmgHelper.wr("Background Image Position: " + GetBackground().GetPosition().ApiToString());
         
         key = "bmpGameTitle";
         if(classConfig.containsKey(key)) {

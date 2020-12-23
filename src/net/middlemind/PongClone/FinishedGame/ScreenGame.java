@@ -385,7 +385,6 @@ public class ScreenGame extends Screen {
         screenPos = GetPosition();
         
         String key = "";
-        double scale = 1.0;
         MmgBmp lval = null;        
         MmgSound sval = null;        
         String file = "";
