@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/FinishedGame/ScreenGame.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/FinishedGame/MmgPongClone.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/EmptyProject/MmgEmptyProject.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/FinishedGame/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/FinishedGame/MainFrame.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/FinishedGame/ScreenMainMenu.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgCore/MmgApiGame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter14/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter15_CompleteGame/ScreenGame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter13/MainFrame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter14/MainFrame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter14/ScreenMainMenu.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter13/MmgPongClone.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter13/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter15_CompleteGame/ScreenMainMenu.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter14/MmgPongClone.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter15_CompleteGame/MmgPongClone.java</file>
         </group>
     </open-files>
 </project-private>
