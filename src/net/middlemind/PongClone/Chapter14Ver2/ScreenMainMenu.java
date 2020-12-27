@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter14;
+package net.middlemind.PongClone.Chapter14Ver2;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
@@ -28,7 +28,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
     private MmgBmp menuStartGame1P;
 
     /**
-     * An MmgBmp instance that proveds custom menu items for two player games.
+     * An MmgBmp instance that provides custom menu items for two player games.
      */
     private MmgBmp menuStartGame2P;    
         
@@ -69,7 +69,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         MmgBmp tB = null;
         MmgPen p;
         String key = "";
-        double scale = 1.0;
         String imgId = "";
         String sndId = "";
         MmgBmp lval = null;
@@ -206,7 +205,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuCursor = lval;
         SetLeftCursor(menuCursor);        
-
         
         key = "version";
         if(classConfig.containsKey(key)) {
