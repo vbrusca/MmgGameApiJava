@@ -58,6 +58,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * Loads all the resources needed to display this game screen.
      */
     @SuppressWarnings("UnusedAssignment")
+    @Override
     public void LoadResources() {
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
@@ -265,6 +266,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * This is the method that handles displaying different game screen text. Calling draw screen
      * prepares the screen for display.
      */
+    @Override
     public void DrawScreen() {
         pause = true;
         menu = new MmgMenuContainer();
@@ -302,6 +304,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
     /**
      * Unloads resources needed to display this game screen.
      */
+    @Override
     public void UnloadResources() {
         isDirty = false;
         pause = true;
@@ -334,6 +337,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      *
      * @return      The game state of this game screen.
      */
+    @Override
     public GameStates GetGameState() {
         return state;
     }
@@ -344,6 +348,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * 
      * @return      A boolean indicating the state of the class' dirty flag.
      */
+    @Override
     public boolean GetIsDirty() {
         return isDirty;
     }
@@ -353,6 +358,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * 
      * @param b     A boolean used to set the Screen class' dirty flag.
      */
+    @Override
     public void SetIsDirty(boolean b) {
         isDirty = b;
     }
