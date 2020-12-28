@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter14Ver2;
+package net.middlemind.PongClone.Chapter14;
 
 /**
  * An instance of the MainFrame class that extends the MmgCore MainFrame class.

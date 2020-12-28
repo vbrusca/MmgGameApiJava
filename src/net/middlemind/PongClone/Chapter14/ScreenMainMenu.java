@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter14Ver2;
+package net.middlemind.PongClone.Chapter14;
 
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
