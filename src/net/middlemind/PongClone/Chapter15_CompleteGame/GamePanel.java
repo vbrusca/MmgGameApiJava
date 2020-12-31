@@ -81,30 +81,12 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenLoading.SetIsVisible(false);
             screenLoading.UnloadResources();
             MmgHelper.wr("Hiding LOADING screen DONE.");
-
-        } else if (prevGameState == GameStates.GAME_SCREEN_01) {
-            MmgHelper.wr("Hiding GAME_SCREEN_01 screen.");
-            //screenTest.Pause();
-            //screenTest.SetIsVisible(false);
-            //screenTest.UnloadResources();
                         
         } else if (prevGameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Hiding MAIN_MENU screen.");
             screenMainMenu.Pause();
             screenMainMenu.SetIsVisible(false);
             screenMainMenu.UnloadResources();
-
-        } else if (prevGameState == GameStates.ABOUT) {
-            MmgHelper.wr("Hiding ABOUT screen.");
-            //aboutScreen.Pause();
-            //aboutScreen.SetIsVisible(false);
-            //aboutScreen.UnloadResources();
-
-        } else if (prevGameState == GameStates.HELP_MENU) {
-            MmgHelper.wr("Hiding HELP screen.");
-            //helpScreen.Pause();
-            //helpScreen.SetIsVisible(false);
-            //helpScreen.UnloadResources();
 
         } else if (prevGameState == GameStates.MAIN_GAME_1P || prevGameState == GameStates.MAIN_GAME) {
             MmgHelper.wr("Hiding MAIN GAME 1P screen.");
@@ -118,12 +100,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenGame.SetIsVisible(false);
             screenGame.UnloadResources();            
             
-        } else if (prevGameState == GameStates.SETTINGS) {
-            MmgHelper.wr("Hiding SETTINGS screen.");
-            //settingsScreen.Pause();
-            //settingsScreen.SetIsVisible(false);
-            //settingsScreen.UnloadResources();
-
         }
 
         //load
@@ -146,13 +122,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenLoading.SetIsVisible(true);
             screenLoading.StartDatLoad();
             currentScreen = screenLoading;
-
-        } else if (gameState == GameStates.GAME_SCREEN_01) {
-            MmgHelper.wr("Showing GAME_SCREEN_01 screen.");
-            //screenTest.LoadResources();
-            //screenTest.UnPause();
-            //screenTest.SetIsVisible(true);
-            //currentScreen = screenTest;
                         
         } else if (gameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Showing MAIN_MENU screen.");
@@ -160,20 +129,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenMainMenu.UnPause();
             screenMainMenu.SetIsVisible(true);
             currentScreen = screenMainMenu;
-
-        } else if (gameState == GameStates.ABOUT) {
-            MmgHelper.wr("Showing ABOUT screen.");
-            //aboutScreen.LoadResources();
-            //aboutScreen.UnPause();
-            //aboutScreen.SetIsVisible(true);
-            //currentScreen = aboutScreen;
-
-        } else if (gameState == GameStates.HELP_MENU) {
-            MmgHelper.wr("Showing HELP screen.");
-            //helpScreen.LoadResources();
-            //helpScreen.UnPause();
-            //helpScreen.SetIsVisible(true);
-            //currentScreen = helpScreen;
 
         } else if (gameState == GameStates.MAIN_GAME_1P || gameState == GameStates.MAIN_GAME) {
             MmgHelper.wr("Showing MAIN GAME 1P screen.");
@@ -191,12 +146,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenGame.SetIsVisible(true);
             currentScreen = screenGame;            
             
-        } else if (gameState == GameStates.SETTINGS) {
-            //settingsScreen.LoadResources();
-            //settingsScreen.UnPause();
-            //settingsScreen.SetIsVisible(true);
-            //currentScreen = settingsScreen;
-
         }
     }    
     

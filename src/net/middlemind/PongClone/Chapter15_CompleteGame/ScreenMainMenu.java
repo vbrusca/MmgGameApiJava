@@ -28,7 +28,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
     private MmgBmp menuStartGame1P;
 
     /**
-     * An MmgBmp instance that proveds custom menu items for two player games.
+     * An MmgBmp instance that provides custom menu items for two player games.
      */
     private MmgBmp menuStartGame2P;    
         
@@ -69,7 +69,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         MmgBmp tB = null;
         MmgPen p;
         String key = "";
-        double scale = 1.0;
         String imgId = "";
         String sndId = "";
         MmgBmp lval = null;
@@ -268,7 +267,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * prepares the screen for display.
      */
     public void DrawScreen() {
-        //int mainY;
         pause = true;
         menu = new MmgMenuContainer();
         menu.SetMmgColor(null);
@@ -376,8 +374,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
     public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 

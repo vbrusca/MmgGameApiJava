@@ -379,8 +379,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
     public void MmgDraw(MmgPen p) {
         if (pause == false && GetIsVisible() == true) {
             super.MmgDraw(p);
-        } else {
-            //do nothing
         }
     }
 
