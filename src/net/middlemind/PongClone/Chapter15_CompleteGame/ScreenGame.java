@@ -893,6 +893,7 @@ public class ScreenGame extends Screen {
             bgroundPopupSrc = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("popupWindowBase", bgroundPopupSrc, classConfig, bgroundPopupSrc.GetPosition());                        
             bgroundPopup = new Mmg9Slice(16, bgroundPopupSrc, popupTotalWidth, popupTotalHeight);
             bgroundPopup.SetPosition(MmgVector2.GetOriginVec());
+            MmgHelper.CenterHorAndVert(bgroundPopup);
             AddObj(bgroundPopup);
             bgroundPopup.SetIsVisible(false);
         }
@@ -1019,56 +1020,6 @@ public class ScreenGame extends Screen {
     private static int GetSpeedPerFrame(int speed) {
         return (int)(speed/(MmgPongClone.FPS - 4));        
     }
-    
-    /**
-     * A method to handle mouse press events from the MainFrame class.
-     * 
-     * @param v     The 2D coordinates of the mouse press event.
-     * 
-     * @return      A boolean indicating if this Screen has handled the mouse press event. 
-     */
-    @Override
-    public boolean ProcessMousePress(MmgVector2 v) {
-        return ProcessMousePress(v.GetX(), v.GetY());
-    }
-
-    /**
-     * A method to handle mouse press events from the MainFrame class.
-     * 
-     * @param x     The X coordinate of the mouse press event.
-     * @param y     The Y coordinate of the mouse press event.
-     * 
-     * @return      A boolean indicating if this Screen has handled the mouse press event. 
-     */
-    @Override
-    public boolean ProcessMousePress(int x, int y) {
-        return true;
-    }
-
-    /**
-     * A method to handle mouse release events from the MainFrame class.
-     * 
-     * @param v     The 2D coordinates of the mouse release event.
-     * 
-     * @return      A boolean indicating if this Screen has handled the mouse release event. 
-     */    
-    @Override
-    public boolean ProcessMouseRelease(MmgVector2 v) {
-        return ProcessMousePress(v.GetX(), v.GetY());
-    }
-
-    /**
-     * A method to handle mouse press events from the MainFrame class.
-     * 
-     * @param x     The X coordinate of the mouse press event.
-     * @param y     The Y coordinate of the mouse press event.
-     * 
-     * @return      A boolean indicating if this Screen has handled the mouse press event. 
-     */    
-    @Override
-    public boolean ProcessMouseRelease(int x, int y) {
-        return true;
-    }
 
     /**
      * A method to handle A button click events from the MainFrame class.
@@ -1184,19 +1135,7 @@ public class ScreenGame extends Screen {
         }
         
         return false;       
-    }
-    
-    /**
-     * A method to handle key click events from the MainFrame class.
-     * 
-     * @param c     The character of the key that was clicked on the keyboard.
-     * 
-     * @return      A boolean indicating if the key click event was handled by this Screen.
-     */    
-    @Override
-    public boolean ProcessKeyClick(char c, int code) {
-        return false;
-    }    
+    }   
     
     /**
      * A method to handle dpad press events from the MainFrame class.
@@ -1276,45 +1215,7 @@ public class ScreenGame extends Screen {
         }
         
         return false;
-    }
-    
-    /**
-     * A method to handle dpad click events from the MainFrame class.
-     * 
-     * @param dir       The dpad code, UP, DOWN, LEFT, RIGHT of the direction that was clicked on the keyboard.
-     * 
-     * @return          A boolean indicating if the dpad click was handled by this Screen.
-     */
-    @Override
-    public boolean ProcessDpadClick(int dir) {
-        return true;
-    }
-    
-    /**
-     * A method to handle mouse click events from the MainFrame class.
-     * 
-     * @param v         The 2D mouse coordinates of the click event.
-     * 
-     * @return          A boolean indicating if the mouse click event was handled by this Screen.
-     */
-    @Override
-    public boolean ProcessMouseClick(MmgVector2 v) {
-        return ProcessMouseClick(v.GetX(), v.GetY());
-    }
-
-    /**
-     * A method to handle the mouse click events from the MainFrame class.
-     * 
-     * @param x         The X coordinate of the mouse click event.
-     * 
-     * @param y         The Y coordinate of the mouse click event.
-     * 
-     * @return          A boolean indicating if the mouse click event was handled by this Screen.
-     */
-    @Override
-    public boolean ProcessMouseClick(int x, int y) {        
-        return true;
-    }    
+    }  
     
     /**
      * Processes mouse movement for player 2's input, the left hand paddle.
@@ -1372,9 +1273,9 @@ public class ScreenGame extends Screen {
     /**
      * Sets the Screen's current state. The state is used to prepare what MmgObj's are visible for the given state.
      * 
-     * @param in        The desired State to set the Screen to.
+     * @param inS        The desired State to set the Screen to.
      */
-    private void SetState(State in) {        
+    private void SetState(State inS) {        
         //clean up prev state
         switch(statePrev) {
             case NONE:
@@ -1397,7 +1298,7 @@ public class ScreenGame extends Screen {
         }
         
         statePrev = state;
-        state = in;
+        state = inS;
         
         switch(state) {
             case NONE:
@@ -1617,7 +1518,7 @@ public class ScreenGame extends Screen {
      */
     @Override
     public void DrawScreen() {
-        //run each game frame
+        //ran each game frame
         pause = true;
         
         switch(state) {
@@ -1625,13 +1526,14 @@ public class ScreenGame extends Screen {
                 break;
                 
             case SHOW_GAME_EXIT:
-
                 break;
                 
             case SHOW_COUNT_DOWN_IN_GAME:
             case SHOW_COUNT_DOWN:
+                // <editor-fold>
                 switch(numberState) {
                     case NONE:
+                        // <editor-fold>                        
                         timeNumberMs = System.currentTimeMillis();
                         numberState = NumberState.NUMBER_3;
                         number1.SetIsVisible(false);
@@ -1651,8 +1553,10 @@ public class ScreenGame extends Screen {
                             txtDirecP2.SetIsVisible(false);
                         }
                         break;
+                        // </editor-fold>                        
                         
                     case NUMBER_1:
+                        // <editor-fold>
                         timeTmpMs = System.currentTimeMillis();
                         if(timeTmpMs - timeNumberMs >= timeNumberDisplayMs) {
                             timeNumberMs = timeTmpMs;
@@ -1666,8 +1570,10 @@ public class ScreenGame extends Screen {
                             bounceNorm.Play();                            
                         }
                         break;
+                        // </editor-fold>
                         
                     case NUMBER_2:
+                        // <editor-fold>
                         timeTmpMs = System.currentTimeMillis();
                         if(timeTmpMs - timeNumberMs >= timeNumberDisplayMs) {
                             timeNumberMs = timeTmpMs;
@@ -1691,8 +1597,10 @@ public class ScreenGame extends Screen {
                             bounceNorm.Play();                            
                         }
                         break;
+                        // </editor-fold>
                         
                     case NUMBER_3:
+                        // <editor-fold>
                         timeTmpMs = System.currentTimeMillis();
                         if(timeTmpMs - timeNumberMs >= timeNumberDisplayMs) {
                             timeNumberMs = timeTmpMs;
@@ -1715,12 +1623,17 @@ public class ScreenGame extends Screen {
                             bounceNorm.Play();
                         }
                         break;
+                        // </editor-fold>
                         
                 }
+                // </editor-fold>
                 break;
                 
             case SHOW_GAME:
+                // <editor-fold>
+                //player two movement
                 if(gameType == GameType.GAME_TWO_PLAYER) {
+                    // <editor-fold>
                     if(mousePos) {
                         paddle1Pos.SetY(lastY);
                     }
@@ -1740,9 +1653,10 @@ public class ScreenGame extends Screen {
                         }
 
                     }
-                    
+                    // </editor-fold>
                 } else {                    
                     //AI
+                    // <editor-fold>
                     if(ballPos.GetY() + ball.GetHeight()/2 < paddleLeft.GetY()) {
                         if(paddle1Pos.GetY() - paddle1MovePerFrame < screenPos.GetY()) {
                             paddle1Pos.SetY(screenPos.GetY());                
@@ -1758,23 +1672,26 @@ public class ScreenGame extends Screen {
                         }
                         
                     }
-                    
+                    // </editor-fold>
                 }
                 
+                //player one movement
                 if(paddle2MoveUp) {
+                    // <editor-fold>
                     if(paddle2Pos.GetY() - paddle2MovePerFrame < screenPos.GetY()) {
                         paddle2Pos.SetY(screenPos.GetY());                
                     } else {
                         paddle2Pos.SetY(paddle2Pos.GetY() - paddle2MovePerFrame);
                     }
-
+                    // </editor-fold>
                 } else if(paddle2MoveDown) {
+                    // <editor-fold>
                     if(paddle2Pos.GetY() + paddleRight.GetHeight() + paddle2MovePerFrame > screenPos.GetY() + GetHeight()) {
                         paddle2Pos.SetY(screenPos.GetY() + GetHeight() - paddleRight.GetHeight());
                     } else {
                        paddle2Pos.SetY(paddle2Pos.GetY() + paddle2MovePerFrame);                            
                     }
-
+                    // </editor-fold>
                 }
                 
                 //calculate where the ball will be
@@ -1784,18 +1701,21 @@ public class ScreenGame extends Screen {
                 //board collision
                 if(ballNewY < screenPos.GetY()) {
                     //top
+                    // <editor-fold>
                     ballDirY = 1;
                     ballNewX = (ballPos.GetX() + (ballMovePerFrameX * ballDirX));
                     ballNewY = ((screenPos.GetY()));
-                    
+                    // </editor-fold>
                 } else if(ballNewY + ball.GetHeight() > screenPos.GetY() + GetHeight()) {
                     //bottom
+                    // <editor-fold>
                     ballDirY = -1;
                     ballNewX = (ballPos.GetX() + (ballMovePerFrameX * ballDirX));
                     ballNewY = ((screenPos.GetY() + GetHeight() - ball.GetHeight()));
-                    
+                    // </editor-fold>
                 }else if(ballNewX < screenPos.GetX()) {
                     //left
+                    // <editor-fold>
                     ballDirX = 1;
                     ballNewX = ((screenPos.GetX()));
                     ballNewY = (ballPos.GetY() + (ballMovePerFrameY * ballDirY));
@@ -1809,9 +1729,10 @@ public class ScreenGame extends Screen {
                             SetState(State.SHOW_COUNT_DOWN_IN_GAME);
                         }
                     }
-                    
+                    // </editor-fold>
                 } else if(ballNewX + ball.GetWidth() > screenPos.GetX() + GetWidth()) {
                     //right
+                    // <editor-fold>
                     ballDirX = -1;
                     ballNewX = ((screenPos.GetX() + GetWidth() - ball.GetWidth()));
                     ballNewY = (ballPos.GetY() + (ballMovePerFrameY * ballDirY));                                                                            
@@ -1825,12 +1746,13 @@ public class ScreenGame extends Screen {
                             SetState(State.SHOW_COUNT_DOWN_IN_GAME);
                         }
                     }
-                    
+                    // </editor-fold>
                 }
                 
                 bounced = false;
                 //paddle1 collision
                 if(ballNewX <= paddle1Pos.GetX() + paddleLeft.GetWidth() && ballDirX == -1) {
+                    // <editor-fold>
                     if(ballNewY + ball.GetHeight()/2 >= paddle1Pos.GetY() + paddleLeft.GetHeight()/3 && ballNewY + ball.GetHeight()/2 <= paddle1Pos.GetY() + ((paddleLeft.GetHeight()/3) * 2)) {
                         //middle
                         ballMovePerFrameX *= 1.5;
@@ -1873,10 +1795,12 @@ public class ScreenGame extends Screen {
                         ballNewX = (paddle1Pos.GetX() + paddleLeft.GetWidth());
 
                     }
+                    // </editor-fold>
                 }
 
                 //paddle2 collision
                 if(ballNewX + ball.GetWidth() >= paddle2Pos.GetX() && ballDirX == 1) {
+                    // <editor-fold>
                     if(ballNewY + ball.GetHeight()/2 >= paddle2Pos.GetY() + paddleRight.GetHeight()/3 && ballNewY + ball.GetHeight()/2 <= paddle2Pos.GetY() + ((paddleRight.GetHeight()/3) * 2)) {
                         //middle
                         ballMovePerFrameX *= 1.5;
@@ -1919,6 +1843,7 @@ public class ScreenGame extends Screen {
                         ballNewX = (paddle2Pos.GetX() - ball.GetWidth());
 
                     }
+                    // </editor-fold>
                 }                
 
                 //set limits on the ball's speed
@@ -1930,6 +1855,7 @@ public class ScreenGame extends Screen {
                     ballMovePerFrameY = ballMovePerFrameMax;
                 }
 
+                //handle bounce sound
                 if(bounced) {
                     if(ballMovePerFrameY == ballMovePerFrameMax || ballMovePerFrameX == ballMovePerFrameMax) {
                         bounceSuper.Play();
@@ -1937,10 +1863,12 @@ public class ScreenGame extends Screen {
                         bounceNorm.Play();
                     }
                 }
-                                
+                      
+                //update ball's position
                 ballPos.SetX(ballNewX);
                 ballPos.SetY(ballNewY);                
                 break;
+                // </editor-fold>
         }
         
         pause = false;
@@ -2007,15 +1935,5 @@ public class ScreenGame extends Screen {
         if (pause == false && isVisible == true) {
             super.GetObjects().MmgDraw(p);
         }
-    }
-
-    /**
-     * Handles generic events sent to this class.
-     * 
-     * @param obj       A GenericEventMessage class instance.
-     */
-    @Override
-    public void HandleGenericEvent(GenericEventMessage obj) {
-        //handle generic event
     }
 }
