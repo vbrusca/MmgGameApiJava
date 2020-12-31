@@ -1877,6 +1877,7 @@ public class ScreenGame extends Screen {
     /**
      * Unloads resources needed to display this game screen.
      */
+    @Override
     public void UnloadResources() {
         pause = true;
         SetBackground(null);
