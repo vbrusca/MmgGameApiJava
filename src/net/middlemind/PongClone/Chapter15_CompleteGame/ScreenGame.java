@@ -891,6 +891,8 @@ public class ScreenGame extends Screen {
         if(bgroundPopupSrc != null) {
             MmgHelper.CenterHorAndVert(bgroundPopupSrc);            
             bgroundPopupSrc = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("popupWindowBase", bgroundPopupSrc, classConfig, bgroundPopupSrc.GetPosition());                        
+            popupTotalWidth = MmgHelper.ScaleValue(300);
+            popupTotalHeight = MmgHelper.ScaleValue(120);             
             bgroundPopup = new Mmg9Slice(16, bgroundPopupSrc, popupTotalWidth, popupTotalHeight);
             bgroundPopup.SetPosition(MmgVector2.GetOriginVec());
             MmgHelper.CenterHorAndVert(bgroundPopup);
