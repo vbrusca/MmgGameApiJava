@@ -835,7 +835,27 @@ public class MmgHelper {
     public static int GetRandomInt(int exclusiveUpperBound) {
         return rando.nextInt(exclusiveUpperBound);
     }
+    
+    /**
+     * A static method used to generate a random integer from the given range.
+     * 
+     * @param min   An inclusive lower bound.
+     * @param max   An exclusive upper bound.
+     * @return      A random value greater than or equal to min and less than max.
+     */
+    public static int GetRandomIntRange(int min, int max) {
+        return rando.nextInt(max - min) + min;        
+    }
 
+    /**
+     * A static method that returns the current time in milliseconds.
+     * 
+     * @return The current time in milliseconds.
+     */
+    public static long CtMs() {
+        return System.currentTimeMillis();
+    }
+    
     /**
      * Centralized logging method for standard out logging.
      *
