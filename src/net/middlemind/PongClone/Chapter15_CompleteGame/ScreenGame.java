@@ -1020,7 +1020,7 @@ public class ScreenGame extends Screen {
      * @return          A converted speed that represents the speed per frame of the given input speed. 
      */
     private static int GetSpeedPerFrame(int speed) {
-        return (int)(speed/(MmgPongClone.FPS - 4));        
+        return (int)(speed/(PongClone.FPS - 4));        
     }
 
     /**

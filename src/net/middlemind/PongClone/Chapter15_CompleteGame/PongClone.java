@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter13;
+package net.middlemind.PongClone.Chapter15_CompleteGame;
 
 import net.middlemind.MmgGameApiJava.MmgCore.DatConstantsEntry;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
@@ -14,7 +14,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
  * 
  * @author Victor G. Brusca
  */
-public final class MmgPongClone {
+public final class PongClone {
 
     /**
      * The main JFrame that houses the different game screens.
@@ -332,9 +332,9 @@ public final class MmgPongClone {
 
         //LOAD ENGINE CONFIG FILE
         try {
-            if (MmgPongClone.ENGINE_CONFIG_FILE != null && MmgPongClone.ENGINE_CONFIG_FILE.equals("") == false) {
+            if (PongClone.ENGINE_CONFIG_FILE != null && PongClone.ENGINE_CONFIG_FILE.equals("") == false) {
                 GameSettingsImporter dci = new GameSettingsImporter();
-                boolean r = dci.ImportGameSettings(MmgPongClone.ENGINE_CONFIG_FILE);
+                boolean r = dci.ImportGameSettings(PongClone.ENGINE_CONFIG_FILE);
                 System.out.println("Engine config load result: " + r);
 
                 if(r == true) {
@@ -362,7 +362,7 @@ public final class MmgPongClone {
                                     SetField(ent, f);
                                 }
                             } else if(ent.from != null && ent.from.equals("StaticMain") == true) {
-                                f = MmgPongClone.class.getField(ent.key);
+                                f = PongClone.class.getField(ent.key);
                                 if (f != null) {
                                     System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                     SetField(ent, f);
@@ -390,13 +390,13 @@ public final class MmgPongClone {
         MmgHelper.wr("Game Width: " + GAME_WIDTH);
         MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
-        mf = new MainFrame(MmgPongClone.WIN_WIDTH, MmgPongClone.WIN_HEIGHT, MmgPongClone.PANEL_WIDTH, MmgPongClone.PANEL_HEIGHT, MmgPongClone.GAME_WIDTH, MmgPongClone.GAME_HEIGHT);
-        pnlGame = new GamePanel(mf, MmgPongClone.PANEL_WIDTH, MmgPongClone.PANEL_HEIGHT, (MmgPongClone.WIN_WIDTH - MmgPongClone.PANEL_WIDTH) / 2, (MmgPongClone.WIN_HEIGHT - MmgPongClone.PANEL_HEIGHT) / 2, MmgPongClone.GAME_WIDTH, MmgPongClone.GAME_HEIGHT);
+        mf = new MainFrame(PongClone.WIN_WIDTH, PongClone.WIN_HEIGHT, PongClone.PANEL_WIDTH, PongClone.PANEL_HEIGHT, PongClone.GAME_WIDTH, PongClone.GAME_HEIGHT);
+        pnlGame = new GamePanel(mf, PongClone.PANEL_WIDTH, PongClone.PANEL_HEIGHT, (PongClone.WIN_WIDTH - PongClone.PANEL_WIDTH) / 2, (PongClone.WIN_HEIGHT - PongClone.PANEL_HEIGHT) / 2, PongClone.GAME_WIDTH, PongClone.GAME_HEIGHT);
         mf.SetGamePanel(pnlGame);
         mf.InitComponents();
         fr = new RunFrameRate(mf, FPS);
 
-        mf.setSize(MmgPongClone.WIN_WIDTH, MmgPongClone.WIN_HEIGHT);
+        mf.setSize(PongClone.WIN_WIDTH, PongClone.WIN_HEIGHT);
         mf.setResizable(false);
         mf.setVisible(true);
         mf.setName(GameSettings.NAME);
