@@ -10,7 +10,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
  * Java swing game that runs on the MmgApi. 
- * Created on August 1, 2015, 10:57 PM by Middlemind Games
+ * Created on 01/31/2021 by Middlemind Games
  * 
  * @author Victor G. Brusca
  */

@@ -11,7 +11,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
  * A class used to render different MmgGameScreen class instances in the MainFrame, JFrame, class instance.
  * The class is designed to have different states each represented by an MmgGameScreen instance that then
  * becomes the currentScreen, and renders to the MainFrame.
- * Created by Middlemind Games 02/19/2020
+ * Created by Middlemind Games 01/31/2021
  * 
  * @author Victor G. Brusca, Middlemind Games
  */

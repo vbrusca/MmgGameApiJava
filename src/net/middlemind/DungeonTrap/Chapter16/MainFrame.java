@@ -2,7 +2,7 @@ package net.middlemind.DungeonTrap.Chapter16;
 
 /**
  * An instance of the MainFrame class that extends the MmgCore MainFrame class.
- * Created by Middlemind Games 02/19/2020
+ * Created by Middlemind Games 01/31/2021
  * 
  * @author Victor G. Brusca, Middlemind Games
  */

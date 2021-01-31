@@ -16,7 +16,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 /**
  * A game screen object, ScreenGame, that extends the MmgGameScreen base
  * class. This class is for testing new UI widgets, etc.
- * Created by Middlemind Games 03/22/2020
+ * Created by Middlemind Games 01/31/2021
  *
  * @author Victor G. Brusca
  */
