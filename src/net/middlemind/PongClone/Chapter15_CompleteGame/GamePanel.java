@@ -42,7 +42,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
-        screenLoading.SetSlowDown(500);
         screenGame = new ScreenGame(GameStates.MAIN_GAME, this);
         screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
     }
