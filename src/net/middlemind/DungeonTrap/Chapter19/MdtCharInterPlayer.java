@@ -152,8 +152,8 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * @param bounceDir     The direction the colliding object was moving in.
      */
     @Override
-    public void Bounce(MmgVector2 collPos, int halfWidth, int halfHeight, int bounceDir) {
-        super.Bounce(collPos, halfWidth, halfHeight, bounceDir);
+    public void Bounce(MmgVector2 collPos, int halfWidth, int halfHeight, int bounceDir, MdtPlayerType BounceBy) {
+        super.Bounce(collPos, halfWidth, halfHeight, bounceDir, BounceBy);
         isPushStart = false;
         isPushing = false;
         pushingCurrentMs = 0;

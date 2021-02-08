@@ -105,7 +105,7 @@ public class MdtCharInter extends MdtChar {
      * @param collPos       The position of the colliding object that causes the bounce.
      * @param bounceDir     The direction the colliding object was moving in.
      */
-    public void Bounce(MmgVector2 collPos, int halfWidth, int halfHeight, int bounceDir) {
+    public void Bounce(MmgVector2 collPos, int halfWidth, int halfHeight, int bounceDir, MdtPlayerType BounceBy) {
         bounceDirOrig = bounceDir;
         isMoving = false;
         
@@ -128,6 +128,10 @@ public class MdtCharInter extends MdtChar {
                 bounceDirX = MmgDir.DIR_RIGHT;
                 bounceDirY = bounceDir;                
             }            
+        }
+        
+        if(playerType == MdtPlayerType.ENEMY) {
+            TakeDamage(1, BounceBy);
         }
     }
         
@@ -364,6 +368,7 @@ public class MdtCharInter extends MdtChar {
                 }                                                
             } else {
                 if(healthCurrent <= 0) {
+                    brokenBy = healthDamagedBy;
                     isBroken = true;                
                 }
 
@@ -400,9 +405,9 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetY(current.GetTop());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
                                         //stop
                                     } else {
@@ -418,9 +423,9 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetY(current.GetTop());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
                                         //stop
                                     } else {
@@ -438,9 +443,9 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetX(current.GetLeft());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
                                         //stop
                                     } else {
@@ -456,9 +461,9 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetX(current.GetLeft());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
                                         //stop
                                     } else {

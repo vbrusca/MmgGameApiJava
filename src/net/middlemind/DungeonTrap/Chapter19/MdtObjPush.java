@@ -330,9 +330,9 @@ public class MdtObjPush extends MdtObj {
                                     SetY(current.GetTop());
                                 } else {
                                     if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);                                        
+                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);                                        
                                     }
                                     
                                     if(coll.GetMdtType() == MdtObjType.ENEMY || coll.GetMdtType() == MdtObjType.PLAYER || coll.GetMdtType() == MdtObjType.OBJECT) {                                        
@@ -361,9 +361,9 @@ public class MdtObjPush extends MdtObj {
                                     SetY(current.GetTop());
                                 } else {
                                     if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);                                        
+                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);                                        
                                     }
                                     
                                     if(coll.GetMdtType() == MdtObjType.ENEMY || coll.GetMdtType() == MdtObjType.PLAYER || coll.GetMdtType() == MdtObjType.OBJECT) {                                        
@@ -392,9 +392,9 @@ public class MdtObjPush extends MdtObj {
                                     SetX(current.GetLeft());
                                 } else {
                                     if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);                                        
+                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);                                        
                                     }
                                     
                                     if(coll.GetMdtType() == MdtObjType.ENEMY || coll.GetMdtType() == MdtObjType.PLAYER || coll.GetMdtType() == MdtObjType.OBJECT) {
@@ -423,9 +423,9 @@ public class MdtObjPush extends MdtObj {
                                     SetX(current.GetLeft());
                                 } else {
                                     if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);
+                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
-                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir);                                        
+                                        ((MdtCharInter)coll).Bounce(GetPosition().Clone(), GetWidth()/2, GetHeight()/2, pushDir, pushedBy);                                        
                                     }
                                     
                                     if(coll.GetMdtType() == MdtObjType.ENEMY || coll.GetMdtType() == MdtObjType.PLAYER || coll.GetMdtType() == MdtObjType.OBJECT) {
