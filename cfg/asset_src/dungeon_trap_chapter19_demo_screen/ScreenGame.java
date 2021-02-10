@@ -1306,6 +1306,26 @@ public class ScreenGame extends Screen {
     }
 
     /**
+     * Clears objects from the screens object collection and the items, objects, and enemies containers.
+     */
+    private void UpdateClearObjects() {
+        MmgContainer c = GetObjects();
+        int len = c.GetCount();
+        MmgObj obj = null;
+        for(int i = 0; i  < len; i++) {
+            obj = c.GetChildAt(i);
+            if(obj instanceof MdtItemChest || obj instanceof MdtCharInterWarlock || obj instanceof MdtCharInterBanshee || obj instanceof MdtCharInterDemon || obj instanceof MdtWeapon || obj instanceof MdtObjPushTableSmall || obj instanceof MdtObjPushTableLarge || obj instanceof MdtObjPushBarrel || obj instanceof MdtItemBomb || obj instanceof MdtItemCoinBag || obj instanceof MdtItemPotionGreen || obj instanceof MdtItemPotionRed || obj instanceof MdtItemPotionYellow) {
+                c.RemoveAt(i);
+                len--;
+                i--;
+            }
+        }
+        gameObjects.Clear();
+        gameItems.Clear();
+        gameEnemies.Clear();
+    }    
+    
+    /**
      * Unloads resources needed to display this game screen.
      */
     @Override
@@ -1315,6 +1335,7 @@ public class ScreenGame extends Screen {
         SetBackground(null);        
         state = State.NONE;
         statePrev = State.NONE;
+        UpdateClearObjects();
         
         bground = null;
         doorLockFull = null;
