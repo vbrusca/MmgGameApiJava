@@ -1209,7 +1209,90 @@ public class ScreenGame extends Screen {
             bgroundPopup = (Mmg9Slice)MmgHelper.ContainsKeyMmgObjPosition("popupWindowBase", bgroundPopup, classConfig, pos);
             
             AddObj(bgroundPopup);
-            bgroundPopup.SetIsVisible(false);            
+            bgroundPopup.SetIsVisible(false);
+            
+            numberBground.SetIsVisible(false);
+            
+            MdtWeaponSpear wspr = new MdtWeaponSpear(player1, MdtWeaponType.SPEAR, MdtPlayerType.PLAYER_1);
+            wspr.SetScreen(this);
+            wspr.SetAttackType(MdtWeaponAttackType.STABBING);
+            wspr.SetPosition(100, BOARD_TOP + 50);
+            wspr.GetSubjRight().SetPosition(100, BOARD_TOP + 50);
+            AddObj(wspr.GetSubjRight());
+            
+            MdtWeaponSword wswd = new MdtWeaponSword(player1, MdtWeaponType.SWORD, MdtPlayerType.PLAYER_1);
+            wswd.SetScreen(this);
+            wswd.SetAttackType(MdtWeaponAttackType.STABBING);
+            wswd.SetPosition(100, BOARD_TOP + 100);
+            wswd.GetSubjRight().SetPosition(100, BOARD_TOP + 100);
+            AddObj(wswd.GetSubjRight());
+
+            MdtWeaponAxe waxe= new MdtWeaponAxe(player1, MdtWeaponType.AXE, MdtPlayerType.PLAYER_1);
+            waxe.SetScreen(this);
+            waxe.SetAttackType(MdtWeaponAttackType.STABBING);
+            waxe.SetPosition(100, BOARD_TOP + 150);
+            waxe.GetSubjRight().SetPosition(100, BOARD_TOP + 150);
+            AddObj(waxe.GetSubjRight());             
+            
+            MdtItemBomb bomb = new MdtItemBomb();
+            bomb.SetScreen(this);
+            bomb.SetPosition(200, BOARD_TOP + 50);
+            AddObj(bomb);
+            
+            MdtItemCoinBag cbag = new MdtItemCoinBag();
+            cbag.SetScreen(this);
+            cbag.SetPosition(200, BOARD_TOP + 100);
+            AddObj(cbag);
+            
+            MdtItemChest chst = new MdtItemChest();
+            chst.SetScreen(this);
+            chst.SetPosition(200, BOARD_TOP + 150);
+            AddObj(chst);
+            
+            MdtItemPotionGreen potion1 = new MdtItemPotionGreen();
+            potion1.SetScreen(this);
+            potion1.SetPosition(300, BOARD_TOP + 50);
+            AddObj(potion1);
+            
+            MdtItemPotionRed potion2 = new MdtItemPotionRed();
+            potion2.SetScreen(this);
+            potion2.SetPosition(300, BOARD_TOP + 100);
+            AddObj(potion2);
+            
+            MdtItemPotionYellow potion3 = new MdtItemPotionYellow();
+            potion3.SetScreen(this);
+            potion3.SetPosition(300, BOARD_TOP + 150);
+            AddObj(potion3);
+            
+            MdtObjPushBarrel barrel = new MdtObjPushBarrel(this);
+            barrel.SetScreen(this);
+            barrel.SetPosition(450, BOARD_TOP + 50);
+            AddObj(barrel);
+            
+            MdtObjPushTableSmall table1 = new MdtObjPushTableSmall(this);
+            table1.SetScreen(this);
+            table1.SetPosition(450, BOARD_TOP + 100);
+            AddObj(table1);
+            
+            MdtObjPushTableLarge table2 = new MdtObjPushTableLarge(this);
+            table2.SetScreen(this);
+            table2.SetPosition(450, BOARD_TOP + 150);
+            AddObj(table2);
+            
+            MdtCharInterDemon dmn1 = new MdtCharInterDemon(enemyDemonFrames.CloneTyped(), 0, 3, 12, 15, 4, 7, 8, 11, this);
+            dmn1.SetScreen(this);
+            dmn1.SetPosition(600, BOARD_TOP + 50);
+            AddObj(dmn1);
+            
+            MdtCharInterWarlock dmn2 = new MdtCharInterWarlock(enemyWarlockFrames.CloneTyped(), 0, 3, 12, 15, 4, 7, 8, 11, this);
+            dmn2.SetScreen(this);
+            dmn2.SetPosition(600, BOARD_TOP + 100);
+            AddObj(dmn2);            
+            
+            MdtCharInterBanshee dmn3 = new MdtCharInterBanshee(enemyBansheeFrames.CloneTyped(), 0, 3, 12, 15, 4, 7, 8, 11, this);
+            dmn3.SetScreen(this);
+            dmn3.SetPosition(600, BOARD_TOP + 150);
+            AddObj(dmn3);           
         }
                 
         //Load popup window text exit
