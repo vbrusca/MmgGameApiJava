@@ -36,6 +36,8 @@ public class MdtWeaponSword extends MdtWeapon {
         attackType = MdtWeaponAttackType.STABBING;
         SetWidth(subjBack.GetHeight());
         SetHeight(subjBack.GetHeight());
+        SetDamage(1);
+        SetAnimTimeMsTotal(200);
     }
     
     /**

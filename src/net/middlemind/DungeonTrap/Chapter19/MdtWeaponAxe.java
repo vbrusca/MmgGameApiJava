@@ -37,6 +37,8 @@ public class MdtWeaponAxe extends MdtWeapon {
         SetAttackType(MdtWeaponAttackType.THROWING);
         SetWidth(subjBack.GetHeight());
         SetHeight(subjBack.GetHeight());
+        SetDamage(1);
+        SetAnimTimeMsTotal(300);
     }
     
     /**

@@ -9,6 +9,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSpriteSheet;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgVector2;
+import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameType;
 
 /**
  * A class that represents an enemy character base.
@@ -69,6 +70,26 @@ public class MdtCharInter extends MdtChar {
     public long bouncingLengthMs = 175;
     
     /**
+     * The motor type to use for the given character.
+     */
+    public MdtEnemyMotorType motor = MdtEnemyMotorType.NONE;
+    
+    /**
+     * The time in milliseconds that the current player has been moving in AI mode.
+     */
+    private long motorMoveMs = 0;
+    
+    /**
+     * The total time in milliseconds that the current player will move in AI mode.
+     */
+    private long motorMoveLengthMs = 350;
+    
+    /**
+     * The player that this character is targeting for attack.
+     */
+    private MdtPlayerType targetPlayer = MdtPlayerType.NONE;
+    
+    /**
      * MdtEnemyDemon constructor that allows you to specify the sprite animation frames for this character, for all directions.
      * 
      * @param Subj              The subject of the object instance.
@@ -96,10 +117,11 @@ public class MdtCharInter extends MdtChar {
         weapons.put("spear", new MdtWeaponSpear(this, MdtWeaponType.SPEAR, MdtPlayerType.ENEMY));
 
         weaponCurrent = weapons.get("spear");
+        weaponCurrent.SetHolder(this);
         weaponCurrent.active = true;
     }
 
-/**
+    /**
      * A method that causes this player to bounce using directions calculated from the initial collision.
      * 
      * @param collPos       The position of the colliding object that causes the bounce.
@@ -132,9 +154,27 @@ public class MdtCharInter extends MdtChar {
         
         if(playerType == MdtPlayerType.ENEMY) {
             TakeDamage(1, BounceBy);
-        }
+        } 
     }
-        
+
+    /**
+     * Gets the enemy character's motor type.
+     * 
+     * @return      The enemy character's motor type. 
+     */
+    public MdtEnemyMotorType GetMotor() {
+        return motor;
+    }
+
+    /**
+     * Sets the enemy character's motor type.
+     * 
+     * @param m     The enemy character's motor type.
+     */
+    public void SetMotor(MdtEnemyMotorType m) {
+        motor = m;
+    }
+     
     /**
      * Gets the type of this player.
      * 
@@ -262,6 +302,17 @@ public class MdtCharInter extends MdtChar {
     }
     
     /**
+     * Sets the current character's direction without resetting the current directory.
+     * 
+     * @param d     The direction in which to set the current character. 
+     */
+    public void SetDirSafe(int d) {
+        if(GetDir() != d) {
+            SetDir(d);
+        }
+    }
+    
+    /**
      * Sets the current direction of the character.
      * 
      * @param d     The direction code.
@@ -347,6 +398,7 @@ public class MdtCharInter extends MdtChar {
     public void TakeDamage(int i, MdtPlayerType p) {
         super.TakeDamage(i, p);
         SetBrokenBy(p);
+        //MmgHelper.wr("TakeDamage: " + i + " Health At" + healthCurrent);
     }
     
     /**
@@ -364,12 +416,14 @@ public class MdtCharInter extends MdtChar {
             if(isBroken) {
                 subjBreaks.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
                 if(subjBreaks.GetFrameIdx() == subjBreaks.GetFrameStop()) {
+                    if(GetPlayerType() == MdtPlayerType.ENEMY && GetRand().nextInt(11) % 2 == 0) {
+                        screen.UpdateGenerateItem(GetX(), GetY());
+                    }
                     screen.UpdateRemoveObj(this, brokenBy);
                 }                                                
             } else {
                 if(healthCurrent <= 0) {
-                    brokenBy = healthDamagedBy;
-                    isBroken = true;                
+                    isBroken = true;
                 }
 
                 subj.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame); 
@@ -479,6 +533,69 @@ public class MdtCharInter extends MdtChar {
                         }
                     }
 
+                    if(motor != MdtEnemyMotorType.NONE && playerType == MdtPlayerType.ENEMY) {
+                        MmgVector2 mPos = null;
+                        if(targetPlayer == MdtPlayerType.NONE) {
+                            if(screen.GetGameType() == GameType.GAME_TWO_PLAYER && !screen.GetPlayer2Broken()) {
+                                int t = GetRand().nextInt(11);
+                                if(t % 2 == 0) {
+                                    targetPlayer = MdtPlayerType.PLAYER_1;
+                                } else {
+                                    targetPlayer = MdtPlayerType.PLAYER_2;
+                                }
+                            } else {
+                                targetPlayer = MdtPlayerType.PLAYER_1;
+                            }
+                        }
+    
+                        if(screen.GetGameType() == GameType.GAME_ONE_PLAYER) {
+                            mPos = screen.GetPlayer1Pos();
+                        } else if(screen.GetGameType() == GameType.GAME_TWO_PLAYER) {
+                            if(targetPlayer == MdtPlayerType.PLAYER_1 && !screen.GetPlayer1Broken()) {
+                                mPos = screen.GetPlayer1Pos();
+                            } else if(targetPlayer == MdtPlayerType.PLAYER_2 && !screen.GetPlayer2Broken()) {
+                                mPos = screen.GetPlayer2Pos();
+                            }
+                        }                        
+                        
+                        if(mPos != null) {
+                            motorMoveMs += msSinceLastFrame;
+                            if(motorMoveMs >= motorMoveLengthMs) {
+                                int t = GetRand().nextInt(11);
+                                if(t % 3 == 0) {
+                                    isMoving = true;
+                                } else {
+                                    isMoving = false;
+                                }
+                                motorMoveMs = 0;
+                            }
+                            
+                            if(motor == MdtEnemyMotorType.MOVE_X_THEN_Y) {
+                                if(GetX() + GetWidth()/2 < mPos.GetX()) {
+                                    SetDirSafe(MmgDir.DIR_RIGHT);
+                                } else if(GetX() > mPos.GetX() + GetWidth()/2) {
+                                    SetDirSafe(MmgDir.DIR_LEFT);                                                                    
+                                } else if(GetY() + GetHeight()/2 < mPos.GetY()) {
+                                    SetDirSafe(MmgDir.DIR_FRONT);                                
+                                } else {
+                                    SetDirSafe(MmgDir.DIR_BACK); 
+                                }                                
+                            } else if(motor == MdtEnemyMotorType.MOVE_Y_THEN_X) {
+                                if(GetY() + GetHeight()/2 < mPos.GetY()) {                            
+                                    SetDirSafe(MmgDir.DIR_FRONT);
+                                } else if(GetY() > mPos.GetY() + GetHeight()/2) {
+                                    SetDirSafe(MmgDir.DIR_BACK);                                     
+                                } else if(GetX() + GetWidth()/2 < mPos.GetX()) {
+                                    SetDirSafe(MmgDir.DIR_RIGHT);
+                                } else {
+                                    SetDirSafe(MmgDir.DIR_LEFT);
+                                }      
+                            }
+                        } else {
+                            isMoving = false;
+                        }
+                    }
+                    
                     if(dir != MmgDir.DIR_NONE) {
                         current = new MmgRect(subj.GetX(), subj.GetY(), subj.GetY() + subj.GetHeight(), subj.GetX() + subj.GetWidth());                    
                         if(speed < 0) { 
@@ -492,9 +609,11 @@ public class MdtCharInter extends MdtChar {
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
                                         subj.SetY(current.GetTop());
-                                    } else {
+                                    } else {                                        
                                         screen.UpdateProcessCollision(this, coll);
-                                        current.ShiftRect(0, (speed * 1));
+                                        if(playerType == MdtPlayerType.ENEMY) {
+                                            motorMoveMs = motorMoveLengthMs;
+                                        }                                            
                                     }
                                 } else {
                                     subj.SetY(ScreenGame.BOARD_TOP);
@@ -507,7 +626,9 @@ public class MdtCharInter extends MdtChar {
                                         subj.SetY(current.GetTop());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
-                                        current.ShiftRect(0, (speed * -1));
+                                        if(playerType == MdtPlayerType.ENEMY) {
+                                            motorMoveMs = motorMoveLengthMs;
+                                        }
                                     }
                                 } else {
                                     subj.SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
@@ -519,8 +640,10 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         subj.SetX(current.GetLeft());
                                     } else {
-                                        screen.UpdateProcessCollision(this, coll);                                   
-                                        current.ShiftRect((speed * 1), 0);
+                                        screen.UpdateProcessCollision(this, coll);
+                                        if(playerType == MdtPlayerType.ENEMY) {
+                                            motorMoveMs = motorMoveLengthMs;
+                                        }
                                     }
                                 } else {
                                     subj.SetX(ScreenGame.BOARD_LEFT);
@@ -533,7 +656,9 @@ public class MdtCharInter extends MdtChar {
                                         subj.SetX(current.GetLeft());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
-                                        current.ShiftRect((speed * -1), 0);
+                                        if(playerType == MdtPlayerType.ENEMY) {
+                                            motorMoveMs = motorMoveLengthMs;
+                                        }
                                     }
                                 } else {
                                     subj.SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
@@ -565,7 +690,6 @@ public class MdtCharInter extends MdtChar {
                         coll = screen.CanMove(current, weaponCurrent);
                         if(coll != null) {
                             screen.UpdateProcessWeaponCollision(coll, this, current);
-                            MmgHelper.wr("Weapon Collided With: " + coll.getClass().getSimpleName());
                         }
                     }                    
                 }

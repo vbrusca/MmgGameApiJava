@@ -36,7 +36,8 @@ public class MdtWeaponSpear extends MdtWeapon {
         SetAttackType(MdtWeaponAttackType.STABBING);
         SetWidth(subjBack.GetHeight());
         SetHeight(subjBack.GetHeight());
-        SetDamage(2);
+        SetDamage(1);
+        SetAnimTimeMsTotal(250);
     }
     
     /**

@@ -4,7 +4,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 
 /**
- * An MdtBase object that extends the MmgObj class and implements the MdtObj interface.
+ * An MdtBase object that extends the MmgObj class and implements the MdtDesc interface.
  * 
  * @author Victor G. Brusca, Middlemind Games
  * 09/19/2020
@@ -22,8 +22,7 @@ public class MdtBase extends MmgObj implements MdtDesc {
     private MdtObjSubType mdtSubType = MdtObjSubType.NONE;    
     
     /**
-     * 
-     * 
+     * A generic constructor that takes no arguments.
      */
     public MdtBase() {
         

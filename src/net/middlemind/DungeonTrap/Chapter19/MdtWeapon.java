@@ -174,6 +174,8 @@ public class MdtWeapon extends MdtBase {
      */
     public MdtWeapon(MdtChar Holder, MdtWeaponType WeaponType, MdtPlayerType Player) {
         super();
+        SetMdtType(MdtObjType.WEAPON);
+        SetPlayer(Player);
         SetHolder(Holder);
         SetWeaponType(WeaponType);
         SetAttackType(MdtWeaponAttackType.STABBING);
@@ -190,6 +192,8 @@ public class MdtWeapon extends MdtBase {
      */
     public MdtWeapon(MdtChar Holder, MdtWeaponType WeaponType, MdtWeaponAttackType AttackType, MdtPlayerType Player) {
         super();
+        SetMdtType(MdtObjType.WEAPON);
+        SetPlayer(Player);
         SetHolder(Holder);
         SetWeaponType(WeaponType);
         SetAttackType(AttackType);
@@ -197,18 +201,18 @@ public class MdtWeapon extends MdtBase {
     }    
 
     /**
-     * TODO
+     * Gets the player that holds this weapon.
      * 
-     * @return 
+     * @return      The player that holds this weapon.
      */
     public MdtPlayerType GetPlayer() {
         return player;
     }
 
     /**
-     * TODO
+     * Sets the player that holds this weapon.
      * 
-     * @param p 
+     * @param p     The player that holds this weapon. 
      */
     public void SetPlayer(MdtPlayerType p) {
         player = player;
@@ -839,6 +843,16 @@ public class MdtWeapon extends MdtBase {
                     }
 
                     SetPosition(current.GetLeft(), current.GetTop());
+                    coll = screen.CanMove(current, this);
+                    if(coll != null) {
+                        if(coll.GetMdtType() == MdtObjType.ENEMY) {
+                            if(screen != null) {
+                                screen.UpdateProcessWeaponCollision(coll, this, current);
+                                screen.UpdateRemoveObj(this, GetPlayer());
+                            }
+                        }
+                    }
+                
                     if(
                         GetX() < ScreenGame.BOARD_LEFT
                         || GetX() + GetWidth() > ScreenGame.BOARD_RIGHT
@@ -846,7 +860,7 @@ public class MdtWeapon extends MdtBase {
                         || GetY() + GetHeight() > ScreenGame.BOARD_BOTTOM
                     ) {
                         if(screen != null) {
-                            screen.RemoveObj(this);
+                            screen.UpdateRemoveObj(this, GetPlayer());
                         }
                     }
                 }
@@ -863,14 +877,54 @@ public class MdtWeapon extends MdtBase {
     }
         
     /**
+     * An MmgRect instance that represents the visible portion of the weapon.
      * 
-     * 
-     * @return 
+     * @return       An MmgRect instance that represents the visible portion of the weapon.
      */
-    public MmgRect GetWeaponRect() {
+    public MmgRect GetWeaponRect() {        
+        if(attackType == MdtWeaponAttackType.STABBING) {
+            if(holder.dir == MmgDir.DIR_BACK) {
+                src = new MmgRect(0, 0, (int)(subjBack.GetHeight() * animPrctComplete), subjBack.GetWidth());                
+                dst = new MmgRect((holder.GetX() + MmgHelper.ScaleValue(8) + holder.GetWidth()/2 - src.GetWidth()/2)
+                        , (holder.GetY() + MmgHelper.ScaleValue(8) - src.GetHeight())
+                        , (holder.GetY() + MmgHelper.ScaleValue(8))
+                        , (holder.GetX() + MmgHelper.ScaleValue(8) + holder.GetWidth()/2 + src.GetWidth()/2)
+                        );            
+            } else if(holder.dir == MmgDir.DIR_FRONT) {
+                src = new MmgRect(0, subjFront.GetHeight() - (int)(subjFront.GetHeight() * animPrctComplete), subjFront.GetHeight(), subjFront.GetWidth());                
+                dst = new MmgRect((holder.GetX() - MmgHelper.ScaleValue(8) + holder.GetWidth()/2 - src.GetWidth()/2)
+                        , (holder.GetY() - MmgHelper.ScaleValue(12) + holder.GetHeight())
+                        , (holder.GetY() - MmgHelper.ScaleValue(12) + holder.GetHeight() + src.GetHeight())
+                        , (holder.GetX() - MmgHelper.ScaleValue(8) + holder.GetWidth()/2 + src.GetWidth()/2)
+                        );            
+            } else if(holder.dir == MmgDir.DIR_LEFT) {
+                src = new MmgRect(0, 0, subjLeft.GetHeight(), (int)(subjLeft.GetWidth() * animPrctComplete));                
+                dst = new MmgRect((holder.GetX() + MmgHelper.ScaleValue(8) - src.GetWidth())
+                        , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 - src.GetHeight()/2)
+                        , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 + src.GetHeight()/2)
+                        , (holder.GetX() + MmgHelper.ScaleValue(8))
+                        );            
+            } else if(holder.dir == MmgDir.DIR_RIGHT) {
+                src = new MmgRect(subjRight.GetWidth() - (int)(subjRight.GetWidth() * animPrctComplete), 0, subjRight.GetHeight(), subjRight.GetWidth());                
+                dst = new MmgRect((holder.GetX() + holder.GetWidth() - MmgHelper.ScaleValue(8))
+                        , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 - src.GetHeight()/2)
+                        , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 + src.GetHeight()/2)
+                        , (holder.GetX() + holder.GetWidth() - MmgHelper.ScaleValue(8) + src.GetWidth())
+                        );            
+            }            
+        } else if(attackType == MdtWeaponAttackType.THROWING && weaponType == MdtWeaponType.AXE) {
+            if(throwingFrame == 0) {
+                dst = new MmgRect(subjBack.GetX(), subjBack.GetY(), subjBack.GetY() + subjBack.GetHeight(), subjBack.GetX() + subjBack.GetWidth());
+            } else if(throwingFrame == 1) {
+                dst = new MmgRect(subjFront.GetX(), subjFront.GetY(), subjFront.GetY() + subjFront.GetHeight(), subjFront.GetX() + subjFront.GetWidth());                    
+            } else if(throwingFrame == 2) {
+                dst = new MmgRect(subjLeft.GetX(), subjLeft.GetY(), subjLeft.GetY() + subjLeft.GetHeight(), subjLeft.GetX() + subjLeft.GetWidth());                    
+            } else if(throwingFrame == 3) {                     
+                dst = new MmgRect(subjRight.GetX(), subjRight.GetY(), subjRight.GetY() + subjRight.GetHeight(), subjRight.GetX() + subjRight.GetWidth());
+            }
+        }
         return dst;
     }
-    
     
     /**
      * Base draw method, handles drawing this class.
@@ -880,52 +934,25 @@ public class MdtWeapon extends MdtBase {
     @Override
     public void MmgDraw(MmgPen p) {
         if (isVisible == true && active == true) {
+            GetWeaponRect();
             if(attackType == MdtWeaponAttackType.STABBING) {
                 if(holder.dir == MmgDir.DIR_BACK) {
-                    src = new MmgRect(0, 0, (int)(subjBack.GetHeight() * animPrctComplete), subjBack.GetWidth());                
-                    dst = new MmgRect((holder.GetX() + MmgHelper.ScaleValue(8) + holder.GetWidth()/2 - src.GetWidth()/2)
-                                    , (holder.GetY() + MmgHelper.ScaleValue(8) - src.GetHeight())
-                                    , (holder.GetY() + MmgHelper.ScaleValue(8))
-                                    , (holder.GetX() + MmgHelper.ScaleValue(8) + holder.GetWidth()/2 + src.GetWidth()/2)
-                                    );                                        
                     p.DrawBmp(subjBack, src, dst);
                 } else if(holder.dir == MmgDir.DIR_FRONT) {
-                    src = new MmgRect(0, subjFront.GetHeight() - (int)(subjFront.GetHeight() * animPrctComplete), subjFront.GetHeight(), subjFront.GetWidth());                
-                    dst = new MmgRect((holder.GetX() - MmgHelper.ScaleValue(8) + holder.GetWidth()/2 - src.GetWidth()/2)
-                                    , (holder.GetY() - MmgHelper.ScaleValue(12) + holder.GetHeight())
-                                    , (holder.GetY() - MmgHelper.ScaleValue(12) + holder.GetHeight() + src.GetHeight())
-                                    , (holder.GetX() - MmgHelper.ScaleValue(8) + holder.GetWidth()/2 + src.GetWidth()/2)
-                                    );
                     p.DrawBmp(subjFront, src, dst);
                 } else if(holder.dir == MmgDir.DIR_LEFT) {
-                    src = new MmgRect(0, 0, subjLeft.GetHeight(), (int)(subjLeft.GetWidth() * animPrctComplete));                
-                    dst = new MmgRect((holder.GetX() + MmgHelper.ScaleValue(8) - src.GetWidth())
-                                    , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 - src.GetHeight()/2)
-                                    , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 + src.GetHeight()/2)
-                                    , (holder.GetX() + MmgHelper.ScaleValue(8))
-                                    );
                     p.DrawBmp(subjLeft, src, dst);
                 } else if(holder.dir == MmgDir.DIR_RIGHT) {
-                    src = new MmgRect(subjRight.GetWidth() - (int)(subjRight.GetWidth() * animPrctComplete), 0, subjRight.GetHeight(), subjRight.GetWidth());                
-                    dst = new MmgRect((holder.GetX() + holder.GetWidth() - MmgHelper.ScaleValue(8))
-                                    , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 - src.GetHeight()/2)
-                                    , (holder.GetY() + MmgHelper.ScaleValue(8) + holder.GetHeight()/2 + src.GetHeight()/2)
-                                    , (holder.GetX() + holder.GetWidth() - MmgHelper.ScaleValue(8) + src.GetWidth())
-                                    );
                     p.DrawBmp(subjRight, src, dst);
                 }
             } else if(attackType == MdtWeaponAttackType.THROWING && weaponType == MdtWeaponType.AXE) {
                 if(throwingFrame == 0) {
-                    dst = new MmgRect(subjBack.GetX(), subjBack.GetY(), subjBack.GetY() + subjBack.GetHeight(), subjBack.GetX() + subjBack.GetWidth());
                     p.DrawBmp(subjBack);
                 } else if(throwingFrame == 1) {
-                    dst = new MmgRect(subjFront.GetX(), subjFront.GetY(), subjFront.GetY() + subjFront.GetHeight(), subjFront.GetX() + subjFront.GetWidth());                    
                     p.DrawBmp(subjFront);
                 } else if(throwingFrame == 2) {
-                    dst = new MmgRect(subjLeft.GetX(), subjLeft.GetY(), subjLeft.GetY() + subjLeft.GetHeight(), subjLeft.GetX() + subjLeft.GetWidth());                    
                     p.DrawBmp(subjLeft);
-                } else if(throwingFrame == 3) {                     
-                    dst = new MmgRect(subjRight.GetX(), subjRight.GetY(), subjRight.GetY() + subjRight.GetHeight(), subjRight.GetX() + subjRight.GetWidth());
+                } else if(throwingFrame == 3) {
                     p.DrawBmp(subjRight);
                 }             
             }

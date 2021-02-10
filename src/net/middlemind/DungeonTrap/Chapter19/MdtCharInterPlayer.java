@@ -143,6 +143,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
         SetPlayerType(MdtPlayerType.PLAYER_1);        
         SetHealthMax(4);
         SetHealthCurrent(4);
+        weaponCurrent.SetPlayer(GetPlayerType());
     }    
 
     /**
@@ -174,7 +175,14 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * @param mod       The previous player modification. 
      */
     public void SetPrevMod(MdtPlayerModType mod) {
-        prevMod = mod;
+        prevMod = mod;        
+        if(prevMod == MdtPlayerModType.DOUBLE_POINTS) {
+            hasDoublePoints = false;
+        } else if(prevMod == MdtPlayerModType.INVINCIBLE) {
+            hasInvincibility = false;
+        } else if(prevMod == MdtPlayerModType.FULL_HEALTH) {
+            hasFullHealth = false;            
+        }
     }
     
     /**
@@ -389,7 +397,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @param Mod   The player modifier type.
      */
-    public void SetMod(MdtPlayerModType Mod) {
+    public void SetMod(MdtPlayerModType Mod) {        
         SetPrevMod(mod);
         mod = Mod;
     }
@@ -515,7 +523,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
                     }
                 }
 
-                if(prevMod == MdtPlayerModType.INVINCIBLE) {
+                if(prevMod == MdtPlayerModType.INVINCIBLE && mod != MdtPlayerModType.INVINCIBLE) {
                     ClearInvincibilityEffect(subj);
                 }
             }

@@ -2,6 +2,7 @@ package net.middlemind.DungeonTrap.Chapter18;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgObj;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgRect;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 
 /**
@@ -26,24 +27,26 @@ public class ScreenGame {
     public static int GAME_HEIGHT = GAME_BOTTOM - GAME_TOP;
     public static int BOARD_HEIGHT = BOARD_BOTTOM - BOARD_TOP;     
     
-    /**
-     * Converts the given speed to a uniform speed per frame so that the game movement will
-     * be the same even if the game runs at different frame rates.
-     * 
-     * @param speed     The target speed to convert to a speed per frame.
-     * 
-     * @return          A converted speed that represents the speed per frame of the given input speed. 
-     */
     public static int GetSpeedPerFrame(int speed) {
         return (int)(speed/(DungeonTrap.FPS - 4));        
     }
     
-    /**
-     * Removes the specified object from the game screen.
-     * 
-     * @param obj       The object to remove from this game screen.
-     */
     public void RemoveObj(MmgObj obj) {
-        //TODO
+    }
+    
+    public void UpdateRemoveObj(MdtBase obj, MdtPlayerType p) {
+    }
+    
+    public MdtBase CanMove(MmgRect r, MdtBase iO) {
+        return null;
+    }
+    
+    public void UpdateProcessCollision(MdtBase o1, MdtBase o2) {
+    }
+    
+    public void UpdateProcessWeaponCollision(MdtBase o1, MdtBase o2, MmgRect weapon) {
+    }
+    
+    public void UpdateClearPlayerMod(MdtPlayerType p) {
     }
 }

@@ -93,36 +93,36 @@ public class MdtObjPush extends MdtObj {
     }
 
     /**
+     * Gets a boolean indicating if this object should break on the first collision.
      * 
-     * 
-     * @return 
+     * @return      A boolean indicating if this object should break on the first collision. 
      */
     public boolean GetBreakOnFirst() {
         return breakOnFirst;
     }
 
     /**
+     * Sets a boolean indicating if this object should break on the first collision.
      * 
-     * 
-     * @param b 
+     * @param b     A boolean indicating if this object should break on the first collision. 
      */
     public void SetBreakOnFirst(boolean b) {
         breakOnFirst = b;
     }
 
     /**
+     * Gets an MdtPlayerType value indicating which player type pushed this object.
      * 
-     * 
-     * @return 
+     * @return      An MdtPlayerType value indicating which player type pushed this object.
      */
     public MdtPlayerType GetPushedBy() {
         return pushedBy;
     }
 
     /**
+     * Sets an MdtPlayerType value indicating which player type pushed this object.
      * 
-     * 
-     * @param p 
+     * @param p     An MdtPlayerType value indicating which player type pushed this object.
      */
     public void SetPushedBy(MdtPlayerType p) {
         pushedBy = p;

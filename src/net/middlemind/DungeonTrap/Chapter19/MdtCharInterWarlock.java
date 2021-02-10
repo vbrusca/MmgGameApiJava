@@ -27,5 +27,10 @@ public class MdtCharInterWarlock extends MdtCharInter {
     public MdtCharInterWarlock(MmgSprite Subj, int FrameFrontS, int FrameFrontE, int FrameBackS, int FrameBackE, int FrameLeftS, int FrameLeftE, int FrameRightS, int FrameRightE, ScreenGame Screen) {
         super(Subj, FrameFrontS, FrameFrontE, FrameBackS, FrameBackE, FrameLeftS, FrameLeftE, FrameRightS, FrameRightE, Screen, MdtObjType.ENEMY, MdtObjSubType.ENEMY_WARLOCK);
         SetPlayerType(MdtPlayerType.ENEMY);
+        SetHealthMax(3);
+        SetHealthCurrent(3);
+        weaponCurrent.SetPlayer(GetPlayerType());
+        SetMotor(MdtEnemyMotorType.NONE);
+        SetSpeed(ScreenGame.GetSpeedPerFrame(50));
     }
 }
