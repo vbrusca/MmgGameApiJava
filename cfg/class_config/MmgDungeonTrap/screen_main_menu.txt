@@ -4,7 +4,7 @@ bmpMenuItemStartGame1p->mdt_start_game_1p.png
 bmpMenuItemStartGame2p->mdt_start_game_2p.png
 bmpMenuItemExitGame->mdt_exit_game.png
 bmpFooterUrl->mdt_footer_url.png
-version->version:0.0.1
+version->version:1.0.0
 
 menuTitleScale=1.0
 menuTitleOffsetY=-35
