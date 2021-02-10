@@ -1,4 +1,4 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 /**
  * An enumeration that describes a player modifier type.

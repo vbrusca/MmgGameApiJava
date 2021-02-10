@@ -1,4 +1,4 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 /**
  * An enumeration that represents the different doors available for enemies to spawn by on any given level.

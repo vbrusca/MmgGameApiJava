@@ -1,10 +1,9 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 import java.awt.Color;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameType;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
-import net.middlemind.MmgGameApiJava.MmgCore.GenericEventMessage;
 import net.middlemind.MmgGameApiJava.MmgCore.Screen;
 import java.util.Random;
 import net.middlemind.MmgGameApiJava.MmgBase.Mmg9Slice;
@@ -305,17 +304,7 @@ public class ScreenGame extends Screen {
      * A boolean indicating if the player snaps to the front direction.
      */
     public boolean playerSnapToFront = false;    
-    
-    /**
-     * A UI health bar for the player one health.
-     */
-    public MdtUiHealthBar player1HealthBar = null;
-    
-    /**
-     * A UI health bar for the player two health.
-     */
-    public MdtUiHealthBar player2HealthBar = null;    
-    
+       
     /**
      * An MmgBmp images used to represent the source of a sprite matrix.
      */
@@ -410,17 +399,7 @@ public class ScreenGame extends Screen {
      * The game logo to use on the main menu and game board.
      */
     public MmgBmp gameLogo = null;
-    
-    /**
-     * An array of enemy waves.
-     */
-    private MdtEnemyWave[] waves;
-    
-    /**
-     * The current enemy wave.
-     */
-    private MdtEnemyWave wavesCurrent;
-    
+        
     /**
      * The first background torch.
      */
@@ -974,29 +953,11 @@ public class ScreenGame extends Screen {
         txtPlayer1.SetPosition(new MmgVector2(MmgHelper.ScaleValue(30), GAME_BOTTOM - MmgHelper.ScaleValue(8)));       
         AddObj(txtPlayer1);
                 
-        player1HealthBar = new MdtUiHealthBar(MdtPlayerType.PLAYER_1, this, MmgColor.GetRed());
-        player1HealthBar.SetPosition(new MmgVector2(txtPlayer1.GetX() + txtPlayer1.GetWidth() + MmgHelper.ScaleValue(5), GAME_BOTTOM - player1HealthBar.GetHeight() - MmgHelper.ScaleValue(5)));        
-        AddObj(player1HealthBar);        
-        
-        txtPlayer1Score = MmgFontData.CreateDefaultBoldMmgFontSm();
-        txtPlayer1Score.SetText("000000");
-        txtPlayer1Score.SetPosition(new MmgVector2(player1HealthBar.GetX() + player1HealthBar.GetWidth() + MmgHelper.ScaleValue(5), GAME_BOTTOM - MmgHelper.ScaleValue(8)));       
-        AddObj(txtPlayer1Score);        
-                
         txtPlayer2 = MmgFontData.CreateDefaultBoldMmgFontSm();
         txtPlayer2.SetText("Player2:");
         txtPlayer2.SetPosition(new MmgVector2(BOARD_RIGHT - MmgHelper.ScaleValue(250) - txtPlayer2.GetWidth(), GAME_BOTTOM - MmgHelper.ScaleValue(8)));      
         AddObj(txtPlayer2);        
-        
-        player2HealthBar = new MdtUiHealthBar(MdtPlayerType.PLAYER_2, this, MmgColor.GetBlue());
-        player2HealthBar.SetPosition(new MmgVector2(txtPlayer2.GetX() + txtPlayer2.GetWidth() + MmgHelper.ScaleValue(15), GAME_BOTTOM - player2HealthBar.GetHeight() - MmgHelper.ScaleValue(5)));
-        AddObj(player2HealthBar);
-        
-        txtPlayer2Score = MmgFontData.CreateDefaultBoldMmgFontSm();
-        txtPlayer2Score.SetText("000000");
-        txtPlayer2Score.SetPosition(new MmgVector2(player2HealthBar.GetX() + player2HealthBar.GetWidth() + MmgHelper.ScaleValue(5), GAME_BOTTOM - MmgHelper.ScaleValue(8)));       
-        AddObj(txtPlayer2Score);         
-               
+                       
         gameLogo = MmgHelper.GetBasicCachedBmp("mdt_game_title.png");
         gameLogo = MmgBmpScaler.ScaleMmgBmp(gameLogo, 0.28, true);
         gameLogo.SetPosition(new MmgVector2(GAME_RIGHT - MmgHelper.ScaleValue(115), GetY() + MmgHelper.ScaleValue(20)));
@@ -1285,38 +1246,7 @@ public class ScreenGame extends Screen {
         txtCancel.SetIsVisible(false);
         AddObj(txtCancel);        
                 
-        MdtWeaponType[] wps = null;
-        MdtItemType[] itms = null;
-        MdtDoorType[] drs = null;
-        int wLen = WAVE_COUNT;
-        int cnt = 0;
-        waves = new MdtEnemyWave[WAVE_COUNT];
-        
-        MmgHelper.wr("Configure enemy waves (" + wLen + ")...");
-        for(int i = 0; i < wLen; i++) {
-            if(i == 0) {
-                wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR };
-                itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.POTION_RED };
-                drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.RIGHT };                
-            } else if(i >= 3 && i < 6) {
-                wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR, MdtWeaponType.AXE };
-                itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.CHEST };
-                drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.RIGHT, MdtDoorType.LEFT };
-            } else if(i >= 6 && i < 9) {
-                wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR, MdtWeaponType.AXE };
-                itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.CHEST };
-                drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.TOP_RIGHT, MdtDoorType.RIGHT, MdtDoorType.LEFT };
-            } else if(i >= 9 && i < 12) {
-                wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR, MdtWeaponType.AXE, MdtWeaponType.WAND };
-                itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.CHEST, MdtItemType.BOMB };
-                drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.TOP_RIGHT, MdtDoorType.RIGHT, MdtDoorType.LEFT, MdtDoorType.BOTTOM_LEFT, MdtDoorType.BOTTOM_RIGHT };                                
-            }
-            cnt = ((i + 1) * 10);
-            waves[i] = new MdtEnemyWave(i, (((i + 2) * 30) * 1000), 0, 0, ((((i + 1) * 30) * 1000) / cnt), ((int)(cnt * 0.10) + 1), ((int)(cnt * 0.20) + 1), cnt, wps, itms, drs, ((i % 3) + 3), ((i % 3) + 6), ((i % 3) + 3), ((i % 3) + 6));
-            MmgHelper.wr("\n" + waves[i]);
-        }
         wavesCurrentIdx = 0;
-               
         ready = true;
         pause = false;
     }
@@ -1420,10 +1350,8 @@ public class ScreenGame extends Screen {
         classConfig = null;
         exitBground = null;
         txtPlayer1 = null;
-        player1HealthBar = null;
         txtPlayer1Score = null;
         txtPlayer2 = null;
-        player2HealthBar = null;
         txtPlayer2Score = null;
         gameLogo = null;
         txtLevel = null;
@@ -1450,7 +1378,6 @@ public class ScreenGame extends Screen {
         bgroundPopupSrc = null;
         txtOk = null;
         txtCancel = null;
-        waves = null;    
         
         ClearObjs();
         super.UnloadResources();

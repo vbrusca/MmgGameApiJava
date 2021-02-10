@@ -1,4 +1,4 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 import java.util.Hashtable;
 import java.util.Random;

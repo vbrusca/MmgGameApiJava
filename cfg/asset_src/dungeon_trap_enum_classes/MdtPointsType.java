@@ -1,4 +1,4 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 /**
  * An enumeration used to defined the different points available for display.

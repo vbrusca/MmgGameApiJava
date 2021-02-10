@@ -1,4 +1,4 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 /**
  * An enumeration that indicates the type of the current player object.

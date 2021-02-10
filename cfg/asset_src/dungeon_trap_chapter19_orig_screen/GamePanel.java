@@ -1,4 +1,4 @@
-package net.middlemind.DungeonTrap.Chapter19;
+package game.jam.DungeonTrap;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;

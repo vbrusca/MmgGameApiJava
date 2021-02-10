@@ -1,4 +1,4 @@
-package com.middlemind.Odroid_Tutorial3_DungeonTrap;
+package game.jam.DungeonTrap;
 
 import java.util.Random;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
