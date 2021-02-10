@@ -32,8 +32,33 @@ public class MmgCentralMain {
         } else if(args[0] != null && args[0].toLowerCase().equals("mmgapigame")) {
             MmgApiGame.main(Arrays.copyOfRange(args, 1, args.length));
                         
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter13")) {
+            net.middlemind.PongClone.Chapter13.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
+
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter14")) {
+            net.middlemind.PongClone.Chapter14.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
+            
+        } else if(args[0] != null && (args[0].toLowerCase().equals("chapter15") || args[0].toLowerCase().equals("chapter15_completegame"))) {
+            net.middlemind.PongClone.Chapter15_CompleteGame.PongClone.main(Arrays.copyOfRange(args, 1, args.length));
+            
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter16")) {
+            net.middlemind.DungeonTrap.Chapter16.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
+
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter17")) {
+            net.middlemind.DungeonTrap.Chapter17.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
+                       
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter18")) {
+            net.middlemind.DungeonTrap.Chapter18.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+        
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter19")) {
+            net.middlemind.DungeonTrap.Chapter19.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                    
+
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter19_demoscreen")) {
+            net.middlemind.DungeonTrap.Chapter19_DemoScreen.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
+        
         } else {
             MmgTestScreens.main(Arrays.copyOfRange(args, 1, args.length));
+        
         }
     }
 }
