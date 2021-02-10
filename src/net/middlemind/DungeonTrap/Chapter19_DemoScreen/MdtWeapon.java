@@ -58,12 +58,12 @@ public class MdtWeapon extends MdtBase {
     /**
      * The weapon animation current time in milliseconds.
      */
-    public int animTimeMsCurrent = 0;
+    public long animTimeMsCurrent = 0;
     
     /**
      * The weapon animation total time in milliseconds.
      */
-    public int animTimeMsTotal = 500;
+    public long animTimeMsTotal = 500;
     
     /**
      * The weapon animation percent complete.
@@ -108,22 +108,22 @@ public class MdtWeapon extends MdtBase {
     /**
      * The throwing animation cool down time in milliseconds.
      */
-    public int throwingCoolDown = 500;
+    public long throwingCoolDown = 500;
     
     /**
      * The throwing animation current time in milliseconds.
      */
-    public int throwingTimeMsCurrent = 0;
+    public long throwingTimeMsCurrent = 0;
     
     /**
      * The throwing animation's rotation time in milliseconds.
      */
-    public int throwingTimeMsRotation = 200;
+    public long throwingTimeMsRotation = 200;
     
     /**
      * The stabbing animation cool down time in milliseconds.
      */
-    public int stabbingCoolDown = 150;    
+    public long stabbingCoolDown = 150;    
     
     /**
      * The screen this weapon belongs to.
@@ -170,7 +170,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param Holder        The character that is holding the weapon.
      * @param WeaponType    The type of weapon.
-     * @param Player        TODO
+     * @param Player        The character type that is holding the weapon.
      */
     public MdtWeapon(MdtChar Holder, MdtWeaponType WeaponType, MdtPlayerType Player) {
         super();
@@ -188,7 +188,7 @@ public class MdtWeapon extends MdtBase {
      * @param Holder        The character that is holding the weapon.
      * @param WeaponType    The type of weapon.
      * @param AttackType    The attack type of the weapon.
-     * @param Player        TODO
+     * @param Player        The character type that is holding the weapon.
      */
     public MdtWeapon(MdtChar Holder, MdtWeaponType WeaponType, MdtWeaponAttackType AttackType, MdtPlayerType Player) {
         super();
@@ -215,7 +215,7 @@ public class MdtWeapon extends MdtBase {
      * @param p     The player that holds this weapon. 
      */
     public void SetPlayer(MdtPlayerType p) {
-        player = player;
+        player = p;
     }
 
     /**
@@ -367,7 +367,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @return      The current animation time in milliseconds.
      */
-    public int GetAnimTimeMsCurrent() {
+    public long GetAnimTimeMsCurrent() {
         return animTimeMsCurrent;
     }
 
@@ -376,7 +376,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param h     The current animation time in milliseconds.
      */
-    public void SetAnimTimeMsCurrent(int h) {
+    public void SetAnimTimeMsCurrent(long h) {
         animTimeMsCurrent = h;
     }
 
@@ -385,7 +385,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @return      The total animation time in milliseconds.
      */
-    public int GetAnimTimeMsTotal() {
+    public long GetAnimTimeMsTotal() {
         return animTimeMsTotal;
     }
 
@@ -394,7 +394,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param h     The total animation time in milliseconds.
      */
-    public void SetAnimTimeMsTotal(int h) {
+    public void SetAnimTimeMsTotal(long h) {
         animTimeMsTotal = h;
     }
 
@@ -583,7 +583,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @return      The stabbing animation cool down period.
      */
-    public int GetStabbingCoolDown() {
+    public long GetStabbingCoolDown() {
         return stabbingCoolDown;
     }
 
@@ -592,7 +592,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param h     The stabbing animation cool down period.
      */
-    public void SetStabbingCoolDown(int h) {
+    public void SetStabbingCoolDown(long h) {
         stabbingCoolDown = h;
     }
 
@@ -601,7 +601,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @return      The throwing animation cool down period.
      */
-    public int GetThrowingCoolDown() {
+    public long GetThrowingCoolDown() {
         return throwingCoolDown;
     }
 
@@ -610,7 +610,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param h     The throwing animation cool down period.
      */
-    public void SetThrowingCoolDown(int h) {
+    public void SetThrowingCoolDown(long h) {
         throwingCoolDown = h;
     }
 
@@ -619,7 +619,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @return      The current time of the throwing animation.
      */
-    public int GetThrowingTimeMsCurrent() {
+    public long GetThrowingTimeMsCurrent() {
         return throwingTimeMsCurrent;
     }
 
@@ -628,7 +628,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param h     The current time of the throwing animation.
      */
-    public void SetThrowingTimeMsCurrent(int h) {
+    public void SetThrowingTimeMsCurrent(long h) {
         throwingTimeMsCurrent = h;
     }
 
@@ -637,7 +637,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @return      The throwing animation time in milliseconds.
      */
-    public int GetThrowingTimeMsRotation() {
+    public long GetThrowingTimeMsRotation() {
         return throwingTimeMsRotation;
     }
 
@@ -646,7 +646,7 @@ public class MdtWeapon extends MdtBase {
      * 
      * @param h     The throwing animation time in milliseconds.
      */
-    public void SetThrowingTimeMsRotation(int h) {
+    public void SetThrowingTimeMsRotation(long h) {
         throwingTimeMsRotation = h;
     }
 

@@ -177,6 +177,7 @@ public class MdtChar extends MdtBase {
      * A method that applies the specified amount of damage to this character.
      * 
      * @param i     The amount of damage to apply to this character.
+     * @param p     The player who dealt the damage.
      */
     public void TakeDamage(int i, MdtPlayerType p) {
         SetHealthDamagedBy(p);

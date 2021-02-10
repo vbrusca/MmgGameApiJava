@@ -31,6 +31,10 @@ public class MdtObj extends MdtBase {
     
     /**
      * A complex constructor that takes arguments for configuring pertinent class fields.
+     * 
+     * @param Subj          The subject of this object.
+     * @param ObjType       The type of this object.
+     * @param ObjSubType    The sub-type of this object.
      */
     public MdtObj(MmgObj Subj, MdtObjType ObjType, MdtObjSubType ObjSubType) {
         SetSubj(Subj);

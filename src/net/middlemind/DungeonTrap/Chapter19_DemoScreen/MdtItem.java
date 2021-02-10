@@ -124,7 +124,7 @@ public class MdtItem extends MdtBase {
      * @param l     The current display time for this item if it can vanish.
      */
     public void SetDisplayTime(long l) {
-        this.displayTime = l;
+        displayTime = l;
     }
 
     /**
