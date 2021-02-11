@@ -32,12 +32,12 @@ public class MdtCharInterPlayer extends MdtCharInter {
     /**
      * The duration of the full health modifier in milliseconds.
      */
-    public int modTimingFullHealth = 0;
+    public long modTimingFullHealth = 0;
     
     /**
      * The total time the full health modifier is active in milliseconds.
      */
-    public int modTimingFullHealthTotal = 3000;
+    public long modTimingFullHealthTotal = 3000;
     
     /**
      * A boolean indicating that the invincibility modifier is active.
@@ -47,12 +47,12 @@ public class MdtCharInterPlayer extends MdtCharInter {
     /**
      * The invisibility mod's display time.
      */
-    public int modTimingInv = 0;
+    public long modTimingInv = 0;
     
     /**
      * The invisibility mod's total display time.
      */
-    public int modTimingInvTotal = 10000;
+    public long modTimingInvTotal = 10000;
 
     /**
      * A boolean indicating that the double points modifier is active.
@@ -62,12 +62,12 @@ public class MdtCharInterPlayer extends MdtCharInter {
     /**
      * The double points modifier's current display time in milliseconds.
      */
-    public int modTimingDp = 0;
+    public long modTimingDp = 0;
     
     /**
      * The double points modifier's total display time in milliseconds.
      */
-    public int modTimingDpTotal = 15000;
+    public long modTimingDpTotal = 15000;
         
     /**
      * A boolean indicating if this player is pushing an object.
@@ -107,6 +107,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * @param FrameRightS       The right start frame.
      * @param FrameRightE       The right end frame.
      * @param Screen            The game screen this character is on.
+     * @param Player            The player type of this player character.
      */
     public MdtCharInterPlayer(MmgSprite Subj, int FrameFrontS, int FrameFrontE, int FrameBackS, int FrameBackE, int FrameLeftS, int FrameLeftE, int FrameRightS, int FrameRightE, ScreenGame Screen, MdtPlayerType Player) {        
         super(Subj, FrameFrontS, FrameFrontE, FrameBackS, FrameBackE, FrameLeftS, FrameLeftE, FrameRightS, FrameRightE, Screen, MdtObjType.PLAYER, MdtObjSubType.PLAYER_1);
@@ -208,7 +209,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @return      The current duration of time in milliseconds that the full health mod has been active. 
      */
-    public int GetModTimingFullHealth() {
+    public long GetModTimingFullHealth() {
         return modTimingFullHealth;
     }
 
@@ -217,7 +218,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @param i     The current duration of time in milliseconds that the full health mod has been active. 
      */
-    public void SetModTimingFullHealth(int i) {
+    public void SetModTimingFullHealth(long i) {
         modTimingFullHealth = i;
     }
 
@@ -226,7 +227,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @return      The total amount of time in milliseconds that the full health mod is active. 
      */
-    public int GetModTimingFullHealthTotal() {
+    public long GetModTimingFullHealthTotal() {
         return modTimingFullHealthTotal;
     }
 
@@ -235,7 +236,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @param i     The total amount of time in milliseconds that the full health mod is active. 
      */
-    public void SetModTimingFullHealthTotal(int i) {
+    public void SetModTimingFullHealthTotal(long i) {
         modTimingFullHealthTotal = i;
     }
 
@@ -280,7 +281,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @return      The current time duration in milliseconds that the double points mod has been active. 
      */
-    public int GetModTimingDp() {
+    public long GetModTimingDp() {
         return modTimingDp;
     }
 
@@ -289,7 +290,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @param i     The current time duration in milliseconds that the double points mod has been active. 
      */
-    public void SetModTimingDp(int i) {
+    public void SetModTimingDp(long i) {
         modTimingDp = i;
     }
 
@@ -298,7 +299,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @return      The total time in milliseconds that the double points mod is active. 
      */
-    public int GetModTimingDpTotal() {
+    public long GetModTimingDpTotal() {
         return modTimingDpTotal;
     }
 
@@ -307,7 +308,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @param i     The total time in milliseconds that the double points mod is active. 
      */
-    public void SetModTimingDpTotal(int i) {
+    public void SetModTimingDpTotal(long i) {
         modTimingDpTotal = i;
     }
 
@@ -407,7 +408,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @return      The invisibility modifier's game time.
      */
-    public int GetModTimingInv() {
+    public long GetModTimingInv() {
         return modTimingInv;
     }
 
@@ -416,25 +417,25 @@ public class MdtCharInterPlayer extends MdtCharInter {
      * 
      * @param ModTimingInv       The invisibility modifier's game time.
      */
-    public void SetModTimingInv(int i) {
+    public void SetModTimingInv(long i) {
         modTimingInv = i;
     }
 
     /**
      * Gets the invisibility modifier's total game time.
      * 
-     * @return      The invisibility modifier's totalgame time.
+     * @return      The invisibility modifier's total game time.
      */
-    public int GetModTimingInvTotal() {
+    public long GetModTimingInvTotal() {
         return modTimingInvTotal;
     }
 
     /**
      * Sets the invisibility modifier's total game time.
      * 
-     * @param ModTimingInvTotal     The invisibility modifier's totalgame time.
+     * @param ModTimingInvTotal     The invisibility modifier's total game time.
      */
-    public void SetModTimingInvTotal(int i) {
+    public void SetModTimingInvTotal(long i) {
         modTimingInvTotal = i;
     }
         
@@ -498,7 +499,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
                         }
                     } else {
                         modTimingInv = 0;
-                        mod = null;
+                        mod = MdtPlayerModType.NONE;
                         hasInvincibility = false;                    
                         screen.UpdateClearPlayerMod(playerType);
                         ClearInvincibilityEffect(subj);
@@ -509,7 +510,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
                         healthCurrent = healthMax;
                     } else {
                         modTimingFullHealth = 0;
-                        mod = null;
+                        mod = MdtPlayerModType.NONE;
                         hasFullHealth = false;
                         screen.UpdateClearPlayerMod(playerType);
                     }
@@ -517,7 +518,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
                     modTimingDp += msSinceLastFrame;
                     if(modTimingDp > modTimingDpTotal) {
                         modTimingDp = 0;
-                        mod = null;
+                        mod = MdtPlayerModType.NONE;
                         hasDoublePoints = false;
                         screen.UpdateClearPlayerMod(playerType);
                     }

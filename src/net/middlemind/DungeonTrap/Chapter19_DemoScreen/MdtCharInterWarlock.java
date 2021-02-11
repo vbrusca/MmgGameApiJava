@@ -11,7 +11,7 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgSprite;
 public class MdtCharInterWarlock extends MdtCharInter {
     
     /**
-     * MdtEnemyDemon constructor that allows you to specify the sprite animation frames for this character, for all directions.
+     * MdtEnemyWarlock constructor that allows you to specify the sprite animation frames for this character, for all directions.
      * 
      * @param Subj              The subject of the object instance.
      * @param FrameFrontS       The front start frame.

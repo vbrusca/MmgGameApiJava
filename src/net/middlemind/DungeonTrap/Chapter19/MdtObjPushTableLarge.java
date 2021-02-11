@@ -14,7 +14,9 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgSpriteSheet;
 public class MdtObjPushTableLarge extends MdtObjPush {
 
     /**
-     * A basic constructor for the small table class.
+     * A basic constructor for the large table class.
+     * 
+     * @param Screen        The game's ScreenGame class.
      */
     public MdtObjPushTableLarge(ScreenGame Screen) {
         SetSubj(MmgHelper.GetBasicCachedBmp("table_2_lg.png"));
@@ -32,9 +34,11 @@ public class MdtObjPushTableLarge extends MdtObjPush {
     }
     
     /**
-     * A constructor for the small table class that let's you specify the subject.
+     * A constructor for the large table class that let's you specify the subject.
      * 
-     * @param Subj      The subject of the class.  
+     * @param Subj          The subject of the class. 
+     * @param SubjBreaks    The subject break animation.
+     * @param Screen        The game's ScreenGame class.  
      */
     public MdtObjPushTableLarge(MmgBmp Subj, MmgSprite SubjBreaks, ScreenGame Screen) {
         super(Subj, SubjBreaks, MdtObjType.OBJECT, MdtObjSubType.OBJECT_TABLE_1, Screen);

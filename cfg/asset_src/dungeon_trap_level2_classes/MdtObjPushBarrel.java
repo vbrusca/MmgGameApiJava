@@ -15,6 +15,8 @@ public class MdtObjPushBarrel extends MdtObjPush {
        
     /**
      * A basic constructor for the barrel class.
+     * 
+     * @param Screen        The game's ScreenGame class.
      */
     public MdtObjPushBarrel(ScreenGame Screen) {
         SetSubj(MmgHelper.GetBasicCachedBmp("barrel_lg.png"));
@@ -34,7 +36,9 @@ public class MdtObjPushBarrel extends MdtObjPush {
     /**
      * A constructor for the barrel class that let's you specify the subject.
      * 
-     * @param Subj      The subject of the class. 
+     * @param Subj          The subject of the class. 
+     * @param SubjBreaks    The subject break animation.
+     * @param Screen        The game's ScreenGame class.
      */
     public MdtObjPushBarrel(MmgBmp Subj, MmgSprite SubjBreaks, ScreenGame Screen) {
         super(Subj, SubjBreaks, MdtObjType.OBJECT, MdtObjSubType.OBJECT_BARREL, Screen);

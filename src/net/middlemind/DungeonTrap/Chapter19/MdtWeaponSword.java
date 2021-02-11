@@ -16,6 +16,7 @@ public class MdtWeaponSword extends MdtWeapon {
      * 
      * @param Holder        The holder of the weapon.
      * @param WeaponType    The type of weapon held.
+     * @param Player        The type of player that is holding the weapon.
      */
     public MdtWeaponSword(MdtChar Holder, MdtWeaponType WeaponType, MdtPlayerType Player) {
         super(Holder, WeaponType, Player);

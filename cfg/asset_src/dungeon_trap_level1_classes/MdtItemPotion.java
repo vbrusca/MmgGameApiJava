@@ -17,6 +17,10 @@ public class MdtItemPotion extends MdtItem {
         
     /**
      * A basic constructor for the yellow potion class.
+     * 
+     * @param Subj          The subject to use for this potion.
+     * @param PotionType    The potion type to use for this item.
+     * @param Points        The points type to use for this potion.
      */
     public MdtItemPotion(MmgBmp Subj, MdtItemPotionType PotionType, MdtPointsType Points) {
         super(Subj, MdtObjType.ITEM, MdtObjSubType.ITEM_POTION, Points);
