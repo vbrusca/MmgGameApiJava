@@ -3,16 +3,58 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter16/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtWeaponSword.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level2_classes/MdtObjPushBarrel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level2_classes/MdtObjPushTableSmall.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtCharInterBanshee.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtWeaponSword.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtCharInterBanshee.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtCharInterWarlock.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtObjPushTableLarge.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level1_classes/MdtItemPotion.java</file>
             <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter16/DungeonTrap.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter14/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/ScreenMainMenu.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/DungeonTrap.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter15_CompleteGame/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtCharInter.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtItemPotion.java</file>
             <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter13/GamePanel.java</file>
-            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/MainFrame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level2_classes/MdtCharInterWarlock.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter14/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtItemPotionRed.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level1_classes/MdtObjPush.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtChar.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level2_classes/MdtObjPushTableLarge.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtObjPushTableSmall.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtWeaponSpear.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level1_classes/MdtWeaponAxe.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level1_classes/MdtWeaponSword.java</file>
             <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter16/MainFrame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtWeaponSpear.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtObjPushBarrel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtObjPushBarrel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtItemPotionGreen.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtCharInter.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level2_classes/MdtCharInterPlayer.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter15_CompleteGame/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtCharInterPlayer.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtItemPotionYellow.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtObjPush.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level1_classes/MdtCharInter.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/PongClone/Chapter13/PongClone.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/MainFrame.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtWeaponAxe.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level1_classes/MdtWeaponSpear.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtBase.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/asset_src/dungeon_trap_level2_classes/MdtCharInterBanshee.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/ScreenMainMenu.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtObjPush.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/DungeonTrap.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtObjPushTableLarge.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtWeaponAxe.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter16/GamePanel.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtCharInterDemon.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtItemPotion.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19/MdtCharInterPlayer.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter19_DemoScreen/MdtCharInterWarlock.java</file>
+            <file>file:/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/src/net/middlemind/DungeonTrap/Chapter17/GamePanel.java</file>
         </group>
     </open-files>
 </project-private>
