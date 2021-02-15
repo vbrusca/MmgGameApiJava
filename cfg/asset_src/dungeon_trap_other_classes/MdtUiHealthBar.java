@@ -20,7 +20,7 @@ public class MdtUiHealthBar extends MdtBase {
     public MmgBmp subj = null;
     
     /**
-     * 
+     * The background subject of this UI element.
      */
     public MmgBmp subjBack = null;
     
@@ -45,22 +45,26 @@ public class MdtUiHealthBar extends MdtBase {
     private boolean lret = false;    
     
     /**
-     * 
+     * The screen this UI element belongs to.
      */
     public ScreenGame screen = null;
     
     /**
-     * 
+     * The player type this UI health bar is associated with.
      */
     public MdtPlayerType player = MdtPlayerType.NONE;
         
     /**
-     * 
+     * The color of the UI health bar.
      */
     public MmgColor backColor = null;
     
     /**
      * A base constructor that takes no arguments and loads object resources automatically.
+     * 
+     * @param Player        The player type this UI health bar is associated with.
+     * @param Screen        The ScreenGame object this health bar belongs to.
+     * @param BackColor     The background color used to fill in the health bar. 
      */
     public MdtUiHealthBar(MdtPlayerType Player, ScreenGame Screen, MmgColor BackColor) {
         SetSubj(MmgHelper.GetBasicCachedBmp("health_ui_lg.png"));
@@ -78,7 +82,10 @@ public class MdtUiHealthBar extends MdtBase {
     /**
      * A constructor that allows you to specify the subject of the object.
      * 
-     * @param Subj      The subject of the object.
+     * @param Subj          The subject image for this UI health bar.
+     * @param Player        The player type this UI health bar is associated with.       
+     * @param Screen        The ScreenGame object this health bar belongs to.
+     * @param BackColor     The background color used to fill in the health bar.
      */
     public MdtUiHealthBar(MmgBmp Subj, MdtPlayerType Player, ScreenGame Screen, MmgColor BackColor) {
         SetSubj(Subj);
@@ -93,6 +100,11 @@ public class MdtUiHealthBar extends MdtBase {
         SetCurrentHealth(healthMax);
     }
 
+    /**
+     * A method that marks damage on the UI health bar.
+     * 
+     * @param i     The amount of damage to register.
+     */
     public void TakeDamage(int i) {
         healthCurrent -= i;
         if(healthCurrent < 0) {
@@ -102,16 +114,16 @@ public class MdtUiHealthBar extends MdtBase {
     }
     
     /**
-     * 
+     * Resets the UI health bar health to full.
      */
     public void RestoreAllHealth() {
         SetCurrentHealth(healthMax);
     }
     
     /**
+     * Sets the current health bar value.
      * 
-     * 
-     * @param i 
+     * @param i     The health value to set the UI health bar to.
      */
     public void SetCurrentHealth(int i) {
         if(i <= 0) {
@@ -124,73 +136,73 @@ public class MdtUiHealthBar extends MdtBase {
     }
 
     /**
+     * Gets the UI health bar's back color.
      * 
-     * 
-     * @return 
+     * @return      The UI health bar's back color. 
      */
     public MmgColor GetBackColor() {
         return backColor;
     }
 
     /**
+     * Sets the UI health bar's back color.
      * 
-     * 
-     * @param c 
+     * @param c     The UI health bar's back color.
      */
     public void SetBackColor(MmgColor c) {
         backColor = c;
     }
     
     /**
+     * Gets the background subject.
      * 
-     * 
-     * @return 
+     * @return      The background subject. 
      */
     public MmgBmp GetSubjBack() {
         return subjBack;
     }
 
     /**
+     * Sets the background subject.
      * 
-     * 
-     * @param b 
+     * @param b     The background subject. 
      */
     public void SetSubjBack(MmgBmp b) {
         subjBack = b;
     }
 
     /**
+     * Gets the game screen this object belongs to.
      * 
-     * 
-     * @return 
+     * @return      The game screen this object belongs to.
      */
     public ScreenGame GetScreen() {
         return screen;
     }
 
     /**
+     * Sets the game screen this object belongs to.
      * 
-     * 
-     * @param s 
+     * @param s     The game screen this object belongs to.
      */
     public void SetScreen(ScreenGame s) {
         screen = s;
     }
 
     /**
+     * Gets the player type that the UI health bar tracks health for.
      * 
-     * 
-     * @return 
+     * @return      The player type that the UI health bar tracks.
      */
     public MdtPlayerType GetPlayer() {
         return player;
     }
 
     /**
+     * Sets the player type that the UI health bar tracks health for.
      * 
-     * 
-     * @param p 
-     */
+     * @param p     The player type that the UI health bar tracks. 
+     */ 
     public void SetPlayer(MdtPlayerType p) {
         player = p;
     }
@@ -319,7 +331,7 @@ public class MdtUiHealthBar extends MdtBase {
     /**
      * The MmgUpdate method used to call the update method of the child objects.
      * 
-     * @param updateTicks           The update tick number. 
+     * @param updateTick           The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
      * @return                      A boolean indicating if any work was done this game frame.
