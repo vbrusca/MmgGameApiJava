@@ -1,4 +1,4 @@
-package game.jam.DungeonTrap;
+package net.middlemind.DungeonTrap.Chapter20_Phase2;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
