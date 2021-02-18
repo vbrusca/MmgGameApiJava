@@ -1638,5 +1638,11 @@ public class ScreenGame extends Screen {
     
     public boolean GetPlayer2Broken() {
         return false;
+    }
+    
+    private void UpdateResetPlayers() {        
+    }
+    
+    private void UpdateStartEnemyWave(int waveIdx) {        
     }    
 }

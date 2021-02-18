@@ -1,4 +1,4 @@
-package net.middlemind.DungeonTrap.Chapter20_Phase1;
+package game.jam.DungeonTrap;
 
 import java.awt.Color;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
@@ -1407,7 +1407,8 @@ public class ScreenGame extends Screen {
         }                
         wavesCurrentIdx = 0;
         
-        sound1 = MmgHelper.GetBasicCachedSound("jump1.wav");        
+        sound1 = MmgHelper.GetBasicCachedSound("jump1.wav");
+        SetState(State.SHOW_GAME);
         ready = true;
         pause = false;
     }
@@ -1439,31 +1440,6 @@ public class ScreenGame extends Screen {
      */
     public static int GetSpeedPerFrame(int speed) {
         return (int)(speed/(DungeonTrap.FPS - 4));        
-    }
-            
-    /**
-     * A method to handle B button click events from the MainFrame class.
-     * 
-     * @return      A boolean indicating if this Screen has handled the B click event.
-     */    
-    @Override
-    public boolean ProcessBClick(int src) {
-        if(pause || !isVisible) {
-            return false;
-        }        
-        
-        owner.SwitchGameState(GameStates.MAIN_MENU);
-        return true;
-    }
-    
-    /**
-     * A method to handle debug click events from the MainFrame class, the D key on the keyboard.
-     * You can use this method to turn on different debugging helpers.
-     */
-    @Override
-    public void ProcessDebugClick() {
-        randomWaves = !randomWaves;
-        MmgHelper.wr("RandomWaves: " + randomWaves);
     }
 
     /**
@@ -1600,11 +1576,1063 @@ public class ScreenGame extends Screen {
             super.GetObjects().MmgDraw(p);
         }
     }
+    
+    /**
+     * A method to handle A button click events from the MainFrame class.
+     * 
+     * @return      A boolean indicating if this Screen has handled the A click event.
+     */
+    @Override
+    public boolean ProcessAClick(int src) {
+        if(pause || !isVisible) {
+            return false;
+        }
         
-    public void RemoveObj(MmgObj obj) {
+        if(state == State.SHOW_GAME) {
+            if(gameType == GameType.GAME_ONE_PLAYER || gameType == GameType.GAME_TWO_PLAYER) {
+                if(src == ScreenGame.SRC_PLAYER_1) {
+                    if(!player1.isAttacking) {
+                        if(player1.weaponCurrent.attackType == MdtWeaponAttackType.THROWING && player1.weaponCurrent.weaponType == MdtWeaponType.AXE) {                                                
+                            player1.weaponCurrent = player1.weaponCurrent.Clone();
+                            player1.weaponCurrent.SetPosition(GetX() + GetWidth()/2, GetY() + GetHeight()/2);                        
+                            player1.weaponCurrent.current = null;                        
+                            player1.weaponCurrent.throwingPath = MdtWeaponPathType.NONE;
+                            player1.weaponCurrent.screen = this;
+                            AddObj(player1.weaponCurrent);                        
+                        }
+
+                        player1.weaponCurrent.animTimeMsCurrent = 0;
+                        player1.weaponCurrent.animPrctComplete = 0.0d;                    
+                        player1.isAttacking = true;
+                        player1.weaponCurrent.active = true;
+                    }                        
+                } else if(src == ScreenGame.SRC_PLAYER_2) {
+                    if(!player2.isAttacking) {
+                        if(player2.weaponCurrent.attackType == MdtWeaponAttackType.THROWING && player2.weaponCurrent.weaponType == MdtWeaponType.AXE) {                                                
+                            player2.weaponCurrent = player2.weaponCurrent.Clone();
+                            player2.weaponCurrent.SetPosition(GetX() + GetWidth()/2, GetY() + GetHeight()/2);                        
+                            player2.weaponCurrent.current = null;                        
+                            player2.weaponCurrent.throwingPath = MdtWeaponPathType.NONE;
+                            player2.weaponCurrent.screen = this;
+                            AddObj(player2.weaponCurrent);                        
+                        }
+
+                        player2.weaponCurrent.animTimeMsCurrent = 0;
+                        player2.weaponCurrent.animPrctComplete = 0.0d;                    
+                        player2.isAttacking = true;
+                        player2.weaponCurrent.active = true;
+                    }                        
+                }                
+            }
+            return true;                        
+        } else if(state == State.SHOW_GAME_EXIT) {
+            owner.SwitchGameState(GameStates.MAIN_MENU);
+            return true;            
+        } else if(state == State.SHOW_GAME_OVER) {
+            owner.SwitchGameState(GameStates.MAIN_MENU);
+            return true;            
+        }        
+        return false;
+    }
+        
+    /**
+     * A method to handle B button click events from the MainFrame class.
+     * 
+     * @return      A boolean indicating if this Screen has handled the B click event.
+     */    
+    @Override
+    public boolean ProcessBClick(int src) {
+        if(pause || !isVisible) {
+            return false;
+        }        
+        
+        if(state == State.SHOW_GAME_OVER) {
+            owner.SwitchGameState(GameStates.MAIN_MENU);
+            return true;            
+        } else {
+            if(state != State.SHOW_GAME_EXIT) {        
+                SetState(State.SHOW_GAME_EXIT);
+                return true;            
+            } else {
+                SetState(statePrev);
+                return true;
+            }
+        }
     }
     
-    public void UpdateRemoveObj(MdtBase obj, MdtPlayerType p) {
+    /**
+     * A method to handle debug click events from the MainFrame class, the D key on the keyboard.
+     * You can use this method to turn on different debugging helpers.
+     */
+    @Override
+    public void ProcessDebugClick() {
+        randomWaves = !randomWaves;
+        MmgHelper.wr("RandomWaves: " + randomWaves);
+    }
+
+    /**
+     * A method to handle key press events from the MainFrame class.
+     * 
+     * @param c     The character of the key that was pressed on the keyboard.
+     * @return      A boolean indicating if the key press event was handled by this Screen.
+     */
+    @Override
+    public boolean ProcessKeyPress(char c, int code) {
+        if(pause || !isVisible) {
+            return false;
+        }
+
+        if(state == State.SHOW_GAME) {
+            if(gameType == GameType.GAME_TWO_PLAYER) {
+                boolean found = false;
+
+                if(c == 'x' || c == 'X') {
+                    //down
+                    if(player2.GetDir() != MmgDir.DIR_FRONT) {
+                        player2.SetDir(MmgDir.DIR_FRONT);
+                    }
+                    found = true;
+                } else if(c == 's' || c == 'S') {
+                    //up
+                    if(player2.GetDir() != MmgDir.DIR_BACK) {                
+                        player2.SetDir(MmgDir.DIR_BACK);
+                    }
+                    found = true;
+                } else if(c == 'z' || c == 'Z') {
+                    //left
+                    if(player2.GetDir() != MmgDir.DIR_LEFT) { 
+                        player2.SetDir(MmgDir.DIR_LEFT);
+                    }
+                    found = true;
+                } else if(c == 'c' || c == 'C') {
+                    //right
+                    if(player2.GetDir() != MmgDir.DIR_RIGHT) { 
+                        player2.SetDir(MmgDir.DIR_RIGHT);
+                    }
+                    found = true;
+                }
+
+                if(found) {
+                    player2.isMoving = true;
+                    player2.subj.SetMsPerFrame(frameMsPerFrameMoving);
+                }
+            }
+        }
+        
+        return false;        
+    }
+    
+    /**
+     * A method to handle key release events from the MainFrame class.
+     * 
+     * @param c     The character of the key that was released on the keyboard.
+     * @return      A boolean indicating if the key release event was handled by this Screen.
+     */    
+    @Override
+    public boolean ProcessKeyRelease(char c, int code) {
+        if(pause || !isVisible) {
+            return false;
+        }
+        
+        if(state == State.SHOW_GAME_EXIT) {
+            if(gameType == GameType.GAME_TWO_PLAYER) {
+                if(c == 'v' || c == 'V') {                     
+                    ProcessBClick(SRC_PLAYER_2);
+                } else if(c == 'f' || c == 'F') {                     
+                    ProcessAClick(SRC_PLAYER_2);
+                }             
+            }
+
+            if(c == '/' || c == '?') {
+                ProcessBClick(SRC_PLAYER_1);
+            } else if(c == '.' || c == '>') {                     
+                ProcessAClick(SRC_PLAYER_1);
+            }            
+        } else if(state == State.SHOW_GAME) {
+            if(gameType == GameType.GAME_TWO_PLAYER) {
+                boolean found = true;
+                if(c == 'x' || c == 'X') {
+                    //down
+                    found = true;
+                } else if(c == 's' || c == 'S') {
+                    //up
+                    found = true;
+                } else if(c == 'z' || c == 'Z') {
+                    //left
+                    found = true;                    
+                } else if(c == 'c' || c == 'C') {
+                    //right
+                    found = true;
+                } else if(c == 'f' || c == 'F') {
+                    ProcessAClick(SRC_PLAYER_2);
+                } else if(c == 'v' || c == 'V') {                     
+                    ProcessBClick(SRC_PLAYER_2);
+                }
+
+                if(found) {
+                    if(playerSnapToFront == true) {
+                        player2.SetDir(MmgDir.DIR_FRONT);
+                    }
+
+                    player2.isMoving = false;
+                    player2.isPushStart = false;
+                    player2.isPushing = false;
+                    player2.subj.SetMsPerFrame(frameMsPerFrameNotMoving);
+                }
+            }
+            
+            if(c == '.' || c == '>') {                     
+                ProcessAClick(SRC_PLAYER_1);
+            } else if(c == '/' || c == '?') {                     
+                ProcessBClick(SRC_PLAYER_1);
+            }            
+        }
+        return false;       
+    }
+        
+    /**
+     * A method to handle dpad press events from the MainFrame class.
+     * 
+     * @param dir   The dpad code, UP, DOWN, LEFT, RIGHT of the direction that was pressed on the keyboard.
+     * @return      A boolean indicating if the dpad press was handled by this Screen.
+     */
+    @Override
+    public boolean ProcessDpadPress(int dir) {
+        if(pause || !isVisible) {
+            return false;
+        }
+        
+        if(state == State.SHOW_GAME) {
+            if(gameType == GameType.GAME_ONE_PLAYER || gameType == GameType.GAME_TWO_PLAYER) {
+                boolean found = false;
+                
+                if(dir == GameSettings.DOWN_KEYBOARD) {
+                    if(player1.GetDir() != MmgDir.DIR_FRONT) {
+                        player1.SetDir(MmgDir.DIR_FRONT);
+                    }
+                    found = true;
+                    
+                } else if(dir == GameSettings.UP_KEYBOARD) {
+                    if(player1.GetDir() != MmgDir.DIR_BACK) {                
+                        player1.SetDir(MmgDir.DIR_BACK);
+                    }
+                    found = true;
+                    
+                } else if(dir == GameSettings.LEFT_KEYBOARD) {
+                    if(player1.GetDir() != MmgDir.DIR_LEFT) { 
+                        player1.SetDir(MmgDir.DIR_LEFT);
+                    }
+                    found = true;
+                    
+                } else if(dir == GameSettings.RIGHT_KEYBOARD) {  
+                    if(player1.GetDir() != MmgDir.DIR_RIGHT) { 
+                        player1.SetDir(MmgDir.DIR_RIGHT);
+                    }
+                    found = true;
+                }
+
+                if(found) {
+                    player1.isMoving = true;
+                    player1.subj.SetMsPerFrame(frameMsPerFrameMoving);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * A method to handle dpad release events from the MainFrame class.
+     * 
+     * @param dir   The dpad code, UP, DOWN, LEFT, RIGHT of the direction that was released on the keyboard.
+     * @return      A boolean indicating if the dpad release was handled by this Screen.
+     */    
+    @Override
+    public boolean ProcessDpadRelease(int dir) {
+        if(pause || !isVisible) {
+            return false;
+        }        
+        
+        if(state == State.SHOW_GAME) {
+            if(gameType == GameType.GAME_ONE_PLAYER || gameType == GameType.GAME_TWO_PLAYER) {                
+                if(playerSnapToFront == true) {
+                    player1.SetDir(MmgDir.DIR_FRONT);
+                }
+
+                player1.isMoving = false;
+                player1.isPushStart = false;
+                player1.isPushing = false;                
+                player1.subj.SetMsPerFrame(frameMsPerFrameNotMoving);
+                return true;
+            }
+        }
+        return false;
+    }
+        
+    /**
+     * Sets the Screen's current state. The state is used to prepare what MmgObj's are visible for the given state.
+     * 
+     * @param in        The desired State to set the Screen to.
+     */
+    private void SetState(State in) {
+        switch(statePrev) {
+            case NONE:
+                break;
+                
+            case SHOW_GAME:
+                break;
+                
+            case SHOW_COUNT_DOWN:
+                break;
+                
+            case SHOW_COUNT_DOWN_IN_GAME:
+                break;                
+                
+            case SHOW_GAME_OVER:
+                break;
+                
+            case SHOW_GAME_EXIT:
+                break;                
+        }
+        
+        statePrev = state;
+        state = in;
+        
+        switch(state) {
+            case NONE:
+                UpdateHideAllDoors();
+                                
+                numberBground.SetIsVisible(false);
+                
+                player1.SetIsVisible(false);
+                player2.SetIsVisible(false);
+                
+                torch1.SetIsVisible(false);
+                torch2.SetIsVisible(false);
+                torch3.SetIsVisible(false);
+                torch4.SetIsVisible(false);
+                
+                txtLevel.SetIsVisible(false);
+                txtLevelTime.SetIsVisible(false);
+                player1HealthBar.SetIsVisible(false);
+                player2HealthBar.SetIsVisible(false);
+                
+                exit.SetIsVisible(false);
+                exitBground.SetIsVisible(false);
+                gameLogo.SetIsVisible(false);
+                
+                bground.SetIsVisible(false);
+                number1.SetIsVisible(false);
+                number2.SetIsVisible(false);
+                number3.SetIsVisible(false);
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);                
+
+                txtPlayer1.SetIsVisible(false);
+                txtPlayer1Mod.SetIsVisible(false);
+                txtPlayer1ModTime.SetIsVisible(false);
+                txtPlayer1Score.SetIsVisible(false);
+                txtPlayer1Section.SetIsVisible(false);
+                txtPlayer1Weapon.SetIsVisible(false);
+                
+                txtPlayer2.SetIsVisible(false);
+                txtPlayer2Mod.SetIsVisible(false);
+                txtPlayer2ModTime.SetIsVisible(false);
+                txtPlayer2Score.SetIsVisible(false);
+                txtPlayer2Section.SetIsVisible(false);
+                txtPlayer2Weapon.SetIsVisible(false);                
+                
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                txtGameOver3.SetIsVisible(false);
+                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);
+                                
+                pause = false;                
+                isDirty = false;                
+                break;
+            case SHOW_GAME_OVER:
+                UpdateHideAllDoors();                                
+                numberBground.SetIsVisible(false);                
+                player1.SetIsVisible(false);
+                player2.SetIsVisible(false);
+                
+                torch1.SetIsVisible(false);
+                torch2.SetIsVisible(false);
+                torch3.SetIsVisible(false);
+                torch4.SetIsVisible(false);                
+                
+                txtLevel.SetIsVisible(false);
+                txtLevelTime.SetIsVisible(false);
+                player1HealthBar.SetIsVisible(false);
+                player2HealthBar.SetIsVisible(false);
+                
+                exit.SetIsVisible(false);
+                exitBground.SetIsVisible(false);
+                gameLogo.SetIsVisible(false);                
+                
+                bground.SetIsVisible(false);
+                number1.SetIsVisible(false);
+                number2.SetIsVisible(false);
+                number3.SetIsVisible(false);                
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);
+
+                txtPlayer1.SetIsVisible(false);
+                txtPlayer1Mod.SetIsVisible(false);
+                txtPlayer1ModTime.SetIsVisible(false);
+                txtPlayer1Score.SetIsVisible(false);
+                txtPlayer1Section.SetIsVisible(false);
+                txtPlayer1Weapon.SetIsVisible(false);
+                
+                if(player1WeaponBmp != null) {
+                    player1WeaponBmp.SetIsVisible(false);
+                }
+
+                if(player1ModBmp != null) {
+                    player1ModBmp.SetIsVisible(false);
+                }                
+                
+                txtPlayer2.SetIsVisible(false);
+                txtPlayer2Mod.SetIsVisible(false);
+                txtPlayer2ModTime.SetIsVisible(false);
+                txtPlayer2Score.SetIsVisible(false);
+                txtPlayer2Section.SetIsVisible(false);
+                txtPlayer2Weapon.SetIsVisible(false);
+                
+                if(player2WeaponBmp != null) {
+                    player2WeaponBmp.SetIsVisible(false);
+                }
+
+                if(player2ModBmp != null) {
+                    player2ModBmp.SetIsVisible(false);
+                }                                
+                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);                
+                
+                UpdateClearObjects();
+                
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                txtGameOver3.SetIsVisible(false);
+                
+                if(scoreTimeUp) {
+                    txtGameOver3.SetIsVisible(true);
+                } else {
+                    if(gameType == GameType.GAME_TWO_PLAYER) {
+                        if(scorePlayerOne >= scorePlayerTwo) {
+                            txtGameOver1.SetIsVisible(true);
+                        } else {
+                            txtGameOver2.SetIsVisible(true);                    
+                        }
+                    } else {
+                        txtGameOver1.SetIsVisible(true);
+                    }
+                }
+                
+                numberState = NumberState.NONE;                
+                pause = false;
+                isDirty = true;                
+                break;
+            case SHOW_GAME:
+                numberBground.SetIsVisible(false);
+                
+                torch1.SetIsVisible(true);
+                torch2.SetIsVisible(true);
+                torch3.SetIsVisible(true);
+                torch4.SetIsVisible(true);                
+                
+                txtLevel.SetIsVisible(true);
+                txtLevelTime.SetIsVisible(true);
+                exit.SetIsVisible(true);
+                exitBground.SetIsVisible(true);
+                gameLogo.SetIsVisible(true);
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    timeNumberMs = System.currentTimeMillis();
+                }
+                                
+                bground.SetIsVisible(true);
+                number1.SetIsVisible(false);
+                number2.SetIsVisible(false);
+                number3.SetIsVisible(false);
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);
+
+                if(gameType == GameType.GAME_ONE_PLAYER || gameType == GameType.GAME_TWO_PLAYER) {
+                    UpdatePlayerWeapon(player1.playerType, player1.weaponCurrent.weaponType);                                       
+                    txtPlayer1.SetIsVisible(true);
+                    txtPlayer1Mod.SetIsVisible(true);
+                    txtPlayer1ModTime.SetIsVisible(true);
+                    txtPlayer1Score.SetIsVisible(true);
+                    txtPlayer1Section.SetIsVisible(true);
+                    txtPlayer1Weapon.SetIsVisible(true);
+
+                    player1HealthBar.SetIsVisible(true);
+                    player1.SetIsVisible(true);                    
+                    player1.isMoving = false;
+                    player1.isAttacking = false;
+                    player1.isPushStart = false;
+                    player1.isPushing = false;                    
+                }
+                                              
+                if(gameType == GameType.GAME_TWO_PLAYER) {
+                    UpdatePlayerWeapon(player2.playerType, player2.weaponCurrent.weaponType);
+                    txtPlayer2.SetIsVisible(true);
+                    txtPlayer2Mod.SetIsVisible(true);
+                    txtPlayer2ModTime.SetIsVisible(true);
+                    txtPlayer2Score.SetIsVisible(true);
+                    txtPlayer2Section.SetIsVisible(true);
+                    txtPlayer2Weapon.SetIsVisible(true);
+                    
+                    player2HealthBar.SetIsVisible(true);
+                    player2.SetIsVisible(true);
+                    player2.isMoving = false;
+                    player2.isAttacking = false;
+                    player2.isPushStart = false;
+                    player2.isPushing = false;
+                }
+                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                txtGameOver3.SetIsVisible(false);
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    UpdateStartEnemyWave(wavesCurrentIdx);
+                    UpdateResetPlayers();
+                } else {
+                    wavesCurrent.timeStartMs = System.currentTimeMillis();
+                }
+                
+                pause = false;
+                isDirty = true;                
+                break;
+            case SHOW_COUNT_DOWN_IN_GAME:
+                UpdateClearObjects();
+                numberBground.SetIsVisible(true);
+                
+                player1.SetIsVisible(false);
+                player2.SetIsVisible(false);
+                
+                torch1.SetIsVisible(true);
+                torch2.SetIsVisible(true);
+                torch3.SetIsVisible(true);
+                torch4.SetIsVisible(true);
+                
+                txtLevel.SetIsVisible(true);
+                txtLevelTime.SetIsVisible(true);
+                player1HealthBar.SetIsVisible(false);
+                player2HealthBar.SetIsVisible(false);
+                
+                txtPlayer1Score.SetIsVisible(false);
+                txtPlayer2Score.SetIsVisible(false);
+                
+                exit.SetIsVisible(true);
+                exitBground.SetIsVisible(true);
+                gameLogo.SetIsVisible(true);
+                bground.SetIsVisible(true);
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    number1.SetIsVisible(false);
+                    number2.SetIsVisible(false);
+                    number3.SetIsVisible(false);
+                }
+                
+                txtGoal.SetIsVisible(false);                
+                txtDirecP1.SetIsVisible(false);
+                txtDirecP2.SetIsVisible(false);
+                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                txtGameOver3.SetIsVisible(false);
+                
+                txtPlayer1.SetIsVisible(false);
+                txtPlayer2.SetIsVisible(false);
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {
+                    numberState = NumberState.NONE;
+                } else {
+                    timeNumberMs = System.currentTimeMillis();
+                }
+                
+                pause = false;
+                isDirty = true;                
+                break;
+            case SHOW_COUNT_DOWN:
+                UpdateClearObjects();
+                numberBground.SetIsVisible(false);
+                
+                UpdateHideAllDoors();
+
+                player1.SetIsVisible(false);
+                player2.SetIsVisible(false);
+                
+                torch1.SetIsVisible(false);
+                torch2.SetIsVisible(false);
+                torch3.SetIsVisible(false);
+                torch4.SetIsVisible(false);               
+                
+                txtLevel.SetIsVisible(false);
+                txtLevelTime.SetIsVisible(false);
+                player1HealthBar.SetIsVisible(false);
+                player2HealthBar.SetIsVisible(false);
+                
+                exit.SetIsVisible(false);
+                exitBground.SetIsVisible(false);
+                gameLogo.SetIsVisible(false);
+                bground.SetIsVisible(false);
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {                
+                    number1.SetIsVisible(false);
+                    number2.SetIsVisible(false);
+                    number3.SetIsVisible(false);
+                    txtGoal.SetIsVisible(false);                
+                    txtDirecP1.SetIsVisible(false);
+                    txtDirecP2.SetIsVisible(false);
+                }
+                
+                txtPlayer1.SetIsVisible(false);
+                txtPlayer1Mod.SetIsVisible(false);
+                txtPlayer1ModTime.SetIsVisible(false);
+                txtPlayer1Score.SetIsVisible(false);
+                txtPlayer1Section.SetIsVisible(false);
+                txtPlayer1Weapon.SetIsVisible(false);
+                
+                txtPlayer2.SetIsVisible(false);
+                txtPlayer2Mod.SetIsVisible(false);
+                txtPlayer2ModTime.SetIsVisible(false);
+                txtPlayer2Score.SetIsVisible(false);
+                txtPlayer2Section.SetIsVisible(false);
+                txtPlayer2Weapon.SetIsVisible(false);
+                
+                bgroundPopup.SetIsVisible(false);
+                txtOk.SetIsVisible(false);
+                txtCancel.SetIsVisible(false);
+                txtGameOver1.SetIsVisible(false);
+                txtGameOver2.SetIsVisible(false);
+                txtGameOver3.SetIsVisible(false);
+                
+                if(statePrev != State.SHOW_GAME_EXIT) {                
+                    numberState = NumberState.NONE;
+                } else {
+                    timeNumberMs = System.currentTimeMillis();
+                }
+                
+                pause = false;
+                isDirty = true;
+                break;
+            case SHOW_GAME_EXIT:
+                numberBground.SetIsVisible(false);
+                bgroundPopup.SetIsVisible(true);
+                txtOk.SetIsVisible(true);
+                txtCancel.SetIsVisible(true);
+                isDirty = true;                
+                break;                
+        }        
+    }
+    
+    /**
+     * Updates player2's score, left hand paddle.
+     * 
+     * @param score     The score to set for player two.
+     */    
+    private void SetScoreLeftText(int score) {
+        String tmp = score + "";
+        while(tmp.length() < 6) {
+            tmp = "0" + tmp;
+        }
+        txtPlayer1Score.SetText(tmp);
+    }
+    
+    /**
+     * Updates player1's score, right hand paddle.
+     * 
+     * @param score     The score to set for player one.
+     */
+    private void SetScoreRightText(int score) {
+        String tmp = score + "";
+        while(tmp.length() < 6) {
+            tmp = "0" + tmp;
+        }
+        txtPlayer2Score.SetText(tmp);
+    }    
+    
+    /**
+     * Formats the level number based on the default length of two.
+     * 
+     * @param idx   The level number to format.
+     * @return      A formatted level number.
+     */
+    private String FormatLevel(int idx) {
+        String ret = (idx + 1) + "";
+        while(ret.length() < 2) {
+            ret = "0" + ret;
+        }
+        return ret;
+    }
+     
+    /**
+     * Formats the modifier time based on the milliseconds specified.
+     * 
+     * @param ms    The milliseconds specified.
+     * @return      A formatted time.
+     */
+    private String FormatMod(long ms) {
+        String ret = ms + "";
+        while(ret.length() < 4) {
+            ret = "0" + ret;
+        }
+        return ret;
+    }
+    
+    /**
+     * Formats the current time based on the milliseconds and the default length of three.
+     * 
+     * @param ms    The milliseconds to format.
+     * @return      A formatted time.
+     */
+    private String FormatTime(long ms) {        
+        return FormatTime(ms, 3);
+    }    
+    
+    /**
+     * Formats the current time based on the milliseconds and the length specified.
+     * 
+     * @param ms    The milliseconds to format.
+     * @param l     The desired number length.
+     * @return      A formatted time.
+     */
+    private String FormatTime(long ms, int l) {
+        int mul = 1;
+        if(ms < 0) {
+            mul = -1;
+        }
+        ms *= mul;        
+        String ret = (ms / 1000) + "";
+        while(ret.length() < l) {
+            ret = "0" + ret;
+        }
+        
+        if(mul == -1) {
+            ret = "-" + ret;
+        }
+        return ret;
+    } 
+    
+    /**
+     * Clears the modifier image for the given player.
+     * 
+     * @param p     The player to clear modifier image for. 
+     */
+    public void UpdateClearPlayerMod(MdtPlayerType p) {
+        if(p == MdtPlayerType.PLAYER_1) {
+            RemoveObj(player1ModBmp);
+        } else {
+            RemoveObj(player2ModBmp);            
+        }
+    }
+    
+    /**
+     * Updates the modifier HUD UI for the given player and modifier type.
+     * 
+     * @param p     The player for which to apply the modifier HUD UI change.
+     * @param m     The modifier type to apply to the specified player's HUD UI.
+     */
+    private void UpdatePlayerMod(MdtPlayerType p, MdtPlayerModType m) {
+        if(p == MdtPlayerType.PLAYER_1) {
+            RemoveObj(player1ModBmp);
+            
+            if(m == MdtPlayerModType.INVINCIBLE) {
+                MdtItemPotionYellow p3 = new MdtItemPotionYellow();
+                player1ModBmp = p3.GetSubj();
+            } else if(m == MdtPlayerModType.FULL_HEALTH) {
+                MdtItemPotionGreen p2 = new MdtItemPotionGreen();
+                player1ModBmp = p2.GetSubj();                
+            } else if(m == MdtPlayerModType.DOUBLE_POINTS) {
+                MdtItemPotionRed p1 = new MdtItemPotionRed();
+                player1ModBmp = p1.GetSubj();                
+            }
+            
+            if(player1ModBmp != null) {
+                player1ModBmp.SetPosition(txtPlayer1Mod.GetPosition().Clone());
+                player1ModBmp.SetPosition(player1ModBmp.GetPosition().GetX() + txtPlayer1Mod.GetWidth() + MmgHelper.ScaleValue(5), player1ModBmp.GetPosition().GetY() - MmgHelper.ScaleValue(24));
+                player1ModBmp.SetIsVisible(false);
+                AddObj(player1ModBmp);
+            }
+        } else if(p == MdtPlayerType.PLAYER_2) {
+            RemoveObj(player2ModBmp);
+            
+            if(m == MdtPlayerModType.INVINCIBLE) {
+                MdtItemPotionYellow p3 = new MdtItemPotionYellow();
+                player2ModBmp = p3.GetSubj();
+            } else if(m == MdtPlayerModType.FULL_HEALTH) {
+                MdtItemPotionGreen p2 = new MdtItemPotionGreen();
+                player2ModBmp = p2.GetSubj();                 
+            } else if(m == MdtPlayerModType.DOUBLE_POINTS) {
+                MdtItemPotionRed p1 = new MdtItemPotionRed();
+                player2ModBmp = p1.GetSubj();                         
+            }
+            
+            if(player2ModBmp != null) {            
+                player2ModBmp.SetPosition(txtPlayer2Mod.GetPosition().Clone());
+                player2ModBmp.SetPosition(player2ModBmp.GetPosition().GetX() + txtPlayer2Mod.GetWidth() + MmgHelper.ScaleValue(5), player2ModBmp.GetPosition().GetY() - MmgHelper.ScaleValue(24));           
+                player2ModBmp.SetIsVisible(false);
+                AddObj(player2ModBmp);
+            }
+        }          
+    }
+    
+    /**
+     * Updates and configures the player's weapon.
+     * 
+     * @param p     The player to update the weapon for.
+     * @param w     The weapon type to set the weapon to.
+     */
+    public void UpdatePlayerWeapon(MdtPlayerType p, MdtWeaponType w) {
+        if(p == MdtPlayerType.PLAYER_1) {
+            RemoveObj(player1WeaponBmp);
+            if(w == MdtWeaponType.SPEAR) {                
+                player1WeaponBmp = player1.weaponCurrent.subjRight.CloneTyped();
+                player1WeaponBmp.SetPosition(txtPlayer1Weapon.GetPosition().Clone());
+                player1WeaponBmp.SetPosition(player1WeaponBmp.GetPosition().GetX() + txtPlayer1Weapon.GetWidth() + MmgHelper.ScaleValue(5), player1WeaponBmp.GetPosition().GetY() - MmgHelper.ScaleValue(12));
+            } else if(w == MdtWeaponType.SWORD) {
+                player1WeaponBmp = player1.weaponCurrent.subjRight.CloneTyped();
+                player1WeaponBmp.SetPosition(txtPlayer1Weapon.GetPosition().Clone());
+                player1WeaponBmp.SetPosition(player1WeaponBmp.GetPosition().GetX() + txtPlayer1Weapon.GetWidth() + MmgHelper.ScaleValue(5), player1WeaponBmp.GetPosition().GetY() - MmgHelper.ScaleValue(12));                
+            } else if(w == MdtWeaponType.AXE) {
+                player1WeaponBmp = player1.weaponCurrent.subjRight.CloneTyped();
+                player1WeaponBmp.SetPosition(txtPlayer1Weapon.GetPosition().Clone());
+                player1WeaponBmp.SetPosition(player1WeaponBmp.GetPosition().GetX() + txtPlayer1Weapon.GetWidth() + MmgHelper.ScaleValue(5), player1WeaponBmp.GetPosition().GetY() - MmgHelper.ScaleValue(12));                
+            }
+            
+            if(player1WeaponBmp != null) {
+                AddObj(player1WeaponBmp);
+            }            
+        } else if(p == MdtPlayerType.PLAYER_2) {
+            RemoveObj(player2WeaponBmp);
+            if(w == MdtWeaponType.SPEAR) {
+                player2WeaponBmp = player2.weaponCurrent.subjRight.CloneTyped();
+                player2WeaponBmp.SetPosition(txtPlayer2Weapon.GetPosition().Clone());
+                player2WeaponBmp.SetPosition(player2WeaponBmp.GetPosition().GetX() + txtPlayer2Weapon.GetWidth() + MmgHelper.ScaleValue(5), player2WeaponBmp.GetPosition().GetY() - MmgHelper.ScaleValue(12));            
+            } else if(w == MdtWeaponType.SWORD) {
+                player2WeaponBmp = player2.weaponCurrent.subjRight.CloneTyped();
+                player2WeaponBmp.SetPosition(txtPlayer2Weapon.GetPosition().Clone());
+                player2WeaponBmp.SetPosition(player2WeaponBmp.GetPosition().GetX() + txtPlayer2Weapon.GetWidth() + MmgHelper.ScaleValue(5), player2WeaponBmp.GetPosition().GetY() - MmgHelper.ScaleValue(12));                            
+            } else if(w == MdtWeaponType.AXE) {
+                player2WeaponBmp = player2.weaponCurrent.subjRight.CloneTyped();
+                player2WeaponBmp.SetPosition(txtPlayer2Weapon.GetPosition().Clone());
+                player2WeaponBmp.SetPosition(player2WeaponBmp.GetPosition().GetX() + txtPlayer2Weapon.GetWidth() + MmgHelper.ScaleValue(5), player2WeaponBmp.GetPosition().GetY() - MmgHelper.ScaleValue(12));                        
+            }
+            
+            if(player2WeaponBmp != null) {
+                AddObj(player2WeaponBmp);
+            }            
+        }        
+    }    
+    
+    /**
+     * Removes the specified object from the game screen.
+     * 
+     * @param obj       The object to remove from this game screen.
+     */
+    @Override
+    public void RemoveObj(MmgObj obj) {
+        if(obj instanceof MdtBase) {
+            UpdateRemoveObj((MdtBase)obj, MdtPlayerType.NONE); 
+        } else {
+            super.RemoveObj(obj);
+        }
+    }
+    
+    /**
+     * Updates the board by removing the specified object from the base set of objects or the items, objects, or enemies collection.
+     * 
+     * @param obj       The object to remove from the game. 
+     * @param p         The player associated with removing this object.
+     */
+    public void UpdateRemoveObj(MdtBase obj, MdtPlayerType p) {        
+        if(obj.GetMdtType() == MdtObjType.OBJECT) {
+            gameObjects.Remove(obj);
+            if(obj.GetMdtSubType() == MdtObjSubType.OBJECT_BARREL || obj.GetMdtSubType() == MdtObjSubType.OBJECT_TABLE_1 || obj.GetMdtSubType() == MdtObjSubType.OBJECT_TABLE_2) {
+                UpdateAddPoints(obj.GetPosition(), MdtPointsType.PTS_100, p);
+            }
+        } else if(obj.GetMdtType() == MdtObjType.ITEM) {
+            gameItems.Remove(obj);            
+        } else if(obj.GetMdtType() == MdtObjType.ENEMY) {
+            gameEnemies.Remove(obj);
+        } else if(obj.GetMdtType() == MdtObjType.WEAPON) {
+            super.RemoveObj(obj);
+        } else if(obj.GetMdtType() == MdtObjType.PLAYER) {            
+            if(obj.GetMdtSubType() == MdtObjSubType.PLAYER_1) {
+                playersAliveCount--;
+            } else if(obj.GetMdtSubType() == MdtObjSubType.PLAYER_2) {
+                playersAliveCount--;
+            }            
+            super.RemoveObj(obj);            
+        }
+    }
+    
+    /**
+     * Adds points to the board and the specified player's points.
+     * 
+     * @param pos       The position to use to generate the floating points.
+     * @param pts       The points image to display on the board.
+     * @param p         The player associated with the new points.
+     */
+    public void UpdateAddPoints(MmgVector2 pos, MdtPointsType pts, MdtPlayerType p) {
+        MmgBmp ptsBmp  = null;
+        MdtUiPoints ptsUi = null;
+        MmgVector2 posC = null;
+        
+        if(p == MdtPlayerType.PLAYER_1) {
+            if(pts == MdtPointsType.PTS_100) {
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_red_100.png");
+                scorePlayerOne += 100;
+                if(player1.hasDoublePoints) {
+                    scorePlayerOne += 100;
+                }
+                SetScoreLeftText(scorePlayerOne);
+            } else if(pts == MdtPointsType.PTS_250) {
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_red_250.png");
+                scorePlayerOne += 250;
+                if(player1.hasDoublePoints) {
+                    scorePlayerOne += 250;
+                }                
+                SetScoreLeftText(scorePlayerOne);
+            } else if(pts == MdtPointsType.PTS_500) {                
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_red_500.png");
+                scorePlayerOne += 500;
+                if(player1.hasDoublePoints) {
+                    scorePlayerOne += 500;
+                }                
+                SetScoreLeftText(scorePlayerOne);
+            } else if(pts == MdtPointsType.PTS_1000) {                
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_red_1000.png");
+                scorePlayerOne += 1000;
+                if(player1.hasDoublePoints) {
+                    scorePlayerOne += 1000;
+                }                
+                SetScoreLeftText(scorePlayerOne);
+            }
+            
+            ptsUi = new MdtUiPoints(ptsBmp, p, this, pos);
+            AddObj(ptsUi);
+            
+            if(player1.hasDoublePoints) {
+                posC = pos.Clone();
+                posC.SetY(posC.GetY() + ptsBmp.GetHeight());
+                ptsUi = new MdtUiPoints(ptsBmp.CloneTyped(), p, this, posC);
+                AddObj(ptsUi);
+            }
+        } else {
+            if(pts == MdtPointsType.PTS_100) {
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_blue_100.png");
+                scorePlayerTwo += 100;
+                if(player2.hasDoublePoints) {
+                    scorePlayerTwo += 100;
+                }                
+                SetScoreRightText(scorePlayerTwo);
+            } else if(pts == MdtPointsType.PTS_250) {
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_blue_250.png");
+                scorePlayerTwo += 250;
+                if(player2.hasDoublePoints) {
+                    scorePlayerTwo += 250;
+                }                                
+                SetScoreRightText(scorePlayerTwo);
+            } else if(pts == MdtPointsType.PTS_500) {                
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_blue_500.png");
+                scorePlayerTwo += 500;
+                if(player2.hasDoublePoints) {
+                    scorePlayerTwo += 500;
+                }                                
+                SetScoreRightText(scorePlayerTwo);
+            } else if(pts == MdtPointsType.PTS_1000) {                
+                ptsBmp = MmgHelper.GetBasicCachedBmp("pts_blue_1000.png");
+                scorePlayerTwo += 1000;
+                if(player2.hasDoublePoints) {
+                    scorePlayerTwo += 1000;
+                }                                
+                SetScoreRightText(scorePlayerTwo);
+            }
+
+            ptsUi = new MdtUiPoints(ptsBmp, p, this, pos);
+            AddObj(ptsUi);
+            
+            if(player2.hasDoublePoints) {
+                posC = pos.Clone();
+                posC.SetY(posC.GetY() + ptsBmp.GetHeight());
+                ptsUi = new MdtUiPoints(ptsBmp.CloneTyped(), p, this, posC);
+                AddObj(ptsUi);
+            }            
+        }
+    }
+        
+    /**
+     * Updates the board and hides all the doors.
+     */
+    private void UpdateHideAllDoors() {
+        doorTopLeftLocked.SetIsVisible(false);        
+        doorTopLeftOpened.SetIsVisible(false);
+        
+        doorTopRightLocked.SetIsVisible(false);        
+        doorTopRightOpened.SetIsVisible(false);
+        
+        doorLeftLockIcon.SetIsVisible(false);        
+        doorRightLockIcon.SetIsVisible(false);                
+        doorBotLeftLockIcon.SetIsVisible(false);        
+        doorBotRightLockIcon.SetIsVisible(false);       
+    }    
+    
+    /**
+     * Updates the board and locks all the doors.
+     */
+    private void UpdateLockAllDoors() {
+        doorTopLeftLocked.SetIsVisible(true);        
+        doorTopLeftOpened.SetIsVisible(false);
+        
+        doorTopRightLocked.SetIsVisible(true);        
+        doorTopRightOpened.SetIsVisible(false);
+        
+        doorLeftLockIcon.SetIsVisible(true);        
+        doorRightLockIcon.SetIsVisible(true);                
+        doorBotLeftLockIcon.SetIsVisible(true);        
+        doorBotRightLockIcon.SetIsVisible(true);
+    }    
+    
+    /**
+     * Updates the board and unlocks the specified door.
+     * 
+     * @param door      The door specified to unlock. 
+     */
+    private void UpdateUnlockDoor(MdtDoorType d) {
+        if(d == MdtDoorType.TOP_LEFT) {
+            doorTopLeftLocked.SetIsVisible(false);        
+            doorTopLeftOpened.SetIsVisible(true);
+        } else if(d == MdtDoorType.TOP_RIGHT) {
+            doorTopRightLocked.SetIsVisible(false);        
+            doorTopRightOpened.SetIsVisible(true);
+        } else if(d == MdtDoorType.LEFT) {
+            doorLeftLockIcon.SetIsVisible(false);        
+        } else if(d == MdtDoorType.RIGHT) {
+            doorRightLockIcon.SetIsVisible(false);
+        } else if(d == MdtDoorType.BOTTOM_LEFT) {
+            doorBotLeftLockIcon.SetIsVisible(false);
+        } else if(d == MdtDoorType.BOTTOM_RIGHT) {
+            doorBotRightLockIcon.SetIsVisible(false);
+        }        
     }
     
     public MdtBase CanMove(MmgRect r, MdtBase iO) {
@@ -1616,10 +2644,7 @@ public class ScreenGame extends Screen {
     
     public void UpdateProcessWeaponCollision(MdtBase o1, MdtBase o2, MmgRect weapon) {
     }
-    
-    public void UpdateClearPlayerMod(MdtPlayerType p) {
-    }
-    
+        
     public MdtBase UpdateGenerateItem(int x, int y) {
         return null;
     }
@@ -1644,5 +2669,5 @@ public class ScreenGame extends Screen {
     }
     
     private void UpdateStartEnemyWave(int waveIdx) {        
-    }    
+    }
 }
