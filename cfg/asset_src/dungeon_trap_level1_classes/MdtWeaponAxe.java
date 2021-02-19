@@ -61,7 +61,7 @@ public class MdtWeaponAxe extends MdtWeapon {
         } else {
             ret.SetMmgColor(GetMmgColor().Clone());            
         }
-        
+    
         if(GetCurrent() == null) {
             ret.SetCurrent(GetCurrent());
         } else {

@@ -418,7 +418,7 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
     /**
      * The MmgUpdate method used to call the update method of the child objects.
      * 
-     * @param updateTicks           The update tick number. 
+     * @param updateTick            The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
      * @return                      A boolean indicating if any work was done this game frame.

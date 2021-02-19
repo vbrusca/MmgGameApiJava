@@ -55,7 +55,16 @@ public class MmgCentralMain {
 
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter19_demoscreen")) {
             net.middlemind.DungeonTrap.Chapter19_DemoScreen.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
-        
+
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter20_phase1")) {
+            net.middlemind.DungeonTrap.Chapter20_Phase1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter20_phase2")) {
+            net.middlemind.DungeonTrap.Chapter20_Phase2.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+
+        } else if(args[0] != null && (args[0].toLowerCase().equals("chapter20_phase3") || args[0].toLowerCase().equals("chapter20_phase3_completegame"))) {
+            net.middlemind.DungeonTrap.Chapter20_Phase3_CompleteGame.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+            
         } else {
             MmgTestScreens.main(Arrays.copyOfRange(args, 1, args.length));
         

@@ -102,6 +102,8 @@ public class MdtCharInter extends MdtChar {
      * @param FrameRightS       The right start frame.
      * @param FrameRightE       The right end frame.
      * @param Screen            The game screen this character is on.
+     * @param ObjType           The type of this object.
+     * @param ObjSubType        The sub-type of this object.
      */
     public MdtCharInter(MmgSprite Subj, int FrameFrontS, int FrameFrontE, int FrameBackS, int FrameBackE, int FrameLeftS, int FrameLeftE, int FrameRightS, int FrameRightE, ScreenGame Screen, MdtObjType ObjType, MdtObjSubType ObjSubType) {
         super(Subj, FrameFrontS, FrameFrontE, FrameLeftS, FrameLeftE, FrameRightS, FrameRightE, FrameBackS, FrameBackE, Screen, ObjType, ObjSubType);
@@ -125,7 +127,10 @@ public class MdtCharInter extends MdtChar {
      * A method that causes this player to bounce using directions calculated from the initial collision.
      * 
      * @param collPos       The position of the colliding object that causes the bounce.
+     * @param halfWidth     A half width size of the game object that caused the bounce.
+     * @param halfHeight    A half height size of the game object that caused the bounce.
      * @param bounceDir     The direction the colliding object was moving in.
+     * @param BounceBy      The player type that caused the bounce.
      */
     public void Bounce(MmgVector2 collPos, int halfWidth, int halfHeight, int bounceDir, MdtPlayerType BounceBy) {
         bounceDirOrig = bounceDir;
@@ -398,13 +403,12 @@ public class MdtCharInter extends MdtChar {
     public void TakeDamage(int i, MdtPlayerType p) {
         super.TakeDamage(i, p);
         SetBrokenBy(p);
-        //MmgHelper.wr("TakeDamage: " + i + " Health At" + healthCurrent);
     }
     
     /**
      * The MmgUpdate method used to call the update method of the child objects.
      * 
-     * @param updateTicks           The update tick number. 
+     * @param updateTick           The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
      * @return                      A boolean indicating if any work was done this game frame.
@@ -417,7 +421,7 @@ public class MdtCharInter extends MdtChar {
                 subjBreaks.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
                 if(subjBreaks.GetFrameIdx() == subjBreaks.GetFrameStop()) {
                     if(GetPlayerType() == MdtPlayerType.ENEMY && GetRand().nextInt(11) % 2 == 0) {
-                        screen.UpdateGenerateItem(GetX(), GetY());
+                        screen.UpdateGenerateMdtItem(GetX(), GetY());
                     }
                     screen.UpdateRemoveObj(this, brokenBy);
                 }                                                
@@ -459,7 +463,7 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetY(current.GetTop());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
                                         ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
@@ -477,7 +481,7 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetY(current.GetTop());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
                                         ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
@@ -497,7 +501,7 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetX(current.GetLeft());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
                                         ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
@@ -515,7 +519,7 @@ public class MdtCharInter extends MdtChar {
                                     if(coll == null) {
                                         SetX(current.GetLeft());
                                     } else if(coll.GetMdtType() == MdtObjType.PLAYER) {
-                                        ((MdtCharInterPlayer)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
+                                        ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.ENEMY) {
                                         ((MdtCharInter)coll).Bounce(GetPosition(), GetWidth()/2, GetHeight()/2, bounceDirOrig, playerType);
                                     } else if(coll.GetMdtType() == MdtObjType.OBJECT) {
@@ -608,7 +612,7 @@ public class MdtCharInter extends MdtChar {
                                     current.ShiftRect(0, (speed * -1));
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
-                                        subj.SetY(current.GetTop());
+                                        SetY(current.GetTop());
                                     } else {                                        
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -616,14 +620,14 @@ public class MdtCharInter extends MdtChar {
                                         }                                            
                                     }
                                 } else {
-                                    subj.SetY(ScreenGame.BOARD_TOP);
+                                    SetY(ScreenGame.BOARD_TOP);
                                 }
                             } else if(dir == MmgDir.DIR_FRONT) {
                                 if(subj.GetY() + subj.GetHeight() + speed <= ScreenGame.BOARD_BOTTOM) {
                                     current.ShiftRect(0, (speed * 1));
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
-                                        subj.SetY(current.GetTop());
+                                        SetY(current.GetTop());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -631,14 +635,14 @@ public class MdtCharInter extends MdtChar {
                                         }
                                     }
                                 } else {
-                                    subj.SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
+                                    SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
                                 }
                             } else if(dir == MmgDir.DIR_LEFT) {
                                 if(subj.GetX() - speed >= ScreenGame.BOARD_LEFT) {
                                     current.ShiftRect((speed * -1), 0);
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
-                                        subj.SetX(current.GetLeft());
+                                        SetX(current.GetLeft());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -646,14 +650,14 @@ public class MdtCharInter extends MdtChar {
                                         }
                                     }
                                 } else {
-                                    subj.SetX(ScreenGame.BOARD_LEFT);
+                                    SetX(ScreenGame.BOARD_LEFT);
                                 }                        
                             } else if(dir == MmgDir.DIR_RIGHT) {
                                 if(subj.GetX() + subj.GetWidth() + speed <= ScreenGame.BOARD_RIGHT) {
                                     current.ShiftRect((speed * 1), 0);
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {                                
-                                        subj.SetX(current.GetLeft());
+                                        SetX(current.GetLeft());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -661,7 +665,7 @@ public class MdtCharInter extends MdtChar {
                                         }
                                     }
                                 } else {
-                                    subj.SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
+                                    SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
                                 }
                             }
                         }

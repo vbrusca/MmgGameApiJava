@@ -1959,7 +1959,13 @@ public class ScreenGame extends Screen {
      */
     public MdtBase UpdateGenerateMdtItem(int x, int y) {
         if(wavesCurrent != null) {
-            return UpdateGenerateMdtItem(x, y, wavesCurrent.activeItems);
+            MdtItem itm =  UpdateGenerateMdtItem(x, y, wavesCurrent.activeItems);            
+            if(itm != null) {
+                itm.SetScreen(this);
+                itm.SetPosition(x, y);
+                gameItems.Add(itm);
+            } 
+            return itm;
         }
         return null;
     }
@@ -2815,6 +2821,7 @@ public class ScreenGame extends Screen {
     /**
      * A method to handle A button click events from the MainFrame class.
      * 
+     * @param src   The player source of the input.
      * @return      A boolean indicating if this Screen has handled the A click event.
      */
     @Override
@@ -2873,6 +2880,7 @@ public class ScreenGame extends Screen {
     /**
      * A method to handle B button click events from the MainFrame class.
      * 
+     * @param src   The player source of the input.
      * @return      A boolean indicating if this Screen has handled the B click event.
      */    
     @Override
@@ -2909,6 +2917,7 @@ public class ScreenGame extends Screen {
      * A method to handle key press events from the MainFrame class.
      * 
      * @param c     The character of the key that was pressed on the keyboard.
+     * @param code  An alternate key code.
      * @return      A boolean indicating if the key press event was handled by this Screen.
      */
     @Override
@@ -2961,6 +2970,7 @@ public class ScreenGame extends Screen {
      * A method to handle key release events from the MainFrame class.
      * 
      * @param c     The character of the key that was released on the keyboard.
+     * @param code  An alternate key code.
      * @return      A boolean indicating if the key release event was handled by this Screen.
      */    
     @Override
@@ -3654,7 +3664,7 @@ public class ScreenGame extends Screen {
                     txtLevelTime.SetText("Time: " + FormatTime(wavesCurrent.timeTotalMs - wavesCurrent.timeCurrentMs));
                 }
                 
-                if(player1 != null && player1.mod != null) {
+                if(player1 != null && player1.mod != MdtPlayerModType.NONE) {
                     if(player1.mod == MdtPlayerModType.INVINCIBLE) {
                         txtPlayer1Mod.SetText("M: Invinc");
                         txtPlayer1ModTime.SetText("MT: " + FormatMod((player1.modTimingInvTotal - player1.modTimingInv)));
@@ -3673,7 +3683,7 @@ public class ScreenGame extends Screen {
                     txtPlayer1ModTime.SetText("MT: 0000");
                 }
                 
-                if(player2 != null && player2.mod != null) {
+                if(player2 != null && player2.mod != MdtPlayerModType.NONE) {
                     if(player2.mod == MdtPlayerModType.INVINCIBLE) {
                         txtPlayer2Mod.SetText("M: Invinc");
                         txtPlayer2ModTime.SetText("MT: " + FormatMod((player2.modTimingInvTotal - player2.modTimingInv)));
@@ -3836,6 +3846,7 @@ public class ScreenGame extends Screen {
         txtCancel = null;
         waves = null;
         wavesCurrent = null;
+        sound1 = null;
         
         ClearObjs();
         super.UnloadResources();
@@ -3855,7 +3866,7 @@ public class ScreenGame extends Screen {
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = super.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
         if (pause == false && isVisible == true) {
-            if(state == State.SHOW_GAME) {
+            if(state == State.SHOW_GAME) {                
                 if(wavesCurrent != null) {
                     UpdateCurrentEnemyWave(msSinceLastFrame);
                 }

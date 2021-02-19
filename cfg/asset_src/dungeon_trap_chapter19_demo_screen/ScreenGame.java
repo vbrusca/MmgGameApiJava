@@ -1366,6 +1366,7 @@ public class ScreenGame extends Screen {
     /**
      * A method to handle B button click events from the MainFrame class.
      * 
+     * @param src   The player source of the input.
      * @return      A boolean indicating if this Screen has handled the B click event.
      */    
     @Override
@@ -1492,7 +1493,7 @@ public class ScreenGame extends Screen {
    /**
      * The MmgUpdate method used to call the update method of the child objects.
      * 
-     * @param updateTicks           The update tick number. 
+     * @param updateTick            The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
      * @return                      A boolean indicating if any work was done this game frame.
@@ -1521,6 +1522,7 @@ public class ScreenGame extends Screen {
         }
     }
         
+    @Override
     public void RemoveObj(MmgObj obj) {
     }
     

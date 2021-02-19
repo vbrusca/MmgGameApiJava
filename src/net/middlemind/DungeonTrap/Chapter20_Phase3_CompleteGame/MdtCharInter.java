@@ -612,7 +612,7 @@ public class MdtCharInter extends MdtChar {
                                     current.ShiftRect(0, (speed * -1));
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
-                                        subj.SetY(current.GetTop());
+                                        SetY(current.GetTop());
                                     } else {                                        
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -620,14 +620,14 @@ public class MdtCharInter extends MdtChar {
                                         }                                            
                                     }
                                 } else {
-                                    subj.SetY(ScreenGame.BOARD_TOP);
+                                    SetY(ScreenGame.BOARD_TOP);
                                 }
                             } else if(dir == MmgDir.DIR_FRONT) {
                                 if(subj.GetY() + subj.GetHeight() + speed <= ScreenGame.BOARD_BOTTOM) {
                                     current.ShiftRect(0, (speed * 1));
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
-                                        subj.SetY(current.GetTop());
+                                        SetY(current.GetTop());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -635,14 +635,14 @@ public class MdtCharInter extends MdtChar {
                                         }
                                     }
                                 } else {
-                                    subj.SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
+                                    SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
                                 }
                             } else if(dir == MmgDir.DIR_LEFT) {
                                 if(subj.GetX() - speed >= ScreenGame.BOARD_LEFT) {
                                     current.ShiftRect((speed * -1), 0);
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {
-                                        subj.SetX(current.GetLeft());
+                                        SetX(current.GetLeft());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -650,14 +650,14 @@ public class MdtCharInter extends MdtChar {
                                         }
                                     }
                                 } else {
-                                    subj.SetX(ScreenGame.BOARD_LEFT);
+                                    SetX(ScreenGame.BOARD_LEFT);
                                 }                        
                             } else if(dir == MmgDir.DIR_RIGHT) {
                                 if(subj.GetX() + subj.GetWidth() + speed <= ScreenGame.BOARD_RIGHT) {
                                     current.ShiftRect((speed * 1), 0);
                                     coll = screen.CanMove(current, this);
                                     if(coll == null) {                                
-                                        subj.SetX(current.GetLeft());
+                                        SetX(current.GetLeft());
                                     } else {
                                         screen.UpdateProcessCollision(this, coll);
                                         if(playerType == MdtPlayerType.ENEMY) {
@@ -665,7 +665,7 @@ public class MdtCharInter extends MdtChar {
                                         }
                                     }
                                 } else {
-                                    subj.SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
+                                    SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
                                 }
                             }
                         }

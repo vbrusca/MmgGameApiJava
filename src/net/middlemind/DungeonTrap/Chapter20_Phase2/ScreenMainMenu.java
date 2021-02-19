@@ -4,6 +4,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;
 import net.middlemind.MmgGameApiJava.MmgCore.HandleMainMenuEvent;
 import net.middlemind.MmgGameApiJava.MmgCore.GamePanel.GameStates;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgBmp;
+import net.middlemind.MmgGameApiJava.MmgBase.MmgBmpScaler;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgColor;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgFontData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
@@ -14,11 +15,10 @@ import net.middlemind.MmgGameApiJava.MmgBase.MmgScreenData;
 import net.middlemind.MmgGameApiJava.MmgBase.MmgSound;
 
 /**
- * A game screen object, ScreenGame, that extends the MmgGameScreen base
- * class. This class is for testing new UI widgets, etc.
- * Created by Middlemind Games 01/31/2021
- *
+ * The main menu screen of the Mmg Dungeon Trap game.
+ * 
  * @author Victor G. Brusca
+ * 03/22/2020
  */
 public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.ScreenMainMenu {
 
@@ -31,11 +31,11 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * An MmgBmp instance that provides custom menu items for two player games.
      */
     private MmgBmp menuStartGame2P;    
-        
+       
     /**
-     * A private variable used in drawing routine methods.
+     * An internal variable used in private class methods.
      */
-    private boolean lret;
+    private boolean lret;    
     
     /**
      * Constructor, sets the game state associated with this screen, and sets
@@ -58,7 +58,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * Loads all the resources needed to display this game screen.
      */
     @SuppressWarnings("UnusedAssignment")
-    @Override
     public void LoadResources() {
         pause = true;
         SetHeight(MmgScreenData.GetGameHeight());
@@ -70,11 +69,13 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         MmgBmp tB = null;
         MmgPen p;
         String key = "";
+        double scale = 1.0;
         String imgId = "";
         String sndId = "";
         MmgBmp lval = null;
         MmgSound sval = null;
         String file = "";
+        int tmp = 0;
         
         p = new MmgPen();
         p.SetCacheOn(false);
@@ -95,7 +96,9 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         if (tB != null) {
             SetCenteredBackground(tB);
         }
-        
+
+        MmgHelper.wr("Background Image Position: " + GetBackground().GetPosition().ApiToString());
+
         key = "bmpGameTitle";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -107,12 +110,44 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuTitle = lval;
         if (menuTitle != null) {
+            key = "menuTitleScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuTitle = MmgBmpScaler.ScaleMmgBmp(menuTitle, scale, false);
+                }
+            }
+            
             MmgHelper.CenterHor(menuTitle);
             menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(40));
-            menuTitle = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuTitle", menuTitle, classConfig, menuTitle.GetPosition());
+                
+            key = "menuTitlePosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuTitlePosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();                
+                menuTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuTitleOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();                
+                menuTitle.GetPosition().SetY(menuTitle.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuTitleOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();                
+                menuTitle.GetPosition().SetX(menuTitle.GetX() + MmgHelper.ScaleValue(tmp));
+            }            
+            
             AddObj(menuTitle);
         }
-        
+
         key = "bmpGameSubTitle";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -124,12 +159,44 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuSubTitle = lval;
         if (menuSubTitle != null) {
+            key = "menuSubTitleScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuSubTitle = MmgBmpScaler.ScaleMmgBmp(menuTitle, scale, false);
+                }
+            }
+            
             MmgHelper.CenterHor(menuSubTitle);
-            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(10));
-            menuSubTitle = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuSubTitle", menuSubTitle, classConfig, menuSubTitle.GetPosition());
+            menuSubTitle.GetPosition().SetY(menuTitle.GetY() + menuTitle.GetHeight() + MmgHelper.ScaleValue(10));            
+            
+            key = "menuSubTitlePosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuSubTitle.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuSubTitlePosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuSubTitle.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }            
+            
+            key = "menuSubTitleOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuSubTitle.GetPosition().SetY(menuSubTitle.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuSubTitleOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuSubTitle.GetPosition().SetX(menuSubTitle.GetX() + MmgHelper.ScaleValue(tmp));
+            }            
+            
             AddObj(menuSubTitle);
         }        
-                
+        
         key = "bmpMenuItemStartGame1p";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -141,11 +208,42 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuStartGame1P = lval;
         if (menuStartGame1P != null) {
+            key = "menuStartGame1pScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuStartGame1P = MmgBmpScaler.ScaleMmgBmp(menuStartGame1P, scale, false);
+                }
+            }
+            
             MmgHelper.CenterHor(menuStartGame1P);
-            menuStartGame1P.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));
-            menuStartGame1P = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuStartGame1p", menuStartGame1P, classConfig, menuStartGame1P.GetPosition());
+            menuStartGame1P.GetPosition().SetY(menuSubTitle.GetY() + menuSubTitle.GetHeight() + MmgHelper.ScaleValue(10));            
+            
+            key = "menuStartGame1pPosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame1P.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuStartGame1pPosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame1P.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }  
+            
+            key = "menuStartGame1pOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame1P.GetPosition().SetY(menuStartGame1P.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuStartGame1pOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame1P.GetPosition().SetX(menuStartGame1P.GetX() + MmgHelper.ScaleValue(tmp));
+            }         
         }
-        
+                
         key = "bmpMenuItemStartGame2p";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -157,11 +255,42 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuStartGame2P = lval;
         if (menuStartGame2P != null) {
+            key = "menuStartGame2pScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuStartGame2P = MmgBmpScaler.ScaleMmgBmp(menuStartGame2P, scale, false);
+                }
+            }
+            
             MmgHelper.CenterHor(menuStartGame2P);
             menuStartGame2P.GetPosition().SetY(menuStartGame1P.GetY() + menuStartGame1P.GetHeight() + MmgHelper.ScaleValue(10));            
-            menuStartGame2P = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuStartGame2p", menuStartGame2P, classConfig, menuStartGame2P.GetPosition());
+            
+            key = "menuStartGame2pPosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuStartGame2pPosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }  
+            
+            key = "menuStartGame2pOffsetY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetY(menuStartGame2P.GetY() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuStartGame2pOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();
+                menuStartGame2P.GetPosition().SetX(menuStartGame2P.GetX() + MmgHelper.ScaleValue(tmp));
+            }
         }
-                
+        
         key = "bmpMenuItemExitGame";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -173,11 +302,42 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuExitGame = lval;
         if (menuExitGame != null) {
+            key = "menuExitGameScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuExitGame = MmgBmpScaler.ScaleMmgBmp(menuExitGame, scale, false);
+                }
+            }
+            
             MmgHelper.CenterHor(menuExitGame);
             menuExitGame.GetPosition().SetY(menuStartGame2P.GetY() + menuStartGame2P.GetHeight() + MmgHelper.ScaleValue(10));
-            menuExitGame = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuExitGame", menuExitGame, classConfig, menuExitGame.GetPosition());                 
-        }        
                 
+            key = "menuExitGamePosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();                
+                menuExitGame.GetPosition().SetY(GetPosition().GetY() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = "menuExitGamePosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();    
+                menuExitGame.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }
+            
+            key = "menuExitGameOffsetY";
+            if(classConfig.containsKey(key)) { 
+                tmp = classConfig.get(key).number.intValue();    
+                menuExitGame.GetPosition().SetY(menuExitGame.GetY() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = "menuExitGameOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue();    
+                menuExitGame.GetPosition().SetX(menuExitGame.GetX() + MmgHelper.ScaleValue(tmp));
+            }            
+        }        
+        
         key = "bmpFooterUrl";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -189,12 +349,44 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuFooterUrl = lval;
         if (menuFooterUrl != null) {
+            key = "menuFooterUrlScale";
+            if(classConfig.containsKey(key)) {
+                scale = classConfig.get(key).number.doubleValue();
+                if(scale != 1.0) {
+                    menuFooterUrl = MmgBmpScaler.ScaleMmgBmp(menuFooterUrl, scale, false);
+                }
+            }
+            
             MmgHelper.CenterHor(menuFooterUrl);
-            menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));            
-            menuFooterUrl = MmgHelper.ContainsKeyMmgBmpScaleAndPosition("menuFooterUrl", menuFooterUrl, classConfig, menuFooterUrl.GetPosition());            
+            menuFooterUrl.GetPosition().SetY(menuExitGame.GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(10));
+                
+            key = "menuFooterUrlPosY";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue(); 
+                menuFooterUrl.GetPosition().SetY(GetPosition().GetY() + menuExitGame.GetHeight() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = "menuFooterUrlPosX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue(); 
+                menuFooterUrl.GetPosition().SetX(GetPosition().GetX() + MmgHelper.ScaleValue(tmp));
+            }            
+            
+            key = "menuFooterUrlOffsetY";
+            if(classConfig.containsKey(key)) {        
+                tmp = classConfig.get(key).number.intValue(); 
+                menuFooterUrl.GetPosition().SetY(menuFooterUrl.GetY() + MmgHelper.ScaleValue(tmp));                
+            }
+            
+            key = "menuFooterUrlOffsetX";
+            if(classConfig.containsKey(key)) {
+                tmp = classConfig.get(key).number.intValue(); 
+                menuFooterUrl.GetPosition().SetX(menuFooterUrl.GetX() + MmgHelper.ScaleValue(tmp));
+            }            
+            
             AddObj(menuFooterUrl);
         }          
-                
+        
         key = "bmpMenuCursorLeft";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -206,7 +398,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         lval = MmgHelper.GetBasicCachedBmp(imgId);
         menuCursor = lval;
         SetLeftCursor(menuCursor);        
-        
+
         key = "version";
         if(classConfig.containsKey(key)) {
             file = classConfig.get(key).str;
@@ -266,8 +458,8 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * This is the method that handles displaying different game screen text. Calling draw screen
      * prepares the screen for display.
      */
-    @Override
     public void DrawScreen() {
+        //int mainY;
         pause = true;
         menu = new MmgMenuContainer();
         menu.SetMmgColor(null);
@@ -326,7 +518,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
         handleMenuEvent = null;
         classConfig = null;
         
-        super.UnloadResources();
+        super.UnloadResources();        
         
         menu = null;
         ready = false;
@@ -337,7 +529,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      *
      * @return      The game state of this game screen.
      */
-    @Override
     public GameStates GetGameState() {
         return state;
     }
@@ -348,7 +539,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * 
      * @return      A boolean indicating the state of the class' dirty flag.
      */
-    @Override
     public boolean GetIsDirty() {
         return isDirty;
     }
@@ -358,7 +548,6 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * 
      * @param b     A boolean used to set the Screen class' dirty flag.
      */
-    @Override
     public void SetIsDirty(boolean b) {
         isDirty = b;
     }
@@ -377,7 +566,7 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      */
     @Override
     public void MmgDraw(MmgPen p) {
-        if (pause == false && GetIsVisible() == true) {
+        if (pause == false && isVisible == true) {
             super.MmgDraw(p);
         }
     }
@@ -386,11 +575,8 @@ public class ScreenMainMenu extends net.middlemind.MmgGameApiJava.MmgCore.Screen
      * The main update routine responsible for calling DrawnScreen when game updates are processed.
      * 
      * @param updateTick            A value indicating the number of the update call.
-     * 
      * @param currentTimeMs         The current time in ms of the update call.
-     * 
      * @param msSinceLastFrame      The number of ms between this update call and the previous update call.
-     * 
      * @return      A boolean indicating if the update was processed.
      */
     @Override

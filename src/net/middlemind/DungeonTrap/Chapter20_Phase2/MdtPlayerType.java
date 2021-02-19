@@ -1,5 +1,6 @@
 package net.middlemind.DungeonTrap.Chapter20_Phase2;
 
+
 /**
  * An enumeration that indicates the type of the current player object.
  * 

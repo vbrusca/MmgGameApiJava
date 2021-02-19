@@ -2,9 +2,9 @@ package net.middlemind.DungeonTrap.Chapter20_Phase2;
 
 /**
  * An instance of the MainFrame class that extends the MmgCore MainFrame class.
- * Created by Middlemind Games 01/31/2021
  * 
  * @author Victor G. Brusca, Middlemind Games
+ * 02/19/2020
  */
 public class MainFrame extends net.middlemind.MmgGameApiJava.MmgCore.MainFrame {
     

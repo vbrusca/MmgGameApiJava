@@ -86,7 +86,7 @@ public class MdtEnemyWave {
     public int enemyCount;
     
     /**
-     * 
+     * The actual count of enemies to use.
      */
     public int actEnemyCount;
     

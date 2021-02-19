@@ -10,7 +10,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.RunFrameRate;
 
 /**
  * Java swing game that runs on the MmgApi. 
- * Created on 01/31/2021 by Middlemind Games
+ * Created on August 1, 2015, 10:57 PM by Middlemind Games
  * 
  * @author Victor G. Brusca
  */
@@ -34,22 +34,22 @@ public final class DungeonTrap {
     /**
      * The target window width.
      */
-    public static int WIN_WIDTH = 862;
+    public static int WIN_WIDTH = 858;
 
     /**
      * The target window height.
      */
-    public static int WIN_HEIGHT = 604;
+    public static int WIN_HEIGHT = 600;
 
     /**
      * The game panel width.
      */
-    public static int PANEL_WIDTH = 856;
+    public static int PANEL_WIDTH = 854;
 
     /**
      * The game panel height.
      */
-    public static int PANEL_HEIGHT = 598; //416;
+    public static int PANEL_HEIGHT = 596; //416;
 
     /**
      * The game width.
@@ -145,7 +145,7 @@ public final class DungeonTrap {
         } catch(Exception e) {
             MmgHelper.wrErr(e);
         }
-    }    
+    }
     
     /**
      * A static method that loads native libraries that allow access to gamepads and controllers.
@@ -272,7 +272,7 @@ public final class DungeonTrap {
         if(GameSettings.RUN_OS_SPECIFIC_CODE) {
             RunOsSpecificCode();
         }
-        
+                
         if(GameSettings.LOAD_NATIVE_LIBRARIES) {
             LoadNativeLibraries();
         }
@@ -366,7 +366,7 @@ public final class DungeonTrap {
                                 if (f != null) {
                                     System.out.println("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
                                     SetField(ent, f);
-                                }             
+                                }                            
                             }
                         } catch (Exception e) {
                             System.out.println("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
