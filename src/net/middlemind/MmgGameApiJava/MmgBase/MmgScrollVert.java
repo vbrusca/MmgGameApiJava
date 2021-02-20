@@ -1173,16 +1173,16 @@ public class MmgScrollVert extends MmgObj {
      * @return      The Y offset.
      */
     public int GetOffsetY() {
-        return offsetYScrollBarCenterButton;
+        return offsetYScrollPane;
     }
 
     /**
      * Sets the Y offset.
      * 
-     * @param OffsetX       The Y offset.
+     * @param OffsetY       The Y offset.
      */    
     public void SetOffsetY(int OffsetY) {
-        offsetYScrollBarCenterButton = OffsetY;
+        offsetYScrollPane = OffsetY;
     }
         
     /**
@@ -1209,8 +1209,7 @@ public class MmgScrollVert extends MmgObj {
             MmgHelper.wr("Update Source Rect: " + updSrcRect.ApiToString());
             MmgHelper.wr("Update Dest Rect: " + updDstRect.ApiToString());            
             
-            p.DrawBmp(scrollPane, updSrcRect, updDstRect);
-            
+            p.DrawBmp(scrollPane, updSrcRect, updDstRect);            
             isDirty = false;
             return true;
         }

@@ -1805,7 +1805,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @return      The X offset.
      */      
     public int GetOffsetX() {
-        return offsetXScrollBarCenterButton;
+        return offsetXScrollPane;
     }
 
     /**
@@ -1814,7 +1814,7 @@ public class MmgScrollHorVert extends MmgObj {
      * @param OffsetX       The X offset.
      */    
     public void SetOffsetX(int OffsetX) {
-        offsetXScrollBarCenterButton = OffsetX;
+        offsetXScrollPane = OffsetX;
     }
        
     /**
@@ -1823,16 +1823,16 @@ public class MmgScrollHorVert extends MmgObj {
      * @return      The Y offset.
      */      
     public int GetOffsetY() {
-        return offsetYScrollBarCenterButton;
+        return offsetYScrollPane;
     }
 
     /**
      * Sets the Y offset.
      * 
-     * @param OffsetX       The Y offset.
+     * @param OffsetY       The Y offset.
      */    
     public void SetOffsetY(int OffsetY) {
-        offsetYScrollBarCenterButton = OffsetY;
+        offsetYScrollPane = OffsetY;
     }    
     
     /**

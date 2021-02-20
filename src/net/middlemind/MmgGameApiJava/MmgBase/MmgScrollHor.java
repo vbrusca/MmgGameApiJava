@@ -598,6 +598,7 @@ public class MmgScrollHor extends MmgObj {
      * @param x     The X coordinate of the position.
      * @param y     The Y coordinate of the position.
      */
+    @Override
     public void SetPosition(int x, int y) {
         SetPosition(new MmgVector2(x, y));
     }
@@ -1151,7 +1152,7 @@ public class MmgScrollHor extends MmgObj {
      * @return      The X offset.
      */    
     public int GetOffsetX() {
-        return offsetXScrollBarCenterButton;
+        return offsetXScrollPane;
     }
 
     /**
@@ -1160,7 +1161,7 @@ public class MmgScrollHor extends MmgObj {
      * @param OffsetX       The X offset.
      */
     public void SetOffsetX(int OffsetX) {
-        offsetXScrollBarCenterButton = OffsetX;
+        offsetXScrollPane = OffsetX;
     }
         
     /**
