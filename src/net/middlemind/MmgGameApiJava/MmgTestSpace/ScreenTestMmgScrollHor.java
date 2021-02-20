@@ -251,7 +251,9 @@ public class ScreenTestMmgScrollHor extends MmgGameScreen implements GenericEven
     public boolean ProcessMouseRelease(MmgVector2 v, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollHor.ProcessScreenRelease");
         if(scrollHor != null) {
-           return scrollHor.ProcessScreenClick(v.GetX(), v.GetY());
+           scrollHor.ProcessScreenClick(v.GetX(), v.GetY());
+           isDirty = true;
+           return true;
         }
         return false;        
     }
@@ -267,7 +269,9 @@ public class ScreenTestMmgScrollHor extends MmgGameScreen implements GenericEven
     public boolean ProcessMouseRelease(int x, int y, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollHor.ProcessScreenRelease");
         if(scrollHor != null) {
-           return scrollHor.ProcessScreenClick(x, y);
+           scrollHor.ProcessScreenClick(x, y);
+           isDirty = true;
+           return true;
         }
         return false;
     }

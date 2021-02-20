@@ -84,7 +84,7 @@ public final class MmgTestScreens {
     /**
      * A static class field that holds a numeric value indicating which test to run, can be set via command line argument - TEST=X - where X is some integer.
      */
-    public static String TEST_TO_RUN = "2";
+    public static String TEST_TO_RUN = "15";
     
     /**
      * Method that searches an array for a string match.

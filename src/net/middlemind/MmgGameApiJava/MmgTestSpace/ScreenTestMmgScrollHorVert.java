@@ -251,7 +251,9 @@ public class ScreenTestMmgScrollHorVert extends MmgGameScreen implements Generic
     public boolean ProcessMouseRelease(MmgVector2 v, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollHorVert.ProcessScreenRelease");
         if(scrollBoth != null) {
-           return scrollBoth.ProcessScreenClick(v.GetX(), v.GetY());
+           scrollBoth.ProcessScreenClick(v.GetX(), v.GetY());
+           isDirty = true;
+           return true;
         }
         return false;        
     }
@@ -267,7 +269,9 @@ public class ScreenTestMmgScrollHorVert extends MmgGameScreen implements Generic
     public boolean ProcessMouseRelease(int x, int y, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollHorVert.ProcessScreenRelease");
         if(scrollBoth != null) {
-           return scrollBoth.ProcessScreenClick(x, y);
+           scrollBoth.ProcessScreenClick(x, y);
+           isDirty = true;
+           return true;           
         }
         return false;
     }

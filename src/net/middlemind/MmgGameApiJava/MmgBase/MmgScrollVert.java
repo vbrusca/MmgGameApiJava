@@ -189,7 +189,7 @@ public class MmgScrollVert extends MmgObj {
     /**
      * An MmgRect used in the MmgUpdate method.
      */    
-    private MmgRect updDestRect;
+    private MmgRect updDstRect;
     
     /**
      * A Color object used in the bounding box drawing of the MmgDraw method.
@@ -451,7 +451,7 @@ public class MmgScrollVert extends MmgObj {
                         
         if(scrollPaneHeight - viewPortHeight > 0) {            
             heightDiff = H - scrollNotchTravel;
-            heightDiffPrct = intervalPrctViewPort;                        
+            heightDiffPrct = intervalPrctScrollPane;                        
             scrollBarVisible = true;            
         } else {
             heightDiff = 0;
@@ -648,26 +648,24 @@ public class MmgScrollVert extends MmgObj {
         MmgHelper.wr("====================MmgScrollVert: IPT: " + intervalPrctScrollPane);
         MmgHelper.wr("====================MmgScrollVert: IPS2: " + heightDiffPrct);
         MmgHelper.wr("====================MmgScrollVert: C%: " + currentPrct);
-        MmgHelper.wr("====================MmgScrollVert: IntY: " + intervalY);         
+        MmgHelper.wr("====================MmgScrollVert: IntY: " + intervalY);
                 
         if(scrollBarVisible && dir == MmgDir.DIR_BACK) {
-            if(offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight) {
-                if(currentPrct - heightDiffPrct < 0.0) {
-                    currentPrct = 0.0;
-                } else {
-                    currentPrct -= heightDiffPrct;
-                }
-                
-                if(currentPrct >= -0.001 && currentPrct <= 0.001) {
-                    currentPrct = 0.0;
-                }
-                
-                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+            if(currentPrct - heightDiffPrct < 0.0) {
+                currentPrct = 0.0;
             } else {
-                offsetYScrollBarCenterButton = 0;
-                offsetYScrollPane = 0; 
+                currentPrct -= heightDiffPrct;
             }
+
+            if(currentPrct >= -0.002 && currentPrct <= 0.002) {
+                currentPrct = 0.0;
+            }
+
+            offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+            offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+
+            MmgHelper.wr("====================MmgScrollVert: offsetYScrollBarCenterButton: " + offsetYScrollBarCenterButton);              
+            MmgHelper.wr("====================MmgScrollVert: offsetYScrollPane: " + offsetYScrollPane);
             
             if(clickUp != null) {
                 clickUp.Fire();
@@ -676,23 +674,21 @@ public class MmgScrollVert extends MmgObj {
             isDirty = true;
             return true;  
         } else if(scrollBarVisible && dir == MmgDir.DIR_FRONT) {
-            if(scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight) {
-                if(currentPrct + heightDiffPrct > 1.0) {
-                    currentPrct = 1.0;
-                } else {
-                    currentPrct += heightDiffPrct;                    
-                }
-                                
-                if(currentPrct >= 0.998 && currentPrct <= 1.001) {
-                    currentPrct = 1.0;
-                }                
-                
-                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+            if(currentPrct + heightDiffPrct > 1.0) {
+                currentPrct = 1.0;
             } else {
-                offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
-                offsetYScrollPane = heightDiff;  
+                currentPrct += heightDiffPrct;                    
             }
+
+            if(currentPrct >= 0.998 && currentPrct <= 1.002) {
+                currentPrct = 1.0;
+            }                
+
+            offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+            offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+
+            MmgHelper.wr("====================MmgScrollVert: offsetYScrollBarCenterButton: " + offsetYScrollBarCenterButton);              
+            MmgHelper.wr("====================MmgScrollVert: offsetYScrollPane: " + offsetYScrollPane);                
             
             if(clickDown != null) {
                 clickDown.Fire();
@@ -701,7 +697,6 @@ public class MmgScrollVert extends MmgObj {
             isDirty = true;            
             return true;            
         }
-        
         return false;
     }
     
@@ -729,10 +724,10 @@ public class MmgScrollVert extends MmgObj {
         double intervalPrctViewPort = (double)intervalY / (double)scrollNotchTravel;        
         //IPS = I / T
         double intervalPrctScrollPane = (double)intervalY / (double)scrollPaneTravel;                
-        double currentPrct = (double)offsetYScrollBarCenterButton / (double)scrollNotchTravel;
+        double currentPrct = (double)offsetYScrollPane / (double)scrollPaneTravel;
 
-        MmgHelper.wr("====================MmgScrollVert: h: " + h);
-        MmgHelper.wr("====================MmgScrollVert: H: " + H);
+        MmgHelper.wr("====================MmgScrollVert: VPh: " + h);
+        MmgHelper.wr("====================MmgScrollVert: SPH: " + H);
         MmgHelper.wr("====================MmgScrollVert: B: " + buttonHeight);
         MmgHelper.wr("====================MmgScrollVert: S: " + scrollNotchTravel);
         MmgHelper.wr("====================MmgScrollVert: T: " + scrollPaneTravel);        
@@ -744,56 +739,47 @@ public class MmgScrollVert extends MmgObj {
         MmgHelper.wr("====================MmgScrollVert: IntY: " + intervalY);                
                 
         if(MmgHelper.RectCollision(x, y, viewPortRect)) {
+            MmgHelper.wr("====================AAA");
             if(clickScreen != null) {
                 clickScreen.SetExtra(new MmgVector2(x, y));                
                 clickScreen.Fire();
             }
             ret = true;
-                                    
         }else if(scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarUpButtonRect)) {
-            if(offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight) {
-                if(currentPrct - heightDiffPrct < 0.0) {
-                    currentPrct = 0.0;
-                } else {
-                    currentPrct -= heightDiffPrct;
-                }
-                
-                if(currentPrct >= -0.001 && currentPrct <= 0.001) {
-                    currentPrct = 0.0;
-                }
-                
-                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+            MmgHelper.wr("====================BBB");
+            if(currentPrct - heightDiffPrct < 0.0) {
+                currentPrct = 0.0;
             } else {
-                offsetYScrollBarCenterButton = 0;
-                offsetYScrollPane = 0; 
+                currentPrct -= heightDiffPrct;
             }
+
+            if(currentPrct >= -0.002 && currentPrct <= 0.002) {
+                currentPrct = 0.0;
+            }
+
+            offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+            offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
             
             if(clickUp != null) {
                 clickUp.Fire();
             }            
             
             isDirty = true;
-            ret = true;
-            
-        }else if(scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarDownButtonRect)) {            
-            if(scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight) {
-                if(currentPrct + heightDiffPrct > 1.0) {
-                    currentPrct = 1.0;
-                } else {
-                    currentPrct += heightDiffPrct;                    
-                }
-                                
-                if(currentPrct >= 0.998 && currentPrct <= 1.001) {
-                    currentPrct = 1.0;
-                }                
-                
-                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+            ret = true;            
+        }else if(scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarDownButtonRect)) {
+            MmgHelper.wr("====================CCC");
+            if(currentPrct + heightDiffPrct > 1.0) {
+                currentPrct = 1.0;
             } else {
-                offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
-                offsetYScrollPane = heightDiff;  
+                currentPrct += heightDiffPrct;                    
             }
+
+            if(currentPrct >= 0.998 && currentPrct <= 1.002) {
+                currentPrct = 1.0;
+            }                
+
+            offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+            offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
             
             if(clickDown != null) {
                 clickDown.Fire();
@@ -801,9 +787,7 @@ public class MmgScrollVert extends MmgObj {
             
             isDirty = true;
             ret = true;
-                        
-        }
-        
+        }        
         return ret;
     }
     
@@ -1210,6 +1194,7 @@ public class MmgScrollVert extends MmgObj {
      * @return                      A boolean indicating if any work was done.
      */
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
+        MmgHelper.wr("MmgScrollVert: MmgUpdate: " + isVisible + ", " + isDirty);
         if(isVisible == true && isDirty == true) {
             scrollBarCenterButtonRect.SetPosition(new MmgVector2(scrollBarCenterButtonRect.GetLeft(), GetY() + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
             scrollPaneRect.SetPosition(new MmgVector2(scrollPaneRect.GetLeft(), GetY() - offsetYScrollPane));
@@ -1218,9 +1203,13 @@ public class MmgScrollVert extends MmgObj {
                 scrollBarCenterButton.SetPosition(scrollBarCenterButtonRect.GetPosition());                    
             }
 
-            updSrcRect = new MmgRect(0, offsetYScrollBarCenterButton, offsetYScrollBarCenterButton + viewPortRect.GetHeight(), viewPortRect.GetWidth());            
-            updDestRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
-            p.DrawBmp(scrollPane, updSrcRect, updDestRect);
+            updSrcRect = new MmgRect(0, offsetYScrollPane, offsetYScrollPane + viewPortRect.GetHeight(), viewPortRect.GetWidth());            
+            updDstRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
+            
+            MmgHelper.wr("Update Source Rect: " + updSrcRect.ApiToString());
+            MmgHelper.wr("Update Dest Rect: " + updDstRect.ApiToString());            
+            
+            p.DrawBmp(scrollPane, updSrcRect, updDstRect);
             
             isDirty = false;
             return true;

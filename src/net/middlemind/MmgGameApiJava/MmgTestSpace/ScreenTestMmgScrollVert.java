@@ -251,7 +251,9 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
     public boolean ProcessMouseRelease(MmgVector2 v, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
         if(scrollVert != null) {
-           return scrollVert.ProcessScreenClick(v.GetX(), v.GetY());
+           scrollVert.ProcessScreenClick(v.GetX(), v.GetY());
+           isDirty = true;
+           return true;
         }
         return false;
     }
@@ -267,7 +269,9 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
     public boolean ProcessMouseRelease(int x, int y, int btnIndex) {
         MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
         if(scrollVert != null) {
-           return scrollVert.ProcessScreenClick(x, y);
+           scrollVert.ProcessScreenClick(x, y);
+           isDirty = true;
+           return true;           
         }
         return false;
     }
@@ -355,7 +359,7 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
      */    
     @Override
     public boolean ProcessMouseClick(MmgVector2 v) {
-        MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenClick");        
+        MmgHelper.wr("ScreenTestMmgScrollVert.ProcessMouseClick");        
         return ProcessMouseClick(v.GetX(), v.GetY());
     }
 
@@ -369,7 +373,7 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
      */    
     @Override
     public boolean ProcessMouseClick(int x, int y) {
-        MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenClick");
+        MmgHelper.wr("ScreenTestMmgScrollVert.ProcessMouseClick");
         scrollVert.ProcessScreenClick(x, y);
         isDirty = true;
         return true;
@@ -427,6 +431,8 @@ public class ScreenTestMmgScrollVert extends MmgGameScreen implements GenericEve
     public boolean MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame) {
         lret = false;
 
+        MmgHelper.wr("ScreenTestMmgScrollVert: MmgUpdate: " + isVisible + ", " + isDirty);
+        
         if (pause == false && isVisible == true) {            
             if (isDirty == true) {
                 super.GetObjects().SetIsDirty(true);            
