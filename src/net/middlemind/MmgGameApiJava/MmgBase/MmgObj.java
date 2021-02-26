@@ -36,7 +36,7 @@ public class MmgObj {
     /**
      * The version of this MmgApi.
      */
-    private String version = "1.0.7";
+    private String version = "1.0.8";
 
     /**
      * Flag indicating if this MmgObj has a parent container.
@@ -488,6 +488,15 @@ public class MmgObj {
      */
     public MmgObj GetParent() {
         return parent;
+    }
+    
+    /**
+     * Gets an MmgRect representation of the current object.
+     * 
+     * @return  An MmgRect representation of the current object. 
+     */
+    public MmgRect GetCurrentRect() {
+        return new MmgRect(GetX(), GetY(), GetY() + GetHeight(), GetX() + GetWidth());
     }
     
     /**
