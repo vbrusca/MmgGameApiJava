@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter15_CompleteGame;
+package net.middlemind.PongClone.Chapter17;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;
@@ -16,12 +16,7 @@ import net.middlemind.MmgGameApiJava.MmgCore.ScreenSplash;
  * @author Victor G. Brusca, Middlemind Games
  */
 public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
-    
-    /**
-     * The Screen responsible for drawing the game.
-     */
-    public ScreenGame screenGame;
-    
+        
     /**
      * The Screen responsible for drawing the main menu.
      */
@@ -42,7 +37,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
         super(Mf, WinWidth, WinHeight, X, Y, GameWidth, GameHeight);
         screenSplash.SetGenericEventHandler(this);
         screenLoading.SetGenericEventHandler(this);
-        screenGame = new ScreenGame(GameStates.MAIN_GAME, this);
         screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
     }
         
@@ -79,7 +73,6 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
             screenLoading.Pause();
             screenLoading.SetIsVisible(false);
             screenLoading.UnloadResources();
-            MmgHelper.wr("Hiding LOADING screen DONE.");
                         
         } else if (prevGameState == GameStates.MAIN_MENU) {
             MmgHelper.wr("Hiding MAIN_MENU screen.");
@@ -89,15 +82,15 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
 
         } else if (prevGameState == GameStates.MAIN_GAME_1P || prevGameState == GameStates.MAIN_GAME) {
             MmgHelper.wr("Hiding MAIN GAME 1P screen.");
-            screenGame.Pause();
-            screenGame.SetIsVisible(false);
-            screenGame.UnloadResources();
+            //screenGame.Pause();
+            //screenGame.SetIsVisible(false);
+            //screenGame.UnloadResources();
 
         } else if (prevGameState == GameStates.MAIN_GAME_2P) {
             MmgHelper.wr("Hiding MAIN GAME 2P screen.");
-            screenGame.Pause();
-            screenGame.SetIsVisible(false);
-            screenGame.UnloadResources();            
+            //screenGame.Pause();
+            //screenGame.SetIsVisible(false);
+            //screenGame.UnloadResources();            
             
         }
 
@@ -131,19 +124,19 @@ public class GamePanel extends net.middlemind.MmgGameApiJava.MmgCore.GamePanel {
 
         } else if (gameState == GameStates.MAIN_GAME_1P || gameState == GameStates.MAIN_GAME) {
             MmgHelper.wr("Showing MAIN GAME 1P screen.");
-            screenGame.SetGameType(GameType.GAME_ONE_PLAYER);
-            screenGame.LoadResources();
-            screenGame.UnPause();
-            screenGame.SetIsVisible(true);
-            currentScreen = screenGame;
+            //screenGame.SetGameType(GameType.GAME_ONE_PLAYER);
+            //screenGame.LoadResources();
+            //screenGame.UnPause();
+            //screenGame.SetIsVisible(true);
+            //currentScreen = screenGame;
 
         } else if (gameState == GameStates.MAIN_GAME_2P) {
             MmgHelper.wr("Showing MAIN GAME 2P screen.");
-            screenGame.SetGameType(GameType.GAME_TWO_PLAYER);
-            screenGame.LoadResources();
-            screenGame.UnPause();
-            screenGame.SetIsVisible(true);
-            currentScreen = screenGame;            
+            //screenGame.SetGameType(GameType.GAME_TWO_PLAYER);
+            //screenGame.LoadResources();
+            //screenGame.UnPause();
+            //screenGame.SetIsVisible(true);
+            //currentScreen = screenGame;            
             
         }
     }    

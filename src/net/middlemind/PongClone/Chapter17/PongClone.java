@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter13;
+package net.middlemind.PongClone.Chapter17;
 
 import net.middlemind.MmgGameApiJava.MmgCore.DatConstantsEntry;
 import net.middlemind.MmgGameApiJava.MmgCore.GameSettings;

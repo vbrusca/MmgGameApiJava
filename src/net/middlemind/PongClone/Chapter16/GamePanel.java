@@ -1,4 +1,4 @@
-package net.middlemind.PongClone.Chapter13;
+package net.middlemind.PongClone.Chapter16;
 
 import net.middlemind.MmgGameApiJava.MmgBase.MmgHelper;
 import net.middlemind.MmgGameApiJava.MmgCore.DatExternalStrings;

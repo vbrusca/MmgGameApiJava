@@ -32,13 +32,13 @@ public class MmgCentralMain {
             MmgApiGame.main(Arrays.copyOfRange(args, 1, args.length));
                         
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter13")) {
-            net.middlemind.PongClone.Chapter13.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
+            net.middlemind.PongClone.Chapter16.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
 
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter14")) {
-            net.middlemind.PongClone.Chapter14.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
+            net.middlemind.PongClone.Chapter17.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
             
         } else if(args[0] != null && (args[0].toLowerCase().equals("chapter15") || args[0].toLowerCase().equals("chapter15_completegame"))) {
-            net.middlemind.PongClone.Chapter15_CompleteGame.PongClone.main(Arrays.copyOfRange(args, 1, args.length));
+            net.middlemind.PongClone.Chapter18_CompleteGame.PongClone.main(Arrays.copyOfRange(args, 1, args.length));
             
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter16")) {
             net.middlemind.DungeonTrap.ChapterE1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
