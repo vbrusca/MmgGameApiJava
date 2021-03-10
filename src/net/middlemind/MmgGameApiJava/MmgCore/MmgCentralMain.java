@@ -41,28 +41,28 @@ public class MmgCentralMain {
             net.middlemind.PongClone.Chapter15_CompleteGame.PongClone.main(Arrays.copyOfRange(args, 1, args.length));
             
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter16")) {
-            net.middlemind.DungeonTrap.Chapter16.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
+            net.middlemind.DungeonTrap.ChapterE1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
 
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter17")) {
-            net.middlemind.DungeonTrap.Chapter17.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
+            net.middlemind.DungeonTrap.ChapterE2.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
                        
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter18")) {
-            net.middlemind.DungeonTrap.Chapter18.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+            net.middlemind.DungeonTrap.ChapterE3.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
         
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter19")) {
-            net.middlemind.DungeonTrap.Chapter19.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                    
+            net.middlemind.DungeonTrap.ChapterE4.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                    
 
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter19_demoscreen")) {
-            net.middlemind.DungeonTrap.Chapter19_DemoScreen.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
+            net.middlemind.DungeonTrap.ChapterE4_DemoScreen.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
 
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter20_phase1")) {
-            net.middlemind.DungeonTrap.Chapter20_Phase1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+            net.middlemind.DungeonTrap.ChapterE5_Phase1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
 
         } else if(args[0] != null && args[0].toLowerCase().equals("chapter20_phase2")) {
-            net.middlemind.DungeonTrap.Chapter20_Phase2.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+            net.middlemind.DungeonTrap.ChapterE5_Phase2.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
 
         } else if(args[0] != null && (args[0].toLowerCase().equals("chapter20_phase3") || args[0].toLowerCase().equals("chapter20_phase3_completegame"))) {
-            net.middlemind.DungeonTrap.Chapter20_Phase3_CompleteGame.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
+            net.middlemind.DungeonTrap.ChapterE5_Phase3_CompleteGame.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
             
         } else {
             MmgTestScreens.main(Arrays.copyOfRange(args, 1, args.length));
