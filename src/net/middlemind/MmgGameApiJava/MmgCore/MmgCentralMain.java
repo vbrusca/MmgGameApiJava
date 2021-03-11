@@ -31,37 +31,37 @@ public class MmgCentralMain {
         } else if(args[0] != null && args[0].toLowerCase().equals("mmgapigame")) {
             MmgApiGame.main(Arrays.copyOfRange(args, 1, args.length));
                         
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter13")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter16")) {
             net.middlemind.PongClone.Chapter16.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
 
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter14")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chapter17")) {
             net.middlemind.PongClone.Chapter17.PongClone.main(Arrays.copyOfRange(args, 1, args.length));            
             
-        } else if(args[0] != null && (args[0].toLowerCase().equals("chapter15") || args[0].toLowerCase().equals("chapter15_completegame"))) {
+        } else if(args[0] != null && (args[0].toLowerCase().equals("chapter18") || args[0].toLowerCase().equals("chapter18_completegame"))) {
             net.middlemind.PongClone.Chapter18_CompleteGame.PongClone.main(Arrays.copyOfRange(args, 1, args.length));
             
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter16")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere1")) {
             net.middlemind.DungeonTrap.ChapterE1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
 
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter17")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere2")) {
             net.middlemind.DungeonTrap.ChapterE2.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
                        
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter18")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere3")) {
             net.middlemind.DungeonTrap.ChapterE3.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
         
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter19")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere4")) {
             net.middlemind.DungeonTrap.ChapterE4.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                    
 
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter19_demoscreen")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere4_demoscreen")) {
             net.middlemind.DungeonTrap.ChapterE4_DemoScreen.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));            
 
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter20_phase1")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere5_phase1")) {
             net.middlemind.DungeonTrap.ChapterE5_Phase1.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
 
-        } else if(args[0] != null && args[0].toLowerCase().equals("chapter20_phase2")) {
+        } else if(args[0] != null && args[0].toLowerCase().equals("chaptere5_phase2")) {
             net.middlemind.DungeonTrap.ChapterE5_Phase2.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
 
-        } else if(args[0] != null && (args[0].toLowerCase().equals("chapter20_phase3") || args[0].toLowerCase().equals("chapter20_phase3_completegame"))) {
+        } else if(args[0] != null && (args[0].toLowerCase().equals("chaptere5_phase3") || args[0].toLowerCase().equals("chaptere5_phase3_completegame"))) {
             net.middlemind.DungeonTrap.ChapterE5_Phase3_CompleteGame.DungeonTrap.main(Arrays.copyOfRange(args, 1, args.length));                        
             
         } else {
