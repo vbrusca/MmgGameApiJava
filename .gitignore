@@ -2,3 +2,6 @@ build/
 .DS_STORE
 .class
 dist/
+/nbproject/private/
+nbproject/private/private.properties
+nbproject/private/private.xml
