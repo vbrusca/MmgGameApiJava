@@ -1493,7 +1493,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets the width difference between the view port and the scroll pane.
      * 
-     * @param HeightDiff    The width difference between the view port and the scroll pane.
+     * @param WidthDiff    The width difference between the view port and the scroll pane.
      */     
     public void SetWidthDiff(int WidthDiff) {
         widthDiff = WidthDiff;
@@ -1691,7 +1691,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets the scroll bar slider button height.
      * 
-     * @param ScrollBarSliderButtonWidth        The scroll bar slider button height.
+     * @param h        The scroll bar slider button height.
      */    
     public void SetScrollBarUpDownButtonHeight(int h) {
         scrollBarUpDownButtonHeight = h;
@@ -1709,7 +1709,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets the scroll bar horizontal slider width.
      * 
-     * @param ScrollBarHorSliderWidth       The scroll bar horizontal slider width.
+     * @param w       The scroll bar horizontal slider width.
      */    
     public void SetScrollBarHorCenterButtonWidth(int w) {
         scrollBarHorCenterButtonWidth = w;
@@ -1727,7 +1727,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets the scroll bar vertical slider width.
      * 
-     * @param ScrollBarHorSliderWidth       The scroll bar vertical slider width.
+     * @param h       The scroll bar vertical slider width.
      */     
     public void SetScrollBarVertCenterButtonHeight(int h) {
         scrollBarVertCenterButtonHeight = h;
@@ -1769,7 +1769,7 @@ public class MmgScrollHorVert extends MmgObj {
     /**
      * Sets the interval for movement on the X axis.
      * 
-     * @param IntervalX     The X interval for movement.
+     * @param IntervalY     The X interval for movement.
      */    
     public void SetIntervalY(int IntervalY) {
         if(IntervalY != 0) {

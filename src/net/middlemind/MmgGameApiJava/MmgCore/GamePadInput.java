@@ -88,9 +88,9 @@ public class GamePadInput {
     /**
      * The main GpioPin constructor that sets all class field values.
      * 
-     * @param pinNumber         The GPIO pin number of the host computer system.
-     * @param high              The default high/low, 0/1, state to set the GpioPin when prepped by the GpioHub.
-     * @param in                The default in/out state to set the GpioPin when prepped by the GpioHub.
+     * @param idx               The GPIO pin number of the host computer system.
+     * @param on                The default high/low, 0/1, state to set the GpioPin when prepped by the GpioHub.
+     * @param off               The default in/out state to set the GpioPin when prepped by the GpioHub.
      * @param buttonType        The GpioButton type to assign to the GpioPin class instance.
      * @param chkPress          A boolean flag indicating if the press GpioPin state should be checked.
      * @param chkRelease        A boolean flag indicating if the release GpioPin state should be checked.
@@ -116,7 +116,7 @@ public class GamePadInput {
      * A GpioPin constructor that sets all class field values except pinHigh and pinIn. 
      * The pinHigh and pinIn field value are defaulted to false with this constructor.
      * 
-     * @param pinNumber         The GPIO pin number of the host computer system.
+     * @param idx         The GPIO pin number of the host computer system.
      * @param buttonType        The GpioButton type to assign to the GpioPin class instance.
      * @param chkPress          A boolean flag indicating if the press GpioPin state should be checked.
      * @param chkRelease        A boolean flag indicating if the release GpioPin state should be checked.

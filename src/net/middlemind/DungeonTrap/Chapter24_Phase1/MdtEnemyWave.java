@@ -350,7 +350,7 @@ public class MdtEnemyWave {
     /**
      * Sets the total time in milliseconds that this level will run.
      * 
-     * @return      The total number in milliseconds that this level will run.
+     * @param l     The total number in milliseconds that this level will run.
      */
     public void SetTimeTotalMs(long l) {
         timeTotalMs = l;

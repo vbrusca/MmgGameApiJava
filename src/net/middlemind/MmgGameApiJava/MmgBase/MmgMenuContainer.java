@@ -204,7 +204,7 @@ public class MmgMenuContainer extends MmgObj {
     /**
      * A method that checks to see if this MmgMenuContainer is equal to the passed in MmgMenuContainer.
      * 
-     * @param c     The MmgMenuContainer object instance to test for equality.
+     * @param obj     The MmgMenuContainer object instance to test for equality.
      * @return      Returns true if both MmgMenuContainer objects are the same.
      */
     public boolean ApiEquals(MmgMenuContainer obj) {

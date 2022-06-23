@@ -2620,7 +2620,7 @@ public class ScreenGame extends Screen {
     /**
      * Updates the board and unlocks the specified door.
      * 
-     * @param door      The door specified to unlock. 
+     * @param d      The door specified to unlock. 
      */
     private void UpdateUnlockDoor(MdtDoorType d) {
         if(d == MdtDoorType.TOP_LEFT) {

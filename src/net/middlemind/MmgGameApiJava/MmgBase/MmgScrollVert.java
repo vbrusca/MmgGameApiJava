@@ -200,13 +200,13 @@ public class MmgScrollVert extends MmgObj {
      * Basic constructor that sets the required objects and dimensions.
      * Prepares the drawing dimensions based on the provided objects.
      * 
-     * @param ViewPort                  The MmgBmp that shows a portion of the MmgBmp scroll pane.
-     * @param ScrollPane                The MmgBmp the is used to display a portion of itself to the view port.
-     * @param ScrollBarColor            The MmgColor to use for the scroll bar.
-     * @param ScrollBarCenterColor      The MmgColor to use for the scroll bar slider.
+     * @param ViewPort                      The MmgBmp that shows a portion of the MmgBmp scroll pane.
+     * @param ScrollPane                    The MmgBmp the is used to display a portion of itself to the view port.
+     * @param ScrollBarColor                The MmgColor to use for the scroll bar.
+     * @param ScrollBarCenterButtonColor    The MmgColor to use for the scroll bar slider.
      * @param ScrollBarWidth                The width of the scroll bar.
      * @param ScrollBarCenterButtonHeight   The height of the scroll bar slider.
-     * @param IntervalY                 The interval to use when moving the scroll bar.
+     * @param IntervalY                     The interval to use when moving the scroll bar.
      */
     public MmgScrollVert(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int ScrollBarWidth, int ScrollBarCenterButtonHeight, int IntervalY) {
         super();
@@ -1101,7 +1101,7 @@ public class MmgScrollVert extends MmgObj {
     /**
      * Sets the scroll bar slider button height.
      * 
-     * @param ScrollBarSliderButtonWidth        The scroll bar slider button height.
+     * @param h        The scroll bar slider button height.
      */    
     public void SetScrollBarUpDownButtonHeight(int h) {
         scrollBarUpDownButtonHeight = h;
@@ -1119,7 +1119,7 @@ public class MmgScrollVert extends MmgObj {
     /**
      * Sets the scroll bar vertical slider width.
      * 
-     * @param ScrollBarHorSliderWidth       The scroll bar vertical slider width.
+     * @param h       The scroll bar vertical slider width.
      */    
     public void SetScrollBarCenterButtonHeight(int h) {
         scrollBarCenterButtonHeight = h;

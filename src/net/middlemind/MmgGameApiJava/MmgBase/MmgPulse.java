@@ -320,7 +320,7 @@ public class MmgPulse {
      * A method used to check the equality of this MmgPulse when compared to another MmgPulse.
      * Compares object fields to determine equality.
      * 
-     * @param p     The MmgPulse object to compare too.
+     * @param obj     The MmgPulse object to compare too.
      * @return      A boolean indicating equality.
      */
     public boolean ApiEquals(MmgPulse obj) {

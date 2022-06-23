@@ -404,7 +404,7 @@ public class MdtChar extends MdtBase {
     /**
      * Sets the right direction stop frame.
      * 
-     * @param frameRightStop        The right direction stop frame.
+     * @param frame        The right direction stop frame.
      */
     public void SetFrameRightStop(int frame) {
         frameRightStop = frame;
@@ -440,7 +440,7 @@ public class MdtChar extends MdtBase {
     /**
      * Sets the character direction.
      * 
-     * @param dir       The character direction. 
+     * @param Dir       The character direction. 
      */
     public void SetDir(int Dir) {
         dir = Dir;
@@ -458,7 +458,7 @@ public class MdtChar extends MdtBase {
     /**
      * Sets the current collision rectangle for this character.
      * 
-     * @param current       The current collision rectangle for this character. 
+     * @param curr       The current collision rectangle for this character. 
      */
     public void SetCurrentCollRect(MmgRect curr) {
         current = curr;

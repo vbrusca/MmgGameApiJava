@@ -103,7 +103,7 @@ public class MmgCfgFileEntry implements Comparator<MmgCfgFileEntry> {
     /**
      * A method that checks to see if this MmgCfgFileEntry is equal to the passed in MmgCfgFileEntry.
      * 
-     * @param c     The MmgCfgFileEntry object instance to test for equality.
+     * @param obj     The MmgCfgFileEntry object instance to test for equality.
      * @return      Returns true if both MmgCfgFileEntry objects are the same.
      */
     public boolean ApiEquals(MmgCfgFileEntry obj) {

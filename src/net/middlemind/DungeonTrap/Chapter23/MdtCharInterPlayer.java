@@ -378,7 +378,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
     /**
      * Sets a boolean indicating that the player is pushing an object.
      * 
-     * @param isPushing     A boolean indicating that the player is pushing an object. 
+     * @param b     A boolean indicating that the player is pushing an object. 
      */
     public void SetIsPushing(boolean b) {
         isPushing = b;
@@ -415,7 +415,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
     /**
      * Sets the invisibility modifier's game time.
      * 
-     * @param ModTimingInv       The invisibility modifier's game time.
+     * @param i       The invisibility modifier's game time.
      */
     public void SetModTimingInv(long i) {
         modTimingInv = i;
@@ -433,7 +433,7 @@ public class MdtCharInterPlayer extends MdtCharInter {
     /**
      * Sets the invisibility modifier's total game time.
      * 
-     * @param ModTimingInvTotal     The invisibility modifier's total game time.
+     * @param i     The invisibility modifier's total game time.
      */
     public void SetModTimingInvTotal(long i) {
         modTimingInvTotal = i;

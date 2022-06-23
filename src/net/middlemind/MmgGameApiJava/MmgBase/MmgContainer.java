@@ -429,7 +429,7 @@ public class MmgContainer extends MmgObj {
     /**
      * The MmgUpdate method used to call the update method of the child objects.
      * 
-     * @param updateTick            The update tick number. 
+     * @param updateTicks            The update tick number. 
      * @param currentTimeMs         The current time in the game in milliseconds.
      * @param msSinceLastFrame      The number of milliseconds between the last frame and this frame.
      * @return                      A boolean indicating if any work was done.
@@ -461,7 +461,7 @@ public class MmgContainer extends MmgObj {
     /**
      * A method that checks to see if this MmgContainer is equal to the passed in MmgContainer.
      * 
-     * @param c     The MmgContainer object instance to test for equality.
+     * @param obj     The MmgContainer object instance to test for equality.
      * @return      Returns true if both MmgContainer objects are the same.
      */
     public boolean ApiEquals(MmgContainer obj) {

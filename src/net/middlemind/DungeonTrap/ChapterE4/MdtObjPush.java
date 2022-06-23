@@ -158,7 +158,7 @@ public class MdtObjPush extends MdtObj {
     /**
      * Sets the direction this object has been pushed in.
      * 
-     * @param pushDir       The direction this object has been pushed in.
+     * @param i       The direction this object has been pushed in.
      */
     public void SetPushDir(int i) {
         pushDir = i;
