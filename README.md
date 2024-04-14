@@ -1,5 +1,5 @@
 # MmgGameApiJava
-A Java based 2D game API. Build an entire game right in your IDE in Java. Almost fully compatible at the code level, library code, with the Java version of the game API.
+A Java based 2D game API. Build an entire game right in your IDE in Java. Almost fully compatible at the code level, library code, with the C# version of the game API.
 
 ## Errata
 Input key repeat fix for Mac OSX. Prevents keyboard input freeze due to keyboard press and hold.
