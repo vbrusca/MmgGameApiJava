@@ -1,5 +1,5 @@
 # MmgGameApiJava
-A Java based 2D game API. Build an entire game right in your IDE in Java. Almost fully compatible at the code level, library code, with the C# version of th game API.
+A Java based 2D game API. Build an entire game right in your IDE in Java. Almost fully compatible at the code level, library code, with the Java version of the game API.
 
 ## Errata
 Input key repeat fix for Mac OSX. Prevents keyboard input freeze due to keyboard press and hold.
@@ -12,7 +12,7 @@ A detailed explanation of the API can be found in this book.
 [*Introduction to Video Game Engine Development*](https://github.com/Apress/introduction-video-game-engine-development)
 
 ## Games that Use The API
-You can find the mot advacned game that uses the API here:
+You can find the mot advanced game that uses the API here:
 <br>
 <br>
 [Tyre](https://github.com/vbrusca/MmgGameApi-TyreSK)
