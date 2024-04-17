@@ -27,22 +27,28 @@ There are also compatible games in this book repo:
 ## Sample Game Screen Shots
 
 ### Dungeon Trap
-![Dungeon Trap 1](gh_images/dt_sc1.jpg)
-![Dungeon Trap 2](gh_images/dt_sc2.jpg)
+![Dungeon Trap 1](gh_images/dt_sc1.png)
+<br>
+![Dungeon Trap 2](gh_images/dt_sc2.png)
 
 ### Memory Match
-![Memory Match 1](gh_images/mm_sc1.jpg)
-![Memory Match 2](gh_images/mm_sc2.jpg)
-![Memory Match 3](gh_images/mm_sc3.jpg)
+![Memory Match 1](gh_images/mm_sc1.png)
+<br>
+![Memory Match 2](gh_images/mm_sc2.png)
+<br>
+![Memory Match 3](gh_images/mm_sc3.png)
 
 ### Pong Clone
-![Pong Clone 1](gh_images/pc_sc1.jpg)
-![Pong Clone 2](gh_images/pc_sc2.jpg)
-![Pong Clone 3](gh_images/pc_sc3.jpg)
+![Pong Clone 1](gh_images/pc_sc1.png)
+<br>
+![Pong Clone 2](gh_images/pc_sc2.png)
+<br>
+![Pong Clone 3](gh_images/pc_sc3.png)
 
 ### Tyre RPG
-![Tyre RPG 1](gh_images/tyre_java_sc1.jpg)
-![Tyre RPG 2](gh_images/tyre_java_sc2.jpg)
+![Tyre RPG 1](gh_images/tyre_java_sc1.png)
+<br>
+![Tyre RPG 2](gh_images/tyre_java_sc2.png)
 
 ## Packages / Namespaces
 <b>net.middlemind.MmgGameApiJava.MmgBase</b>
