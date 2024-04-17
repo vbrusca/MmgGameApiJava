@@ -45,19 +45,19 @@ There are also compatible games in this book repo:
 ![Tyre RPG 2](gh_images/tyre_java_sc2.jpg)
 
 ## Packages / Namespaces
-<b>net.middlemind.MmgGameApiJava.MmgBase / net.middlemind.MmgGameApiCs.MmgBase</b>
+<b>net.middlemind.MmgGameApiJava.MmgBase</b>
 <br>
 <br>
 This is the lowest level API in the game engine SDK. It sits on top of the underlying framework technology. For the Java project it plugs into the Java Swing and AWT APIs. For the C# project it plugs into Monogame APIs which use OpenGL and OpenAL.
 <br>
 <br>
-<b>net.middlemind.MmgGameApiJava.MmgCore / net.middlemind.MmgGameApiCs.MmgCore</b>
+<b>net.middlemind.MmgGameApiJava.MmgCore</b>
 <br>
 <br>
 This is the mid-level API in the game engine SDK. It sits between the low-level API, MmgBase, and the actual game implementation. It handles tasks like setting up the application window and drawing surfaces, loading resources, processing input. It also handles XML driven configuration, events, and more robust game screens.
 <br>
 <br>
-<b>net.middlemind.MmgGameApiJava.MmgTestSpace / net.middlemindMmgGameApiCs.MmgTestSpace</b>
+<b>net.middlemind.MmgGameApiJava.MmgTestSpace</b>
 <br>
 <br>
 This package represents the application level and really isn’t an SDK API. It is an example of an implementation of the SDK with runtime code included. This application, when executed, demonstrates how to use classes from the MmgBase and MmgCore APIs.
