@@ -3,7 +3,9 @@ A Java based 2D game API. Build an entire game right in your IDE in Java. Almost
 
 ## Errata
 Input key repeat fix for Mac OSX. Prevents keyboard input freeze due to keyboard press and hold.
+<pre>
 defaults write -g ApplePressAndHoldEnabled -bool false
+</pre>
 
 ## Detailed Explantion of the API
 A detailed explanation of the API can be found in this book.
