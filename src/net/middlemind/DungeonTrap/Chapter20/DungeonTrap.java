@@ -113,7 +113,7 @@ public final class DungeonTrap {
     public static void RunOsSpecificCode() {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
-            MmgHelper.wr("Found platform: " + OS);
+            MmgHelper.wr("RunOsSpecificCode: Found platform: " + OS);
             
             if (isWindows(OS)) {
                 MmgHelper.wr("This is Windows");
@@ -153,7 +153,7 @@ public final class DungeonTrap {
     public static void LoadNativeLibraries() {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
-            MmgHelper.wr("Found platform: " + OS);
+            MmgHelper.wr("LoadNativeLibraries: Found platform: " + OS);
             MmgHelper.wr("LibPath: " + System.getProperty("java.library.path"));
             //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
             //-Djava.library.path=/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/

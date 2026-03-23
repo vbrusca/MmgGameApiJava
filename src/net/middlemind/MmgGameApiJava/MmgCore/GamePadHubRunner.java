@@ -19,7 +19,7 @@ public class GamePadHubRunner implements Runnable {
     /**
      * The interval in ms that the GpioHubRunner will update the state of the GPIO pins.
      */
-    public long pollingIntervalMs = 10;
+    public long pollingIntervalMs = 15;
     
     /**
      * A class field used to mark the start time of a polling interval.

@@ -1,7 +1,7 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
 import java.util.Arrays;
-import net.java.games.input.test.ControllerReadTest;
+import net.middlemind.MmgGameApiJava.MmgTestSpace.ControllerReadTest;
 import net.middlemind.MmgGameApiJava.MmgTestSpace.MmgTestScreens;
 
 /**

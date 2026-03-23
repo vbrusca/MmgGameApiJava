@@ -64,7 +64,7 @@ public final class DungeonTrap {
     /**
      * The frame rate for the game, frames per second.
      */
-    public static long FPS = 30l;
+    public static long FPS = 60l;
 
     /**
      * Base engine config files.
@@ -113,10 +113,12 @@ public final class DungeonTrap {
     public static void RunOsSpecificCode() {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
-            MmgHelper.wr("Found platform: " + OS);
+            MmgHelper.wr("RunOsSpecificCode: Found platform: " + OS);
             
             if (isWindows(OS)) {
                 MmgHelper.wr("This is Windows");
+                GameSettings.LOAD_NATIVE_LIBRARIES = true;
+                GameSettings.GAMEPAD_1_ON = true;
                 
             } else if (isMac(OS)) {
                 MmgHelper.wr("This is Mac");
@@ -153,7 +155,7 @@ public final class DungeonTrap {
     public static void LoadNativeLibraries() {
         try {
             String OS = System.getProperty("os.name").toLowerCase();
-            MmgHelper.wr("Found platform: " + OS);
+            MmgHelper.wr("LoadNativeLibraries: Found platform: " + OS);
             MmgHelper.wr("LibPath: " + System.getProperty("java.library.path"));
             //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
             //-Djava.library.path=/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/
@@ -407,7 +409,7 @@ public final class DungeonTrap {
             mf.setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
         }
         
-        mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         mf.GetGamePanel().PrepBuffers();
         t = new Thread(fr);
         t.start();

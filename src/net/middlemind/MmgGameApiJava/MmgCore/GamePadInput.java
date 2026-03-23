@@ -17,7 +17,9 @@ public class GamePadInput {
         BtnLeft,
         BtnRight,
         BtnA,
-        BtnB
+        BtnB,
+        BtnSelect,
+        BtnStart
     };
     
     /**

@@ -47,7 +47,10 @@ public class GameSettings {
     //Enables the load native libraries call on the static main class so you can load
     //native OS libraries used by your game
     public static boolean LOAD_NATIVE_LIBRARIES = false;
-    public static boolean RUN_OS_SPECIFIC_CODE = true;    
+    public static boolean RUN_OS_SPECIFIC_CODE = true;
+    public static boolean RUN_IN_EXCLUSIVE_MODE = false;
+    public static int RUN_IN_EXCLUSIVE_MODE_DESIRED_WIDTH = 1024;
+    public static int RUN_IN_EXCLUSIVE_MODE_DESIRED_HEIGHT = 768;    
     
     //Image dirs must end with a file path separator
     public static String IMAGE_LOAD_DIR = "../cfg/drawable/";
@@ -68,7 +71,7 @@ public class GameSettings {
     //On/Off values are always 0 and 1 so no mapping is needed for these values.
     public static boolean GPIO_GAMEPAD_ON = false;
     public static boolean GPIO_GAMEPAD_THREADED_POLLING = false;
-    public static long GPIO_GAMEPAD_POLLING_INTERVAL_MS = 20;    
+    public static long GPIO_GAMEPAD_POLLING_INTERVAL_MS = 15;    
     
     public static int GPIO_PIN_BTN_UP = 488;
     public static boolean BTN_UP_CHECK_PRESS = true;
@@ -104,7 +107,7 @@ public class GameSettings {
     public static boolean GAMEPAD_1_ON = true;
     public static int GAMEPAD_1_INDEX = 2;
     public static boolean GAMEPAD_1_THREADED_POLLING = true;
-    public static long GAMEPAD_1_POLLING_INTERVAL_MS = 20;    
+    public static long GAMEPAD_1_POLLING_INTERVAL_MS = 15;    
     
     public static int GAMEPAD_1_UP_INDEX = 15;
     public static float GAMEPAD_1_UP_VALUE_ON = 0.25f;
@@ -149,10 +152,10 @@ public class GameSettings {
     public static boolean GAMEPAD_1_B_CHECK_CLICK = true;
     
     //GamePad 2 input settings
-    public static boolean GAMEPAD_2_ON = true;
+    public static boolean GAMEPAD_2_ON = false;
     public static int GAMEPAD_2_INDEX = 0;
     public static boolean GAMEPAD_2_THREADED_POLLING = false;
-    public static long GAMEPAD_2_POLLING_INTERVAL_MS = 20;
+    public static long GAMEPAD_2_POLLING_INTERVAL_MS = 15;
     
     public static int GAMEPAD_2_UP_INDEX = 15;
     public static float GAMEPAD_2_UP_VALUE_ON = 0.25f;

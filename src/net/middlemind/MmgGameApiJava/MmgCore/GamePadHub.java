@@ -51,7 +51,11 @@ public class GamePadHub {
      * A static integer for tracking the B button on the gamepad.
      */
     public static int B = 5;
-        
+
+
+    public static int SELECT = 6;    
+    public static int START = 7;
+
     /**
      * An array of GamePadInput instances used to indicate dpad, A button, and B button input.
      */

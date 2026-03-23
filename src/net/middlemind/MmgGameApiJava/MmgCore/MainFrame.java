@@ -1,5 +1,9 @@
 package net.middlemind.MmgGameApiJava.MmgCore;
 
+import java.awt.DisplayMode;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.*;
@@ -216,9 +220,57 @@ public class MainFrame extends JFrame {
                 
         pnlGame.GetCanvas().setFocusable(true);
         pnlGame.GetCanvas().requestFocus();
-        pnlGame.GetCanvas().requestFocusInWindow();
-        
+        pnlGame.GetCanvas().requestFocusInWindow();        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        if(GameSettings.RUN_IN_EXCLUSIVE_MODE == true) { 
+            // Get the graphics environment and default screen device
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice gd = ge.getDefaultScreenDevice();
+            JFrame frame = (JFrame)this;
+
+            frame.setUndecorated(true);
+            // Check if full-screen exclusive mode is supported
+            if (gd.isFullScreenSupported()) {
+                try {
+                    System.out.println("Full-screen: Entering full screen exclusive mode.");
+                    // Enter full-screen exclusive mode
+                    DisplayMode ogd = gd.getDisplayMode();
+                    gd.setFullScreenWindow(frame);
+
+                    if (gd.isDisplayChangeSupported()) {
+                        ogd = gd.getDisplayMode();
+                        int cnt = 1;
+                        for(DisplayMode lgd : gd.getDisplayModes()) {
+                            System.out.println("Display mode " + cnt + " supports width: " + lgd.getWidth() + ", height: " + lgd.getHeight());  
+                            if(lgd.getWidth() == GameSettings.RUN_IN_EXCLUSIVE_MODE_DESIRED_WIDTH && lgd.getHeight() == GameSettings.RUN_IN_EXCLUSIVE_MODE_DESIRED_HEIGHT) {
+                                gd.setDisplayMode(lgd);
+                            }
+                            cnt += 1;                            
+                        }                        
+                    } else {
+                        System.out.println("Display mode changes not supported. Running in default full screen resolution.");
+                    }                    
+                    
+                } catch (Exception e) {
+                    System.err.println("Full-screen: Failed to enter full-screen exclusive mode: " + e.getMessage());
+                    e.printStackTrace();
+                    
+                    // Fallback to windowed mode if exclusive mode fails
+                    gd.setFullScreenWindow(null); // Exit full screen if it was partially set up
+                    frame.setUndecorated(false);
+                    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);                    
+                    frame.setVisible(true);
+                }
+            } else {
+                System.out.println("Full-screen: exclusive mode not supported. Maximizing window instead.");
+                // Fallback for systems that don't support exclusive mode
+                frame.setUndecorated(false);
+                frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                frame.setVisible(true);
+            }      
+        }
+        
         addWindowListener(new WindowListener() {
 
             @Override

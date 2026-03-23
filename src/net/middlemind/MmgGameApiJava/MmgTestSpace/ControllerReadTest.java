@@ -1,4 +1,5 @@
-package net.java.games.input.test;
+//package net.java.games.input.test;
+package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import java.util.Hashtable;
 import javax.swing.JFrame;
@@ -32,42 +33,48 @@ public class ControllerReadTest extends JFrame {
                     }
                 });
 
+                System.out.println("Scanning controllers for one with active input."); 
+                int targetController = 0;
                 while(z > 0) {
                     for(int i = 0; i < ca.length; i++) {
-                        if(ca[i].getType().toString().toLowerCase().equals("gamepad")) {
+                        if(ca[i].getType().toString().toLowerCase().equals("gamepad") || ca[i].getType().toString().toLowerCase().equals("stick")) {
                             ca[i].poll();
-
-                            /* Get the name of the controller */
-                            //System.out.println("Count:" + z);
-                            //System.out.println("");
-                            //System.out.println(ca[i].getName());        
-                            //System.out.println("Type: " + ca[i].getType().toString());
-
-                            /* Get this controllers components (buttons and axis) */
                             Component[] components = ca[i].getComponents();
-                            System.out.println("GamePad Index: " + i + " Component Count: " + components.length);
+                            System.out.println("Controller Index: " + i + " Component Count: " + components.length);
                             for(int j = 0; j < components.length; j++) {
-                                if(currentData.containsKey(components[j].getName()) == false) {
-                                    currentData.put(components[j].getName(), new Float(components[j].getPollData()));
-                                    System.out.println("Component " + j + ": " + components[j].getName());
-                                    System.out.println("\t\tIdentifier: " + components[j].getIdentifier().getName());
-                                    System.out.println("\t\tIsAnalog: " + components[j].isAnalog());
-                                    System.out.println("\t\tIsRelative: " + components[j].isRelative());
-                                    System.out.println("\t\tData: " + components[j].getPollData());
-
-                                } else {
-                                    Float val = currentData.get(components[j].getName());
-                                    if(val.floatValue() != components[j].getPollData()) {
-                                        System.out.println("Component " + j + ": " + components[j].getName());
-                                        System.out.println("\t\tIdentifier: " + components[j].getIdentifier().getName());
-                                        System.out.println("\t\tIsAnalog: " + components[j].isAnalog());
-                                        System.out.println("\t\tIsRelative: " + components[j].isRelative());
-                                        System.out.println("\t\tData: " + components[j].getPollData());
-                                    }
-
+                                if(components[j].getPollData() != 0.0) {
+                                    targetController = i;
+                                    z = -1;
+                                    System.out.println("Found connected controller with input '" + ca[i].getType().toString().toLowerCase() + "' at port '" + ca[i].getPortNumber() + "'");
+                                    break;
                                 }
-
                             }
+                        }
+                    }
+                    
+                    try {
+                        Thread.sleep(1000);
+                    }catch(Exception e) {
+
+                    }
+
+                    z--;
+                }                    
+                
+                z = 20;
+                while(z > 0) {
+                    int i = targetController;
+                    ca[i].poll();
+                    Component[] components = ca[i].getComponents();
+                    System.out.println("GamePad Index: " + i + " Component Count: " + components.length + " Controller Count: " + ca[i].getControllers().length);
+                    for(int j = 0; j < components.length; j++) {
+                        if(components[j].getPollData() != 0.0) {
+                            System.out.println("Component " + j + ": " + components[j].getName());
+                            System.out.println("\t\tIdentifier: " + components[j].getIdentifier().getName());
+                            System.out.println("\t\tIsAnalog: " + components[j].isAnalog());
+                            System.out.println("\t\tIsRelative: " + components[j].isRelative());
+                            System.out.println("\t\tData: " + components[j].getPollData());
+                            System.out.println("\t\tDeadZone: " + components[j].getDeadZone());
                         }
                     }
 

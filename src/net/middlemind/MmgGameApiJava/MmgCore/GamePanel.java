@@ -625,6 +625,15 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             }
         }
         
+        if(GameSettings.GAMEPAD_2_ON) {
+            gamePadHub = new GamePadHub(GameSettings.GAMEPAD_2_INDEX);
+            gamePadRunner = new GamePadHubRunner(gamePadHub, GameSettings.GAMEPAD_2_POLLING_INTERVAL_MS, this);
+            if(GameSettings.GAMEPAD_2_THREADED_POLLING) {
+                gpadTr = new Thread(gamePadRunner);
+                gpadTr.start();
+            }
+        }        
+        
         if(GameSettings.GPIO_GAMEPAD_ON) {
             gpioHub = new GpioHub();
             gpioRunner = new GpioHubRunner(gpioHub, GameSettings.GPIO_GAMEPAD_POLLING_INTERVAL_MS, this);
