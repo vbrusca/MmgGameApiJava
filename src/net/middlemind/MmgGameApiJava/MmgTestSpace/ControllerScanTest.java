@@ -3,6 +3,7 @@ package net.middlemind.MmgGameApiJava.MmgTestSpace;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Constructor;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import net.java.games.input.Component;
@@ -19,13 +20,26 @@ public class ControllerScanTest extends JFrame {
     public static PrintStream origErr = System.err;
     public static PrintStream newErr = null;
     
+    
+    public static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
+        // Find constructor (class is package private, so we can't access it directly)
+        Constructor<ControllerEnvironment> constructor = (Constructor<ControllerEnvironment>)
+            Class.forName("net.java.games.input.DefaultControllerEnvironment").getDeclaredConstructors()[0];
+
+        // Constructor is package private, so we have to deactivate access control checks
+        constructor.setAccessible(true);
+
+        // Create object with default constructor
+        return constructor.newInstance();
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        newErr = new PrintStream(baos);
-        System.setErr(newErr);
+        //ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        //newErr = new PrintStream(baos);
+        //System.setErr(newErr);
                 
         System.out.println("Controller Scan Test");        
         new Thread(new Runnable() {
@@ -42,6 +56,7 @@ public class ControllerScanTest extends JFrame {
             }
         }).start();
         
+        /*
         new Thread(new Runnable() {
             public void run() {
                 while(runScan) {
@@ -60,22 +75,29 @@ public class ControllerScanTest extends JFrame {
                     if(baos.toString().indexOf("Failed to poll device") != -1) {
                         System.out.println("Controller IO Error... exiting");
                         runScan = false;
-                        System.exit(1);
+                        //System.exit(1);
                         break;
                     }
                 }
             }
         }).start();        
+        */
         
         new Thread(new Runnable() {
             public void run() {
+                int cnt = 0;
                 while(runScan) {
+                    
                     try {
                         Controller[] ca = null;                    
                         boolean found = false;
 
                         try {
-                            ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
+                            if(cnt % 100 == 0) {
+                                ca = ControllerScanTest.createDefaultEnvironment().getControllers();
+                            } else {
+                                ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
+                            }
                         }catch(Exception e) {
                             System.out.println("Error1");
                             e.printStackTrace();
@@ -83,44 +105,48 @@ public class ControllerScanTest extends JFrame {
 
                         if(player1Controller != null) {
                             for(int i = 0; i < ca.length; i++) {
-                                if(ca[i] != null && ca[i].equals(player1Controller)) {
+                                if(ca[i] != null && ca[i].getPortNumber() == player1Controller.getPortNumber()) {
                                     found = true;
                                 }
                             }
                         }
 
                         if(!found && player1Controller != null) {
-                            player1Controller = null;
+                            //player1Controller = null;
                             System.out.println("Player 1 controller previously connected at port '" + player1Controller.getPortNumber() + "' has been removed.");
                         }
-
+                        
+                        /*
                         try {
                             ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
                         }catch(Exception e) {
                             System.out.println("Error2");                            
                             e.printStackTrace();
                         }
-
+                        */
+                        
                         if(player2Controller != null) {
                             for(int i = 0; i < ca.length; i++) {
-                                if(ca[i] != null && ca[i].equals(player2Controller)) {
+                                if(ca[i] != null && ca[i].getPortNumber() == player2Controller.getPortNumber()) {
                                     found = true;
                                 }
                             }
                         }
 
                         if(!found && player2Controller != null) {
-                            player2Controller = null;
+                            //player2Controller = null;
                             System.out.println("Player 2 controller previously connected at port '" + player2Controller.getPortNumber() + "' has been removed.");
                         }                    
 
+                        /*
                         try {
                             ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
                         }catch(Exception e) {
                             System.out.println("Error3");                            
                             e.printStackTrace();
                         }
-
+                        */
+                        
                         for(int i = 0; i < ca.length; i++) {
                             if(ca[i].getType().toString().toLowerCase().equals("gamepad") || ca[i].getType().toString().toLowerCase().equals("stick")) {
                                 boolean pollSuccessful = false;
@@ -177,6 +203,8 @@ public class ControllerScanTest extends JFrame {
                         System.out.println("Error4");                        
                         e.printStackTrace();
                     }
+                    
+                    cnt++;
                 }
             }
         }).start();

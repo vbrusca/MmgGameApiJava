@@ -39,7 +39,7 @@ public final class MmgTestScreens {
     /**
      * The target window height.
      */
-    public static int WIN_HEIGHT = 600;
+    public static int WIN_HEIGHT = 418; //600;
 
     /**
      * The game panel width.
@@ -49,12 +49,12 @@ public final class MmgTestScreens {
     /**
      * The game panel height.
      */
-    public static int PANEL_HEIGHT = 598; //416
+    public static int PANEL_HEIGHT = 416; //598; //416
 
     /**
      * The game width.
      */
-    public static int GAME_WIDTH = 854;
+    public static int GAME_WIDTH = 858;
 
     /**
      * The game height.
@@ -64,7 +64,7 @@ public final class MmgTestScreens {
     /**
      * The frame rate for the game, frames per second.
      */
-    public static long FPS = 16l;
+    public static long FPS = 60l;
 
     /**
      * Base engine config files.
@@ -127,15 +127,12 @@ public final class MmgTestScreens {
                 GameSettings.GAMEPAD_1_ON = true;
                 GameSettings.GAMEPAD_1_THREADED_POLLING = false;
                 GameSettings.GAMEPAD_2_ON = false;
-                GameSettings.GPIO_GAMEPAD_ON = false;
                 
             } else if (isUnix(OS)) {
                 MmgHelper.wr("This is Unix or Linux");
                 GameSettings.LOAD_NATIVE_LIBRARIES = false;
                 GameSettings.GAMEPAD_1_ON = false;
                 GameSettings.GAMEPAD_2_ON = false;
-                GameSettings.GPIO_GAMEPAD_ON = true;
-                GameSettings.GPIO_GAMEPAD_THREADED_POLLING = true;
                 
             } else if (isSolaris(OS)) {
                 MmgHelper.wr("This is Solaris");

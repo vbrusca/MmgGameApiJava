@@ -1620,16 +1620,10 @@ public class ScreenGame extends Screen {
                 return true;
 
             } else if (this.gameType == GameType.GAME_TWO_PLAYER) {
-                if (dir == GameSettings.DOWN_GAMEPAD_1 || dir == GameSettings.DOWN_GPIO) {
-                    if (dir == GameSettings.DOWN_GPIO) {
-                        MmgHelper.wr(("GPIO Gamepad Down Button Event"));
-                    }
+                if (dir == GameSettings.DOWN_GAMEPAD_1) {
                     return true;
 
-                } else if (dir == GameSettings.UP_GAMEPAD_1 || dir == GameSettings.UP_GPIO) {
-                    if (dir == GameSettings.UP_GPIO) {
-                        MmgHelper.wr(("GPIO Gamepad Up Button Event"));
-                    }
+                } else if (dir == GameSettings.UP_GAMEPAD_1) {
                     return true;
 
                 }
@@ -1658,10 +1652,10 @@ public class ScreenGame extends Screen {
                 return true;
 
             } else if (this.gameType == GameType.GAME_TWO_PLAYER) {
-                if (dir == GameSettings.DOWN_GAMEPAD_1 || dir == GameSettings.DOWN_GPIO) {
+                if (dir == GameSettings.DOWN_GAMEPAD_1) {
                     return true;
 
-                } else if (dir == GameSettings.UP_GAMEPAD_1 || dir == GameSettings.UP_GPIO) {
+                } else if (dir == GameSettings.UP_GAMEPAD_1) {
                     return true;
 
                 }

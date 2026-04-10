@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/DungeonTrap/ChapterE5_Phase3_CompleteGame/DungeonTrap.java</file>
             <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgCore/GameSettings.java</file>
+            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgBase/MmgSpriteMatrix.java</file>
+            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgBase/MmgSpriteSheet.java</file>
             <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgCore/GamePanel.java</file>
+            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgCore/MainFrame.java</file>
+            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/Mp4Frame.java</file>
+            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/src/net/middlemind/MmgGameApiJava/MmgTestSpace/MmgTestScreens.java</file>
+            <file>file:/C:/FILES/OIT_LAPTOP_BACKUP/DOCUMENTS/GitHub/MmgGameApiJava/cfg/engine_config_mmg_test_space.xml</file>
         </group>
     </open-files>
 </project-private>

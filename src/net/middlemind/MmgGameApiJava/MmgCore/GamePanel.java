@@ -362,17 +362,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
      * A Thread used to process the USB gamepad input if threaded polling is enabled in the GameSettings class.
      */
     public Thread gpadTr;
-    
-    /**
-     * A GpioPadHub instance used for processing GPIO gamepad input.
-     */
-    public GpioHub gpioHub;
-    
-    /**
-     * A GpioPadRunner instance used for polling gamepad input from the GpioPadHub.
-     */
-    public GpioHubRunner gpioRunner;
-    
+        
     /**
      * A Thread used to process the GPIO gamepad input if threaded polling is enabled in the GameSettings class.
      */
@@ -633,16 +623,7 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
                 gpadTr.start();
             }
         }        
-        
-        if(GameSettings.GPIO_GAMEPAD_ON) {
-            gpioHub = new GpioHub();
-            gpioRunner = new GpioHubRunner(gpioHub, GameSettings.GPIO_GAMEPAD_POLLING_INTERVAL_MS, this);
-            if(GameSettings.GPIO_GAMEPAD_THREADED_POLLING) {
-                gpioTr = new Thread(gpioRunner);
-                gpioTr.start();
-            }
-        }        
-        
+                
         SwitchGameState(GameStates.SPLASH);
     }
 
@@ -1188,14 +1169,10 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
         prev = now;
         now = System.currentTimeMillis();
 
-        if(GameSettings.GAMEPAD_1_ON && GameSettings.GAMEPAD_1_THREADED_POLLING == false) {
-            gamePadRunner.PollGamePad();
-        }
-        
-        if(GameSettings.GPIO_GAMEPAD_ON && GameSettings.GPIO_GAMEPAD_THREADED_POLLING == false) {
-            gpioRunner.PollGpio();
-        }        
-        
+        //if(GameSettings.GAMEPAD_1_ON && GameSettings.GAMEPAD_1_THREADED_POLLING == false) {
+        //    gamePadRunner.PollGamePad();
+        //}
+                
         // update game logic here
         if (currentScreen != null) {
             currentScreen.MmgUpdate(updateTick, now, (now - prev));
@@ -1220,15 +1197,15 @@ public class GamePanel implements GenericEventHandler, GamePadSimple {
             //do nothing
         } else {
             //clear background
-            g.setColor(Color.DARK_GRAY);
+            g.setColor(Color.BLACK);    //Color.DARK_GRAY);
             g.fillRect(0, 0, winWidth, winHeight);
 
             //draw border
-            g.setColor(Color.WHITE);
-            g.drawRect(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 1, MmgScreenData.GetGameHeight() + 1);
+            //g.setColor(Color.WHITE);
+            //g.drawRect(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 1, MmgScreenData.GetGameHeight() + 1);
 
-            g.setColor(Color.BLACK);
-            g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
+            //g.setColor(Color.BLACK);
+            //g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
 
             p.SetGraphics(g);
             p.SetAdvRenderHints();

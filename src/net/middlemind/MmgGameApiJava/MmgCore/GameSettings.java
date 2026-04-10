@@ -17,25 +17,7 @@ public class GameSettings {
     public static int UP_KEYBOARD = 1;
     public static int LEFT_KEYBOARD = 2;
     public static int RIGHT_KEYBOARD = 3;
-    
-    public static int SRC_GPIO = 3;
-    public static int DOWN_GPIO = 4;
-    public static int UP_GPIO = 5;
-    public static int LEFT_GPIO = 6;
-    public static int RIGHT_GPIO = 7;
-    
-    public static int SRC_GAMEPAD_1 = 1;    
-    public static int DOWN_GAMEPAD_1 = 8;
-    public static int UP_GAMEPAD_1 = 9;
-    public static int LEFT_GAMEPAD_1 = 10;
-    public static int RIGHT_GAMEPAD_1 = 11;
-    
-    public static int SRC_GAMEPAD_2 = 2;
-    public static int DOWN_GAMEPAD_2 = 12;
-    public static int UP_GAMEPAD_2 = 13;
-    public static int LEFT_GAMEPAD_2 = 14;
-    public static int RIGHT_GAMEPAD_2 = 15;    
-      
+              
     //Legacy game specific entries that aren't hurting anyone
     public static boolean SND_CACHE_ON = true;
     public static String SND_PREFIX = "sounds_";    
@@ -50,7 +32,8 @@ public class GameSettings {
     public static boolean RUN_OS_SPECIFIC_CODE = true;
     public static boolean RUN_IN_EXCLUSIVE_MODE = false;
     public static int RUN_IN_EXCLUSIVE_MODE_DESIRED_WIDTH = 1024;
-    public static int RUN_IN_EXCLUSIVE_MODE_DESIRED_HEIGHT = 768;    
+    public static int RUN_IN_EXCLUSIVE_MODE_DESIRED_HEIGHT = 768;
+    public static boolean USE_LEGACY_JINPUT_CONTROLLER_SUPPORT = false;
     
     //Image dirs must end with a file path separator
     public static String IMAGE_LOAD_DIR = "../cfg/drawable/";
@@ -67,41 +50,18 @@ public class GameSettings {
     public static String DEVELOPER_COMPANY = "Unknown";
     public static String TITLE = "Unknown";
     
-    //GPIO gamepad input settings
-    //On/Off values are always 0 and 1 so no mapping is needed for these values.
-    public static boolean GPIO_GAMEPAD_ON = false;
-    public static boolean GPIO_GAMEPAD_THREADED_POLLING = false;
-    public static long GPIO_GAMEPAD_POLLING_INTERVAL_MS = 15;    
+    //=================================== LEGACY JINPUT ===================================
+    public static int SRC_GAMEPAD_1 = 1;    
+    public static int DOWN_GAMEPAD_1 = 8;
+    public static int UP_GAMEPAD_1 = 9;
+    public static int LEFT_GAMEPAD_1 = 10;
+    public static int RIGHT_GAMEPAD_1 = 11;
     
-    public static int GPIO_PIN_BTN_UP = 488;
-    public static boolean BTN_UP_CHECK_PRESS = true;
-    public static boolean BTN_UP_CHECK_RELEASE = true;
-    public static boolean BTN_UP_CHECK_CLICK = true;
-
-    public static int GPIO_PIN_BTN_DOWN = 489;
-    public static boolean BTN_DOWN_CHECK_PRESS = true;
-    public static boolean BTN_DOWN_CHECK_RELEASE = true;
-    public static boolean BTN_DOWN_CHECK_CLICK = true;    
-    
-    public static int GPIO_PIN_BTN_LEFT = 476;
-    public static boolean BTN_LEFT_CHECK_PRESS = true;
-    public static boolean BTN_LEFT_CHECK_RELEASE = true;
-    public static boolean BTN_LEFT_CHECK_CLICK = true;        
-    
-    public static int GPIO_PIN_BTN_RIGHT = 477;
-    public static boolean BTN_RIGHT_CHECK_PRESS = true;
-    public static boolean BTN_RIGHT_CHECK_RELEASE = true;
-    public static boolean BTN_RIGHT_CHECK_CLICK = true;            
-    
-    public static int GPIO_PIN_BTN_A = 486;
-    public static boolean BTN_A_CHECK_PRESS = true;
-    public static boolean BTN_A_CHECK_RELEASE = true;
-    public static boolean BTN_A_CHECK_CLICK = true;
-    
-    public static int GPIO_PIN_BTN_B = 487;
-    public static boolean BTN_B_CHECK_PRESS = true;
-    public static boolean BTN_B_CHECK_RELEASE = true;
-    public static boolean BTN_B_CHECK_CLICK = true;
+    public static int SRC_GAMEPAD_2 = 2;
+    public static int DOWN_GAMEPAD_2 = 12;
+    public static int UP_GAMEPAD_2 = 13;
+    public static int LEFT_GAMEPAD_2 = 14;
+    public static int RIGHT_GAMEPAD_2 = 15;    
     
     //GamePad 1 input settings
     public static boolean GAMEPAD_1_ON = true;

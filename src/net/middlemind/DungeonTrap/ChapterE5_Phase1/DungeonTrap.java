@@ -124,15 +124,12 @@ public final class DungeonTrap {
                 GameSettings.GAMEPAD_1_ON = true;
                 GameSettings.GAMEPAD_1_THREADED_POLLING = false;
                 GameSettings.GAMEPAD_2_ON = false;
-                GameSettings.GPIO_GAMEPAD_ON = false;
                 
             } else if (isUnix(OS)) {
                 MmgHelper.wr("This is Unix or Linux");
                 GameSettings.LOAD_NATIVE_LIBRARIES = false;
                 GameSettings.GAMEPAD_1_ON = false;
                 GameSettings.GAMEPAD_2_ON = false;
-                GameSettings.GPIO_GAMEPAD_ON = true;
-                GameSettings.GPIO_GAMEPAD_THREADED_POLLING = true;
                 
             } else if (isSolaris(OS)) {
                 MmgHelper.wr("This is Solaris");
